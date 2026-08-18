@@ -1,0 +1,15 @@
+// TeracStudy[] — ver frontend/lib/server/connectors/terac.ts (interface TeracStudy).
+// El mock de Terac lee este archivo cuando NO hay TERAC_API_KEY.
+// Cargá los estudios reales a mano dentro del array de abajo.
+// Forma de cada item:
+// {
+//   "studyId": "sf-backend-q3",
+//   "communityId": "com-sfpython",       // debe existir en sf-communities.json
+//   "icpFitRate": 0.5,                    // fracción del panel que calza con el ICP (0..1)
+//   "sampleSize": 14,
+//   "insight": "9 de 14 devs enviaron una integración de API a prod el último trimestre.",
+//   "observedAt": "2026-07-22T18:40:00.000Z",
+//   "location": "San Francisco, CA",
+//   "url": null
+// }
+[]

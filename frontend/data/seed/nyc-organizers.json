@@ -1,0 +1,1876 @@
+[
+  {
+    "id": "org-brian-hui",
+    "displayName": "Brian Hui",
+    "publicRole": "Host, Brooklyn Product Design",
+    "publicContactUrl": "https://www.brianhui.me",
+    "organizesEventIds": [
+      "evt-evt-zhcvaSD2OcuynKq",
+      "evt-evt-dU7gdAhMtrABFRu"
+    ],
+    "communityIds": [
+      "com-cal-sHWMt96AHAYzCyD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-jos-arias",
+    "displayName": "José Arias",
+    "publicRole": "Host, Brooklyn Product Design",
+    "publicContactUrl": "https://www.jarias.design",
+    "organizesEventIds": [
+      "evt-evt-zhcvaSD2OcuynKq",
+      "evt-evt-dU7gdAhMtrABFRu"
+    ],
+    "communityIds": [
+      "com-cal-sHWMt96AHAYzCyD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-rahul-alexander",
+    "displayName": "Rahul Alexander",
+    "publicRole": "Host, Brooklyn Product Design",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-zhcvaSD2OcuynKq"
+    ],
+    "communityIds": [
+      "com-cal-sHWMt96AHAYzCyD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-alo",
+    "displayName": "ALO",
+    "publicRole": "Host, ALO",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-p9zOcdkHFJvzc70"
+    ],
+    "communityIds": [
+      "com-cal-SRZBqShHEEHRr2D"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-kentaro-lee",
+    "displayName": "Kentaro Lee",
+    "publicRole": "Host, 529 Labs Community",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Wd4kEf3cPlzUF1x"
+    ],
+    "communityIds": [
+      "com-cal-qSyt7EAAjUBPYon"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-maya-galindo",
+    "displayName": "Maya Galindo",
+    "publicRole": "Host, 529 Labs Community",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Wd4kEf3cPlzUF1x"
+    ],
+    "communityIds": [
+      "com-cal-qSyt7EAAjUBPYon"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-yash-alluri",
+    "displayName": "Yash Alluri",
+    "publicRole": "Host, 529 Labs Community",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Wd4kEf3cPlzUF1x"
+    ],
+    "communityIds": [
+      "com-cal-qSyt7EAAjUBPYon"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-adlee-h",
+    "displayName": "Adlee H",
+    "publicRole": "Host, 529 Labs Community",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Wd4kEf3cPlzUF1x"
+    ],
+    "communityIds": [
+      "com-cal-qSyt7EAAjUBPYon"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-meji-meji",
+    "displayName": "Meji Meji",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Vut8HdexOO4QffP"
+    ],
+    "communityIds": [
+      "com-cal-2oIoPbtzYenu5YF"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-pauline-wee",
+    "displayName": "Pauline Wee",
+    "publicRole": "Host, new interfaces",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-6cJmzsvl6dUmZsO"
+    ],
+    "communityIds": [
+      "com-cal-XLiExIr02fBbaJo"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-chores",
+    "displayName": "Chores",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://chores.world",
+    "organizesEventIds": [
+      "evt-evt-kmJ4AfL47KBl4Zm"
+    ],
+    "communityIds": [
+      "com-cal-GBW5YRIHHAZCv21"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-harrison-friedes",
+    "displayName": "Harrison Friedes",
+    "publicRole": "Host, Freedom Lab NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-bV6DBpKD72lJJwB"
+    ],
+    "communityIds": [
+      "com-cal-ZGCxlwslp1K0wqD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-heshan",
+    "displayName": "Heshan",
+    "publicRole": "Host, Freedom Lab NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-bV6DBpKD72lJJwB"
+    ],
+    "communityIds": [
+      "com-cal-ZGCxlwslp1K0wqD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-jeffrey-silva",
+    "displayName": "Jeffrey Silva",
+    "publicRole": "Host, Freedom Lab NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-bV6DBpKD72lJJwB"
+    ],
+    "communityIds": [
+      "com-cal-ZGCxlwslp1K0wqD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-steph-that-quirky-bird-girl",
+    "displayName": "steph that quirky bird girl",
+    "publicRole": "Host, steph, that quirky bird girl",
+    "publicContactUrl": "https://thatquirkybirdgirl.com",
+    "organizesEventIds": [
+      "evt-evt-9MVN8mntGibTeTJ"
+    ],
+    "communityIds": [
+      "com-cal-83Wftl00nobq7Pv"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-leslie-luo",
+    "displayName": "Leslie Luo",
+    "publicRole": "Host, & luo studio",
+    "publicContactUrl": "https://www.andluo.studio",
+    "organizesEventIds": [
+      "evt-evt-QKHrCGDtbqsCysR"
+    ],
+    "communityIds": [
+      "com-cal-7FXYl9Ecgk1WS0B"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sahi-akasapu",
+    "displayName": "Sahi Akasapu",
+    "publicRole": "Host, & luo studio",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-QKHrCGDtbqsCysR"
+    ],
+    "communityIds": [
+      "com-cal-7FXYl9Ecgk1WS0B"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-alexandra-harper",
+    "displayName": "Alexandra Harper",
+    "publicRole": "Host, Women of Culture Art-full Experiences",
+    "publicContactUrl": "https://www.womenofculture.org/",
+    "organizesEventIds": [
+      "evt-evt-VzbX7gdYroDkYpz"
+    ],
+    "communityIds": [
+      "com-cal-0bWYTBUalNgy548"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-elizabeth-d",
+    "displayName": "Elizabeth D 🌸",
+    "publicRole": "Host, Women of Culture Art-full Experiences",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-VzbX7gdYroDkYpz"
+    ],
+    "communityIds": [
+      "com-cal-0bWYTBUalNgy548"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-lit-club-nyc",
+    "displayName": "Lit Club NYC",
+    "publicRole": "Host, Lit Club NYC Calendar",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-fdgL8Zrl3G5pip4"
+    ],
+    "communityIds": [
+      "com-cal-ItTR6nQ7r4wIvFf"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-greenji",
+    "displayName": "GreenJI",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-JQ5it6CCev4jJ0Q"
+    ],
+    "communityIds": [
+      "com-cal-sYUAxBDnGxQspR4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-meari",
+    "displayName": "Meari",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-JQ5it6CCev4jJ0Q"
+    ],
+    "communityIds": [
+      "com-cal-sYUAxBDnGxQspR4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-noflex-nyc",
+    "displayName": "NOFLEX® NYC",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-JQ5it6CCev4jJ0Q"
+    ],
+    "communityIds": [
+      "com-cal-sYUAxBDnGxQspR4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-gallery-sinclair",
+    "displayName": "Gallery Sinclair",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://gallerysinclair.com",
+    "organizesEventIds": [
+      "evt-evt-4Reaw8BjIHGhnGm"
+    ],
+    "communityIds": [
+      "com-cal-sp6DdlAS1jxwxFt"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-collin-hadley",
+    "displayName": "Collin Hadley",
+    "publicRole": "Host, Brooklyn Product Design",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-dU7gdAhMtrABFRu"
+    ],
+    "communityIds": [
+      "com-cal-sHWMt96AHAYzCyD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-build-with-claude",
+    "displayName": "Build with Claude",
+    "publicRole": "Host, Claude Workshops",
+    "publicContactUrl": "https://www.anthropic.com/events/build-with-claude",
+    "organizesEventIds": [
+      "evt-evt-6hAMXFT1e4LOhaR"
+    ],
+    "communityIds": [
+      "com-cal-8ACK0vjqOfKpHXl"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-provectus",
+    "displayName": "Provectus",
+    "publicRole": "Host, Claude Workshops",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-6hAMXFT1e4LOhaR"
+    ],
+    "communityIds": [
+      "com-cal-8ACK0vjqOfKpHXl"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-nyc-b2b",
+    "displayName": "NYC B2B",
+    "publicRole": "Host, NYC B2B: Startup Events",
+    "publicContactUrl": "https://nycb2b.beehiiv.com",
+    "organizesEventIds": [
+      "evt-evt-KdUiXiYwvFTePll",
+      "evt-evt-zLNbvfNinW2FOxs"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-max-kuivenhoven",
+    "displayName": "Max Kuivenhoven",
+    "publicRole": "Host, NYC B2B: Startup Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-KdUiXiYwvFTePll",
+      "evt-evt-IDPReQ9UZRrrAeX"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk",
+      "com-cal-d3fDYhRV6zFurGF"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-mongodb",
+    "displayName": "MongoDB",
+    "publicRole": "Host, NYC B2B: Startup Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-KdUiXiYwvFTePll",
+      "evt-evt-cVArZ0gMioDQKtY",
+      "evt-evt-IDPReQ9UZRrrAeX"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk",
+      "com-cal-Dl4P7yAhJ2l1Wp2",
+      "com-cal-d3fDYhRV6zFurGF"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-animation-nights",
+    "displayName": "Animation Nights",
+    "publicRole": "Host, Animation Nights New York (ANNY)",
+    "publicContactUrl": "https://animationnights.com",
+    "organizesEventIds": [
+      "evt-evt-2nt3zLzMEiPFJwD"
+    ],
+    "communityIds": [
+      "com-cal-bf1JXZO3y6CaE57"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-nori-agentic",
+    "displayName": "Nori Agentic",
+    "publicRole": "Host, Agentics NYC",
+    "publicContactUrl": "https://noriagentic.com",
+    "organizesEventIds": [
+      "evt-evt-cVArZ0gMioDQKtY"
+    ],
+    "communityIds": [
+      "com-cal-Dl4P7yAhJ2l1Wp2"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-monishee-at-modal",
+    "displayName": "Monishee at Modal",
+    "publicRole": "Host, Agentics NYC",
+    "publicContactUrl": "https://modal.com/",
+    "organizesEventIds": [
+      "evt-evt-cVArZ0gMioDQKtY"
+    ],
+    "communityIds": [
+      "com-cal-Dl4P7yAhJ2l1Wp2"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-colin-rocker",
+    "displayName": "Colin Rocker",
+    "publicRole": "Host, for the firsts",
+    "publicContactUrl": "https://www.colinrocker.com",
+    "organizesEventIds": [
+      "evt-evt-cdf8BBwbxxGilg6"
+    ],
+    "communityIds": [
+      "com-cal-84OTp0DYXLnv8Sb"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-andrew-yeung",
+    "displayName": "Andrew Yeung",
+    "publicRole": "Host, Andrew's Yeung's Tech Events",
+    "publicContactUrl": "https://www.andrewyeung.co",
+    "organizesEventIds": [
+      "evt-evt-CMCmfinmFVjgzjy",
+      "evt-evt-YxLBYbM8l4PFcQc",
+      "evt-evt-A21hLxQLX02v1vg",
+      "evt-evt-SNPz2Z318to4rqE",
+      "evt-evt-HXoHzs3ONFXTFxY"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-new-york-philosophical-society",
+    "displayName": "New York Philosophical Society",
+    "publicRole": "Host, The New York Philosophy Club",
+    "publicContactUrl": "https://nyphilosophy.org",
+    "organizesEventIds": [
+      "evt-evt-7DexX0KondZd697",
+      "evt-evt-uG4MVnHSfDWo7xl"
+    ],
+    "communityIds": [
+      "com-cal-dGP82mVkrg1FRmr"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-henrik-werdelin",
+    "displayName": "Henrik Werdelin",
+    "publicRole": "Host, Andrew's Yeung's Tech Events",
+    "publicContactUrl": "https://hellohenrik.com",
+    "organizesEventIds": [
+      "evt-evt-YxLBYbM8l4PFcQc"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-christopher-martinez",
+    "displayName": "Christopher Martinez",
+    "publicRole": "Host, Alex Koshykov",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TCKH8dyXG8lFedt"
+    ],
+    "communityIds": [
+      "com-cal-aTEeW3VT6XtAa3Q"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-bailey-morgan",
+    "displayName": "Bailey Morgan",
+    "publicRole": "Host, Alex Koshykov",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TCKH8dyXG8lFedt"
+    ],
+    "communityIds": [
+      "com-cal-aTEeW3VT6XtAa3Q"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-alex-koshykov",
+    "displayName": "Alex Koshykov",
+    "publicRole": "Host, Alex Koshykov",
+    "publicContactUrl": "https://bekey.io/",
+    "organizesEventIds": [
+      "evt-evt-TCKH8dyXG8lFedt"
+    ],
+    "communityIds": [
+      "com-cal-aTEeW3VT6XtAa3Q"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-health2tech",
+    "displayName": "Health2Tech",
+    "publicRole": "Host, Alex Koshykov",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TCKH8dyXG8lFedt"
+    ],
+    "communityIds": [
+      "com-cal-aTEeW3VT6XtAa3Q"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-jose-asturias",
+    "displayName": "Jose Asturias",
+    "publicRole": "Host, Alex Koshykov",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TCKH8dyXG8lFedt"
+    ],
+    "communityIds": [
+      "com-cal-aTEeW3VT6XtAa3Q"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-supermoon",
+    "displayName": "Supermoon",
+    "publicRole": "Host, Supermoon Events",
+    "publicContactUrl": "https://supermoon.xyz",
+    "organizesEventIds": [
+      "evt-evt-IDPReQ9UZRrrAeX"
+    ],
+    "communityIds": [
+      "com-cal-d3fDYhRV6zFurGF"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-elena-obukhova",
+    "displayName": "Elena Obukhova",
+    "publicRole": "Host, Supermoon Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-IDPReQ9UZRrrAeX"
+    ],
+    "communityIds": [
+      "com-cal-d3fDYhRV6zFurGF"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-avahi-ai",
+    "displayName": "Avahi AI",
+    "publicRole": "Host, Supermoon Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-IDPReQ9UZRrrAeX"
+    ],
+    "communityIds": [
+      "com-cal-d3fDYhRV6zFurGF"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-aleo",
+    "displayName": "Aleo",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "http://aleo.org",
+    "organizesEventIds": [
+      "evt-evt-YRzggiK7R92nRuS"
+    ],
+    "communityIds": [
+      "com-cal-feaB0CSQMPO6k1e"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-fireblocks",
+    "displayName": "Fireblocks",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-YRzggiK7R92nRuS"
+    ],
+    "communityIds": [
+      "com-cal-feaB0CSQMPO6k1e"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-dynamic",
+    "displayName": "Dynamic",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://dynamic.xyz",
+    "organizesEventIds": [
+      "evt-evt-YRzggiK7R92nRuS"
+    ],
+    "communityIds": [
+      "com-cal-feaB0CSQMPO6k1e"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-the-canvas",
+    "displayName": "The Canvas",
+    "publicRole": "Host, The Canvas NYC",
+    "publicContactUrl": "https://thecanvas.nyc",
+    "organizesEventIds": [
+      "evt-evt-CLHm7pHHXfdtCEj"
+    ],
+    "communityIds": [
+      "com-cal-8pBzUbxu1rqFgsw"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-lauren-lawson",
+    "displayName": "Lauren Lawson",
+    "publicRole": "Host, The Canvas NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-CLHm7pHHXfdtCEj"
+    ],
+    "communityIds": [
+      "com-cal-8pBzUbxu1rqFgsw"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-caili",
+    "displayName": "Caili",
+    "publicRole": "Host, The Canvas NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-CLHm7pHHXfdtCEj"
+    ],
+    "communityIds": [
+      "com-cal-8pBzUbxu1rqFgsw"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-mika",
+    "displayName": "Mika",
+    "publicRole": "Host, Claude Community Events",
+    "publicContactUrl": "https://mikareyes.com",
+    "organizesEventIds": [
+      "evt-evt-lhgNIefh9hIC9IN"
+    ],
+    "communityIds": [
+      "com-cal-TOpA5LAFfuDeFpu"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-aj-yadav",
+    "displayName": "Aj Yadav",
+    "publicRole": "Host, Claude Community Events",
+    "publicContactUrl": "https://thevibefounder.com",
+    "organizesEventIds": [
+      "evt-evt-lhgNIefh9hIC9IN"
+    ],
+    "communityIds": [
+      "com-cal-TOpA5LAFfuDeFpu"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-together-ai",
+    "displayName": "Together AI",
+    "publicRole": "Host, Together AI Calendar",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-DE1g8fV7UkWAnvB"
+    ],
+    "communityIds": [
+      "com-cal-Icg56OoJNDuOt3e"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-openrouter",
+    "displayName": "OpenRouter",
+    "publicRole": "Host, Together AI Calendar",
+    "publicContactUrl": "https://openrouter.ai",
+    "organizesEventIds": [
+      "evt-evt-DE1g8fV7UkWAnvB"
+    ],
+    "communityIds": [
+      "com-cal-Icg56OoJNDuOt3e"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-david-nebinski",
+    "displayName": "David Nebinski",
+    "publicRole": "Host, A Chief of Staff New York Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-cXadP1c68t1n9bc"
+    ],
+    "communityIds": [
+      "com-cal-vM3Ah8WdcKPnC60"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-andrew-presser",
+    "displayName": "Andrew Presser",
+    "publicRole": "Host, Andrew's Yeung's Tech Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-A21hLxQLX02v1vg"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-190-bowery",
+    "displayName": "190 Bowery",
+    "publicRole": "Host, Industrious",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-5Woc6SnuGiUKJU2",
+      "evt-evt-CK2kLbG5h9bCEct"
+    ],
+    "communityIds": [
+      "com-cal-foDOrrhU3YOhvgx"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-kuba",
+    "displayName": "Kuba",
+    "publicRole": "Host, EliseAI",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-sJCFwiMbT2wFBXg"
+    ],
+    "communityIds": [
+      "com-cal-F2CeglUFoUOGIrt"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-maria-morin",
+    "displayName": "Maria Morin",
+    "publicRole": "Host, EliseAI",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-sJCFwiMbT2wFBXg"
+    ],
+    "communityIds": [
+      "com-cal-F2CeglUFoUOGIrt"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-alex-short",
+    "displayName": "Alex Short",
+    "publicRole": "Host, EliseAI",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-sJCFwiMbT2wFBXg"
+    ],
+    "communityIds": [
+      "com-cal-F2CeglUFoUOGIrt"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-dom-mcduffie",
+    "displayName": "Dom McDuffie",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-vYODa5oQ8riPwwx"
+    ],
+    "communityIds": [
+      "com-cal-7W8oKtR0uZAyN89"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-maddie",
+    "displayName": "Maddie",
+    "publicRole": "Host, Corgi NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-LCoyu2icdu4LUOH"
+    ],
+    "communityIds": [
+      "com-cal-H1FY60pnZtchaf4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-jamie",
+    "displayName": "jamie",
+    "publicRole": "Host, Corgi NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-LCoyu2icdu4LUOH"
+    ],
+    "communityIds": [
+      "com-cal-H1FY60pnZtchaf4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-abril-zucchi",
+    "displayName": "Abril Zucchi",
+    "publicRole": "Host, Corgi NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-LCoyu2icdu4LUOH"
+    ],
+    "communityIds": [
+      "com-cal-H1FY60pnZtchaf4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-linda",
+    "displayName": "Linda",
+    "publicRole": "Host, Corgi NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-LCoyu2icdu4LUOH"
+    ],
+    "communityIds": [
+      "com-cal-H1FY60pnZtchaf4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-trevor-owens",
+    "displayName": "Trevor Owens",
+    "publicRole": "Host, Corgi NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-LCoyu2icdu4LUOH"
+    ],
+    "communityIds": [
+      "com-cal-H1FY60pnZtchaf4"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sydney-ruby",
+    "displayName": "Sydney Ruby",
+    "publicRole": "Host, MILER RUNNING",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-CWYXc1hD9Ruf1wU"
+    ],
+    "communityIds": [
+      "com-cal-rqrEORS1QVhFtWC"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-benjamin-morrow",
+    "displayName": "Benjamin Morrow",
+    "publicRole": "Host, MILER RUNNING",
+    "publicContactUrl": "https://milerrunning.com/",
+    "organizesEventIds": [
+      "evt-evt-CWYXc1hD9Ruf1wU"
+    ],
+    "communityIds": [
+      "com-cal-rqrEORS1QVhFtWC"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-drew-bell",
+    "displayName": "Drew Bell",
+    "publicRole": "Host, MILER RUNNING",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-CWYXc1hD9Ruf1wU"
+    ],
+    "communityIds": [
+      "com-cal-rqrEORS1QVhFtWC"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-dia-gauthier",
+    "displayName": "Dia Gauthier",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-AB5ir8GJBb0anjs"
+    ],
+    "communityIds": [
+      "com-cal-8WChocVL3wkdn2J"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-natalia-mazzaia",
+    "displayName": "Natalia Mazzaia",
+    "publicRole": "Host, Terratela",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-T7BAkTq4Qd8FPDE"
+    ],
+    "communityIds": [
+      "com-cal-C99H6nBNo4LAXdO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-amani-mahbub",
+    "displayName": "Amani Mahbub",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-cY885leffjW0Sx5"
+    ],
+    "communityIds": [
+      "com-cal-SIqplYxNJyXhiUA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sadia-sehrish-islam",
+    "displayName": "Sadia Sehrish Islam",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-cY885leffjW0Sx5"
+    ],
+    "communityIds": [
+      "com-cal-SIqplYxNJyXhiUA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-ameera-choudhury",
+    "displayName": "Ameera Choudhury",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-cY885leffjW0Sx5"
+    ],
+    "communityIds": [
+      "com-cal-SIqplYxNJyXhiUA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-maayan-s-hospitality-group",
+    "displayName": "Maayan's Hospitality Group",
+    "publicRole": "Host, Maayan's Hospitality Group",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-ygIUce8o0siLUOf"
+    ],
+    "communityIds": [
+      "com-cal-L9MdJ6xQiwNRold"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-apoorva-sudini",
+    "displayName": "apoorva sudini",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-nZ1ZixULBwCM8U9"
+    ],
+    "communityIds": [
+      "com-cal-nhUVmCKYpKRBLuW"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-cole-whetstone",
+    "displayName": "Cole Whetstone",
+    "publicRole": "Host, The New York Philosophy Club",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-uG4MVnHSfDWo7xl"
+    ],
+    "communityIds": [
+      "com-cal-dGP82mVkrg1FRmr"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-weiyang-gao",
+    "displayName": "Weiyang Gao",
+    "publicRole": "Host, The New York Philosophy Club",
+    "publicContactUrl": "https://www.weiyanggao.com",
+    "organizesEventIds": [
+      "evt-evt-uG4MVnHSfDWo7xl"
+    ],
+    "communityIds": [
+      "com-cal-dGP82mVkrg1FRmr"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-all-tech-is-human",
+    "displayName": "All Tech Is Human",
+    "publicRole": "Host, All Tech Is Human",
+    "publicContactUrl": "https://www.AllTechIsHuman.org",
+    "organizesEventIds": [
+      "evt-evt-tAhEZYeG9MDi6UM"
+    ],
+    "communityIds": [
+      "com-cal-tp9fJuQNa1rcyNN"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-center-for-humane-technology",
+    "displayName": "Center for Humane Technology",
+    "publicRole": "Host, All Tech Is Human",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-tAhEZYeG9MDi6UM"
+    ],
+    "communityIds": [
+      "com-cal-tp9fJuQNa1rcyNN"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-brainstation",
+    "displayName": "BrainStation",
+    "publicRole": "Host, All Tech Is Human",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-tAhEZYeG9MDi6UM"
+    ],
+    "communityIds": [
+      "com-cal-tp9fJuQNa1rcyNN"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-pedro-d-avila",
+    "displayName": "Pedro D'Avila",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Qjbxq2FZVdaCI0x"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-fintech-running-club",
+    "displayName": "FinTech Running Club",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://www.fintechrunningclub.com/",
+    "organizesEventIds": [
+      "evt-evt-Qjbxq2FZVdaCI0x"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-rain-events",
+    "displayName": "Rain Events",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Qjbxq2FZVdaCI0x"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-kendall-warson",
+    "displayName": "Kendall Warson",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Qjbxq2FZVdaCI0x"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-connor-griffin",
+    "displayName": "Connor Griffin",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Qjbxq2FZVdaCI0x"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-jacob-tamkin",
+    "displayName": "Jacob Tamkin",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Qjbxq2FZVdaCI0x"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-ellie-popoca",
+    "displayName": "Ellie Popoca",
+    "publicRole": "Host, Codédex",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-HQFcGTjhwxwjkuk"
+    ],
+    "communityIds": [
+      "com-cal-RCkV0QqJKzHoXrD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sonny-li",
+    "displayName": "Sonny Li",
+    "publicRole": "Host, Codédex",
+    "publicContactUrl": "https://www.codedex.io/@sonny",
+    "organizesEventIds": [
+      "evt-evt-HQFcGTjhwxwjkuk"
+    ],
+    "communityIds": [
+      "com-cal-RCkV0QqJKzHoXrD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-gabriela-banaag",
+    "displayName": "Gabriela Banaag",
+    "publicRole": "Host, Codédex",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-HQFcGTjhwxwjkuk"
+    ],
+    "communityIds": [
+      "com-cal-RCkV0QqJKzHoXrD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-asiqur-rahman",
+    "displayName": "Asiqur Rahman",
+    "publicRole": "Host, Codédex",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-HQFcGTjhwxwjkuk"
+    ],
+    "communityIds": [
+      "com-cal-RCkV0QqJKzHoXrD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-new-york-focus",
+    "displayName": "New York Focus",
+    "publicRole": "Host, New York Focus ",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-iqxeD3r5aSoOvGA"
+    ],
+    "communityIds": [
+      "com-cal-UMlTltEZ63otrQZ"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-nancy-chen",
+    "displayName": "Nancy Chen",
+    "publicRole": "Host, Notion",
+    "publicContactUrl": "https://nancychen.xyz",
+    "organizesEventIds": [
+      "evt-evt-fOtsDzFBMCGGqx0"
+    ],
+    "communityIds": [
+      "com-cal-ZDQrtBgbNzSJZkh"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-prompt-engineers-society",
+    "displayName": "Prompt Engineers Society",
+    "publicRole": "Host, Prompt Engineers Society",
+    "publicContactUrl": "https://promptengineers.tech",
+    "organizesEventIds": [
+      "evt-evt-jqjZDqieYOH7mjA"
+    ],
+    "communityIds": [
+      "com-cal-rcdFckWAEsET9OD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-replit-for-education",
+    "displayName": "Replit For Education",
+    "publicRole": "Host, Prompt Engineers Society",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-jqjZDqieYOH7mjA"
+    ],
+    "communityIds": [
+      "com-cal-rcdFckWAEsET9OD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-andi-partovi",
+    "displayName": "Andi Partovi",
+    "publicRole": "Host, Prompt Engineers Society",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-jqjZDqieYOH7mjA"
+    ],
+    "communityIds": [
+      "com-cal-rcdFckWAEsET9OD"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-david-yakobovitch",
+    "displayName": "David Yakobovitch",
+    "publicRole": "Host, Tech Power Network",
+    "publicContactUrl": "https://www.datapower.vc/",
+    "organizesEventIds": [
+      "evt-evt-sRlItAyRzQeru3l"
+    ],
+    "communityIds": [
+      "com-cal-bkO33DlatoB8YHE"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-lev-raslin",
+    "displayName": "Lev Raslin",
+    "publicRole": "Host, Tech Power Network",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-sRlItAyRzQeru3l"
+    ],
+    "communityIds": [
+      "com-cal-bkO33DlatoB8YHE"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-heidi-liou",
+    "displayName": "Heidi Liou",
+    "publicRole": "Host, Tech Power Network",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-sRlItAyRzQeru3l"
+    ],
+    "communityIds": [
+      "com-cal-bkO33DlatoB8YHE"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-lauren-cotta",
+    "displayName": "Lauren Cotta",
+    "publicRole": "Host, Tech Power Network",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-sRlItAyRzQeru3l"
+    ],
+    "communityIds": [
+      "com-cal-bkO33DlatoB8YHE"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-unmuted",
+    "displayName": "UNMUTED",
+    "publicRole": "Host, UNMUTED",
+    "publicContactUrl": "https://unmuted.fyi",
+    "organizesEventIds": [
+      "evt-evt-eSB3jCmA5gV0GMV"
+    ],
+    "communityIds": [
+      "com-cal-oB3sYoup1LDsPL3"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-fabrik-nyc",
+    "displayName": "Fabrik NYC",
+    "publicRole": "Host, UNMUTED",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-eSB3jCmA5gV0GMV"
+    ],
+    "communityIds": [
+      "com-cal-oB3sYoup1LDsPL3"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-yuki-chen",
+    "displayName": "Yuki Chen",
+    "publicRole": "Host, Center for Advanced Technology (CAT)",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-inTo9B6faqqWuWc"
+    ],
+    "communityIds": [
+      "com-cal-DukJHu11ElQhhxx"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-chrisha-nario",
+    "displayName": "Chrisha Nario",
+    "publicRole": "Host, Center for Advanced Technology (CAT)",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-inTo9B6faqqWuWc"
+    ],
+    "communityIds": [
+      "com-cal-DukJHu11ElQhhxx"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-hailey-faust",
+    "displayName": "Hailey Faust",
+    "publicRole": "Host, Center for Advanced Technology (CAT)",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-inTo9B6faqqWuWc"
+    ],
+    "communityIds": [
+      "com-cal-DukJHu11ElQhhxx"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-amanda",
+    "displayName": "Amanda",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TybWHHHgqLHxgeC"
+    ],
+    "communityIds": [
+      "com-cal-0Ed3HhBL0HfJ4e6"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-janky-patel",
+    "displayName": "Janky Patel",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TybWHHHgqLHxgeC"
+    ],
+    "communityIds": [
+      "com-cal-0Ed3HhBL0HfJ4e6"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-deana-davoudiasl",
+    "displayName": "Deana Davoudiasl",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-TybWHHHgqLHxgeC"
+    ],
+    "communityIds": [
+      "com-cal-0Ed3HhBL0HfJ4e6"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sentry",
+    "displayName": "Sentry",
+    "publicRole": "Host, Sentry",
+    "publicContactUrl": "https://sentry.io/welcome/",
+    "organizesEventIds": [
+      "evt-evt-oPjU9BriogzPUzL"
+    ],
+    "communityIds": [
+      "com-cal-PVfhSUgLiiaGDmZ"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-paul-jaffre",
+    "displayName": "Paul Jaffre",
+    "publicRole": "Host, Sentry",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-oPjU9BriogzPUzL"
+    ],
+    "communityIds": [
+      "com-cal-PVfhSUgLiiaGDmZ"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-the-retail-edit",
+    "displayName": "The Retail Edit",
+    "publicRole": "Host, The Retail Edit",
+    "publicContactUrl": "https://tightly.io/",
+    "organizesEventIds": [
+      "evt-evt-Ck2lpShHGpJAEpY"
+    ],
+    "communityIds": [
+      "com-cal-rFEqEzxd4PNWBE5"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-bright-nights-social",
+    "displayName": "Bright Nights Social",
+    "publicRole": "Host, Industrious",
+    "publicContactUrl": "https://www.brightnightssocial.com",
+    "organizesEventIds": [
+      "evt-evt-CK2kLbG5h9bCEct"
+    ],
+    "communityIds": [
+      "com-cal-foDOrrhU3YOhvgx"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-the-bar-nun-life-llc",
+    "displayName": "The Bar Nun Life LLC",
+    "publicRole": "Host, Industrious",
+    "publicContactUrl": "https://barnun.life",
+    "organizesEventIds": [
+      "evt-evt-CK2kLbG5h9bCEct"
+    ],
+    "communityIds": [
+      "com-cal-foDOrrhU3YOhvgx"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-ktn-korean-tech-network",
+    "displayName": "KTN: Korean Tech Network",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Re1fvfMhzEhjC0o"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-mesh-io",
+    "displayName": "mesh. io",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://meshnow.io/",
+    "organizesEventIds": [
+      "evt-evt-Re1fvfMhzEhjC0o"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-ji-hee-y",
+    "displayName": "Ji Hee Y",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Re1fvfMhzEhjC0o"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sejin",
+    "displayName": "Sejin",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Re1fvfMhzEhjC0o"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-jongho-bae",
+    "displayName": "Jongho Bae",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Re1fvfMhzEhjC0o"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-steven-kim",
+    "displayName": "Steven Kim",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-Re1fvfMhzEhjC0o"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-remington-davenport",
+    "displayName": "Remington Davenport",
+    "publicRole": "Host, NYC Backgammon Club",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-kzxZLnbNfdc8wTI"
+    ],
+    "communityIds": [
+      "com-cal-wGlwnmMsVzQQ8tr"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-harlem-art-house-collective-hahc",
+    "displayName": "Harlem Art House Collective | HAHC",
+    "publicRole": "Host, Harlem Art House Collective",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-xKPQIrCeRToCeCW"
+    ],
+    "communityIds": [
+      "com-cal-YXJaN3BHjHZDoo3"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-richard-ye",
+    "displayName": "Richard Ye",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://thenewyorkgames.com",
+    "organizesEventIds": [
+      "evt-evt-aHq2lyT3e5rfiA9"
+    ],
+    "communityIds": [
+      "com-cal-KElhKccbuaHmvRG"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-maggie",
+    "displayName": "Maggie",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://thenewyorkgames.com",
+    "organizesEventIds": [
+      "evt-evt-aHq2lyT3e5rfiA9"
+    ],
+    "communityIds": [
+      "com-cal-KElhKccbuaHmvRG"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-khot-phet",
+    "displayName": "khot phet",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-gqqgm6daE1poAxO"
+    ],
+    "communityIds": [
+      "com-cal-d93YkXELBHPiN3a"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-welcome-to-chinatown",
+    "displayName": "Welcome to Chinatown",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://welcometochinatown.com",
+    "organizesEventIds": [
+      "evt-evt-gqqgm6daE1poAxO"
+    ],
+    "communityIds": [
+      "com-cal-d93YkXELBHPiN3a"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-interwoven-collective",
+    "displayName": "Interwoven Collective",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-gqqgm6daE1poAxO"
+    ],
+    "communityIds": [
+      "com-cal-d93YkXELBHPiN3a"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-naama-paulemont",
+    "displayName": "Naama Paulemont",
+    "publicRole": "Host, sudocute",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-vffXgu1n7chO2uq"
+    ],
+    "communityIds": [
+      "com-cal-gYC90xsJn0bOHTS"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-marnie-williams-noble",
+    "displayName": "Marnie Williams Noble",
+    "publicRole": "Host, Counterspell Games",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-tCCMKmABhuwKqT1"
+    ],
+    "communityIds": [
+      "com-cal-fT3eKMrCO9zUul2"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-rupture",
+    "displayName": "Rupture",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-coDpI472CzAI8RX"
+    ],
+    "communityIds": [
+      "com-cal-7azGidiinVJre6l"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-sugary",
+    "displayName": "Sugary 🍬",
+    "publicRole": "Host, Sugary NYC Community",
+    "publicContactUrl": "https://www.sugarynyc.com",
+    "organizesEventIds": [
+      "evt-evt-UBEaGLBVfwbg7bM"
+    ],
+    "communityIds": [
+      "com-cal-KYNaoLq3pS000fL"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-graphite-tennis-fashion-archive",
+    "displayName": "Graphite Tennis Fashion Archive",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://graphite.tennis/",
+    "organizesEventIds": [
+      "evt-evt-BAcBgN5aDxagH9I"
+    ],
+    "communityIds": [
+      "com-cal-jWlXWl4X84JNKT7"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-bryson-malone",
+    "displayName": "Bryson Malone",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://www.brysonmalone.com/",
+    "organizesEventIds": [
+      "evt-evt-BAcBgN5aDxagH9I"
+    ],
+    "communityIds": [
+      "com-cal-jWlXWl4X84JNKT7"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-zander-abranowicz",
+    "displayName": "Zander Abranowicz",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": "https://www.abbrprojects.com/",
+    "organizesEventIds": [
+      "evt-evt-BAcBgN5aDxagH9I"
+    ],
+    "communityIds": [
+      "com-cal-jWlXWl4X84JNKT7"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-abbr-projects",
+    "displayName": "Abbr Projects",
+    "publicRole": "Host, Personal",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-BAcBgN5aDxagH9I"
+    ],
+    "communityIds": [
+      "com-cal-jWlXWl4X84JNKT7"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-brett-dashevsky",
+    "displayName": "Brett Dashevsky",
+    "publicRole": "Host, Creator Economy NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-mWkVe9C4rGmcMFG"
+    ],
+    "communityIds": [
+      "com-cal-YYACB1sICtMRlDS"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-anka-africa",
+    "displayName": "ANKA Africa",
+    "publicRole": "Host, ANKA",
+    "publicContactUrl": "https://marketplace.anka.africa/en",
+    "organizesEventIds": [
+      "evt-evt-CcQDQOP2QCmbUw4"
+    ],
+    "communityIds": [
+      "com-cal-NsraRjjJJpOi9eZ"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-lauren-houpt",
+    "displayName": "Lauren Houpt",
+    "publicRole": "Host, NYC B2B: Startup Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-zLNbvfNinW2FOxs"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-ignition-benefits",
+    "displayName": "Ignition Benefits",
+    "publicRole": "Host, NYC B2B: Startup Events",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-zLNbvfNinW2FOxs"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-reading-rhythms",
+    "displayName": "Reading Rhythms",
+    "publicRole": "Host, Reading Rhythms NYC",
+    "publicContactUrl": "https://readingrhythms.co",
+    "organizesEventIds": [
+      "evt-evt-6ZMdMd8ufEqJ7xE"
+    ],
+    "communityIds": [
+      "com-cal-Q8l315UsVMWb6h6"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-zack-stein",
+    "displayName": "Zack Stein",
+    "publicRole": "Host, Reading Rhythms NYC",
+    "publicContactUrl": null,
+    "organizesEventIds": [
+      "evt-evt-6ZMdMd8ufEqJ7xE"
+    ],
+    "communityIds": [
+      "com-cal-Q8l315UsVMWb6h6"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-rebecka-c-olson",
+    "displayName": "Rebecka C Olson",
+    "publicRole": "Host, Reading Rhythms NYC",
+    "publicContactUrl": "https://all-dots.com",
+    "organizesEventIds": [
+      "evt-evt-6ZMdMd8ufEqJ7xE"
+    ],
+    "communityIds": [
+      "com-cal-Q8l315UsVMWb6h6"
+    ],
+    "evidenceIds": []
+  },
+  {
+    "id": "org-ankur-nagpal",
+    "displayName": "Ankur Nagpal",
+    "publicRole": "Host, Andrew's Yeung's Tech Events",
+    "publicContactUrl": "https://sillymoney.com",
+    "organizesEventIds": [
+      "evt-evt-HXoHzs3ONFXTFxY"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "evidenceIds": []
+  }
+]

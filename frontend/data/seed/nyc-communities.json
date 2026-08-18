@@ -1,0 +1,1170 @@
+[
+  {
+    "id": "com-cal-sHWMt96AHAYzCyD",
+    "name": "Brooklyn Product Design",
+    "url": "https://lu.ma/bkproductdesign",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-brian-hui",
+      "org-jos-arias",
+      "org-rahul-alexander",
+      "org-collin-hadley"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-SRZBqShHEEHRr2D",
+    "name": "ALO",
+    "url": "https://lu.ma/aloevents",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-alo"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-qSyt7EAAjUBPYon",
+    "name": "529 Labs Community",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-kentaro-lee",
+      "org-maya-galindo",
+      "org-yash-alluri",
+      "org-adlee-h"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-2oIoPbtzYenu5YF",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-meji-meji"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-XLiExIr02fBbaJo",
+    "name": "new interfaces",
+    "url": "https://lu.ma/newinterfaces",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-pauline-wee"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-GBW5YRIHHAZCv21",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-chores"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-ZGCxlwslp1K0wqD",
+    "name": "Freedom Lab NYC",
+    "url": "https://lu.ma/freedomlab",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-harrison-friedes",
+      "org-heshan",
+      "org-jeffrey-silva"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-83Wftl00nobq7Pv",
+    "name": "steph, that quirky bird girl",
+    "url": "https://lu.ma/thatquirkybirdgirl",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-steph-that-quirky-bird-girl"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-7FXYl9Ecgk1WS0B",
+    "name": "& luo studio",
+    "url": "https://lu.ma/andluostudio",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-leslie-luo",
+      "org-sahi-akasapu"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-0bWYTBUalNgy548",
+    "name": "Women of Culture Art-full Experiences",
+    "url": "https://lu.ma/womenofculture",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-alexandra-harper",
+      "org-elizabeth-d"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-ItTR6nQ7r4wIvFf",
+    "name": "Lit Club NYC Calendar",
+    "url": "https://lu.ma/litclub.nyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-lit-club-nyc"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-sYUAxBDnGxQspR4",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-greenji",
+      "org-meari",
+      "org-noflex-nyc"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-sp6DdlAS1jxwxFt",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-gallery-sinclair"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-8ACK0vjqOfKpHXl",
+    "name": "Claude Workshops",
+    "url": "https://lu.ma/claudeworkshops",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-build-with-claude",
+      "org-provectus"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-1VimvHYSCVGhHuk",
+    "name": "NYC B2B: Startup Events",
+    "url": "https://lu.ma/b2bnyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-nyc-b2b",
+      "org-max-kuivenhoven",
+      "org-mongodb",
+      "org-lauren-houpt",
+      "org-ignition-benefits"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-bf1JXZO3y6CaE57",
+    "name": "Animation Nights New York (ANNY)",
+    "url": "https://lu.ma/anny",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-animation-nights"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-Dl4P7yAhJ2l1Wp2",
+    "name": "Agentics NYC",
+    "url": "https://lu.ma/agenticsnyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-nori-agentic",
+      "org-monishee-at-modal",
+      "org-mongodb"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-84OTp0DYXLnv8Sb",
+    "name": "for the firsts",
+    "url": "https://lu.ma/forthefirsts",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-colin-rocker"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-kcWhMbIs2X0Y2Xb",
+    "name": "Andrew's Yeung's Tech Events",
+    "url": "https://lu.ma/andrewsmixers",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-andrew-yeung",
+      "org-henrik-werdelin",
+      "org-andrew-presser",
+      "org-ankur-nagpal"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-dGP82mVkrg1FRmr",
+    "name": "The New York Philosophy Club",
+    "url": "https://lu.ma/philosophy",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-new-york-philosophical-society",
+      "org-cole-whetstone",
+      "org-weiyang-gao"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-aTEeW3VT6XtAa3Q",
+    "name": "Alex Koshykov",
+    "url": "https://lu.ma/alexkoshykov",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-christopher-martinez",
+      "org-bailey-morgan",
+      "org-alex-koshykov",
+      "org-health2tech",
+      "org-jose-asturias"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-d3fDYhRV6zFurGF",
+    "name": "Supermoon Events",
+    "url": "https://lu.ma/supermoonevents",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-supermoon",
+      "org-elena-obukhova",
+      "org-max-kuivenhoven",
+      "org-mongodb",
+      "org-avahi-ai"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-feaB0CSQMPO6k1e",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-aleo",
+      "org-fireblocks",
+      "org-dynamic"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-8pBzUbxu1rqFgsw",
+    "name": "The Canvas NYC",
+    "url": "https://lu.ma/thecanvasnyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-the-canvas",
+      "org-lauren-lawson",
+      "org-caili"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-TOpA5LAFfuDeFpu",
+    "name": "Claude Community Events",
+    "url": "https://lu.ma/claudecommunity",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-mika",
+      "org-aj-yadav"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-Icg56OoJNDuOt3e",
+    "name": "Together AI Calendar",
+    "url": "https://lu.ma/together-ai",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-together-ai",
+      "org-openrouter"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-vM3Ah8WdcKPnC60",
+    "name": "A Chief of Staff New York Events",
+    "url": "https://lu.ma/achiefofstaff",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-david-nebinski"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-foDOrrhU3YOhvgx",
+    "name": "Industrious",
+    "url": "https://lu.ma/after-hours-at-190bowery",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-190-bowery",
+      "org-bright-nights-social",
+      "org-the-bar-nun-life-llc"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-F2CeglUFoUOGIrt",
+    "name": "EliseAI",
+    "url": "https://lu.ma/eliseai",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-kuba",
+      "org-maria-morin",
+      "org-alex-short"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-7W8oKtR0uZAyN89",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-dom-mcduffie"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-H1FY60pnZtchaf4",
+    "name": "Corgi NYC",
+    "url": "https://lu.ma/usecorginyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-maddie",
+      "org-jamie",
+      "org-abril-zucchi",
+      "org-linda",
+      "org-trevor-owens"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-rqrEORS1QVhFtWC",
+    "name": "MILER RUNNING",
+    "url": "https://lu.ma/milerrunning",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-sydney-ruby",
+      "org-benjamin-morrow",
+      "org-drew-bell"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-K1GujeM5o2qVzQe",
+    "name": "Pet Life Unlimited",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-8WChocVL3wkdn2J",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-dia-gauthier"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-C99H6nBNo4LAXdO",
+    "name": "Terratela",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-natalia-mazzaia"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-SIqplYxNJyXhiUA",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-amani-mahbub",
+      "org-sadia-sehrish-islam",
+      "org-ameera-choudhury"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-L9MdJ6xQiwNRold",
+    "name": "Maayan's Hospitality Group",
+    "url": "https://lu.ma/maayanadin",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-maayan-s-hospitality-group"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-nhUVmCKYpKRBLuW",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-apoorva-sudini"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-tp9fJuQNa1rcyNN",
+    "name": "All Tech Is Human",
+    "url": "https://lu.ma/AllTechIsHuman",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-all-tech-is-human",
+      "org-center-for-humane-technology",
+      "org-brainstation"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-XgIqgndHF0FwAuO",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-pedro-d-avila",
+      "org-fintech-running-club",
+      "org-rain-events",
+      "org-kendall-warson",
+      "org-connor-griffin",
+      "org-jacob-tamkin"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-RCkV0QqJKzHoXrD",
+    "name": "Codédex",
+    "url": "https://lu.ma/codedex",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-ellie-popoca",
+      "org-sonny-li",
+      "org-gabriela-banaag",
+      "org-asiqur-rahman"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-UMlTltEZ63otrQZ",
+    "name": "New York Focus ",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-new-york-focus"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-ZDQrtBgbNzSJZkh",
+    "name": "Notion",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-nancy-chen"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-rcdFckWAEsET9OD",
+    "name": "Prompt Engineers Society",
+    "url": "https://lu.ma/promptengineerssociety",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-prompt-engineers-society",
+      "org-replit-for-education",
+      "org-andi-partovi"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-bkO33DlatoB8YHE",
+    "name": "Tech Power Network",
+    "url": "https://lu.ma/tpn",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-david-yakobovitch",
+      "org-lev-raslin",
+      "org-heidi-liou",
+      "org-lauren-cotta"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-oB3sYoup1LDsPL3",
+    "name": "UNMUTED",
+    "url": "https://lu.ma/unmuted",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-unmuted",
+      "org-fabrik-nyc"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-DukJHu11ElQhhxx",
+    "name": "Center for Advanced Technology (CAT)",
+    "url": "https://lu.ma/ASRCCAT",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-yuki-chen",
+      "org-chrisha-nario",
+      "org-hailey-faust"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-0Ed3HhBL0HfJ4e6",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-amanda",
+      "org-janky-patel",
+      "org-deana-davoudiasl"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-PVfhSUgLiiaGDmZ",
+    "name": "Sentry",
+    "url": "https://lu.ma/getsentry",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-sentry",
+      "org-paul-jaffre"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-rFEqEzxd4PNWBE5",
+    "name": "The Retail Edit",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-the-retail-edit"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-Wmx2PaNRFnYZtBA",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-ktn-korean-tech-network",
+      "org-mesh-io",
+      "org-ji-hee-y",
+      "org-sejin",
+      "org-jongho-bae",
+      "org-steven-kim"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-wGlwnmMsVzQQ8tr",
+    "name": "NYC Backgammon Club",
+    "url": "https://lu.ma/nycbackgammonclub",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-remington-davenport"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-YXJaN3BHjHZDoo3",
+    "name": "Harlem Art House Collective",
+    "url": "https://lu.ma/HAHC",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-harlem-art-house-collective-hahc"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-KElhKccbuaHmvRG",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-richard-ye",
+      "org-maggie"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-d93YkXELBHPiN3a",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-khot-phet",
+      "org-welcome-to-chinatown",
+      "org-interwoven-collective"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-gYC90xsJn0bOHTS",
+    "name": "sudocute",
+    "url": "https://lu.ma/sudocute",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-naama-paulemont"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-fT3eKMrCO9zUul2",
+    "name": "Counterspell Games",
+    "url": "https://lu.ma/counterspell",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-marnie-williams-noble"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-7azGidiinVJre6l",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-rupture"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-KYNaoLq3pS000fL",
+    "name": "Sugary NYC Community",
+    "url": "https://lu.ma/sugarynyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-sugary"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-jWlXWl4X84JNKT7",
+    "name": "Personal",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-graphite-tennis-fashion-archive",
+      "org-bryson-malone",
+      "org-zander-abranowicz",
+      "org-abbr-projects"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-YYACB1sICtMRlDS",
+    "name": "Creator Economy NYC",
+    "url": "https://lu.ma/cenyc",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-brett-dashevsky"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-NsraRjjJJpOi9eZ",
+    "name": "ANKA",
+    "url": "",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-anka-africa"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-Q8l315UsVMWb6h6",
+    "name": "Reading Rhythms NYC",
+    "url": "https://lu.ma/readingrhythms-manhattan",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [
+      "org-reading-rhythms",
+      "org-zack-stein",
+      "org-rebecka-c-olson"
+    ],
+    "pastSponsors": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "com-cal-0R3x1gOWKkO7MuH",
+    "name": "Squarespace Circle",
+    "url": "https://lu.ma/squarespacecircle",
+    "kind": "meetup-series",
+    "cadence": null,
+    "eventsRun12mo": null,
+    "foundedYear": null,
+    "sizeEstimate": null,
+    "sizeBasis": "observed",
+    "stack": [],
+    "organizerIds": [],
+    "pastSponsors": [],
+    "evidenceIds": []
+  }
+]

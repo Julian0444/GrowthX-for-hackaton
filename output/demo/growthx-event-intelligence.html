@@ -1,0 +1,1593 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>GrowthX — Event Intelligence</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ocean: #E7E7E1;
+    --land: #FCFCF9;
+    --street: #E1E0D9;
+    --artery: #D4D3CC;
+    --geo-edge: #D7D7D0;
+    --park: #F1F0EA;
+    --ink: #111111;
+    --ink-2: #696963;
+    --ink-3: #92928B;
+    --panel: rgba(255,255,255,0.94);
+    --panel-border: rgba(17,17,17,0.10);
+    --hairline: rgba(17,17,17,0.08);
+    --shadow-panel: 0 24px 70px rgba(17,17,17,0.13), 0 2px 8px rgba(17,17,17,0.05);
+    --shadow-soft: 0 10px 34px rgba(17,17,17,0.08);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  html, body { height: 100%; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--ocean); overflow: auto; -webkit-font-smoothing: antialiased; }
+
+  /* below the min sizes the page scrolls instead of clipping the drawer */
+  .atlas { position: relative; width: 100%; height: 100vh; height: 100dvh; overflow: hidden; background: var(--ocean); font-size: 14px; min-width: 1180px; min-height: 700px; }
+  .atlas button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .atlas button:focus-visible, .atlas input:focus-visible, .atlas a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .eyebrow { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-3); }
+
+  /* ============ Map stage ============ */
+  .map-stage { position: absolute; inset: 0; cursor: grab; touch-action: none; user-select: none; }
+  .map-stage.dragging { cursor: grabbing; }
+  .map-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .basemap .street { stroke: var(--street); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .basemap .street.minor { stroke-width: 0.8; opacity: 0.8; }
+  .basemap .artery { stroke: var(--artery); stroke-width: 2; fill: none; vector-effect: non-scaling-stroke; }
+  .basemap .artery.major { stroke: #C8C7C0; stroke-width: 2.6; }
+  .basemap .land { fill: var(--land); stroke: var(--geo-edge); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+  .basemap .park { fill: var(--park); stroke: #E6E5DE; stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .basemap .bridge { stroke: #CFCEC7; stroke-width: 2.4; vector-effect: non-scaling-stroke; }
+  .geo-label text { font-family: var(--sans); font-weight: 600; font-size: 10px; letter-spacing: 0.09em; fill: #A9A8A1; text-anchor: middle; }
+  .geo-label.minor text { font-size: 9px; fill: #B7B6AF; letter-spacing: 0.08em; }
+  .geo-label.water text { font-weight: 500; font-style: italic; letter-spacing: 0.14em; fill: #C4C3BC; font-size: 10.5px; }
+
+  /* world crossfade (SF vs NYC) */
+  .world { transition: opacity 350ms var(--ease); }
+  .world.off { opacity: 0; pointer-events: none; }
+
+  /* signal + community + event layers */
+  .layer { transition: opacity 400ms var(--ease); }
+  .layer.off { opacity: 0; pointer-events: none; }
+  .sig-dot { fill: var(--ink); }
+  .comm-ring { fill: none; stroke: var(--ink); stroke-opacity: 0.30; stroke-width: 1.1; stroke-dasharray: 2.5 3; }
+  .ev-dot circle.c { fill: var(--ink); fill-opacity: 0.30; stroke: #FFFFFF; stroke-width: 1.2; transition: fill-opacity 160ms var(--ease); cursor: pointer; }
+  .ev-dot:hover circle.c { fill-opacity: 0.72; }
+  .ev-dot.is-top circle.c { opacity: 0; pointer-events: none; }
+
+  /* ranked markers */
+  #layer-ranked { transition: opacity 300ms var(--ease); }
+  .atlas.analyzing #layer-ranked { opacity: 0; }
+  .rmark { cursor: pointer; }
+  .rmark .halo { fill: var(--ink); opacity: 0; transition: opacity 500ms var(--ease); }
+  .rmark .ring { fill: none; stroke: var(--ink); stroke-width: 1; opacity: 0; transition: opacity 300ms var(--ease); }
+  .rmark .core { fill: var(--ink); stroke: #FFFFFF; stroke-width: 2; }
+  .rmark .num { font-family: var(--sans); font-weight: 600; font-size: 10.5px; fill: #FFFFFF; text-anchor: middle; }
+  .rmark .tag { opacity: 0; transition: opacity 250ms var(--ease); pointer-events: none; }
+  .rmark .tag rect { fill: #FFFFFF; stroke: var(--panel-border); rx: 10; filter: drop-shadow(0 3px 10px rgba(17,17,17,0.13)); }
+  .rmark .tag .t-name { font-family: var(--sans); font-size: 11.5px; font-weight: 600; fill: var(--ink); }
+  .rmark .tag .t-score { font-family: var(--mono); font-size: 11px; fill: var(--ink-2); }
+  .rmark.selected .halo { opacity: 0.08; }
+  .rmark.selected .ring, .rmark.selected .tag { opacity: 1; }
+  .rmark:hover .tag { opacity: 1; }
+  .rmark .grp { animation: marker-in 500ms var(--ease); }
+  @keyframes marker-in { from { opacity: 0; transform: scale(0.5); } }
+
+  /* hover tooltip */
+  .tip {
+    position: absolute; z-index: 70; pointer-events: none;
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 11px;
+    box-shadow: var(--shadow-soft); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    padding: 8px 11px; max-width: 250px; opacity: 0; transform: translateY(4px);
+    transition: opacity 140ms var(--ease), transform 140ms var(--ease);
+  }
+  .tip.show { opacity: 1; transform: none; }
+  .tip .t1 { font-size: 12px; font-weight: 600; line-height: 1.3; }
+  .tip .t2 { font-size: 10.5px; color: var(--ink-2); margin-top: 3px; }
+  .tip .t3 { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--hairline); }
+
+  /* ============ Header ============ */
+  .hdr { position: absolute; inset-inline: 0; top: 0; z-index: 60; display: flex; align-items: flex-start; justify-content: space-between; padding: 16px 20px; pointer-events: none; }
+  .brand-row { display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+  .brand-row > * { pointer-events: auto; }
+  .brand { display: flex; align-items: baseline; gap: 9px; padding: 6px 4px; }
+  .brand h1 { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+  .brand .sub { font-size: 11px; color: var(--ink-3); }
+  .city-switch {
+    display: inline-flex; align-self: flex-start; padding: 3px; gap: 2px; border-radius: 999px;
+    background: var(--panel); border: 1px solid var(--panel-border);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-soft);
+    margin-left: 2px;
+  }
+  .city-switch button {
+    font-size: 11px; font-weight: 550; color: var(--ink-2); border-radius: 999px; padding: 6px 13px;
+    white-space: nowrap; transition: background 150ms var(--ease), color 150ms var(--ease);
+  }
+  .city-switch button:hover { color: var(--ink); }
+  .city-switch button.on { background: var(--ink); color: #fff; }
+  .city-switch button.on:hover { color: #fff; }
+  .hdr-right { display: flex; gap: 8px; pointer-events: auto; }
+  .atlas .pill-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11.5px; font-weight: 500; color: var(--ink-2);
+    border: 1px solid var(--panel-border); background: var(--panel); border-radius: 999px;
+    padding: 8px 14px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-soft); transition: color 150ms var(--ease), border-color 150ms var(--ease);
+  }
+  .atlas .pill-btn:hover { color: var(--ink); border-color: rgba(17,17,17,0.25); }
+  .pill-btn svg { display: block; }
+
+  /* ============ Search command ============ */
+  .search-wrap { position: absolute; z-index: 55; top: 14px; left: calc((100% - 412px) / 2); transform: translateX(-50%); width: min(560px, calc(100% - 620px)); }
+  .search-card {
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 999px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-panel); overflow: hidden;
+  }
+  .search-row { display: flex; align-items: center; gap: 10px; padding: 5px 5px 5px 16px; }
+  .search-row > svg { flex: none; color: var(--ink-3); }
+  .search-input { flex: 1; min-width: 0; border: 0; background: none; outline: none; font-family: var(--sans); font-size: 13px; color: var(--ink); height: 38px; }
+  .search-input::placeholder { color: var(--ink-3); }
+  .atlas .search-go {
+    flex: none; background: var(--ink); color: #fff; border-radius: 999px;
+    font-size: 12px; font-weight: 550; padding: 0 15px; height: 34px; white-space: nowrap;
+    transition: opacity 150ms var(--ease), transform 150ms var(--ease);
+  }
+  .atlas .search-go:hover { opacity: 0.88; }
+  .atlas .search-go:active { transform: scale(0.98); }
+  .scenario-row { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 10px; flex-wrap: wrap; }
+  .scenario-row .eyebrow { flex: none; }
+  .chips { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .chips .chip {
+    font-size: 11px; color: var(--ink-2); border: 1px solid var(--panel-border);
+    background: var(--panel); border-radius: 999px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    padding: 5px 12px; box-shadow: 0 4px 14px rgba(17,17,17,0.05);
+    transition: all 150ms var(--ease);
+  }
+  .chips .chip .num { font-family: var(--mono); opacity: 0.65; margin-right: 1px; }
+  .chips .chip:hover { color: var(--ink); border-color: rgba(17,17,17,0.28); }
+  .chips .chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .chips .chip.on .num { opacity: 0.8; }
+
+  /* ============ Analysis overlay + scan ============ */
+  .scan { position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: 0; }
+  .scan .band { position: absolute; top: 0; bottom: 0; width: 22vw; left: -26vw; background: linear-gradient(90deg, transparent, rgba(17,17,17,0.05) 45%, rgba(17,17,17,0.018) 55%, transparent); }
+  .scan .edge { position: absolute; top: 0; bottom: 0; width: 1px; left: -26vw; margin-left: 13.2vw; background: linear-gradient(180deg, transparent, rgba(17,17,17,0.30), transparent); }
+  .atlas.analyzing .scan { opacity: 1; }
+  .atlas.analyzing .scan .band, .atlas.analyzing .scan .edge { animation: sweep 0.72s var(--ease) 2; }
+  @keyframes sweep { from { transform: translateX(0); } to { transform: translateX(150vw); } }
+
+  .analysis {
+    position: absolute; z-index: 50; top: 0; bottom: 0; left: 0; right: 412px;
+    display: grid; place-items: center; pointer-events: none;
+    opacity: 0; transition: opacity 300ms var(--ease);
+  }
+  .atlas.analyzing .analysis { opacity: 1; }
+  .analysis-box {
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 18px;
+    box-shadow: var(--shadow-panel); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 20px 26px; min-width: 300px;
+  }
+  .analysis-box .eyebrow { display: block; margin-bottom: 6px; }
+  .analysis-box .a-context { font-size: 11px; color: var(--ink-2); line-height: 1.45; margin-bottom: 12px; max-width: 280px; }
+  .analysis-box .a-context.hide { display: none; }
+  .a-step { font-size: 13.5px; color: var(--ink-3); margin: 8px 0; opacity: 0.4; display: flex; align-items: center; gap: 9px; transition: all 260ms var(--ease); }
+  .a-step .tick { width: 13px; height: 13px; border: 1.2px solid var(--ink-3); border-radius: 50%; position: relative; flex: none; transition: all 260ms var(--ease); }
+  .a-step.now { color: var(--ink); opacity: 1; }
+  .a-step.now .tick { border-color: var(--ink); }
+  .a-step.done { color: var(--ink-2); opacity: 0.85; }
+  .a-step.done .tick { background: var(--ink); border-color: var(--ink); }
+  .a-step.done .tick::after { content: ""; position: absolute; left: 3.4px; top: 1px; width: 3px; height: 6px; border: solid #fff; border-width: 0 1.4px 1.4px 0; transform: rotate(45deg); }
+
+  /* ============ Result rail ============ */
+  .rail {
+    position: absolute; z-index: 45; bottom: 18px; left: calc((100% - 412px) / 2); transform: translateX(-50%);
+    max-width: calc(100% - 656px);
+    display: flex; gap: 6px; padding: 6px;
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 18px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-panel);
+    transition: opacity 350ms var(--ease), transform 350ms var(--ease);
+  }
+  .atlas.analyzing .rail { opacity: 0; transform: translateX(-50%) translateY(22px); pointer-events: none; }
+  .rail-item {
+    display: flex; align-items: center; gap: 11px; padding: 9px 15px 9px 13px; border-radius: 13px;
+    min-width: 0;
+    border: 1px solid transparent; text-align: left; transition: background 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .rail-item .rk { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .rail-item .mid { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .rail-item .nm { font-size: 12.5px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 262px; }
+  .rail-item .meta { font-size: 10px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rail-item .sc { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--ink-2); margin-left: 2px; }
+  .rail-item:hover { border-color: var(--panel-border); background: rgba(255,255,255,0.9); }
+  .rail-item.active { background: var(--ink); border-color: var(--ink); }
+  .rail-item.active .rk { color: rgba(255,255,255,0.55); }
+  .rail-item.active .nm { color: #fff; }
+  .rail-item.active .meta { color: rgba(255,255,255,0.6); }
+  .rail-item.active .sc { color: rgba(255,255,255,0.85); }
+
+  /* ============ Drawer ============ */
+  .drawer {
+    position: absolute; z-index: 58; top: 68px; right: 20px; bottom: 20px; width: 392px;
+    display: flex; flex-direction: column;
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 22px;
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--shadow-panel); overflow: hidden;
+    transition: transform 360ms var(--ease), opacity 360ms var(--ease);
+  }
+  .atlas.analyzing .drawer { transform: translateX(calc(100% + 44px)); opacity: 0; }
+  .drawer-scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .drawer-view { padding: 20px 22px 14px; }
+  .drawer-view.swap { opacity: 0; transform: translateY(6px); }
+  .drawer-view { transition: opacity 220ms var(--ease), transform 220ms var(--ease); }
+
+  .d-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+  .d-title { font-size: 17px; font-weight: 650; letter-spacing: -0.02em; line-height: 1.32; margin-top: 6px; text-wrap: balance; min-height: 45px; }
+  .d-meta { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.5; }
+  .score-block { text-align: right; flex: none; padding-top: 2px; }
+  .score-block .big { font-family: var(--mono); font-size: 31px; line-height: 1; font-weight: 500; }
+  .score-block .lbl { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-3); margin-top: 5px; }
+
+  .stat-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+  .stat-row:first-of-type { margin-top: 15px; }
+  .stat-row .lbl { font-size: 11px; color: var(--ink-2); width: 84px; flex: none; }
+  .stat-row .meter { flex: 1; height: 3px; border-radius: 2px; background: rgba(17,17,17,0.09); overflow: hidden; }
+  .stat-row .meter i { display: block; height: 100%; background: var(--ink-2); border-radius: 2px; transition: width 500ms var(--ease); }
+  .stat-row .val { font-family: var(--mono); font-size: 11px; color: var(--ink-2); flex: none; min-width: 54px; text-align: right; }
+
+  .d-section { margin-top: 18px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 9px; }
+  .badge {
+    font-family: var(--mono); font-size: 8px; letter-spacing: 0.09em; text-transform: uppercase;
+    border: 1px solid var(--panel-border); border-radius: 999px; padding: 2.5px 8px; color: var(--ink-2); white-space: nowrap;
+  }
+  .badge.inf { border-style: dashed; color: var(--ink-3); }
+
+  .rec-card { background: rgba(17,17,17,0.035); border-radius: 14px; padding: 13px 15px; }
+  .rec-card p { font-size: 13.5px; line-height: 1.5; font-weight: 550; letter-spacing: -0.005em; min-height: 40px; }
+
+  .reason { display: flex; gap: 11px; padding: 8px 0; border-top: 1px solid var(--hairline); }
+  .reason:first-of-type { border-top: 0; padding-top: 0; }
+  .reason .sig {
+    font-family: var(--mono); font-size: 10.5px; width: 18px; height: 18px; flex: none;
+    display: grid; place-items: center; border-radius: 50%;
+    background: var(--ink); color: #fff; margin-top: 1px;
+  }
+  .reason .body { min-width: 0; }
+  .reason .txt { font-size: 12px; line-height: 1.45; }
+  .reason .txt b { font-weight: 600; }
+  .reason .src { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+
+  .event-card { background: rgba(17,17,17,0.033); border-radius: 14px; padding: 13px 14px; display: flex; gap: 13px; }
+  .event-card .cal { flex: none; text-align: center; border: 1px solid var(--panel-border); background: #fff; border-radius: 10px; padding: 6px 10px; height: fit-content; }
+  .event-card .cal .m { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+  .event-card .cal .d { font-family: var(--mono); font-size: 16px; font-weight: 500; margin-top: 1px; }
+  .event-card .rows { flex: 1; min-width: 0; }
+  .event-card .kv { display: flex; gap: 8px; font-size: 11px; line-height: 1.45; padding: 2px 0; }
+  .event-card .kv .k { color: var(--ink-3); width: 74px; flex: none; }
+  .event-card .kv .v { color: var(--ink); font-weight: 500; min-width: 0; }
+  .event-card .kv .v.np { color: var(--ink-3); font-weight: 400; }
+  .event-card .kv .v a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(17,17,17,0.25); }
+  .event-card .kv .v a:hover { border-color: var(--ink); }
+  .event-card .kv.ec-open { margin-top: 7px; padding-top: 9px; border-top: 1px solid var(--hairline); }
+  .event-card .kv.ec-open a { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); font-weight: 600; text-decoration: none; }
+  .event-card .kv.ec-open a:hover { opacity: 0.75; }
+  .event-card .kv.ec-open svg { display: block; }
+
+  .drawer-cta { padding: 12px 22px 16px; border-top: 1px solid var(--hairline); background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.72)); }
+  .atlas .btn-primary {
+    width: 100%; background: var(--ink); color: #fff; border-radius: 13px;
+    font-size: 13px; font-weight: 550; height: 44px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: opacity 150ms var(--ease), transform 150ms var(--ease);
+  }
+  .atlas .btn-primary:hover { opacity: 0.88; }
+  .atlas .btn-primary:active { transform: scale(0.99); }
+
+  /* ============ Layers + zoom + note ============ */
+  .layers-wrap { position: absolute; z-index: 40; left: 20px; bottom: 20px; }
+  .atlas .layers-btn {
+    display: flex; align-items: center; gap: 8px; border-radius: 999px; padding: 9px 14px;
+    font-size: 12px; color: var(--ink-2); min-height: 38px;
+    background: var(--panel); border: 1px solid var(--panel-border);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-soft);
+    transition: color 150ms var(--ease);
+  }
+  .atlas .layers-btn:hover { color: var(--ink); }
+  .layers-pop {
+    position: absolute; left: 0; bottom: 48px; width: 210px;
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-panel); padding: 12px;
+    opacity: 0; transform: translateY(6px); pointer-events: none;
+    transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+  }
+  .layers-wrap.open .layers-pop { opacity: 1; transform: none; pointer-events: auto; }
+  .layer-row { display: flex; align-items: center; gap: 9px; padding: 6px 4px; font-size: 12px; color: var(--ink); cursor: pointer; border-radius: 8px; width: 100%; text-align: left; }
+  .layer-row .glyph { width: 16px; text-align: center; color: var(--ink-2); flex: none; display: grid; place-items: center; }
+  .layer-row .sw { margin-left: auto; width: 26px; height: 15px; border-radius: 999px; background: rgba(17,17,17,0.14); position: relative; transition: background 180ms var(--ease); flex: none; }
+  .layer-row .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; background: #fff; border-radius: 50%; transition: left 180ms var(--ease); box-shadow: 0 1px 3px rgba(17,17,17,0.25); }
+  .layer-row.on .sw { background: var(--ink); }
+  .layer-row.on .sw::after { left: 13px; }
+
+  .zoom-ctl {
+    position: absolute; z-index: 40; right: 432px; bottom: 20px;
+    display: flex; flex-direction: column; border-radius: 999px; overflow: hidden;
+    background: var(--panel); border: 1px solid var(--panel-border);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-soft);
+  }
+  .zoom-ctl button { width: 36px; height: 34px; display: grid; place-items: center; color: var(--ink-2); font-size: 15px; transition: color 140ms var(--ease), background 140ms var(--ease); }
+  .zoom-ctl button:hover { color: var(--ink); background: rgba(17,17,17,0.045); }
+  .zoom-ctl button + button { border-top: 1px solid var(--hairline); }
+
+  .src-note { position: absolute; z-index: 39; left: 26px; top: 96px; font-size: 10px; color: var(--ink-3); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: 0ms !important; animation-duration: 0ms !important; } }
+</style>
+
+<div class="atlas" id="atlas">
+  <div class="map-stage" id="stage">
+    <svg id="svg">
+      <g id="cam">
+        <g id="world-sf" class="world">
+          <g class="basemap" id="sf-basemap"></g>
+          <g class="layer" id="sf-layer-signals"></g>
+          <g class="layer" id="sf-layer-comms"></g>
+          <g class="layer" id="sf-layer-events"></g>
+          <g id="sf-geo-labels"></g>
+        </g>
+        <g id="world-nyc" class="world off">
+          <g class="basemap" id="nyc-basemap"></g>
+          <g class="layer" id="nyc-layer-signals"></g>
+          <g class="layer" id="nyc-layer-comms"></g>
+          <g class="layer" id="nyc-layer-events"></g>
+          <g id="nyc-geo-labels"></g>
+        </g>
+        <g id="layer-ranked"></g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="scan"><div class="band"></div><div class="edge"></div></div>
+
+  <div class="tip" id="tip"><div class="t1" id="tip1"></div><div class="t2" id="tip2"></div><div class="t3" id="tip3"></div></div>
+
+  <header class="hdr">
+    <div class="brand-row">
+      <div class="brand"><h1>GrowthX</h1><span class="sub" id="brandSub">Event intelligence · San Francisco</span></div>
+      <div class="city-switch" id="citySwitch" role="tablist" aria-label="City">
+        <button type="button" class="on" data-city="sf" role="tab" aria-selected="true">San Francisco</button>
+        <button type="button" data-city="nyc" role="tab" aria-selected="false">New York</button>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <button class="pill-btn" id="replayBtn" type="button">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1.5 6a4.5 4.5 0 1 1 1.3 3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M1.3 6.8V9h2.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Replay analysis
+      </button>
+      <button class="pill-btn" id="newBtn" type="button">New search</button>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <div class="search-card">
+      <div class="search-row">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="4.2" stroke="currentColor" stroke-width="1.4"/><path d="M8.8 8.8l2.8 2.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input class="search-input" id="q" type="text" spellcheck="false" autocomplete="off"
+               value="Postgres-native background jobs for Python teams"
+               placeholder="Describe your product and developer audience" aria-label="Search query"/>
+        <button class="search-go" id="goBtn" type="button">Map opportunities</button>
+      </div>
+    </div>
+    <div class="scenario-row">
+      <span class="eyebrow">Example scenario</span>
+      <div class="chips" id="scenarios">
+        <button class="chip on" type="button" data-scenario="backend"><span class="num mono">01</span> Backend infrastructure</button>
+        <button class="chip" type="button" data-scenario="ai"><span class="num mono">02</span> AI agent platform</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="analysis" aria-live="polite">
+    <div class="analysis-box">
+      <span class="eyebrow" id="analysisEyebrow">GrowthX · Analyzing San Francisco</span>
+      <div class="a-context" id="aContext"></div>
+      <div class="a-step" id="st0"><span class="tick"></span>Reading event landscape</div>
+      <div class="a-step" id="st1"><span class="tick"></span>Matching developer audience</div>
+      <div class="a-step" id="st2"><span class="tick"></span>Ranking activation opportunities</div>
+    </div>
+  </div>
+
+  <div class="rail" id="rail" role="tablist" aria-label="Top ranked events"></div>
+
+  <aside class="drawer" id="drawer" aria-live="polite">
+    <div class="drawer-scroll">
+      <div class="drawer-view" id="dview">
+        <div class="d-top">
+          <div style="min-width:0;">
+            <span class="eyebrow" id="d-eyebrow">GrowthX pick · Rank 01</span>
+            <h2 class="d-title" id="d-title"></h2>
+          </div>
+          <div class="score-block">
+            <div class="big" id="d-score">—</div>
+            <div class="lbl">GrowthX fit</div>
+          </div>
+        </div>
+        <p class="d-meta" id="d-meta"></p>
+
+        <div class="stat-row"><span class="lbl">Audience fit</span><div class="meter"><i id="d-fitbar"></i></div><span class="val" id="d-fitval"></span></div>
+        <div class="stat-row"><span class="lbl">Confidence</span><div class="meter"><i id="d-confbar"></i></div><span class="val" id="d-confval"></span></div>
+
+        <div class="d-section">
+          <div class="sec-head"><span class="eyebrow">Recommended activation</span><span class="badge inf">GrowthX inference</span></div>
+          <div class="rec-card"><p id="d-rec"></p></div>
+        </div>
+
+        <div class="d-section">
+          <div class="sec-head"><span class="eyebrow">Why it ranked</span></div>
+          <div id="d-reasons"></div>
+        </div>
+
+        <div class="d-section">
+          <div class="sec-head"><span class="eyebrow">Event details</span><span class="badge">Observed · Luma</span></div>
+          <div class="event-card">
+            <div class="cal"><div class="m" id="d-cal-m"></div><div class="d" id="d-cal-d"></div></div>
+            <div class="rows">
+              <div class="kv"><span class="k">Date</span><span class="v" id="d-date"></span></div>
+              <div class="kv"><span class="k">Neighborhood</span><span class="v" id="d-area"></span></div>
+              <div class="kv"><span class="k">Organizer</span><span class="v" id="d-org"></span></div>
+              <div class="kv"><span class="k">Attendance</span><span class="v" id="d-att"></span></div>
+              <div class="kv"><span class="k">Source</span><span class="v"><a id="d-src" href="#" target="_blank" rel="noopener noreferrer"></a></span></div>
+              <div class="kv ec-open"><a id="d-luma" href="#" target="_blank" rel="noopener noreferrer">Open on Luma <svg width="10" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5h9.4M7 1.4 10.6 5 7 8.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-cta">
+      <button class="btn-primary" type="button">Build activation plan
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5h9.4M7 1.4 10.6 5 7 8.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="layers-wrap" id="layersWrap">
+    <button class="layers-btn" id="layersBtn" type="button" aria-expanded="false">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5 12.6 4.4 7 7.3 1.4 4.4 7 1.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="m2.6 7.4 4.4 2.3 4.4-2.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m2.6 10 4.4 2.3L11.4 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Layers
+    </button>
+    <div class="layers-pop" id="layersPop">
+      <button class="layer-row on" data-layer="events" type="button"><span class="glyph"><svg width="10" height="10"><circle cx="5" cy="5" r="3.4" fill="#111" fill-opacity="0.5" stroke="#fff"/></svg></span>Events<span class="sw"></span></button>
+      <button class="layer-row" data-layer="comms" type="button"><span class="glyph"><svg width="12" height="12"><circle cx="6" cy="6" r="4.4" fill="none" stroke="#111" stroke-opacity="0.5" stroke-dasharray="2 2.4"/></svg></span>Communities<span class="sw"></span></button>
+      <button class="layer-row on" data-layer="signals" type="button"><span class="glyph"><svg width="14" height="10"><circle cx="3" cy="6" r="1.4" fill="#111" fill-opacity="0.4"/><circle cx="8" cy="3.4" r="1.4" fill="#111" fill-opacity="0.4"/><circle cx="11.6" cy="7" r="1.4" fill="#111" fill-opacity="0.4"/></svg></span>Audience signals<span class="sw"></span></button>
+    </div>
+  </div>
+
+  <div class="zoom-ctl">
+    <button id="zin" type="button" aria-label="Zoom in">+</button>
+    <button id="zout" type="button" aria-label="Zoom out">−</button>
+    <button id="zreset" type="button" aria-label="Reset view">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.2" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="7" r="1.6" fill="currentColor"/></svg>
+    </button>
+  </div>
+
+  <div class="src-note" id="srcNote">64 events · Luma snapshot · Jul 24, 2026</div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var EVENTS_SF = [{"n":"YC SUS Game Night @ EF","u":"https://lu.ma/0pl3rlxm","d":"2026-07-24","a":"SoMa","lat":37.78609,"lng":-122.39641,"t":81,"s":["Tech"],"c":"Personal","o":["Sahil Agarwal","Entrepreneurs First","Rick Li","Naisha Patel","Tanayjyot Singh Chawla"]},{"n":"SF Intern & New Grad Summerfest by Comma Capital & Pylon","u":"https://lu.ma/4gwg4wtw","d":"2026-07-24","a":"SoMa","lat":37.77968,"lng":-122.39474,"t":0,"s":["Tech"],"c":"Comma Capital","o":["David Ongchoco","Paul Luu","Advith Chelikani","Julia Guo"]},{"n":"The California Peptide Club IV","u":"https://lu.ma/californiapeptideclub4","d":"2026-07-24","a":"","lat":37.75591,"lng":-122.4523,"t":0,"s":["Tech"],"c":"Personal","o":["Julius Ritter","Micah Stubbs"]},{"n":"YC Startup School Founder & Investor Mixer","u":"https://lu.ma/beta-ugt5","d":"2026-07-24","a":"FiDi","lat":37.78908,"lng":-122.39733,"t":119,"s":["AI"],"c":"Beta University Events","o":["David Chi","Beta University","Beta Fund","Daniel Niu","Noah Liu"]},{"n":"Night Hack by Founders, Inc.","u":"https://lu.ma/nighthack","d":"2026-07-24","a":"","lat":37.80914,"lng":-122.43157,"t":349,"s":["Tech"],"c":"Founders, Inc. Events","o":["Adrianna Lakatos","haseab 🌵"]},{"n":"Costume & Clothing Swap #3","u":"https://lu.ma/6yygqrgb","d":"2026-07-24","a":"Mission","lat":37.76081,"lng":-122.41214,"t":110,"s":["Arts & Culture","Climate"],"c":"Rising Sparks","o":["Rising Sparks"]},{"n":"groove","u":"https://lu.ma/sujfpwbt","d":"2026-07-24","a":"","lat":37.77134,"lng":-122.41377,"t":477,"s":["Arts & Culture"],"c":"Personal","o":["GOMA"]},{"n":"Ship 2 Prod | YC AI SUS Black-Tie Yacht Gala","u":"https://lu.ma/ojidqyj8","d":"2026-07-24","a":"","lat":37.78149,"lng":-122.38851,"t":0,"s":["AI"],"c":"Resonance","o":["Ethan Yip","Jason Xu","GMI Cloud","Julie Chen","Pavan Kumar","Manny Dueñas","Katie","Patti Tani"]},{"n":"tasteslop w/ Emily Segal","u":"https://lu.ma/tasteslop","d":"2026-07-24","a":"SoMa","lat":37.78616,"lng":-122.40825,"t":0,"s":["AI","Arts & Culture"],"c":"tiat (the intersection of art & technology)","o":["ash","Emily Segal"]},{"n":"MRC x Nike x Maurten: SF Marathon Shakeout","u":"https://lu.ma/el9ppt02","d":"2026-07-25","a":"","lat":37.80587,"lng":-122.44242,"t":184,"s":["Fitness"],"c":"Marina Run Club Events","o":["Emily","Adam Namba","Sarah Tobin","Grace Holzer"]},{"n":"A Dash Of: Salt & Spice — Summer Fruit Tasting","u":"https://lu.ma/nh67khl7","d":"2026-07-25","a":"","lat":37.76545,"lng":-122.3966,"t":6,"s":["Food & Drink"],"c":"A Dash Of: Tasting Events","o":["Dava Guthmiller"]},{"n":"the Epistemologies of Slop | Art + Tech Exhibition Closing Reception","u":"https://lu.ma/epistemologies","d":"2026-07-25","a":"SoMa","lat":37.78616,"lng":-122.40825,"t":0,"s":["AI","Arts & Culture"],"c":"tiat (the intersection of art & technology)","o":["ash"]},{"n":"Canadian YC Founders Showcase @ Startup School","u":"https://lu.ma/8sf0hjs0","d":"2026-07-25","a":"SoMa","lat":37.7879,"lng":-122.39965,"t":247,"s":["Tech"],"c":"Forward Deployed Canadian","o":["Michael Liu","Zaid Qureshi","Junaid L Mahmood","Darcy Zhang","Will Lawrence","Sepand Dyanatkar"]},{"n":"new aesthetics","u":"https://lu.ma/newaesthetics","d":"2026-07-25","a":"SoMa","lat":37.78616,"lng":-122.40825,"t":0,"s":["Arts & Culture","Tech"],"c":"tiat (the intersection of art & technology)","o":["ash","Maja Wilbrink","Ruby Justice"]},{"n":"YC AI Startup School Afterparty","u":"https://lu.ma/m4ez9liu","d":"2026-07-25","a":"","lat":37.76644,"lng":-122.40399,"t":411,"s":["AI"],"c":"Moss","o":["Luke Luc","Ashvath","Sri Raghu Malireddi","Andrew Hinh","Modal","Neha Varshneya","Greg Kress","Graham Hunter","Render Events"]},{"n":"MRC x SF Marathon Afterparty @ Amelie","u":"https://lu.ma/twhnieeb","d":"2026-07-26","a":"","lat":37.79311,"lng":-122.42097,"t":327,"s":[],"c":"Marina Run Club Events","o":["Emily"]},{"n":"SF AI Code And Coffee Sunday July 26th!","u":"https://lu.ma/rhbtwo9u","d":"2026-07-26","a":"FiDi","lat":37.78974,"lng":-122.39617,"t":195,"s":["AI"],"c":"San Francisco AI Code And Coffee","o":["John Komarnicki","Pat Santiago","Sahar Mor (Bond AI)"]},{"n":"Startup School Afterparty | by Vercel, Warp, Reducto, and Browserbase","u":"https://lu.ma/browse-l2aj","d":"2026-07-26","a":"","lat":37.78913,"lng":-122.40595,"t":280,"s":["AI"],"c":"Browserbase","o":["Shrey Pandya","Vibha Yellamraju","Maya Lekhi","Justine Mach","Sathvik Vangavolu"]},{"n":"Founder DJ Party","u":"https://lu.ma/yp4xhswa","d":"2026-07-26","a":"","lat":37.77605,"lng":-122.43274,"t":103,"s":["Tech"],"c":"Founders on Tap","o":["Founders on Tap","Lyvia Chapman","Rajvee Saraf","Canaan Poh (lythe)","Raj"]},{"n":"Corgi Coffee Co-op: DIY Coffee for Founders","u":"https://lu.ma/5w78yjyy","d":"2026-07-27","a":"","lat":37.79051,"lng":-122.40446,"t":0,"s":["Food & Drink","Tech"],"c":"Corgi","o":["Lu Zhang","Anamika Khaleghian","Laura Dang","Erika Lee"]},{"n":"Summer Soiree with Entire","u":"https://lu.ma/bf1psict","d":"2026-07-27","a":"Mission","lat":37.75726,"lng":-122.41687,"t":241,"s":["Tech"],"c":"Entire Events","o":["Lizzie @ Entire","Entire","Rizel Bobb-Semple"]},{"n":"Pebblebed's Builders Late Night Café","u":"https://lu.ma/5lcn6pt8","d":"2026-07-27","a":"Mission","lat":37.76685,"lng":-122.41839,"t":0,"s":["Tech"],"c":"Pebblebed Events","o":["Nicole Levin"]},{"n":"Physical AI and Robotics Meetup","u":"https://lu.ma/isyfjno2","d":"2026-07-28","a":"SoMa","lat":37.78622,"lng":-122.39715,"t":0,"s":["AI"],"c":"Personal","o":["Çağla Kaymaz","Mahmut Demir","Hakan Gunturkun","Ayhan Sebin","Category Ventures"]},{"n":"Durable Multimodal AI Meetup with HeyGen, Vapi, and Modal","u":"https://lu.ma/durable-ai-july","d":"2026-07-28","a":"FiDi","lat":37.79428,"lng":-122.40154,"t":125,"s":["AI"],"c":"Temporal Community","o":["Temporal Team","Vapi Events","Modal","HeyGen Community"]},{"n":"MCP V2 RELEASE EVENT","u":"https://lu.ma/iqs73qmu","d":"2026-07-28","a":"SoMa","lat":37.78707,"lng":-122.39673,"t":70,"s":["AI"],"c":"Manufact Events","o":["Manufact (YC S25)","Luigi Pederzani","Michael Marable"]},{"n":"scrappy sessions","u":"https://lu.ma/7lhjec3b","d":"2026-07-28","a":"","lat":37.78211,"lng":-122.393,"t":7,"s":["Tech"],"c":"Personal","o":["Keerthi Nalabotu"]},{"n":"Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents","u":"https://lu.ma/w61gmib2","d":"2026-07-28","a":"FiDi","lat":37.79399,"lng":-122.40122,"t":0,"s":["AI"],"c":"MiniMax","o":["MiniMax","Logan","Wanda Wang","AI Valley","UpScaleX","The AI Collective","RenLeanna","Shayla Wolf"]},{"n":"on Mercury - SF","u":"https://lu.ma/on-mercury-sf","d":"2026-07-29","a":"","lat":37.75732,"lng":-122.38794,"t":0,"s":["Tech"],"c":"Mercury","o":["Mercury"]},{"n":"Can We Close the Sim2Real Gap?","u":"https://lu.ma/cazn88f7","d":"2026-07-29","a":"Mission","lat":37.76281,"lng":-122.41026,"t":0,"s":["AI"],"c":"Savant VC","o":["Jeson Lee","Viet Nguyen","Jonathan Lwowski","Ahmed Ahres","Tarlon Khoubyari"]},{"n":"Built Different: Auth0 x Stripe Hackathon","u":"https://lu.ma/builtdifferent-auth0-stripe","d":"2026-07-30","a":"FiDi","lat":37.78951,"lng":-122.39744,"t":0,"s":["Tech"],"c":"Auth0 Events - San Francisco","o":["Calah Vargas","Shreya","Fred Patton"]},{"n":"Best Work Of Your Life","u":"https://lu.ma/Best-Work-Of-Your-Life","d":"2026-07-30","a":"","lat":37.78221,"lng":-122.39121,"t":302,"s":["AI"],"c":"Personal","o":["GitHub","John Maeda"]},{"n":"IREN AI Social","u":"https://lu.ma/4yta9i2j","d":"2026-07-30","a":"SoMa","lat":37.77704,"lng":-122.39322,"t":8,"s":["AI"],"c":"Personal","o":["Helen Chen","Erin Glass","Anthony Stead","Tim Delcourt","Jonathan Taylor"]},{"n":"☕️ OpenAI Codex Community Meetup-San Francisco #8","u":"https://lu.ma/h5x0pzw9","d":"2026-07-30","a":"","lat":37.72696,"lng":-122.47767,"t":281,"s":["AI"],"c":"TatianaSF","o":["TatianaSF com","Natalie Pan","Funding Breakthrough Lab"]},{"n":"Qualcomm x ZETIC x Liquid AI: Edge AI Builders Meetup","u":"https://lu.ma/i3evxecn","d":"2026-07-30","a":"","lat":37.78987,"lng":-122.4053,"t":81,"s":["AI"],"c":"ZETIC","o":["Rishabh Chauhan","Yeonseok Danny Kim","Jun Kang"]},{"n":"Builder Night","u":"https://lu.ma/715ul99e","d":"2026-07-30","a":"SoMa","lat":37.78839,"lng":-122.40292,"t":154,"s":["AI"],"c":"WorkOS Events","o":["WorkOS","Pieces"]},{"n":"Startup Reality 202: AI in Industries — From Foundation Models to Vertical Moats","u":"https://lu.ma/4g3wb753","d":"2026-07-30","a":"FiDi","lat":37.79401,"lng":-122.39966,"t":145,"s":["AI"],"c":"NATEA Silicon Valley","o":["Kyle Lin","Danny Bo-Yen Chang"]},{"n":"Dynamo After Hours","u":"https://lu.ma/JulyDynamoAfterHours","d":"2026-07-30","a":"SoMa","lat":37.77342,"lng":-122.40359,"t":259,"s":["AI"],"c":"NVIDIA","o":["Tina Wisdom","Harry Kim"]},{"n":"Scaling revenue at Stripe and Vercel with Jeanne DeWitt Grosser (COO, Vercel)","u":"https://lu.ma/7h2hjufc","d":"2026-07-30","a":"FiDi","lat":37.79714,"lng":-122.39652,"t":241,"s":["AI"],"c":"Baseten Events","o":["Baseten","Arjun Naskar"]},{"n":"Taste: A Physical AI Data Happy Hour","u":"https://lu.ma/ir1t9z73","d":"2026-07-30","a":"FiDi","lat":37.79899,"lng":-122.39372,"t":0,"s":["AI"],"c":"Unusual Ventures","o":["Niamh O'Donnell","Michael Malyuk","Alexandra McGauley","Lauren Partin","Penny Mares","Nick Landolfi"]},{"n":"SF Creatives Night: Hard Launch x Osmo x a16z new media","u":"https://lu.ma/db3xynd2","d":"2026-07-30","a":"Mission","lat":37.76352,"lng":-122.41601,"t":0,"s":["Arts & Culture","Tech"],"c":"HARD LAUNCH","o":["Rylee Stanton","Will Hoppin","jacky (:","Justine Chang","Chris He","Karina","Jessie Kuo","Oleksandr Shevenionov","Basil Alfaro"]},{"n":"BlueDot SF Launch","u":"https://lu.ma/bluedot-sf-launch","d":"2026-07-30","a":"Hayes Valley","lat":37.77838,"lng":-122.42051,"t":0,"s":["AI"],"c":"BlueDot Impact","o":["Joshua Landes","Dewi","Li-Lian","Will","Sam Dower","Ben Lukszys","Jonah Weinbaum","Mmachukwu Osisioma"]},{"n":"Draw Together, Be SEEN","u":"https://lu.ma/h6fxh0x7","d":"2026-08-01","a":"Mission","lat":37.75253,"lng":-122.41764,"t":45,"s":["Arts & Culture"],"c":"Personal","o":["Regina Liao"]},{"n":"Read in the Park - San Francisco 📚","u":"https://lu.ma/hcroww7j","d":"2026-08-01","a":"","lat":37.76479,"lng":-122.47493,"t":80,"s":["Arts & Culture"],"c":"Read in the park 📚","o":["Sasmini Bandara","Haley Mees","Abhi Sarma","Noel Dubuc"]},{"n":"Built on Baseten | AI Demo Night","u":"https://lu.ma/b4y2veki","d":"2026-08-04","a":"","lat":37.79921,"lng":-122.39803,"t":0,"s":["AI"],"c":"Baseten Events","o":["Baseten","Aishwarya Goel"]},{"n":"Privy Home: IRL SF","u":"https://lu.ma/x1to4ziz","d":"2026-08-05","a":"","lat":37.75676,"lng":-122.38958,"t":229,"s":["AI","Crypto"],"c":"Personal","o":["Privy"]},{"n":"🧬 Inflection #002 — Health: AI's last problem w/ Omri Drory","u":"https://lu.ma/inflection002","d":"2026-08-05","a":"","lat":37.78278,"lng":-122.39139,"t":0,"s":["AI"],"c":"Pioneer Fund","o":["Gaurav Maken (Pioneer Fund)","Dave Messina","Chris DN"]},{"n":"Gray Area Cultural Incubator Showcase 2026","u":"https://lu.ma/x0mqtd1a","d":"2026-08-05","a":"Mission","lat":37.75439,"lng":-122.4185,"t":33,"s":["AI","Arts & Culture"],"c":"Gray Area","o":["Gray Area"]},{"n":"Extraordinary Founders Dinner (hosted by Andrew Yeung)","u":"https://lu.ma/ExtraordinaryFoundersAug6","d":"2026-08-06","a":"","lat":37.78273,"lng":-122.43437,"t":0,"s":["Tech"],"c":"Andrew's Yeung's Tech Events","o":["Andrew Yeung"]},{"n":"136th SF Hardware Meetup @ Studio 45 | Demo Night","u":"https://lu.ma/odhr2288","d":"2026-08-06","a":"","lat":37.74523,"lng":-122.42253,"t":209,"s":["Tech"],"c":"SF Hardware Meetup","o":["Michael Raspuzzi","Nate Padgett","Miguel A Villafuerte","Mariana Ortiz","Garvin Meyers","Tyler Lux"]},{"n":"AI x Fashion Coffee Club","u":"https://lu.ma/xfbtidsx","d":"2026-08-07","a":"","lat":37.76129,"lng":-122.43078,"t":38,"s":["AI"],"c":"Personal","o":["Hermione"]},{"n":"Free Stage Play | The Light in Your Heart and the Way Back Home (by Tiangu Troupe)","u":"https://lu.ma/evrao38u","d":"2026-08-07","a":"","lat":37.79887,"lng":-122.46057,"t":197,"s":["Arts & Culture"],"c":"Personal","o":["Tiangu Troupe"]},{"n":"San Francisco Data Engineering Meetup with ClickHouse","u":"https://lu.ma/clickh-z578","d":"2026-08-11","a":"","lat":37.79698,"lng":-122.40488,"t":328,"s":["Tech"],"c":"ClickHouse Events","o":["Zoe Steinkamp"]},{"n":"WorkOS Agent Night","u":"https://lu.ma/agent-night","d":"2026-08-12","a":"","lat":37.78787,"lng":-122.42141,"t":1116,"s":["AI"],"c":"WorkOS Events","o":["WorkOS","Michael Grinich"]},{"n":"How to Build a Regenerative Future for Humanity & Nature","u":"https://lu.ma/the-l1rh","d":"2026-08-12","a":"Hayes Valley","lat":37.77638,"lng":-122.42604,"t":19,"s":["Arts & Culture","Climate"],"c":"The Commons","o":["The SF Commons","Danielle Lee","Climate Action Club SF"]},{"n":"ModCon 2026","u":"https://lu.ma/modcon","d":"2026-08-18","a":"","lat":37.78914,"lng":-122.40722,"t":0,"s":["AI"],"c":"Modular","o":["Modular"]},{"n":"SUPERNOVA 2026","u":"https://lu.ma/cerebrassupernova26","d":"2026-08-18","a":"","lat":37.74928,"lng":-122.38569,"t":0,"s":["AI"],"c":"Cerebras","o":["Cerebras"]},{"n":"Low-Key Data Happy Hour - San Francisco","u":"https://lu.ma/wcd1kx5o","d":"2026-08-18","a":"SoMa","lat":37.78799,"lng":-122.40429,"t":171,"s":["Tech"],"c":"Low-Key Data Happy Hour - San Francisco","o":["Paul Dudley","Jacqueline Au","Tony Fancher"]},{"n":"Mistral Catfe Coworking","u":"https://lu.ma/mistral-summer-catfe-sf","d":"2026-08-20","a":"","lat":37.78121,"lng":-122.44966,"t":12,"s":["AI"],"c":"Mistral AI Events","o":["Mistral AI"]},{"n":"AI Valley x Pet Zen Dog-a-thon","u":"https://lu.ma/rklrsomo","d":"2026-08-22","a":"","lat":37.80007,"lng":-122.46047,"t":0,"s":["AI"],"c":"AI Valley","o":["Courtney Ko","AI Valley","RJ"]},{"n":"Create for Good","u":"https://lu.ma/ghnew59o","d":"2026-08-22","a":"","lat":37.80189,"lng":-122.44835,"t":136,"s":["AI","Arts & Culture"],"c":"Personal","o":["Kris","Chana Messinger","Aric Floyd","Justin Portela"]},{"n":"Up After Dark - TailscaleUp's Official Afterparty","u":"https://lu.ma/gkhrxqkw","d":"2026-08-26","a":"","lat":37.78132,"lng":-122.41229,"t":0,"s":["Tech"],"c":"Tailscale Events","o":["Tailscale","Rootly","Platform Engineering","Heavybit","Sahar Mor (Bond AI)"]},{"n":"Step SF 2026: The AI & Tech Startup Festival","u":"https://lu.ma/StepSF26","d":"2026-08-27","a":"","lat":37.74928,"lng":-122.38569,"t":220,"s":["AI"],"c":"Step","o":["Step","Steven Echtman","Ash Kumra","Ray Dargham","The AI Collective","Mariane Bekker"]},{"n":"August - How to Rule the World by Theo Baker","u":"https://lu.ma/0pza6p4n","d":"2026-08-30","a":"Mission","lat":37.75011,"lng":-122.41601,"t":10,"s":["Arts & Culture","Tech"],"c":"Hardcover | Nonfiction Book Club","o":["Simar"]},{"n":"The Acquired Meetup","u":"https://lu.ma/acquiredmeetup","d":"2026-09-17","a":"","lat":37.80904,"lng":-122.43242,"t":0,"s":["Tech"],"c":"Sentry","o":["Sentry","Acquired"]}];
+  var EVENTS_NYC = [{"n":"🚶☀️ Sprint Review #2: Walk or Run Summer Streets 🌳🏃","u":"https://lu.ma/ijhs4ugg","d":"2026-08-15","a":"Flatiron","lat":40.7422,"lng":-73.988,"t":36,"s":["Fitness","Tech"],"c":"Brooklyn Product Design","o":["Brian Hui","José Arias","Rahul Alexander"]},{"n":"ALO FLATIRON: ALO RUNNERS CLUB","u":"https://lu.ma/kjx4tb5h","d":"2026-08-15","a":"Flatiron","lat":40.74064,"lng":-73.99064,"t":0,"s":["Fitness"],"c":"ALO","o":["ALO"]},{"n":"Jazzy Builds","u":"https://lu.ma/cmrr6isi","d":"2026-08-15","a":"SoHo","lat":40.71835,"lng":-73.99606,"t":40,"s":["Tech"],"c":"529 Labs Community","o":["Kentaro Lee","Maya Galindo","Yash Alluri","Adlee H"]},{"n":"Mama in NYC!","u":"https://lu.ma/4mqb9clb","d":"2026-08-15","a":"","lat":40.71682,"lng":-73.99065,"t":1365,"s":[],"c":"Personal","o":["Meji Meji"]},{"n":"new interfaces 005","u":"https://lu.ma/en45hlqd","d":"2026-08-15","a":"Flatiron","lat":40.73878,"lng":-73.98836,"t":128,"s":["Arts & Culture","Tech"],"c":"new interfaces","o":["Pauline Wee"]},{"n":"Anything Can Be A Lamp: Open Studio with Echo Yun Chen (5pm Entry)","u":"https://lu.ma/sagdchrj","d":"2026-08-15","a":"","lat":40.66646,"lng":-73.99784,"t":11,"s":["ai","llm"],"c":"Personal","o":["Chores"]},{"n":"The Free Software Foundation: What Freedom in Software Means to You","u":"https://lu.ma/5tqac51t","d":"2026-08-15","a":"","lat":40.73349,"lng":-74.00015,"t":0,"s":["Tech"],"c":"Freedom Lab NYC","o":["Harrison Friedes","Heshan","Jeffrey Silva"]},{"n":"Discover the Birds in Central Park 🦆","u":"https://lu.ma/7mbhce1k","d":"2026-08-16","a":"","lat":40.77432,"lng":-73.97088,"t":10,"s":["ai"],"c":"steph, that quirky bird girl","o":["steph that quirky bird girl"]},{"n":"get lost (& craft)","u":"https://lu.ma/r9drasxa","d":"2026-08-16","a":"","lat":40.68487,"lng":-73.98447,"t":16,"s":["Arts & Culture"],"c":"& luo studio","o":["Leslie Luo","Sahi Akasapu"]},{"n":"Revolutionary Women: The Stories History Left Out (Tour + Brunch)","u":"https://lu.ma/RevolutionaryWomen","d":"2026-08-16","a":"","lat":40.77935,"lng":-73.97391,"t":14,"s":["Arts & Culture"],"c":"Women of Culture Art-full Experiences","o":["Alexandra Harper","Elizabeth D 🌸"]},{"n":"Lit Club x Tinder: Book Swap","u":"https://lu.ma/r33lq5m0","d":"2026-08-16","a":"Lower Manhattan","lat":40.70577,"lng":-74.00179,"t":0,"s":["Arts & Culture"],"c":"Lit Club NYC Calendar","o":["Lit Club NYC"]},{"n":"Samulnori Bibimbap MIX: Meari Nori Vol. 2","u":"https://lu.ma/q7095g6f","d":"2026-08-16","a":"Midtown","lat":40.74625,"lng":-73.98661,"t":129,"s":["Arts & Culture","Food & Drink"],"c":"Personal","o":["GreenJI","Meari","NOFLEX® NYC"]},{"n":"Don't Sell Grandma's House - exhibition opening","u":"https://lu.ma/eooe04t7","d":"2026-08-16","a":"","lat":40.7018,"lng":-73.91952,"t":533,"s":["Arts & Culture"],"c":"Personal","o":["Gallery Sinclair"]},{"n":"☀️🧑‍🏫 August Design Talks with Daniela Ocana and Arix King 🤓🗽","u":"https://lu.ma/eajuy1bm","d":"2026-08-17","a":"SoHo","lat":40.72497,"lng":-73.99637,"t":200,"s":["Arts & Culture","Tech"],"c":"Brooklyn Product Design","o":["Brian Hui","Collin Hadley","José Arias"]},{"n":"Claude Code Workshop - New York City","u":"https://lu.ma/claude-code-workshop-nyc-aug-18","d":"2026-08-18","a":"Lower Manhattan","lat":40.70724,"lng":-74.00698,"t":0,"s":["AI"],"c":"Claude Workshops","o":["Build with Claude","Provectus"]},{"n":"NYC B2B: AI Founders & Investors Meetup","u":"https://lu.ma/fv6wrg1w","d":"2026-08-18","a":"Flatiron","lat":40.74377,"lng":-73.99362,"t":221,"s":["AI"],"c":"NYC B2B: Startup Events","o":["NYC B2B","Max Kuivenhoven","MongoDB"]},{"n":"Animation Nights New York (ANNY) at The Gutter Spare Room!","u":"https://lu.ma/ufoccb1a","d":"2026-08-18","a":"Williamsburg","lat":40.72098,"lng":-73.95627,"t":0,"s":["Arts & Culture"],"c":"Animation Nights New York (ANNY)","o":["Animation Nights"]},{"n":"Agentics: Use Agents Effectively","u":"https://lu.ma/agentics-4qd8","d":"2026-08-19","a":"Midtown","lat":40.75528,"lng":-73.9886,"t":532,"s":["AI"],"c":"Agentics NYC","o":["Nori Agentic","Monishee at Modal","MongoDB"]},{"n":"For the Firsts: August Fireside & Mixer","u":"https://lu.ma/gxg3rfpa","d":"2026-08-19","a":"SoHo","lat":40.72273,"lng":-74.00724,"t":0,"s":["ai"],"c":"for the firsts","o":["Colin Rocker"]},{"n":"Junto Founder Dinner (Hosted by Andrew & Friends)","u":"https://lu.ma/juntodinneraug19","d":"2026-08-19","a":"Flatiron","lat":40.74086,"lng":-73.99482,"t":0,"s":["Tech"],"c":"Andrew's Yeung's Tech Events","o":["Andrew Yeung"]},{"n":"The New York Philosophy Club: Columbus Circle","u":"https://lu.ma/et6kqiqf","d":"2026-08-19","a":"Midtown","lat":40.77113,"lng":-73.98004,"t":117,"s":["ai"],"c":"The New York Philosophy Club","o":["New York Philosophical Society"]},{"n":"Breakfast + Q&A w/ Henrik Werdelin (Founder, BarkBox) & Andrew Yeung","u":"https://lu.ma/henrikbreakfast","d":"2026-08-20","a":"Flatiron","lat":40.74255,"lng":-73.98698,"t":31,"s":["AI"],"c":"Andrew's Yeung's Tech Events","o":["Andrew Yeung","Henrik Werdelin"]},{"n":"Health2Tech NYC, August 20 2026","u":"https://lu.ma/sqzwu8qa","d":"2026-08-20","a":"Midtown","lat":40.75987,"lng":-73.98027,"t":271,"s":["Tech"],"c":"Alex Koshykov","o":["Christopher Martinez","Bailey Morgan","Alex Koshykov","Health2Tech","Jose Asturias"]},{"n":"Tech Social | Supermoon & Spring Place | NYC","u":"https://lu.ma/u9l1i3or","d":"2026-08-20","a":"SoHo","lat":40.72051,"lng":-74.00408,"t":0,"s":["Tech"],"c":"Supermoon Events","o":["Supermoon","Elena Obukhova","Max Kuivenhoven","MongoDB","Avahi AI"]},{"n":"Aleo x Dynamic Summer Happy Hour","u":"https://lu.ma/AleoDynamicHHNYC","d":"2026-08-20","a":"Midtown","lat":40.75231,"lng":-73.99611,"t":0,"s":["Crypto"],"c":"Personal","o":["Aleo","Fireblocks","Dynamic"]},{"n":"LAST MINUTE CALIFORNIA LAUNCHES AT THE CANVAS SOHO","u":"https://lu.ma/thecanvas-bp1g","d":"2026-08-20","a":"SoHo","lat":40.72626,"lng":-74.00082,"t":70,"s":["Arts & Culture"],"c":"The Canvas NYC","o":["The Canvas","Lauren Lawson","Caili"]},{"n":"NYC | Claude Content Creation with TheVibeFounder & Mika Reyes","u":"https://lu.ma/claude-content-workshop","d":"2026-08-20","a":"Midtown","lat":40.7568,"lng":-73.99245,"t":0,"s":["AI"],"c":"Claude Community Events","o":["Mika","Aj Yadav"]},{"n":"Open Models NYC | Together AI × OpenRouter","u":"https://lu.ma/pl30d8pc","d":"2026-08-20","a":"Chelsea","lat":40.75137,"lng":-74.00346,"t":0,"s":["AI"],"c":"Together AI Calendar","o":["Together AI","OpenRouter"]},{"n":"A Chief of Staff Mixer on Relationships (Thurs Aug 20)","u":"https://lu.ma/wu9p0uky","d":"2026-08-20","a":"Flatiron","lat":40.74072,"lng":-73.98782,"t":0,"s":["Tech"],"c":"A Chief of Staff New York Events","o":["David Nebinski"]},{"n":"AI & Marketing Salon","u":"https://lu.ma/marketingsalon","d":"2026-08-20","a":"Midtown","lat":40.75533,"lng":-73.98233,"t":0,"s":["AI"],"c":"Andrew's Yeung's Tech Events","o":["Andrew Yeung","Andrew Presser"]},{"n":"Comedy Night presented by Yikes Comedy","u":"https://lu.ma/o9kyithw","d":"2026-08-20","a":"East Village","lat":40.72119,"lng":-73.99407,"t":270,"s":["ai"],"c":"Industrious","o":["190 Bowery"]},{"n":"Housewarming!","u":"https://lu.ma/8y549wq7","d":"2026-08-20","a":"Midtown","lat":40.74998,"lng":-73.98307,"t":0,"s":["AI"],"c":"EliseAI","o":["Kuba","Maria Morin","Alex Short"]},{"n":"Curfew","u":"https://lu.ma/4isspzsz","d":"2026-08-20","a":"","lat":40.68078,"lng":-73.92884,"t":70,"s":["Arts & Culture"],"c":"Personal","o":["Dom McDuffie"]},{"n":"CORGI CAFE NYC GRAND OPENING","u":"https://lu.ma/5z095tev","d":"2026-08-21","a":"Flatiron","lat":40.7415,"lng":-73.98573,"t":542,"s":["Tech"],"c":"Corgi NYC","o":["Maddie","jamie","Abril Zucchi","Linda","Trevor Owens"]},{"n":"Dirt City: Brooklyn Connector","u":"https://lu.ma/yk2wp9s5","d":"2026-08-22","a":"Downtown Brooklyn","lat":40.69143,"lng":-73.97525,"t":57,"s":["Fitness"],"c":"MILER RUNNING","o":["Sydney Ruby","Benjamin Morrow","Drew Bell"]},{"n":"Pet Life Unlimited NYC Pack Walk 🐾","u":"https://lu.ma/9qz9qh4c","d":"2026-08-22","a":"East Village","lat":40.72929,"lng":-73.98146,"t":153,"s":["ai"],"c":"Pet Life Unlimited","o":[]},{"n":"The Angel Market: Shop Small NYC Brands","u":"https://lu.ma/ts8kvp7r","d":"2026-08-22","a":"","lat":40.71965,"lng":-73.99499,"t":416,"s":["ai"],"c":"Personal","o":["Dia Gauthier"]},{"n":"A Terratela and Fluency Zero Waste Event","u":"https://lu.ma/ai24m9gt","d":"2026-08-22","a":"","lat":40.73529,"lng":-73.99857,"t":0,"s":["Climate"],"c":"Terratela","o":["Natalia Mazzaia","Natalia Mazzaia"]},{"n":"Pushpa Presents: Bangladesh, But Brooklyn.","u":"https://lu.ma/hsnkcuoi","d":"2026-08-22","a":"Williamsburg","lat":40.70878,"lng":-73.95917,"t":53,"s":["ai"],"c":"Personal","o":["Amani Mahbub","Sadia Sehrish Islam","Ameera Choudhury"]},{"n":"Cake Decorating Workshop 🍰","u":"https://lu.ma/5jnh4bnc","d":"2026-08-22","a":"SoHo","lat":40.72362,"lng":-74.00393,"t":0,"s":["Arts & Culture","Food & Drink"],"c":"Maayan's Hospitality Group","o":["Maayan's Hospitality Group"]},{"n":"Kaju Studios: Scandal Night🪩👠","u":"https://lu.ma/f04426nx","d":"2026-08-22","a":"Williamsburg","lat":40.71016,"lng":-73.95193,"t":0,"s":["Arts & Culture"],"c":"Personal","o":["apoorva sudini"]},{"n":"Philosophy at the Museum: Ancient Greek and Roman Art","u":"https://lu.ma/twqv3m7i","d":"2026-08-22","a":"","lat":40.77944,"lng":-73.96324,"t":0,"s":["Arts & Culture"],"c":"The New York Philosophy Club","o":["New York Philosophical Society","Cole Whetstone","Weiyang Gao"]},{"n":"AI and What Makes Us Human, a Fireside Chat with Camille Carlton + Responsible Tech Mixer","u":"https://lu.ma/84wnmw5y","d":"2026-08-24","a":"SoHo","lat":40.72497,"lng":-73.99637,"t":0,"s":["AI"],"c":"All Tech Is Human","o":["All Tech Is Human","Center for Humane Technology","BrainStation"]},{"n":"Fintech Run Club ft. Rain + Monk + JP Morgan","u":"https://lu.ma/2ezybaln","d":"2026-08-25","a":"","lat":40.73247,"lng":-74.01076,"t":175,"s":["Fitness","Tech"],"c":"Personal","o":["Pedro D'Avila","FinTech Running Club","Rain Events","Kendall Warson","Connor Griffin","Jacob Tamkin"]},{"n":"Codédex Presents: Gen Z Builders Networking Nite","u":"https://lu.ma/jhylzg7w","d":"2026-08-25","a":"SoHo","lat":40.72568,"lng":-73.99903,"t":168,"s":["Tech"],"c":"Codédex","o":["Ellie Popoca","Sonny Li","Gabriela Banaag","Asiqur Rahman"]},{"n":"Community Happy Hour","u":"https://lu.ma/sugptuot","d":"2026-08-25","a":"Lower Manhattan","lat":40.71576,"lng":-74.0087,"t":128,"s":["ai"],"c":"New York Focus","o":["New York Focus"]},{"n":"August Tech Rooftop Mixer (Hosted by Andrew Yeung)","u":"https://lu.ma/rooftopmixeraugust","d":"2026-08-25","a":"Williamsburg","lat":40.71946,"lng":-73.95903,"t":0,"s":["Tech"],"c":"Andrew's Yeung's Tech Events","o":["Andrew Yeung"]},{"n":"Notion Build Bar NYC","u":"https://lu.ma/buildbar-nyc-aug","d":"2026-08-26","a":"SoHo","lat":40.72345,"lng":-74.00642,"t":0,"s":["Tech"],"c":"Notion","o":["Nancy Chen"]},{"n":"Build Your First App with Replit!","u":"https://lu.ma/8pq86025","d":"2026-08-26","a":"SoHo","lat":40.72329,"lng":-73.99677,"t":0,"s":["AI"],"c":"Prompt Engineers Society","o":["Prompt Engineers Society","Replit For Education","Andi Partovi"]},{"n":"[NYC] Idea to MVP Workshop: Build Night with Lovable","u":"https://lu.ma/vibenyc","d":"2026-08-26","a":"Williamsburg","lat":40.7207,"lng":-73.95764,"t":0,"s":["AI"],"c":"Tech Power Network","o":["David Yakobovitch","Lev Raslin","Heidi Liou","Lauren Cotta"]},{"n":"An UNMUTED Debate: Bets Over Baghdad, or Our Kalshi Crisis","u":"https://lu.ma/84fec4e2","d":"2026-08-26","a":"Downtown Brooklyn","lat":40.70472,"lng":-73.98825,"t":21,"s":["Crypto"],"c":"UNMUTED","o":["UNMUTED","Fabrik NYC"]},{"n":"ASRC CAT x HB x Activate NY August Innovators Social","u":"https://lu.ma/xqh8kmkc","d":"2026-08-27","a":"","lat":40.81571,"lng":-73.95017,"t":0,"s":["Tech"],"c":"Center for Advanced Technology (CAT)","o":["Yuki Chen","Chrisha Nario","Hailey Faust"]},{"n":"I Have an Idea Club #1: Vibe coding night","u":"https://lu.ma/y9i7jis8","d":"2026-08-27","a":"Flatiron","lat":40.74175,"lng":-73.98553,"t":58,"s":["AI"],"c":"Personal","o":["Amanda","Janky Patel","Deana Davoudiasl"]},{"n":"Last Call of Summer in Chinatown: Breakpoint LIVE with Sentry","u":"https://lu.ma/last-call-of-summer-in-chinatown","d":"2026-08-27","a":"Lower Manhattan","lat":40.7176,"lng":-73.99977,"t":36,"s":["AI"],"c":"Sentry","o":["Sentry","Paul Jaffre"]},{"n":"Retail's front row, over cocktails.","u":"https://lu.ma/lrl44of0","d":"2026-08-27","a":"East Village","lat":40.72469,"lng":-73.99088,"t":0,"s":["ai"],"c":"The Retail Edit","o":["The Retail Edit"]},{"n":"Zero-Proof Mixer w/ Bouquet Making Bar","u":"https://lu.ma/gbwdbusl","d":"2026-08-27","a":"East Village","lat":40.72119,"lng":-73.99407,"t":250,"s":["Wellness"],"c":"Industrious","o":["190 Bowery","Bright Nights Social","The Bar Nun Life LLC"]},{"n":"OOO Boat Edition with KTN & Friends","u":"https://lu.ma/hyg9p4ry","d":"2026-08-28","a":"","lat":40.75971,"lng":-74.00397,"t":200,"s":["Tech"],"c":"Personal","o":["KTN: Korean Tech Network","mesh. io","Ji Hee Y","Sejin","Jongho Bae","Steven Kim"]},{"n":"The Player Party - Tennis X Backgammon crossover","u":"https://lu.ma/6w9e5gy6","d":"2026-08-28","a":"Chelsea","lat":40.73984,"lng":-74.00571,"t":40,"s":["ai"],"c":"NYC Backgammon Club","o":["Remington Davenport"]},{"n":"THE CYPHER | HARLEM ART HOUSE COLLECTIVE","u":"https://lu.ma/yzydlu9v","d":"2026-08-28","a":"","lat":40.80411,"lng":-73.94713,"t":0,"s":["Arts & Culture"],"c":"Harlem Art House Collective","o":["Harlem Art House Collective | HAHC"]},{"n":"America's Largest Game Night Hosts: August Game Night","u":"https://lu.ma/3hyglvpi","d":"2026-08-29","a":"Lower Manhattan","lat":40.71278,"lng":-74.01526,"t":513,"s":["ai"],"c":"Personal","o":["Richard Ye","Maggie"]},{"n":"Interwoven Collective presents: Khot Phet Nite Market, an End of Summer Fling","u":"https://lu.ma/qovchjnj","d":"2026-08-29","a":"","lat":40.71792,"lng":-73.99479,"t":95,"s":["Arts & Culture","Food & Drink"],"c":"Personal","o":["khot phet","Welcome to Chinatown","Interwoven Collective"]},{"n":"sudocute: the sudoku meet cute | august 2026","u":"https://lu.ma/emlemfvq","d":"2026-08-30","a":"Flatiron","lat":40.74329,"lng":-73.99323,"t":0,"s":["ai"],"c":"sudocute","o":["Naama Paulemont"]},{"n":"💫 Fantasy Craft Night","u":"https://lu.ma/40g7fv55","d":"2026-08-30","a":"","lat":40.67719,"lng":-73.96342,"t":0,"s":["Arts & Culture"],"c":"Counterspell Games","o":["Marnie Williams Noble"]},{"n":"Opening of REMAINS by Rupture, presented by BMAG","u":"https://lu.ma/cckjg9kl","d":"2026-09-02","a":"","lat":40.71564,"lng":-73.99029,"t":79,"s":["Arts & Culture"],"c":"Personal","o":["Rupture"]},{"n":"Sugary Invites You to Celebrate Verve’s 70th Anniversary (Samara Joy, Christian McBride, Mei Semones & Sparklmami)","u":"https://lu.ma/sugarynyc-dzuw","d":"2026-09-02","a":"","lat":40.77287,"lng":-73.97015,"t":131,"s":["Arts & Culture"],"c":"Sugary NYC Community","o":["Sugary 🍬"]},{"n":"Graphite Tennis Fashion Archive Launch Party","u":"https://lu.ma/iu3g72ui","d":"2026-09-03","a":"SoHo","lat":40.71888,"lng":-73.99964,"t":36,"s":["Arts & Culture"],"c":"Personal","o":["Graphite Tennis Fashion Archive","Bryson Malone","Zander Abranowicz","Abbr Projects"]},{"n":"Creator Economy NYC's Money Moves Mixer & Panel with Relay","u":"https://lu.ma/01yk8ez8","d":"2026-09-09","a":"Flatiron","lat":40.74027,"lng":-73.98735,"t":0,"s":["ai"],"c":"Creator Economy NYC","o":["Brett Dashevsky"]},{"n":"NYFW POP-UP: Black-Owned Brands From Around the World","u":"https://lu.ma/oxdxb2ef","d":"2026-09-11","a":"Midtown","lat":40.75147,"lng":-73.98819,"t":146,"s":["Arts & Culture"],"c":"ANKA","o":["ANKA Africa"]},{"n":"NYC B2B: AI Founders & Investors Meetup","u":"https://lu.ma/coos76ur","d":"2026-09-14","a":"Flatiron","lat":40.74427,"lng":-73.99076,"t":105,"s":["AI"],"c":"NYC B2B: Startup Events","o":["NYC B2B","Lauren Houpt","Ignition Benefits"]},{"n":"*FREE EVENT* Slow Summer at Brooklyn Bridge Park presented by Spotify","u":"https://lu.ma/reading-3407","d":"2026-09-20","a":"Lower Manhattan","lat":40.70224,"lng":-73.99586,"t":0,"s":["Arts & Culture"],"c":"Reading Rhythms NYC","o":["Reading Rhythms","Zack Stein","Rebecka C Olson"]},{"n":"Squarespace Circle Day 2026 (In-Person)","u":"https://lu.ma/circle-day-2026-in-person","d":"2026-10-21","a":"","lat":40.72923,"lng":-74.00576,"t":0,"s":["Tech"],"c":"Squarespace Circle","o":[]},{"n":"The Outliers Summit (Nov 5 & 6)","u":"https://lu.ma/2026","d":"2026-11-05","a":"","lat":40.75451,"lng":-73.92647,"t":0,"s":["Tech"],"c":"Andrew's Yeung's Tech Events","o":["Andrew Yeung","Ankur Nagpal"]}];
+
+  /* ================= scoring engine (validated in simulation) =================
+     Three data-only lexicon edits vs the approved SF build (nothing else in the
+     engine changes):
+       1. Q_LEX.data: 'infrastructure' removed.
+       2. EV_LEX.ai: 'claude','agentics','openrouter','replit','lovable' appended.
+       3. THEME_BRANDS.ai: 'claude','agentics','openrouter' appended (brand-only,
+          deliberately NOT replit/lovable).
+  */
+  var SNAPSHOT = Date.UTC(2026, 6, 24);
+  var EV_LEX = {
+    data:  ['data', 'database', 'engineering', 'clickhouse', 'sql', 'analytics', 'pipeline', 'sentry'],
+    infra: ['infrastructure', 'platform', 'cloud', 'auth0', 'stripe', 'sentry', 'mcp', 'api', 'backend'],
+    ai:    ['ai', 'agent', 'agents', 'llm', 'model', 'models', 'multimodal', 'robotics', 'codex', 'gpu', 'intelligence', 'mistral', 'modular', 'cerebras', 'mcp', 'claude', 'agentics', 'openrouter', 'replit', 'lovable'],
+    obs:   ['sentry', 'observability', 'monitoring', 'reliability'],
+    dev:   ['developer', 'developers', 'builders', 'builder', 'hack', 'hackathon', 'code', 'demo', 'meetup', 'engineers']
+  };
+  var Q_LEX = {
+    data: ['postgres', 'postgresql', 'python', 'backend', 'database', 'databases', 'data', 'sql', 'pipeline', 'pipelines', 'jobs', 'queue', 'queues', 'etl', 'warehouse'],
+    ai:   ['ai', 'agent', 'agents', 'llm', 'llms', 'model', 'models', 'ml', 'copilot', 'rag', 'inference', 'agentic'],
+    obs:  ['observability', 'monitoring', 'errors', 'error', 'reliability', 'tracing', 'logging', 'uptime', 'incident', 'sre'],
+    dev:  ['developer', 'developers', 'devrel', 'engineers', 'engineering', 'teams', 'builders']
+  };
+  var XW = {
+    data: { data: 1.0, infra: 0.45, obs: 0.3, ai: 0.1, dev: 0.2 },
+    ai:   { ai: 1.0, infra: 0.35, data: 0.2, obs: 0.1, dev: 0.25 },
+    obs:  { obs: 1.0, infra: 0.6, data: 0.45, ai: 0.1, dev: 0.2 },
+    dev:  { dev: 0.4, infra: 0.15, data: 0.15, ai: 0.15, obs: 0.1 }
+  };
+  var THEME_BRANDS = {
+    data: ['clickhouse', 'sentry'],
+    obs:  ['sentry'],
+    ai:   ['workos', 'mistral', 'modular', 'step', 'cerebras', 'claude', 'agentics', 'openrouter']
+  };
+  function tokenize(s) { return (s || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').split(/[\s-]+/).filter(Boolean); }
+  function evText(e) { return tokenize([e.n, e.c, (e.s || []).join(' '), (e.o || []).join(' ')].join(' ')); }
+  function evAffinity(e) {
+    var fields = [tokenize(e.n), tokenize(e.c + ' ' + (e.o || []).join(' ')), tokenize((e.s || []).join(' '))];
+    var aff = {};
+    for (var theme in EV_LEX) {
+      var hits = 0;
+      for (var i = 0; i < fields.length; i++) {
+        var set = {};
+        fields[i].forEach(function (t) { set[t] = 1; });
+        EV_LEX[theme].forEach(function (w) { if (set[w]) hits++; });
+      }
+      aff[theme] = Math.min(1, 0.5 * hits);
+    }
+    return aff;
+  }
+  function queryThemes(q) {
+    var toks = tokenize(q), th = {};
+    for (var theme in Q_LEX) {
+      th[theme] = toks.some(function (t) { return Q_LEX[theme].indexOf(t) >= 0; }) ? 1 : 0;
+    }
+    return { th: th, toks: toks };
+  }
+  function scoreEvent(e, q) {
+    var qt = queryThemes(q), th = qt.th, toks = qt.toks;
+    var aff = evAffinity(e);
+    var parts = [];
+    for (var t in th) {
+      if (!th[t]) continue;
+      var w = XW[t], part = 0;
+      for (var et in w) part += w[et] * aff[et];
+      parts.push(part);
+    }
+    parts.sort(function (a, b) { return b - a; });
+    var rel = parts.length ? parts[0] + 0.35 * parts.slice(1).reduce(function (s, v) { return s + v; }, 0) : 0;
+    var etokens = {};
+    evText(e).forEach(function (t) { etokens[t] = 1; });
+    var brand = 0;
+    for (var bt in THEME_BRANDS) {
+      if (!th[bt]) continue;
+      THEME_BRANDS[bt].forEach(function (b) { if (etokens[b]) brand = 6; });
+    }
+    var anyTheme = Object.keys(th).some(function (k) { return th[k] > 0; });
+    if (!anyTheme) rel = 0.4 * (aff.dev + aff.data + aff.ai);
+    rel = Math.min(1.6, rel);
+    var direct = 0;
+    toks.forEach(function (t) { if (t.length > 2 && etokens[t]) direct += 6; });
+    direct = Math.min(14, direct);
+    var att = e.t > 0 ? Math.min(13, 3.6 * Math.log(e.t / 40 + 1)) : 0;
+    var comp = (e.a ? 2 : 0) + (e.t > 0 ? 2 : 0) + (e.c ? 1 : 0);
+    var days = Math.round((Date.UTC(+e.d.slice(0, 4), +e.d.slice(5, 7) - 1, +e.d.slice(8, 10)) - SNAPSHOT) / 86400000);
+    var timing = days < 0 ? 0 : days <= 6 ? 2 : days <= 45 ? 6 : days <= 70 ? 4 : 2;
+    var raw = 30 + 30 * rel + brand + direct + att + comp + timing;
+    return { score: Math.max(1, Math.min(99, Math.round(raw))), rel: rel, aff: aff, days: days, themes: th };
+  }
+  function rankAll(q) {
+    return state.events.map(function (e, idx) {
+      var r = scoreEvent(e, q);
+      return { e: e, idx: idx, score: r.score, rel: r.rel, aff: r.aff, days: r.days, themes: r.themes };
+    }).sort(function (a, b) { return b.score - a.score || b.rel - a.rel || a.e.n.localeCompare(b.e.n); });
+  }
+
+  /* ================= GrowthX output copy (labeled inference) ================= */
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  /* display-only shortening: drop the redundant city affixes, keep the observed name intact elsewhere */
+  function displayShort(n) {
+    return n.replace(/^San Francisco\s+/i, '').replace(/\s*-\s*San Francisco\s*$/i, '')
+            .replace(/^(?:New York|NYC)\s+(?=\S)/i, '').replace(/\s*-\s*(?:New York|NYC)\s*$/i, '')
+            .replace(/\s*\(NYC\)\s*$/i, '');
+  }
+  function fmtDate(d) { return MONTHS[+d.slice(5, 7) - 1] + ' ' + (+d.slice(8, 10)) + ', ' + d.slice(0, 4); }
+  function fmtShort(d) { return MONTHS[+d.slice(5, 7) - 1] + ' ' + (+d.slice(8, 10)); }
+  function domTheme(themes, aff) {
+    var best = null, bv = 0;
+    ['data', 'ai', 'obs'].forEach(function (t) { if (themes[t] && aff[t] * 1 + 0.001 > bv) { best = t; bv = aff[t] + 0.001; } });
+    if (!best) { ['data', 'ai', 'obs', 'dev'].forEach(function (t) { if (aff[t] > bv) { best = t; bv = aff[t]; } }); }
+    return best || 'dev';
+  }
+  var TOPICS = {
+    data: 'reliable background jobs for data pipelines',
+    ai: 'production-ready agent backends',
+    obs: 'error and reliability workflows',
+    dev: 'production developer workflows'
+  };
+  function activationFor(r) {
+    var e = r.e, nm = e.n.toLowerCase();
+    var topic = TOPICS[domTheme(r.themes, r.aff)];
+    if (!e.t) return 'Explore a co-hosted session with ' + (e.c && e.c !== 'Personal' ? e.c : 'the organizers') + ' while validating audience size.';
+    if (/hackathon|hack\b/.test(nm)) return 'Sponsor a challenge track built around ' + topic + '.';
+    if (/happy hour|party|mixer|social|soiree|afterparty/.test(nm)) return 'Host a focused developer conversation on ' + topic + '.';
+    if (/con \d|con$|conf|summit|festival|modcon|supernova/.test(nm)) return 'Run a live demo station showing ' + topic + '.';
+    return 'Run a hands-on session on ' + topic + '.';
+  }
+  function matchedWords(r) {
+    var found = [], etok = {};
+    evText(r.e).forEach(function (t) { etok[t] = 1; });
+    ['data', 'ai', 'obs', 'infra'].forEach(function (th) {
+      if (!r.themes[th] && th !== 'infra') return;
+      EV_LEX[th === 'infra' ? 'infra' : th].forEach(function (w) { if (etok[w] && found.indexOf(w) < 0) found.push(w); });
+    });
+    return found.slice(0, 3);
+  }
+  function reasonsFor(r, rank) {
+    var e = r.e, out = [];
+    var words = matchedWords(r);
+    var relTxt = words.length
+      ? 'Event name and host signal <b>' + words.join(', ') + '</b> — strong overlap with this search'
+      : 'General developer audience with partial overlap for this search';
+    out.push({ txt: relTxt, src: 'GrowthX inference' });
+    out.push(e.t > 0
+      ? { txt: '<b>' + e.t + ' registered attendees</b> visible on the public listing', src: 'Observed · Luma' }
+      : { txt: 'Attendance not published — <b>audience size needs validation</b> before spend', src: 'Observed · Luma' });
+    out.push({ txt: 'Runs <b>' + fmtShort(e.d) + '</b> · ' + r.days + ' days of planning lead from the snapshot', src: 'Observed · Luma' });
+    return out;
+  }
+  function confidenceFor(e) {
+    return Math.min(92, 40 + (e.t > 0 ? 20 : 0) + (e.a ? 12 : 0) + (e.c ? 14 : 0) + ((e.o && e.o.length) ? 14 : 0));
+  }
+  function fitFor(r) {
+    var v = Math.min(0.96, 0.28 + (Math.min(r.rel, 1.6) / 1.6) * 0.68);
+    return { t: r.rel >= 0.95 ? 'High' : r.rel >= 0.55 ? 'Medium' : 'Exploratory', v: v };
+  }
+  function shortLabel(r) {
+    var t = domTheme(r.themes, r.aff);
+    return t === 'data' ? 'Data & infra' : t === 'ai' ? 'AI builders' : t === 'obs' ? 'Observability' : ((r.e.s && r.e.s[0]) || 'Community');
+  }
+
+  /* ================= example scenarios ================= */
+  var SCENARIOS = {
+    backend: {
+      num: '01', label: 'Backend infrastructure',
+      query: 'Postgres-native background jobs for Python teams',
+      audience: 'Backend, Python, database, and infrastructure developers',
+      objective: 'Product adoption'
+    },
+    ai: {
+      num: '02', label: 'AI agent platform',
+      query: 'Production infrastructure for AI agent builders',
+      audience: 'AI engineers, agent builders, and developer platform teams',
+      objective: 'Developer adoption'
+    }
+  };
+
+  /* ================= cities and worlds ================= */
+  var CITIES = {
+    sf: {
+      id: 'sf', name: 'San Francisco', events: EVENTS_SF, snapshot: Date.UTC(2026, 6, 24),
+      note: '64 events · Luma snapshot · Jul 24, 2026',
+      proj: { PXD: 9000, LNG0: -122.525, LAT0: 37.816, LATF: 1.267 }
+    },
+    nyc: {
+      id: 'nyc', name: 'New York', events: EVENTS_NYC, snapshot: Date.UTC(2026, 7, 14),
+      note: '72 events · Luma snapshot · Aug 14, 2026',
+      proj: { PXD: 9000, LNG0: -74.045, LAT0: 40.885, LATF: 1.320 }
+    }
+  };
+
+  /* projection helpers (city-aware); SF numbers are unchanged from the approved build */
+  function WX(city, lng) { var p = CITIES[city].proj; return (lng - p.LNG0) * p.PXD; }
+  function WY(city, lat) { var p = CITIES[city].proj; return (p.LAT0 - lat) * p.PXD * p.LATF; }
+  function ll2px(city, lat, lng) { return [WX(city, lng), WY(city, lat)]; }
+  function projPts(city, llList) { return llList.map(function (p) { return ll2px(city, p[0], p[1]); }); }
+  function mid(a, b) { return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]; }
+  /* smooth a point ring/polyline with quadratic Beziers through edge midpoints
+     (control point = the real vertex, so the curve bulges toward it) */
+  function smoothPath(pts, closed) {
+    var n = pts.length, d, i, c, end, prevEnd;
+    if (n < 2) return '';
+    if (closed) {
+      var start = mid(pts[n - 1], pts[0]);
+      d = 'M' + start[0].toFixed(1) + ',' + start[1].toFixed(1);
+      prevEnd = start;
+      for (i = 0; i < n; i++) {
+        c = pts[i]; end = mid(pts[i], pts[(i + 1) % n]);
+        d += 'Q' + c[0].toFixed(1) + ',' + c[1].toFixed(1) + ' ' + end[0].toFixed(1) + ',' + end[1].toFixed(1);
+      }
+      d += 'Z';
+    } else {
+      d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+      if (n === 2) {
+        d += 'L' + pts[1][0].toFixed(1) + ',' + pts[1][1].toFixed(1);
+      } else {
+        prevEnd = pts[0];
+        for (i = 1; i < n - 1; i++) {
+          c = pts[i]; end = mid(pts[i], pts[i + 1]);
+          d += 'Q' + c[0].toFixed(1) + ',' + c[1].toFixed(1) + ' ' + end[0].toFixed(1) + ',' + end[1].toFixed(1);
+          prevEnd = end;
+        }
+        d += 'L' + pts[n - 1][0].toFixed(1) + ',' + pts[n - 1][1].toFixed(1);
+      }
+    }
+    return d;
+  }
+  function straightPath(pts, closed) {
+    var d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+    for (var i = 1; i < pts.length; i++) d += 'L' + pts[i][0].toFixed(1) + ',' + pts[i][1].toFixed(1);
+    if (closed) d += 'Z';
+    return d;
+  }
+
+  var stage = document.getElementById('stage');
+  var svg = document.getElementById('svg');
+  var camG = document.getElementById('cam');
+  var atlas = document.getElementById('atlas');
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(n, at, parent) {
+    var d = document.createElementNS(NS, n);
+    for (var k in at) d.setAttribute(k, at[k]);
+    if (parent) parent.appendChild(d);
+    return d;
+  }
+  function vw() { return stage.clientWidth; }
+  function vh() { return stage.clientHeight; }
+  function visW() { return vw() - 412; } /* region left of drawer */
+
+  var cam = { cx: 990, cy: 420, k: 1 };
+  var counterScaled = []; /* {node, x, y} — keep constant screen size, both worlds share this list */
+  function applyCam() {
+    camG.setAttribute('transform',
+      'translate(' + (vw() / 2 - cam.cx * cam.k) + ' ' + (vh() / 2 - cam.cy * cam.k) + ') scale(' + cam.k + ')');
+    var inv = 1 / cam.k;
+    for (var i = 0; i < counterScaled.length; i++) {
+      var c = counterScaled[i];
+      c.node.setAttribute('transform', 'translate(' + c.x + ' ' + c.y + ') scale(' + inv + ')');
+    }
+  }
+  var flyReq = null;
+  function flyTo(tx, ty, tk, dur) {
+    if (flyReq) cancelAnimationFrame(flyReq);
+    if (document.hidden) { cam.cx = tx; cam.cy = ty; cam.k = tk; applyCam(); return; }
+    var s = { cx: cam.cx, cy: cam.cy, k: cam.k }, t0 = performance.now();
+    dur = dur || 700;
+    function step(now) {
+      var p = Math.min(1, (now - t0) / dur);
+      var u = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      cam.cx = s.cx + (tx - s.cx) * u;
+      cam.cy = s.cy + (ty - s.cy) * u;
+      cam.k = s.k + (tk - s.k) * u;
+      applyCam();
+      if (p < 1) flyReq = requestAnimationFrame(step);
+    }
+    flyReq = requestAnimationFrame(step);
+  }
+  /* fit world bounds into the visible region (left of the drawer) */
+  function camForBounds(x0, y0, x1, y1, pad, kMax) {
+    pad = pad || 90;
+    var w = Math.max(60, x1 - x0), h = Math.max(60, y1 - y0);
+    var k = Math.min(kMax || 1.2, Math.min((visW() - pad * 2) / w, (vh() - pad * 2) / h));
+    k = Math.max(0.55, k);
+    /* visible-region center is shifted left of true center by drawer/2 */
+    var cx = (x0 + x1) / 2 + (vw() / 2 - visW() / 2) / k;
+    var cy = (y0 + y1) / 2;
+    return { cx: cx, cy: cy, k: k };
+  }
+  function boundsOf(city, list) {
+    var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    list.forEach(function (e) {
+      var x = WX(city, e.lng), y = WY(city, e.lat);
+      if (x < x0) x0 = x; if (x > x1) x1 = x;
+      if (y < y0) y0 = y; if (y > y1) y1 = y;
+    });
+    return [x0, y0, x1, y1];
+  }
+
+  /* ================= overlap declutter =================
+     events sharing an identical (lat,lng) after rounding get their DOT positions
+     spread deterministically on a small ring; tooltips/drawer/links/data stay exact */
+  function computeDeclutter(events) {
+    var groups = {}, offsets = new Array(events.length);
+    events.forEach(function (e, idx) {
+      var key = e.lat.toFixed(5) + ',' + e.lng.toFixed(5);
+      (groups[key] = groups[key] || []).push(idx);
+    });
+    Object.keys(groups).forEach(function (key) {
+      var idxs = groups[key], k = idxs.length;
+      idxs.forEach(function (idx, i) {
+        if (k === 1) { offsets[idx] = { dx: 0, dy: 0 }; return; }
+        var ang = i * 2 * Math.PI / k;
+        offsets[idx] = { dx: Math.cos(ang) * 7, dy: Math.sin(ang) * 7 };
+      });
+    });
+    return offsets;
+  }
+
+    /* ================= SF basemap (hand-authored, conservative refinements) =================
+     Refinements vs the approved build (§6): (1) the NE waterfront Q-curve chain from
+     Fisherman's Wharf around to the Ferry Building was reshaped with small control/end
+     point deltas so it reads as a fuller, real curve; (2) a small Mission Bay / McCovey
+     Cove water inlet was carved into the east-shore chain near (37.772,-122.387). Every
+     other coordinate, park, bridge, grid and artery is untouched. */
+  function drawBaseSF(container) {
+    el('rect', { x: -2000, y: -2000, width: 6000, height: 6000, fill: 'var(--ocean)' }, container);
+    var land = 'M 120,60 L 120,120 Q 122,270 132,420 Q 140,620 128,860 Q 122,1020 132,1400 L 1600,1400 L 1600,1100 ' +
+      'Q 1480,1010 1390,978 Q 1330,952 1341,855 Q 1320,760 1287,661 Q 1258,590 1242,513 ' +
+      'Q 1225,507 1219,498 Q 1226,491 1233,478 Q 1228,440 1233,376 ' +
+      'Q 1230,300 1200,230 Q 1200,185 1122,142 Q 1078,102 1037,72 Q 1020,58 1008,62 Q 985,58 962,56 ' +
+      'Q 900,48 836,52 Q 770,56 700,48 Q 600,36 500,40 Q 460,42 432,49 Q 330,66 240,64 Q 170,62 120,60 Z';
+    el('path', { d: land, 'class': 'land' }, container);
+    /* golden gate bridge */
+    el('line', { x1: 430, y1: 52, x2: 402, y2: -160, 'class': 'bridge' }, container);
+    el('line', { x1: 444, y1: 52, x2: 416, y2: -160, 'class': 'bridge' }, container);
+    /* bay bridge */
+    el('line', { x1: 1236, y1: 330, x2: 1600, y2: 268, 'class': 'bridge' }, container);
+    /* parks */
+    el('rect', { x: 126, y: 468, width: 512, height: 92, rx: 10, 'class': 'park' }, container); /* golden gate park */
+    el('path', { d: 'M 380,70 Q 560,58 740,96 Q 760,160 720,240 Q 620,268 500,250 Q 420,220 380,140 Z', 'class': 'park' }, container); /* presidio */
+    el('ellipse', { cx: 700, cy: 742, rx: 86, ry: 66, 'class': 'park' }, container); /* twin peaks */
+    el('rect', { x: 560, y: 476, width: 76, height: 20, rx: 6, 'class': 'park' }, container); /* panhandle */
+    el('rect', { x: 872, y: 610, width: 46, height: 40, rx: 8, 'class': 'park' }, container); /* dolores */
+
+    function grid(x0, y0, x1, y1, sx, sy, cls) {
+      var g = el('g', {}, container);
+      for (var x = x0; x <= x1; x += sx) el('line', { x1: x, y1: y0, x2: x, y2: y1, 'class': 'street ' + (cls || '') }, g);
+      for (var y = y0; y <= y1; y += sy) el('line', { x1: x0, y1: y, x2: x1, y2: y, 'class': 'street ' + (cls || '') }, g);
+      return g;
+    }
+    /* west-side grids */
+    grid(150, 300, 630, 460, 15, 14, 'minor');   /* richmond */
+    grid(150, 570, 620, 900, 15, 14, 'minor');   /* sunset */
+    grid(640, 96, 1000, 560, 14, 13, '');        /* western addition / pac heights */
+    grid(700, 600, 856, 800, 14, 13, 'minor');   /* castro / noe */
+    grid(850, 596, 1130, 900, 13, 12, '');       /* mission */
+    grid(1130, 560, 1310, 810, 15, 14, 'minor'); /* potrero / dogpatch */
+    grid(900, 900, 1300, 1080, 18, 17, 'minor'); /* bernal / bayview fade */
+    grid(1000, 60, 1235, 430, 11, 10, '');       /* downtown fine grid */
+    /* soma rotated grid (parallel to market) */
+    var somaClip = el('clipPath', { id: 'somaClip' }, el('defs', {}, container));
+    el('polygon', { points: '1182,222 1233,376 1242,513 1180,560 1000,640 870,600 940,470' }, somaClip);
+    var somaWrap = el('g', { 'clip-path': 'url(#somaClip)' }, container);
+    var somaG = el('g', { transform: 'rotate(-45 1182 222)' }, somaWrap);
+    for (var i = 0; i <= 22; i++) el('line', { x1: 700, y1: 222 + i * 14, x2: 1240, y2: 222 + i * 14, 'class': 'street' }, somaG);
+    for (var j = 0; j <= 26; j++) el('line', { x1: 1182 - j * 22, y1: 210, x2: 1182 - j * 22, y2: 540, 'class': 'street' }, somaG);
+
+    /* arterials */
+    el('line', { x1: 1182, y1: 222, x2: 690, y2: 714, 'class': 'artery major' }, container);       /* market */
+    el('line', { x1: 923, y1: 100, x2: 923, y2: 700, 'class': 'artery' }, container);              /* van ness */
+    el('line', { x1: 160, y1: 380, x2: 1105, y2: 380, 'class': 'artery' }, container);             /* geary */
+    el('line', { x1: 452, y1: 470, x2: 452, y2: 900, 'class': 'artery' }, container);              /* 19th ave */
+    el('path', { d: 'M 1200,268 L 990,470 Q 950,510 948,580 L 948,900', 'class': 'artery' }, container);  /* mission st */
+    el('path', { d: 'M 1120,330 L 1210,470 Q 1225,530 1222,610 L 1236,900', 'class': 'artery' }, container); /* 3rd st */
+    el('path', { d: 'M 1033,165 L 1105,235', 'class': 'artery' }, container);                      /* columbus */
+    el('path', { d: 'M 900,56 Q 1000,62 1037,72 Q 1090,105 1116,137 Q 1160,180 1182,222 Q 1215,290 1233,376', 'class': 'artery' }, container); /* embarcadero */
+    el('path', { d: 'M 1236,330 Q 1150,420 1080,470 Q 1010,520 980,560 Q 940,620 936,700', 'class': 'artery' }, container); /* 101 */
+  }
+
+  /* SF geo labels — [name, lat, lng, minor?] (reordered from the approved build's
+     [name,lng,lat,cls]; every value is unchanged, only the tuple order) */
+  var SF_LABELS = [
+    ['FINANCIAL DISTRICT', 37.7935, -122.4000, ''],
+    ['SOMA', 37.7790, -122.3980, ''],
+    ['MISSION', 37.7590, -122.4155, ''],
+    ['NORTH BEACH', 37.8010, -122.4100, 'minor'],
+    ['NOB HILL', 37.7925, -122.4145, 'minor'],
+    ['HAYES VALLEY', 37.7762, -122.4245, 'minor'],
+    ['MARINA', 37.8022, -122.4370, 'minor'],
+    ['PACIFIC HEIGHTS', 37.7918, -122.4370, 'minor'],
+    ['CASTRO', 37.7622, -122.4350, 'minor'],
+    ['POTRERO HILL', 37.7580, -122.3985, 'minor'],
+    ['DOGPATCH', 37.7562, -122.3892, 'minor'],
+    ['RICHMOND', 37.7800, -122.4830, 'minor'],
+    ['SUNSET', 37.7530, -122.4930, 'minor'],
+    ['GOLDEN GATE PARK', 37.7695, -122.4820, 'minor'],
+    ['PRESIDIO', 37.7985, -122.4640, 'minor']
+  ];
+
+  /* ================= NYC basemap — real geography, own projection space =================
+     Reference control points below are transcribed from SPEC §5 verbatim. The coastline
+     was adjusted at a handful of spots (Battery Park City landfill line, the West Village
+     pierhead line, and the Dumbo / Brooklyn Bridge Park promenade) — small deltas, per the
+     spec's explicit "adjust the coastline, never the event coords" allowance — after the
+     node point-in-land self-check found a few real events just outside the raw traced
+     shoreline. All 72 NYC event dots verify on land (see the node self-check). */
+
+  var NYC_MANHATTAN_LL = [
+    [40.700, -74.019],
+    [40.719, -74.015], [40.729, -74.013], [40.742, -74.012], [40.753, -74.008], [40.764, -74.003],
+    [40.772, -73.995], [40.781, -73.988], [40.795, -73.977], [40.815, -73.962], [40.834, -73.950],
+    [40.851, -73.947], [40.868, -73.932],
+    [40.876, -73.922],
+    [40.868, -73.918], [40.855, -73.922], [40.840, -73.930], [40.828, -73.934], [40.810, -73.933], [40.801, -73.929],
+    [40.793, -73.929], [40.784, -73.941], [40.766, -73.952], [40.749, -73.966], [40.736, -73.972], [40.729, -73.971],
+    [40.718, -73.974], [40.711, -73.978], [40.708, -73.993], [40.705, -74.003], [40.701, -74.012]
+  ];
+  var NYC_BQ_SHORE_LL = [
+    [40.775, -73.930], [40.762, -73.940], [40.752, -73.950], [40.744, -73.958], [40.737, -73.955],
+    [40.732, -73.961], [40.720, -73.963], [40.712, -73.967], [40.702, -73.971],
+    [40.708, -73.986], [40.7035, -73.989], [40.7025, -74.000], [40.696, -74.002],
+    [40.688, -74.003], [40.674, -74.013]
+  ];
+  /* off-canvas closure — not real coastline, just closes the landmass past the viewport */
+  var NYC_BQ_CLOSE_PX = [[260, 2900], [2300, 2950], [2300, 650], [1035, 650]];
+  var NYC_NJ_LL = [[40.83, -74.031], [40.744, -74.028], [40.717, -74.033], [40.67, -74.028]];
+  var NYC_NJ_CLOSE_PX = [[100, 3050], [-500, 3050], [-500, 250], [126, 250]];
+  var NYC_CENTRAL_PARK_LL = { sw: [40.7681, -73.9819], se: [40.7643, -73.9730], ne: [40.7967, -73.9493], nw: [40.8003, -73.9580] };
+  var NYC_SMALL_PARKS_LL = [
+    [40.7308, -73.9973, 24, 20], /* Washington Square */
+    [40.7420, -73.9877, 20, 24], /* Madison Square */
+    [40.7536, -73.9832, 18, 24], /* Bryant Park */
+    [40.7265, -73.9817, 20, 22], /* Tompkins Square */
+    [40.7208, -73.9520, 28, 20], /* McCarren Park */
+    [40.672, -73.970, 42, 30]    /* Prospect Park NW corner hint (off-edge) */
+  ];
+  var NYC_BRIDGES_LL = [
+    [[40.7078, -73.9995], [40.7020, -73.9905]], /* Brooklyn */
+    [[40.7093, -73.9927], [40.6982, -73.9855]], /* Manhattan */
+    [[40.7145, -73.9750], [40.7105, -73.9620]], /* Williamsburg */
+    [[40.7568, -73.9630], [40.7525, -73.9430]]  /* Queensboro */
+  ];
+  var NYC_LABELS = [
+    ['MIDTOWN', 40.755, -73.984, ''],
+    ['FLATIRON', 40.741, -73.990, 'minor'],
+    ['CHELSEA', 40.746, -74.001, 'minor'],
+    ['SOHO', 40.723, -74.001, 'minor'],
+    ['LOWER MANHATTAN', 40.707, -74.008, ''],
+    ['EAST VILLAGE', 40.727, -73.982, 'minor'],
+    ['WEST VILLAGE', 40.734, -74.003, 'minor'],
+    ['GRAMERCY', 40.737, -73.984, 'minor'],
+    ['WILLIAMSBURG', 40.714, -73.955, ''],
+    ['DOWNTOWN BROOKLYN', 40.692, -73.986, ''],
+    ['DUMBO', 40.7035, -73.989, 'minor'],
+    ['LONG ISLAND CITY', 40.745, -73.949, 'minor'],
+    ['CENTRAL PARK', 40.782, -73.965, 'minor'],
+    ['UPPER WEST SIDE', 40.787, -73.976, 'minor'],
+    ['UPPER EAST SIDE', 40.774, -73.957, 'minor']
+  ];
+
+  function drawBaseNYC(container) {
+    el('rect', { x: -4000, y: -4000, width: 12000, height: 12000, fill: 'var(--ocean)' }, container);
+    var defs = el('defs', {}, container);
+
+    /* --- land masses --- */
+    var manhattanPts = projPts('nyc', NYC_MANHATTAN_LL);
+    var manhattanD = smoothPath(manhattanPts, true);
+    el('path', { d: manhattanD, 'class': 'land' }, container);
+
+    var bqPts = projPts('nyc', NYC_BQ_SHORE_LL).concat(NYC_BQ_CLOSE_PX);
+    var bqD = smoothPath(bqPts, true);
+    el('path', { d: bqD, 'class': 'land' }, container);
+
+    var njPts = projPts('nyc', NYC_NJ_LL).concat(NYC_NJ_CLOSE_PX);
+    el('path', { d: smoothPath(njPts, true), 'class': 'land' }, container);
+
+    /* Roosevelt Island: thin sliver between two endpoints */
+    (function () {
+      var a = ll2px('nyc', 40.749, -73.955), b = ll2px('nyc', 40.769, -73.941);
+      var dx = b[0] - a[0], dy = b[1] - a[1], len = Math.sqrt(dx * dx + dy * dy) || 1;
+      var px = -dy / len * 7, py = dx / len * 7;
+      var quad = [[a[0] + px, a[1] + py], [b[0] + px, b[1] + py], [b[0] - px, b[1] - py], [a[0] - px, a[1] - py]];
+      el('path', { d: smoothPath(quad, true), 'class': 'land' }, container);
+    })();
+    /* Governors Island: small blob */
+    (function () {
+      var c = ll2px('nyc', 40.690, -74.016);
+      el('ellipse', { cx: c[0], cy: c[1], rx: 34, ry: 26, 'class': 'land' }, container);
+    })();
+
+    /* --- bridges --- */
+    NYC_BRIDGES_LL.forEach(function (b) {
+      var p1 = ll2px('nyc', b[0][0], b[0][1]), p2 = ll2px('nyc', b[1][0], b[1][1]);
+      el('line', { x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1], 'class': 'bridge' }, container);
+    });
+
+    /* --- parks --- */
+    var cpCorners = ['sw', 'se', 'ne', 'nw'].map(function (k) { return ll2px('nyc', NYC_CENTRAL_PARK_LL[k][0], NYC_CENTRAL_PARK_LL[k][1]); });
+    var cpD = straightPath(cpCorners, true);
+    el('path', { d: cpD, 'class': 'park' }, container);
+    NYC_SMALL_PARKS_LL.forEach(function (p) {
+      var c = ll2px('nyc', p[0], p[1]);
+      el('rect', { x: c[0] - p[2] / 2, y: c[1] - p[3] / 2, width: p[2], height: p[3], rx: 7, 'class': 'park' }, container);
+    });
+
+    /* --- streets: Manhattan clip (outline minus Central Park hole), shared by all Manhattan grids --- */
+    var manhClip = el('clipPath', { id: 'nycManhClip' }, defs);
+    el('path', { d: manhattanD + ' ' + cpD, 'clip-rule': 'evenodd' }, manhClip);
+    var bqClip = el('clipPath', { id: 'nycBqClip' }, defs);
+    el('path', { d: bqD }, bqClip);
+
+    /* Manhattan main grid, above ~Houston/14th, avenues rotated -29 deg east of north */
+    (function () {
+      var wrap = el('g', { 'clip-path': 'url(#nycManhClip)' }, container);
+      var g = el('g', { transform: 'rotate(-29 800 1000)' }, wrap);
+      for (var ax = -400; ax <= 2000; ax += 46) el('line', { x1: ax, y1: -700, x2: ax, y2: 2400, 'class': 'street' }, g);
+      for (var sy = -700; sy <= 2400; sy += 15) el('line', { x1: -400, y1: sy, x2: 2000, y2: sy, 'class': 'street minor' }, g);
+    })();
+    /* below Canal: finer unrotated downtown grid + one slightly rotated colonial-era patch */
+    (function () {
+      var wrap = el('g', { 'clip-path': 'url(#nycManhClip)' }, container);
+      var x0 = 200, y0 = 1780, x1 = 560, y1 = 2220;
+      for (var x = x0; x <= x1; x += 12) el('line', { x1: x, y1: y0, x2: x, y2: y1, 'class': 'street minor' }, wrap);
+      for (var y = y0; y <= y1; y += 11) el('line', { x1: x0, y1: y, x2: x1, y2: y, 'class': 'street minor' }, wrap);
+      var wrap2 = el('g', { 'clip-path': 'url(#nycManhClip)' }, container);
+      var g2 = el('g', { transform: 'rotate(18 330 2050)' }, wrap2);
+      for (var x2 = 150; x2 <= 520; x2 += 16) el('line', { x1: x2, y1: 1900, x2: x2, y2: 2220, 'class': 'street' }, g2);
+    })();
+    /* West Village: small grid rotated +9 deg */
+    (function () {
+      var wrap = el('g', { 'clip-path': 'url(#nycManhClip)' }, container);
+      var g = el('g', { transform: 'rotate(9 385 1790)' }, wrap);
+      for (var x = 280; x <= 480; x += 13) el('line', { x1: x, y1: 1700, x2: x, y2: 1880, 'class': 'street minor' }, g);
+      for (var y = 1700; y <= 1880; y += 12) el('line', { x1: 280, y1: y, x2: 480, y2: y, 'class': 'street minor' }, g);
+    })();
+    /* Williamsburg (Brooklyn): grid rotated -8 deg */
+    (function () {
+      var wrap = el('g', { 'clip-path': 'url(#nycBqClip)' }, container);
+      var g = el('g', { transform: 'rotate(-8 770 2000)' }, wrap);
+      for (var x = 640; x <= 910; x += 13) el('line', { x1: x, y1: 1850, x2: x, y2: 2150, 'class': 'street minor' }, g);
+      for (var y = 1850; y <= 2150; y += 12) el('line', { x1: 640, y1: y, x2: 910, y2: y, 'class': 'street minor' }, g);
+    })();
+    /* Downtown Brooklyn: small unrotated grid */
+    (function () {
+      var wrap = el('g', { 'clip-path': 'url(#nycBqClip)' }, container);
+      var x0 = 380, y0 = 2250, x1 = 560, y1 = 2400;
+      for (var x = x0; x <= x1; x += 13) el('line', { x1: x, y1: y0, x2: x, y2: y1, 'class': 'street minor' }, wrap);
+      for (var y = y0; y <= y1; y += 12) el('line', { x1: x0, y1: y, x2: x1, y2: y, 'class': 'street minor' }, wrap);
+    })();
+
+    /* --- arteries --- */
+    var bwPts = projPts('nyc', [[40.708, -74.007], [40.735, -73.992], [40.755, -73.986], [40.769, -73.982], [40.790, -73.975], [40.820, -73.958]]);
+    el('path', { d: smoothPath(bwPts, false), 'class': 'artery major', fill: 'none' }, container); /* broadway */
+
+    (function () {
+      var a = ll2px('nyc', 40.731, -73.997), b = ll2px('nyc', 40.802, -73.945);
+      el('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], 'class': 'artery' }, container); /* 5th ave */
+      var dx = b[0] - a[0], dy = b[1] - a[1], len = Math.sqrt(dx * dx + dy * dy) || 1;
+      var ox = dy / len * 55, oy = -dx / len * 55;
+      el('line', { x1: a[0] + ox, y1: a[1] + oy, x2: b[0] + ox, y2: b[1] + oy, 'class': 'artery' }, container); /* park ave, parallel */
+    })();
+
+    [
+      [[40.7480, -74.004], [40.7513, -73.971]], /* 42nd st */
+      [[40.7378, -74.009], [40.7317, -73.973]], /* 14th st */
+      [[40.7218, -74.011], [40.7180, -73.994]]  /* canal st */
+    ].forEach(function (pr) {
+      var p1 = ll2px('nyc', pr[0][0], pr[0][1]), p2 = ll2px('nyc', pr[1][0], pr[1][1]);
+      el('line', { x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1], 'class': 'artery' }, container);
+    });
+
+    /* West Side Highway hugging the Hudson shore (inset east/inland) */
+    var westShore = projPts('nyc', [[40.719, -74.015], [40.729, -74.013], [40.742, -74.012], [40.753, -74.008], [40.764, -74.003], [40.772, -73.995], [40.781, -73.988], [40.795, -73.977], [40.815, -73.962]])
+      .map(function (p) { return [p[0] + 16, p[1]]; });
+    el('path', { d: smoothPath(westShore, false), 'class': 'artery' }, container);
+    /* FDR Drive hugging the East River shore (inset west/inland) */
+    var eastShore = projPts('nyc', [[40.793, -73.929], [40.784, -73.941], [40.766, -73.952], [40.749, -73.966], [40.736, -73.972], [40.729, -73.971], [40.718, -73.974], [40.711, -73.978]])
+      .map(function (p) { return [p[0] - 16, p[1]]; });
+    el('path', { d: smoothPath(eastShore, false), 'class': 'artery' }, container);
+
+    (function () {
+      var a = ll2px('nyc', 40.702, -73.989), b = ll2px('nyc', 40.680, -73.973);
+      el('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], 'class': 'artery' }, container); /* flatbush ave */
+    })();
+  }
+
+  /* ================= generic per-city layer builders ================= */
+  function buildSignals(cityId, events, container) {
+    var seed = 11;
+    function rnd() { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; }
+    events.forEach(function (e) {
+      var n = 2 + Math.min(7, Math.round((e.t || 30) / 90));
+      for (var i = 0; i < n; i++) {
+        var a = rnd() * Math.PI * 2, rr = 14 + rnd() * 46;
+        el('circle', {
+          cx: WX(cityId, e.lng) + Math.cos(a) * rr, cy: WY(cityId, e.lat) + Math.sin(a) * rr * 0.8,
+          r: 1.6 + rnd() * 1.2, 'class': 'sig-dot', opacity: (0.07 + rnd() * 0.09).toFixed(3)
+        }, container);
+      }
+    });
+  }
+  function buildComms(cityId, events, container) {
+    var groups = {};
+    events.forEach(function (e) {
+      var c = (e.c || '').trim();
+      if (!c || c === 'Personal') return;
+      (groups[c] = groups[c] || []).push(e);
+    });
+    Object.keys(groups).forEach(function (c) {
+      var evs = groups[c], sx = 0, sy = 0;
+      evs.forEach(function (e) { sx += WX(cityId, e.lng); sy += WY(cityId, e.lat); });
+      var g = el('g', {}, container);
+      el('circle', { cx: 0, cy: 0, r: 9, 'class': 'comm-ring' }, g);
+      counterScaled.push({ node: g, x: sx / evs.length, y: sy / evs.length, city: cityId });
+    });
+  }
+  function buildEventDots(cityId, events, offsets, container) {
+    var nodes = [];
+    events.forEach(function (e, idx) {
+      var g = el('g', { 'class': 'ev-dot', 'data-idx': idx }, container);
+      var r = 3 + (e.t > 0 ? Math.min(2.4, Math.sqrt(e.t) / 13) : 0);
+      el('circle', { cx: 0, cy: 0, r: r, 'class': 'c' }, g);
+      el('circle', { cx: 0, cy: 0, r: 11, fill: 'transparent' }, g); /* hit area */
+      var o = offsets[idx];
+      counterScaled.push({ node: g, x: WX(cityId, e.lng) + o.dx, y: WY(cityId, e.lat) + o.dy, city: cityId });
+      nodes.push(g);
+    });
+    return nodes;
+  }
+  function buildGeoLabels(cityId, container, list) {
+    list.forEach(function (L) {
+      var x = WX(cityId, L[2]), y = WY(cityId, L[1]);
+      var g = el('g', { 'class': 'geo-label ' + (L[3] || '') }, container);
+      el('text', { x: 0, y: 0 }, g).textContent = L[0];
+      counterScaled.push({ node: g, x: x, y: y, city: cityId });
+    });
+  }
+  function buildWaterLabel(cityId, container, text, lat, lng) {
+    var g = el('g', { 'class': 'geo-label water' }, container);
+    el('text', {}, g).textContent = text;
+    counterScaled.push({ node: g, x: WX(cityId, lng), y: WY(cityId, lat), city: cityId });
+  }
+
+  /* ================= app state ================= */
+  var state = {
+    selectedCity: 'sf',
+    selectedScenario: 'backend',
+    query: '',
+    events: CITIES.sf.events,
+    rankedEvents: [],
+    selectedEvent: null,
+    mapViewport: cam,
+    activeLayers: { events: true, comms: false, signals: true },
+    analysisState: 'idle'
+  };
+  state.top = []; /* derived convenience: rankedEvents.slice(0,3) */
+  var railIdx = 0; /* which of state.top is highlighted in the rail (kept internal) */
+
+  /* ================= world construction (both cities, built once) ================= */
+  var worldEls = { sf: document.getElementById('world-sf'), nyc: document.getElementById('world-nyc') };
+  var dotNodesByCity = {};
+  var offsetsByCity = {};
+  ['sf', 'nyc'].forEach(function (cityId) {
+    var city = CITIES[cityId];
+    var basemapEl = document.getElementById(cityId + '-basemap');
+    var sigEl = document.getElementById(cityId + '-layer-signals');
+    var commEl = document.getElementById(cityId + '-layer-comms');
+    var evEl = document.getElementById(cityId + '-layer-events');
+    var labelsEl = document.getElementById(cityId + '-geo-labels');
+
+    if (cityId === 'sf') drawBaseSF(basemapEl); else drawBaseNYC(basemapEl);
+    buildSignals(cityId, city.events, sigEl);
+    buildComms(cityId, city.events, commEl);
+    var offs = computeDeclutter(city.events);
+    offsetsByCity[cityId] = offs;
+    dotNodesByCity[cityId] = buildEventDots(cityId, city.events, offs, evEl);
+    wireDots(cityId, city.events, dotNodesByCity[cityId]);
+
+    if (cityId === 'sf') {
+      buildGeoLabels('sf', labelsEl, SF_LABELS);
+      buildWaterLabel('sf', labelsEl, 'San Francisco Bay', 37.7720, -122.3800);
+      buildWaterLabel('sf', labelsEl, 'Pacific Ocean', 37.746, -122.514);
+    } else {
+      buildGeoLabels('nyc', labelsEl, NYC_LABELS);
+      buildWaterLabel('nyc', labelsEl, 'Hudson River', 40.742, -74.022);
+      buildWaterLabel('nyc', labelsEl, 'East River', 40.7285, -73.9665);
+      buildWaterLabel('nyc', labelsEl, 'Upper Bay', 40.687, -74.025);
+    }
+  });
+
+  /* ranked markers (top 3) — single global set, above both worlds, repositioned per active city */
+  var rankG = document.getElementById('layer-ranked');
+  var rmarks = [];
+  for (var m = 0; m < 3; m++) {
+    var mg = el('g', { 'class': 'rmark' }, rankG);
+    var grp = el('g', { 'class': 'grp' }, mg);
+    el('circle', { cx: 0, cy: 0, r: 30, 'class': 'halo' }, grp);
+    el('circle', { cx: 0, cy: 0, r: 16, 'class': 'ring' }, grp);
+    el('circle', { cx: 0, cy: 0, r: 10.5, 'class': 'core' }, grp);
+    var num = el('text', { x: 0, y: 3.6, 'class': 'num' }, grp);
+    var tag = el('g', { 'class': 'tag' }, grp);
+    var tagRect = el('rect', { x: 0, y: -46, height: 26, rx: 9 }, tag);
+    var tagName = el('text', { y: -29, 'class': 't-name' }, tag);
+    var tagScore = el('text', { y: -29, 'class': 't-score' }, tag);
+    rmarks.push({ g: mg, grp: grp, num: num, tag: tag, tagRect: tagRect, tagName: tagName, tagScore: tagScore, cs: { node: mg, x: 0, y: 0 } });
+    counterScaled.push(rmarks[m].cs);
+  }
+
+  /* ================= tooltip ================= */
+  var tip = document.getElementById('tip'), tip1 = document.getElementById('tip1'), tip2 = document.getElementById('tip2'), tip3 = document.getElementById('tip3');
+  function showTip(e, ev) {
+    tip1.textContent = ev.n;
+    var parts = [fmtShort(ev.d)];
+    if (ev.a) parts.push(ev.a);
+    if (ev.s && ev.s.length) parts.push(ev.s[0]);
+    parts.push(ev.t > 0 ? ev.t + ' attending' : 'Attendance not published');
+    tip2.textContent = parts.join(' · ');
+    tip3.textContent = 'View details · ⌘-click opens Luma ↗';
+    tip.classList.add('show');
+    moveTip(e);
+  }
+  function moveTip(e) {
+    var x = e.clientX + 14, y = e.clientY + 12;
+    if (x + 260 > innerWidth) x = e.clientX - 262;
+    if (y + 60 > innerHeight) y = e.clientY - 64;
+    tip.style.left = (x + window.scrollX) + 'px';
+    tip.style.top = (y + window.scrollY) + 'px';
+  }
+  function hideTip() { tip.classList.remove('show'); }
+
+  function railMeta(r) {
+    return fmtShort(r.e.d) + ' · ' + shortLabel(r) + ' · ' + (r.e.t > 0 ? r.e.t + ' attending' : 'Attendance not published');
+  }
+
+  var rail = document.getElementById('rail');
+  function renderRail() {
+    rail.innerHTML = '';
+    state.top.forEach(function (r, i) {
+      var b = document.createElement('button');
+      b.className = 'rail-item' + (i === railIdx ? ' active' : '');
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === railIdx ? 'true' : 'false');
+      b.innerHTML = '<span class="rk">0' + (i + 1) + '</span>' +
+        '<span class="mid"><span class="nm"></span><span class="meta"></span></span>' +
+        '<span class="sc mono">' + r.score + '</span>';
+      b.querySelector('.nm').textContent = displayShort(r.e.n);
+      b.title = r.e.n;
+      b.querySelector('.meta').textContent = railMeta(r);
+      b.addEventListener('click', function () { select(i, true); });
+      rail.appendChild(b);
+    });
+  }
+
+  function renderMarkers() {
+    var city = state.selectedCity;
+    var nodes = dotNodesByCity[city];
+    var offs = offsetsByCity[city];
+    nodes.forEach(function (n) { n.classList.remove('is-top'); });
+    state.top.forEach(function (r, i) {
+      var mk = rmarks[i];
+      var off = offs[r.idx];
+      mk.cs.x = WX(city, r.e.lng) + off.dx; mk.cs.y = WY(city, r.e.lat) + off.dy;
+      mk.num.textContent = String(i + 1);
+      var short = displayShort(r.e.n);
+      var label = short.length > 42 ? short.slice(0, 41).replace(/\s+\S*$/, '') + '…' : short;
+      mk.tagName.textContent = label;
+      mk.tagScore.textContent = String(r.score);
+      /* size chip to text */
+      var nameW = label.length * 6.0, scoreW = String(r.score).length * 6.6;
+      var w = 14 + nameW + 12 + scoreW + 14;
+      mk.tagRect.setAttribute('width', w);
+      mk.tagRect.setAttribute('x', -w / 2);
+      mk.tagName.setAttribute('x', -w / 2 + 14);
+      mk.tagScore.setAttribute('text-anchor', 'end');
+      mk.tagScore.setAttribute('x', w / 2 - 13);
+      mk.g.classList.toggle('selected', i === railIdx);
+      nodes[r.idx].classList.add('is-top');
+      mk.g.appendChild(mk.grp); /* re-trigger the marker-in pop animation */
+    });
+    applyCam();
+  }
+
+  /* drawer */
+  var dview = document.getElementById('dview');
+  function fillDrawer(r, rank, eyebrowText) {
+    var e = r.e;
+    document.getElementById('d-eyebrow').textContent = eyebrowText || ('GrowthX pick · Rank 0' + (rank + 1));
+    document.getElementById('d-title').textContent = e.n;
+    document.getElementById('d-score').textContent = r.score;
+    document.getElementById('d-meta').textContent =
+      fmtDate(e.d) + ' · ' + (e.a ? e.a : 'Neighborhood not published') + ' · ' + (e.t > 0 ? e.t + ' attending' : 'Attendance not published');
+    var fit = fitFor(r);
+    document.getElementById('d-fitbar').style.width = (fit.v * 100) + '%';
+    document.getElementById('d-fitval').textContent = fit.t;
+    var conf = confidenceFor(e);
+    document.getElementById('d-confbar').style.width = conf + '%';
+    document.getElementById('d-confval').textContent = conf + '%';
+    document.getElementById('d-rec').textContent = activationFor(r);
+    var rs = reasonsFor(r, rank);
+    document.getElementById('d-reasons').innerHTML = rs.map(function (x, i) {
+      return '<div class="reason"><span class="sig">' + (i + 1) + '</span><div class="body">' +
+        '<div class="txt">' + x.txt + '</div><div class="src">' + x.src + '</div></div></div>';
+    }).join('');
+    document.getElementById('d-cal-m').textContent = MONTHS[+e.d.slice(5, 7) - 1].toUpperCase();
+    document.getElementById('d-cal-d').textContent = String(+e.d.slice(8, 10));
+    document.getElementById('d-date').textContent = fmtDate(e.d);
+    var area = document.getElementById('d-area');
+    area.textContent = e.a || 'Not published';
+    area.classList.toggle('np', !e.a);
+    var orgTxt;
+    if (e.o && e.o.length) {
+      orgTxt = e.o.slice(0, 3).join(', ') + (e.o.length > 3 ? ' +' + (e.o.length - 3) + ' more' : '');
+      if (e.c && e.c !== 'Personal' && e.o.join(', ').toLowerCase().indexOf(e.c.toLowerCase().slice(0, 8)) < 0) {
+        orgTxt += ' (' + e.c + ')';
+      }
+    } else {
+      orgTxt = (e.c && e.c !== 'Personal') ? e.c : 'Not published';
+    }
+    var org = document.getElementById('d-org');
+    org.textContent = orgTxt;
+    org.classList.toggle('np', orgTxt === 'Not published');
+    var att = document.getElementById('d-att');
+    att.textContent = e.t > 0 ? e.t + ' registered' : 'Not published';
+    att.classList.toggle('np', !(e.t > 0));
+    var src = document.getElementById('d-src');
+    src.textContent = e.u.replace('https://', '');
+    src.setAttribute('href', e.u);
+    document.getElementById('d-luma').setAttribute('href', e.u);
+  }
+  var drawerTimer = null;
+  function swapDrawer(r, rank, eyebrowText) {
+    if (drawerTimer) clearTimeout(drawerTimer);
+    dview.classList.add('swap');
+    drawerTimer = setTimeout(function () {
+      drawerTimer = null;
+      fillDrawer(r, rank, eyebrowText);
+      dview.classList.remove('swap');
+    }, 200);
+  }
+
+  function select(i, fly) {
+    railIdx = i;
+    var r = state.top[i];
+    state.selectedEvent = r;
+    rail.querySelectorAll('.rail-item').forEach(function (b, j) {
+      b.classList.toggle('active', j === i);
+      b.setAttribute('aria-selected', j === i ? 'true' : 'false');
+    });
+    rmarks.forEach(function (mk, j) { mk.g.classList.toggle('selected', j === i); });
+    swapDrawer(r, i);
+    if (fly) {
+      var off = offsetsByCity[state.selectedCity][r.idx];
+      var x = WX(state.selectedCity, r.e.lng) + off.dx, y = WY(state.selectedCity, r.e.lat) + off.dy;
+      var k = Math.max(cam.k, 1.15);
+      flyTo(x + (vw() / 2 - visW() / 2) / k, y, k, 650);
+    }
+  }
+
+  /* marker interactions (wired per-city at world-construction time via wireDots) */
+  function wireDots(cityId, events, nodes) {
+    nodes.forEach(function (n, idx) {
+      n.addEventListener('mouseenter', function (e) { showTip(e, events[idx]); });
+      n.addEventListener('mousemove', moveTip);
+      n.addEventListener('mouseleave', hideTip);
+      n.addEventListener('click', function (ev) {
+        if (ev.metaKey || ev.ctrlKey) {
+          ev.stopPropagation();
+          window.open(events[idx].u, '_blank', 'noopener,noreferrer');
+          return;
+        }
+        ev.stopPropagation();
+        var top = state.top.findIndex(function (r) { return r.idx === idx; });
+        if (top >= 0) { select(top, true); return; }
+        /* selecting an unranked event: promote into drawer without changing rail */
+        var r = state.rankedEvents.find(function (x) { return x.idx === idx; });
+        if (r) {
+          var rank = state.rankedEvents.indexOf(r);
+          state.selectedEvent = r;
+          swapDrawer(r, rank, 'Event · Rank ' + (rank + 1) + ' of ' + state.events.length + ' events');
+        }
+      });
+    });
+  }
+  rmarks.forEach(function (mk, i) {
+    mk.g.addEventListener('click', function (ev) {
+      if (ev.metaKey || ev.ctrlKey) {
+        ev.stopPropagation();
+        var r = state.top[i];
+        if (r) window.open(r.e.u, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      ev.stopPropagation();
+      select(i, true);
+    });
+    mk.g.addEventListener('mouseenter', function (e) { if (state.top[i]) showTip(e, state.top[i].e); });
+    mk.g.addEventListener('mousemove', moveTip);
+    mk.g.addEventListener('mouseleave', hideTip);
+  });
+
+  /* ================= analysis sequence ================= */
+  var steps = [document.getElementById('st0'), document.getElementById('st1'), document.getElementById('st2')];
+  function updateAnalysisCopy() {
+    document.getElementById('analysisEyebrow').textContent = 'GrowthX · Analyzing ' + CITIES[state.selectedCity].name;
+    var ctx = document.getElementById('aContext');
+    var sc = state.selectedScenario ? SCENARIOS[state.selectedScenario] : null;
+    if (sc) {
+      ctx.textContent = 'Audience: ' + sc.audience + ' · Objective: ' + sc.objective;
+      ctx.classList.remove('hide');
+    } else {
+      ctx.textContent = '';
+      ctx.classList.add('hide');
+    }
+  }
+  function runAnalysis(q, instant) {
+    state.query = q;
+    if (instant) {
+      applyResults(q, false);
+      return;
+    }
+    if (state.analysisState === 'analyzing') return;
+    state.analysisState = 'analyzing';
+    atlas.classList.add('analyzing');
+    hideTip();
+    steps.forEach(function (s) { s.classList.remove('now', 'done'); });
+    steps.forEach(function (s, i) {
+      setTimeout(function () {
+        if (i > 0) steps[i - 1].classList.replace('now', 'done');
+        s.classList.add('now');
+      }, 60 + i * 440);
+    });
+    setTimeout(function () { steps[2].classList.replace('now', 'done'); }, 60 + 3 * 440);
+    setTimeout(function () {
+      applyResults(q, true);
+      atlas.classList.remove('analyzing');
+      state.analysisState = 'idle';
+    }, 1450);
+  }
+  function applyResults(q, fly) {
+    if (drawerTimer) { clearTimeout(drawerTimer); drawerTimer = null; dview.classList.remove('swap'); }
+    state.rankedEvents = rankAll(q);
+    state.top = state.rankedEvents.slice(0, 3);
+    railIdx = 0;
+    renderRail();
+    renderMarkers();
+    state.selectedEvent = state.top[0];
+    fillDrawer(state.top[0], 0);
+    var b = boundsOf(state.selectedCity, state.top.map(function (r) { return r.e; }));
+    var c = camForBounds(b[0] - 60, b[1] - 60, b[2] + 60, b[3] + 60, 170, 1.02);
+    if (fly) flyTo(c.cx, c.cy, c.k, 800);
+    else { cam.cx = c.cx; cam.cy = c.cy; cam.k = c.k; applyCam(); }
+  }
+
+  /* ================= city switching ================= */
+  var brandSub = document.getElementById('brandSub');
+  var srcNote = document.getElementById('srcNote');
+  function setCity(id) {
+    if (state.analysisState === 'analyzing' || id === state.selectedCity || !CITIES[id]) return;
+    state.selectedCity = id;
+    var city = CITIES[id];
+    state.events = city.events;
+    SNAPSHOT = city.snapshot;
+    worldEls.sf.classList.toggle('off', id !== 'sf');
+    worldEls.nyc.classList.toggle('off', id !== 'nyc');
+    document.querySelectorAll('#citySwitch button').forEach(function (b) {
+      var on = b.dataset.city === id;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    applyResults(state.query, true);
+    brandSub.textContent = 'Event intelligence · ' + city.name;
+    srcNote.textContent = city.note;
+    updateAnalysisCopy();
+  }
+
+  /* ================= controls ================= */
+  var qInput = document.getElementById('q');
+  document.getElementById('goBtn').addEventListener('click', function () { if (state.analysisState !== 'analyzing') runAnalysis(qInput.value.trim() || 'developer events'); });
+  qInput.addEventListener('keydown', function (e) { if (e.key === 'Enter' && state.analysisState !== 'analyzing') runAnalysis(qInput.value.trim() || 'developer events'); });
+  document.querySelectorAll('.chips .chip[data-scenario]').forEach(function (c) {
+    c.addEventListener('click', function () {
+      if (state.analysisState === 'analyzing') return;
+      var id = c.dataset.scenario;
+      state.selectedScenario = id;
+      document.querySelectorAll('.chips .chip[data-scenario]').forEach(function (x) { x.classList.toggle('on', x === c); });
+      qInput.value = SCENARIOS[id].query;
+      updateAnalysisCopy();
+      runAnalysis(SCENARIOS[id].query);
+    });
+  });
+  document.getElementById('replayBtn').addEventListener('click', function () { if (state.analysisState !== 'analyzing') runAnalysis(qInput.value.trim() || state.query); });
+  qInput.addEventListener('input', function () {
+    state.selectedScenario = null;
+    document.querySelectorAll('.chips .chip[data-scenario]').forEach(function (x) { x.classList.remove('on'); });
+    updateAnalysisCopy();
+  });
+  document.getElementById('newBtn').addEventListener('click', function () {
+    qInput.value = '';
+    qInput.focus();
+    state.selectedScenario = null;
+    document.querySelectorAll('.chips .chip[data-scenario]').forEach(function (x) { x.classList.remove('on'); });
+    updateAnalysisCopy();
+  });
+  document.querySelectorAll('#citySwitch button').forEach(function (b) {
+    b.addEventListener('click', function () { setCity(b.dataset.city); });
+  });
+
+  /* zoom + reset — anchored to the center of the visible region left of the drawer */
+  function zoomBy(f) {
+    var k = Math.max(0.55, Math.min(6, cam.k * f));
+    var sx = visW() / 2, sy = vh() / 2;
+    var wx = (sx - vw() / 2) / cam.k + cam.cx;
+    var wy = (sy - vh() / 2) / cam.k + cam.cy;
+    flyTo(wx - (sx - vw() / 2) / k, wy - (sy - vh() / 2) / k, k, 260);
+  }
+  document.getElementById('zin').addEventListener('click', function () { zoomBy(1.45); });
+  document.getElementById('zout').addEventListener('click', function () { zoomBy(1 / 1.45); });
+  document.getElementById('zreset').addEventListener('click', function () {
+    var city = state.selectedCity;
+    var b = boundsOf(city, CITIES[city].events);
+    var c = camForBounds(b[0] - 30, b[1] - 30, b[2] + 30, b[3] + 30, 70, 1.0);
+    flyTo(c.cx, c.cy, c.k, 700);
+  });
+
+  /* wheel zoom around cursor */
+  stage.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    if (drag && drag.moved) return;
+    var f = Math.exp(-e.deltaY * 0.0016);
+    var k = Math.max(0.55, Math.min(6, cam.k * f));
+    var rect = stage.getBoundingClientRect();
+    var sx = e.clientX - rect.left, sy = e.clientY - rect.top;
+    /* keep world point under cursor */
+    var wx = (sx - vw() / 2) / cam.k + cam.cx;
+    var wy = (sy - vh() / 2) / cam.k + cam.cy;
+    cam.cx = wx - (sx - vw() / 2) / k;
+    cam.cy = wy - (sy - vh() / 2) / k;
+    cam.k = k;
+    if (flyReq) cancelAnimationFrame(flyReq);
+    applyCam();
+  }, { passive: false });
+
+  /* drag pan — pointer capture only engages after a movement threshold, so
+     plain clicks still reach markers and event dots underneath */
+  var drag = null;
+  stage.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0) return;
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, cx: cam.cx, cy: cam.cy, moved: false };
+    if (flyReq) cancelAnimationFrame(flyReq);
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.moved) {
+      if (Math.abs(dx) + Math.abs(dy) <= 3) return;
+      drag.moved = true;
+      stage.classList.add('dragging');
+      try { stage.setPointerCapture(drag.id); } catch (err) {}
+      hideTip();
+    }
+    cam.cx = drag.cx - dx / cam.k;
+    cam.cy = drag.cy - dy / cam.k;
+    applyCam();
+  });
+  stage.addEventListener('pointerup', function () { drag = null; stage.classList.remove('dragging'); });
+  stage.addEventListener('pointercancel', function () { drag = null; stage.classList.remove('dragging'); });
+
+  /* layers — toggles apply to the matching subgroup of BOTH worlds so the
+     setting survives city switches */
+  var layersWrap = document.getElementById('layersWrap');
+  document.getElementById('layersBtn').addEventListener('click', function (e) {
+    e.stopPropagation();
+    layersWrap.classList.toggle('open');
+    this.setAttribute('aria-expanded', layersWrap.classList.contains('open') ? 'true' : 'false');
+  });
+  document.addEventListener('click', function (e) {
+    if (!layersWrap.contains(e.target)) layersWrap.classList.remove('open');
+  });
+  var layerEls = {
+    events: [document.getElementById('sf-layer-events'), document.getElementById('nyc-layer-events')],
+    comms: [document.getElementById('sf-layer-comms'), document.getElementById('nyc-layer-comms')],
+    signals: [document.getElementById('sf-layer-signals'), document.getElementById('nyc-layer-signals')]
+  };
+  function applyLayers() {
+    for (var k in layerEls) {
+      layerEls[k].forEach(function (node) { node.classList.toggle('off', !state.activeLayers[k]); });
+    }
+  }
+  document.querySelectorAll('.layer-row').forEach(function (row) {
+    row.addEventListener('click', function () {
+      var k = row.dataset.layer;
+      state.activeLayers[k] = !state.activeLayers[k];
+      row.classList.toggle('on', state.activeLayers[k]);
+      applyLayers();
+    });
+  });
+  applyLayers();
+
+  window.addEventListener('resize', applyCam);
+
+  /* ================= boot: screenshot-ready ================= */
+  updateAnalysisCopy();
+  runAnalysis(qInput.value, true);
+  applyCam();
+})();
+</script>
+
+</body></html>

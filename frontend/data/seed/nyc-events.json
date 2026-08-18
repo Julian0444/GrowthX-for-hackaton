@@ -1,0 +1,1818 @@
+[
+  {
+    "id": "evt-evt-zhcvaSD2OcuynKq",
+    "name": "🚶☀️ Sprint Review #2: Walk or Run Summer Streets 🌳🏃",
+    "url": "https://lu.ma/ijhs4ugg",
+    "startsAt": "2026-08-15T12:30:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.742195099999996,
+    "lng": -73.98799919999999,
+    "expectedAttendance": 36,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Fitness",
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-sHWMt96AHAYzCyD"
+    ],
+    "organizerIds": [
+      "org-brian-hui",
+      "org-jos-arias",
+      "org-rahul-alexander"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-p9zOcdkHFJvzc70",
+    "name": "ALO FLATIRON: ALO RUNNERS CLUB",
+    "url": "https://lu.ma/kjx4tb5h",
+    "startsAt": "2026-08-15T13:30:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.740644499999995,
+    "lng": -73.9906413,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Fitness"
+    ],
+    "communityIds": [
+      "com-cal-SRZBqShHEEHRr2D"
+    ],
+    "organizerIds": [
+      "org-alo"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-Wd4kEf3cPlzUF1x",
+    "name": "Jazzy Builds",
+    "url": "https://lu.ma/cmrr6isi",
+    "startsAt": "2026-08-15T16:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.71834876482008,
+    "lng": -73.99606332724744,
+    "expectedAttendance": 40,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-qSyt7EAAjUBPYon"
+    ],
+    "organizerIds": [
+      "org-kentaro-lee",
+      "org-maya-galindo",
+      "org-yash-alluri",
+      "org-adlee-h"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-Vut8HdexOO4QffP",
+    "name": "Mama in NYC!",
+    "url": "https://lu.ma/4mqb9clb",
+    "startsAt": "2026-08-15T17:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7168229,
+    "lng": -73.99064729999999,
+    "expectedAttendance": 1365,
+    "attendanceBasis": "observed",
+    "stack": [],
+    "communityIds": [
+      "com-cal-2oIoPbtzYenu5YF"
+    ],
+    "organizerIds": [
+      "org-meji-meji"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-6cJmzsvl6dUmZsO",
+    "name": "new interfaces 005",
+    "url": "https://lu.ma/en45hlqd",
+    "startsAt": "2026-08-15T18:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.7387844,
+    "lng": -73.9883559,
+    "expectedAttendance": 128,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture",
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-XLiExIr02fBbaJo"
+    ],
+    "organizerIds": [
+      "org-pauline-wee"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-kmJ4AfL47KBl4Zm",
+    "name": "Anything Can Be A Lamp: Open Studio with Echo Yun Chen (5pm Entry)",
+    "url": "https://lu.ma/sagdchrj",
+    "startsAt": "2026-08-15T21:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.6664649,
+    "lng": -73.9978443,
+    "expectedAttendance": 11,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai",
+      "llm"
+    ],
+    "communityIds": [
+      "com-cal-GBW5YRIHHAZCv21"
+    ],
+    "organizerIds": [
+      "org-chores"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-bV6DBpKD72lJJwB",
+    "name": "The Free Software Foundation: What Freedom in Software Means to You",
+    "url": "https://lu.ma/5tqac51t",
+    "startsAt": "2026-08-15T23:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.733489265042344,
+    "lng": -74.00015140965404,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-ZGCxlwslp1K0wqD"
+    ],
+    "organizerIds": [
+      "org-harrison-friedes",
+      "org-heshan",
+      "org-jeffrey-silva"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-9MVN8mntGibTeTJ",
+    "name": "Discover the Birds in Central Park 🦆",
+    "url": "https://lu.ma/7mbhce1k",
+    "startsAt": "2026-08-16T15:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7743214,
+    "lng": -73.97088289999999,
+    "expectedAttendance": 10,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-83Wftl00nobq7Pv"
+    ],
+    "organizerIds": [
+      "org-steph-that-quirky-bird-girl"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-QKHrCGDtbqsCysR",
+    "name": "get lost (& craft)",
+    "url": "https://lu.ma/r9drasxa",
+    "startsAt": "2026-08-16T15:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.6848689,
+    "lng": -73.9844722,
+    "expectedAttendance": 16,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-7FXYl9Ecgk1WS0B"
+    ],
+    "organizerIds": [
+      "org-leslie-luo",
+      "org-sahi-akasapu"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-VzbX7gdYroDkYpz",
+    "name": "Revolutionary Women: The Stories History Left Out (Tour + Brunch)",
+    "url": "https://lu.ma/RevolutionaryWomen",
+    "startsAt": "2026-08-16T16:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.77934870000001,
+    "lng": -73.9739079,
+    "expectedAttendance": 14,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-0bWYTBUalNgy548"
+    ],
+    "organizerIds": [
+      "org-alexandra-harper",
+      "org-elizabeth-d"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-fdgL8Zrl3G5pip4",
+    "name": "Lit Club x Tinder: Book Swap",
+    "url": "https://lu.ma/r33lq5m0",
+    "startsAt": "2026-08-16T17:00:00.000Z",
+    "venueArea": "Lower Manhattan",
+    "lat": 40.7057717,
+    "lng": -74.0017925,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-ItTR6nQ7r4wIvFf"
+    ],
+    "organizerIds": [
+      "org-lit-club-nyc"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-JQ5it6CCev4jJ0Q",
+    "name": "Samulnori Bibimbap MIX: Meari Nori Vol. 2",
+    "url": "https://lu.ma/q7095g6f",
+    "startsAt": "2026-08-16T21:00:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.746254799999996,
+    "lng": -73.9866105,
+    "expectedAttendance": 129,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture",
+      "Food & Drink"
+    ],
+    "communityIds": [
+      "com-cal-sYUAxBDnGxQspR4"
+    ],
+    "organizerIds": [
+      "org-greenji",
+      "org-meari",
+      "org-noflex-nyc"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-4Reaw8BjIHGhnGm",
+    "name": "Don't Sell Grandma's House - exhibition opening",
+    "url": "https://lu.ma/eooe04t7",
+    "startsAt": "2026-08-16T23:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7018044,
+    "lng": -73.9195175,
+    "expectedAttendance": 533,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-sp6DdlAS1jxwxFt"
+    ],
+    "organizerIds": [
+      "org-gallery-sinclair"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-dU7gdAhMtrABFRu",
+    "name": "☀️🧑‍🏫 August Design Talks with Daniela Ocana and Arix King 🤓🗽",
+    "url": "https://lu.ma/eajuy1bm",
+    "startsAt": "2026-08-17T22:30:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.724965999999995,
+    "lng": -73.9963705,
+    "expectedAttendance": 200,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture",
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-sHWMt96AHAYzCyD"
+    ],
+    "organizerIds": [
+      "org-brian-hui",
+      "org-collin-hadley",
+      "org-jos-arias"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-6hAMXFT1e4LOhaR",
+    "name": "Claude Code Workshop - New York City",
+    "url": "https://lu.ma/claude-code-workshop-nyc-aug-18",
+    "startsAt": "2026-08-18T17:00:00.000Z",
+    "venueArea": "Lower Manhattan",
+    "lat": 40.707238298902695,
+    "lng": -74.00698240942462,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-8ACK0vjqOfKpHXl"
+    ],
+    "organizerIds": [
+      "org-build-with-claude",
+      "org-provectus"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-KdUiXiYwvFTePll",
+    "name": "NYC B2B: AI Founders & Investors Meetup",
+    "url": "https://lu.ma/fv6wrg1w",
+    "startsAt": "2026-08-18T22:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.743772850429075,
+    "lng": -73.99362382808911,
+    "expectedAttendance": 221,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk"
+    ],
+    "organizerIds": [
+      "org-nyc-b2b",
+      "org-max-kuivenhoven",
+      "org-mongodb"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-2nt3zLzMEiPFJwD",
+    "name": "Animation Nights New York (ANNY) at The Gutter Spare Room!",
+    "url": "https://lu.ma/ufoccb1a",
+    "startsAt": "2026-08-19T00:00:00.000Z",
+    "venueArea": "Williamsburg",
+    "lat": 40.720981167616834,
+    "lng": -73.95627126682152,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-bf1JXZO3y6CaE57"
+    ],
+    "organizerIds": [
+      "org-animation-nights"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-cVArZ0gMioDQKtY",
+    "name": "Agentics: Use Agents Effectively",
+    "url": "https://lu.ma/agentics-4qd8",
+    "startsAt": "2026-08-19T22:00:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.75527526248549,
+    "lng": -73.98859645104021,
+    "expectedAttendance": 532,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-Dl4P7yAhJ2l1Wp2"
+    ],
+    "organizerIds": [
+      "org-nori-agentic",
+      "org-monishee-at-modal",
+      "org-mongodb"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-cdf8BBwbxxGilg6",
+    "name": "For the Firsts: August Fireside & Mixer",
+    "url": "https://lu.ma/gxg3rfpa",
+    "startsAt": "2026-08-19T22:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.7227318,
+    "lng": -74.0072435,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-84OTp0DYXLnv8Sb"
+    ],
+    "organizerIds": [
+      "org-colin-rocker"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-CMCmfinmFVjgzjy",
+    "name": "Junto Founder Dinner (Hosted by Andrew & Friends)",
+    "url": "https://lu.ma/juntodinneraug19",
+    "startsAt": "2026-08-19T22:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.74085789181164,
+    "lng": -73.99481683332874,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "organizerIds": [
+      "org-andrew-yeung"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-7DexX0KondZd697",
+    "name": "The New York Philosophy Club: Columbus Circle",
+    "url": "https://lu.ma/et6kqiqf",
+    "startsAt": "2026-08-19T23:00:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.7711314,
+    "lng": -73.980035,
+    "expectedAttendance": 117,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-dGP82mVkrg1FRmr"
+    ],
+    "organizerIds": [
+      "org-new-york-philosophical-society"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-YxLBYbM8l4PFcQc",
+    "name": "Breakfast + Q&A w/ Henrik Werdelin (Founder, BarkBox) & Andrew Yeung",
+    "url": "https://lu.ma/henrikbreakfast",
+    "startsAt": "2026-08-20T13:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.74254980789066,
+    "lng": -73.98698180590489,
+    "expectedAttendance": 31,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "organizerIds": [
+      "org-andrew-yeung",
+      "org-henrik-werdelin"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-TCKH8dyXG8lFedt",
+    "name": "Health2Tech NYC, August 20 2026",
+    "url": "https://lu.ma/sqzwu8qa",
+    "startsAt": "2026-08-20T21:30:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.759868822750335,
+    "lng": -73.9802711268546,
+    "expectedAttendance": 271,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-aTEeW3VT6XtAa3Q"
+    ],
+    "organizerIds": [
+      "org-christopher-martinez",
+      "org-bailey-morgan",
+      "org-alex-koshykov",
+      "org-health2tech",
+      "org-jose-asturias"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-IDPReQ9UZRrrAeX",
+    "name": "Tech Social | Supermoon & Spring Place | NYC",
+    "url": "https://lu.ma/u9l1i3or",
+    "startsAt": "2026-08-20T21:30:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.72051476951722,
+    "lng": -74.00408411278255,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-d3fDYhRV6zFurGF"
+    ],
+    "organizerIds": [
+      "org-supermoon",
+      "org-elena-obukhova",
+      "org-max-kuivenhoven",
+      "org-mongodb",
+      "org-avahi-ai"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-YRzggiK7R92nRuS",
+    "name": "Aleo x Dynamic Summer Happy Hour",
+    "url": "https://lu.ma/AleoDynamicHHNYC",
+    "startsAt": "2026-08-20T22:00:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.75230716587314,
+    "lng": -73.99611064714216,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Crypto"
+    ],
+    "communityIds": [
+      "com-cal-feaB0CSQMPO6k1e"
+    ],
+    "organizerIds": [
+      "org-aleo",
+      "org-fireblocks",
+      "org-dynamic"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-CLHm7pHHXfdtCEj",
+    "name": "LAST MINUTE CALIFORNIA LAUNCHES AT THE CANVAS SOHO",
+    "url": "https://lu.ma/thecanvas-bp1g",
+    "startsAt": "2026-08-20T22:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.726255099999996,
+    "lng": -74.0008194,
+    "expectedAttendance": 70,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-8pBzUbxu1rqFgsw"
+    ],
+    "organizerIds": [
+      "org-the-canvas",
+      "org-lauren-lawson",
+      "org-caili"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-lhgNIefh9hIC9IN",
+    "name": "NYC | Claude Content Creation with TheVibeFounder & Mika Reyes",
+    "url": "https://lu.ma/claude-content-workshop",
+    "startsAt": "2026-08-20T22:00:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.75679831489407,
+    "lng": -73.99245463429632,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-TOpA5LAFfuDeFpu"
+    ],
+    "organizerIds": [
+      "org-mika",
+      "org-aj-yadav"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-DE1g8fV7UkWAnvB",
+    "name": "Open Models NYC | Together AI × OpenRouter",
+    "url": "https://lu.ma/pl30d8pc",
+    "startsAt": "2026-08-20T22:00:00.000Z",
+    "venueArea": "Chelsea",
+    "lat": 40.75136788250009,
+    "lng": -74.00345833625421,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-Icg56OoJNDuOt3e"
+    ],
+    "organizerIds": [
+      "org-together-ai",
+      "org-openrouter"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-cXadP1c68t1n9bc",
+    "name": "A Chief of Staff Mixer on Relationships (Thurs Aug 20)",
+    "url": "https://lu.ma/wu9p0uky",
+    "startsAt": "2026-08-20T22:30:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.74071923002708,
+    "lng": -73.98782416681257,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-vM3Ah8WdcKPnC60"
+    ],
+    "organizerIds": [
+      "org-david-nebinski"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-A21hLxQLX02v1vg",
+    "name": "AI & Marketing Salon",
+    "url": "https://lu.ma/marketingsalon",
+    "startsAt": "2026-08-20T22:30:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.7553277692829,
+    "lng": -73.98233466326059,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "organizerIds": [
+      "org-andrew-yeung",
+      "org-andrew-presser"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-5Woc6SnuGiUKJU2",
+    "name": "Comedy Night presented by Yikes Comedy",
+    "url": "https://lu.ma/o9kyithw",
+    "startsAt": "2026-08-20T22:30:00.000Z",
+    "venueArea": "East Village",
+    "lat": 40.721189200000005,
+    "lng": -73.9940677,
+    "expectedAttendance": 270,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-foDOrrhU3YOhvgx"
+    ],
+    "organizerIds": [
+      "org-190-bowery"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-sJCFwiMbT2wFBXg",
+    "name": "Housewarming!",
+    "url": "https://lu.ma/8y549wq7",
+    "startsAt": "2026-08-20T22:30:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.7499829,
+    "lng": -73.9830702,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-F2CeglUFoUOGIrt"
+    ],
+    "organizerIds": [
+      "org-kuba",
+      "org-maria-morin",
+      "org-alex-short"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-vYODa5oQ8riPwwx",
+    "name": "Curfew",
+    "url": "https://lu.ma/4isspzsz",
+    "startsAt": "2026-08-21T00:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.6807788,
+    "lng": -73.9288399,
+    "expectedAttendance": 70,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-7W8oKtR0uZAyN89"
+    ],
+    "organizerIds": [
+      "org-dom-mcduffie"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-LCoyu2icdu4LUOH",
+    "name": "CORGI CAFE NYC GRAND OPENING",
+    "url": "https://lu.ma/5z095tev",
+    "startsAt": "2026-08-21T22:30:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.74150375512368,
+    "lng": -73.98572655248196,
+    "expectedAttendance": 542,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-H1FY60pnZtchaf4"
+    ],
+    "organizerIds": [
+      "org-maddie",
+      "org-jamie",
+      "org-abril-zucchi",
+      "org-linda",
+      "org-trevor-owens"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-CWYXc1hD9Ruf1wU",
+    "name": "Dirt City: Brooklyn Connector",
+    "url": "https://lu.ma/yk2wp9s5",
+    "startsAt": "2026-08-22T11:30:00.000Z",
+    "venueArea": "Downtown Brooklyn",
+    "lat": 40.6914322,
+    "lng": -73.975246,
+    "expectedAttendance": 57,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Fitness"
+    ],
+    "communityIds": [
+      "com-cal-rqrEORS1QVhFtWC"
+    ],
+    "organizerIds": [
+      "org-sydney-ruby",
+      "org-benjamin-morrow",
+      "org-drew-bell"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-spjGibm4KWWtpOS",
+    "name": "Pet Life Unlimited NYC Pack Walk 🐾",
+    "url": "https://lu.ma/9qz9qh4c",
+    "startsAt": "2026-08-22T13:00:00.000Z",
+    "venueArea": "East Village",
+    "lat": 40.7292874,
+    "lng": -73.98145629999999,
+    "expectedAttendance": 153,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-K1GujeM5o2qVzQe"
+    ],
+    "organizerIds": [],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-AB5ir8GJBb0anjs",
+    "name": "The Angel Market: Shop Small NYC Brands",
+    "url": "https://lu.ma/ts8kvp7r",
+    "startsAt": "2026-08-22T16:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.71964930000001,
+    "lng": -73.99498779999999,
+    "expectedAttendance": 416,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-8WChocVL3wkdn2J"
+    ],
+    "organizerIds": [
+      "org-dia-gauthier"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-T7BAkTq4Qd8FPDE",
+    "name": "A Terratela and Fluency Zero Waste Event",
+    "url": "https://lu.ma/ai24m9gt",
+    "startsAt": "2026-08-22T19:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7352948,
+    "lng": -73.9985737,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Climate"
+    ],
+    "communityIds": [
+      "com-cal-C99H6nBNo4LAXdO"
+    ],
+    "organizerIds": [
+      "org-natalia-mazzaia",
+      "org-natalia-mazzaia"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-cY885leffjW0Sx5",
+    "name": "Pushpa Presents: Bangladesh, But Brooklyn.",
+    "url": "https://lu.ma/hsnkcuoi",
+    "startsAt": "2026-08-22T19:00:00.000Z",
+    "venueArea": "Williamsburg",
+    "lat": 40.70877802676308,
+    "lng": -73.95916956040777,
+    "expectedAttendance": 53,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-SIqplYxNJyXhiUA"
+    ],
+    "organizerIds": [
+      "org-amani-mahbub",
+      "org-sadia-sehrish-islam",
+      "org-ameera-choudhury"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-ygIUce8o0siLUOf",
+    "name": "Cake Decorating Workshop 🍰",
+    "url": "https://lu.ma/5jnh4bnc",
+    "startsAt": "2026-08-22T22:30:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.7236201,
+    "lng": -74.0039267,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture",
+      "Food & Drink"
+    ],
+    "communityIds": [
+      "com-cal-L9MdJ6xQiwNRold"
+    ],
+    "organizerIds": [
+      "org-maayan-s-hospitality-group"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-nZ1ZixULBwCM8U9",
+    "name": "Kaju Studios: Scandal Night🪩👠",
+    "url": "https://lu.ma/f04426nx",
+    "startsAt": "2026-08-22T23:00:00.000Z",
+    "venueArea": "Williamsburg",
+    "lat": 40.710162700000005,
+    "lng": -73.95193189999999,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-nhUVmCKYpKRBLuW"
+    ],
+    "organizerIds": [
+      "org-apoorva-sudini"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-uG4MVnHSfDWo7xl",
+    "name": "Philosophy at the Museum: Ancient Greek and Roman Art",
+    "url": "https://lu.ma/twqv3m7i",
+    "startsAt": "2026-08-22T23:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7794366,
+    "lng": -73.963244,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-dGP82mVkrg1FRmr"
+    ],
+    "organizerIds": [
+      "org-new-york-philosophical-society",
+      "org-cole-whetstone",
+      "org-weiyang-gao"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-tAhEZYeG9MDi6UM",
+    "name": "AI and What Makes Us Human, a Fireside Chat with Camille Carlton + Responsible Tech Mixer",
+    "url": "https://lu.ma/84wnmw5y",
+    "startsAt": "2026-08-24T22:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.724965999999995,
+    "lng": -73.9963705,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-tp9fJuQNa1rcyNN"
+    ],
+    "organizerIds": [
+      "org-all-tech-is-human",
+      "org-center-for-humane-technology",
+      "org-brainstation"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-Qjbxq2FZVdaCI0x",
+    "name": "Fintech Run Club ft. Rain + Monk + JP Morgan",
+    "url": "https://lu.ma/2ezybaln",
+    "startsAt": "2026-08-25T11:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7324652,
+    "lng": -74.010762,
+    "expectedAttendance": 175,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Fitness",
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-XgIqgndHF0FwAuO"
+    ],
+    "organizerIds": [
+      "org-pedro-d-avila",
+      "org-fintech-running-club",
+      "org-rain-events",
+      "org-kendall-warson",
+      "org-connor-griffin",
+      "org-jacob-tamkin"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-HQFcGTjhwxwjkuk",
+    "name": "Codédex Presents: Gen Z Builders Networking Nite",
+    "url": "https://lu.ma/jhylzg7w",
+    "startsAt": "2026-08-25T21:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.725684099999995,
+    "lng": -73.9990311,
+    "expectedAttendance": 168,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-RCkV0QqJKzHoXrD"
+    ],
+    "organizerIds": [
+      "org-ellie-popoca",
+      "org-sonny-li",
+      "org-gabriela-banaag",
+      "org-asiqur-rahman"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-iqxeD3r5aSoOvGA",
+    "name": "Community Happy Hour",
+    "url": "https://lu.ma/sugptuot",
+    "startsAt": "2026-08-25T22:00:00.000Z",
+    "venueArea": "Lower Manhattan",
+    "lat": 40.7157583,
+    "lng": -74.00869709999999,
+    "expectedAttendance": 128,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-UMlTltEZ63otrQZ"
+    ],
+    "organizerIds": [
+      "org-new-york-focus"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-SNPz2Z318to4rqE",
+    "name": "August Tech Rooftop Mixer (Hosted by Andrew Yeung)",
+    "url": "https://lu.ma/rooftopmixeraugust",
+    "startsAt": "2026-08-25T22:30:00.000Z",
+    "venueArea": "Williamsburg",
+    "lat": 40.71946391998243,
+    "lng": -73.95903000789862,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "organizerIds": [
+      "org-andrew-yeung"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-fOtsDzFBMCGGqx0",
+    "name": "Notion Build Bar NYC",
+    "url": "https://lu.ma/buildbar-nyc-aug",
+    "startsAt": "2026-08-26T18:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.7234536,
+    "lng": -74.00642479999999,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-ZDQrtBgbNzSJZkh"
+    ],
+    "organizerIds": [
+      "org-nancy-chen"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-jqjZDqieYOH7mjA",
+    "name": "Build Your First App with Replit!",
+    "url": "https://lu.ma/8pq86025",
+    "startsAt": "2026-08-26T22:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.72328778243566,
+    "lng": -73.99677314961762,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-rcdFckWAEsET9OD"
+    ],
+    "organizerIds": [
+      "org-prompt-engineers-society",
+      "org-replit-for-education",
+      "org-andi-partovi"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-sRlItAyRzQeru3l",
+    "name": "[NYC] Idea to MVP Workshop: Build Night with Lovable",
+    "url": "https://lu.ma/vibenyc",
+    "startsAt": "2026-08-26T22:00:00.000Z",
+    "venueArea": "Williamsburg",
+    "lat": 40.720704535158475,
+    "lng": -73.9576410257436,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-bkO33DlatoB8YHE"
+    ],
+    "organizerIds": [
+      "org-david-yakobovitch",
+      "org-lev-raslin",
+      "org-heidi-liou",
+      "org-lauren-cotta"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-eSB3jCmA5gV0GMV",
+    "name": "An UNMUTED Debate: Bets Over Baghdad, or Our Kalshi Crisis",
+    "url": "https://lu.ma/84fec4e2",
+    "startsAt": "2026-08-26T22:30:00.000Z",
+    "venueArea": "Downtown Brooklyn",
+    "lat": 40.70471564024815,
+    "lng": -73.98825167168101,
+    "expectedAttendance": 21,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Crypto"
+    ],
+    "communityIds": [
+      "com-cal-oB3sYoup1LDsPL3"
+    ],
+    "organizerIds": [
+      "org-unmuted",
+      "org-fabrik-nyc"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-inTo9B6faqqWuWc",
+    "name": "ASRC CAT x HB x Activate NY August Innovators Social",
+    "url": "https://lu.ma/xqh8kmkc",
+    "startsAt": "2026-08-27T20:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.8157127,
+    "lng": -73.95016570000001,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-DukJHu11ElQhhxx"
+    ],
+    "organizerIds": [
+      "org-yuki-chen",
+      "org-chrisha-nario",
+      "org-hailey-faust"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-TybWHHHgqLHxgeC",
+    "name": "I Have an Idea Club #1: Vibe coding night",
+    "url": "https://lu.ma/y9i7jis8",
+    "startsAt": "2026-08-27T22:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.74175359595726,
+    "lng": -73.98552795884451,
+    "expectedAttendance": 58,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-0Ed3HhBL0HfJ4e6"
+    ],
+    "organizerIds": [
+      "org-amanda",
+      "org-janky-patel",
+      "org-deana-davoudiasl"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-oPjU9BriogzPUzL",
+    "name": "Last Call of Summer in Chinatown: Breakpoint LIVE with Sentry",
+    "url": "https://lu.ma/last-call-of-summer-in-chinatown",
+    "startsAt": "2026-08-27T22:00:00.000Z",
+    "venueArea": "Lower Manhattan",
+    "lat": 40.717601699999996,
+    "lng": -73.9997659,
+    "expectedAttendance": 36,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-PVfhSUgLiiaGDmZ"
+    ],
+    "organizerIds": [
+      "org-sentry",
+      "org-paul-jaffre"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-Ck2lpShHGpJAEpY",
+    "name": "Retail's front row, over cocktails.",
+    "url": "https://lu.ma/lrl44of0",
+    "startsAt": "2026-08-27T22:00:00.000Z",
+    "venueArea": "East Village",
+    "lat": 40.724694799999995,
+    "lng": -73.9908769,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-rFEqEzxd4PNWBE5"
+    ],
+    "organizerIds": [
+      "org-the-retail-edit"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-CK2kLbG5h9bCEct",
+    "name": "Zero-Proof Mixer w/ Bouquet Making Bar",
+    "url": "https://lu.ma/gbwdbusl",
+    "startsAt": "2026-08-27T22:30:00.000Z",
+    "venueArea": "East Village",
+    "lat": 40.721189200000005,
+    "lng": -73.9940677,
+    "expectedAttendance": 250,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Wellness"
+    ],
+    "communityIds": [
+      "com-cal-foDOrrhU3YOhvgx"
+    ],
+    "organizerIds": [
+      "org-190-bowery",
+      "org-bright-nights-social",
+      "org-the-bar-nun-life-llc"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-Re1fvfMhzEhjC0o",
+    "name": "OOO Boat Edition with KTN & Friends",
+    "url": "https://lu.ma/hyg9p4ry",
+    "startsAt": "2026-08-28T22:30:00.000Z",
+    "venueArea": null,
+    "lat": 40.759715,
+    "lng": -74.0039699,
+    "expectedAttendance": 200,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-Wmx2PaNRFnYZtBA"
+    ],
+    "organizerIds": [
+      "org-ktn-korean-tech-network",
+      "org-mesh-io",
+      "org-ji-hee-y",
+      "org-sejin",
+      "org-jongho-bae",
+      "org-steven-kim"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-kzxZLnbNfdc8wTI",
+    "name": "The Player Party - Tennis X Backgammon crossover",
+    "url": "https://lu.ma/6w9e5gy6",
+    "startsAt": "2026-08-28T22:30:00.000Z",
+    "venueArea": "Chelsea",
+    "lat": 40.7398422,
+    "lng": -74.0057142,
+    "expectedAttendance": 40,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-wGlwnmMsVzQQ8tr"
+    ],
+    "organizerIds": [
+      "org-remington-davenport"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-xKPQIrCeRToCeCW",
+    "name": "THE CYPHER | HARLEM ART HOUSE COLLECTIVE",
+    "url": "https://lu.ma/yzydlu9v",
+    "startsAt": "2026-08-28T23:30:00.000Z",
+    "venueArea": null,
+    "lat": 40.8041105,
+    "lng": -73.94713170000001,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-YXJaN3BHjHZDoo3"
+    ],
+    "organizerIds": [
+      "org-harlem-art-house-collective-hahc"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-aHq2lyT3e5rfiA9",
+    "name": "America's Largest Game Night Hosts: August Game Night",
+    "url": "https://lu.ma/3hyglvpi",
+    "startsAt": "2026-08-29T19:00:00.000Z",
+    "venueArea": "Lower Manhattan",
+    "lat": 40.712782499999996,
+    "lng": -74.01525649999999,
+    "expectedAttendance": 513,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-KElhKccbuaHmvRG"
+    ],
+    "organizerIds": [
+      "org-richard-ye",
+      "org-maggie"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-gqqgm6daE1poAxO",
+    "name": "Interwoven Collective presents: Khot Phet Nite Market, an End of Summer Fling",
+    "url": "https://lu.ma/qovchjnj",
+    "startsAt": "2026-08-29T21:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7179183,
+    "lng": -73.9947857,
+    "expectedAttendance": 95,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture",
+      "Food & Drink"
+    ],
+    "communityIds": [
+      "com-cal-d93YkXELBHPiN3a"
+    ],
+    "organizerIds": [
+      "org-khot-phet",
+      "org-welcome-to-chinatown",
+      "org-interwoven-collective"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-vffXgu1n7chO2uq",
+    "name": "sudocute: the sudoku meet cute | august 2026",
+    "url": "https://lu.ma/emlemfvq",
+    "startsAt": "2026-08-30T19:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.743287526502975,
+    "lng": -73.99322601804396,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-gYC90xsJn0bOHTS"
+    ],
+    "organizerIds": [
+      "org-naama-paulemont"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-tCCMKmABhuwKqT1",
+    "name": "💫 Fantasy Craft Night",
+    "url": "https://lu.ma/40g7fv55",
+    "startsAt": "2026-08-30T23:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.6771907,
+    "lng": -73.96342229999999,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-fT3eKMrCO9zUul2"
+    ],
+    "organizerIds": [
+      "org-marnie-williams-noble"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-coDpI472CzAI8RX",
+    "name": "Opening of REMAINS by Rupture, presented by BMAG",
+    "url": "https://lu.ma/cckjg9kl",
+    "startsAt": "2026-09-02T22:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7156394,
+    "lng": -73.9902932,
+    "expectedAttendance": 79,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-7azGidiinVJre6l"
+    ],
+    "organizerIds": [
+      "org-rupture"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-UBEaGLBVfwbg7bM",
+    "name": "Sugary Invites You to Celebrate Verve’s 70th Anniversary (Samara Joy, Christian McBride, Mei Semones & Sparklmami)",
+    "url": "https://lu.ma/sugarynyc-dzuw",
+    "startsAt": "2026-09-02T23:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7728707,
+    "lng": -73.9701469,
+    "expectedAttendance": 131,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-KYNaoLq3pS000fL"
+    ],
+    "organizerIds": [
+      "org-sugary"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-BAcBgN5aDxagH9I",
+    "name": "Graphite Tennis Fashion Archive Launch Party",
+    "url": "https://lu.ma/iu3g72ui",
+    "startsAt": "2026-09-03T22:00:00.000Z",
+    "venueArea": "SoHo",
+    "lat": 40.718882199999996,
+    "lng": -73.99964299999999,
+    "expectedAttendance": 36,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-jWlXWl4X84JNKT7"
+    ],
+    "organizerIds": [
+      "org-graphite-tennis-fashion-archive",
+      "org-bryson-malone",
+      "org-zander-abranowicz",
+      "org-abbr-projects"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-mWkVe9C4rGmcMFG",
+    "name": "Creator Economy NYC's Money Moves Mixer & Panel with Relay",
+    "url": "https://lu.ma/01yk8ez8",
+    "startsAt": "2026-09-09T22:30:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.74026529628518,
+    "lng": -73.98734792111217,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "ai"
+    ],
+    "communityIds": [
+      "com-cal-YYACB1sICtMRlDS"
+    ],
+    "organizerIds": [
+      "org-brett-dashevsky"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-CcQDQOP2QCmbUw4",
+    "name": "NYFW POP-UP: Black-Owned Brands From Around the World",
+    "url": "https://lu.ma/oxdxb2ef",
+    "startsAt": "2026-09-11T16:00:00.000Z",
+    "venueArea": "Midtown",
+    "lat": 40.7514727,
+    "lng": -73.9881911,
+    "expectedAttendance": 146,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-NsraRjjJJpOi9eZ"
+    ],
+    "organizerIds": [
+      "org-anka-africa"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-zLNbvfNinW2FOxs",
+    "name": "NYC B2B: AI Founders & Investors Meetup",
+    "url": "https://lu.ma/coos76ur",
+    "startsAt": "2026-09-14T22:00:00.000Z",
+    "venueArea": "Flatiron",
+    "lat": 40.744272099999996,
+    "lng": -73.9907621,
+    "expectedAttendance": 105,
+    "attendanceBasis": "observed",
+    "stack": [
+      "AI"
+    ],
+    "communityIds": [
+      "com-cal-1VimvHYSCVGhHuk"
+    ],
+    "organizerIds": [
+      "org-nyc-b2b",
+      "org-lauren-houpt",
+      "org-ignition-benefits"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-6ZMdMd8ufEqJ7xE",
+    "name": "*FREE EVENT* Slow Summer at Brooklyn Bridge Park presented by Spotify",
+    "url": "https://lu.ma/reading-3407",
+    "startsAt": "2026-09-20T16:30:00.000Z",
+    "venueArea": "Lower Manhattan",
+    "lat": 40.7022422,
+    "lng": -73.9958601,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Arts & Culture"
+    ],
+    "communityIds": [
+      "com-cal-Q8l315UsVMWb6h6"
+    ],
+    "organizerIds": [
+      "org-reading-rhythms",
+      "org-zack-stein",
+      "org-rebecka-c-olson"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-heTu9wrNlIirk1G",
+    "name": "Squarespace Circle Day 2026 (In-Person)",
+    "url": "https://lu.ma/circle-day-2026-in-person",
+    "startsAt": "2026-10-21T13:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.7292268,
+    "lng": -74.0057576,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-0R3x1gOWKkO7MuH"
+    ],
+    "organizerIds": [],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  },
+  {
+    "id": "evt-evt-HXoHzs3ONFXTFxY",
+    "name": "The Outliers Summit (Nov 5 & 6)",
+    "url": "https://lu.ma/2026",
+    "startsAt": "2026-11-05T14:00:00.000Z",
+    "venueArea": null,
+    "lat": 40.75450818715005,
+    "lng": -73.92646606701489,
+    "expectedAttendance": 0,
+    "attendanceBasis": "observed",
+    "stack": [
+      "Tech"
+    ],
+    "communityIds": [
+      "com-cal-kcWhMbIs2X0Y2Xb"
+    ],
+    "organizerIds": [
+      "org-andrew-yeung",
+      "org-ankur-nagpal"
+    ],
+    "sponsorTiers": [],
+    "knownSponsors": [],
+    "pastThemes": [],
+    "evidenceIds": []
+  }
+]
