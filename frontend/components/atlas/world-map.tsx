@@ -6,7 +6,9 @@ import type { AtlasCamera } from "@/hooks/use-atlas-camera"
 import type { Opportunity } from "@/lib/api/types"
 import { MAP_HEIGHT, MAP_WIDTH, PROJECTION_CENTER, PROJECTION_SCALE } from "@/lib/atlas/signal-layout"
 import type { AtlasViewState } from "./atlas-shell"
+import { ArcLayer } from "./arc-layer"
 import { OpportunityMarker } from "./opportunity-marker"
+import { LiveEventLayer } from "./live-event-layer"
 import { SignalCloudLayer } from "./signal-cloud-layer"
 
 const GEO_URL = "/geo/countries-110m.json"
@@ -97,6 +99,8 @@ export const WorldMap = memo(function WorldMap({
         {/* La cámara (hooks/use-atlas-camera) setea el transform de este grupo por rAF. */}
         <g ref={camera.groupRef}>
           <LandLayer activeCountry={activeCountry} />
+          {/* 136 eventos reales (ticket 03): entre la tierra y la textura ambiente. */}
+          <LiveEventLayer />
           <SignalCloudLayer
             view={view}
             results={results}
@@ -104,6 +108,11 @@ export const WorldMap = memo(function WorldMap({
             hintId={hoveredId}
             timeRange={timeRange}
           />
+          {/* Arcos origen→ciudad (ticket 04): mismo gate que los markers — solo
+              existen con resultados. Van debajo de la ubicación y los markers. */}
+          {(view === "results" || view === "selected" || view === "campaign") && (
+            <ArcLayer results={results} selectedId={selectedId} userLocation={userLocation} />
+          )}
           {userLocation && (
             <Marker coordinates={userLocation}>
               <g className="user-location" aria-label="Location shared through Linq">

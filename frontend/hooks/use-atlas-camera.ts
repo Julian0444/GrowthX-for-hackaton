@@ -10,7 +10,8 @@ import {
 } from "@/lib/atlas/camera"
 import { MAP_HEIGHT, MAP_WIDTH } from "@/lib/atlas/signal-layout"
 
-export type ZoomBand = { zoomed: boolean; zoomed2: boolean }
+// zoomed3 (k > 5): banda profunda para los labels de los eventos hero (ticket 03).
+export type ZoomBand = { zoomed: boolean; zoomed2: boolean; zoomed3: boolean }
 
 export type AtlasCamera = {
   stageRef: React.RefObject<HTMLDivElement | null>
@@ -35,7 +36,7 @@ export function useAtlasCamera({
   const markersRef = useRef(new Map<string, SVGGElement>())
   const camRef = useRef<CameraFrame>({ ...FRAME_IDLE })
   const flightRef = useRef<number | null>(null)
-  const bandRef = useRef<ZoomBand>({ zoomed: false, zoomed2: false })
+  const bandRef = useRef<ZoomBand>({ zoomed: false, zoomed2: false, zoomed3: false })
   const reducedRef = useRef(reducedMotion)
   const onBandRef = useRef(onZoomBandChange)
 
@@ -58,8 +59,12 @@ export function useAtlasCamera({
     for (const marker of markersRef.current.values()) {
       marker.setAttribute("transform", `scale(${inverse})`)
     }
-    const band: ZoomBand = { zoomed: cam.k > 1.7, zoomed2: cam.k > 2.2 }
-    if (band.zoomed !== bandRef.current.zoomed || band.zoomed2 !== bandRef.current.zoomed2) {
+    const band: ZoomBand = { zoomed: cam.k > 1.7, zoomed2: cam.k > 2.2, zoomed3: cam.k > 5 }
+    if (
+      band.zoomed !== bandRef.current.zoomed ||
+      band.zoomed2 !== bandRef.current.zoomed2 ||
+      band.zoomed3 !== bandRef.current.zoomed3
+    ) {
       bandRef.current = band
       onBandRef.current(band)
     }

@@ -72,7 +72,7 @@ function mulberry32(seed: number) {
 
 // Semilla estable a partir del id del mercado (FNV-1a): el mismo resultado del
 // backend produce siempre la misma nube — sin hydration mismatch ni "saltos".
-function hashSeed(input: string): number {
+export function hashSeed(input: string): number {
   let hash = 2166136261
   for (let i = 0; i < input.length; i += 1) {
     hash ^= input.charCodeAt(i)

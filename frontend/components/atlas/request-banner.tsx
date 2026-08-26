@@ -29,6 +29,9 @@ export function RequestBanner({
     )
   }
   if (request.status === "partial") {
+    // La demo del evento corre sin env keys a propósito (M7): el modo degradado
+    // es el estado normal en prod, no una alerta real — se oculta en el deploy.
+    if (process.env.NODE_ENV === "production") return null
     return (
       <div className="req-banner partial" role="status">
         <p className="msg">{request.message}</p>

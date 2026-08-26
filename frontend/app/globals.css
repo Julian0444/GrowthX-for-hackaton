@@ -190,6 +190,7 @@
   --signal-weak: rgba(17,17,17,0.12);
   --signal-medium: rgba(17,17,17,0.35);
   --signal-strong: rgba(17,17,17,0.72);
+  --ambient-dim: 0.55;         /* textura ambiente sintética, atenuada bajo los eventos reales */
 
   /* paneles */
   --panel: rgba(255,255,255,0.94);
@@ -245,10 +246,52 @@
 .atlas.zoomed2 .glyph-cos { opacity: 0.85; }
 .atlas.layer-off-events .glyph-events, .atlas.layer-off-communities .glyph-comms,
 .atlas.layer-off-companies .glyph-cos, .atlas.layer-off-demand .dots { opacity: 0 !important; }
+.atlas.layer-off-events .live-events { opacity: 0 !important; }
+.atlas .signals .ambient { opacity: var(--ambient-dim); }
 .atlas .signals { transition: opacity 500ms var(--ease); }
 .atlas .cluster.dim { opacity: 0.5; }
 .atlas .cluster.selected { opacity: 1; }
 .atlas .cluster.hint .dots { opacity: 1; }
+/* ============ Eventos reales pulsando (ticket 03) ============ */
+/* Ondas de tinta/sonar sobre el paper: solo transform/opacity (compositor), glow = círculo con opacidad. */
+.atlas .live-events { transition: opacity 500ms var(--ease); }
+.atlas .lev-core { fill: var(--ink); opacity: 0.82; }
+.atlas .lev-glow { fill: var(--ink); opacity: 0.07; }
+.atlas .lev-ring {
+  fill: none; stroke: var(--ink); stroke-width: 1.1; vector-effect: non-scaling-stroke;
+  opacity: 0; transform-box: fill-box; transform-origin: center;
+  animation: atlas-event-pulse var(--dur, 4s) ease-out var(--d, 0s) infinite;
+}
+@keyframes atlas-event-pulse {
+  0% { transform: scale(0.4); opacity: 0.55; }
+  70% { opacity: 0.12; }
+  100% { transform: scale(3); opacity: 0; }
+}
+/* Presupuesto de nodos animados: a zoom mundo solo pulsan los hero (~34); al acercar pulsan todos. */
+.atlas:not(.zoomed) .lev.tier-base .lev-ring { animation: none; }
+.atlas .tier-base .lev-core { opacity: 0.6; }
+.atlas .lev-label {
+  font-family: var(--sans); font-size: 1.1px; font-weight: 550; fill: var(--ink);
+  paint-order: stroke; stroke: var(--land); stroke-width: 0.45px; stroke-linejoin: round;
+  opacity: 0; transition: opacity 500ms var(--ease);
+}
+.atlas.zoomed3 .lev-label { opacity: 0.95; }
+/* Durante el análisis los eventos bajan como el resto de las señales. */
+.atlas.state-analyzing .live-events { opacity: 0.42; }
+
+.atlas .data-chip {
+  position: absolute; z-index: 44; left: 50%; bottom: 20px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  background: var(--panel); border: 1px solid var(--panel-border); border-radius: 999px;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: 6px 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.02em; color: var(--ink-2);
+  box-shadow: 0 4px 14px rgba(17,17,17,0.05); pointer-events: none;
+  transition: bottom 420ms var(--ease), opacity 300ms var(--ease);
+}
+.atlas .data-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); flex: none; }
+.atlas.state-results .data-chip, .atlas.state-selected .data-chip, .atlas.state-campaign .data-chip { bottom: 84px; }
+.atlas.state-analyzing .data-chip { opacity: 0; }
+
 @keyframes atlas-breathe { 0%, 100% { opacity: var(--o); } 50% { opacity: calc(var(--o) * 0.35); } }
 .atlas .br { animation: atlas-breathe var(--dur, 7s) ease-in-out infinite; }
 
@@ -289,6 +332,36 @@
    y deben revelarse igual que cuando existían desde el idle. */
 .atlas.state-results .marker g.inner, .atlas.state-selected .marker g.inner, .atlas.state-campaign .marker g.inner { opacity: 1; transform: scale(1); animation: atlas-marker-in 500ms var(--ease); }
 @keyframes atlas-marker-in { from { opacity: 0; transform: scale(0.6); } }
+
+/* ============ Arcos de resultados (ticket 04 / M3) ============ */
+.atlas .arcs { pointer-events: none; }
+.atlas .arc-set { opacity: 0.55; transition: opacity 420ms var(--ease); }
+/* Draw-in: dashes normalizados (pathLength=1) animados por CSS con delay por rank.
+   Mientras se dibuja, el trazo escala con la cámara (los dashes son exactos en
+   unidades del canvas) y su ancho se fija en 1px vía --arc-a (px por unidad,
+   capturado por arc-layer al terminar el vuelo). Al terminar (.drawn, animationend)
+   suelta los dashes y pasa a non-scaling-stroke: 1px estable a cualquier zoom. */
+.atlas .arc {
+  fill: none; stroke: var(--ink); stroke-width: calc(1px / var(--arc-a, 1)); stroke-linecap: butt;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: atlas-arc-draw 900ms var(--ease) var(--delay, 950ms) both;
+}
+@keyframes atlas-arc-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.atlas .arc.drawn { stroke-dasharray: none; stroke-linecap: round; stroke-width: 1px; vector-effect: non-scaling-stroke; }
+/* Cometa: cabeza (animateMotion) + cola (dash deslizante). Escalan con el zoom;
+   las bandas de zoom los achican para que no engorden en el encuadre de ciudad. */
+.atlas .arc-trail { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; opacity: 0.5; }
+.atlas .arc-comet { fill: var(--ink); }
+.atlas.zoomed .arc-trail { stroke-width: 0.55; }
+.atlas.zoomed .arc-comet { r: 0.85px; }
+.atlas.zoomed2 .arc-trail { stroke-width: 0.35; }
+.atlas.zoomed2 .arc-comet { r: 0.55px; }
+/* Selección: el arco elegido sube al acento de selección de la paleta (tinta
+   plena, como .marker.selected / .rail-item.active) y el resto baja a 0.15. */
+.atlas.state-selected .arc-set:not(.to-selected), .atlas.state-campaign .arc-set:not(.to-selected) { opacity: 0.15; }
+.atlas .arc-set.to-selected { opacity: 1; }
+.atlas .arc-set.to-selected .arc { stroke-width: calc(1.5px / var(--arc-a, 1)); }
+.atlas .arc-set.to-selected .arc.drawn { stroke-width: 1.5px; }
 
 /* ============ Header ============ */
 .atlas-header {
@@ -869,6 +942,8 @@
   .atlas .layer-row { min-height: 44px; }
   .atlas .window-row .opts button { min-height: 44px; padding: 8px 11px; }
   .atlas .zoom-ctl { display: none; }
+  .atlas .data-chip { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+  .atlas.search-compact:not(.state-idle) .data-chip { display: none; }
   .atlas .layers-wrap { bottom: auto; top: calc(108px + env(safe-area-inset-top, 0px)); left: 16px; }
   .atlas.state-idle .layers-wrap { top: auto; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
   .atlas.search-compact:not(.state-idle) .layers-wrap { display: none; }
@@ -897,6 +972,12 @@
     transition-duration: 0.01ms !important;
   }
   .atlas.scanning .scan { opacity: 0; }
+  /* Eventos reales: anillo estático visible, sin pulso (ticket 03). */
+  .atlas .lev-ring { animation: none !important; opacity: 0.22; transform: scale(1.3); }
+  /* Arcos: aparecen ya dibujados y sin escalonar; los cometas (SMIL, ajenos a
+     animation-duration) no se arrancan desde arc-layer y quedan ocultos. */
+  .atlas .arc { animation-delay: 0ms !important; }
+  .atlas .arc-trail, .atlas .arc-comet { display: none; }
 }
 
 /* ============ Terac blind copy arena ============ */

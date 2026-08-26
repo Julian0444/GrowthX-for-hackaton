@@ -131,15 +131,18 @@ export const SignalCloudLayer = memo(function SignalCloudLayer({
 
   return (
     <g className="signals" aria-hidden="true" pointerEvents="none" style={{ opacity }}>
-      {visibleAmbient.map((cluster) => (
-        <ClusterGroup
-          key={cluster.id}
-          cluster={cluster}
-          selected={false}
-          dim={ranked && cluster.big}
-          hint={false}
-        />
-      ))}
+      {/* Textura ambiente sintética, atenuada (--ambient-dim) para que los 136 eventos reales dominen. */}
+      <g className="ambient">
+        {visibleAmbient.map((cluster) => (
+          <ClusterGroup
+            key={cluster.id}
+            cluster={cluster}
+            selected={false}
+            dim={ranked && cluster.big}
+            hint={false}
+          />
+        ))}
+      </g>
       {resultClusters.map((cluster) => (
         <ClusterGroup
           key={cluster.id}

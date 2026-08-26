@@ -29,6 +29,7 @@ import { OnboardingIntake, type IntakePayload } from "./onboarding-intake"
 import { OpportunityDrawer } from "./opportunity-drawer"
 import { RequestBanner } from "./request-banner"
 import { ResultRail } from "./result-rail"
+import { LIVE_EVENT_CHIP } from "@/lib/atlas/live-events"
 import { SearchCommand } from "./search-command"
 import { WorldMap } from "./world-map"
 
@@ -226,7 +227,7 @@ export function AtlasShell() {
   // Bottom sheet mobile (§12): medium 46svh ↔ tall 88svh vía el grabber.
   const [sheetTall, setSheetTall] = useState(false)
   const [scanning, setScanning] = useState(false)
-  const [zoomBand, setZoomBand] = useState<ZoomBand>({ zoomed: false, zoomed2: false })
+  const [zoomBand, setZoomBand] = useState<ZoomBand>({ zoomed: false, zoomed2: false, zoomed3: false })
   const [toast, setToast] = useState<{ message: string; visible: boolean }>({ message: "", visible: false })
   const [ingest, setIngest] = useState<IngestUiState>(INGEST_IDLE)
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null)
@@ -701,7 +702,7 @@ export function AtlasShell() {
   const layerOffClasses = LAYER_ORDER.filter((layer) => !layers.includes(layer))
     .map((layer) => ` layer-off-${layer}`)
     .join("")
-  const zoomClasses = `${zoomBand.zoomed ? " zoomed" : ""}${zoomBand.zoomed2 ? " zoomed2" : ""}`
+  const zoomClasses = `${zoomBand.zoomed ? " zoomed" : ""}${zoomBand.zoomed2 ? " zoomed2" : ""}${zoomBand.zoomed3 ? " zoomed3" : ""}`
   const compact = view !== "idle"
   const shellClassName = `atlas state-${view}${compact ? " search-compact" : ""}${sheetTall ? " sheet-tall" : ""}${scanning ? " scanning" : ""}${zoomClasses}${layerOffClasses}`
 
@@ -736,6 +737,12 @@ export function AtlasShell() {
       />
 
       <ResultRail results={results} selectedCityId={selectedId} onSelect={selectCity} onHover={hoverCity} />
+
+      {/* Historia de datos honesta (ticket 03): "ingested", nunca "live". */}
+      <div className="data-chip" role="note">
+        <span className="dot" aria-hidden="true" />
+        {LIVE_EVENT_CHIP}
+      </div>
 
       <WorldMap
         camera={camera}
