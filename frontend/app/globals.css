@@ -350,12 +350,15 @@
 .atlas .arc.drawn { stroke-dasharray: none; stroke-linecap: round; stroke-width: 1px; vector-effect: non-scaling-stroke; }
 /* Cometa: cabeza (animateMotion) + cola (dash deslizante). Escalan con el zoom;
    las bandas de zoom los achican para que no engorden en el encuadre de ciudad. */
-.atlas .arc-trail { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; opacity: 0.5; }
-.atlas .arc-comet { fill: var(--ink); }
-.atlas.zoomed .arc-trail { stroke-width: 0.55; }
-.atlas.zoomed .arc-comet { r: 0.85px; }
-.atlas.zoomed2 .arc-trail { stroke-width: 0.35; }
-.atlas.zoomed2 .arc-comet { r: 0.55px; }
+.atlas .arc-trail { fill: none; stroke: var(--ink); stroke-width: 1.3; stroke-linecap: round; opacity: 0.55; }
+.atlas .arc-comet .head { fill: var(--ink); }
+.atlas .arc-comet .glow { fill: var(--ink); opacity: 0.14; }
+.atlas.zoomed .arc-trail { stroke-width: 0.7; }
+.atlas.zoomed .arc-comet .head { r: 1.1px; }
+.atlas.zoomed .arc-comet .glow { r: 2.8px; }
+.atlas.zoomed2 .arc-trail { stroke-width: 0.45; }
+.atlas.zoomed2 .arc-comet .head { r: 0.7px; }
+.atlas.zoomed2 .arc-comet .glow { r: 1.8px; }
 /* Selección: el arco elegido sube al acento de selección de la paleta (tinta
    plena, como .marker.selected / .rail-item.active) y el resto baja a 0.15. */
 .atlas.state-selected .arc-set:not(.to-selected), .atlas.state-campaign .arc-set:not(.to-selected) { opacity: 0.15; }

@@ -6,7 +6,7 @@ import type { Opportunity } from "@/lib/api/types"
 import { ARC_DELAY_MS, buildArcs, COMET_DUR_S, type Arc } from "@/lib/atlas/arcs"
 
 // Largo de la cola del cometa en unidades del canvas (se normaliza por arco).
-const TAIL_UNITS = 16
+const TAIL_UNITS = 22
 
 // Al terminar de dibujarse, el arco suelta los dashes y pasa a
 // non-scaling-stroke (ver CSS): mutación directa del DOM, sin estado de React.
@@ -96,10 +96,12 @@ export const ArcLayer = memo(function ArcLayer({
           </path>
           {/* visibility como ATRIBUTO (no CSS): el <set> SMIL solo puede pisar el
               atributo, y un CSS `visibility` le ganaría al valor animado. */}
-          <circle className="arc-comet" r={1.4} visibility="hidden">
+          <g className="arc-comet" visibility="hidden">
             <set attributeName="visibility" to="visible" begin="indefinite" />
             <animateMotion dur={`${COMET_DUR_S}s`} repeatCount="indefinite" begin="indefinite" path={arc.d} />
-          </circle>
+            <circle className="glow" r={4.5} />
+            <circle className="head" r={1.8} />
+          </g>
         </g>
       ))}
     </g>

@@ -8,11 +8,11 @@ Heredado del ticket 08 (cortado): **la página deployada no muestra el banner de
 
 **Status:** claimed
 
-- [ ] Build de producción verde en local antes de tocar Vercel
+- [x] Build de producción verde en local antes de tocar Vercel
 - [ ] Deploy sin env keys: la app corre con fixtures deterministas de punta a punta
-- [ ] URL limpia y pública funcionando
-- [ ] El banner de modo degradado no es visible en la página deployada
-- [ ] Redeploy automático verificado: un push posterior actualiza la URL solo
+- [x] URL limpia y pública funcionando (https://growxth.vercel.app)
+- [x] El banner de modo degradado no es visible en la página deployada
+- [x] Redeploy automático verificado: un push posterior actualiza la URL solo (push `ef9a65c` → `dpl_8D5KrVpU…`, source git, alias actualizado)
 
 Detalle: sección **M7 (puntos 1–2)** de la spec + mecanismo del banner en **M6**.
 
