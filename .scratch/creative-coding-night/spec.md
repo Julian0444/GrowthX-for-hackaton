@@ -17,8 +17,8 @@ Requisitos duros: usar Quiver AI + Cursor, página deployada. Sin tocar backend/
 | 03 | Capa de 136 eventos reales pulsando | — | **resolved** (2026-08-25; posición = centroide real + offset ×110, ver ticket) |
 | 04 | Arcos animados con cometas (results) | — | claimed (en curso) |
 | 05 | Coreografía por estado (recortada) | 03 | ready-for-agent |
-| 06 | Autorizar OAuth de Quiver MCP (humano) | — | ready-for-human |
-| 07 | Asset Quiver hero (+ stretch) | 06 | ready-for-agent |
+| 06 | Autorizar OAuth de Quiver MCP (humano) | — | **resolved** (2026-08-25; e2e ok, arrow-2 = 0 créditos, ver ticket) |
+| 07 | Asset Quiver hero (+ stretch) | 06 | **resolved** (2026-08-25; emblema hero en intake con draw-in; monograma GX versionado sin integrar, ver ticket) |
 | 08 | Autopilot `?demo=1` | — | **wontfix** (banner → 09) |
 | 09 | Deploy a Vercel YA, sin claves | — | claimed (proyecto Vercel ya linkeado) |
 | 10 | QA de venue, video y pitch (humano) | 09 | ready-for-human |

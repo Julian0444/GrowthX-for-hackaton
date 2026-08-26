@@ -489,6 +489,32 @@
 .atlas .intake-go:active { transform: scale(0.99); }
 .atlas .intake-go:disabled { opacity: 0.35; cursor: default; transform: none; }
 
+/* ============ Emblema Quiver (ticket 07) ============ */
+/* Constelación hero sobre el título del intake, generada con Quiver AI.
+   Draw-in secuencial: pathLength=1 en cada trazo → dash 1→0 (mismo patrón que
+   los arcos). Delays por elemento vía --ed desde el componente. Jerarquía de
+   tinta por opacidad (aro < arcos < nodos), como el resto de las señales. */
+.atlas .intake-emblem {
+  display: block; width: 148px; height: auto; margin: 0 auto 12px;
+  color: var(--ink); overflow: visible;
+}
+.atlas .intake-emblem .qe {
+  fill: none; stroke: currentColor; stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: atlas-emblem-draw 700ms var(--ease) var(--ed, 0ms) both;
+}
+.atlas .intake-emblem .qe-rim { animation-duration: 1150ms; stroke-width: 1px; opacity: 0.4; }
+.atlas .intake-emblem .qe-link { stroke-width: 1px; opacity: 0.72; }
+.atlas .intake-emblem .qe-node { animation-duration: 480ms; stroke-width: 1.3px; }
+.atlas .intake-emblem .qe-hero { stroke-width: 1.8px; }
+@keyframes atlas-emblem-draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  /* Aparece ya dibujado: la regla global solo acorta duration y el delay por
+     --ed dejaría trazos invisibles hasta ~1.5s. */
+  .atlas .intake-emblem .qe { animation: none !important; stroke-dasharray: none; stroke-dashoffset: 0; }
+}
+
 /* ============ Scan sweep (§5) ============ */
 .atlas .scan { position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: 0; }
 .atlas .scan .band {

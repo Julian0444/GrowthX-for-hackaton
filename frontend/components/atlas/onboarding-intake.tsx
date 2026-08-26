@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react"
 import { ArrowRight } from "lucide-react"
+import { ConstellationEmblem } from "@/components/quiver/constellation-emblem"
 import type { SearchRequest } from "@/lib/api/types"
 
 // Intake inicial: el usuario cuenta qué construye y qué busca ANTES de ver una
@@ -52,6 +53,9 @@ export function OnboardingIntake({
   return (
     <div className="intake">
       <div className="intake-card">
+        {/* Emblema hero generado con Quiver AI (ticket 07): entra con stroke
+            draw-in secuencial — es lo primero que ve el juez. */}
+        <ConstellationEmblem className="intake-emblem" />
         <span className="eyebrow">Growth Atlas</span>
         <h2 className="intake-title">Where should you grow next?</h2>
         <p className="intake-sub">
