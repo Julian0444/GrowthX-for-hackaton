@@ -16,7 +16,18 @@
 //   GROWTHX_WORKER_EXIT_AFTER_STEP  corte controlado tras completar ese paso
 //     (demo del ticket y test de reanudación): el job vuelve a la cola y el
 //     proceso sale; un arranque posterior sin la variable termina el run.
+//
+// Barreras de prueba del ticket 15 (matriz de caídas y aislamiento). Solo
+// actúan si el arranque las pide explícitamente; en producción no se setean:
+//   GROWTHX_WORKER_KILL_AT       punto de barrera (ver ProcessRunDeps.testBarrier)
+//     en el que el proceso se mata a sí mismo con SIGKILL — abrupto de verdad:
+//     sin stop graceful, sin confirmar el job, sin cerrar pools.
+//   GROWTHX_WORKER_LUMA_FIXTURE  ruta a un JSON { url: respuesta } que reemplaza
+//     el transporte HTTP del step de obtención Luma. Toda validación del
+//     adaptador (allowlist, redirecciones, límites) sigue corriendo; solo el
+//     transporte es controlado. URL no grabada → falla (nada sale a la red).
 
+import { appendFileSync, readFileSync } from 'node:fs';
 import { PgBoss } from 'pg-boss';
 import { closePools, getWorkerPool } from '../lib/server/db/pool.ts';
 import {
@@ -26,7 +37,40 @@ import {
 import {
   processEvaluationRun,
   WorkerStopRequested,
+  type ProcessRunDeps,
 } from '../lib/server/evaluations/run-worker.ts';
+
+// Entrada del fixture de transporte (ticket 15). El archivo se relee en CADA
+// request: el test puede cambiar la respuesta entre reinicios del worker sin
+// cambiar el entorno. `hang` deja la request en vuelo para siempre (el test
+// mata el proceso «durante la obtención»); `marker` registra que la request
+// llegó; `error` simula una fuente caída.
+interface LumaFixtureEntry {
+  status?: number;
+  body?: string;
+  contentType?: string;
+  headers?: Record<string, string>;
+  hang?: boolean;
+  marker?: string;
+  error?: string;
+}
+
+function fixtureTransport(fixturePath: string, callsFile: string | null): typeof fetch {
+  return (async (input: string | URL | Request) => {
+    const url = String(input);
+    if (callsFile) appendFileSync(callsFile, `${url}\n`);
+    const routes = JSON.parse(readFileSync(fixturePath, 'utf8')) as Record<string, LumaFixtureEntry>;
+    const entry = routes[url];
+    if (!entry) throw new TypeError(`transporte de fixture: URL no grabada «${url}» (nada sale a la red)`);
+    if (entry.marker) appendFileSync(entry.marker, `${url}\n`);
+    if (entry.hang) return new Promise<Response>(() => undefined);
+    if (entry.error) throw new TypeError(entry.error);
+    return new Response(entry.body ?? '', {
+      status: entry.status ?? 200,
+      headers: { 'content-type': entry.contentType ?? 'text/html', ...(entry.headers ?? {}) },
+    });
+  }) as typeof fetch;
+}
 
 async function main(): Promise<void> {
   const queueUrl = process.env.GROWTHX_QUEUE_DATABASE_URL;
@@ -35,6 +79,20 @@ async function main(): Promise<void> {
     throw new Error('Falta GROWTHX_WORKER_DATABASE_URL (ver frontend/db/README.md)');
 
   const exitAfterStep = process.env.GROWTHX_WORKER_EXIT_AFTER_STEP ?? null;
+  const killAt = process.env.GROWTHX_WORKER_KILL_AT || null;
+  const testBarrier: ProcessRunDeps['testBarrier'] = killAt
+    ? (point) => {
+        if (point !== killAt) return;
+        // SIGKILL a sí mismo: ni graceful stop, ni ack del job, ni cierre de
+        // pools — la caída abrupta que la matriz del ticket 15 exige.
+        console.error(`[worker] barrera de prueba «${point}»: SIGKILL inmediato`);
+        process.kill(process.pid, 'SIGKILL');
+      }
+    : undefined;
+  const lumaFixture = process.env.GROWTHX_WORKER_LUMA_FIXTURE || null;
+  const lumaIngest = lumaFixture
+    ? { fetchImpl: fixtureTransport(lumaFixture, process.env.GROWTHX_WORKER_LUMA_CALLS_FILE || null) }
+    : {};
   const pollingIntervalSeconds = Math.max(
     0.5,
     Number(process.env.GROWTHX_WORKER_POLL_SECONDS ?? '2') || 2,
@@ -70,7 +128,7 @@ async function main(): Promise<void> {
         }
         console.log(`[worker] job ${job.id} → run ${data.runId}`);
         try {
-          await processEvaluationRun(data, { pool, exitAfterStep });
+          await processEvaluationRun(data, { pool, exitAfterStep, testBarrier, lumaIngest });
           console.log(`[worker] run ${data.runId} procesado`);
         } catch (error) {
           if (error instanceof WorkerStopRequested) {

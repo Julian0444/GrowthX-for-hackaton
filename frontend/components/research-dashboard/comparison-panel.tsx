@@ -15,12 +15,22 @@
 // la vista de campaña con el borrador persistido. Un candidato excluido por
 // restricción confirmada no se puede elegir con un click; guardar no envía
 // ningún mensaje.
+//
+// Ticket 14: reabrir es una LECTURA por identidad. El panel recupera las
+// decisiones del snapshot desde PostgreSQL (jamás recalcula ni refresca
+// fuentes), muestra evidencia y motivos con su fecha/revisión original, avisa
+// la vigencia ACTUAL sin alterar el resultado histórico, y ofrece «Reevaluar»
+// como acción explícita (otro run vinculado; la decisión previa sigue
+// disponible). La selección (decisión enfocada, vista de campaña) viene de la
+// URL vía `focus`, así cerrar y volver por el enlace interno restaura lo mismo.
 
 import { useEffect, useRef, useState } from "react"
 import type { ProjectedField, ProjectedScore } from "../../lib/contracts/evaluation"
 import type { ComparisonCandidateView, ComparisonViewModel } from "../../lib/api/opportunity-adapter"
 import { projectCampaignDraft } from "../../lib/api/opportunity-adapter"
 import {
+  comparisonResult,
+  fetchEvaluation,
   fetchSnapshotDecisions,
   reviseConditionalDecision,
   saveConditionalDecision,
@@ -29,6 +39,7 @@ import {
 } from "../../lib/api/atlas-client"
 import { CampaignDraftPanel } from "../atlas/campaign-panel"
 import { CoverageBar } from "../atlas/confidence-bars"
+import { evaluationHref, NO_FOCUS, type EvaluationFocus } from "./evaluation-list"
 import { ReasonSources } from "./research-dossier"
 
 const STATE_CLASS: Record<ComparisonCandidateView["stateLabel"], string> = {
@@ -39,12 +50,24 @@ const STATE_CLASS: Record<ComparisonCandidateView["stateLabel"], string> = {
 
 const VERDICT_LABEL = { chosen: "Elegida", discarded: "Descartada", pending: "Pendiente" } as const
 
+// Estado de la lectura de decisiones: «leyendo» y «no disponible» se
+// distinguen de «no hay decisión» (lista vacía con lectura ok).
+type DecisionsState = "loading" | "ok" | "unauthorized" | "unavailable"
+
+interface PreviousEvaluation {
+  runId: string
+  snapshotId: string | null
+  evaluatedAt: string | null
+  decisions: Record<string, DecisionRead>
+  note: string | null
+}
+
 function Field({ label, field }: { label: string; field: ProjectedField }) {
   return (
     <p className="research-meta">
       <b>{label}:</b>{" "}
       {field.state === "known"
-        ? `${field.display}${field.pendingNote ? ` · ${field.pendingNote}` : ""}`
+        ? `${field.display}${field.pendingNote ? ` · ${field.pendingNote}` : ""}${field.obtainedAt ? ` · obtenido ${field.obtainedAt}` : ""}`
         : field.state === "ambiguous"
           ? `${field.display} · ${field.note}`
           : `Pendiente${field.note ? ` · ${field.note}` : ""}`}
@@ -107,17 +130,29 @@ function normalizeCondition(draft: DecisionConditionDraft): DecisionConditionDra
 }
 
 function DecisionControls({
+  runId,
   snapshotId,
   candidate,
   saved,
+  loading,
+  previous,
+  previousRunId,
   onSaved,
   onOpenCampaign,
+  onOpenRun,
+  onCopy,
 }: {
+  runId: string
   snapshotId: string
   candidate: ComparisonCandidateView
   saved: DecisionRead | null
+  loading: boolean
+  previous: DecisionRead | null
+  previousRunId: string | null
   onSaved: (read: DecisionRead) => void
-  onOpenCampaign: (editionId: string) => void
+  onOpenCampaign: (read: DecisionRead) => void
+  onOpenRun: (runId: string, focus: EvaluationFocus) => void
+  onCopy: (href: string) => void
 }) {
   const excluded = candidate.dossier.eligibility.status === "excluded"
   const [open, setOpen] = useState(false)
@@ -161,7 +196,7 @@ function DecisionControls({
       setOpen(false)
       onSaved(outcome.read)
       // Elegir abre la vista de campaña con el borrador persistido.
-      if (outcome.read.decision.verdict === "chosen") onOpenCampaign(candidate.editionId)
+      if (outcome.read.decision.verdict === "chosen") onOpenCampaign(outcome.read)
     } else {
       setNote(outcome.message)
     }
@@ -195,14 +230,26 @@ function DecisionControls({
   if (saved) {
     const openConditions = saved.decision.conditions.filter((condition) => condition.status === "open")
     const conditional = saved.decision.verdict === "chosen" && openConditions.length > 0
+    const href = evaluationHref(runId, { decisionId: saved.decisionId, view: "comparison" })
     return (
-      <div className="research-decision" data-testid="candidate-decision">
+      <div className="research-decision" data-testid="candidate-decision" data-decision-id={saved.decisionId}>
         <p>
           <b data-testid="decision-state">
             {VERDICT_LABEL[saved.decision.verdict]}
             {conditional ? " · elección condicional" : ""}
           </b>{" "}
-          · revisión {saved.decision.revision}
+          · revisión <span data-testid="decision-revision">{saved.decision.revision}</span> · registrada el{" "}
+          <span data-testid="decision-decided-at">{saved.decision.decidedAt}</span>
+        </p>
+        <p className="research-meta">
+          Decisión <span data-testid="decision-id">{saved.decisionId}</span> · snapshot {saved.snapshotId} · leída desde
+          PostgreSQL con su revisión original.{" "}
+          <a className="research-link" href={href} data-testid="decision-link">
+            Enlace interno
+          </a>{" "}
+          <button className="research-link" type="button" onClick={() => onCopy(href)}>
+            Copiar enlace
+          </button>
         </p>
         <p className="research-meta">
           Motivos registrados de la decisión{saved.decision.verdict === "discarded" ? " (no son un resultado observado del evento)" : ""}:
@@ -248,8 +295,21 @@ function DecisionControls({
             </ul>
           </div>
         )}
+        {saved.revisions.length > 1 && (
+          <details data-testid="decision-history">
+            <summary className="research-meta">Revisiones conservadas ({saved.revisions.length})</summary>
+            <ul>
+              {saved.revisions.map((revision) => (
+                <li key={revision.id} className="research-meta">
+                  revisión {revision.revision} · {VERDICT_LABEL[revision.verdict]} · {revision.decidedAt} · motivos:{" "}
+                  {revision.reasons.join(" / ")}
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
         {saved.campaign && (
-          <button className="research-button" type="button" onClick={() => onOpenCampaign(candidate.editionId)}>
+          <button className="research-button" type="button" onClick={() => onOpenCampaign(saved)} data-testid="open-campaign">
             Abrir borrador de campaña persistido
           </button>
         )}
@@ -258,16 +318,50 @@ function DecisionControls({
     )
   }
 
+  if (loading) {
+    return (
+      <p role="status" className="research-meta" data-testid="decision-loading">
+        Leyendo decisiones guardadas de este snapshot…
+      </p>
+    )
+  }
+
+  const previousNote =
+    previous && previousRunId ? (
+      <p className="research-meta" data-testid="previous-decision" data-decision-id={previous.decisionId}>
+        Decisión previa en la evaluación anterior:{" "}
+        <b>
+          {VERDICT_LABEL[previous.decision.verdict]}
+          {previous.decision.verdict === "chosen" && previous.decision.conditions.some((condition) => condition.status === "open")
+            ? " · elección condicional"
+            : ""}
+        </b>{" "}
+        · revisión {previous.decision.revision} · registrada el {previous.decision.decidedAt}.{" "}
+        <button
+          className="research-link"
+          type="button"
+          onClick={() => onOpenRun(previousRunId, { decisionId: previous.decisionId, view: "comparison" })}
+        >
+          Abrir la decisión previa
+        </button>{" "}
+        Esta reevaluación no la edita: registrar acá es otra decisión sobre otro snapshot.
+      </p>
+    ) : null
+
   if (!open) {
     return (
-      <button className="research-button" type="button" onClick={() => setOpen(true)} data-testid="decision-open">
-        Registrar decisión
-      </button>
+      <>
+        {previousNote}
+        <button className="research-button" type="button" onClick={() => setOpen(true)} data-testid="decision-open">
+          Registrar decisión
+        </button>
+      </>
     )
   }
 
   return (
     <div className="research-decision" data-testid="decision-form">
+      {previousNote}
       <p>
         <b>Registrar decisión</b> — los motivos son obligatorios; guardar no envía mensajes ni contrata nada.
       </p>
@@ -363,12 +457,44 @@ function DecisionControls({
   )
 }
 
-export function ComparisonPanel({ view }: { view: ComparisonViewModel }) {
+export function ComparisonPanel({
+  view,
+  runId,
+  previousRunId,
+  focus,
+  onFocusChange,
+  onReevaluate,
+  reevaluating,
+  onOpenRun,
+  onOpenEdition,
+  onOpenOrganizer,
+  onDecisionsChanged,
+}: {
+  view: ComparisonViewModel
+  runId: string
+  // Vínculo al run de comparación anterior cuando este run es una reevaluación.
+  previousRunId: string | null
+  focus: EvaluationFocus
+  onFocusChange: (focus: EvaluationFocus) => void
+  onReevaluate: () => void
+  reevaluating: boolean
+  onOpenRun: (runId: string, focus: EvaluationFocus) => void
+  onOpenEdition: (editionId: string) => void
+  onOpenOrganizer: (organizerId: string) => void
+  onDecisionsChanged: () => void
+}) {
   // Decisiones persistidas contra este snapshot (una por alternativa): se
   // recuperan al montar, así reabrir el run conserva el estado de decisión.
   const [decisions, setDecisions] = useState<Record<string, DecisionRead>>({})
-  const [decisionsNote, setDecisionsNote] = useState<string | null>(null)
-  const [campaignFor, setCampaignFor] = useState<string | null>(null)
+  const [reloadTick, setReloadTick] = useState(0)
+  // La lectura se identifica por snapshot + reintento: mientras la lectura
+  // vigente no confirmó, el estado es «leyendo» (derivado, sin setState
+  // sincrónico en el efecto).
+  const readKey = `${view.snapshotId}:${reloadTick}`
+  const [decisionsRead, setDecisionsRead] = useState<{ key: string; status: Exclude<DecisionsState, "loading"> } | null>(null)
+  const decisionsState: DecisionsState = decisionsRead?.key === readKey ? decisionsRead.status : "loading"
+  const [previousRead, setPreviousRead] = useState<PreviousEvaluation | null>(null)
+  const previous = previousRunId && previousRead?.runId === previousRunId ? previousRead : null
   const [toast, setToast] = useState<string | null>(null)
 
   useEffect(() => {
@@ -378,44 +504,133 @@ export function ComparisonPanel({ view }: { view: ComparisonViewModel }) {
       if (!alive) return
       if (outcome.status === "ok") {
         setDecisions(Object.fromEntries(outcome.decisions.map((read) => [read.editionId, read])))
-        setDecisionsNote(null)
-      } else if (outcome.status === "unauthorized") {
-        setDecisionsNote("Se requiere una sesión para leer y registrar decisiones.")
+        setDecisionsRead({ key: readKey, status: "ok" })
       } else {
-        setDecisionsNote("No se pudieron leer las decisiones guardadas de este snapshot; reintentá.")
+        setDecisionsRead({ key: readKey, status: outcome.status })
       }
     })()
     return () => {
       alive = false
     }
-  }, [view.snapshotId])
+  }, [view.snapshotId, readKey])
 
-  const applySaved = (read: DecisionRead) => setDecisions((current) => ({ ...current, [read.editionId]: read }))
+  // Reevaluación: la decisión previa se lee del run anterior por identidad
+  // (run → snapshot → decisiones), nunca se copia ni se edita.
+  useEffect(() => {
+    if (!previousRunId) return
+    let alive = true
+    void (async () => {
+      const run = await fetchEvaluation(previousRunId)
+      if (!alive) return
+      const result = run.status === "ok" ? comparisonResult(run.run) : null
+      if (!result) {
+        setPreviousRead({
+          runId: previousRunId,
+          snapshotId: null,
+          evaluatedAt: null,
+          decisions: {},
+          note:
+            run.status === "ok"
+              ? "La evaluación anterior no tiene snapshot publicado."
+              : run.status === "missing"
+                ? "La evaluación anterior no existe para esta sesión."
+                : "No se pudo leer la evaluación anterior; reintentá.",
+        })
+        return
+      }
+      const reads = await fetchSnapshotDecisions(result.snapshotId)
+      if (!alive) return
+      setPreviousRead({
+        runId: previousRunId,
+        snapshotId: result.snapshotId,
+        evaluatedAt: result.evaluatedAt,
+        decisions: reads.status === "ok" ? Object.fromEntries(reads.decisions.map((read) => [read.editionId, read])) : {},
+        note: reads.status === "ok" ? null : "No se pudieron leer las decisiones de la evaluación anterior.",
+      })
+    })()
+    return () => {
+      alive = false
+    }
+  }, [previousRunId])
 
-  // Navegación panel → campaña: elegir (o reabrir) muestra el borrador
-  // persistido de la campaña dentro del mismo panel.
-  const campaignRead = campaignFor ? decisions[campaignFor] : null
-  const campaignCandidate = campaignFor ? view.candidates.find((candidate) => candidate.editionId === campaignFor) : null
-  if (campaignRead?.campaign && campaignCandidate) {
-    return (
-      <section className="research-comparison" aria-label="Borrador de campaña" data-testid="comparison-panel">
-        <CampaignDraftPanel
-          view={projectCampaignDraft(campaignRead.campaign, campaignCandidate.sources)}
-          onBack={() => setCampaignFor(null)}
-          onToast={(message) => setToast(message)}
-        />
-        {toast && <p role="status">{toast}</p>}
-      </section>
-    )
+  // Selección recuperada del enlace interno: la decisión enfocada queda a la
+  // vista una vez leída (sin scroll si no hay foco).
+  useEffect(() => {
+    if (decisionsState !== "ok" || !focus.decisionId || focus.view !== "comparison") return
+    const target = document.querySelector<HTMLElement>(`[data-decision-id="${CSS.escape(focus.decisionId)}"]`)
+    target?.scrollIntoView({ block: "start" })
+  }, [decisionsState, focus.decisionId, focus.view])
+
+  const applySaved = (read: DecisionRead) => {
+    setDecisions((current) => ({ ...current, [read.editionId]: read }))
+    onDecisionsChanged()
+  }
+  const copyLink = (href: string) => {
+    navigator.clipboard?.writeText(`${window.location.origin}${href}`)
+    setToast("Enlace interno copiado")
+  }
+
+  const focusedRead = focus.decisionId
+    ? (Object.values(decisions).find((read) => read.decisionId === focus.decisionId) ?? null)
+    : null
+  const focusMissing = decisionsState === "ok" && focus.decisionId !== null && focusedRead === null
+
+  // Navegación panel → campaña: elegir (o reabrir por enlace) muestra el
+  // borrador persistido de la campaña dentro del mismo panel.
+  if (focus.view === "campaign") {
+    if (decisionsState === "loading") {
+      return (
+        <section className="research-comparison" aria-label="Borrador de campaña" data-testid="comparison-panel">
+          <p role="status">Leyendo la decisión enlazada desde PostgreSQL…</p>
+        </section>
+      )
+    }
+    const campaignCandidate = focusedRead ? view.candidates.find((candidate) => candidate.editionId === focusedRead.editionId) : null
+    if (focusedRead?.campaign && campaignCandidate) {
+      return (
+        <section className="research-comparison" aria-label="Borrador de campaña" data-testid="comparison-panel">
+          <CampaignDraftPanel
+            view={projectCampaignDraft(focusedRead.campaign, campaignCandidate.sources)}
+            meta={{
+              runId,
+              snapshotId: focusedRead.snapshotId,
+              decisionRevision: focusedRead.decision.revision,
+              decidedAt: focusedRead.decision.decidedAt,
+              href: evaluationHref(runId, { decisionId: focusedRead.decisionId, view: "campaign" }),
+            }}
+            onBack={() => onFocusChange({ decisionId: focusedRead.decisionId, view: "comparison" })}
+            onToast={(message) => setToast(message)}
+          />
+          {toast && <p role="status">{toast}</p>}
+        </section>
+      )
+    }
   }
 
   return (
     <section className="research-comparison" aria-label="Comparación persistida" data-testid="comparison-panel">
-      <h2>Comparación de candidatos</h2>
+      <div className="research-actions">
+        <h2>Comparación de candidatos</h2>
+        <button className="research-button" type="button" disabled={reevaluating} onClick={onReevaluate} data-testid="reevaluate">
+          {reevaluating ? "Aceptando reevaluación…" : "Reevaluar (nuevo run vinculado)"}
+        </button>
+      </div>
       <p className="research-meta">
         Snapshot oficial <span data-testid="comparison-snapshot-id">{view.snapshotId}</span> · evaluado al{" "}
-        {view.evaluatedAt}. Inmutable: una reevaluación crea otro snapshot.
+        {view.evaluatedAt} · leído al <span data-testid="comparison-read-at">{view.readAt}</span>. Inmutable: reevaluar crea
+        otro run con otro snapshot; esta evaluación y sus decisiones siguen disponibles por su enlace interno.
       </p>
+      {previousRunId && (
+        <p data-testid="reevaluation-note">
+          Reevaluación de la evaluación anterior{" "}
+          <button className="research-link" type="button" onClick={() => onOpenRun(previousRunId, NO_FOCUS)}>
+            {previousRunId}
+          </button>
+          {previous?.snapshotId ? ` (snapshot ${previous.snapshotId}, evaluado al ${previous.evaluatedAt})` : ""}. La
+          decisión previa no se edita: se lee con su revisión original.
+          {previous?.note ? ` ${previous.note}` : ""}
+        </p>
+      )}
       <p>{view.orderingLabel}</p>
       <p>{view.availableCatalog.note}</p>
       <p className="research-meta">{view.eligibleIsNotRecommended}</p>
@@ -424,11 +639,32 @@ export function ComparisonPanel({ view }: { view: ComparisonViewModel }) {
           ⚠ {warning}
         </p>
       ))}
-      {decisionsNote && (
+      {decisionsState === "unauthorized" && (
         <p role="alert" className="research-meta" data-testid="decisions-note">
-          ⚠ {decisionsNote}
+          ⚠ Se requiere una sesión para leer y registrar decisiones (no significa que no haya decisión).
         </p>
       )}
+      {decisionsState === "unavailable" && (
+        <p role="alert" className="research-meta" data-testid="decisions-note">
+          ⚠ No se pudieron leer las decisiones guardadas de este snapshot (servidor no disponible); esto NO equivale a «sin
+          decisión».{" "}
+          <button className="research-link" type="button" onClick={() => setReloadTick((tick) => tick + 1)}>
+            Reintentar lectura
+          </button>
+        </p>
+      )}
+      {focusMissing && (
+        <p role="alert" className="research-meta" data-testid="focus-missing">
+          ⚠ La decisión enlazada ({focus.decisionId}) no existe en este snapshot para esta sesión. No es un error de
+          lectura: la lista de decisiones se leyó correctamente.
+        </p>
+      )}
+      {focus.view === "campaign" && focusedRead && !focusedRead.campaign && (
+        <p role="alert" className="research-meta" data-testid="focus-missing">
+          ⚠ La decisión enlazada no tiene borrador de campaña: solo una elección lo crea.
+        </p>
+      )}
+      {toast && <p role="status">{toast}</p>}
       {view.candidates.map((candidate, index) => (
         <article
           className="research-event research-comparison-candidate"
@@ -443,6 +679,11 @@ export function ComparisonPanel({ view }: { view: ComparisonViewModel }) {
           <p data-testid="candidate-state">
             <b>{candidate.stateLabel}</b>
           </p>
+          {candidate.currentValidity && (
+            <p role="alert" className="research-meta research-pending" data-testid="current-validity-notice">
+              ⚠ {candidate.currentValidity.notice}
+            </p>
+          )}
           {candidate.dossier.eligibility.status === "excluded" && (
             <ul>
               {candidate.dossier.eligibility.reasons.map((reason, i) => (
@@ -457,6 +698,24 @@ export function ComparisonPanel({ view }: { view: ComparisonViewModel }) {
           {candidate.dossier.costs.map((cost) => (
             <Field key={cost.label} label={`Costo · ${cost.label}`} field={cost.value} />
           ))}
+          <p className="research-meta" data-testid="candidate-fixed-revisions">
+            Revisiones fijadas por el snapshot: edición {candidate.fixedRevisions.editionRevisionId ?? "sin revisión"}
+            {candidate.fixedRevisions.editionRevisedAt ? ` (${candidate.fixedRevisions.editionRevisedAt})` : ""}
+            {candidate.fixedRevisions.organizerRevisionId
+              ? ` · organizador ${candidate.fixedRevisions.organizerRevisionId} (${candidate.fixedRevisions.organizerRevisedAt})`
+              : ""}{" "}
+            · {candidate.fixedRevisions.claimRevisionIds.length} claim(s): {candidate.fixedRevisions.claimRevisionIds.join(", ") || "ninguno"}
+          </p>
+          <div className="research-actions">
+            <button className="research-link" type="button" onClick={() => onOpenEdition(candidate.editionId)}>
+              Abrir dossier de la edición
+            </button>
+            {candidate.organizerId && (
+              <button className="research-link" type="button" onClick={() => onOpenOrganizer(candidate.organizerId!)}>
+                Abrir expediente del organizador
+              </button>
+            )}
+          </div>
           {candidate.dossier.conditions.length > 0 && (
             <div data-testid="candidate-conditions">
               <p>
@@ -509,11 +768,17 @@ export function ComparisonPanel({ view }: { view: ComparisonViewModel }) {
           )}
           <ReasonSources sourceIds={candidate.sources.map((source) => source.id)} sources={candidate.sources} />
           <DecisionControls
+            runId={runId}
             snapshotId={view.snapshotId}
             candidate={candidate}
             saved={decisions[candidate.editionId] ?? null}
+            loading={decisionsState === "loading"}
+            previous={previous?.decisions[candidate.editionId] ?? null}
+            previousRunId={previousRunId}
             onSaved={applySaved}
-            onOpenCampaign={(editionId) => setCampaignFor(editionId)}
+            onOpenCampaign={(read) => onFocusChange({ decisionId: read.decisionId, view: "campaign" })}
+            onOpenRun={onOpenRun}
+            onCopy={copyLink}
           />
         </article>
       ))}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { LayoutDashboard, Users, CalendarDays, Bookmark, SlidersHorizontal } from "lucide-react"
 import { OnboardingIntake, type IntakePayload } from "../atlas/onboarding-intake"
 import { EventImport, INGEST_IDLE, type IngestUiState } from "../atlas/event-import"
@@ -8,6 +8,7 @@ import { comparisonResult, eventIngestResult, fetchCatalogEditions, fetchEdition
 import type { ResearchHome, SfResearchResult } from "./research-types"
 import { EditionDossier, OrganizerDossier, ReasonSources } from "./research-dossier"
 import { ComparisonPanel } from "./comparison-panel"
+import { EvaluationList, evaluationHref, NO_FOCUS, parseEvaluationFocus, type EvaluationFocus } from "./evaluation-list"
 import { SfEventMap } from "./sf-event-map"
 import { dateLabel, isSanFrancisco, latestEdition } from "./research-model"
 import { projectComparisonResult, projectEditionDossierView } from "../../lib/api/opportunity-adapter"
@@ -37,6 +38,16 @@ export function ResearchDashboard() {
   const [compareSelection, setCompareSelection] = useState<string[]>([])
   const [compareBusy, setCompareBusy] = useState(false)
   const compareSubmission = useRef<{ profileRunId: string; editionIds: string; idempotencyKey: string } | null>(null)
+  // Ticket 14: la selección (decisión enfocada y vista de campaña) vive en la
+  // URL junto al run (?run=&decision=&view=): cerrar la pestaña y volver por
+  // el enlace interno o la lista recupera exactamente lo mismo desde
+  // PostgreSQL. El filtro de la lista de evaluaciones es por identidad de
+  // perfil y se conserva entre refrescos del historial.
+  const [focus, setFocus] = useState<EvaluationFocus>(NO_FOCUS)
+  const [evaluationFilter, setEvaluationFilter] = useState<string | null>(null)
+  const evaluationFilterRef = useRef<string | null>(null)
+  const [reevaluating, setReevaluating] = useState(false)
+  const reevaluateSubmission = useRef<{ previousRunId: string; idempotencyKey: string } | null>(null)
   const stop = useRef<(() => void) | null>(null)
   const content = useRef<HTMLDivElement>(null)
   const scrollToStart = () => content.current?.scrollTo({ top: 0, behavior: 'instant' })
@@ -50,7 +61,7 @@ export function ResearchDashboard() {
   const sfEditions = editions.filter(e => isSanFrancisco(latestEdition(e).location))
 
   const refreshHome = useCallback(async () => {
-    const outcome = await fetchResearchHome()
+    const outcome = await fetchResearchHome({ profileId: evaluationFilterRef.current })
     if (outcome.status === 'ok') { setHome(outcome.data); return true }
     setNote(failure(outcome.status)); return false
   }, [])
@@ -61,10 +72,10 @@ export function ResearchDashboard() {
     if (reads.some(r => r.status !== 'ok')) { setNote('No se pudo leer el catálogo completo. Reintentá.'); return }
     setCatalog(reads.flatMap(r => r.status === 'ok' ? [r.data] : []))
   }, [])
-  const openRun = useCallback((id: string) => {
+  const openRun = useCallback((id: string, nextFocus: EvaluationFocus = NO_FOCUS) => {
     const seq = ++readSequence.current
-    stop.current?.(); setRunId(id); setRun(null); setDetail(null); setNote(null); setMapOpen(false)
-    window.history.replaceState(null, '', `?run=${encodeURIComponent(id)}`)
+    stop.current?.(); setRunId(id); setRun(null); setDetail(null); setNote(null); setMapOpen(false); setFocus(nextFocus)
+    window.history.replaceState(null, '', evaluationHref(id, nextFocus))
     stop.current = pollEvaluation(id, outcome => {
       if (readSequence.current !== seq) return
       if (outcome.status === 'ok') {
@@ -93,7 +104,7 @@ export function ResearchDashboard() {
       if (outcome.status === 'ok') setHome(outcome.data)
       else setNote(failure(outcome.status))
       const id = new URLSearchParams(window.location.search).get('run')
-      if (id) openRun(id)
+      if (id) openRun(id, parseEvaluationFocus(window.location.search))
       const list = await fetchCatalogEditions()
       if (!alive) return
       if (list.status !== 'ok') { setNote(failure(list.status)); return }
@@ -104,7 +115,9 @@ export function ResearchDashboard() {
     })()
     return () => { alive = false; stop.current?.(); reads.current++; details.current++ }
   }, [openRun])
-  function navigate(next: Section) { detailSequence.current++; setDetail(null); setDetailBusy(false); setSection(next); scrollToStart() }
+  // Entrar a Decisiones relee la lista de evaluaciones guardadas (lectura por
+  // identidad desde PostgreSQL; ninguna fuente externa ni recálculo).
+  function navigate(next: Section) { detailSequence.current++; setDetail(null); setDetailBusy(false); setSection(next); scrollToStart(); if (next === 'Decisiones') void refreshHome() }
   async function launch(payload: IntakePayload) {
     if (busy) return
     const body: EvaluationStartInput = { idempotencyKey: '', mode: 'catalog_research', researchScope: 'sf_organizers', ...(run?.workflowVersion === 'sf-organizers/1' ? { previousRunId: run.runId } : {}), profile: {
@@ -206,8 +219,43 @@ export function ResearchDashboard() {
       ? current.filter(id => id !== editionId)
       : current.length >= 3 ? current : [...current, editionId])
   }
+  // Cambio de selección dentro del run abierto (decisión enfocada / campaña):
+  // se refleja en la URL para que el enlace interno la recupere.
+  function changeFocus(next: EvaluationFocus) {
+    setFocus(next)
+    if (runId) window.history.replaceState(null, '', evaluationHref(runId, next))
+    scrollToStart()
+  }
+  // Filtro explícito por identidad de perfil: relee la lista del servidor con
+  // ?profileId= (no es una búsqueda por texto).
+  async function filterEvaluations(profileId: string | null) {
+    evaluationFilterRef.current = profileId
+    setEvaluationFilter(profileId)
+    const outcome = await fetchResearchHome({ profileId })
+    if (outcome.status === 'ok') setHome(outcome.data)
+    else setNote(failure(outcome.status))
+  }
+  // «Reevaluar» (ticket 14): acción explícita que crea OTRO run de
+  // comparación vinculado a este (mismo perfil y mismo conjunto de ediciones;
+  // el worker evalúa con las revisiones vigentes). El snapshot y la decisión
+  // de este run no se tocan. Reintentar una aceptación incierta conserva la
+  // clave idempotente; una nueva reevaluación explícita usa otra.
+  async function reevaluate() {
+    const current = comparisonResult(run)
+    if (!run || !current || reevaluating) return
+    const previous = reevaluateSubmission.current
+    const idempotencyKey = previous && previous.previousRunId === run.runId ? previous.idempotencyKey : crypto.randomUUID()
+    reevaluateSubmission.current = { previousRunId: run.runId, idempotencyKey }
+    setReevaluating(true); setNote(null)
+    const outcome = await startComparison({ idempotencyKey, mode: 'investment_comparison', profileRunId: run.runId, editionIds: [...current.availableCatalog.comparedEditionIds].sort(), previousRunId: run.runId })
+    setReevaluating(false)
+    if (outcome.status === 'accepted') { reevaluateSubmission.current = null; openRun(outcome.runId); void refreshHome() }
+    else setNote(outcome.message)
+  }
   const comparison = comparisonResult(run)
-  const comparisonView = comparison ? projectComparisonResult(comparison) : null
+  // El instante de lectura alimenta solo el aviso de vigencia actual; el
+  // resultado proyectado es el snapshot persistido tal cual.
+  const comparisonView = useMemo(() => comparison ? projectComparisonResult(comparison, { readAt: new Date().toISOString() }) : null, [comparison])
   const ingestRun = run && run.workflowVersion === LUMA_WORKFLOW ? run : null
   const importPanel = <div className="research-import"><EventImport ingest={ingest} run={ingestRun} onUrlChange={url => setIngest(current => ({ ...current, url }))} onImport={() => void importUrl()} onOpenDossier={id => void openEdition(id)} /><p>La importación es durable: crea un run con pasos persistidos y el dossier queda guardado en el catálogo del tenant como material importado (sin curación humana). Podés cerrar la pestaña durante la obtención y volver al run con su enlace.</p></div>
   const coverage = result?.coverage ?? home?.coverage
@@ -220,10 +268,10 @@ export function ResearchDashboard() {
       <header className="research-header"><div><span className="eyebrow">San Francisco</span><h1>{section}</h1></div><button className="research-button" onClick={() => navigate('Perfil')}>{run ? `Editar perfil · v${run.profile.profileVersion}` : 'Completar perfil'}</button></header>
       {note && <div className="research-notice" role="alert">{note}<button className="research-button" onClick={() => { setNote(null); if (runId) openRun(runId); void refreshHome(); void refreshCatalog() }}>Reintentar lectura</button></div>}
       {coverage ? <div className="research-coverage" data-testid="research-coverage"><span>{coverage.organizers} organizadores · {coverage.editions} ediciones en el catálogo</span><span>Verificación: {coverage.verifiedAt.join(' · ') || 'sin cargas verificadas'}</span><span>{coverage.material.includes('synthetic') ? 'Material sintético: prueba el mecanismo; no acredita cobertura real de SF.' : coverage.material.includes('imported') ? 'Incluye material importado de URLs aportadas, sin curación humana.' : coverage.material.length ? 'Material curado' : 'Sin catálogo cargado'}</span>{result && <span>Investigación guardada al {result.evaluatedAt}</span>}</div> : !note && <p role="status">Leyendo cobertura…</p>}
-      {runId && <section className="research-progress" aria-label="Estado persistido" data-testid="run-progress"><p>Investigación <span className="research-meta">{runId}</span> · {run ? STATES[run.state] : 'Consultando estado…'}</p>
-        {run && <><ol>{run.steps.map(step => <li key={step.name}>{STEPS[step.name] ?? step.name}: <b>{STATES[step.state]}</b> · intentos {step.attempts}{step.error && <p>{step.error}</p>}</li>)}</ol>{run.error && <p role="alert">{run.error}</p>}{run.previousRunId && <button className="research-link" onClick={() => openRun(run.previousRunId!)}>Abrir investigación anterior</button>}</>}
+      {runId && <section className="research-progress" aria-label="Estado persistido" data-testid="run-progress"><p>{run?.workflowVersion === 'investment-comparison/1' ? 'Evaluación' : 'Investigación'} <span className="research-meta">{runId}</span> · {run ? STATES[run.state] : 'Consultando estado…'}</p>
+        {run && <><ol>{run.steps.map(step => <li key={step.name}>{STEPS[step.name] ?? step.name}: <b>{STATES[step.state]}</b> · intentos {step.attempts}{step.error && <p>{step.error}</p>}</li>)}</ol>{run.error && <p role="alert">{run.error}</p>}{run.previousRunId && <button className="research-link" onClick={() => openRun(run.previousRunId!)}>{run.workflowVersion === 'investment-comparison/1' ? 'Abrir evaluación anterior (esta es una reevaluación)' : 'Abrir investigación anterior'}</button>}</>}
       </section>}
-      {comparisonView && !detail && <ComparisonPanel view={comparisonView} />}
+      {comparisonView && !detail && run && <ComparisonPanel view={comparisonView} runId={run.runId} previousRunId={run.previousRunId} focus={focus} onFocusChange={changeFocus} onReevaluate={() => void reevaluate()} reevaluating={reevaluating} onOpenRun={(id, nextFocus) => openRun(id, nextFocus)} onOpenEdition={id => void openEdition(id)} onOpenOrganizer={id => void openOrganizer(id)} onDecisionsChanged={() => void refreshHome()} />}
       {detailBusy && <p role="status">Leyendo expediente…</p>}
       {detail ? <div className="research-detail"><button className="research-button" onClick={() => { detailSequence.current++; setDetail(null) }}>Volver a {section.toLowerCase()}</button>
         <p className="research-meta">{result ? 'Fuentes y revisiones conservadas en la investigación' : 'Lectura actual del catálogo persistido'}</p>
@@ -261,7 +309,10 @@ export function ResearchDashboard() {
             <ReasonSources sources={read.sources} sourceIds={view.date.sources.concat(view.location.sources).map(s => s.id)} />
           </article> })}</div>{importPanel}
         </section>}
-        {section === 'Decisiones' && <section><h2>Decisiones de inversión</h2><p>Las decisiones se registran sobre el panel de una comparación (snapshot oficial): abrí un run de comparación y usá «Registrar decisión» para elegir, descartar o dejar pendiente con motivos y condiciones. Una elección con acceso, audiencia o costo pendientes se guarda como condicional y abre el borrador de campaña persistido. Los organizadores guardados conservan una investigación pendiente; guardarlos no crea una inversión ni una campaña.</p></section>}
+        {section === 'Decisiones' && <section><h2>Decisiones de inversión</h2><p>Las decisiones se registran sobre el panel de una comparación (snapshot oficial): abrí un run de comparación y usá «Registrar decisión» para elegir, descartar o dejar pendiente con motivos y condiciones. Una elección con acceso, audiencia o costo pendientes se guarda como condicional y abre el borrador de campaña persistido. Los organizadores guardados conservan una investigación pendiente; guardarlos no crea una inversión ni una campaña.</p>
+          <h3>Evaluaciones guardadas</h3><p className="research-meta">Lectura por identidad desde PostgreSQL: abrir una evaluación recupera su run, su snapshot, la revisión de cada decisión y su campaña sin recalcular ni consultar fuentes. Reevaluar es una acción explícita del panel.</p>
+          {home ? <EvaluationList evaluations={home.evaluations} profiles={home.evaluationProfiles} filterProfileId={evaluationFilter} onFilter={id => void filterEvaluations(id)} onOpen={(id, nextFocus) => { openRun(id, nextFocus); scrollToStart() }} /> : <p>Esperando lectura del historial.</p>}
+        </section>}
       </>}
     </div>
   </div>

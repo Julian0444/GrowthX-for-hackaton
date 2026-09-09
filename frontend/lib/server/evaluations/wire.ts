@@ -35,6 +35,10 @@ export interface ComparisonStartBody {
   // Normalizadas al parsear: sin duplicados y en orden estable (la comparación
   // es sobre un conjunto; el orden de selección no cambia la evaluación).
   editionIds: string[];
+  // Ticket 14: «Reevaluar» es una acción explícita que crea OTRO run (con otro
+  // snapshot) vinculado al run de comparación anterior. Nunca edita el
+  // snapshot ni la decisión previos; ambos siguen disponibles por identidad.
+  previousRunId?: string;
 }
 
 export interface BodyParseFailure {
@@ -204,14 +208,16 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
 const MAX_COMPARED_EDITIONS = 3;
 
 function parseComparisonStartBody(input: Record<string, unknown>): BodyParseResult {
-  const extra = unknownKeys(input, ['idempotencyKey', 'mode', 'profileRunId', 'editionIds']);
+  const extra = unknownKeys(input, ['idempotencyKey', 'mode', 'profileRunId', 'editionIds', 'previousRunId']);
   if (extra.length > 0)
     return fail(`claves no admitidas en el cuerpo: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
-  const { idempotencyKey, profileRunId, editionIds } = input;
+  const { idempotencyKey, profileRunId, editionIds, previousRunId } = input;
   if (typeof idempotencyKey !== 'string' || idempotencyKey.length < 8 || idempotencyKey.length > 128)
     return fail('idempotencyKey debe ser un string de 8 a 128 caracteres');
   if (typeof profileRunId !== 'string' || !UUID_RE.test(profileRunId))
     return fail('profileRunId debe identificar una investigación existente de esta sesión');
+  if (previousRunId !== undefined && (typeof previousRunId !== 'string' || !UUID_RE.test(previousRunId)))
+    return fail('previousRunId debe identificar una evaluación (comparación) anterior de esta sesión');
   if (!Array.isArray(editionIds) || editionIds.length === 0)
     return fail('editionIds debe ser una lista de 1 a 3 ediciones del catálogo');
   const ids: string[] = [];
@@ -229,14 +235,27 @@ function parseComparisonStartBody(input: Record<string, unknown>): BodyParseResu
     );
   return {
     ok: true,
-    body: { idempotencyKey, mode: 'investment_comparison', profileRunId, editionIds: unique },
+    body: {
+      idempotencyKey,
+      mode: 'investment_comparison',
+      profileRunId,
+      editionIds: unique,
+      ...(typeof previousRunId === 'string' ? { previousRunId } : {}),
+    },
   };
 }
 
-// Hash canónico del payload de comparación (sin la clave idempotente).
+// Hash canónico del payload de comparación (sin la clave idempotente). El
+// vínculo al run anterior forma parte del payload: la misma clave con otro
+// vínculo es otro contenido (409), no una deduplicación.
 export function comparisonPayloadHash(body: ComparisonStartBody): string {
   const canonical = JSON.stringify(
-    sortKeysDeep({ mode: body.mode, profileRunId: body.profileRunId, editionIds: body.editionIds }),
+    sortKeysDeep({
+      mode: body.mode,
+      profileRunId: body.profileRunId,
+      editionIds: body.editionIds,
+      ...(body.previousRunId ? { previousRunId: body.previousRunId } : {}),
+    }),
   );
   return createHash('sha256').update(canonical).digest('hex');
 }

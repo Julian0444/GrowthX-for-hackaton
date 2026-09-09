@@ -36,6 +36,14 @@ function notFound(): NextResponse {
   return NextResponse.json({ error: 'not_found', message: 'Decisión inexistente para esta sesión.' }, { status: 404 });
 }
 
+// Ticket 14: un id malformado es 400, distinguible de «no hay decisión» (404)
+// y de «base no disponible» (503); nunca un 500 por el cast de uuid.
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+function invalidId(): NextResponse {
+  return NextResponse.json({ error: 'invalid_id', message: 'decisionId inválido: se espera la identidad (uuid) de la decisión.' }, { status: 400 });
+}
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
@@ -45,6 +53,7 @@ export async function GET(
   const session = await resolveSessionContext(request).catch(() => null);
   if (!session) return unauthorized();
   const { id } = await params;
+  if (!UUID_RE.test(id)) return invalidId();
   try {
     const read = await readDecision(getAppPool(), session.tenantId, id);
     if (!read) return notFound();
@@ -64,6 +73,7 @@ export async function PATCH(
   const session = await resolveSessionContext(request).catch(() => null);
   if (!session) return unauthorized();
   const { id } = await params;
+  if (!UUID_RE.test(id)) return invalidId();
 
   let payload: unknown;
   try {

@@ -249,6 +249,23 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
             ],
           };
         }
+        // Ticket 14: la reevaluación vincula un run de comparación EXISTENTE
+        // del tenant (bajo RLS, uno ajeno no existe). El run anterior, su
+        // snapshot y su decisión no se tocan: el vínculo es solo referencia.
+        if (body.previousRunId) {
+          const { rows: previousRows } = await client.query(
+            "select id from growthx.runs where id = $1 and mode = 'investment_comparison'",
+            [body.previousRunId],
+          );
+          if (previousRows.length === 0) {
+            return {
+              status: 'invalid_profile',
+              issues: [
+                'La reevaluación vincula una evaluación (comparación) anterior de esta sesión; la indicada no está disponible.',
+              ],
+            };
+          }
+        }
         await client.query(
           `insert into growthx.runs
              (id, tenant_id, profile_id, requested_by, mode, input, state,
@@ -263,6 +280,7 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
               mode: 'investment_comparison',
               editionIds: body.editionIds,
               profileRunId: body.profileRunId,
+              previousRunId: body.previousRunId ?? null,
             }),
             COMPARISON_WORKFLOW,
             body.idempotencyKey,
@@ -278,7 +296,15 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
         await client.query(
           `insert into growthx.run_logs (tenant_id, run_id, level, message, context)
            values ($1, $2, 'info', 'comparación de inversión aceptada', $3)`,
-          [tenantId, runId, JSON.stringify({ editionIds: body.editionIds, workflow: COMPARISON_WORKFLOW })],
+          [
+            tenantId,
+            runId,
+            JSON.stringify({
+              editionIds: body.editionIds,
+              workflow: COMPARISON_WORKFLOW,
+              ...(body.previousRunId ? { previousRunId: body.previousRunId, reevaluation: true } : {}),
+            }),
+          ],
         );
         await queue.sendRunJob(client, { runId, tenantId });
         return { status: 'accepted', runId };

@@ -98,14 +98,24 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 }
 
-// Dashboard: historial y cobertura reales del tenant autenticado.
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// Dashboard: historial y cobertura reales del tenant autenticado. Ticket 14:
+// incluye la lista de evaluaciones guardadas (comparaciones con snapshot y
+// decisiones), filtrable por identidad de perfil con ?profileId= — una lectura
+// explícita, no una búsqueda por texto. Un filtro malformado es 400
+// (distinguible de «sin evaluaciones» y de «sin base»).
 export async function GET(request: Request): Promise<NextResponse> {
   if (!isEvaluationDbConfigured()) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+  const profileId = new URL(request.url).searchParams.get('profileId');
+  if (profileId !== null && !UUID_RE.test(profileId)) {
+    return NextResponse.json({ error: 'invalid_query', message: 'profileId debe ser el id (uuid) de un perfil de esta sesión.' }, { status: 400 });
+  }
   try {
     const session = await resolveSessionContext(request);
     if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
     const { readResearchHome } = await import('../../../lib/server/evaluations/dashboard-store.ts');
-    return NextResponse.json(await readResearchHome(session.tenantId));
+    return NextResponse.json(await readResearchHome(session.tenantId, { profileId }));
   } catch {
     return NextResponse.json({ error: 'read_failed', message: 'No se pudo leer el dashboard.' }, { status: 503 });
   }

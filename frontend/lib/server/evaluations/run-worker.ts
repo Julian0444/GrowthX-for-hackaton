@@ -51,6 +51,15 @@ export class WorkerStopRequested extends Error {
 export interface ProcessRunDeps {
   pool: pg.Pool;
   exitAfterStep?: string | null;
+  // Ticket 15: barrera explícita de prueba alrededor de los commits. La matriz
+  // de caídas mata el proceso EXACTAMENTE en estos puntos (sin sleeps):
+  //   before_step_commit:<paso>  el paso ejecutó (sus efectos propios ya
+  //                              commitearon) pero su confirmación no
+  //   after_step_commit:<paso>   el paso confirmó; el siguiente no arrancó
+  //   before_job_ack             el run quedó terminal; el job sigue sin
+  //                              confirmar en la cola
+  // En producción queda undefined y no se evalúa nada.
+  testBarrier?: (point: string) => void;
   // Ticket 11: transporte y límites del step de obtención Luma, inyectables en
   // tests (HTML controlado, timeouts cortos). En producción quedan los defaults.
   lumaIngest?: LumaIngestStepOptions;
@@ -99,7 +108,7 @@ export async function processEvaluationRun(
   job: EvaluationJobData,
   deps: ProcessRunDeps,
 ): Promise<void> {
-  const { pool, exitAfterStep = null, lumaIngest = {}, comparison = {} } = deps;
+  const { pool, exitAfterStep = null, lumaIngest = {}, comparison = {}, testBarrier } = deps;
   const { runId, tenantId } = job;
 
   // Intento: reclamar el run bajo su tenant. Un run completado se ignora
@@ -170,6 +179,7 @@ export async function processEvaluationRun(
       const output = await executeStep(step.name, { pool, tenantId, runId, profileId, outputs, workflowVersion, lumaIngest, comparison });
       outputs.set(step.name, output);
 
+      testBarrier?.(`before_step_commit:${step.name}`);
       await withTenantTransaction(pool, tenantId, async (client) => {
         await client.query(
           `update growthx.run_steps
@@ -187,6 +197,7 @@ export async function processEvaluationRun(
         });
       });
 
+      testBarrier?.(`after_step_commit:${step.name}`);
       if (exitAfterStep === step.name) throw new WorkerStopRequested(step.name);
       currentStep = null;
     }
@@ -198,6 +209,7 @@ export async function processEvaluationRun(
       );
       await log(client, { tenantId, runId, attempt, level: 'info', message: 'run completado' });
     });
+    testBarrier?.('before_job_ack');
   } catch (error) {
     if (error instanceof WorkerStopRequested) {
       await withTenantTransaction(pool, tenantId, async (client) => {
@@ -214,14 +226,20 @@ export async function processEvaluationRun(
     const message = error instanceof Error ? error.message : String(error);
     const finalFailure = attempt >= RUN_MAX_ATTEMPTS;
     await withTenantTransaction(pool, tenantId, async (client) => {
+      // Fallo demostrado por la matriz del ticket 15: con dos entregas del
+      // mismo run compitiendo, el intento perdedor NO puede degradar lo que el
+      // ganador ya confirmó — ni marcar fallido un paso completado ni devolver
+      // a queued/failed un run terminal.
       if (currentStep) {
         await client.query(
-          `update growthx.run_steps set state = 'failed', finished_at = now(), error = $2 where id = $1`,
+          `update growthx.run_steps set state = 'failed', finished_at = now(), error = $2
+            where id = $1 and state <> 'completed'`,
           [currentStep.id, JSON.stringify({ message })],
         );
       }
       await client.query(
-        `update growthx.runs set state = $2, error = $3, updated_at = now() where id = $1`,
+        `update growthx.runs set state = $2, error = $3, updated_at = now()
+          where id = $1 and state not in ('completed', 'failed')`,
         [runId, finalFailure ? 'failed' : 'queued', JSON.stringify({ message })],
       );
       await log(client, {

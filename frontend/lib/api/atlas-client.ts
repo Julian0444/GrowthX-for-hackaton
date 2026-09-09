@@ -153,6 +153,9 @@ export interface ComparisonStartInput {
   mode: "investment_comparison"
   profileRunId: string
   editionIds: string[] // 1..3 ediciones del catálogo del tenant
+  // Ticket 14: «Reevaluar» crea OTRO run vinculado al run de comparación
+  // anterior; el snapshot y la decisión previos siguen disponibles tal cual.
+  previousRunId?: string
 }
 
 export interface ComparisonFeatureValue {
@@ -708,8 +711,12 @@ export async function fetchSnapshotDecisions(snapshotId: string): Promise<Snapsh
 }
 
 // Ticket 10: el dashboard no utiliza fallback ni el pipeline mundial.
-export function fetchResearchHome() {
-  return fetchCatalogJson<import("../../components/research-dashboard/research-types").ResearchHome>("/api/evaluations", "runs")
+// Ticket 14: la lista de evaluaciones guardadas viaja en la misma lectura y
+// admite un filtro EXPLÍCITO por identidad de perfil (?profileId=); nunca una
+// búsqueda por texto de producto.
+export function fetchResearchHome(filter: { profileId?: string | null } = {}) {
+  const query = filter.profileId ? `?profileId=${encodeURIComponent(filter.profileId)}` : ""
+  return fetchCatalogJson<import("../../components/research-dashboard/research-types").ResearchHome>(`/api/evaluations${query}`, "runs")
 }
 export async function saveResearchOrganizer(runId: string, organizerId: string): Promise<CatalogFetchOutcome<import("../../components/research-dashboard/research-types").SavedOrganizerResearch>> {
   try {

@@ -34,6 +34,8 @@ function unauthorized(): NextResponse {
   );
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export async function POST(request: Request): Promise<NextResponse> {
   checkEnvOnce();
   if (!isEvaluationDbConfigured()) return unavailable();
@@ -97,6 +99,14 @@ export async function GET(request: Request): Promise<NextResponse> {
   if (!snapshotId || snapshotId.trim().length === 0) {
     return NextResponse.json(
       { error: 'invalid_query', message: 'Falta snapshotId: la lectura de decisiones es por snapshot.' },
+      { status: 400 },
+    );
+  }
+  // Ticket 14: id malformado → 400 (distinguible de «sin decisiones» = lista
+  // vacía y de «base no disponible» = 503), no un 500 por el cast de uuid.
+  if (!UUID_RE.test(snapshotId.trim())) {
+    return NextResponse.json(
+      { error: 'invalid_query', message: 'snapshotId inválido: se espera el id (uuid) del snapshot oficial.' },
       { status: 400 },
     );
   }

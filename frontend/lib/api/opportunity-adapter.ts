@@ -62,7 +62,7 @@ import type {
 } from "./types"
 // Relativo (no alias `@/`) para que los tests de node --test lo resuelvan sin
 // gancho de alias.
-import { classifyEventValidity } from "../temporal/event-validity.ts"
+import { classifyEventValidity, type EventValidity } from "../temporal/event-validity.ts"
 
 // Zoom más cerrado que el de país: para plays de SF encuadramos el barrio.
 export const NEIGHBORHOOD_ZOOM = 6
@@ -662,11 +662,29 @@ export interface ComparisonCandidateView {
   v0Shadow: ComparisonV0ShadowEntry | null
   // Fuentes citadas por los claims fijados de ESTE candidato.
   sources: SourceRecord[]
+  // Ticket 14: identidad del organizador (para abrir su expediente desde el
+  // panel) y las revisiones EXACTAS que el snapshot fijó para este candidato —
+  // la evidencia y los motivos se leen con su fecha/revisión original.
+  organizerId: string | null
+  fixedRevisions: {
+    editionRevisionId: string | null
+    editionRevisedAt: string | null
+    organizerRevisionId: string | null
+    organizerRevisedAt: string | null
+    claimRevisionIds: string[]
+  }
+  // Ticket 14: aviso de vigencia ACTUAL. Si el inicio declarado ya pasó
+  // respecto del instante de lectura y no había vencido al evaluar, se avisa
+  // sin alterar el resultado histórico (estado, condiciones y score quedan
+  // como los confirmó el snapshot; corregirlo es OTRO run).
+  currentValidity: { readAt: string; validity: EventValidity; notice: string } | null
 }
 
 export interface ComparisonViewModel {
   snapshotId: string
   evaluatedAt: string
+  // Instante de lectura usado para el aviso de vigencia actual.
+  readAt: string
   projection: EvaluationReadProjection
   isRanked: boolean
   orderingLabel: string
@@ -690,8 +708,39 @@ const COMPARISON_STATE_LABEL: Record<string, ComparisonStateLabel> = {
   eligible: "Elegible",
 }
 
-export function projectComparisonResult(result: ComparisonRunResult): ComparisonViewModel {
+// Texto verificable del inicio declarado para la política temporal (ticket
+// 04): instante o día; una fecha ambigua/pendiente no produce ningún aviso.
+function declaredStartText(date: DeclaredDate): string | null {
+  if (date.precision === "instant") return date.iso
+  if (date.precision === "date_only") return date.date
+  return null
+}
+
+function currentValidityFor(
+  edition: EventEditionRevision | null,
+  evaluatedAt: string,
+  readAt: string,
+): ComparisonCandidateView["currentValidity"] {
+  if (!edition) return null
+  const start = declaredStartText(edition.startDate)
+  if (start === null) return null
+  const now = classifyEventValidity(start, readAt)
+  if (now.validity !== "past") return null
+  const then = classifyEventValidity(start, evaluatedAt)
+  if (then.validity === "past") return null // ya estaba vencida al evaluar: lo dice el snapshot
+  return {
+    readAt,
+    validity: now.validity,
+    notice: `Vigencia actual: el inicio declarado (${start}) ya pasó respecto de la lectura del ${readAt}. El resultado histórico (evaluado al ${evaluatedAt}) no se altera; una reevaluación crea otro run con otro snapshot.`,
+  }
+}
+
+export function projectComparisonResult(
+  result: ComparisonRunResult,
+  options: { readAt?: string } = {},
+): ComparisonViewModel {
   const { bundle } = result
+  const readAt = options.readAt ?? new Date().toISOString()
   const projection = projectEvaluationRead(bundle)
   const sourcesById = new Map(bundle.sources.map((source) => [source.id, source]))
   const proposals = new Map(
@@ -713,6 +762,19 @@ export function projectComparisonResult(result: ComparisonRunResult): Comparison
     const sources = [...new Set(ownClaims.flatMap((claim) => claim.sourceIds))]
       .map((id) => sourcesById.get(id))
       .filter((source): source is SourceRecord => source !== undefined)
+    // Revisiones fijadas por el snapshot (no «la última»): son las que la
+    // evaluación usó y las que se releen al reabrir.
+    const fixedEdition =
+      bundle.editions.find(
+        (edition) => bundle.snapshot.editionRevisionIds.includes(edition.id) && edition.editionId === dossier.editionId,
+      ) ?? null
+    const fixedOrganizer =
+      organizerId !== null
+        ? (bundle.organizers.find(
+            (organizer) =>
+              bundle.snapshot.organizerRevisionIds.includes(organizer.id) && organizer.organizerId === organizerId,
+          ) ?? null)
+        : null
     return {
       editionId: dossier.editionId,
       name: dossier.name,
@@ -722,6 +784,17 @@ export function projectComparisonResult(result: ComparisonRunResult): Comparison
       narrativeProposal: proposals.get(dossier.editionId) ?? null,
       v0Shadow: shadowByEdition.get(dossier.editionId) ?? null,
       sources,
+      organizerId,
+      fixedRevisions: {
+        editionRevisionId: fixedEdition?.id ?? null,
+        editionRevisedAt: fixedEdition?.revisedAt ?? null,
+        organizerRevisionId: fixedOrganizer?.id ?? null,
+        organizerRevisedAt: fixedOrganizer?.revisedAt ?? null,
+        claimRevisionIds: ownClaims
+          .filter((claim) => bundle.snapshot.claimRevisionIds.includes(claim.id))
+          .map((claim) => claim.id),
+      },
+      currentValidity: currentValidityFor(fixedEdition, result.evaluatedAt, readAt),
     }
   })
 
@@ -729,6 +802,7 @@ export function projectComparisonResult(result: ComparisonRunResult): Comparison
   return {
     snapshotId: result.snapshotId,
     evaluatedAt: result.evaluatedAt,
+    readAt,
     projection,
     isRanked: ordering.kind === "ranked",
     orderingLabel:

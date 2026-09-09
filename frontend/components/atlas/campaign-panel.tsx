@@ -110,18 +110,36 @@ export function composeManualCampaignDraft(view: CampaignView): string {
   ].join("\n")
 }
 
+// Ticket 14: identidad de origen del borrador tal como se releyó (run,
+// snapshot, revisión y fecha de la decisión) y su enlace interno, para que
+// cerrar y volver recupere exactamente esta campaña.
+export interface CampaignDraftMeta {
+  runId: string
+  snapshotId: string
+  decisionRevision: number
+  decidedAt: string
+  href: string | null
+}
+
 export function CampaignDraftPanel({
   view,
+  meta,
   onBack,
   onToast,
 }: {
   view: CampaignView
+  meta?: CampaignDraftMeta
   onBack: () => void
   onToast: (message: string) => void
 }) {
   const copyDraft = () => {
     navigator.clipboard?.writeText(composeManualCampaignDraft(view))
     onToast("Borrador copiado")
+  }
+  const copyLink = () => {
+    if (!meta?.href) return
+    navigator.clipboard?.writeText(`${window.location.origin}${meta.href}`)
+    onToast("Enlace interno copiado")
   }
   return (
     <section className="research-campaign-draft" aria-label="Borrador de campaña persistido" data-testid="campaign-draft-panel">
@@ -130,9 +148,28 @@ export function CampaignDraftPanel({
       </button>
       <h3>Borrador de campaña persistido</h3>
       <p className="research-meta">
-        Campaña <span data-testid="campaign-draft-id">{view.campaignId}</span> · decisión {view.decisionId}. Guardar no
-        envía mensajes ni contrata nada; este borrador se copia a mano.
+        Campaña <span data-testid="campaign-draft-id">{view.campaignId}</span> · decisión{" "}
+        <span data-testid="campaign-draft-decision-id">{view.decisionId}</span>. Guardar no envía mensajes ni contrata
+        nada; este borrador se copia a mano.
       </p>
+      {meta && (
+        <p className="research-meta" data-testid="campaign-draft-meta">
+          Run {meta.runId} · snapshot <span data-testid="campaign-draft-snapshot-id">{meta.snapshotId}</span> · decisión
+          revisión <span data-testid="campaign-draft-revision">{meta.decisionRevision}</span> · registrada el{" "}
+          {meta.decidedAt}. Leído desde PostgreSQL con su revisión original.
+          {meta.href && (
+            <>
+              {" "}
+              <a className="research-link" href={meta.href} data-testid="campaign-link">
+                Enlace interno
+              </a>{" "}
+              <button className="research-link" type="button" onClick={copyLink}>
+                Copiar enlace
+              </button>
+            </>
+          )}
+        </p>
+      )}
       <p>
         <b>Objetivo:</b> {view.objective}
       </p>
