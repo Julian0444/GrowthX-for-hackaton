@@ -1,0 +1,2030 @@
+{
+  "_note": "Salida de caracterización de la v0 congelada. Se produjo con el harness (reloj congelado, proveedores grabados, seeds sin alterar). NO describe el comportamiento deseado: la matriz de oráculos (oracles.md) explica qué partes son defectos que 02–06 corrigen. No se re-graba tras corregir.",
+  "evaluationClock": "2026-09-07T22:28:00.000Z",
+  "request": {
+    "product": "AI observability for production agents",
+    "icpStack": [
+      "Python",
+      "Kubernetes"
+    ],
+    "budgetUsd": 2000,
+    "goal": "adoption"
+  },
+  "replay": {
+    "requestId": "<requestId enmascarado>",
+    "query": {
+      "product": "AI observability for production agents",
+      "icpStack": [
+        "Python",
+        "Kubernetes"
+      ],
+      "budgetUsd": 2000,
+      "goal": "adoption"
+    },
+    "opportunities": [
+      {
+        "id": "opp-global-berlin",
+        "title": "Berlin developer market",
+        "subtitle": "Berlin · Germany",
+        "lat": 52.52,
+        "lng": 13.405,
+        "play": {
+          "headline": "Lead with a senior-engineer dinner in Berlin",
+          "communityId": "market-berlin",
+          "themeId": "theme-global-f1491c706379",
+          "eventId": null,
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": "Query-matched developers; exact audience size requires campaign instrumentation"
+          }
+        },
+        "score": 75,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.986218679389872,
+            "cadenceReliability": null,
+            "access": 1,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.55
+          },
+          "theme": {
+            "momentum": 0.9876284486855128,
+            "criticalPath": null,
+            "communityCapability": 0.986218679389872,
+            "saturationGap": null
+          }
+        },
+        "reasons": [
+          {
+            "text": "80% of attendees at Berlin AI meetups are senior backend engineers, and the community already runs 12 observability events per quarter. Berlin beats the other markets on audience seniority.",
+            "evidenceIds": [
+              "ev-x-938b7b7f2276",
+              "ev-github-8137e380ca01",
+              "ev-exa-q44wz5",
+              "ev-exa-zvspxx",
+              "ev-exa-1mxh46s"
+            ]
+          },
+          {
+            "text": "1 public X profile associated with relevant repository handles list Berlin.",
+            "evidenceIds": [
+              "ev-x-938b7b7f2276"
+            ]
+          },
+          {
+            "text": "1 owner of relevant GitHub repositories publicly list Berlin or its region.",
+            "evidenceIds": [
+              "ev-github-8137e380ca01"
+            ]
+          },
+          {
+            "text": "Exa found 3 live developer event listings for Berlin, e.g. “Berlin LLM Observability Meetup — 29 Oct 2026”.",
+            "evidenceIds": [
+              "ev-exa-q44wz5",
+              "ev-exa-zvspxx",
+              "ev-exa-1mxh46s"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": null,
+          "icpFitBasis": null,
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "Pricing not collected"
+        },
+        "confidence": 55,
+        "status": "estimated",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "market": {
+          "city": "Berlin",
+          "country": "Germany",
+          "countryCode": "DE"
+        },
+        "momentumSignals": [
+          {
+            "source": "google_trends",
+            "label": "Search interest",
+            "value": null,
+            "displayValue": "No geographic result",
+            "basis": "country",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [],
+            "status": "unavailable"
+          },
+          {
+            "source": "github",
+            "label": "Technical activity",
+            "value": 99,
+            "displayValue": "1 located repo owner",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-github-8137e380ca01"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "x",
+            "label": "Developer conversation",
+            "value": 100,
+            "displayValue": "1 location-matched post",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-x-938b7b7f2276"
+            ],
+            "status": "estimated"
+          }
+        ],
+        "event": null,
+        "campaign": {
+          "id": "camp-opp-global-berlin",
+          "opportunityId": "opp-global-berlin",
+          "title": "Berlin × AI observability for production agents",
+          "variantA": "Berlin backend leads: join a hands-on night on tracing production agents. Leave with a workflow you can deploy Monday.",
+          "variantB": "Running agents in Berlin? Bring your traces; leave with a monitoring playbook, not a pitch."
+        }
+      },
+      {
+        "id": "opp-global-san-francisco",
+        "title": "San Francisco developer market",
+        "subtitle": "San Francisco · United States",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "play": {
+          "headline": "Sponsor an evals track in San Francisco",
+          "communityId": "market-san-francisco",
+          "themeId": "theme-global-f1491c706379",
+          "eventId": null,
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": "Query-matched developers; exact audience size requires campaign instrumentation"
+          }
+        },
+        "score": 82,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 1,
+            "cadenceReliability": null,
+            "access": 0.9475202394819597,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.6066666666666667
+          },
+          "theme": {
+            "momentum": 0.76688005987049,
+            "criticalPath": 0.6,
+            "communityCapability": 1,
+            "saturationGap": null
+          }
+        },
+        "reasons": [
+          {
+            "text": "Search interest for AI observability is at 96/100 in this market, the highest of the three, which supports a sponsored evals track in SoMa.",
+            "evidenceIds": [
+              "ev-trends-dd9b14051465"
+            ]
+          },
+          {
+            "text": "Google Trends shows 60/100 relative interest for “ai observability” in United States.",
+            "evidenceIds": [
+              "ev-trends-d7d3b2038b49"
+            ]
+          },
+          {
+            "text": "1 public X profile associated with relevant repository handles list San Francisco.",
+            "evidenceIds": [
+              "ev-x-6c5b19a7c767"
+            ]
+          },
+          {
+            "text": "1 owner of relevant GitHub repositories publicly list San Francisco or its region.",
+            "evidenceIds": [
+              "ev-github-54ba3d6d1d2c"
+            ]
+          },
+          {
+            "text": "Exa found 3 live developer event listings for San Francisco, e.g. “SF AI Observability Night — 22 Oct 2026”.",
+            "evidenceIds": [
+              "ev-exa-13gwbdf",
+              "ev-exa-ectwcf",
+              "ev-exa-cc7sn8"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": null,
+          "icpFitBasis": null,
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "Pricing not collected"
+        },
+        "confidence": 67,
+        "status": "estimated",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "market": {
+          "city": "San Francisco",
+          "country": "United States",
+          "countryCode": "US"
+        },
+        "momentumSignals": [
+          {
+            "source": "google_trends",
+            "label": "Search interest",
+            "value": 60,
+            "displayValue": "60/100",
+            "basis": "country",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-trends-d7d3b2038b49"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "github",
+            "label": "Technical activity",
+            "value": 100,
+            "displayValue": "1 located repo owner",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-github-54ba3d6d1d2c"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "x",
+            "label": "Developer conversation",
+            "value": 95,
+            "displayValue": "1 location-matched post",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-x-6c5b19a7c767"
+            ],
+            "status": "estimated"
+          }
+        ],
+        "event": null,
+        "campaign": {
+          "id": "camp-opp-global-san-francisco",
+          "opportunityId": "opp-global-san-francisco",
+          "title": "San Francisco × AI observability for production agents",
+          "variantA": "SF agent builders: a practical evals and tracing session in SoMa. Leave with a workflow you can try the same day.",
+          "variantB": "Shipping agents in San Francisco? Leave with one working observability playbook, not another product pitch."
+        }
+      },
+      {
+        "id": "opp-global-bengaluru",
+        "title": "Bengaluru developer market",
+        "subtitle": "Bengaluru · India",
+        "lat": 12.9716,
+        "lng": 77.5946,
+        "play": {
+          "headline": "Run a community workshop in Bengaluru",
+          "communityId": "market-bengaluru",
+          "themeId": "theme-global-f1491c706379",
+          "eventId": null,
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": "Query-matched developers; exact audience size requires campaign instrumentation"
+          }
+        },
+        "score": 84,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.9473742203383877,
+            "cadenceReliability": null,
+            "access": null,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.635
+          },
+          "theme": {
+            "momentum": 0.9601415107343442,
+            "criticalPath": 0.96,
+            "communityCapability": 0.9473742203383877,
+            "saturationGap": null
+          }
+        },
+        "reasons": [
+          {
+            "text": "Bengaluru hosts 40+ observability meetups per quarter, so a workshop reaches the largest community, but sponsor competition is intense and costs are rising.",
+            "evidenceIds": [
+              "ev-exa-csgt6i"
+            ]
+          },
+          {
+            "text": "Google Trends shows 96/100 relative interest for “ai observability” in India.",
+            "evidenceIds": [
+              "ev-trends-dd9b14051465"
+            ]
+          },
+          {
+            "text": "1 owner of relevant GitHub repositories publicly list Bengaluru or its region.",
+            "evidenceIds": [
+              "ev-github-d256f96b6614"
+            ]
+          },
+          {
+            "text": "Exa found 3 live developer event listings for Bengaluru, e.g. “AI Observability Meetup Bengaluru — 15 Oct 2026”.",
+            "evidenceIds": [
+              "ev-exa-csgt6i",
+              "ev-exa-zh8t3k",
+              "ev-exa-pvtk4a"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": null,
+          "icpFitBasis": null,
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "Pricing not collected"
+        },
+        "confidence": 61,
+        "status": "estimated",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "market": {
+          "city": "Bengaluru",
+          "country": "India",
+          "countryCode": "IN"
+        },
+        "momentumSignals": [
+          {
+            "source": "google_trends",
+            "label": "Search interest",
+            "value": 96,
+            "displayValue": "96/100",
+            "basis": "country",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-trends-dd9b14051465"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "github",
+            "label": "Technical activity",
+            "value": 95,
+            "displayValue": "1 located repo owner",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-github-d256f96b6614"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "x",
+            "label": "Developer conversation",
+            "value": null,
+            "displayValue": "No location-matched posts",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [],
+            "status": "unavailable"
+          }
+        ],
+        "event": null,
+        "campaign": {
+          "id": "camp-opp-global-bengaluru",
+          "opportunityId": "opp-global-bengaluru",
+          "title": "Bengaluru × AI observability for production agents",
+          "variantA": "Bengaluru builders: a hands-on workshop on monitoring production agents. Leave with a workflow you can try the same day.",
+          "variantB": "Tracing agents in Bengaluru? Leave with one working observability playbook, not another product pitch."
+        }
+      }
+    ],
+    "evidence": {
+      "ev-trends-dd9b14051465": {
+        "id": "ev-trends-dd9b14051465",
+        "source": "google_trends",
+        "kind": "search_trend",
+        "url": "https://trends.google.com/trends/explore?date=today+3-m&q=ai+observability",
+        "title": "Google Trends · India",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "India",
+        "confidence": 0.72,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "ai observability: 96/100 relative search interest over the selected window."
+      },
+      "ev-github-d256f96b6614": {
+        "id": "ev-github-d256f96b6614",
+        "source": "github",
+        "kind": "repo_activity",
+        "url": "https://github.com/traceloop",
+        "title": "traceloop/openllmetry · public owner location",
+        "observedAt": "2026-08-30T08:00:00.000Z",
+        "location": "India",
+        "confidence": 0.55,
+        "rightsBasis": "public_api",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "A relevant public repository owner lists “India”. This is a supply-side signal, not a user count."
+      },
+      "ev-trends-d7d3b2038b49": {
+        "id": "ev-trends-d7d3b2038b49",
+        "source": "google_trends",
+        "kind": "search_trend",
+        "url": "https://trends.google.com/trends/explore?date=today+3-m&q=ai+observability",
+        "title": "Google Trends · United States",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "United States",
+        "confidence": 0.72,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "ai observability: 60/100 relative search interest over the selected window."
+      },
+      "ev-x-6c5b19a7c767": {
+        "id": "ev-x-6c5b19a7c767",
+        "source": "x",
+        "kind": "social_post",
+        "url": "https://x.com/openobserve",
+        "title": "Public X profile · San Francisco",
+        "observedAt": "2026-09-01T10:00:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.55,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "Observability for logs, metrics and traces. Perfil de prueba de la referencia v0."
+      },
+      "ev-github-54ba3d6d1d2c": {
+        "id": "ev-github-54ba3d6d1d2c",
+        "source": "github",
+        "kind": "repo_activity",
+        "url": "https://github.com/openobserve",
+        "title": "openobserve/openobserve · public owner location",
+        "observedAt": "2026-09-02T08:00:00.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.55,
+        "rightsBasis": "public_api",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "A relevant public repository owner lists “San Francisco, CA”. This is a supply-side signal, not a user count."
+      },
+      "ev-x-938b7b7f2276": {
+        "id": "ev-x-938b7b7f2276",
+        "source": "x",
+        "kind": "social_post",
+        "url": "https://x.com/langfuse",
+        "title": "Public X profile · Berlin",
+        "observedAt": "2026-09-01T10:00:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.55,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "Open source LLM engineering platform. Perfil de prueba de la referencia v0."
+      },
+      "ev-github-8137e380ca01": {
+        "id": "ev-github-8137e380ca01",
+        "source": "github",
+        "kind": "repo_activity",
+        "url": "https://github.com/langfuse",
+        "title": "langfuse/langfuse · public owner location",
+        "observedAt": "2026-09-03T08:00:00.000Z",
+        "location": "Berlin, Germany",
+        "confidence": 0.55,
+        "rightsBasis": "public_api",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "A relevant public repository owner lists “Berlin, Germany”. This is a supply-side signal, not a user count."
+      },
+      "ev-exa-csgt6i": {
+        "id": "ev-exa-csgt6i",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://lu.ma/baseline-v0-ai-obs-blr-oct",
+        "title": "AI Observability Meetup Bengaluru — 15 Oct 2026",
+        "observedAt": "2026-09-01T00:00:00.000Z",
+        "location": "Bengaluru",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "In-person meetup in Koramangala, Bengaluru on 15 October 2026. Talks on tracing production agents and evaluating LLM pipelines."
+      },
+      "ev-exa-zh8t3k": {
+        "id": "ev-exa-zh8t3k",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/llm-monitoring-online",
+        "title": "LLM monitoring workshop (online, self-paced)",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "Bengaluru",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Self-paced online workshop on monitoring LLM applications. No venue, no date, no city announced."
+      },
+      "ev-exa-pvtk4a": {
+        "id": "ev-exa-pvtk4a",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/observability-day-india-recap",
+        "title": "Observability Day India 2026 — recap",
+        "observedAt": "2026-09-05T00:00:00.000Z",
+        "location": "Bengaluru",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Recap of Observability Day India, held on 12 August 2026 in Bengaluru. Slides and recordings now available."
+      },
+      "ev-exa-13gwbdf": {
+        "id": "ev-exa-13gwbdf",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://lu.ma/baseline-v0-sf-ai-obs-oct",
+        "title": "SF AI Observability Night — 22 Oct 2026",
+        "observedAt": "2026-09-02T00:00:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Evening meetup in SoMa, San Francisco on 22 October 2026 on tracing, evals and cost monitoring for production agents."
+      },
+      "ev-exa-ectwcf": {
+        "id": "ev-exa-ectwcf",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/k8s-observability-office-hours",
+        "title": "Kubernetes observability office hours (remote)",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Weekly remote office hours on Kubernetes observability. No venue, no city and no fixed date announced."
+      },
+      "ev-exa-cc7sn8": {
+        "id": "ev-exa-cc7sn8",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/sf-agents-hackathon-recap",
+        "title": "Agents & Observability Hackathon SF — recap",
+        "observedAt": "2026-09-04T00:00:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Recap of the Agents & Observability Hackathon held on 8 August 2026 in San Francisco. Winners and project write-ups."
+      },
+      "ev-exa-q44wz5": {
+        "id": "ev-exa-q44wz5",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://lu.ma/baseline-v0-berlin-llm-obs-oct",
+        "title": "Berlin LLM Observability Meetup — 29 Oct 2026",
+        "observedAt": "2026-09-03T00:00:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Meetup in Kreuzberg, Berlin on 29 October 2026 about evaluating and monitoring LLM apps in production."
+      },
+      "ev-exa-zvspxx": {
+        "id": "ev-exa-zvspxx",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/python-observability-reading-group",
+        "title": "Python observability reading group (async, online)",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Asynchronous online reading group about Python observability tooling. No venue, no city, no date announced."
+      },
+      "ev-exa-1mxh46s": {
+        "id": "ev-exa-1mxh46s",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/ai-infra-berlin-august-recap",
+        "title": "AI Infra Berlin — August edition recap",
+        "observedAt": "2026-09-05T00:00:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Recap of AI Infra Berlin, held on 20 August 2026 in Berlin. Photos and talk recordings."
+      }
+    },
+    "coverage": {
+      "eventsEvaluated": 0,
+      "communitiesEvaluated": 0,
+      "organizersEvaluated": 0,
+      "themesEvaluated": 8,
+      "sourcesUsed": [
+        "google_trends",
+        "github",
+        "x",
+        "exa"
+      ],
+      "sourcesFailed": []
+    },
+    "warnings": [],
+    "generatedAt": "2026-09-07T22:28:00.000Z",
+    "degraded": false,
+    "locationContext": null
+  },
+  "replayCalls": [
+    "github:search",
+    "apify:start:agenscrape~google-trends-scraper",
+    "github:user:openobserve",
+    "github:user:langfuse",
+    "github:user:traceloop",
+    "apify:wait:agenscrape~google-trends-scraper",
+    "apify:items:agenscrape~google-trends-scraper",
+    "apify:start:automation-lab~twitter-scraper",
+    "apify:wait:automation-lab~twitter-scraper",
+    "apify:items:automation-lab~twitter-scraper",
+    "exa:Bengaluru",
+    "exa:San Francisco",
+    "exa:Berlin",
+    "gemini"
+  ],
+  "deterministic": {
+    "requestId": "<requestId enmascarado>",
+    "query": {
+      "product": "AI observability for production agents",
+      "icpStack": [
+        "Python",
+        "Kubernetes"
+      ],
+      "budgetUsd": 2000,
+      "goal": "adoption"
+    },
+    "opportunities": [
+      {
+        "id": "opp-global-bengaluru",
+        "title": "Bengaluru developer market",
+        "subtitle": "Bengaluru · India",
+        "lat": 12.9716,
+        "lng": 77.5946,
+        "play": {
+          "headline": "Test a developer activation in Bengaluru · Google Trends shows 96/100 relative interest for “ai observability” in India.",
+          "communityId": "market-bengaluru",
+          "themeId": "theme-global-f1491c706379",
+          "eventId": null,
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": "Query-matched developers; exact audience size requires campaign instrumentation"
+          }
+        },
+        "score": 84,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.9473742203383877,
+            "cadenceReliability": null,
+            "access": null,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.635
+          },
+          "theme": {
+            "momentum": 0.9601415107343442,
+            "criticalPath": 0.96,
+            "communityCapability": 0.9473742203383877,
+            "saturationGap": null
+          }
+        },
+        "reasons": [
+          {
+            "text": "Google Trends shows 96/100 relative interest for “ai observability” in India.",
+            "evidenceIds": [
+              "ev-trends-dd9b14051465"
+            ]
+          },
+          {
+            "text": "1 owner of relevant GitHub repositories publicly list Bengaluru or its region.",
+            "evidenceIds": [
+              "ev-github-d256f96b6614"
+            ]
+          },
+          {
+            "text": "Exa found 3 live developer event listings for Bengaluru, e.g. “AI Observability Meetup Bengaluru — 15 Oct 2026”.",
+            "evidenceIds": [
+              "ev-exa-csgt6i",
+              "ev-exa-zh8t3k",
+              "ev-exa-pvtk4a"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": null,
+          "icpFitBasis": null,
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "Pricing not collected"
+        },
+        "confidence": 61,
+        "status": "estimated",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "market": {
+          "city": "Bengaluru",
+          "country": "India",
+          "countryCode": "IN"
+        },
+        "momentumSignals": [
+          {
+            "source": "google_trends",
+            "label": "Search interest",
+            "value": 96,
+            "displayValue": "96/100",
+            "basis": "country",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-trends-dd9b14051465"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "github",
+            "label": "Technical activity",
+            "value": 95,
+            "displayValue": "1 located repo owner",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-github-d256f96b6614"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "x",
+            "label": "Developer conversation",
+            "value": null,
+            "displayValue": "No location-matched posts",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [],
+            "status": "unavailable"
+          }
+        ],
+        "event": null,
+        "campaign": {
+          "id": "camp-opp-global-bengaluru",
+          "opportunityId": "opp-global-bengaluru",
+          "title": "Bengaluru × AI observability for production agents",
+          "variantA": "Bring AI observability for production agents to Bengaluru: a hands-on session for Python + python who want a workflow they can test the same day.",
+          "variantB": "Building with Python + python in Bengaluru? Leave with one working AI observability for production agents playbook—not another product pitch."
+        }
+      },
+      {
+        "id": "opp-global-san-francisco",
+        "title": "San Francisco developer market",
+        "subtitle": "San Francisco · United States",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "play": {
+          "headline": "Test a developer activation in San Francisco · Google Trends shows 60/100 relative interest for “ai observability” in United States.",
+          "communityId": "market-san-francisco",
+          "themeId": "theme-global-f1491c706379",
+          "eventId": null,
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": "Query-matched developers; exact audience size requires campaign instrumentation"
+          }
+        },
+        "score": 82,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 1,
+            "cadenceReliability": null,
+            "access": 0.9475202394819597,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.6066666666666667
+          },
+          "theme": {
+            "momentum": 0.76688005987049,
+            "criticalPath": 0.6,
+            "communityCapability": 1,
+            "saturationGap": null
+          }
+        },
+        "reasons": [
+          {
+            "text": "Google Trends shows 60/100 relative interest for “ai observability” in United States.",
+            "evidenceIds": [
+              "ev-trends-d7d3b2038b49"
+            ]
+          },
+          {
+            "text": "1 public X profile associated with relevant repository handles list San Francisco.",
+            "evidenceIds": [
+              "ev-x-6c5b19a7c767"
+            ]
+          },
+          {
+            "text": "1 owner of relevant GitHub repositories publicly list San Francisco or its region.",
+            "evidenceIds": [
+              "ev-github-54ba3d6d1d2c"
+            ]
+          },
+          {
+            "text": "Exa found 3 live developer event listings for San Francisco, e.g. “SF AI Observability Night — 22 Oct 2026”.",
+            "evidenceIds": [
+              "ev-exa-13gwbdf",
+              "ev-exa-ectwcf",
+              "ev-exa-cc7sn8"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": null,
+          "icpFitBasis": null,
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "Pricing not collected"
+        },
+        "confidence": 67,
+        "status": "estimated",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "market": {
+          "city": "San Francisco",
+          "country": "United States",
+          "countryCode": "US"
+        },
+        "momentumSignals": [
+          {
+            "source": "google_trends",
+            "label": "Search interest",
+            "value": 60,
+            "displayValue": "60/100",
+            "basis": "country",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-trends-d7d3b2038b49"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "github",
+            "label": "Technical activity",
+            "value": 100,
+            "displayValue": "1 located repo owner",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-github-54ba3d6d1d2c"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "x",
+            "label": "Developer conversation",
+            "value": 95,
+            "displayValue": "1 location-matched post",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-x-6c5b19a7c767"
+            ],
+            "status": "estimated"
+          }
+        ],
+        "event": null,
+        "campaign": {
+          "id": "camp-opp-global-san-francisco",
+          "opportunityId": "opp-global-san-francisco",
+          "title": "San Francisco × AI observability for production agents",
+          "variantA": "Bring AI observability for production agents to San Francisco: a hands-on session for Python + python who want a workflow they can test the same day.",
+          "variantB": "Building with Python + python in San Francisco? Leave with one working AI observability for production agents playbook—not another product pitch."
+        }
+      },
+      {
+        "id": "opp-global-berlin",
+        "title": "Berlin developer market",
+        "subtitle": "Berlin · Germany",
+        "lat": 52.52,
+        "lng": 13.405,
+        "play": {
+          "headline": "Test a developer activation in Berlin · 1 public X profile associated with relevant repository handles list Berlin.",
+          "communityId": "market-berlin",
+          "themeId": "theme-global-f1491c706379",
+          "eventId": null,
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": "Query-matched developers; exact audience size requires campaign instrumentation"
+          }
+        },
+        "score": 75,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.986218679389872,
+            "cadenceReliability": null,
+            "access": 1,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.55
+          },
+          "theme": {
+            "momentum": 0.9876284486855128,
+            "criticalPath": null,
+            "communityCapability": 0.986218679389872,
+            "saturationGap": null
+          }
+        },
+        "reasons": [
+          {
+            "text": "1 public X profile associated with relevant repository handles list Berlin.",
+            "evidenceIds": [
+              "ev-x-938b7b7f2276"
+            ]
+          },
+          {
+            "text": "1 owner of relevant GitHub repositories publicly list Berlin or its region.",
+            "evidenceIds": [
+              "ev-github-8137e380ca01"
+            ]
+          },
+          {
+            "text": "Exa found 3 live developer event listings for Berlin, e.g. “Berlin LLM Observability Meetup — 29 Oct 2026”.",
+            "evidenceIds": [
+              "ev-exa-q44wz5",
+              "ev-exa-zvspxx",
+              "ev-exa-1mxh46s"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": null,
+          "icpFitBasis": null,
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "Pricing not collected"
+        },
+        "confidence": 55,
+        "status": "estimated",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "market": {
+          "city": "Berlin",
+          "country": "Germany",
+          "countryCode": "DE"
+        },
+        "momentumSignals": [
+          {
+            "source": "google_trends",
+            "label": "Search interest",
+            "value": null,
+            "displayValue": "No geographic result",
+            "basis": "country",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [],
+            "status": "unavailable"
+          },
+          {
+            "source": "github",
+            "label": "Technical activity",
+            "value": 99,
+            "displayValue": "1 located repo owner",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-github-8137e380ca01"
+            ],
+            "status": "estimated"
+          },
+          {
+            "source": "x",
+            "label": "Developer conversation",
+            "value": 100,
+            "displayValue": "1 location-matched post",
+            "basis": "profile_location",
+            "observedAt": "2026-09-07T22:28:00.000Z",
+            "evidenceIds": [
+              "ev-x-938b7b7f2276"
+            ],
+            "status": "estimated"
+          }
+        ],
+        "event": null,
+        "campaign": {
+          "id": "camp-opp-global-berlin",
+          "opportunityId": "opp-global-berlin",
+          "title": "Berlin × AI observability for production agents",
+          "variantA": "Bring AI observability for production agents to Berlin: a hands-on session for Python + python who want a workflow they can test the same day.",
+          "variantB": "Building with Python + python in Berlin? Leave with one working AI observability for production agents playbook—not another product pitch."
+        }
+      }
+    ],
+    "evidence": {
+      "ev-trends-dd9b14051465": {
+        "id": "ev-trends-dd9b14051465",
+        "source": "google_trends",
+        "kind": "search_trend",
+        "url": "https://trends.google.com/trends/explore?date=today+3-m&q=ai+observability",
+        "title": "Google Trends · India",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "India",
+        "confidence": 0.72,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "ai observability: 96/100 relative search interest over the selected window."
+      },
+      "ev-github-d256f96b6614": {
+        "id": "ev-github-d256f96b6614",
+        "source": "github",
+        "kind": "repo_activity",
+        "url": "https://github.com/traceloop",
+        "title": "traceloop/openllmetry · public owner location",
+        "observedAt": "2026-08-30T08:00:00.000Z",
+        "location": "India",
+        "confidence": 0.55,
+        "rightsBasis": "public_api",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "A relevant public repository owner lists “India”. This is a supply-side signal, not a user count."
+      },
+      "ev-trends-d7d3b2038b49": {
+        "id": "ev-trends-d7d3b2038b49",
+        "source": "google_trends",
+        "kind": "search_trend",
+        "url": "https://trends.google.com/trends/explore?date=today+3-m&q=ai+observability",
+        "title": "Google Trends · United States",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "United States",
+        "confidence": 0.72,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "ai observability: 60/100 relative search interest over the selected window."
+      },
+      "ev-x-6c5b19a7c767": {
+        "id": "ev-x-6c5b19a7c767",
+        "source": "x",
+        "kind": "social_post",
+        "url": "https://x.com/openobserve",
+        "title": "Public X profile · San Francisco",
+        "observedAt": "2026-09-01T10:00:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.55,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "Observability for logs, metrics and traces. Perfil de prueba de la referencia v0."
+      },
+      "ev-github-54ba3d6d1d2c": {
+        "id": "ev-github-54ba3d6d1d2c",
+        "source": "github",
+        "kind": "repo_activity",
+        "url": "https://github.com/openobserve",
+        "title": "openobserve/openobserve · public owner location",
+        "observedAt": "2026-09-02T08:00:00.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.55,
+        "rightsBasis": "public_api",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "A relevant public repository owner lists “San Francisco, CA”. This is a supply-side signal, not a user count."
+      },
+      "ev-x-938b7b7f2276": {
+        "id": "ev-x-938b7b7f2276",
+        "source": "x",
+        "kind": "social_post",
+        "url": "https://x.com/langfuse",
+        "title": "Public X profile · Berlin",
+        "observedAt": "2026-09-01T10:00:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.55,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "Open source LLM engineering platform. Perfil de prueba de la referencia v0."
+      },
+      "ev-github-8137e380ca01": {
+        "id": "ev-github-8137e380ca01",
+        "source": "github",
+        "kind": "repo_activity",
+        "url": "https://github.com/langfuse",
+        "title": "langfuse/langfuse · public owner location",
+        "observedAt": "2026-09-03T08:00:00.000Z",
+        "location": "Berlin, Germany",
+        "confidence": 0.55,
+        "rightsBasis": "public_api",
+        "status": "estimated",
+        "collector": "apify",
+        "excerpt": "A relevant public repository owner lists “Berlin, Germany”. This is a supply-side signal, not a user count."
+      },
+      "ev-exa-csgt6i": {
+        "id": "ev-exa-csgt6i",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://lu.ma/baseline-v0-ai-obs-blr-oct",
+        "title": "AI Observability Meetup Bengaluru — 15 Oct 2026",
+        "observedAt": "2026-09-01T00:00:00.000Z",
+        "location": "Bengaluru",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "In-person meetup in Koramangala, Bengaluru on 15 October 2026. Talks on tracing production agents and evaluating LLM pipelines."
+      },
+      "ev-exa-zh8t3k": {
+        "id": "ev-exa-zh8t3k",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/llm-monitoring-online",
+        "title": "LLM monitoring workshop (online, self-paced)",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "Bengaluru",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Self-paced online workshop on monitoring LLM applications. No venue, no date, no city announced."
+      },
+      "ev-exa-pvtk4a": {
+        "id": "ev-exa-pvtk4a",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/observability-day-india-recap",
+        "title": "Observability Day India 2026 — recap",
+        "observedAt": "2026-09-05T00:00:00.000Z",
+        "location": "Bengaluru",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Recap of Observability Day India, held on 12 August 2026 in Bengaluru. Slides and recordings now available."
+      },
+      "ev-exa-13gwbdf": {
+        "id": "ev-exa-13gwbdf",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://lu.ma/baseline-v0-sf-ai-obs-oct",
+        "title": "SF AI Observability Night — 22 Oct 2026",
+        "observedAt": "2026-09-02T00:00:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Evening meetup in SoMa, San Francisco on 22 October 2026 on tracing, evals and cost monitoring for production agents."
+      },
+      "ev-exa-ectwcf": {
+        "id": "ev-exa-ectwcf",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/k8s-observability-office-hours",
+        "title": "Kubernetes observability office hours (remote)",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Weekly remote office hours on Kubernetes observability. No venue, no city and no fixed date announced."
+      },
+      "ev-exa-cc7sn8": {
+        "id": "ev-exa-cc7sn8",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/sf-agents-hackathon-recap",
+        "title": "Agents & Observability Hackathon SF — recap",
+        "observedAt": "2026-09-04T00:00:00.000Z",
+        "location": "San Francisco",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Recap of the Agents & Observability Hackathon held on 8 August 2026 in San Francisco. Winners and project write-ups."
+      },
+      "ev-exa-q44wz5": {
+        "id": "ev-exa-q44wz5",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://lu.ma/baseline-v0-berlin-llm-obs-oct",
+        "title": "Berlin LLM Observability Meetup — 29 Oct 2026",
+        "observedAt": "2026-09-03T00:00:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Meetup in Kreuzberg, Berlin on 29 October 2026 about evaluating and monitoring LLM apps in production."
+      },
+      "ev-exa-zvspxx": {
+        "id": "ev-exa-zvspxx",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/python-observability-reading-group",
+        "title": "Python observability reading group (async, online)",
+        "observedAt": "2026-09-07T22:28:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Asynchronous online reading group about Python observability tooling. No venue, no city, no date announced."
+      },
+      "ev-exa-1mxh46s": {
+        "id": "ev-exa-1mxh46s",
+        "source": "exa",
+        "kind": "event_listing",
+        "url": "https://example.org/baseline-v0/ai-infra-berlin-august-recap",
+        "title": "AI Infra Berlin — August edition recap",
+        "observedAt": "2026-09-05T00:00:00.000Z",
+        "location": "Berlin",
+        "confidence": 0.74,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "collector": "direct",
+        "excerpt": "Recap of AI Infra Berlin, held on 20 August 2026 in Berlin. Photos and talk recordings."
+      }
+    },
+    "coverage": {
+      "eventsEvaluated": 0,
+      "communitiesEvaluated": 0,
+      "organizersEvaluated": 0,
+      "themesEvaluated": 8,
+      "sourcesUsed": [
+        "google_trends",
+        "github",
+        "x",
+        "exa"
+      ],
+      "sourcesFailed": []
+    },
+    "warnings": [
+      "Gemini reasoning unavailable (GEMINI_API_KEY missing); showing the deterministic signal ranking only."
+    ],
+    "generatedAt": "2026-09-07T22:28:00.000Z",
+    "degraded": false,
+    "locationContext": null
+  },
+  "local": {
+    "requestId": "<requestId enmascarado>",
+    "query": {
+      "product": "AI observability for production agents",
+      "icpStack": [
+        "Python",
+        "Kubernetes"
+      ],
+      "budgetUsd": 2000,
+      "goal": "adoption"
+    },
+    "opportunities": [
+      {
+        "id": "opp-com-cal-jHBRQhJKHYv5YxR-evt-evt-XCxlrZIFrED0Nx5",
+        "title": "Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents",
+        "subtitle": "MiniMax · FiDi",
+        "lat": 37.79398868920479,
+        "lng": -122.40122263783394,
+        "play": {
+          "headline": "Activate MiniMax through Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents with a hands-on developer play",
+          "communityId": "com-cal-jHBRQhJKHYv5YxR",
+          "themeId": "theme-evt-evt-XCxlrZIFrED0Nx5",
+          "eventId": "evt-evt-XCxlrZIFrED0Nx5",
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": null
+          }
+        },
+        "score": 61,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.2857142857142857,
+            "cadenceReliability": null,
+            "access": 0.5,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.6071428571428571
+          },
+          "theme": {
+            "momentum": null,
+            "criticalPath": 1,
+            "communityCapability": 1,
+            "saturationGap": 0.02857142857142857
+          }
+        },
+        "reasons": [
+          {
+            "text": "MiniMax has the capabilities to run a \"Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents\" activation.",
+            "evidenceIds": [
+              "ev-luma-evt-evt-XCxlrZIFrED0Nx5"
+            ]
+          },
+          {
+            "text": "Luma lists “Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents” as an upcoming San Francisco event for this community.",
+            "evidenceIds": [
+              "ev-luma-evt-evt-XCxlrZIFrED0Nx5"
+            ]
+          },
+          {
+            "text": "Exa found 5 additional public sources for MiniMax.",
+            "evidenceIds": [
+              "ev-exa-6437223d4f24",
+              "ev-exa-5c5e4d1ba472",
+              "ev-exa-d936fcee6343",
+              "ev-exa-8af8b0d653ec",
+              "ev-exa-84645ade321e"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": 0.2857142857142857,
+          "icpFitBasis": "luma",
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "No disponible"
+        },
+        "confidence": 57,
+        "status": "observed",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "event": {
+          "id": "evt-evt-XCxlrZIFrED0Nx5",
+          "name": "Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents",
+          "url": "https://lu.ma/w61gmib2",
+          "startsAt": "2026-07-29T01:00:00.000Z",
+          "venueArea": "FiDi"
+        },
+        "campaign": {
+          "id": "camp-opp-com-cal-jHBRQhJKHYv5YxR-evt-evt-XCxlrZIFrED0Nx5",
+          "opportunityId": "opp-com-cal-jHBRQhJKHYv5YxR-evt-evt-XCxlrZIFrED0Nx5",
+          "title": "Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents × AI observability for production agents",
+          "variantA": "Join MiniMax at Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents to see how AI observability for production agents helps Python + Kubernetes ship faster. Leave with a practical workflow you can try the same day.",
+          "variantB": "Building with Python + Kubernetes? Come to Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents and leave with one working AI observability for production agents playbook—not another product pitch."
+        }
+      },
+      {
+        "id": "opp-com-cal-MJ28KU4lOJNFNHk-evt-evt-lutDq15FCBqcZ5v",
+        "title": "Dynamo After Hours",
+        "subtitle": "NVIDIA · SoMa",
+        "lat": 37.77342151243784,
+        "lng": -122.40359088666929,
+        "play": {
+          "headline": "Activate NVIDIA through Dynamo After Hours with a hands-on developer play",
+          "communityId": "com-cal-MJ28KU4lOJNFNHk",
+          "themeId": "theme-evt-evt-lutDq15FCBqcZ5v",
+          "eventId": "evt-evt-lutDq15FCBqcZ5v",
+          "audienceSpec": {
+            "targetSize": 74,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": null
+          }
+        },
+        "score": 61,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.2857142857142857,
+            "cadenceReliability": null,
+            "access": 0.5,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.6071428571428571
+          },
+          "theme": {
+            "momentum": null,
+            "criticalPath": 1,
+            "communityCapability": 1,
+            "saturationGap": 0.02857142857142857
+          }
+        },
+        "reasons": [
+          {
+            "text": "NVIDIA has the capabilities to run a \"Dynamo After Hours\" activation.",
+            "evidenceIds": [
+              "ev-luma-evt-evt-lutDq15FCBqcZ5v"
+            ]
+          },
+          {
+            "text": "Luma lists “Dynamo After Hours” as an upcoming San Francisco event for this community.",
+            "evidenceIds": [
+              "ev-luma-evt-evt-lutDq15FCBqcZ5v"
+            ]
+          },
+          {
+            "text": "Exa found 5 additional public sources for NVIDIA.",
+            "evidenceIds": [
+              "ev-exa-a481978ff03e",
+              "ev-exa-d0442f8b2989",
+              "ev-exa-538a5d300f9a",
+              "ev-exa-a6ff52b6b37b",
+              "ev-exa-b59b525cc8f7"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": 259,
+          "icpFitRate": 0.2857142857142857,
+          "icpFitBasis": "luma",
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "No disponible"
+        },
+        "confidence": 57,
+        "status": "observed",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "event": {
+          "id": "evt-evt-lutDq15FCBqcZ5v",
+          "name": "Dynamo After Hours",
+          "url": "https://lu.ma/JulyDynamoAfterHours",
+          "startsAt": "2026-07-31T01:00:00.000Z",
+          "venueArea": "SoMa"
+        },
+        "campaign": {
+          "id": "camp-opp-com-cal-MJ28KU4lOJNFNHk-evt-evt-lutDq15FCBqcZ5v",
+          "opportunityId": "opp-com-cal-MJ28KU4lOJNFNHk-evt-evt-lutDq15FCBqcZ5v",
+          "title": "Dynamo After Hours × AI observability for production agents",
+          "variantA": "Join NVIDIA at Dynamo After Hours to see how AI observability for production agents helps Python + Kubernetes ship faster. Leave with a practical workflow you can try the same day.",
+          "variantB": "Building with Python + Kubernetes? Come to Dynamo After Hours and leave with one working AI observability for production agents playbook—not another product pitch."
+        }
+      },
+      {
+        "id": "opp-com-cal-oIZPahIoFd6iaKQ-evt-evt-NSw1gQCCwb9DzIf",
+        "title": "Can We Close the Sim2Real Gap?",
+        "subtitle": "Savant VC · Mission",
+        "lat": 37.762809662151504,
+        "lng": -122.41025880982444,
+        "play": {
+          "headline": "Activate Savant VC through Can We Close the Sim2Real Gap? with a hands-on developer play",
+          "communityId": "com-cal-oIZPahIoFd6iaKQ",
+          "themeId": "theme-evt-evt-NSw1gQCCwb9DzIf",
+          "eventId": "evt-evt-NSw1gQCCwb9DzIf",
+          "audienceSpec": {
+            "targetSize": null,
+            "profile": [
+              "Python",
+              "python",
+              "Kubernetes"
+            ],
+            "qualifier": null
+          }
+        },
+        "score": 58,
+        "breakdown": {
+          "community": {
+            "stackOverlap": 0.14285714285714285,
+            "cadenceReliability": null,
+            "access": 0.5,
+            "exclusivityGap": null,
+            "durability": null,
+            "confidence": 0.6071428571428571
+          },
+          "theme": {
+            "momentum": null,
+            "criticalPath": 1,
+            "communityCapability": 1,
+            "saturationGap": 0.02857142857142857
+          }
+        },
+        "reasons": [
+          {
+            "text": "Savant VC has the capabilities to run a \"Can We Close the Sim2Real Gap?\" activation.",
+            "evidenceIds": [
+              "ev-luma-evt-evt-NSw1gQCCwb9DzIf"
+            ]
+          },
+          {
+            "text": "Luma lists “Can We Close the Sim2Real Gap?” as an upcoming San Francisco event for this community.",
+            "evidenceIds": [
+              "ev-luma-evt-evt-NSw1gQCCwb9DzIf"
+            ]
+          },
+          {
+            "text": "Exa found 5 additional public sources for Savant VC.",
+            "evidenceIds": [
+              "ev-exa-794829551aae",
+              "ev-exa-491aba705ebb",
+              "ev-exa-5c7621e088ce",
+              "ev-exa-a5a3de729a79",
+              "ev-exa-ee4c2147cd97"
+            ]
+          }
+        ],
+        "roi": {
+          "tierPriceUsd": null,
+          "expectedAttendance": null,
+          "icpFitRate": 0.14285714285714285,
+          "icpFitBasis": "luma",
+          "costPerQualifiedDev": null,
+          "band": null,
+          "note": "No disponible"
+        },
+        "confidence": 57,
+        "status": "observed",
+        "humanValidated": false,
+        "distanceMiles": null,
+        "event": {
+          "id": "evt-evt-NSw1gQCCwb9DzIf",
+          "name": "Can We Close the Sim2Real Gap?",
+          "url": "https://lu.ma/cazn88f7",
+          "startsAt": "2026-07-30T00:30:00.000Z",
+          "venueArea": "Mission"
+        },
+        "campaign": {
+          "id": "camp-opp-com-cal-oIZPahIoFd6iaKQ-evt-evt-NSw1gQCCwb9DzIf",
+          "opportunityId": "opp-com-cal-oIZPahIoFd6iaKQ-evt-evt-NSw1gQCCwb9DzIf",
+          "title": "Can We Close the Sim2Real Gap? × AI observability for production agents",
+          "variantA": "Join Savant VC at Can We Close the Sim2Real Gap? to see how AI observability for production agents helps Python + Kubernetes ship faster. Leave with a practical workflow you can try the same day.",
+          "variantB": "Building with Python + Kubernetes? Come to Can We Close the Sim2Real Gap? and leave with one working AI observability for production agents playbook—not another product pitch."
+        }
+      }
+    ],
+    "evidence": {
+      "ev-luma-evt-evt-XCxlrZIFrED0Nx5": {
+        "id": "ev-luma-evt-evt-XCxlrZIFrED0Nx5",
+        "source": "luma",
+        "kind": "event_listing",
+        "url": "https://lu.ma/w61gmib2",
+        "title": "Intelligence in the Open — Edition 01: Reasoning, Evaluation & Long-Horizon Agents",
+        "observedAt": "2026-07-24T21:34:53.227319+00:00",
+        "location": "FiDi",
+        "confidence": 0.9,
+        "rightsBasis": "public_api",
+        "status": "observed",
+        "excerpt": "Upcoming event on 2026-07-29."
+      },
+      "ev-exa-6437223d4f24": {
+        "id": "ev-exa-6437223d4f24",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://www.minimax.io/news/minimax-openai-dev-night-hackathon-weekend",
+        "title": "MiniMax × OpenAI Dev Night & Hackathon Weekend - MiniMax News | MiniMax",
+        "observedAt": "2026-07-23T09:09:38.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "excerpt": "Last weekend in San Francisco reminded us why we build.Across two back-to-back events, nearly 300 engineers, founders, and C-suite leaders came together for a weekend focused on one thing: shipping re"
+      },
+      "ev-exa-5c5e4d1ba472": {
+        "id": "ev-exa-5c5e4d1ba472",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://www.linkedin.com/posts/minimax-ai_minimax-ai-developercommunity-activity-7463338817358352384-zKBa",
+        "title": "#minimax #ai #developercommunity",
+        "observedAt": "2026-05-21T00:00:00.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "excerpt": "We were part of three incredible events across the Bay Area builder communities:\n...\n𝗔𝗺𝗲𝗿𝗶𝗰𝗮'𝘀 𝗡𝗲𝘅𝘁 𝗧𝗼𝗽 𝗠𝗼𝗱𝗲𝗹: a builder night with [Vercel](https://linkedin.com/company/vercel) where developers picke"
+      },
+      "ev-exa-d936fcee6343": {
+        "id": "ev-exa-d936fcee6343",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://www.aivalley.io/events/onk10v2i",
+        "title": "MiniMax M2.1 Workshop & Dinner: SOTA and OPEN SOURCE for Real-World Dev & Agents | AI Valley",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "Join us for an intimate, high-signal evening for exceptional builders and engineers, featuring a session from MiniMax centered on their latest M2.1 model, paired with a frontier model company guest sp"
+      },
+      "ev-exa-8af8b0d653ec": {
+        "id": "ev-exa-8af8b0d653ec",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://www.linkedin.com/posts/minimax-ai_minimax-m21-new-year-workshop-dinner-activity-7414324035997577217-YnDG",
+        "title": "MiniMax M2.1 New Year Workshop & Dinner @ SF | MiniMax",
+        "observedAt": "2026-01-06T00:00:00.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "excerpt": "# MiniMax M2.1 New Year Workshop & Dinner @ SF | MiniMax · LinkedIn · 2026-01-06\n...\n**MiniMax**: MiniMax offers Foundation AI models (text/audio/image/video) and power products like Talkie, Hailuo AI"
+      },
+      "ev-exa-84645ade321e": {
+        "id": "ev-exa-84645ade321e",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://luma.com/onk10v2i",
+        "title": "MiniMax M2.1 Workshop & Dinner: SOTA and OPEN SOURCE for Real-World Dev & Agents · Luma",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "A community for exceptional first-gen builders and talent worldwide.\n...\nMiniMax× AI Valley, Co-Hosted with HAC.ai\n...\nJoin us for an intimate, high-signal evening for exceptional builders and enginee"
+      },
+      "ev-luma-evt-evt-lutDq15FCBqcZ5v": {
+        "id": "ev-luma-evt-evt-lutDq15FCBqcZ5v",
+        "source": "luma",
+        "kind": "event_listing",
+        "url": "https://lu.ma/JulyDynamoAfterHours",
+        "title": "Dynamo After Hours",
+        "observedAt": "2026-07-24T21:34:53.227319+00:00",
+        "location": "SoMa",
+        "confidence": 0.9,
+        "rightsBasis": "public_api",
+        "status": "observed",
+        "excerpt": "Upcoming event on 2026-07-31."
+      },
+      "ev-exa-a481978ff03e": {
+        "id": "ev-exa-a481978ff03e",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://forums.developer.nvidia.com/t/nvidia-dev-monthly-meetup-san-francisco-edition-on-thursday-feb-19/360499",
+        "title": "NVIDIA Dev Monthly Meetup: San Francisco Edition on ...",
+        "observedAt": "2026-02-12T22:57:54.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "excerpt": "NVIDIA Dev Monthly Meetup: San Francisco Edition on Thursday, Feb 19 - Community Information / Announcements - NVIDIA Developer Forums\n...\n# NVIDIA Dev Monthly Meetup: San Francisco Edition on Thursda"
+      },
+      "ev-exa-d0442f8b2989": {
+        "id": "ev-exa-d0442f8b2989",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://developer.nvidia.com/community",
+        "title": "Community Hub | NVIDIA Developer",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "## Welcome to Your Central Hub for All Things Developer Community\n...\nDiscover events, connect with peers, and access the resources you need to thrive in our vibrant community. Explore your gateway to"
+      },
+      "ev-exa-538a5d300f9a": {
+        "id": "ev-exa-538a5d300f9a",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://luma.com/SFMeetupApril2026",
+        "title": "NVIDIA Developer Meetup | San Francisco Edition · Luma",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "NVIDIA Developer Meetup | San Francisco Edition · Luma\n...\nExplore upcoming events hosted by NVIDIA. This is the official calendar of the NVIDIA Developer Community Team. Got questions? Reach out to ["
+      },
+      "ev-exa-a6ff52b6b37b": {
+        "id": "ev-exa-a6ff52b6b37b",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://luma.com/psfg44lt",
+        "title": "NVIDIA Dev Monthly Meetup: San Francisco edition",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "NVIDIA Dev Monthly Meetup: San Francisco edition · Luma\n...\nExplore upcoming events hosted by NVIDIA. This is the official calendar of the NVIDIA Developer Community Team. Got questions? Reach out to "
+      },
+      "ev-exa-b59b525cc8f7": {
+        "id": "ev-exa-b59b525cc8f7",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://forums.developer.nvidia.com/",
+        "title": "NVIDIA Developer Forums - NVIDIA Developer Forums",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "NVIDIA Developer Forums - NVIDIA Developer Forums\n...\n### Welcome to the Omniverse Community\n...\nWe've updated the NVIDIA Omniverse forum structure to enhance user experience. Please share any feedbac"
+      },
+      "ev-luma-evt-evt-NSw1gQCCwb9DzIf": {
+        "id": "ev-luma-evt-evt-NSw1gQCCwb9DzIf",
+        "source": "luma",
+        "kind": "event_listing",
+        "url": "https://lu.ma/cazn88f7",
+        "title": "Can We Close the Sim2Real Gap?",
+        "observedAt": "2026-07-24T21:34:53.227319+00:00",
+        "location": "Mission",
+        "confidence": 0.9,
+        "rightsBasis": "public_api",
+        "status": "observed",
+        "excerpt": "Upcoming event on 2026-07-30."
+      },
+      "ev-exa-794829551aae": {
+        "id": "ev-exa-794829551aae",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://luma.com/djkge9ce",
+        "title": "Physical AI Co-working & Office Hours ☕️ by Savant & Boost VC · Luma",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "Physical AI Co-working & Office Hours ☕️ by Savant & Boost VC · Luma\n...\nFeatured in San Francisco\n...\nWe help exceptional founders explore & start new companies in physical ai through community, lab "
+      },
+      "ev-exa-491aba705ebb": {
+        "id": "ev-exa-491aba705ebb",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://luma.com/u0p5l40a",
+        "title": "Ramen & Robots: Physical AI Founder Meetup by Scale Venture Partners & ...",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "We help exceptional founders explore &\n...\nnew companies in physical ai through community\n...\n​Join founders, engineers and researchers building the future of Physical AI for an evening of ramen, robo"
+      },
+      "ev-exa-5c7621e088ce": {
+        "id": "ev-exa-5c7621e088ce",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://www.linkedin.com/posts/jeson-lee-junzhen-7b175b8a_physical-ai-co-working-office-hours-w-activity-7461206345095036928-_vKM",
+        "title": "[Physical AI Co-working & Office Hours w VCs in SF] | Jeson Lee Junzhen",
+        "observedAt": "2026-05-16T00:00:00.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "excerpt": "**Jeson Lee Junzhen**: Founder at Savant with 9 years 2 months of experience. Previous roles include Co-Founder & CEO at OpenChefs, Founding Team at Deepen AI, and Co-Founder at HaloGas (acquired). Ba"
+      },
+      "ev-exa-a5a3de729a79": {
+        "id": "ev-exa-a5a3de729a79",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://luma.com/0ay59bpq",
+        "title": "Prometheus Workshop by TheAgentic at Savant VC · Luma",
+        "observedAt": "2026-07-24T22:32:27.186127+00:00",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "estimated",
+        "excerpt": "Prometheus Workshop by TheAgentic at Savant VC · Luma\n...\n# Prometheus Workshop by TheAgentic at Savant VC\n...\n​TheAgentic's Launchpad program has helped launch over 100 AI startups in the past 15 mon"
+      },
+      "ev-exa-ee4c2147cd97": {
+        "id": "ev-exa-ee4c2147cd97",
+        "source": "exa",
+        "kind": "web_page",
+        "url": "https://www.linkedin.com/in/jeson-lee-junzhen-7b175b8a",
+        "title": "Jeson Lee Junzhen",
+        "observedAt": "2026-07-07T08:26:34.000Z",
+        "location": "San Francisco, CA",
+        "confidence": 0.5,
+        "rightsBasis": "public_web",
+        "status": "observed",
+        "excerpt": "Founder & General Partner at Savant [Early-stage physical AI]\n...\nSan Francisco Bay Area (US)\n...\n### Founder - [Savant](https://www.linkedin.com/company/savantvc) (Current)\n...\nOct 2024 - Present (1 "
+      }
+    },
+    "coverage": {
+      "eventsEvaluated": 64,
+      "communitiesEvaluated": 59,
+      "organizersEvaluated": 195,
+      "themesEvaluated": 59,
+      "sourcesUsed": [
+        "luma",
+        "exa"
+      ],
+      "sourcesFailed": []
+    },
+    "warnings": [],
+    "generatedAt": "2026-09-07T22:28:00.000Z",
+    "degraded": false,
+    "locationContext": null
+  },
+  "oracles": {
+    "O1.0": {
+      "ticket": "02",
+      "predicate": "query.budgetUsd devuelto a la segunda petición secuencial (USD 20.000)",
+      "v0": 2000,
+      "observed": 2000
+    },
+    "O1.1": {
+      "ticket": "02",
+      "predicate": "query.budgetUsd devuelto a la segunda petición concurrente (USD 20.000)",
+      "v0": 2000,
+      "observed": 2000
+    },
+    "O1.2": {
+      "ticket": "02",
+      "predicate": "una petición equivalente (mismo presupuesto) sí reutiliza la respuesta",
+      "v0": true,
+      "observed": true
+    },
+    "O2.3": {
+      "ticket": "03",
+      "predicate": "mercado con señal de Trends exclusivamente nacional (India) presentado con market.city como ubicación (basis country)",
+      "v0": {
+        "presentedAsCity": "Bengaluru",
+        "trendBasis": "country",
+        "trendEvidenceLocations": [
+          "India"
+        ]
+      },
+      "observed": {
+        "presentedAsCity": "Bengaluru",
+        "trendBasis": "country",
+        "trendEvidenceLocations": [
+          "India"
+        ]
+      }
+    },
+    "O2.4": {
+      "ticket": "03",
+      "predicate": "resultado de Exa sin lugar en el texto recibe como location la ciudad de la consulta",
+      "v0": "Bengaluru",
+      "observed": "Bengaluru"
+    },
+    "O3.5": {
+      "ticket": "04",
+      "predicate": "oportunidades locales cuyo evento ya venció en el reloj congelado y aun así se citan como «upcoming»",
+      "v0": {
+        "count": 3
+      },
+      "observed": {
+        "count": 3
+      }
+    },
+    "O3.6": {
+      "ticket": "04",
+      "predicate": "evento sin fecha: startsAt que el adaptador entrega a la UI",
+      "v0": "2026-09-07T22:28:00.000Z",
+      "observed": "2026-09-07T22:28:00.000Z"
+    },
+    "O3.7": {
+      "ticket": "04",
+      "predicate": "recap de un evento del 12 Ago 2026 publicado el 5 Sep se cita como listing vivo (observed) en la razón de Exa",
+      "v0": {
+        "citedAsLive": true,
+        "status": "observed",
+        "observedAt": "2026-09-05T00:00:00.000Z"
+      },
+      "observed": {
+        "citedAsLive": true,
+        "status": "observed",
+        "observedAt": "2026-09-05T00:00:00.000Z"
+      }
+    },
+    "O4.8": {
+      "ticket": "05",
+      "predicate": "narrativa que solo cita un id inexistente: se publica como razón y con qué citas",
+      "v0": {
+        "published": true,
+        "substitutedWithOwnCitations": true
+      },
+      "observed": {
+        "published": true,
+        "substitutedWithOwnCitations": true
+      }
+    },
+    "O4.9": {
+      "ticket": "05",
+      "predicate": "narrativa de San Francisco que cita evidencia de Bengaluru (ajena): publicada como razón factual",
+      "v0": {
+        "published": true,
+        "citesForeign": true
+      },
+      "observed": {
+        "published": true,
+        "citesForeign": true
+      }
+    },
+    "O4.10": {
+      "ticket": "05",
+      "predicate": "cifra («40+ meetups por trimestre») respaldada solo por un listing de un evento: publicada como razón factual",
+      "v0": true,
+      "observed": true
+    },
+    "O5.11": {
+      "ticket": "06",
+      "predicate": "orden de opportunities con modelo (rank invertido) frente al orden determinístico",
+      "v0": {
+        "order": [
+          "opp-global-berlin",
+          "opp-global-san-francisco",
+          "opp-global-bengaluru"
+        ],
+        "deterministicOrder": [
+          "opp-global-bengaluru",
+          "opp-global-san-francisco",
+          "opp-global-berlin"
+        ]
+      },
+      "observed": {
+        "order": [
+          "opp-global-berlin",
+          "opp-global-san-francisco",
+          "opp-global-bengaluru"
+        ],
+        "deterministicOrder": [
+          "opp-global-bengaluru",
+          "opp-global-san-francisco",
+          "opp-global-berlin"
+        ]
+      }
+    },
+    "O5.12": {
+      "ticket": "06",
+      "predicate": "rank que el adaptador entrega a la UI sigue al orden del array recibido",
+      "v0": [
+        {
+          "id": "opp-global-berlin",
+          "rank": 1
+        },
+        {
+          "id": "opp-global-san-francisco",
+          "rank": 2
+        },
+        {
+          "id": "opp-global-bengaluru",
+          "rank": 3
+        }
+      ],
+      "observed": [
+        {
+          "id": "opp-global-berlin",
+          "rank": 1
+        },
+        {
+          "id": "opp-global-san-francisco",
+          "rank": 2
+        },
+        {
+          "id": "opp-global-bengaluru",
+          "rank": 3
+        }
+      ]
+    },
+    "O5.13": {
+      "ticket": "06",
+      "predicate": "scores por oportunidad con y sin modelo",
+      "v0": {
+        "unchanged": true
+      },
+      "observed": {
+        "unchanged": true
+      }
+    }
+  }
+}

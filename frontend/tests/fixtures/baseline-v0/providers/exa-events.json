@@ -1,0 +1,93 @@
+{
+  "_note": "Respuestas controladas (status: prepared). No son resultados reales de Exa: reproducen la forma de POST /search con contents.text. Cada ciudad recibe tres páginas: (1) evento futuro con ciudad explícita en el texto; (2) página sin lugar ni fecha de publicación, para caracterizar que v0 copia la ciudad de la consulta y usa la fecha de obtención como observedAt (O2, O3); (3) recap de un evento ya pasado publicado hace días, para caracterizar que v0 lo presenta como listing vigente (O3).",
+  "byCity": {
+    "Bengaluru": {
+      "results": [
+        {
+          "title": "AI Observability Meetup Bengaluru — 15 Oct 2026",
+          "url": "https://lu.ma/baseline-v0-ai-obs-blr-oct",
+          "publishedDate": "2026-09-01T00:00:00.000Z",
+          "text": "In-person meetup in Koramangala, Bengaluru on 15 October 2026. Talks on tracing production agents and evaluating LLM pipelines."
+        },
+        {
+          "title": "LLM monitoring workshop (online, self-paced)",
+          "url": "https://example.org/baseline-v0/llm-monitoring-online",
+          "publishedDate": null,
+          "text": "Self-paced online workshop on monitoring LLM applications. No venue, no date, no city announced."
+        },
+        {
+          "title": "Observability Day India 2026 — recap",
+          "url": "https://example.org/baseline-v0/observability-day-india-recap",
+          "publishedDate": "2026-09-05T00:00:00.000Z",
+          "text": "Recap of Observability Day India, held on 12 August 2026 in Bengaluru. Slides and recordings now available."
+        }
+      ]
+    },
+    "San Francisco": {
+      "results": [
+        {
+          "title": "SF AI Observability Night — 22 Oct 2026",
+          "url": "https://lu.ma/baseline-v0-sf-ai-obs-oct",
+          "publishedDate": "2026-09-02T00:00:00.000Z",
+          "text": "Evening meetup in SoMa, San Francisco on 22 October 2026 on tracing, evals and cost monitoring for production agents."
+        },
+        {
+          "title": "Kubernetes observability office hours (remote)",
+          "url": "https://example.org/baseline-v0/k8s-observability-office-hours",
+          "publishedDate": null,
+          "text": "Weekly remote office hours on Kubernetes observability. No venue, no city and no fixed date announced."
+        },
+        {
+          "title": "Agents & Observability Hackathon SF — recap",
+          "url": "https://example.org/baseline-v0/sf-agents-hackathon-recap",
+          "publishedDate": "2026-09-04T00:00:00.000Z",
+          "text": "Recap of the Agents & Observability Hackathon held on 8 August 2026 in San Francisco. Winners and project write-ups."
+        }
+      ]
+    },
+    "Berlin": {
+      "results": [
+        {
+          "title": "Berlin LLM Observability Meetup — 29 Oct 2026",
+          "url": "https://lu.ma/baseline-v0-berlin-llm-obs-oct",
+          "publishedDate": "2026-09-03T00:00:00.000Z",
+          "text": "Meetup in Kreuzberg, Berlin on 29 October 2026 about evaluating and monitoring LLM apps in production."
+        },
+        {
+          "title": "Python observability reading group (async, online)",
+          "url": "https://example.org/baseline-v0/python-observability-reading-group",
+          "publishedDate": null,
+          "text": "Asynchronous online reading group about Python observability tooling. No venue, no city, no date announced."
+        },
+        {
+          "title": "AI Infra Berlin — August edition recap",
+          "url": "https://example.org/baseline-v0/ai-infra-berlin-august-recap",
+          "publishedDate": "2026-09-05T00:00:00.000Z",
+          "text": "Recap of AI Infra Berlin, held on 20 August 2026 in Berlin. Photos and talk recordings."
+        }
+      ]
+    },
+    "London": {
+      "results": [
+        {
+          "title": "London AI Observability Meetup — 5 Nov 2026",
+          "url": "https://lu.ma/baseline-v0-london-ai-obs-nov",
+          "publishedDate": "2026-09-01T00:00:00.000Z",
+          "text": "Meetup in Shoreditch, London on 5 November 2026 about production observability for agents."
+        },
+        {
+          "title": "Tracing production agents (webinar)",
+          "url": "https://example.org/baseline-v0/tracing-agents-webinar",
+          "publishedDate": null,
+          "text": "Recorded webinar on tracing production agents. No venue, no city, no date announced."
+        },
+        {
+          "title": "LLM Ops London — July recap",
+          "url": "https://example.org/baseline-v0/llm-ops-london-july-recap",
+          "publishedDate": "2026-09-04T00:00:00.000Z",
+          "text": "Recap of LLM Ops London, held on 16 July 2026 in London. Slides now available."
+        }
+      ]
+    }
+  }
+}

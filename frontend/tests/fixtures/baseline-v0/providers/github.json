@@ -1,0 +1,47 @@
+{
+  "_note": "Respuesta controlada (status: prepared). No son lecturas reales de la API de GitHub: reproducen la forma de /search/repositories y /users/{login}. Un owner que publica solo un país (India) es una señal de oferta a escala país; v0 la coloca en Bengaluru (O2).",
+  "search": {
+    "total_count": 3,
+    "incomplete_results": false,
+    "items": [
+      {
+        "full_name": "openobserve/openobserve",
+        "owner": { "login": "openobserve" },
+        "html_url": "https://github.com/openobserve/openobserve",
+        "stargazers_count": 12000,
+        "updated_at": "2026-09-02T08:00:00.000Z"
+      },
+      {
+        "full_name": "langfuse/langfuse",
+        "owner": { "login": "langfuse" },
+        "html_url": "https://github.com/langfuse/langfuse",
+        "stargazers_count": 9000,
+        "updated_at": "2026-09-03T08:00:00.000Z"
+      },
+      {
+        "full_name": "traceloop/openllmetry",
+        "owner": { "login": "traceloop" },
+        "html_url": "https://github.com/traceloop/openllmetry",
+        "stargazers_count": 4000,
+        "updated_at": "2026-08-30T08:00:00.000Z"
+      }
+    ]
+  },
+  "users": {
+    "openobserve": {
+      "login": "openobserve",
+      "html_url": "https://github.com/openobserve",
+      "location": "San Francisco, CA"
+    },
+    "langfuse": {
+      "login": "langfuse",
+      "html_url": "https://github.com/langfuse",
+      "location": "Berlin, Germany"
+    },
+    "traceloop": {
+      "login": "traceloop",
+      "html_url": "https://github.com/traceloop",
+      "location": "India"
+    }
+  }
+}

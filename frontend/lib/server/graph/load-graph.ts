@@ -111,12 +111,6 @@ export function loadGraph(seedDir: string = findSeedDir()): SeedGraph {
   };
 }
 
-// Lector genérico de un array semilla opcional (JSONC). [] si no existe.
-// Lo usan conectores como Terac para leer sus propios archivos de data/seed.
-export function readSeedArray<T>(file: string, seedDir: string = findSeedDir()): T[] {
-  return readOptionalArray<T>(seedDir, file);
-}
-
 export function loadThemes(seedDir: string = findSeedDir()): Theme[] {
   return readOptionalArray<Theme>(seedDir, OPTIONAL_FILES.themes);
 }

@@ -56,7 +56,7 @@ export async function GET(request: Request): Promise<ImageResponse> {
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', fontSize: 28, color: '#8ea2d6' }}>
-            {opp?.humanValidated ? 'Validado por humanos (Terac)' : 'Evidencia web + eventos'}
+            {opp?.humanValidated ? 'Validado por humanos' : 'Evidencia web + eventos'}
           </div>
           <div
             style={{

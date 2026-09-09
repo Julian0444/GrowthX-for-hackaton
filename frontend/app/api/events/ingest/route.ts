@@ -1,63 +1,102 @@
-// POST /api/events/ingest { url } → EventIngestResponse (§10, la demo técnica
-// estrella). Fetch server-side de la página del evento; el parseo vive en
-// lib/api/luma.ts. Ante cualquier falla devuelve extraction.status "failed"
-// con warnings honestos — nunca datos inventados.
+// POST /api/events/ingest { url, idempotencyKey, profileRunId } → 202 con
+// runId (ticket 11). La importación de Luma delega en la MISMA operación
+// durable que /api/evaluations (startEvaluation): esta ruta valida sesión y
+// URL, y acepta; la obtención y el parseo corren en el worker. No queda un
+// segundo motor de importación síncrono.
+//
+// La URL se valida ANTES de aceptar nada: https, hostname en la allowlist de
+// Luma, sin credenciales ni puertos no estándar (lib/server/catalog/
+// luma-adapter.ts, las mismas reglas que aplica el worker a cada redirección).
+// Un destino no admitido es un 400 sin run ni job.
+//
+// Imports relativos .ts (no alias @/): la prueba de integración ejercita este
+// handler bajo `node --test` sin resolver de tsconfig.
 
-import { NextResponse } from "next/server"
-import { parseLumaEvent } from "@/lib/api/luma"
-import type { EventIngestResponse } from "@/lib/api/types"
+import { NextResponse } from 'next/server';
+import { resolveSessionContext } from '../../../../lib/server/auth/session.ts';
+import { canonicalizeLumaUrl } from '../../../../lib/server/catalog/luma-adapter.ts';
+import { isEvaluationDbConfigured } from '../../../../lib/server/db/pool.ts';
+import { evaluationService } from '../../../../lib/server/evaluations/service.ts';
+import { parseEventIngestStartBody } from '../../../../lib/server/evaluations/wire.ts';
+import { checkEnvOnce } from '../../../../lib/server/env.ts';
 
-// Solo Luma en esta demo — evita usar el endpoint como fetcher arbitrario.
-const ALLOWED_HOSTS = new Set(["luma.com", "www.luma.com", "lu.ma", "www.lu.ma"])
-
-const BROWSER_UA =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-
-// HTTP 200 siempre: el resultado (incluida la falla) viaja en extraction.status
-// — el cliente decide por el body y la consola de la demo queda limpia (el
-// navegador loguea como error cualquier respuesta 4xx/5xx).
-function failed(warnings: string[]): NextResponse {
-  const body: EventIngestResponse = {
-    event: null,
-    extraction: { status: "failed", warnings, fieldsExtracted: [] },
+export async function POST(request: Request): Promise<NextResponse> {
+  checkEnvOnce();
+  if (!isEvaluationDbConfigured()) {
+    return NextResponse.json(
+      {
+        error: 'ingest_unavailable',
+        message:
+          'La base de evaluaciones no está configurada; la importación durable no está disponible (modo degradado).',
+      },
+      { status: 503 },
+    );
   }
-  return NextResponse.json(body)
-}
 
-export async function POST(request: Request) {
-  let url = ""
+  const session = await resolveSessionContext(request).catch((error: unknown) => {
+    console.warn(`[events/ingest] resolución de sesión falló: ${(error as Error).message}`);
+    return null;
+  });
+  if (!session) {
+    return NextResponse.json(
+      { error: 'unauthorized', message: 'Sesión requerida (cookie growthx_session o Bearer).' },
+      { status: 401 },
+    );
+  }
+
+  let payload: unknown;
   try {
-    const body: unknown = await request.json()
-    if (typeof body === "object" && body !== null && "url" in body && typeof body.url === "string") {
-      url = body.url.trim()
+    payload = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: 'invalid_body', message: 'El cuerpo debe ser JSON.' },
+      { status: 400 },
+    );
+  }
+  const parsed = parseEventIngestStartBody(payload, canonicalizeLumaUrl);
+  if (!parsed.ok) {
+    return NextResponse.json({ error: 'invalid_body', message: parsed.error }, { status: 400 });
+  }
+
+  try {
+    const outcome = await evaluationService.acceptEventIngest({
+      tenantId: session.tenantId,
+      userId: session.userId,
+      body: parsed.body,
+    });
+    switch (outcome.status) {
+      case 'accepted':
+      case 'duplicate':
+        // Idempotencia (demo del ticket): repetir clave+payload devuelve el
+        // MISMO run; no aparece un segundo run.
+        return NextResponse.json(
+          {
+            runId: outcome.runId,
+            statusUrl: `/api/evaluations/${outcome.runId}`,
+            deduplicated: outcome.status === 'duplicate',
+          },
+          { status: 202 },
+        );
+      case 'conflict':
+        return NextResponse.json(
+          {
+            error: 'idempotency_conflict',
+            message: 'La clave idempotente ya se usó con otro payload.',
+          },
+          { status: 409 },
+        );
+      case 'invalid_profile':
+        return NextResponse.json(
+          { error: 'invalid_profile', message: outcome.issues.join('; ') },
+          { status: 400 },
+        );
     }
-  } catch {
-    // body inválido → url queda vacía
-  }
-  if (!url) return failed(["missing url in request body"])
-
-  let target: URL
-  try {
-    target = new URL(/^https?:\/\//i.test(url) ? url : `https://${url}`)
-  } catch {
-    return failed(["invalid URL"])
-  }
-  if (!ALLOWED_HOSTS.has(target.hostname.toLowerCase())) {
-    return failed(["only luma.com event URLs are supported in this demo"])
-  }
-  target.protocol = "https:"
-
-  try {
-    const page = await fetch(target.toString(), {
-      headers: { "user-agent": BROWSER_UA, accept: "text/html" },
-      redirect: "follow",
-      cache: "no-store",
-      signal: AbortSignal.timeout(9000),
-    })
-    if (!page.ok) return failed([`event page responded ${page.status}`])
-    const html = await page.text()
-    return NextResponse.json(parseLumaEvent(html, target.toString(), new Date().toISOString()))
-  } catch {
-    return failed(["could not reach the event page (network error or timeout)"])
+  } catch (error) {
+    // Sin job durable no hay 202: la transacción entera se revirtió.
+    console.error(`[events/ingest] aceptación falló: ${(error as Error).message}`);
+    return NextResponse.json(
+      { error: 'accept_failed', message: 'No se pudo registrar la importación; no quedó trabajo pendiente.' },
+      { status: 503 },
+    );
   }
 }

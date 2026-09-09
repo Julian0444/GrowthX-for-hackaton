@@ -21,8 +21,9 @@ import { distanceMiles, requestCapabilities } from '../graph/derive-signals.ts';
 import {
   MARKET_CITIES,
   cityForCountry,
-  resolveMarketCity,
+  resolveMarketCityScoped,
   type MarketCity,
+  type MarketCityScope,
 } from '../markets/city-catalog.ts';
 import { clamp01 } from '../scoring/score-utils.ts';
 
@@ -62,6 +63,12 @@ interface XGeoSignal {
   engagement: number;
   observedAt: string;
   basis: 'city' | 'profile_location';
+  // Alcance de lo que la fuente nombró: 'city' respalda la ciudad; 'region' o
+  // 'country' solo asignan un punto de exploración.
+  geoScope: MarketCityScope;
+  // Texto de ubicación tal como lo publicó la fuente; la evidencia conserva
+  // esta declaración, nunca la ciudad resuelta.
+  declaredLocation: string;
   kind?: 'post' | 'profile';
 }
 
@@ -71,6 +78,7 @@ interface GithubGeoSignal {
   repoUrl: string;
   profileUrl: string;
   location: string;
+  geoScope: MarketCityScope;
   stars: number;
   observedAt: string;
 }
@@ -245,15 +253,16 @@ export function normalizeGoogleTrends(
         asString(row.geoCode) ?? asString(row.countryCode) ?? asString(row.regionCode);
       const value = asNumber(row.value) ?? asNumber(row.score) ?? asNumber(row.interest);
       if (!geoName || value == null || value <= 0) continue;
-      const city =
-        basis === 'country'
-          ? cityForCountry(geoCode ?? geoName)
-          : resolveMarketCity(`${geoName} ${geoCode ?? ''}`);
+      // Una fila de país solo asigna un punto de exploración; una fila "de
+      // ciudad" que en realidad nombra una región/país conserva alcance país.
+      const scoped =
+        basis === 'country' ? null : resolveMarketCityScoped(`${geoName} ${geoCode ?? ''}`);
+      const city = basis === 'country' ? cityForCountry(geoCode ?? geoName) : scoped?.city ?? null;
       if (!city) continue;
       normalized.push({
         city,
         value: Math.round(Math.max(0, Math.min(100, value))),
-        basis,
+        basis: scoped?.scope === 'city' ? 'city' : 'country',
         geoLabel: geoName,
         url: googleTrendsUrl(term),
       });
@@ -297,12 +306,14 @@ export function normalizeTweets(
     const url = asString(item.url) ?? asString(item.twitterUrl);
     if (!url || seen.has(url)) continue;
     const match = locationStrings(item)
-      .map((candidate) => ({ ...candidate, city: resolveMarketCity(candidate.value) }))
-      .find((candidate) => candidate.city !== null);
-    if (!match?.city) continue;
+      .map((candidate) => ({ ...candidate, resolved: resolveMarketCityScoped(candidate.value) }))
+      .find((candidate) => candidate.resolved !== null);
+    if (!match?.resolved) continue;
     seen.add(url);
     normalized.push({
-      city: match.city,
+      city: match.resolved.city,
+      geoScope: match.resolved.scope,
+      declaredLocation: match.value,
       url,
       text: compact(
         asString(item.text) ??
@@ -376,11 +387,12 @@ function normalizeGithubLocations(
       asString(item.html_url) ??
       asString(item.url) ??
       (username ? `https://github.com/${encodeURIComponent(username)}` : null);
-    const city = location ? resolveMarketCity(location) : null;
+    const resolved = location ? resolveMarketCityScoped(location) : null;
     const repo = username ? repoByOwner.get(username.toLowerCase()) : null;
-    if (!username || !profileUrl || !location || !city || !repo) return [];
+    if (!username || !profileUrl || !location || !resolved || !repo) return [];
     return [{
-      city,
+      city: resolved.city,
+      geoScope: resolved.scope,
       repoName: repo.name,
       repoUrl: repo.url,
       profileUrl,
@@ -713,10 +725,12 @@ function sourceSignal(
   };
 }
 
+// `place` es la geografía que la evidencia respalda (ciudad confirmada o, para
+// una hipótesis de exploración, el país): el borrador no afirma más que eso.
 function buildCampaign(
   request: SearchRequest,
   opportunityId: string,
-  city: MarketCity,
+  place: string,
   profile: string[],
 ): CampaignDraft {
   const product = compact(request.product || 'your developer product', 90);
@@ -724,13 +738,13 @@ function buildCampaign(
   return {
     id: `camp-${opportunityId}`,
     opportunityId,
-    title: `${city.city} × ${product}`,
+    title: `${place} × ${product}`,
     variantA: compact(
-      `Bring ${product} to ${city.city}: a hands-on session for ${audience} who want a workflow they can test the same day.`,
+      `Bring ${product} to ${place}: a hands-on session for ${audience} who want a workflow they can test the same day.`,
       320,
     ),
     variantB: compact(
-      `Building with ${audience} in ${city.city}? Leave with one working ${product} playbook—not another product pitch.`,
+      `Building with ${audience} in ${place}? Leave with one working ${product} playbook—not another product pitch.`,
       320,
     ),
   };
@@ -759,6 +773,15 @@ function scoreBreakdown(
       saturationGap: null,
     },
   };
+}
+
+// Desempate determinístico del orden oficial (ticket 06): ante empate exacto
+// (mismo score o, en la rama de ubicación, misma distancia) decide el id
+// estable de la oportunidad. Así el orden nunca depende del orden de llegada
+// de las señales de los proveedores, y ninguna etapa posterior (la redacción
+// incluida) lo modifica. Comparación por puntos de código, ajena al locale.
+function byStableId(a: Opportunity, b: Opportunity): number {
+  return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 }
 
 function selectGlobalTopThree(ranked: Opportunity[]): Opportunity[] {
@@ -819,6 +842,15 @@ export function rankGlobalMarkets(
 
   const opportunities = [...accumulators.values()].map((accumulator): Opportunity => {
     const { city } = accumulator;
+    // La ciudad solo se afirma cuando alguna fuente la nombra (alcance urbano)
+    // o cuando es un candidato curado explícitamente etiquetado como prepared.
+    // Con señales solo de país/región queda como hipótesis de exploración.
+    const cityBacked =
+      accumulator.prepared ||
+      accumulator.trends.some((item) => item.basis === 'city') ||
+      accumulator.tweets.some((item) => item.geoScope === 'city') ||
+      accumulator.github.some((item) => item.geoScope === 'city');
+    const marketLabel = cityBacked ? city.city : city.country;
     const trendValue =
       accumulator.trends.length > 0
         ? Math.max(...accumulator.trends.map((item) => item.value)) / 100
@@ -903,6 +935,9 @@ export function rankGlobalMarkets(
 
     const tweetIds = accumulator.tweets.slice(0, 3).map((item) => {
       const id = stableId('ev-x', item.url);
+      // Solo un lugar etiquetado a nivel ciudad cuenta como observación urbana;
+      // la evidencia conserva la declaración de la fuente, no la ciudad resuelta.
+      const urbanObservation = item.basis === 'city' && item.geoScope === 'city';
       evidence[id] = {
         id,
         source: 'x',
@@ -910,13 +945,13 @@ export function rankGlobalMarkets(
         url: item.url,
         title:
           item.kind === 'profile'
-            ? `Public X profile · ${city.city}`
-            : `Public X signal · ${city.city}`,
+            ? `Public X profile · ${item.declaredLocation}`
+            : `Public X signal · ${item.declaredLocation}`,
         observedAt: item.observedAt,
-        location: city.city,
-        confidence: item.basis === 'city' ? 0.8 : 0.55,
+        location: item.declaredLocation,
+        confidence: urbanObservation ? 0.8 : 0.55,
         rightsBasis: 'public_web',
-        status: item.basis === 'city' ? 'observed' : 'estimated',
+        status: urbanObservation ? 'observed' : 'estimated',
         collector: 'apify',
         excerpt: item.text,
       };
@@ -924,6 +959,7 @@ export function rankGlobalMarkets(
       return id;
     });
     if (tweetIds.length > 0) {
+      const declaredLocations = [...new Set(accumulator.tweets.map((item) => item.declaredLocation))].slice(0, 3);
       const profileCount = accumulator.tweets.filter(
         (item) => item.kind === 'profile',
       ).length;
@@ -932,10 +968,10 @@ export function rankGlobalMarkets(
           profileCount === accumulator.tweets.length
             ? `${profileCount} public X profile${
                 profileCount === 1 ? '' : 's'
-              } associated with relevant repository handles list ${city.city}.`
+              } associated with relevant repository handles publicly list ${declaredLocations.join('; ')}.`
             : `${accumulator.tweets.length} public X signal${
                 accumulator.tweets.length === 1 ? '' : 's'
-              } include a location matching ${city.city}.`,
+              } carry a declared location (${declaredLocations.join('; ')}).`,
         evidenceIds: tweetIds,
       });
     }
@@ -960,10 +996,13 @@ export function rankGlobalMarkets(
       return id;
     });
     if (githubIds.length > 0) {
+      // La razón repite lo declarado por los owners (que puede ser un país o
+      // una región), sin traducirlo a la ciudad resuelta.
+      const declaredLocations = [...new Set(accumulator.github.map((item) => item.location))].slice(0, 3);
       reasons.push({
         text: `${accumulator.github.length} owner${
           accumulator.github.length === 1 ? '' : 's'
-        } of relevant GitHub repositories publicly list ${city.city} or its region.`,
+        } of relevant GitHub repositories publicly list ${declaredLocations.join('; ')}.`,
         evidenceIds: githubIds,
       });
     }
@@ -1022,7 +1061,11 @@ export function rankGlobalMarkets(
               accumulator.github.length === 1 ? '' : 's'
             }`
           : `${sourceMap.get('github')?.globalCount ?? 0} relevant repos globally`,
-        accumulator.github.length > 0 ? 'profile_location' : 'global',
+        accumulator.github.length > 0
+          ? accumulator.github.some((item) => item.geoScope === 'city')
+            ? 'profile_location'
+            : 'country'
+          : 'global',
         bundle.collectedAt,
         githubIds,
         (sourceMap.get('github')?.globalCount ?? 0) > 0,
@@ -1036,7 +1079,12 @@ export function rankGlobalMarkets(
               accumulator.tweets.length === 1 ? '' : 's'
             }`
           : 'No location-matched posts',
-        accumulator.tweets.some((item) => item.basis === 'city') ? 'city' : 'profile_location',
+        accumulator.tweets.some((item) => item.basis === 'city' && item.geoScope === 'city')
+          ? 'city'
+          : accumulator.tweets.length === 0 ||
+              accumulator.tweets.some((item) => item.geoScope === 'city')
+            ? 'profile_location'
+            : 'country',
         bundle.collectedAt,
         tweetIds,
         accumulator.tweets.length > 0,
@@ -1051,16 +1099,20 @@ export function rankGlobalMarkets(
           )
         : null;
     const id = `opp-global-${city.id}`;
-    const leadingReason = reasons[0]?.text ?? `Developer demand signal in ${city.city}.`;
+    const leadingReason = reasons[0]?.text ?? `Developer demand signal in ${marketLabel}.`;
 
     return {
       id,
-      title: `${city.city} developer market`,
-      subtitle: `${city.city} · ${city.country}`,
+      title: `${marketLabel} developer market`,
+      subtitle: cityBacked
+        ? `${city.city} · ${city.country}`
+        : `${city.country} · exploring ${city.city}`,
       lat: city.lat,
       lng: city.lng,
       play: {
-        headline: `Test a developer activation in ${city.city} · ${compact(leadingReason, 120)}`,
+        headline: cityBacked
+          ? `Test a developer activation in ${city.city} · ${compact(leadingReason, 120)}`
+          : `Explore the ${city.country} market (city hypothesis: ${city.city}) · ${compact(leadingReason, 120)}`,
         communityId: `market-${city.id}`,
         themeId: `theme-${stableId('global', bundle.term)}`,
         eventId: null,
@@ -1068,7 +1120,6 @@ export function rankGlobalMarkets(
           targetSize: null,
           profile: capabilities,
           qualifier: 'Query-matched developers; exact audience size requires campaign instrumentation',
-          teracNote: null,
         },
       },
       score,
@@ -1094,13 +1145,16 @@ export function rankGlobalMarkets(
       humanValidated: false,
       distanceMiles: distance == null ? null : Math.round(distance * 10) / 10,
       market: {
-        city: city.city,
+        // null = ciudad pendiente: las señales solo respaldan país/región y la
+        // ciudad del catálogo queda como hipótesis de exploración etiquetada.
+        city: cityBacked ? city.city : null,
+        explorationCity: cityBacked ? null : city.city,
         country: city.country,
         countryCode: city.countryCode,
       },
       momentumSignals,
       event: null,
-      campaign: buildCampaign(request, id, city, capabilities),
+      campaign: buildCampaign(request, id, marketLabel, capabilities),
     };
   });
 
@@ -1111,9 +1165,9 @@ export function rankGlobalMarkets(
       b.distanceMiles != null &&
       Math.abs(a.score - b.score) <= 5
     ) {
-      return a.distanceMiles - b.distanceMiles;
+      return a.distanceMiles - b.distanceMiles || byStableId(a, b);
     }
-    return b.score - a.score;
+    return b.score - a.score || byStableId(a, b);
   });
   // Rank is attached by the legacy adapter; array order is canonical here.
   const top = selectGlobalTopThree(opportunities).map((opportunity) => ({

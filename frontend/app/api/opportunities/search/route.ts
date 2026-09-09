@@ -6,7 +6,7 @@
 import { NextResponse } from 'next/server';
 
 import type { SearchRequest, SearchResponse } from '@/lib/contracts/growxth';
-import { searchOrFixture } from '@/lib/server/pipeline/resolve';
+import { normalizeBudgetUsd, searchOrFixture } from '@/lib/server/pipeline/resolve';
 
 const GOALS = new Set(['adoption', 'feedback', 'hiring', 'awareness']);
 
@@ -23,11 +23,11 @@ function parseRequest(body: unknown): SearchRequest {
     Number.isFinite(rawLocation.lat) &&
     typeof rawLocation.lng === 'number' &&
     Number.isFinite(rawLocation.lng) &&
-    (rawLocation.source === 'linq' || rawLocation.source === 'browser')
+    rawLocation.source === 'browser'
       ? {
           lat: rawLocation.lat,
           lng: rawLocation.lng,
-          source: rawLocation.source as 'linq' | 'browser',
+          source: 'browser' as const,
           locality: typeof rawLocation.locality === 'string' ? rawLocation.locality : null,
           updatedAt: typeof rawLocation.updatedAt === 'string' ? rawLocation.updatedAt : null,
         }
@@ -35,7 +35,7 @@ function parseRequest(body: unknown): SearchRequest {
   return {
     product: typeof b.product === 'string' ? b.product : '',
     icpStack: Array.isArray(b.icpStack) ? b.icpStack.filter((s): s is string => typeof s === 'string') : [],
-    budgetUsd: typeof b.budgetUsd === 'number' && b.budgetUsd > 0 ? b.budgetUsd : 0,
+    budgetUsd: normalizeBudgetUsd(b.budgetUsd),
     goal,
     location,
   };

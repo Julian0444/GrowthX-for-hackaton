@@ -1,0 +1,16 @@
+{
+  "_note": "Respuesta controlada (status: prepared). No es una observación real de Google Trends: reproduce la forma del dataset del actor agenscrape/google-trends-scraper con filas solo a nivel país, para caracterizar cómo v0 convierte país en ciudad (O2).",
+  "actor": "agenscrape/google-trends-scraper",
+  "runId": "baseline-v0-run-trends",
+  "items": [
+    {
+      "keyword": "ai observability",
+      "timeRange": "today 3-m",
+      "geoData": [
+        { "geoCode": "IN", "geoName": "India", "value": [96] },
+        { "geoCode": "GB", "geoName": "United Kingdom", "value": [82] },
+        { "geoCode": "US", "geoName": "United States", "value": [60] }
+      ]
+    }
+  ]
+}

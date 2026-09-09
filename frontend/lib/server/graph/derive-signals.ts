@@ -6,6 +6,12 @@ import type {
   Theme,
 } from '@/lib/contracts/growxth';
 import type { SeedGraph } from '@/lib/server/graph/load-graph';
+// Relativo (no alias `@/`) para que los tests de node --test lo resuelvan sin
+// gancho de alias, igual que los imports de exa-events.ts.
+import {
+  classifyEventValidity,
+  type EventValidityResult,
+} from '../../temporal/event-validity.ts';
 
 const CAPABILITY_RULES: Array<[string, RegExp]> = [
   ['AI', /\b(ai|llm|agent|agents|openai|mistral|codex|reasoning|multimodal|model|models|robotics)\b/i],
@@ -80,7 +86,18 @@ function overlapCount(source: string[], target: string[]): number {
   return target.reduce((count, item) => count + (normalized.has(item.toLowerCase()) ? 1 : 0), 0);
 }
 
-function eventEvidence(event: SFEvent, fetchedAt: string): Evidence {
+// El excerpt distingue fecha del evento (startsAt declarado) de fecha de
+// obtención (fetchedAt → observedAt) y solo dice «upcoming» cuando la política
+// temporal lo respalda; un evento vencido queda identificado como antecedente.
+function eventDateExcerpt(event: SFEvent, validity: EventValidityResult): string | undefined {
+  if (!event.startsAt) return undefined;
+  const day = event.startsAt.slice(0, 10);
+  if (validity.validity === 'upcoming') return `Upcoming event on ${day}.`;
+  if (validity.validity === 'past') return `Past event on ${day}; historical antecedent, not an upcoming opportunity.`;
+  return `Event date ${event.startsAt} cannot be verified against the evaluation instant; validity pending.`;
+}
+
+function eventEvidence(event: SFEvent, fetchedAt: string, validity: EventValidityResult): Evidence {
   return {
     id: `ev-luma-${event.id}`,
     source: 'luma',
@@ -92,7 +109,7 @@ function eventEvidence(event: SFEvent, fetchedAt: string): Evidence {
     confidence: 0.9,
     rightsBasis: 'public_api',
     status: 'observed',
-    excerpt: event.startsAt ? `Upcoming event on ${event.startsAt.slice(0, 10)}.` : undefined,
+    excerpt: eventDateExcerpt(event, validity),
   };
 }
 
@@ -116,6 +133,9 @@ export interface RuntimeCommunity {
   community: Community;
   event: SFEvent;
   theme: Theme;
+  // Clasificación temporal del evento elegido en el instante de evaluación
+  // (ticket 04). La elegibilidad previa al score la aplica el pipeline.
+  eventValidity: EventValidityResult;
 }
 
 export interface RuntimeGraph {
@@ -124,14 +144,22 @@ export interface RuntimeGraph {
   requestCapabilities: string[];
 }
 
-export function deriveRuntimeGraph(graph: SeedGraph, request: SearchRequest): RuntimeGraph {
+export function deriveRuntimeGraph(
+  graph: SeedGraph,
+  request: SearchRequest,
+  // Instante de evaluación explícito (inyectable en tests); por defecto, ahora.
+  evaluationInstant: string = new Date().toISOString(),
+): RuntimeGraph {
   const fetchedAt = graph.sourceMeta?.fetchedAt ?? '2026-07-24T21:34:53.227319+00:00';
   const requested = requestCapabilities(request);
   const evidence: Evidence[] = [];
   const eventEvidenceById = new Map<string, Evidence>();
+  const validityByEvent = new Map(
+    graph.events.map((event) => [event.id, classifyEventValidity(event.startsAt, evaluationInstant)]),
+  );
 
   for (const event of graph.events) {
-    const item = eventEvidence(event, fetchedAt);
+    const item = eventEvidence(event, fetchedAt, validityByEvent.get(event.id)!);
     evidence.push(item);
     eventEvidenceById.set(event.id, item);
   }
@@ -148,7 +176,16 @@ export function deriveRuntimeGraph(graph: SeedGraph, request: SearchRequest): Ru
     const communityEvents = graph.events.filter((event) => event.communityIds.includes(community.id));
     if (communityEvents.length === 0) continue;
 
-    const event = [...communityEvents].sort((a, b) => {
+    // Regla temporal (ticket 04): si la comunidad tiene eventos con inicio
+    // verificable y futuro, el candidato sale solo de ellos; un evento vencido
+    // con mejor fit no puede taparlos. Sin eventos vigentes, el mejor evento
+    // histórico/pendiente queda como candidato marcado (el pipeline lo excluye
+    // de la elegibilidad, pero sigue contándose como evaluado).
+    const upcomingEvents = communityEvents.filter(
+      (item) => validityByEvent.get(item.id)!.validity === 'upcoming',
+    );
+    const pool = upcomingEvents.length > 0 ? upcomingEvents : communityEvents;
+    const event = [...pool].sort((a, b) => {
       const aFit = overlapCount(capabilitiesByEvent.get(a.id) ?? [], requested);
       const bFit = overlapCount(capabilitiesByEvent.get(b.id) ?? [], requested);
       if (aFit !== bFit) return bFit - aFit;
@@ -192,7 +229,12 @@ export function deriveRuntimeGraph(graph: SeedGraph, request: SearchRequest): Ru
       evidenceIds: eventEv ? [eventEv.id] : [],
     };
 
-    candidates.push({ community: scoringCommunity, event, theme });
+    candidates.push({
+      community: scoringCommunity,
+      event,
+      theme,
+      eventValidity: validityByEvent.get(event.id)!,
+    });
   }
 
   return { candidates, evidence, requestCapabilities: requested };

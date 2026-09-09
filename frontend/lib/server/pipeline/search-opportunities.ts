@@ -94,8 +94,12 @@ export function searchOpportunities(
   const sourcesUsed = new Set<EvidenceSource>();
   const sourcesFailed = new Set<EvidenceSource>();
 
+  // Instante de evaluación de la regla temporal (ticket 04). Con el reloj
+  // inyectado en tests queda congelado; en producción es el momento de la
+  // búsqueda.
+  const evaluationInstant = new Date().toISOString();
   const deps = loadDeps(options.deps);
-  const runtime = deriveRuntimeGraph(deps.graph, request);
+  const runtime = deriveRuntimeGraph(deps.graph, request, evaluationInstant);
   const scoringRequest: SearchRequest = {
     ...request,
     icpStack: runtime.requestCapabilities,
@@ -111,13 +115,15 @@ export function searchOpportunities(
   }
 
   const candidates: Opportunity[] = [];
+  let expiredCandidates = 0;
+  let pendingDateCandidates = 0;
   for (const candidate of runtime.candidates) {
     if (deadlineHit()) {
       warnings.push('Search reached its 8 second budget; returning a partial ranking.');
       break;
     }
 
-    const { community, event, theme } = candidate;
+    const { community, event, theme, eventValidity } = candidate;
     const exaEvidence = deps.communityEvidence[community.id] ?? [];
     for (const item of exaEvidence) {
       if (!evidenceById.has(item.id)) {
@@ -125,6 +131,17 @@ export function searchOpportunities(
         evidenceById.set(item.id, item);
       }
       sourcesUsed.add(item.source);
+    }
+
+    // Elegibilidad temporal ANTES del score (ticket 04): solo un evento con
+    // inicio verificable y futuro en el instante de evaluación puede volverse
+    // una oportunidad. Vencido → antecedente histórico; fecha ausente,
+    // inválida o con zona ambigua → pendiente. Nunca se resuelve inventando
+    // zona ni sustituyendo la fecha.
+    if (eventValidity.validity !== 'upcoming') {
+      if (eventValidity.validity === 'past') expiredCandidates += 1;
+      else pendingDateCandidates += 1;
+      continue;
     }
 
     const scoringCommunity = exaEvidence.length
@@ -218,7 +235,6 @@ export function searchOpportunities(
           targetSize,
           profile: runtime.requestCapabilities.slice(0, 3),
           qualifier: null,
-          teracNote: null,
         },
       },
       score,
@@ -243,6 +259,27 @@ export function searchOpportunities(
     });
   }
 
+  // Motivo visible de cada exclusión temporal: los vencidos siguen en los
+  // seeds como antecedentes históricos; los sin fecha verificable quedan
+  // pendientes en lugar de recibir una fecha inventada.
+  if (expiredCandidates > 0) {
+    warnings.push(
+      `${expiredCandidates} candidate event${expiredCandidates === 1 ? '' : 's'} already started before the evaluation instant; excluded from eligible opportunities and kept as historical antecedents.`,
+    );
+  }
+  if (pendingDateCandidates > 0) {
+    warnings.push(
+      `${pendingDateCandidates} candidate event${pendingDateCandidates === 1 ? ' has' : 's have'} no verifiable start date (missing, invalid or timezone-ambiguous); they stay pending and were not ranked.`,
+    );
+  }
+
+  // Orden oficial del scorer, con desempate determinístico (ticket 06): ante
+  // empate exacto (mismo score o, en la rama de ubicación, misma distancia)
+  // decide el id estable, nunca el orden de llegada de los candidatos; ninguna
+  // etapa posterior (la redacción incluida) reordena. Comparación por puntos
+  // de código, ajena al locale.
+  const byStableId = (a: Opportunity, b: Opportunity): number =>
+    a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   candidates.sort((a, b) => {
     if (
       request.location &&
@@ -250,9 +287,9 @@ export function searchOpportunities(
       b.distanceMiles != null &&
       Math.abs(a.score - b.score) <= 5
     ) {
-      return a.distanceMiles - b.distanceMiles;
+      return a.distanceMiles - b.distanceMiles || byStableId(a, b);
     }
-    return b.score - a.score;
+    return b.score - a.score || byStableId(a, b);
   });
   const opportunities = candidates.slice(0, 3);
 

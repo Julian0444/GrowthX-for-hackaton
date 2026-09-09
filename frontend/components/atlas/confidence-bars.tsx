@@ -1,6 +1,6 @@
 // Componente NUEVO (aditivo, T3). DOS barras SEPARADAS con labels distintos:
 //   - confidence: qué tan seguros estamos sobre el MUNDO (la mueve la evidencia).
-//   - consensus:  qué tan alineado está el EQUIPO (lo mueven los tapbacks).
+//   - consensus:  qué tan alineado está el EQUIPO (lo mueven las reacciones).
 // NUNCA se fusionan. La barra de consensus solo aparece si hay Decision activa
 // (consensus != null). No reescribe nada existente.
 
@@ -21,6 +21,20 @@ function Bar({ label, value, color }: { label: string; value: number; color: str
       </span>
       <span className="val" style={{ minWidth: 34, textAlign: "right", fontSize: 12 }}>
         {clamped}%
+      </span>
+    </div>
+  )
+}
+
+// Ticket 12: cobertura Q de la comparación persistida. Es «cuánta parte del
+// peso de la política tiene dato conocido» — NO confidence, NO consenso y NO
+// probabilidad de éxito; el label lo dice para que la pantalla no lo convierta.
+export function CoverageBar({ coverage }: { coverage: number }): ReactElement {
+  return (
+    <div className="confidence-bars">
+      <Bar label="Cobertura de datos (Q)" value={coverage * 100} color="#8a8f98" />
+      <span style={{ fontSize: 11, opacity: 0.75 }}>
+        Fracción del peso de la política con dato conocido. No es probabilidad de éxito.
       </span>
     </div>
   )

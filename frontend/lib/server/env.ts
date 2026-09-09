@@ -9,14 +9,16 @@ interface EnvSpec {
 }
 
 const SPECS: EnvSpec[] = [
-  { name: 'APP_URL', purpose: 'base URL del webhook y tareas externas' },
-  { name: 'PUBLIC_APP_URL', purpose: 'URL pública sin interstitial para links enviados por Linq' },
-  { name: 'LINQ_API_KEY', purpose: 'envío real de mensajes por Linq' },
-  { name: 'LINQ_WEBHOOK_SECRET', purpose: 'verificación de firma del webhook de Linq', requiredInProd: true },
-  { name: 'TERAC_API_KEY', purpose: 'borradores y resultados A/B de Terac' },
   { name: 'EXA_API_KEY', purpose: 'discovery live de eventos y enriquecimiento de fuentes públicas con Exa' },
   { name: 'GEMINI_API_KEY', purpose: 'razonamiento y decisión explicable con Gemini (structured output)' },
   { name: 'APIFY_TOKEN', purpose: 'señales mundiales de Google Trends, GitHub y X' },
+  // Recorrido persistido (ticket 08). Sin estas URLs, /api/evaluations responde
+  // 503 tipado y el resto de la app sigue en el recorrido v0. El worker y el
+  // runner de migraciones validan las suyas al arrancar (son procesos
+  // explícitos). Ver frontend/db/README.md.
+  { name: 'GROWTHX_DATABASE_URL', purpose: 'PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones' },
+  { name: 'GROWTHX_WORKER_DATABASE_URL', purpose: 'PostgreSQL rol growthx_worker: negocio del worker bajo RLS' },
+  { name: 'GROWTHX_QUEUE_DATABASE_URL', purpose: 'PostgreSQL rol growthx_queue: cola pg-boss del worker' },
 ];
 
 let alreadyChecked = false;
@@ -24,17 +26,6 @@ let alreadyChecked = false;
 export interface EnvReport {
   missing: string[];
   warnings: string[];
-}
-
-interface PublicUrlEnv {
-  PUBLIC_APP_URL?: string;
-  APP_URL?: string;
-}
-
-export function resolvePublicAppUrl(
-  env: PublicUrlEnv = process.env as PublicUrlEnv,
-): string {
-  return (env.PUBLIC_APP_URL ?? env.APP_URL ?? '').replace(/\/+$/, '');
 }
 
 export function checkEnv(): EnvReport {

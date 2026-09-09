@@ -1,19 +1,18 @@
 "use client"
 
-import { useEffect, useState, type RefObject } from "react"
-import { ArrowLeft, Copy, ExternalLink, MessageCircle, RefreshCw, Users } from "lucide-react"
+import type { RefObject } from "react"
+import { ArrowLeft } from "lucide-react"
 import type { CampaignRecommendation } from "@/lib/api/types"
-import {
-  ensureResearchCampaign,
-  fetchCampaignResults,
-  launchCampaignWithLinq,
-  runTeracAction,
-  type CampaignResults,
-} from "@/lib/api/atlas-client"
+import type { CampaignView, ProjectedField } from "@/lib/contracts/evaluation"
 
 // Vista de campaña (§9) — vive dentro del mismo .drawer-view que la oportunidad;
 // el crossfade y el foco los maneja OpportunityDrawer. Consume el contrato
 // CampaignRecommendation — la campaña llega con la Opportunity del backend.
+//
+// Ticket 13: los ejemplos de funnel proyectado y atribución se eliminaron —
+// implicaban soporte de medición/atribución de adopción que no existe. La
+// vista permite copiar un borrador manual; no ofrece ejecutar, medir ni
+// exportar nada.
 export function CampaignPanel({
   cityName,
   campaign,
@@ -27,90 +26,9 @@ export function CampaignPanel({
   onBack: () => void
   onToast: (message: string) => void
 }) {
-  // El funnel se normaliza al primer paso (registrations = 100%).
-  const funnelMax = Math.max(1, ...campaign.funnel.map((step) => step.value))
-  const [results, setResults] = useState<CampaignResults | null>(null)
-  const [recipient, setRecipient] = useState("")
-  const [selectedVariant, setSelectedVariant] = useState<"A" | "B">("A")
-  const [busy, setBusy] = useState<"terac" | "linq" | null>(null)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    let stopped = false
-    ensureResearchCampaign(campaign)
-      .then((next) => {
-        if (!stopped) {
-          setResults(next)
-          if (next.winner) setSelectedVariant(next.winner)
-        }
-      })
-      .catch((cause: unknown) => {
-        if (!stopped) setError(cause instanceof Error ? cause.message : "Validation is unavailable.")
-      })
-    const handle = window.setInterval(() => {
-      fetchCampaignResults(campaign.campaignId)
-        .then((next) => {
-          if (!stopped) setResults(next)
-        })
-        .catch(() => {
-          // The panel remains useful if one polling request fails.
-        })
-    }, 2500)
-    return () => {
-      stopped = true
-      window.clearInterval(handle)
-    }
-  }, [campaign])
-
   const copyOutreach = () => {
     navigator.clipboard?.writeText(campaign.organizerMessage)
     onToast("Message copied")
-  }
-
-  const teracAction = async (action: "draft" | "refresh" | "launch") => {
-    if (
-      action === "launch" &&
-      !window.confirm(
-        "Launch this Terac opportunity and recruit 12 participants? This may use Terac credits.",
-      )
-    ) {
-      return
-    }
-    setBusy("terac")
-    setError(null)
-    try {
-      const next = await runTeracAction(campaign, action)
-      setResults(next)
-      onToast(
-        action === "draft"
-          ? "Terac draft created — not launched"
-          : action === "launch"
-            ? "Terac recruitment launched"
-            : "Terac results refreshed",
-      )
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Terac is unavailable.")
-    } finally {
-      setBusy(null)
-    }
-  }
-
-  const sendWithLinq = async () => {
-    setBusy("linq")
-    setError(null)
-    try {
-      const next = await launchCampaignWithLinq({
-        campaign,
-        to: recipient.trim() || undefined,
-        variant: selectedVariant,
-      })
-      setResults(next)
-      onToast("Campaign sent through Linq")
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Linq is unavailable.")
-    } finally {
-      setBusy(null)
-    }
   }
 
   return (
@@ -142,149 +60,137 @@ export function CampaignPanel({
       </div>
 
       <div className="d-section">
-        <span className="eyebrow">Organizer outreach</span>
+        <span className="eyebrow">Organizer outreach · manual draft</span>
         <div className="outreach">
           {`“${campaign.organizerMessage}”`}
           <button className="copy-btn" type="button" onClick={copyOutreach}>
             Copy
           </button>
         </div>
-      </div>
-
-      <div className="d-section track-card">
-        <div className="track-heading">
-          <span className="track-icon"><Users size={13} /></span>
-          <div>
-            <span className="eyebrow">Terac · optional copy check</span>
-            <p>People compare two messages blindly. Their votes never alter the market score.</p>
-          </div>
-        </div>
-        <div className="variant-grid">
-          {(["A", "B"] as const).map((variant) => (
-            <button
-              className={`variant-card${selectedVariant === variant ? " selected" : ""}`}
-              type="button"
-              key={variant}
-              onClick={() => setSelectedVariant(variant)}
-            >
-              <span className="mono">{`Variant ${variant}`}</span>
-              <p>{variant === "A" ? campaign.variantA : campaign.variantB}</p>
-              {results?.winner === variant && <b>Current leader</b>}
-            </button>
-          ))}
-        </div>
-        <div className="track-stats">
-          <span>{`${results?.nValid ?? 0} valid votes`}</span>
-          <span>
-            {results?.winner
-              ? `${Math.round((results.winRate ?? 0) * 100)}% prefer ${results.winner}`
-              : "No winner yet"}
-          </span>
-        </div>
-        {!results?.terac ? (
-          <button
-            className="track-action"
-            type="button"
-            disabled={busy !== null}
-            onClick={() => void teracAction("draft")}
-          >
-            Create Terac draft
-          </button>
-        ) : (
-          <div className="track-actions">
-            <button
-              className="track-action"
-              type="button"
-              disabled={busy !== null}
-              onClick={() => void teracAction("refresh")}
-            >
-              <RefreshCw size={11} />
-              Refresh
-            </button>
-            {results.terac.status === "draft" && (
-              <button
-                className="track-action dark"
-                type="button"
-                disabled={busy !== null}
-                onClick={() => void teracAction("launch")}
-              >
-                Recruit 12 people
-                <ExternalLink size={11} />
-              </button>
-            )}
-          </div>
-        )}
-        {results?.terac && (
-          <p className="track-note mono">
-            {`Terac ${results.terac.status} · ${results.terac.opportunityId.slice(0, 12)}`}
-          </p>
-        )}
-      </div>
-
-      <div className="d-section track-card">
-        <div className="track-heading">
-          <span className="track-icon"><MessageCircle size={13} /></span>
-          <div>
-            <span className="eyebrow">Linq · launch and approve</span>
-            <p>Send the selected copy, then approve with a real reply or tapback.</p>
-          </div>
-        </div>
-        <label className="track-label" htmlFor={`linq-recipient-${campaign.campaignId}`}>
-          Recipient (optional if they already texted GrowXth)
-        </label>
-        <input
-          id={`linq-recipient-${campaign.campaignId}`}
-          className="track-input"
-          value={recipient}
-          onChange={(event) => setRecipient(event.target.value)}
-          placeholder="+1 415 555 0123"
-          inputMode="tel"
-        />
-        <button
-          className="track-action dark wide"
-          type="button"
-          disabled={busy !== null}
-          onClick={() => void sendWithLinq()}
-        >
-          {busy === "linq" ? "Sending…" : `Send variant ${selectedVariant} with Linq`}
-        </button>
-        <p className="track-note">
-          {results?.launch.state === "approved"
-            ? "Approved by a real Linq response. Market score unchanged."
-            : results?.launch.state === "sent"
-              ? "Sent. Waiting for a reply or tapback."
-              : "Draft only — nothing has been sent."}
-        </p>
-      </div>
-
-      {error && <p className="track-error" role="alert">{error}</p>}
-
-      {campaign.funnel.length > 0 && (
-        <div className="d-section">
-          <span className="eyebrow">Measurement plan · projected example</span>
-          {campaign.funnel.map((step) => (
-            <div className="funnel-step" key={step.label}>
-              <span className="lbl">{step.label}</span>
-              <span className="bar">
-                <i style={{ width: `${(step.value / funnelMax) * 100}%` }} />
-              </span>
-              <span className="val mono">{step.value}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      <div className="d-section">
-        <span className="eyebrow">Attribution</span>
-        <div className="attr-chip">
-          {campaign.attributionCode}
-          <Copy size={11} strokeWidth={1.8} />
-        </div>
         <p className="cmp-note">
-          Dedicated API-key cohort + event code so post-event activation and retention attribute
-          back to this decision.
+          Draft only — nothing is sent, executed or measured from here.
         </p>
       </div>
     </>
+  )
+}
+
+// ---- Borrador de campaña persistido (ticket 13) ----
+// Renderiza la CampaignView proyectada del borrador guardado con la decisión:
+// objetivo, modalidad, partidas conocidas/desconocidas (jamás 0), preguntas y
+// compromisos donde estimación ≠ meta ≠ acordado (solo lo acordado con
+// quién/cuándo/evidencia se marca soportado). Permite copiar un borrador
+// manual; no ofrece ejecutar, medir ni exportar nada.
+
+const COMMITMENT_KIND_LABEL = { estimate: "Estimación", goal: "Meta", agreed: "Acordado" } as const
+
+function fieldText(field: ProjectedField): string {
+  if (field.state === "known") return field.pendingNote ? `${field.display} · ${field.pendingNote}` : field.display
+  if (field.state === "ambiguous") return `${field.display} · ${field.note}`
+  return `Pendiente${field.note ? ` · ${field.note}` : ""}`
+}
+
+export function composeManualCampaignDraft(view: CampaignView): string {
+  return [
+    `Borrador de campaña (manual) — objetivo: ${view.objective}`,
+    `Definición de éxito: ${fieldText(view.successDefinition)}`,
+    `Modalidad: ${fieldText(view.modality)}`,
+    "Partidas de costo:",
+    ...view.costItems.map((item) => `- ${item.label}: ${fieldText(item.value)}`),
+    view.costCompleteness === "has_unknown_items"
+      ? "Hay partidas sin costo conocido: no existe un total."
+      : "Todas las partidas listadas tienen valor.",
+    "Preguntas abiertas:",
+    ...view.openQuestions.map((question) => `- ${question}`),
+    "Compromisos:",
+    ...view.commitments.map(
+      (commitment) =>
+        `- [${COMMITMENT_KIND_LABEL[commitment.kind]}${commitment.kind === "agreed" && !commitment.supported ? " SIN SOPORTE" : ""}] ${commitment.description}`,
+    ),
+  ].join("\n")
+}
+
+export function CampaignDraftPanel({
+  view,
+  onBack,
+  onToast,
+}: {
+  view: CampaignView
+  onBack: () => void
+  onToast: (message: string) => void
+}) {
+  const copyDraft = () => {
+    navigator.clipboard?.writeText(composeManualCampaignDraft(view))
+    onToast("Borrador copiado")
+  }
+  return (
+    <section className="research-campaign-draft" aria-label="Borrador de campaña persistido" data-testid="campaign-draft-panel">
+      <button className="research-button" type="button" onClick={onBack}>
+        Volver a la comparación
+      </button>
+      <h3>Borrador de campaña persistido</h3>
+      <p className="research-meta">
+        Campaña <span data-testid="campaign-draft-id">{view.campaignId}</span> · decisión {view.decisionId}. Guardar no
+        envía mensajes ni contrata nada; este borrador se copia a mano.
+      </p>
+      <p>
+        <b>Objetivo:</b> {view.objective}
+      </p>
+      <p>
+        <b>Definición de éxito:</b> {fieldText(view.successDefinition)}
+      </p>
+      <p>
+        <b>Modalidad:</b> {fieldText(view.modality)}
+      </p>
+      <div data-testid="campaign-draft-costs">
+        <p>
+          <b>Partidas de costo</b> (una partida desconocida queda pendiente; no se suma como 0):
+        </p>
+        <ul>
+          {view.costItems.map((item) => (
+            <li key={item.label}>
+              {item.label}: {fieldText(item.value)}
+            </li>
+          ))}
+        </ul>
+        {view.costCompleteness === "has_unknown_items" && (
+          <p className="research-meta">Hay partidas sin costo conocido: no existe un total de campaña.</p>
+        )}
+      </div>
+      {view.openQuestions.length > 0 && (
+        <div>
+          <p>
+            <b>Preguntas abiertas</b> (registradas; no se envía ninguna):
+          </p>
+          <ul>
+            {view.openQuestions.map((question, index) => (
+              <li key={index}>{question}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div data-testid="campaign-draft-commitments">
+        <p>
+          <b>Compromisos</b> — estimación y meta no se presentan como acuerdo; «acordado» exige quién confirmó, cuándo y
+          evidencia:
+        </p>
+        {view.commitments.length === 0 ? (
+          <p className="research-meta">Sin compromisos registrados.</p>
+        ) : (
+          <ul>
+            {view.commitments.map((commitment, index) => (
+              <li key={index}>
+                <b>{COMMITMENT_KIND_LABEL[commitment.kind]}</b>
+                {commitment.kind === "agreed" && (commitment.supported ? " · con soporte" : " · SIN soporte")} —{" "}
+                {commitment.description}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <button className="research-button" type="button" onClick={copyDraft}>
+        Copiar borrador manual
+      </button>
+    </section>
   )
 }

@@ -1,71 +1,70 @@
 "use client"
 
 import type { FormEvent } from "react"
-import type { EventIngestResponse, RequestState } from "@/lib/api/types"
+import type { RequestState } from "@/lib/api/types"
+import { eventIngestResult, type EvaluationRunView } from "@/lib/api/atlas-client"
+
+// Import de una URL de Luma (ticket 11): pegar la URL llama a la operación
+// DURABLE (POST /api/events/ingest → 202 con runId). Este panel muestra el
+// runId y el progreso real persistido; el dossier resultante se reabre desde
+// PostgreSQL (panel del dossier del ticket 09), no desde el estado de esta
+// pantalla — cerrar la pestaña durante la obtención no pierde nada.
 
 export type IngestUiState = {
   url: string
   request: RequestState
-  result: EventIngestResponse | null
+  // runId aceptado por la última importación disparada desde este panel.
+  runId: string | null
 }
 
 export const INGEST_IDLE: IngestUiState = {
   url: "",
   request: { status: "idle" },
-  result: null,
+  runId: null,
 }
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-// Fecha calendario LITERAL del ISO (sin convertir zona horaria: un evento
-// publicado el 24/7 a las 18:00-07:00 debe mostrar 24, no el día en UTC).
-function literalDate(iso: string): { month: string; day: string } | null {
-  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso)
-  if (!match) return null
-  return { month: MONTHS[Number(match[2]) - 1] ?? "—", day: String(Number(match[3])) }
+const RUN_STATES: Record<string, string> = {
+  queued: "En cola",
+  running: "En ejecución",
+  completed: "Completada",
+  failed: "Fallida",
+  pending: "Pendiente",
 }
 
-function formatObserved(iso: string): string {
-  const date = literalDate(iso)
-  const time = /T(\d{2}:\d{2})/.exec(iso)
-  if (!date) return "observed date unknown"
-  const day = `${date.month} ${date.day}, ${iso.slice(0, 4)}`
-  return iso.endsWith("Z") && time ? `observed ${day} · ${time[1]} UTC` : `observed ${day}`
+const STEP_LABELS: Record<string, string> = {
+  validate_profile: "Validar perfil",
+  fetch_event_page: "Obtener página del evento",
+  persist_dossier: "Persistir dossier",
+  publish_result: "Publicar resultado",
 }
 
-function formatRegistration(status: string | undefined): string | null {
-  if (!status) return null
-  if (status === "open") return "Registration open"
-  if (status === "sold_out") return "Sold out"
-  return status.replaceAll("_", " ")
-}
-
-// Import de una URL de Luma (§10) — el evento entra al panel con su fuente
-// real y su confidence (cobertura de campos), nunca inventados.
 export function EventImport({
   ingest,
+  run,
   onUrlChange,
   onImport,
+  onOpenDossier,
 }: {
   ingest: IngestUiState
+  // Run de importación en curso o recuperado (null si el run abierto no es
+  // una importación): estado y pasos vienen del servidor, no de esta pantalla.
+  run: EvaluationRunView | null
   onUrlChange: (url: string) => void
   onImport: () => void
+  onOpenDossier: (editionId: string) => void
 }) {
-  const { url, request, result } = ingest
+  const { url, request } = ingest
   const loading = request.status === "loading"
-  const event = result?.event ?? null
+  const result = eventIngestResult(run)
 
   const submit = (formEvent: FormEvent) => {
     formEvent.preventDefault()
     if (!loading && url.trim()) onImport()
   }
 
-  const date = event ? literalDate(event.startsAt) : null
-  const registration = formatRegistration(event?.registrationStatus)
-
   return (
     <div className="d-section ingest">
-      <span className="eyebrow">Import an event · Luma</span>
+      <span className="eyebrow">Importar un evento · Luma</span>
       <form className="ingest-row" onSubmit={submit} aria-busy={loading}>
         <input
           className="ingest-input"
@@ -78,67 +77,61 @@ export function EventImport({
           aria-label="Luma event URL"
         />
         <button className="ingest-btn" type="submit" disabled={loading}>
-          {loading ? "Importing…" : "Import"}
+          {loading ? "Importando…" : "Importar"}
         </button>
       </form>
 
       {request.status === "error" && (
         <div className="ingest-error" role="alert">
           <p className="msg">
-            <b>Import failed</b> — {request.message}
+            <b>La importación no se aceptó</b> — {request.message}
           </p>
           <div className="actions">
             <button className="req-btn" type="button" onClick={onImport}>
-              Retry
+              Reintentar
             </button>
           </div>
         </div>
       )}
 
-      {event && result && (
-        <div className="ingest-result">
-          <div className="event-card">
-            <div className="cal">
-              <div className="m">{date?.month ?? "—"}</div>
-              <div className="d">{date?.day ?? "—"}</div>
-            </div>
-            <div>
-              <div className="ttl">{event.name}</div>
-              <div className="meta">
-                {[event.venue, event.city || "Location not published"].filter(Boolean).join(" · ")}
-              </div>
-              {registration && <div className="open">{registration}</div>}
-            </div>
-          </div>
-
-          <div className="conf-row">
-            <span className="lbl">Confidence</span>
-            <span className="meter">
-              <i style={{ width: `${event.confidence}%` }} />
-            </span>
-            <span className="val">{event.confidence}%</span>
-          </div>
+      {run && (
+        <div className="ingest-result" data-testid="ingest-run">
           <p className="ingest-note">
-            {result.extraction.fieldsExtracted.length} of 10 fields extracted from structured data
+            Importación <b>{run.runId}</b> · {RUN_STATES[run.state] ?? run.state}
+            {run.requestedUrl && <> · {run.requestedUrl}</>}
           </p>
-
-          <div className="evi">
-            <span className="prov">{event.source.provider}</span>
-            <div className="body">
-              <div className="ttl">
-                <a href={event.source.url} target="_blank" rel="noreferrer">
-                  {event.source.url?.replace(/^https:\/\//, "")}
-                </a>
-              </div>
-              <div className="when">{formatObserved(event.source.observedAt)}</div>
-            </div>
-            <span className={`badge${event.source.isEstimated ? " est" : ""}`}>
-              {event.source.isEstimated ? "Estimated" : "Observed"}
-            </span>
-          </div>
-
-          {result.extraction.warnings.length > 0 && (
-            <p className="ingest-warns">Not in structured data: {summarizeWarnings(result.extraction.warnings)}</p>
+          <ul className="ingest-note">
+            {run.steps.map((step) => (
+              <li key={step.name}>
+                {STEP_LABELS[step.name] ?? step.name}: {RUN_STATES[step.state] ?? step.state} · intentos{" "}
+                {step.attempts}
+                {step.error && <> · {step.error}</>}
+              </li>
+            ))}
+          </ul>
+          {run.error && (
+            // Un fallo conserva la URL solicitada, el intento y la causa —
+            // visibles acá tal como quedaron persistidos.
+            <p className="ingest-error" role="alert">
+              Falló la importación de {run.requestedUrl ?? "la URL solicitada"}: {run.error}
+            </p>
+          )}
+          {result && (
+            <>
+              <p className="ingest-note">
+                {result.linkedToExistingEdition
+                  ? "URL canónica relacionada con la identidad existente del evento: se agregó una revisión de evidencia, no una segunda identidad."
+                  : "Nueva edición registrada en el catálogo del tenant como material importado."}
+              </p>
+              {result.extraction.warnings.length > 0 && (
+                <p className="ingest-warns">
+                  Dossier parcial — sin datos estructurados: {summarizeWarnings(result.extraction.warnings)}
+                </p>
+              )}
+              <button className="req-btn" type="button" onClick={() => onOpenDossier(result.editionId)}>
+                Abrir dossier persistido
+              </button>
+            </>
           )}
         </div>
       )}
@@ -146,7 +139,7 @@ export function EventImport({
   )
 }
 
-// Los warnings del endpoint son oraciones ("sponsors not present in structured
+// Los warnings del parser son oraciones ("sponsors not present in structured
 // data") — acá se compactan a una sola línea honesta.
 function summarizeWarnings(warnings: string[]): string {
   return warnings

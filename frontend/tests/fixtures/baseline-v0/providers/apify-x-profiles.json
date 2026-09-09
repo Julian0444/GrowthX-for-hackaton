@@ -1,0 +1,30 @@
+{
+  "_note": "Respuesta controlada (status: prepared). No son perfiles reales: reproducen la forma del actor automation-lab/twitter-scraper en modo profiles. La ubicación declarada en un perfil no demuestra presencia física (O2).",
+  "actor": "automation-lab/twitter-scraper",
+  "runId": "baseline-v0-run-x",
+  "items": [
+    {
+      "url": "https://x.com/openobserve",
+      "username": "openobserve",
+      "name": "OpenObserve (perfil controlado)",
+      "bio": "Observability for logs, metrics and traces. Perfil de prueba de la referencia v0.",
+      "location": "San Francisco, CA",
+      "followers": 1200,
+      "scrapedAt": "2026-09-01T10:00:00.000Z"
+    },
+    {
+      "url": "https://x.com/langfuse",
+      "username": "langfuse",
+      "name": "Langfuse (perfil controlado)",
+      "bio": "Open source LLM engineering platform. Perfil de prueba de la referencia v0.",
+      "location": "Berlin, Germany",
+      "followers": 5400,
+      "scrapedAt": "2026-09-01T10:00:00.000Z"
+    },
+    {
+      "url": "https://x.com/traceloopdev",
+      "username": "traceloop",
+      "noResults": true
+    }
+  ]
+}

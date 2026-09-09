@@ -1,0 +1,141 @@
+{
+  "name": "baseline-v0",
+  "frozenAt": "2026-09-07T22:28:00.000Z",
+  "evaluationClock": "2026-09-07T22:28:00.000Z",
+  "commit": {
+    "head": "480712cc3dfa913996bd16ad710b0d2a1f92432d",
+    "branch": "main",
+    "workingTreeDirty": true,
+    "note": "Congelado sobre el árbol de trabajo, no solo sobre HEAD: había 89 rutas con cambios locales sin commitear (borrado de Linq/Terac/research, edición de pipeline, contratos, adaptador, UI). No se resetea ni se descarta nada; los hashes de abajo son los del árbol usado."
+  },
+  "versions": {
+    "node": "v22.23.2",
+    "pnpm": "11.8.0",
+    "next": "16.2.6",
+    "typescript": "5.7.3",
+    "eslint": "9.39.5 (pnpm-lock)",
+    "react": "^19"
+  },
+  "policy": {
+    "version": "v0 (sin versionado en código; congelado por hash de lib/server/scoring/* y lib/server/pipeline/global-market-search.ts)",
+    "scoreSemantics": [
+      "El score de un mercado (rankGlobalMarkets) mide interés y actividad pública para el término del producto en una geografía: Google Trends (país o ciudad), perfiles de X con ubicación declarada y owners de repos de GitHub con ubicación declarada. Es un score de comunidad/mercado.",
+      "El score local (searchOpportunities) promedia un score de comunidad (stackOverlap .25, cadenceReliability .20, access .20, exclusivityGap .15, durability .10, confidence .10) y un score de tema (momentum .30, criticalPath .30, communityCapability .25, saturationGap .15) sobre seeds de Luma.",
+      "Ninguno de los dos es un score de evento: no evalúa una edición concreta, su fecha, acceso ni costo. Ninguno es una política de recruiting ni de ningún objetivo del intake: el goal solo entra como palabra en el prompt del modelo, no en el scorer.",
+      "Ninguno es probabilidad de éxito. confidence es un promedio de la confianza de la evidencia citada, no una probabilidad.",
+      "v0 no tiene elegibilidad previa al score: no excluye por fecha vencida, costo ni acceso; el costo se reporta como \"Pricing not collected\"."
+    ],
+    "scorers": {
+      "global": {
+        "weights": {
+          "google_trends": 0.55,
+          "x": 0.25,
+          "github": 0.15,
+          "hubWeight": 0.05
+        },
+        "formula": "combined = suma ponderada de fuentes disponibles / suma de pesos disponibles; coverage = pesosVivos/0.95; calibrated = combined*(0.4+coverage*0.6); score = 40+calibrated*55 con geo viva, o 28+hubWeight*12 preparado",
+        "topSelection": "orden por score desc (empate ±5 por distancia si hay location), luego 3 países distintos",
+        "tieBreak": "Array.prototype.sort estable; sin desempate explícito más allá de la distancia"
+      },
+      "local": {
+        "score": "round((community.score + theme.score)/2)",
+        "top": "primeros 3 tras ordenar por score desc (empate ±5 por distancia si hay location)"
+      }
+    }
+  },
+  "request": {
+    "product": "AI observability for production agents",
+    "icpStack": [
+      "Python",
+      "Kubernetes"
+    ],
+    "budgetUsd": 2000,
+    "goal": "adoption"
+  },
+  "sources": {
+    "lib/contracts/growxth.ts": "d0972a0540faa250c9dd0b449f0ab712f2b6edf0ce1cd04a00f9f4f52beaa08e",
+    "lib/server/pipeline/resolve.ts": "812276af380b18f03b5da9ca959f3898f6f9ad3fa1e87d21e07a6bac46ceb397",
+    "lib/server/pipeline/global-market-search.ts": "b5491e1ec90da301d58ce848aaa97bab525b0821681e75a0bbbe5a2b9f6b8637",
+    "lib/server/pipeline/search-opportunities.ts": "c3711ae728eb6a5eb8763daebdbbc898a950c2dffd5f905932e9f8d294c35f97",
+    "lib/server/reasoning/gemini.ts": "fef155837f72ec4334c239779061cd2c426d8cf513229972fb1b38c02735698d",
+    "lib/server/discovery/exa-events.ts": "d738725c58b0092999654ec242cc20c09cdd5875c67011ec7be31eb7140f25d7",
+    "lib/server/connectors/apify.ts": "7dc64552dac5c3f7a01f432337ea5694274cd049b8494bff79809d07fd9c19da",
+    "lib/server/graph/load-graph.ts": "4283d30fd45494d2b33bbc738e20f982d97cd3d7645c2fd0b0b053f9bbdfff31",
+    "lib/server/graph/derive-signals.ts": "2588e030fd7d791061ea6fff15a6d1a8f812cb11ff944912cd0e62ea66fc9482",
+    "lib/server/markets/city-catalog.ts": "aa679c6ad080b025914295cf226aa164deda9a81f29c5dcca8f98c8b4df388e8",
+    "lib/server/scoring/community-score.ts": "68829b790e8fc3018153de19479f8518ad953cdd4ef67c821a027f3c24bca357",
+    "lib/server/scoring/theme-score.ts": "2205d1cb5c81c890647655c634146f73259fba51bddb5e5b84a19041680f73d2",
+    "lib/server/scoring/roi.ts": "b33ad4c3ee03a0b6eedb5ee22a890ea40d9db57de9169ea8ca7b88d979fd7be8",
+    "lib/server/scoring/score-utils.ts": "56f8c7c709b66e3557d3c1a0a1fcf950aa2f0e4031f685c52ac806410c4c0043",
+    "lib/server/audit/labels.ts": "bbdc3e99b9bab035712fe414ce21f81124d4dd1bedcbee0cb7fd6d6a6118ae7a",
+    "lib/server/cache.ts": "fa23f53073a94d67c92165298f36f5eb228a79c5933d905e092a1c91e5700f1b",
+    "lib/server/env.ts": "87c3875a447f1fea736113d3302a27bcdae234f5ed94caf666e1b07147a02c8b",
+    "lib/api/opportunity-adapter.ts": "7a7c54b2e4bafa07b69b3c1541c65a504dff507ad38acacbece4785e6880dfeb",
+    "lib/api/types.ts": "53c2268f5d7ad8f0f6bfdb51a6aec9835d749939dc5889697a32eb55c29736cf",
+    "app/api/opportunities/search/route.ts": "76fdde80bf3c3308ebfbeb3331583b3cd42c02e85d7fa56436dfd34176167af7"
+  },
+  "sourceNotes": {
+    "lib/server/pipeline/resolve.ts": "Hash del archivo con la costura de inyección (createSearchResolver) usada para producir la caracterización. Antes de la costura, el mismo archivo en el árbol de trabajo tenía sha256 3b9497927b40701a50514160de3e23f02d1ec1e046d1783642433bbfec3073e3; la lógica (clave de cache, fallback, auditoría) es idéntica."
+  },
+  "seeds": {
+    "data/seed/sf-events.json": {
+      "sha256": "e84c0175eb88c9e54c122873ca31b2c0d6832a22c1b9eb958c748e0e7431224e",
+      "events": 64,
+      "withDate": 64,
+      "withoutDate": 0,
+      "expiredAtClock": 63,
+      "futureAtClock": 1,
+      "earliest": "2026-07-24T23:00:00.000Z",
+      "latest": "2026-09-18T00:00:00.000Z"
+    },
+    "data/seed/nyc-events.json": {
+      "sha256": "ac6323c0eadb90d84001da4d329f6e1c4951ea52ae97af06f8e1c787bd1641a4",
+      "events": 72,
+      "withDate": 72,
+      "withoutDate": 0,
+      "expiredAtClock": 66,
+      "futureAtClock": 6,
+      "earliest": "2026-08-15T12:30:00.000Z",
+      "latest": "2026-11-05T14:00:00.000Z"
+    },
+    "data/seed/sf-communities.json": "8043f34e09e778cb74c9e72309a263614c77fa19ad06cdc2e656afe0cfb3298b",
+    "data/seed/sf-organizers.json": "4d4e0faea4a648ea4db7dbd6198cf4dc268db0183a5777082119a6ee5545de16",
+    "data/seed/sf-source-meta.json": "f449cfa4fefa9caca0ce7bff72542733612b4f5cbb2e47f76b60f602da409e95",
+    "data/seed/nyc-communities.json": "286b0efb4ea87051e9b535f979769256c238cb9df58615a04e912d2de549090e",
+    "data/seed/nyc-organizers.json": "5972e7cb22c71b0381840e3e2e0d727c517e01e32b50efcdc7329e00dce280c0",
+    "data/seed/nyc-source-meta.json": "c9779d92ce98281ae45eaa4fca347b44604411b193015c12b969cc6277db3c5e",
+    "data/seed/community-evidence.json": "a98a00dadbe4ea1fb11d97c6719fecd4252825daaae2b34ef91eacdec81e8b75"
+  },
+  "seedsNote": "Los 136 eventos (64 SF + 72 NYC) son material histórico congelado. La clasificación vencido/futuro se calcula en evaluationClock sin tocar los archivos; en v0 el loader solo carga los seeds SF y la ruta HTTP no llega a ellos salvo excepción.",
+  "fixtures": {
+    "lib/server/demo/fixtures.ts": "29380307fa29e8ddd6e6c0014f916cb6ef27dee6cda9dca98429c95b8a0ce4a1",
+    "tests/fixtures/baseline-v0/providers/apify-google-trends.json": "2b60a7033e68dc8390a149dddaa4363200884b255ff280d6103a9c4ec2150b8a",
+    "tests/fixtures/baseline-v0/providers/apify-x-profiles.json": "d19e1527145d606af50c39b164a403a733e7e942eeae6f51064d40ef036f1e77",
+    "tests/fixtures/baseline-v0/providers/github.json": "9dc5e427492c877f84bfbd317f0cd503be0e85b5e986dd2c275e94e33fb35001",
+    "tests/fixtures/baseline-v0/providers/exa-events.json": "d64d4ba48d8df8ff81a536482456913b068eb99b2c65d5cb6f991854952edd5c",
+    "tests/fixtures/baseline-v0/providers/gemini.json": "28b28c6fc7850a950d4f03c0b52ea52a5368fe42bf3ed4449b816cc681cab8d6"
+  },
+  "suiteBaseline": {
+    "command": "pnpm --dir frontend test",
+    "recordedAt": "2026-09-07T22:30:00.000Z",
+    "beforeChanges": {
+      "tests": 35,
+      "pass": 35,
+      "fail": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "lint": {
+      "command": "pnpm --dir frontend lint",
+      "result": "sin errores ni warnings"
+    },
+    "preexistingFailures": [],
+    "note": "La suite previa no cubre la frontera de búsqueda (resolve), Gemini, Exa ni el adaptador; esos módulos entran recién con baseline-v0.test.ts."
+  },
+  "secrets": "Ninguno. La captura no incluye valores de entorno; las claves que ve el código durante la repetición son los valores falsos de FAKE_KEYS en harness.ts y GITHUB_TOKEN se elimina del entorno durante la repetición.",
+  "notes": [
+    "Cómo repetir: pnpm --dir frontend test:baseline (o pnpm --dir frontend test). Sin red: cualquier URL no grabada hace fallar la repetición.",
+    "Cada repetición deja tres timers de 4,5 s (LIVE_SIGNAL_WAIT_MS en global-market-search.ts) que no se pueden inyectar sin tocar ese archivo; el test tarda unos segundos más por eso.",
+    "requestId es el único campo no determinístico (crypto.randomUUID) y se enmascara al comparar."
+  ]
+}

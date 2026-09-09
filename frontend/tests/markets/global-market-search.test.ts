@@ -41,8 +41,11 @@ test('normalizes worldwide Trends rows and explicit X locations', () => {
     ]),
     'ai observability',
   );
+  // El país asigna un punto de exploración, no una observación urbana: la
+  // señal conserva su alcance de país (la respuesta no la eleva a ciudad).
   assert.equal(trends[0]?.city.city, 'Bengaluru');
   assert.equal(trends[0]?.value, 96);
+  assert.equal(trends[0]?.basis, 'country');
 
   const tweets = normalizeTweets(
     actor([
@@ -59,6 +62,7 @@ test('normalizes worldwide Trends rows and explicit X locations', () => {
   );
   assert.equal(tweets[0]?.city.city, 'London');
   assert.equal(tweets[0]?.engagement, 8);
+  assert.equal(tweets[0]?.geoScope, 'city', 'un lugar explícito conserva alcance urbano');
 
   const profiles = normalizeTweets(
     actor([
@@ -76,6 +80,8 @@ test('normalizes worldwide Trends rows and explicit X locations', () => {
   assert.equal(profiles[0]?.city.city, 'San Francisco');
   assert.equal(profiles[0]?.engagement, 1200);
   assert.equal(profiles[0]?.kind, 'profile');
+  assert.equal(profiles[0]?.geoScope, 'city');
+  assert.equal(profiles[0]?.declaredLocation, 'San Francisco', 'la evidencia conserva lo declarado');
 });
 
 test('builds focused signal queries from natural product descriptions', () => {
@@ -115,6 +121,8 @@ test('ranks three countries from query-specific geographic evidence', () => {
         engagement: 12,
         observedAt: '2026-07-24T00:00:00Z',
         basis: 'city',
+        geoScope: 'city',
+        declaredLocation: 'London, England',
       },
     ],
     github: [
@@ -124,6 +132,7 @@ test('ranks three countries from query-specific geographic evidence', () => {
         repoUrl: 'https://github.com/example/agent-observability',
         profileUrl: 'https://github.com/example',
         location: 'Buenos Aires',
+        geoScope: 'city',
         stars: 1200,
         observedAt: '2026-07-24T00:00:00Z',
       },
@@ -141,7 +150,14 @@ test('ranks three countries from query-specific geographic evidence', () => {
     new Set(response.opportunities.map((item) => item.market?.countryCode)).size,
     3,
   );
-  assert.ok(response.opportunities.some((item) => item.market?.city === 'Bengaluru'));
+  // La señal de Trends para India es de país: nomina el mercado pero ya no
+  // prueba observación urbana — Bengaluru queda como punto de exploración
+  // etiquetado, no como ciudad factual. Un lugar explícito (tweet de London,
+  // owner de Buenos Aires) sí conserva la ciudad.
+  const bengaluruOpp = response.opportunities.find((item) => item.id === 'opp-global-bengaluru');
+  assert.ok(bengaluruOpp);
+  assert.equal(bengaluruOpp.market?.city ?? null, null);
+  assert.equal(bengaluruOpp.market?.explorationCity, 'Bengaluru');
   assert.ok(response.opportunities.some((item) => item.market?.city === 'London'));
   assert.ok(response.coverage.sourcesUsed.includes('google_trends'));
   assert.ok(Object.values(response.evidence).some((item) => item.collector === 'apify'));

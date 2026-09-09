@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="1780" viewBox="0 0 1220 1780" role="img" aria-labelledby="title desc">
+<title id="title">Growth Atlas: recorrido del producto de destino</title>
+<desc id="desc">Entrada del producto, atlas, dossier, comparación, campaña, ejecución por el equipo, resultados e historial. Una URL de Luma entra al dossier tras revisión. Cuando faltan confirmaciones se piden datos antes de recomendar gasto. Los antecedentes pertinentes vuelven al dossier de una próxima evaluación.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L7 4.5 L1 8" fill="none" stroke="#999891" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="1220" height="1780" fill="#ffffff"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<path d="M345 148 V226" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 343 V421" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 538 V616" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 733 V846" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 963 V1076" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 1193 V1306" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M345 1423 V1536" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M735 482 H629" fill="none" stroke="#999891" stroke-width="1.2" marker-end="url(#arrow)"/>
+<path d="M624 677 H726" fill="none" stroke="#999891" stroke-width="1.2" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<path d="M930 621 V585 H675 V512 H629" fill="none" stroke="#999891" stroke-width="1.2" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<path d="M624 1597 H1170 V390 H650 V460 H629" fill="none" stroke="#999891" stroke-width="1.2" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="365" y="797" text-anchor="start" font-size="18" fill="#77766f">El equipo elige</text>
+<text x="365" y="1027" text-anchor="start" font-size="18" fill="#77766f">Condiciones confirmadas</text>
+<text x="365" y="1257" text-anchor="start" font-size="18" fill="#77766f">Después del evento</text>
+<text x="365" y="1487" text-anchor="start" font-size="18" fill="#77766f">Resultados validados</text>
+<text x="679" y="467" text-anchor="middle" font-size="15" fill="#77766f">Revisar</text>
+<text x="814" y="575" text-anchor="middle" font-size="17" fill="#77766f">Nueva evidencia</text>
+<text x="933" y="375" text-anchor="middle" font-size="18" fill="#77766f">Antecedentes pertinentes</text>
+<rect x="70" y="40" width="550" height="104" rx="6" fill="#f1eee7" stroke="#8f8e87" stroke-width="1"/>
+<text x="345.0" y="82" text-anchor="middle" font-size="24" font-weight="600" fill="#484843">1. Intake del atlas</text>
+<text x="345.0" y="116" text-anchor="middle" font-size="21" fill="#484843">Producto, audiencia, objetivo y presupuesto</text>
+<rect x="70" y="235" width="550" height="104" rx="6" fill="#eeecff" stroke="#8174ff" stroke-width="1"/>
+<text x="345.0" y="277" text-anchor="middle" font-size="24" font-weight="600" fill="#44388d">2. Atlas de oportunidades</text>
+<text x="345.0" y="311" text-anchor="middle" font-size="21" fill="#44388d">Mercados y hasta tres eventos evaluables</text>
+<rect x="70" y="430" width="550" height="104" rx="6" fill="#eeecff" stroke="#8174ff" stroke-width="1"/>
+<text x="345.0" y="472" text-anchor="middle" font-size="24" font-weight="600" fill="#44388d">3. Dossier del evento</text>
+<text x="345.0" y="506" text-anchor="middle" font-size="21" fill="#44388d">Afinidad, costos, fuentes y datos pendientes</text>
+<rect x="70" y="625" width="550" height="104" rx="6" fill="#f1eee7" stroke="#8f8e87" stroke-width="1"/>
+<text x="345.0" y="667" text-anchor="middle" font-size="24" font-weight="600" fill="#484843">4. Comparación y decisión</text>
+<text x="345.0" y="701" text-anchor="middle" font-size="21" fill="#484843">Elegir, descartar o dejar pendiente</text>
+<rect x="70" y="855" width="550" height="104" rx="6" fill="#eeecff" stroke="#8174ff" stroke-width="1"/>
+<text x="345.0" y="897" text-anchor="middle" font-size="24" font-weight="600" fill="#44388d">5. Campaña y compromisos</text>
+<text x="345.0" y="931" text-anchor="middle" font-size="21" fill="#44388d">Actividad, condiciones y cómo medir</text>
+<rect x="70" y="1085" width="550" height="104" rx="6" fill="#f1eee7" stroke="#8f8e87" stroke-width="1"/>
+<text x="345.0" y="1127" text-anchor="middle" font-size="24" font-weight="600" fill="#484843">El equipo ejecuta la campaña</text>
+<text x="345.0" y="1161" text-anchor="middle" font-size="21" fill="#484843">Envíos y patrocinio fuera de la app</text>
+<rect x="70" y="1315" width="550" height="104" rx="6" fill="#e1f4ec" stroke="#438f7d" stroke-width="1"/>
+<text x="345.0" y="1357" text-anchor="middle" font-size="24" font-weight="600" fill="#075e4d">6. Resultados de la campaña</text>
+<text x="345.0" y="1391" text-anchor="middle" font-size="21" fill="#075e4d">Gasto real, resultados y seguimiento</text>
+<rect x="70" y="1545" width="550" height="104" rx="6" fill="#e1f4ec" stroke="#438f7d" stroke-width="1"/>
+<text x="345.0" y="1587" text-anchor="middle" font-size="24" font-weight="600" fill="#075e4d">7. Historial y próxima decisión</text>
+<text x="345.0" y="1621" text-anchor="middle" font-size="21" fill="#075e4d">Qué se eligió, qué ocurrió y qué verificar</text>
+<rect x="735" y="430" width="390" height="104" rx="6" fill="#e1f4ec" stroke="#438f7d" stroke-width="1"/>
+<text x="930.0" y="472" text-anchor="middle" font-size="22" font-weight="600" fill="#075e4d">Evento aportado por el usuario</text>
+<text x="930.0" y="506" text-anchor="middle" font-size="19" fill="#075e4d">URL de Luma y evidencia por revisar</text>
+<rect x="735" y="625" width="390" height="104" rx="6" fill="#f1eee7" stroke="#8f8e87" stroke-width="1" stroke-dasharray="7 6"/>
+<text x="930.0" y="661" text-anchor="middle" font-size="22" font-weight="600" fill="#484843">Faltan datos o confirmaciones</text>
+<text x="930.0" y="695" text-anchor="middle" font-size="19" fill="#484843">Preguntas concretas,</text>
+<text x="930.0" y="719" text-anchor="middle" font-size="19" fill="#484843">sin recomendar gasto</text>
+<rect x="70" y="1722" width="16" height="16" rx="3" fill="#f1eee7" stroke="#8f8e87"/>
+<text x="96" y="1736" text-anchor="start" font-size="17" fill="#77766f">Equipo</text>
+<rect x="280" y="1722" width="16" height="16" rx="3" fill="#eeecff" stroke="#8174ff"/>
+<text x="306" y="1736" text-anchor="start" font-size="17" fill="#77766f">Asistencia de la app</text>
+<rect x="560" y="1722" width="16" height="16" rx="3" fill="#e1f4ec" stroke="#438f7d"/>
+<text x="586" y="1736" text-anchor="start" font-size="17" fill="#77766f">Evidencia y resultados</text>
+<path d="M905 1730 H940" fill="none" stroke="#999891" stroke-width="1.2" stroke-dasharray="7 6"/>
+<text x="952" y="1736" text-anchor="start" font-size="17" fill="#77766f">Pendiente / reutilización</text>
+</g></svg>

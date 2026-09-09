@@ -8,7 +8,12 @@
 // - prepared_fixture nunca es Observed.
 //
 // Además baja la Opportunity de Observed→Estimated si, tras la auditoría, ya no
-// cita ninguna evidencia Observed (salvo que sea humanValidated por Terac).
+// cita ninguna evidencia Observed (salvo que sea humanValidated).
+//
+// Ticket 05 (defensa en profundidad; la validación primaria vive en
+// reasoning/gemini.ts): una razón solo se publica si cita al menos una
+// evidencia y cada cita resuelve en el response. Una razón sin soporte
+// resoluble no se publica y NUNCA se le asignan citas sustitutas.
 
 import type { Evidence, SearchResponse } from '@/lib/contracts/growxth';
 
@@ -36,13 +41,25 @@ export function auditResponse(response: SearchResponse): SearchResponse {
     }
   }
 
-  const opportunities = response.opportunities.map((opp) => {
+  let unsupportedReasons = 0;
+  const opportunities = response.opportunities.map((original) => {
+    const supported = original.reasons.filter(
+      (r) => r.evidenceIds.length > 0 && r.evidenceIds.every((eid) => evidence[eid] != null),
+    );
+    unsupportedReasons += original.reasons.length - supported.length;
+    const opp = supported.length === original.reasons.length ? original : { ...original, reasons: supported };
     if (opp.status !== 'observed' || opp.humanValidated) return opp;
     const citedObserved = opp.reasons
       .flatMap((r) => r.evidenceIds)
       .some((eid) => evidence[eid]?.status === 'observed');
     return citedObserved ? opp : { ...opp, status: 'estimated' as const };
   });
+
+  if (unsupportedReasons > 0) {
+    warnings.push(
+      `Auditoría de razones: ${unsupportedReasons} razón(es) con citas irresolubles o ausentes retirada(s); no se publican afirmaciones sin soporte.`,
+    );
+  }
 
   if (downgraded > 0) {
     warnings.push(

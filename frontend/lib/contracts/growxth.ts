@@ -1,6 +1,11 @@
 // Contrato GrowXth — frontera entre backend y frontend.
 // Solo tipos e interfaces: cero lógica, cero imports de runtime.
 // Todo lo demás (scorers, pipeline, fixtures, cliente) importa de acá.
+//
+// Este archivo es la frontera de v0 (búsqueda de mercados). El recorrido de
+// evaluación persistida (ticket 07+) tiene su contrato VERSIONADO y con
+// validación de runtime en ./evaluation.ts + ./evaluation-validation.ts; los
+// tipos nuevos no se agregan acá.
 
 // ============ L0: grafo ============
 export type Status = 'observed' | 'estimated' | 'prepared';
@@ -52,8 +57,6 @@ export type EvidenceSource =
   | 'github'
   | 'google_trends'
   | 'x'
-  | 'terac'
-  | 'linq'
   | 'seed';
 export type EvidenceKind =
   | 'web_page' | 'event_listing' | 'repo_activity'
@@ -77,12 +80,11 @@ export interface SearchRequest {
   product: string; icpStack: string[];
   budgetUsd: number;
   goal: 'adoption' | 'feedback' | 'hiring' | 'awareness';
-  // Ubicación consentida. Linq la obtiene únicamente después de que la persona
-  // acepta el prompt de iMessage; nunca cambia el market score.
+  // Ubicación consentida por la persona. Nunca cambia el market score.
   location?: {
     lat: number;
     lng: number;
-    source: 'linq' | 'browser';
+    source: 'browser';
     locality?: string | null;
     updatedAt?: string | null;
   };
@@ -110,14 +112,13 @@ export interface AudienceSpec {
   targetSize: number | null;
   profile: string[];                  // ["Backend / Python", "2+ años"]
   qualifier: string | null;           // "al menos una integración de API en prod"
-  teracNote: string | null;           // insight del estudio, si existe
 }
 
 export interface RoiEstimate {
   tierPriceUsd: number | null;
   expectedAttendance: number | null;
   icpFitRate: number | null;
-  icpFitBasis: 'luma' | 'terac' | 'github' | 'prepared' | null;
+  icpFitBasis: 'luma' | 'github' | 'prepared' | null;
   costPerQualifiedDev: number | null;
   band: [number, number] | null;
   note: string | null;                // "No disponible" si falta input
@@ -137,6 +138,29 @@ export interface CampaignDraft {
   title: string;
   variantA: string;
   variantB: string;
+}
+
+// ============ Redacción del modelo (ticket 05) ============
+// La redacción NUNCA crea hechos publicables: la razón factual visible se
+// compone desde hechos admitidos (las razones determinísticas con su evidencia)
+// y plantillas. El modelo solo puede SELECCIONAR esos hechos citando evidencia
+// ya admitida por la misma oportunidad, y proponer copy de acción; una
+// propuesta se distingue de un hecho y no lleva cifras propias (costos,
+// audiencia, compromisos). Si la selección no pasa (cita inexistente, ajena o
+// ausente), se recupera íntegra la explicación determinística respaldada.
+export type NarrativeStatus =
+  | 'deterministic_only' // sin redacción del modelo (degradación explícita)
+  | 'validated' // selección de hechos admitida; propuestas de acción publicadas
+  | 'rejected'; // citas sin soporte: explicación determinística íntegra
+
+export interface NarrativeState {
+  status: NarrativeStatus;
+  // Motivo visible del rechazo/indisponibilidad, o nota sobre propuestas
+  // retenidas; null cuando no hay nada que advertir.
+  note: string | null;
+  // Evidencia admitida que el modelo seleccionó (subconjunto de las citas de
+  // las razones determinísticas propias). Vacío salvo en 'validated'.
+  selectedEvidenceIds: string[];
 }
 
 export interface MarketMomentumSignal {
@@ -161,14 +185,24 @@ export interface Opportunity {
   roi: RoiEstimate;
   confidence: number;                 // evidencia sobre el mundo
   status: Status;
-  humanValidated: boolean;            // reservado; Terac NO modifica ranking
+  humanValidated: boolean;            // reservado; la validación humana NO modifica ranking
   distanceMiles: number | null;       // contexto, nunca input del market score
   market?: {
-    city: string;
+    // Ciudad factual: solo cuando alguna evidencia nombra la ciudad (alcance
+    // urbano observado o declarado). null = ciudad pendiente: la evidencia solo
+    // respalda un alcance más amplio (país/región).
+    city: string | null;
+    // Hipótesis de exploración cuando city es null (p.ej. hub elegido para
+    // orientar el descubrimiento). Es una inferencia del sistema: nunca
+    // alimenta ubicación factual, elegibilidad ni recomendación de eventos.
+    explorationCity?: string | null;
     country: string;
     countryCode: string;
   };
   momentumSignals?: MarketMomentumSignal[];
+  // Estado de la redacción del modelo sobre esta oportunidad. Ausente cuando la
+  // respuesta no pasó por la etapa de redacción (pipeline local, fixtures).
+  narrative?: NarrativeState;
   event: {
     id: string;
     name: string;
@@ -193,7 +227,7 @@ export interface SearchResponse {
   warnings: string[];
   generatedAt: string; degraded: boolean;
   locationContext?: {
-    source: 'linq' | 'browser';
+    source: 'browser';
     lat: number;
     lng: number;
     locality: string | null;

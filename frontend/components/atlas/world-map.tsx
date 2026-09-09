@@ -115,7 +115,7 @@ export const WorldMap = memo(function WorldMap({
           )}
           {userLocation && (
             <Marker coordinates={userLocation}>
-              <g className="user-location" aria-label="Location shared through Linq">
+              <g className="user-location" aria-label="Shared location">
                 <circle className="pulse" r={12} />
                 <circle className="ring" r={6} />
                 <circle className="core" r={2.5} />

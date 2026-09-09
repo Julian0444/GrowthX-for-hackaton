@@ -1,9 +1,17 @@
-import type { MarketMomentumSignal } from "@/lib/contracts/growxth"
+import type { MarketMomentumSignal, NarrativeState } from "@/lib/contracts/growxth"
 
 // Contrato con el backend (§10 del plan) — el frontend consume UN solo tipo para
 // backend real, fixtures y fallback. Reglas: nunca números sin marcar real vs.
 // estimado; IDs de señales estables; fechas ISO 8601; coordenadas [lng, lat];
 // score y confidence en escala 0–100 (como los fixtures §11).
+//
+// Frontera LEGACY (ticket 07): varios campos de este contrato son obligatorios
+// aunque el dato real pueda faltar (`Opportunity.city` y `score`,
+// `EventOpportunity.startsAt`), lo que empuja a defaults engañosos. Quedan
+// confinados a la vista v0: el recorrido de evaluación persistida lee
+// `EvaluationReadProjection` (lib/contracts/evaluation.ts), donde fecha,
+// ubicación y score desconocidos llegan como estados explícitos, y NO debe
+// forzar sus pendientes dentro de estos tipos.
 
 export type SearchRequest = {
   query: string
@@ -15,7 +23,7 @@ export type SearchRequest = {
   location?: {
     lat: number
     lng: number
-    source: "linq" | "browser"
+    source: "browser"
     locality?: string | null
     updatedAt?: string | null
   }
@@ -29,7 +37,7 @@ export type SearchResponse = {
   dataCoverage: DataCoverage
   warnings?: string[]
   locationContext?: {
-    source: "linq" | "browser"
+    source: "browser"
     lat: number
     lng: number
     locality: string | null
@@ -66,6 +74,9 @@ export type Opportunity = {
   campaign?: CampaignRecommendation
   distanceMiles?: number | null
   momentumSignals?: MarketMomentumSignal[]
+  // Estado de la redacción del modelo (ticket 05): el drawer lo muestra junto a
+  // las razones; ausente cuando la respuesta no pasó por esa etapa.
+  narrative?: NarrativeState
 }
 
 export type OpportunityReason = {
@@ -171,7 +182,10 @@ export type RequestState =
   | { status: "partial"; message: string }
   | { status: "error"; message: string; retryable: boolean }
 
-// POST /api/events/ingest { url } (§10, "la demo técnica estrella").
+// Salida del parser de Luma (lib/api/luma.ts). Desde el ticket 11 ya NO es la
+// respuesta HTTP de /api/events/ingest (que responde 202 con runId): el parseo
+// corre en el worker (fetch_event_page) y su resultado se persiste como
+// dossier; esta forma queda como contrato interno del parser reutilizado.
 // `event` es null solo cuando extraction.status === "failed".
 export type EventIngestResponse = {
   event: EventOpportunity | null

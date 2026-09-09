@@ -40,6 +40,15 @@ const MOMENTUM_SOURCE_LABEL = {
   x: "X via Apify",
 } as const
 
+// Estado de la redacción del modelo (ticket 05): el modelo nunca agrega hechos;
+// selecciona hechos respaldados y propone copy. Rechazada o ausente, las
+// razones visibles son la explicación determinística respaldada.
+const NARRATIVE_STATE_LABEL = {
+  validated: "Model narrative validated — it selects evidence-backed facts and proposes action copy; it adds no facts of its own.",
+  rejected: "Model narrative rejected — showing the deterministic evidence-backed explanation.",
+  deterministic_only: "Deterministic explanation only — no model narrative for this run.",
+} as const
+
 export function rankLabel(rank: number): string {
   return String(rank).padStart(2, "0")
 }
@@ -249,6 +258,12 @@ export function OpportunityDrawer({
 
               <div className="d-section">
                 <span className="eyebrow">Why here</span>
+                {shown.narrative && (
+                  <p className="feed-down narrative-state" data-status={shown.narrative.status}>
+                    {NARRATIVE_STATE_LABEL[shown.narrative.status]}
+                    {shown.narrative.note ? ` ${shown.narrative.note}` : ""}
+                  </p>
+                )}
                 {shown.reasons.map((reason) => (
                   <div className="reason" key={reason.id}>
                     <span className={`sig${reason.impact === "positive" ? " pos" : ""}`}>
@@ -375,18 +390,12 @@ export function OpportunityDrawer({
       {shown && (
         <div className="drawer-cta">
           {displayed.mode === "campaign" ? (
-            <>
-              <button
-                className="btn-primary"
-                type="button"
-                onClick={() => onToast("Export coming soon")}
-              >
-                Export brief
-              </button>
-              <button className="btn-ghost" type="button" onClick={onBackToOpportunity}>
-                Back to opportunity
-              </button>
-            </>
+            // Ticket 13: sin «Export brief» — no se ofrece exportar, ejecutar
+            // ni medir algo que no existe; el borrador se copia a mano desde
+            // la vista de campaña.
+            <button className="btn-ghost" type="button" onClick={onBackToOpportunity}>
+              Back to opportunity
+            </button>
           ) : (
             shown.campaign && (
               <button className="btn-primary" type="button" onClick={onGenerateCampaign}>

@@ -1,0 +1,17 @@
+{
+  "_note": "Respuesta controlada (status: prepared). No es una salida real de Gemini: reproduce la forma de generateContent con responseSchema. Adversarial a propósito: rank invertido respecto del orden determinístico (O5); Berlín cita solo un id inexistente con una cifra inventada (O4: sustitución de citas); San Francisco cita evidencia de Bengaluru (O4: cita ajena); Bengaluru cita evidencia real que no respalda la cifra (O4: cita irrelevante); un candidato desconocido y un campo score que v0 debe ignorar.",
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "{\"decisions\":[{\"id\":\"opp-global-berlin\",\"rank\":1,\"score\":99,\"headline\":\"Lead with a senior-engineer dinner in Berlin\",\"reasoning\":\"80% of attendees at Berlin AI meetups are senior backend engineers, and the community already runs 12 observability events per quarter. Berlin beats the other markets on audience seniority.\",\"evidenceIds\":[\"ev-invented-000\"],\"campaignVariantA\":\"Berlin backend leads: join a hands-on night on tracing production agents. Leave with a workflow you can deploy Monday.\",\"campaignVariantB\":\"Running agents in Berlin? Bring your traces; leave with a monitoring playbook, not a pitch.\"},{\"id\":\"opp-global-san-francisco\",\"rank\":2,\"headline\":\"Sponsor an evals track in San Francisco\",\"reasoning\":\"Search interest for AI observability is at 96/100 in this market, the highest of the three, which supports a sponsored evals track in SoMa.\",\"evidenceIds\":[\"ev-trends-dd9b14051465\"],\"campaignVariantA\":\"SF agent builders: a practical evals and tracing session in SoMa. Leave with a workflow you can try the same day.\",\"campaignVariantB\":\"Shipping agents in San Francisco? Leave with one working observability playbook, not another product pitch.\"},{\"id\":\"opp-global-bengaluru\",\"rank\":3,\"headline\":\"Run a community workshop in Bengaluru\",\"reasoning\":\"Bengaluru hosts 40+ observability meetups per quarter, so a workshop reaches the largest community, but sponsor competition is intense and costs are rising.\",\"evidenceIds\":[\"ev-exa-csgt6i\"],\"campaignVariantA\":\"Bengaluru builders: a hands-on workshop on monitoring production agents. Leave with a workflow you can try the same day.\",\"campaignVariantB\":\"Tracing agents in Bengaluru? Leave with one working observability playbook, not another product pitch.\"},{\"id\":\"opp-global-nowhere\",\"rank\":0,\"headline\":\"Open a new market nobody evaluated\",\"reasoning\":\"This candidate was not part of the deterministic ranking; v0 must ignore it.\",\"evidenceIds\":[\"ev-x-6c5b19a7c767\"]}]}"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP"
+    }
+  ],
+  "modelVersion": "baseline-v0-controlled"
+}

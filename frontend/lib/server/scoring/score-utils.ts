@@ -30,6 +30,23 @@ export function avg(nums: number[]): number | null {
   return nums.reduce((s, n) => s + n, 0) / nums.length;
 }
 
+// Fracción del peso total respaldada por dimensiones con dato (0..1). Es la
+// cobertura Q del ticket 12: cuánta parte de la política tiene dato conocido.
+// No es una probabilidad de éxito y no participa del score (que renormaliza
+// sobre las dimensiones activas).
+export function activeWeightFraction<K extends string>(
+  breakdown: Record<K, number | null>,
+  weights: Record<K, number>,
+): number {
+  const keys = Object.keys(weights) as K[];
+  const totalWeight = keys.reduce((s, k) => s + weights[k], 0);
+  if (totalWeight === 0) return 0;
+  const activeWeight = keys
+    .filter((k) => breakdown[k] !== null)
+    .reduce((s, k) => s + weights[k], 0);
+  return clamp01(activeWeight / totalWeight);
+}
+
 // Renormalización obligatoria. Devuelve un score 0..100. Si TODAS las
 // dimensiones son null, el total activo es 0 → score 0 (el pipeline decide si
 // una oportunidad totalmente sin señal se descarta).
