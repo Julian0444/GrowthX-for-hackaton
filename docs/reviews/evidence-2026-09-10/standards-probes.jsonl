@@ -1,0 +1,12 @@
+{"probe":"control_supported","result":{"status":"eligible"},"conditions":[]}
+{"probe":"known_total_exceeds_budget","result":{"status":"eligible"},"conditions":[]}
+{"probe":"known_cost_plus_unknown_line","result":{"status":"eligible"},"conditions":[]}
+{"probe":"foreign_currency_only","result":{"status":"eligible"},"conditions":[]}
+{"probe":"audience_pending","result":{"status":"eligible"},"conditions":[]}
+{"probe":"date_contradicted","result":{"status":"eligible"},"conditions":[]}
+{"probe":"same_event_window_disagreement","research":["Fuera de la ventana indicada"],"comparison":{"status":"eligible"}}
+{"probe":"confirmed_stronger_evidence_not_supported","research":["Falta fuente urbana verificada para la ubicación de la edición","Fecha sin soporte concluyente"]}
+{"probe":"unsupported_narrative_validated","summary":"El patrocinio cuesta 10 USD y la audiencia está confirmada.","result":"validated","withheld":null}
+{"probe":"unsupported_narrative_validated","summary":"El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.","result":"validated","withheld":null}
+{"probe":"campaign_promotes_cost_to_quoted","inputStatus":"inferred","output":{"status":"quoted","amount":1500,"currency":"USD","sourceIds":["s"]}}
+{"probe":"campaign_promotes_cost_to_quoted","inputStatus":"contradicted","output":{"status":"quoted","amount":1500,"currency":"USD","sourceIds":["s"]}}

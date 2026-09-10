@@ -165,6 +165,7 @@ function buildManifest(): CurationManifest {
     ],
     participations: [],
     claims: [
+      claim('clm-dcn-aaa-date-r1', 'ed-dcn-aaa-elegible', 'date', { kind: 'date', date: { precision: 'instant', iso: '2026-11-10T18:00:00-08:00', timezone: 'America/Los_Angeles' } }, 'observed', ['src-dcn-luma']),
       claim('clm-dcn-aaa-loc-r1', 'ed-dcn-aaa-elegible', 'location', { kind: 'location', scope: 'city', name: 'San Francisco' }, 'observed', ['src-dcn-luma']),
       claim('clm-dcn-aaa-acc-r1', 'ed-dcn-aaa-elegible', 'access', { kind: 'text', text: 'Registro abierto según el listado' }, 'observed', ['src-dcn-luma']),
       claim('clm-dcn-aaa-cost-r1', 'ed-dcn-aaa-elegible', 'cost:sponsorship', { kind: 'money', amount: 1500, currency: 'USD' }, 'observed', ['src-dcn-tarifa']),

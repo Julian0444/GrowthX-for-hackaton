@@ -65,6 +65,7 @@ import { hashSessionToken, SESSION_COOKIE } from '../../lib/server/auth/session.
 import { closePools, getAppPool, getWorkerPool, withTenantTransaction } from '../../lib/server/db/pool.ts';
 import { runMigrations } from '../../lib/server/db/migrate.ts';
 import { loadCuratedCatalog } from '../../lib/server/catalog/store.ts';
+import { readEditionDossier } from '../../lib/server/catalog/read.ts';
 import { FIXTURE_CURATION_MANIFEST } from '../../lib/server/catalog/fixture-manifest.ts';
 import type { CurationManifest } from '../../lib/server/catalog/manifest.ts';
 import { createEvaluationService } from '../../lib/server/evaluations/service.ts';
@@ -521,6 +522,11 @@ test('worker-recovery: matriz de caídas con procesos reales (ticket 15)', { tim
     assert.equal(stepsByName(done).fetch_event_page.attempts, 1, 'el paso confirmado no se repitió');
     const calls = readFileSync(callsFile, 'utf8').split('\n').filter((line) => line === URL_C);
     assert.equal(calls.length, 1, 'la página se obtuvo UNA sola vez: la observación confirmada se reutilizó');
+    const editionId = (done.result as { editionId: string }).editionId;
+    const dossier = await readEditionDossier(getAppPool(), real.tenantId, editionId, new Date().toISOString());
+    assert.ok(dossier);
+    assert.equal(dossier.sources.find((source) => source.id === `luma-${runId}-src`)?.method, 'test_fixture+jsonld_extraction', 'reanudar conserva que el transporte del worker era un fixture');
+    assert.match(dossier.curation?.note ?? '', /sin consulta a Luma real/);
   });
 
   // ======== Criterio: interrupción DESPUÉS de guardar el snapshot ========

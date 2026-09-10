@@ -13,7 +13,7 @@
 // handler bajo `node --test` sin resolver de tsconfig.
 
 import { NextResponse } from 'next/server';
-import { resolveSessionContext } from '../../../../lib/server/auth/session.ts';
+import { resolveHttpSession } from '../../../../lib/server/auth/http-session.ts';
 import { canonicalizeLumaUrl } from '../../../../lib/server/catalog/luma-adapter.ts';
 import { isEvaluationDbConfigured } from '../../../../lib/server/db/pool.ts';
 import { evaluationService } from '../../../../lib/server/evaluations/service.ts';
@@ -33,16 +33,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     );
   }
 
-  const session = await resolveSessionContext(request).catch((error: unknown) => {
-    console.warn(`[events/ingest] resolución de sesión falló: ${(error as Error).message}`);
-    return null;
-  });
-  if (!session) {
-    return NextResponse.json(
-      { error: 'unauthorized', message: 'Sesión requerida (cookie growthx_session o Bearer).' },
-      { status: 401 },
-    );
-  }
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
 
   let payload: unknown;
   try {

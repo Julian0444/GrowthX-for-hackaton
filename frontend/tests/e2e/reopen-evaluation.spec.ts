@@ -287,6 +287,7 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     const campaign = page.getByTestId('campaign-draft-panel');
     await campaign.waitFor();
     assert.equal(await page.getByTestId('campaign-draft-id').innerText(), campaignId);
+    assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Decisiones', 'el enlace de campaña abre la sección correspondiente');
     assert.equal(await page.getByTestId('campaign-draft-decision-id').innerText(), decision.decisionId);
     assert.equal(await page.getByTestId('campaign-draft-snapshot-id').innerText(), cmp.snapshotId);
     assert.equal(await page.getByTestId('campaign-draft-revision').innerText(), '1');
@@ -338,6 +339,80 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     const decoyHome: ResearchHome = await (await fetch(`${base}/api/evaluations?profileId=${cmpRun.profileId}`, { headers: decoyHeaders })).json();
     assert.deepEqual(decoyHome.evaluations, []); assert.deepEqual(decoyHome.evaluationProfiles, []);
     assert.deepEqual((await (await fetch(`${base}/api/decisions?snapshotId=${cmp.snapshotId}`, { headers: decoyHeaders })).json()).decisions, []);
+  });
+
+  await t.test('navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión', async () => {
+    for (const section of ['Perfil', 'Eventos', 'Organizadores', 'Resumen']) {
+      await nav(page, section);
+      assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), section);
+      assert.equal(await panel(page).count(), 0, `la comparación no ocupa la sección ${section}`);
+      assert.equal(await page.getByTestId('campaign-draft-panel').count(), 0, `la campaña no ocupa la sección ${section}`);
+    }
+    await nav(page, 'Decisiones');
+    const savedChosen = page.getByTestId('evaluation-list').locator(`[data-decision-id="${decision.decisionId}"]`);
+    await savedChosen.getByRole('button', { name: `Abrir campaña ${campaignId}`, exact: true }).click();
+    await page.getByTestId('campaign-draft-panel').waitFor();
+    assert.equal(await page.getByTestId('campaign-draft-id').innerText(), campaignId);
+    assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Decisiones');
+    await nav(page, 'Perfil');
+    assert.equal(await page.getByTestId('campaign-draft-panel').count(), 0, 'editar el perfil oculta la campaña abierta');
+    assert.equal(await panel(page).count(), 0);
+    await nav(page, 'Decisiones');
+    // Si la lectura del run llega después de navegar, no recupera el panel
+    // por encima de la sección que el usuario acaba de elegir.
+    let releaseRead!: () => void, readStarted!: () => void;
+    const heldRead = new Promise<void>(resolve => { releaseRead = resolve; });
+    const requestedRead = new Promise<void>(resolve => { readStarted = resolve; });
+    const runUrl = `${base}/api/evaluations/${cmpId}`;
+    await page.route(runUrl, async route => { readStarted(); await heldRead; await route.continue(); });
+    try {
+      await savedChosen.getByRole('button', { name: 'Abrir decisión', exact: true }).click();
+      await requestedRead;
+      await nav(page, 'Perfil');
+      const completedRead = page.waitForResponse(runUrl);
+      releaseRead();
+      await completedRead;
+      await eventually(async () => (await page.getByTestId('run-progress').innerText()).includes('Completado') ? true : null, 'lectura demorada completada');
+      assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Perfil');
+      assert.equal(await panel(page).count(), 0, 'la lectura demorada respeta la navegación posterior');
+    } finally {
+      releaseRead();
+      await page.unroute(runUrl);
+    }
+    await nav(page, 'Decisiones');
+    await savedChosen.getByRole('button', { name: 'Abrir decisión', exact: true }).click();
+    await candidate(page, SUMMIT).getByTestId('candidate-decision').waitFor();
+    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId);
+    assert.equal(await candidate(page, SUMMIT).getByTestId('decision-revision').innerText(), '1');
+    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId).slice(1));
+
+    // La restauración del enlace tampoco puede esperar al historial y
+    // apropiarse de una navegación hecha mientras esa primera lectura tarda.
+    const opening = await newPage(context);
+    let releaseHome!: () => void, homeStarted!: () => void;
+    const heldHome = new Promise<void>(resolve => { releaseHome = resolve; });
+    const requestedHome = new Promise<void>(resolve => { homeStarted = resolve; });
+    const homeUrl = `${base}/api/evaluations`;
+    await opening.route(homeUrl, async route => { homeStarted(); await heldHome; await route.continue(); });
+    try {
+      await opening.goto(`${base}${href(cmpId, decision.decisionId)}`);
+      await requestedHome;
+      await nav(opening, 'Perfil');
+      const completedHome = opening.waitForResponse(homeUrl);
+      releaseHome();
+      await completedHome;
+      await eventually(async () => (await opening.getByTestId('run-progress').innerText()).includes('Completado') ? true : null, 'run restaurado con historial demorado');
+      assert.equal(await opening.getByRole('heading', { level: 1 }).innerText(), 'Perfil', 'restaurar el enlace respeta la navegación durante la lectura inicial del historial');
+      assert.equal(await panel(opening).count(), 0);
+      await nav(opening, 'Decisiones');
+      await panel(opening).waitFor();
+      assert.equal(await opening.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId, 'el run se carga aunque haya cambiado la sección');
+    } finally {
+      releaseHome();
+      await opening.close();
+    }
+    assert.deepEqual(await counts(), baseline);
+    assert.deepEqual(forbidden, []);
   });
 
   await t.test('lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña', async () => {
@@ -486,6 +561,75 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     await capture(page, 'reopen-list');
     assert.equal((await counts()).decisions, baseline.decisions);
     assert.deepEqual(forbidden, []); assert.deepEqual(errors, []);
+  });
+
+  await t.test('dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento', async () => {
+    const current: DecisionRead = await (await api(`/api/decisions/${decision.decisionId}`)).json();
+    const openConditions = current.decision.conditions.filter(condition => condition.status === 'open');
+    assert.ok(openConditions.length >= 2, 'la decisión condicional tiene dos pendientes independientes');
+    const [firstCondition, secondCondition] = openConditions;
+    const firstNote = 'Respuesta documentada por la primera pestaña';
+    const secondNote = 'Respuesta pendiente de guardar en la segunda pestaña';
+    const decisionUrl = `${base}/api/decisions/${decision.decisionId}`;
+    const firstTab = await newPage(context), secondTab = await newPage(context);
+    const revision = (tab: Page, expected: number) => eventually(async () => (await candidate(tab, SUMMIT).getByTestId('decision-revision').innerText()) === String(expected) ? true : null, `revisión ${expected} visible`, 5000);
+    const conditionRow = (tab: Page, description: string) => candidate(tab, SUMMIT).getByTestId('decision-conditions').getByRole('listitem').filter({ hasText: description });
+    const beginResolution = async (tab: Page, description: string, note: string) => {
+      const row = conditionRow(tab, description);
+      await row.getByRole('button', { name: 'Marcar resuelta', exact: true }).click();
+      await row.getByLabel('Respuesta que resuelve la condición').fill(note);
+      return row;
+    };
+    try {
+      await Promise.all([firstTab.goto(`${base}${href(cmpId, decision.decisionId)}`), secondTab.goto(`${base}${href(cmpId, decision.decisionId)}`)]);
+      await Promise.all([revision(firstTab, current.decision.revision), revision(secondTab, current.decision.revision)]);
+      const firstRow = await beginResolution(firstTab, firstCondition.description, firstNote);
+      let response = firstTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
+      await firstRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      assert.equal((await response).status(), 200);
+      await revision(firstTab, current.decision.revision + 1);
+
+      let failedReads = 0;
+      await secondTab.route(decisionUrl, route => {
+        if (route.request().method() !== 'GET') return route.continue();
+        failedReads++;
+        return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'unavailable' }) });
+      });
+      const secondRow = await beginResolution(secondTab, secondCondition.description, secondNote);
+      response = secondTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
+      await secondRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      assert.equal((await response).status(), 409);
+      await candidate(secondTab, SUMMIT).getByRole('alert').waitFor();
+      assert.equal(failedReads, 1, 'el conflicto relee la decisión en vez de repetir indefinidamente la revisión obsoleta');
+      assert.equal(await secondRow.getByLabel('Respuesta que resuelve la condición').inputValue(), secondNote, 'la respuesta escrita no se pierde si falla la lectura');
+      assert.equal(await secondRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).isDisabled(), true, 'no se reenvía una revisión conocida como obsoleta');
+      await secondTab.unroute(decisionUrl);
+      await candidate(secondTab, SUMMIT).getByRole('button', { name: 'Reintentar lectura de la decisión', exact: true }).click();
+      await revision(secondTab, current.decision.revision + 1);
+      assert.equal(await secondRow.getByLabel('Respuesta que resuelve la condición').inputValue(), secondNote);
+      response = secondTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
+      await secondRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      assert.equal((await response).status(), 200);
+      await revision(secondTab, current.decision.revision + 2);
+
+      // La primera pestaña aún conserva la revisión anterior. Releer con
+      // éxito tampoco sobrescribe la respuesta ya guardada por la segunda.
+      const staleRow = await beginResolution(firstTab, secondCondition.description, 'Una respuesta escrita sobre la revisión anterior');
+      response = firstTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
+      await staleRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      assert.equal((await response).status(), 409);
+      await revision(firstTab, current.decision.revision + 2);
+      assert.match(await staleRow.innerText(), new RegExp(secondNote));
+      const latest: DecisionRead = await (await api(`/api/decisions/${decision.decisionId}`)).json();
+      assert.equal(latest.decision.revision, current.decision.revision + 2);
+      assert.equal(latest.decision.conditions.find(condition => condition.id === firstCondition.id)?.resolvedNote, firstNote);
+      assert.equal(latest.decision.conditions.find(condition => condition.id === secondCondition.id)?.resolvedNote, secondNote);
+      assert.deepEqual(latest.decision.reasons, current.decision.reasons);
+      assert.deepEqual(forbidden, []); assert.deepEqual(errors, []);
+    } finally {
+      await firstTab.close();
+      await secondTab.close();
+    }
   });
   t.diagnostic(`Next reiniciado una vez; ${forbidden.length} llamadas prohibidas durante la lectura; catálogo sintético explícito.`);
 });

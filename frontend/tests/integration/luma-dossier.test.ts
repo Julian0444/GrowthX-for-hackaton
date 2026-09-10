@@ -375,7 +375,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
         return [revision.attribute, revision] as const;
       }),
     );
-    for (const attribute of ['date', 'location', 'access', 'organizer']) {
+    for (const attribute of ['date', 'location', 'organizer']) {
       const revision = byAttribute.get(attribute);
       assert.ok(revision, `claim «${attribute}» presente`);
       assert.equal(revision.status, 'announced', `«${attribute}» es lo anunciado por la página`);
@@ -383,6 +383,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
       assert.deepEqual(revision.sourceIds, [`luma-${completeRunId}-src`]);
     }
     // Lo que la página no publica queda PENDIENTE explícito, nunca inventado.
+    assert.equal(byAttribute.get('access')?.status, 'pending', 'InStock no confirma acceso abierto ni aprobación');
     assert.equal(byAttribute.get('audience')?.status, 'pending');
     assert.equal(byAttribute.get('cost:attendance')?.status, 'pending');
     // La fuente conserva hash del HTML (no la página completa) y su obtención.
@@ -391,6 +392,54 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
     assert.equal(source.content.kind, 'hash');
     assert.equal(source.provider, 'luma');
     assert.equal(source.method, 'http_get+jsonld_extraction');
+  });
+
+  await t.test('transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos', async () => {
+    const url = 'https://lu.ma/fixture-provenance';
+    const { body } = await acceptIngest(url, real.token, `k-${randomUUID()}`);
+    const runId = body.runId as string;
+    await processRun(runId, {
+      fetchImpl: recordedTransport({ [url]: () => htmlResponse(lumaHtml({})) }, []),
+      isFixture: true,
+    });
+    const view = await getRunView(runId, real.token);
+    assert.equal(view.body.state, 'completed');
+    const dossier = await readEditionDossier(
+      getAppPool(), real.tenantId, String(view.body.result?.editionId), '2026-09-09T12:00:00.000Z',
+    );
+    assert.ok(dossier);
+    assert.equal(dossier.sources.find((source) => source.id === `luma-${runId}-src`)?.method, 'test_fixture+jsonld_extraction');
+    assert.ok(dossier.claims.every((claim) => claim.revisions.at(-1)?.method === 'test_fixture+jsonld_extraction'));
+    assert.match(dossier.curation?.note ?? '', /transporte fixture de prueba, sin consulta a Luma real/);
+
+    // Una página que solo publica un nombre nuevo también necesita fuente
+    // propia. Si no hay cambios de fecha/lugar ni pendientes nuevos, esa
+    // observación no puede desaparecer de la lectura tras reimportar.
+    const originalDate = dossier.editionRevisions.at(-1)!.startDate;
+    for (const isFixture of [true, false]) {
+      const { body: next } = await acceptIngest(url, real.token, `k-${randomUUID()}`);
+      const nextRunId = next.runId as string;
+      const name = isFixture ? 'Nombre desde fixture parcial' : 'Nombre desde página posterior';
+      const html = `<script type="application/ld+json">${JSON.stringify({ '@type': 'Event', name })}</script>`;
+      await processRun(nextRunId, {
+        fetchImpl: recordedTransport({ [url]: () => htmlResponse(html) }, []),
+        ...(isFixture ? { isFixture: true as const } : {}),
+      });
+      const nextView = await getRunView(nextRunId, real.token);
+      assert.equal(nextView.body.result?.editionId, dossier.editionId);
+      const reread = await readEditionDossier(getAppPool(), real.tenantId, dossier.editionId, '2026-09-09T12:00:00.000Z');
+      assert.ok(reread);
+      const latest = reread.editionRevisions.at(-1)!;
+      assert.equal(latest.name, name);
+      assert.deepEqual(latest.startDate, originalDate, 'la fuente parcial conserva la fecha ya respaldada');
+      assert.ok(reread.sources.some((source) => source.id === `luma-${nextRunId}-src`), 'la fuente del nombre sigue siendo legible');
+      const nameRevision = reread.claims.flatMap((claim) => claim.revisions)
+        .find((claim) => latest.claimRevisionIds.includes(claim.id) && claim.attribute === 'name');
+      assert.ok(nameRevision);
+      assert.deepEqual(nameRevision.sourceIds, [`luma-${nextRunId}-src`]);
+      assert.equal(nameRevision.method, isFixture ? 'test_fixture+jsonld_extraction' : 'jsonld_extraction');
+      assert.deepEqual(nameRevision.value, { kind: 'text', text: name });
+    }
   });
 
   await t.test('duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo', async () => {

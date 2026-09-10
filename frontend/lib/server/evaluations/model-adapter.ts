@@ -8,14 +8,14 @@
 // salida es dato inesperado sin autoridad y queda registrado como descartado.
 // Una cita inexistente o ajena a la alternativa rechaza la salida ENTERA (no se
 // filtran ni sustituyen citas); una cifra sin respaldo en los claims citados
-// retiene esa propuesta. Presupuesto acotado: UNA llamada directa a la API con
+// retiene esa propuesta; el texto publicado se compone determinísticamente. Presupuesto acotado: UNA llamada directa a la API con
 // timeout; sin tools de discovery. Todo fallo degrada determinísticamente y se
 // registra: modelo, versión de prompt, duración, uso disponible y motivo.
 
 import type { ClaimRevision, EvaluationSnapshot } from '../../contracts/evaluation.ts';
 
 export const NARRATIVE_MODEL = 'gemini-2.5-flash';
-export const NARRATIVE_PROMPT_VERSION = 'comparison-narrative/1';
+export const NARRATIVE_PROMPT_VERSION = 'comparison-narrative/2';
 const NARRATIVE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${NARRATIVE_MODEL}:generateContent`;
 const DEFAULT_TIMEOUT_MS = 15_000;
 
@@ -82,6 +82,7 @@ interface AdmittedClaimView {
   attribute: string;
   status: string;
   rendered: string;
+  note: string | null;
 }
 
 const renderClaimValue = (claim: ClaimRevision): string => {
@@ -94,7 +95,7 @@ const renderClaimValue = (claim: ClaimRevision): string => {
       return `${claim.value.currency} ${claim.value.amount}`;
     case 'date':
       return claim.value.date.precision === 'instant'
-        ? claim.value.date.iso
+        ? `${claim.value.date.iso} · ${claim.value.date.timezone}`
         : claim.value.date.precision === 'date_only'
           ? claim.value.date.date
           : claim.value.date.precision === 'ambiguous'
@@ -107,13 +108,32 @@ const renderClaimValue = (claim: ClaimRevision): string => {
   }
 };
 
+// Atributos publicables y sus valores. IDs y forma JSON por sí solos no
+// prueban soporte semántico. No admitimos un precio cuyo valor sea una fecha.
+function admissibleValue(claim: ClaimRevision): boolean {
+  if (claim.status !== 'pending' && claim.status !== 'inferred' && !claim.sourceIds.length) return false;
+  const kinds = claim.attribute.startsWith('cost:') ? ['money', 'pending']
+    : claim.attribute === 'date' ? ['date', 'pending']
+    : claim.attribute === 'location' ? ['location', 'pending']
+    : claim.attribute === 'audience' ? ['text', 'number', 'pending']
+    : ['access', 'focus', 'stack', 'theme', 'format', 'modality'].includes(claim.attribute) ? ['text', 'pending']
+    : [];
+  return kinds.includes(claim.value.kind);
+}
+
+// El texto libre del modelo jamás se publica como hecho. Solo selecciona
+// revisiones admitidas; el servidor compone atributo, valor y estado juntos.
+function factualSummary(cited: AdmittedClaimView[]): string {
+  return cited.map(claim => `${claim.attribute} [${claim.status}]: ${claim.rendered}${claim.note ? ` · ${claim.note}` : ''}`).join('; ');
+}
+
 // Claims admitidos POR alternativa: los de la edición más los del organizador
 // fijado por esa alternativa, siempre dentro de las revisiones del snapshot.
 export function admittedClaimsByAlternative(
   snapshot: EvaluationSnapshot,
   claims: ClaimRevision[],
 ): Map<string, AdmittedClaimView[]> {
-  const pinned = claims.filter((claim) => snapshot.claimRevisionIds.includes(claim.id));
+  const pinned = claims.filter((claim) => snapshot.claimRevisionIds.includes(claim.id) && admissibleValue(claim));
   const byAlternative = new Map<string, AdmittedClaimView[]>();
   for (const alternative of snapshot.alternatives) {
     const admitted = pinned.filter(
@@ -130,6 +150,7 @@ export function admittedClaimsByAlternative(
         attribute: claim.attribute,
         status: claim.status,
         rendered: renderClaimValue(claim),
+        note: claim.note,
       })),
     );
   }
@@ -149,7 +170,7 @@ function buildPrompt(snapshot: EvaluationSnapshot, admitted: Map<string, Admitte
     `Candidates with their admitted claim revisions: ${JSON.stringify(candidates)}`,
     '',
     'For each candidate editionId, return a proposal with:',
-    '- summary: 1-2 sentences explaining the candidate ONLY from its admitted claims. Never invent audience, cost or outcome figures: any number must literally appear in a cited claim.',
+    '- summary: optional proposed wording for audit only. The server publishes a deterministic composition of selected attributes, values and original statuses; it never publishes your free text.',
     '- selectedClaimRevisionIds: ONLY revision ids listed under that same candidate. Citing anything else (or nothing) voids your whole output server-side.',
     'Do not return order, rank, score, eligibility or conditions: they carry no authority and are discarded.',
   ].join('\n');
@@ -373,7 +394,7 @@ export async function composeSnapshotNarrative(
     }
     return {
       editionId: proposal.editionId,
-      summary: proposal.summary,
+      summary: factualSummary(cited),
       selectedClaimRevisionIds: proposal.selectedClaimRevisionIds,
       withheldNote: null,
     };

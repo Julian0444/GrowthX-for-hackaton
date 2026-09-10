@@ -71,6 +71,7 @@ const INVALID = Symbol('evaluation-contract-invalid');
 type Invalid = typeof INVALID;
 
 interface Schema<T> {
+  optional?: boolean;
   read(input: unknown, path: string, issues: ValidationIssue[]): T | Invalid;
 }
 
@@ -156,6 +157,11 @@ function nullable<T>(schema: Schema<T>): Schema<T | null> {
   };
 }
 
+// Extensiones v1 opcionales conservan los payloads históricos sin rellenarlos.
+function optional<T>(schema: Schema<T>): Schema<T | undefined> {
+  return { optional: true, read: (input, path, issues) => input === undefined ? undefined : schema.read(input, path, issues) };
+}
+
 function array<T>(schema: Schema<T>): Schema<T[]> {
   return {
     read: (input, path, issues) => {
@@ -181,6 +187,7 @@ function object<S extends { [key: string]: Schema<unknown> }>(shape: S): Schema<
       let bad = false;
       for (const key of keys) {
         if (!hasOwn(input, key)) {
+          if (shape[key].optional) continue;
           issues.push({ path: `${path}.${key}`, message: 'campo requerido ausente' });
           bad = true;
           continue;
@@ -322,6 +329,11 @@ const declaredDateSchema: Schema<DeclaredDate> = discriminated('precision', {
   unknown: object({ precision: literal('unknown') }),
 });
 
+const uncertainMoneyFields = {
+  amount: finiteNumber(), currency: currencyCode(), sourceIds: idArraySchema,
+  basis: nonEmptyString(), note: nullable(nonEmptyString()),
+};
+
 const moneyClaimSchema: Schema<MoneyClaim> = refine(
   discriminated('status', {
     quoted: object({
@@ -336,12 +348,16 @@ const moneyClaimSchema: Schema<MoneyClaim> = refine(
       currency: currencyCode(),
       basis: nonEmptyString(),
     }),
+    inferred: object({ status: literal('inferred'), ...uncertainMoneyFields }),
+    contradicted: object({ status: literal('contradicted'), ...uncertainMoneyFields }),
     unknown: object({ status: literal('unknown'), note: nullable(nonEmptyString()) }),
   }),
   (value, addIssue) => {
     if (value.status === 'quoted' && value.sourceIds.length === 0)
       addIssue('sourceIds', 'un importe cotizado exige al menos una fuente de soporte');
-    if ((value.status === 'quoted' || value.status === 'estimated') && value.amount < 0)
+    if (value.status === 'contradicted' && (value.note === null || value.sourceIds.length === 0))
+      addIssue('note', 'un costo contradicho conserva motivo y fuentes');
+    if (value.status !== 'unknown' && value.amount < 0)
       addIssue('amount', 'un importe no puede ser negativo');
   },
 );
@@ -458,6 +474,10 @@ const claimRevisionSchema: Schema<ClaimRevision> = refine(
     claimId: idSchema,
     subject: claimSubjectSchema,
     attribute: nonEmptyString(),
+    costComposition: optional(discriminated('kind', {
+      additive: object({ kind: literal('additive') }),
+      alternative: object({ kind: literal('alternative'), groupId: idSchema, optionId: idSchema }),
+    })),
     value: claimValueSchema,
     status: claimStatusSchema,
     sourceIds: idArraySchema,
@@ -468,6 +488,10 @@ const claimRevisionSchema: Schema<ClaimRevision> = refine(
     previousRevisionId: nullable(idSchema),
   }),
   (claim, addIssue) => {
+    if (claim.costComposition && !claim.attribute.startsWith('cost:'))
+      addIssue('costComposition', 'solo una partida de costo admite composición');
+    if (claim.attribute.startsWith('cost:') && claim.value.kind === 'money' && claim.value.amount < 0)
+      addIssue('value.amount', 'un costo no puede ser negativo');
     if (STATUSES_REQUIRING_SOURCES.includes(claim.status) && claim.sourceIds.length === 0)
       addIssue('sourceIds', `un claim «${claim.status}» exige evidencia vinculada`);
     if (claim.status === 'contradicted' && claim.note === null)
@@ -769,10 +793,22 @@ const campaignCommitmentSchema: Schema<CampaignCommitment> = refine(
   },
 );
 
-const campaignCostItemSchema: Schema<CampaignCostItem> = object({
+const campaignCostItemSchema: Schema<CampaignCostItem> = refine(object({
   id: idSchema,
   label: nonEmptyString(),
   amount: moneyClaimSchema,
+  evidence: optional(claimRevisionSchema),
+}), (item, addIssue) => {
+  const evidence = item.evidence;
+  if (!evidence) return; // registros v1 anteriores: no inventar procedencia
+  if (!evidence.attribute.startsWith('cost:')) addIssue('evidence', 'la evidencia debe ser una partida de costo');
+  if ((evidence.status === 'inferred' || evidence.status === 'contradicted') && item.amount.status !== evidence.status)
+    addIssue('amount.status', 'la campaña debe conservar el estado inferido o contradicho de su evidencia');
+  if (evidence.status === 'pending' && item.amount.status !== 'unknown')
+    addIssue('amount.status', 'un costo pendiente no se convierte en importe conocido');
+  if (evidence.value.kind === 'money' && item.amount.status !== 'unknown' &&
+      (evidence.value.amount !== item.amount.amount || evidence.value.currency !== item.amount.currency))
+    addIssue('amount', 'el importe y moneda deben coincidir con la revisión conservada');
 });
 
 const campaignDraftSchema: Schema<CampaignDraftRecord> = object({

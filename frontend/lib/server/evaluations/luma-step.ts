@@ -62,6 +62,7 @@ export function parseLumaFetchOutput(value: unknown): LumaFetchOutput {
     typeof record.fetchedAt !== 'string' ||
     typeof record.htmlSha256 !== 'string' ||
     typeof record.htmlBytes !== 'number' ||
+    (record.isFixture !== undefined && record.isFixture !== true) ||
     (extraction.status !== 'complete' && extraction.status !== 'partial') ||
     !Array.isArray(extraction.warnings) ||
     !Array.isArray(extraction.fieldsExtracted) ||

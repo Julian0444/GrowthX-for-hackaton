@@ -344,11 +344,13 @@ export function CatalogDossierPanel() {
           <div style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap" }}>
             <b style={{ fontSize: 14 }}>{edition.name}</b>
             <ValidityBadge validity={edition.validity.validity} reason={edition.validity.reason} />
-            {edition.canonicalUrl && (
-              <a href={edition.canonicalUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, textDecoration: "underline" }}>
+            {edition.listingLink.href && (
+              <a href={edition.listingLink.href} target="_blank" rel="noreferrer" style={{ fontSize: 12, textDecoration: "underline" }}>
                 listing
               </a>
             )}
+            {edition.listingLink.kind === 'synthetic' && <span>Listado de prueba · no corresponde a una página real.</span>}
+            {edition.listingLink.kind === 'invalid' && <span>Enlace del listado no disponible.</span>}
           </div>
           {edition.curation && (
             <div style={{ fontSize: 11, opacity: 0.7 }}>

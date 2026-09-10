@@ -7,7 +7,7 @@
 // devuelve afirmaciones con su soporte, no una generalización automática.
 
 import { NextResponse } from 'next/server';
-import { resolveSessionContext } from '../../../../lib/server/auth/session.ts';
+import { resolveHttpSession } from '../../../../lib/server/auth/http-session.ts';
 import { getAppPool, isEvaluationDbConfigured } from '../../../../lib/server/db/pool.ts';
 import { readOrganizerDossier } from '../../../../lib/server/catalog/read.ts';
 
@@ -23,10 +23,9 @@ export async function GET(
       { status: 503 },
     );
   }
-  const session = await resolveSessionContext(request).catch(() => null);
-  if (!session) {
-    return NextResponse.json({ error: 'unauthorized', message: 'Sesión requerida.' }, { status: 401 });
-  }
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
   const { id } = await params;
   if (!CATALOG_ID.test(id)) {
     return NextResponse.json({ error: 'invalid_id', message: 'organizerId inválido.' }, { status: 400 });

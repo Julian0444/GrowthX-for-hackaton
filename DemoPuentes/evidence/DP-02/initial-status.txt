@@ -1,0 +1,38 @@
+ M frontend/app/api/catalog/editions/[id]/route.ts
+ M frontend/app/api/catalog/editions/route.ts
+ M frontend/app/api/decisions/[id]/route.ts
+ M frontend/app/api/decisions/route.ts
+ M frontend/app/api/evaluations/[id]/organizers/[organizerId]/route.ts
+ M frontend/app/api/evaluations/[id]/route.ts
+ M frontend/app/api/evaluations/route.ts
+ M frontend/app/api/events/ingest/route.ts
+ M frontend/app/api/organizers/[id]/route.ts
+ M frontend/app/globals.css
+ M frontend/components/atlas/campaign-panel.tsx
+ M frontend/components/atlas/catalog-dossier-panel.tsx
+ M frontend/components/atlas/evidence-links.tsx
+ M frontend/components/research-dashboard/comparison-panel.tsx
+ M frontend/components/research-dashboard/research-dashboard.tsx
+ M frontend/components/research-dashboard/research-dossier.tsx
+ M frontend/lib/api/luma.ts
+ M frontend/lib/api/opportunity-adapter.ts
+ M frontend/lib/server/auth/session.ts
+ M frontend/lib/server/catalog/luma-adapter.ts
+ M frontend/lib/server/db/migrate.ts
+ M frontend/lib/server/evaluations/eligibility.ts
+ M frontend/lib/server/evaluations/luma-step.ts
+ M frontend/tests/e2e/reopen-evaluation.spec.ts
+ M frontend/tests/e2e/sf-organizer-research.spec.ts
+ M frontend/tests/integration/luma-dossier.test.ts
+ M frontend/tests/integration/worker-recovery.test.ts
+ M frontend/worker/index.ts
+?? DemoPuentes/
+?? docs/reviews/
+?? frontend/lib/evidence/
+?? frontend/lib/server/auth/http-session.ts
+?? frontend/tests/acceptance/eligibility-window.test.ts
+?? frontend/tests/acceptance/session-unavailable.test.ts
+?? frontend/tests/connectors/luma.test.ts
+?? frontend/tests/integration/migration-concurrency.test.ts
+?? frontend/tests/ui/
+?? plan/propuesta-demo-puentes-2026-09-10.md

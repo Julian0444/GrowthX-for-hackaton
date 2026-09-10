@@ -12,7 +12,7 @@
 // handler bajo `node --test` sin resolver de tsconfig.
 
 import { NextResponse } from 'next/server';
-import { resolveSessionContext } from '../../../lib/server/auth/session.ts';
+import { resolveHttpSession } from '../../../lib/server/auth/http-session.ts';
 import { isEvaluationDbConfigured } from '../../../lib/server/db/pool.ts';
 import { evaluationService } from '../../../lib/server/evaluations/service.ts';
 import { parseEvaluationStartBody } from '../../../lib/server/evaluations/wire.ts';
@@ -31,16 +31,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     );
   }
 
-  const session = await resolveSessionContext(request).catch((error: unknown) => {
-    console.warn(`[evaluations] resolución de sesión falló: ${(error as Error).message}`);
-    return null;
-  });
-  if (!session) {
-    return NextResponse.json(
-      { error: 'unauthorized', message: 'Sesión requerida (cookie growthx_session o Bearer).' },
-      { status: 401 },
-    );
-  }
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
 
   let payload: unknown;
   try {
@@ -112,8 +105,9 @@ export async function GET(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: 'invalid_query', message: 'profileId debe ser el id (uuid) de un perfil de esta sesión.' }, { status: 400 });
   }
   try {
-    const session = await resolveSessionContext(request);
-    if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+    const auth = await resolveHttpSession(request);
+    if (!auth.ok) return auth.response;
+    const session = auth.session;
     const { readResearchHome } = await import('../../../lib/server/evaluations/dashboard-store.ts');
     return NextResponse.json(await readResearchHome(session.tenantId, { profileId }));
   } catch {

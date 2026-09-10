@@ -1,0 +1,1448 @@
+TAP version 13
+# (node:12857) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/baseline-v0.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness
+ok 1 - manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness
+  ---
+  duration_ms: 3.468917
+  type: 'test'
+  ...
+# Subtest: seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado
+ok 2 - seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado
+  ---
+  duration_ms: 19.647791
+  type: 'test'
+  ...
+# Subtest: fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración
+ok 3 - fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración
+  ---
+  duration_ms: 2.860625
+  type: 'test'
+  ...
+# Subtest: repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida
+ok 4 - repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida
+  ---
+  duration_ms: 259.56425
+  type: 'test'
+  ...
+# Subtest: repetición: una petición no grabada falla en lugar de salir a la red
+ok 5 - repetición: una petición no grabada falla en lugar de salir a la red
+  ---
+  duration_ms: 0.931292
+  type: 'test'
+  ...
+# Subtest: caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto
+ok 6 - caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto
+  ---
+  duration_ms: 126.459166
+  type: 'test'
+  ...
+# fuentes distintas del manifiesto v0: lib/contracts/growxth.ts, lib/server/pipeline/resolve.ts, lib/server/pipeline/global-market-search.ts, lib/server/pipeline/search-opportunities.ts, lib/server/reasoning/gemini.ts, lib/server/discovery/exa-events.ts, lib/server/graph/derive-signals.ts, lib/server/markets/city-catalog.ts, lib/server/scoring/score-utils.ts, lib/server/audit/labels.ts, lib/server/env.ts, lib/api/opportunity-adapter.ts, lib/api/types.ts, app/api/opportunities/search/route.ts. La igualdad con la caracterización solo se exige sobre v0; la corrección la prueban 02–06.
+# Subtest: oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada
+ok 7 - oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada
+  ---
+  duration_ms: 54.41275
+  type: 'test'
+  ...
+# O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición secuencial (USD 20.000)
+# O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición concurrente (USD 20.000)
+# O1 (ticket 02) invariante: una petición equivalente (mismo presupuesto) sí reutiliza la respuesta
+# O2 (ticket 03) corregido: mercado con señal de Trends exclusivamente nacional (India) presentado con market.city como ubicación (basis country)
+# O2 (ticket 03) corregido: resultado de Exa sin lugar en el texto recibe como location la ciudad de la consulta
+# O3 (ticket 04) corregido: oportunidades locales cuyo evento ya venció en el reloj congelado y aun así se citan como «upcoming»
+# O3 (ticket 04) corregido: evento sin fecha: startsAt que el adaptador entrega a la UI
+# O3 (ticket 04) corregido: recap de un evento del 12 Ago 2026 publicado el 5 Sep se cita como listing vivo (observed) en la razón de Exa
+# O4 (ticket 05) corregido: narrativa que solo cita un id inexistente: se publica como razón y con qué citas
+# O4 (ticket 05) corregido: narrativa de San Francisco que cita evidencia de Bengaluru (ajena): publicada como razón factual
+# O4 (ticket 05) corregido: cifra («40+ meetups por trimestre») respaldada solo por un listing de un evento: publicada como razón factual
+# O5 (ticket 06) corregido: orden de opportunities con modelo (rank invertido) frente al orden determinístico
+# O5 (ticket 06) corregido: rank que el adaptador entrega a la UI sigue al orden del array recibido
+# O5 (ticket 06) invariante: scores por oportunidad con y sin modelo
+# Subtest: matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos
+ok 8 - matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos
+  ---
+  duration_ms: 0.587291
+  type: 'test'
+  ...
+# (node:12858) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/cache-budget.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza
+ok 9 - secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza
+  ---
+  duration_ms: 173.722916
+  type: 'test'
+  ...
+# Subtest: concurrente: presupuestos distintos no comparten la promesa en curso
+ok 10 - concurrente: presupuestos distintos no comparten la promesa en curso
+  ---
+  duration_ms: 21.418167
+  type: 'test'
+  ...
+# Subtest: proveedor controlado: se observa qué evaluación produjo cada respuesta
+ok 11 - proveedor controlado: se observa qué evaluación produjo cada respuesta
+  ---
+  duration_ms: 36.001375
+  type: 'test'
+  ...
+# Subtest: fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto
+ok 12 - fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto
+  ---
+  duration_ms: 22.140375
+  type: 'test'
+  ...
+# Subtest: frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo
+ok 13 - frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo
+  ---
+  duration_ms: 67.774458
+  type: 'test'
+  ...
+# Subtest: normalización única: caracterización del sentinel de presupuesto desconocido
+ok 14 - normalización única: caracterización del sentinel de presupuesto desconocido
+  ---
+  duration_ms: 0.146583
+  type: 'test'
+  ...
+# (node:12859) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente
+ok 15 - la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente
+  ---
+  duration_ms: 137.109333
+  type: 'test'
+  ...
+# Subtest: el día UTC dentro de la ventana no admite un evento cuyo día local es anterior
+ok 16 - el día UTC dentro de la ventana no admite un evento cuyo día local es anterior
+  ---
+  duration_ms: 0.52425
+  type: 'test'
+  ...
+# Subtest: los offsets declarados negativos y positivos conservan ambos bordes inclusivos
+ok 17 - los offsets declarados negativos y positivos conservan ambos bordes inclusivos
+  ---
+  duration_ms: 0.512667
+  type: 'test'
+  ...
+# Subtest: la zona IANA respeta el horario de invierno y no asume un offset fijo para SF
+ok 18 - la zona IANA respeta el horario de invierno y no asume un offset fijo para SF
+  ---
+  duration_ms: 0.31375
+  type: 'test'
+  ...
+# Subtest: una fecha sin hora se compara tal como fue declarada
+ok 19 - una fecha sin hora se compara tal como fue declarada
+  ---
+  duration_ms: 0.398333
+  type: 'test'
+  ...
+# Subtest: una zona no reconocida mantiene pendiente la ventana en vez de inventar el día
+ok 20 - una zona no reconocida mantiene pendiente la ventana en vez de inventar el día
+  ---
+  duration_ms: 0.232916
+  type: 'test'
+  ...
+# (node:12860) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/event-validity.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha
+ok 21 - política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha
+  ---
+  duration_ms: 5.476625
+  type: 'test'
+  ...
+# Subtest: demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca
+ok 22 - demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca
+  ---
+  duration_ms: 50.04475
+  type: 'test'
+  ...
+# Subtest: seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan
+ok 23 - seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan
+  ---
+  duration_ms: 80.334917
+  type: 'test'
+  ...
+# Subtest: adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento
+ok 24 - adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento
+  ---
+  duration_ms: 1.639875
+  type: 'test'
+  ...
+# Subtest: Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece
+ok 25 - Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece
+  ---
+  duration_ms: 146.305834
+  type: 'test'
+  ...
+# Subtest: predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05
+ok 26 - predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05
+  ---
+  duration_ms: 26.609375
+  type: 'test'
+  ...
+# Subtest: fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente
+ok 27 - fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente
+  ---
+  duration_ms: 0.890625
+  type: 'test'
+  ...
+# Subtest: fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente
+ok 28 - fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente
+  ---
+  duration_ms: 4.706375
+  type: 'test'
+  ...
+# (node:12861) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/geographic-scope.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fixture país: un dato de Trends sobre India sigue siendo observación de país
+ok 29 - fixture país: un dato de Trends sobre India sigue siendo observación de país
+  ---
+  duration_ms: 35.105208
+  type: 'test'
+  ...
+# Subtest: fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado
+ok 30 - fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado
+  ---
+  duration_ms: 2.419958
+  type: 'test'
+  ...
+# Subtest: fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado
+ok 31 - fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado
+  ---
+  duration_ms: 92.891167
+  type: 'test'
+  ...
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# (node:12862) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/llm-rank-authority.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual
+ok 32 - el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual
+  ---
+  duration_ms: 177.774791
+  type: 'test'
+  ...
+# Subtest: grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5)
+ok 33 - grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5)
+  ---
+  duration_ms: 38.47975
+  type: 'test'
+  ...
+# Subtest: candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco
+ok 34 - candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco
+  ---
+  duration_ms: 1.422959
+  type: 'test'
+  ...
+# Subtest: desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable)
+ok 35 - desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable)
+  ---
+  duration_ms: 1.402375
+  type: 'test'
+  ...
+# Subtest: desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden
+ok 36 - desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden
+  ---
+  duration_ms: 2.534125
+  type: 'test'
+  ...
+# Subtest: ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números
+ok 37 - ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números
+  ---
+  duration_ms: 45.623709
+  type: 'test'
+  ...
+# (node:12863) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/reasoning-support.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1)
+ok 38 - cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1)
+  ---
+  duration_ms: 113.217584
+  type: 'test'
+  ...
+# Subtest: cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2)
+ok 39 - cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2)
+  ---
+  duration_ms: 0.344042
+  type: 'test'
+  ...
+# Subtest: cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida)
+ok 40 - cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida)
+  ---
+  duration_ms: 67.512709
+  type: 'test'
+  ...
+# Subtest: afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica
+ok 41 - afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica
+  ---
+  duration_ms: 0.770833
+  type: 'test'
+  ...
+# Subtest: propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza
+ok 42 - propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza
+  ---
+  duration_ms: 0.79575
+  type: 'test'
+  ...
+# Subtest: fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad
+ok 43 - fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad
+  ---
+  duration_ms: 2.553708
+  type: 'test'
+  ...
+# Subtest: JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos
+ok 44 - JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos
+  ---
+  duration_ms: 0.809917
+  type: 'test'
+  ...
+# Subtest: descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia
+ok 45 - descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia
+  ---
+  duration_ms: 0.622709
+  type: 'test'
+  ...
+# Subtest: auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta
+ok 46 - auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta
+  ---
+  duration_ms: 0.743458
+  type: 'test'
+  ...
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# (node:12864) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/acceptance/session-unavailable.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401
+    # Subtest: GET evaluaciones
+    ok 1 - GET evaluaciones
+      ---
+      duration_ms: 5.789708
+      type: 'test'
+      ...
+    # Subtest: POST evaluación
+    ok 2 - POST evaluación
+      ---
+      duration_ms: 2.316041
+      type: 'test'
+      ...
+    # Subtest: GET run
+    ok 3 - GET run
+      ---
+      duration_ms: 1.461542
+      type: 'test'
+      ...
+    # Subtest: POST importación
+    ok 4 - POST importación
+      ---
+      duration_ms: 0.73675
+      type: 'test'
+      ...
+    # Subtest: GET catálogo
+    ok 5 - GET catálogo
+      ---
+      duration_ms: 0.620916
+      type: 'test'
+      ...
+    # Subtest: GET edición
+    ok 6 - GET edición
+      ---
+      duration_ms: 0.749916
+      type: 'test'
+      ...
+    # Subtest: GET organizador
+    ok 7 - GET organizador
+      ---
+      duration_ms: 0.793
+      type: 'test'
+      ...
+    # Subtest: GET decisiones
+    ok 8 - GET decisiones
+      ---
+      duration_ms: 12.405292
+      type: 'test'
+      ...
+    # Subtest: POST decisión
+    ok 9 - POST decisión
+      ---
+      duration_ms: 0.921625
+      type: 'test'
+      ...
+    # Subtest: GET decisión
+    ok 10 - GET decisión
+      ---
+      duration_ms: 0.612875
+      type: 'test'
+      ...
+    # Subtest: PATCH decisión
+    ok 11 - PATCH decisión
+      ---
+      duration_ms: 0.42175
+      type: 'test'
+      ...
+    # Subtest: POST guardar organizador
+    ok 12 - POST guardar organizador
+      ---
+      duration_ms: 17.203333
+      type: 'test'
+      ...
+    # Subtest: una sesión válida conserva el usuario y tenant resueltos por el servidor
+    ok 13 - una sesión válida conserva el usuario y tenant resueltos por el servidor
+      ---
+      duration_ms: 0.979709
+      type: 'test'
+      ...
+    1..13
+ok 47 - fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401
+  ---
+  duration_ms: 306.410583
+  type: 'test'
+  ...
+# (node:12865) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/atlas/arcs.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: origen: ubicación del usuario si existe, si no San Francisco
+ok 48 - origen: ubicación del usuario si existe, si no San Francisco
+  ---
+  duration_ms: 1.387375
+  type: 'test'
+  ...
+# Subtest: path = bézier cuadrática "M x0 y0Q cx cy x1 y1", redondeada a 1 decimal
+ok 49 - path = bézier cuadrática "M x0 y0Q cx cy x1 y1", redondeada a 1 decimal
+  ---
+  duration_ms: 0.432125
+  type: 'test'
+  ...
+# Subtest: el arco siempre se comba hacia el norte, independientemente del sentido
+ok 50 - el arco siempre se comba hacia el norte, independientemente del sentido
+  ---
+  duration_ms: 0.294458
+  type: 'test'
+  ...
+# Subtest: bulge clampeado a [12, 60]
+ok 51 - bulge clampeado a [12, 60]
+  ---
+  duration_ms: 0.127291
+  type: 'test'
+  ...
+# Subtest: origen == destino → sin arco
+ok 52 - origen == destino → sin arco
+  ---
+  duration_ms: 0.278625
+  type: 'test'
+  ...
+# Subtest: determinista: mismo input → mismo output, sin depender del reloj
+ok 53 - determinista: mismo input → mismo output, sin depender del reloj
+  ---
+  duration_ms: 0.564917
+  type: 'test'
+  ...
+# Subtest: escalonado por rank: 950ms + 240ms por posición; el cometa arranca al terminar el arco
+ok 54 - escalonado por rank: 950ms + 240ms por posición; el cometa arranca al terminar el arco
+  ---
+  duration_ms: 0.276625
+  type: 'test'
+  ...
+# Subtest: todos los arcos parten del origen
+ok 55 - todos los arcos parten del origen
+  ---
+  duration_ms: 0.145459
+  type: 'test'
+  ...
+# (node:12866) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/connectors/apify.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: runs an Actor with server-side auth and reads its dataset
+ok 56 - runs an Actor with server-side auth and reads its dataset
+  ---
+  duration_ms: 110.051
+  type: 'test'
+  ...
+# Subtest: degrades without exposing or requiring a token
+ok 57 - degrades without exposing or requiring a token
+  ---
+  duration_ms: 0.142333
+  type: 'test'
+  ...
+# Subtest: keeps partial dataset items when an Actor exceeds its wait budget
+ok 58 - keeps partial dataset items when an Actor exceeds its wait budget
+  ---
+  duration_ms: 1.141458
+  type: 'test'
+  ...
+# (node:12867) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes
+ok 59 - Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes
+  ---
+  duration_ms: 4.780875
+  type: 'test'
+  ...
+# Subtest: Luma: un título OG de página vacía o calendario no crea un dossier de evento
+ok 60 - Luma: un título OG de página vacía o calendario no crea un dossier de evento
+  ---
+  duration_ms: 107.216583
+  type: 'test'
+  ...
+# Subtest: Luma: una redirección a la portada con metadatos genéricos no crea un evento
+ok 61 - Luma: una redirección a la portada con metadatos genéricos no crea un evento
+  ---
+  duration_ms: 0.774167
+  type: 'test'
+  ...
+# Subtest: Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes
+ok 62 - Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes
+  ---
+  duration_ms: 1.176375
+  type: 'test'
+  ...
+# Subtest: Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación
+ok 63 - Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación
+  ---
+  duration_ms: 0.6085
+  type: 'test'
+  ...
+# Subtest: Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos
+ok 64 - Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos
+  ---
+  duration_ms: 0.546
+  type: 'test'
+  ...
+# Subtest: Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos
+ok 65 - Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos
+  ---
+  duration_ms: 0.482042
+  type: 'test'
+  ...
+# Subtest: Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step
+ok 66 - Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step
+  ---
+  duration_ms: 2.164709
+  type: 'test'
+  ...
+# (node:12868) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/contracts/evaluation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: payload válido: el bundle incompleto pero bien formado pasa entero y sin mutaciones
+ok 67 - payload válido: el bundle incompleto pero bien formado pasa entero y sin mutaciones
+  ---
+  duration_ms: 68.895792
+  type: 'test'
+  ...
+# Subtest: payload inválido se rechaza con ruta y motivo; las claves desconocidas no se ignoran
+ok 68 - payload inválido se rechaza con ruta y motivo; las claves desconocidas no se ignoran
+  ---
+  duration_ms: 0.723667
+  type: 'test'
+  ...
+# Subtest: una versión de contrato desconocida se rechaza; no se interpreta como la actual
+ok 69 - una versión de contrato desconocida se rechaza; no se interpreta como la actual
+  ---
+  duration_ms: 0.425917
+  type: 'test'
+  ...
+# Subtest: fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy
+ok 70 - fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy
+  ---
+  duration_ms: 1.651583
+  type: 'test'
+  ...
+# Subtest: costo incompleto: la partida pendiente viaja como pendiente y no existe un total
+ok 71 - costo incompleto: la partida pendiente viaja como pendiente y no existe un total
+  ---
+  duration_ms: 0.460333
+  type: 'test'
+  ...
+# Subtest: una localización nacional no coloca el evento en una ciudad ni en el mapa
+ok 72 - una localización nacional no coloca el evento en una ciudad ni en el mapa
+  ---
+  duration_ms: 0.496167
+  type: 'test'
+  ...
+# Subtest: una contradicción viaja como contradicción, con su motivo visible
+ok 73 - una contradicción viaja como contradicción, con su motivo visible
+  ---
+  duration_ms: 0.430542
+  type: 'test'
+  ...
+# Subtest: score ausente se distingue de cero; «sin evento elegible» se distingue de error técnico
+ok 74 - score ausente se distingue de cero; «sin evento elegible» se distingue de error técnico
+  ---
+  duration_ms: 23.786792
+  type: 'test'
+  ...
+# Subtest: un compromiso acordado sin soporte se rechaza; una estimación no se disfraza de acuerdo
+ok 75 - un compromiso acordado sin soporte se rechaza; una estimación no se disfraza de acuerdo
+  ---
+  duration_ms: 1.152042
+  type: 'test'
+  ...
+# Subtest: identidades separadas: aliases exigen confirmación con soporte y un logo no crea patrocinio ni resultados
+ok 76 - identidades separadas: aliases exigen confirmación con soporte y un logo no crea patrocinio ni resultados
+  ---
+  duration_ms: 1.10775
+  type: 'test'
+  ...
+# Subtest: la decisión exige autor del servidor, motivos y relación de revisión coherente
+ok 77 - la decisión exige autor del servidor, motivos y relación de revisión coherente
+  ---
+  duration_ms: 0.400834
+  type: 'test'
+  ...
+# Subtest: las reglas de objeto no comprueban integridad relacional (eso es 08/09)
+ok 78 - las reglas de objeto no comprueban integridad relacional (eso es 08/09)
+  ---
+  duration_ms: 0.550708
+  type: 'test'
+  ...
+# Subtest: round-trip por JSON: serializar, releer y validar conserva el agregado idéntico
+ok 79 - round-trip por JSON: serializar, releer y validar conserva el agregado idéntico
+  ---
+  duration_ms: 0.83275
+  type: 'test'
+  ...
+# Subtest: la proyección conserva pendientes sin los defaults engañosos del contrato legado
+ok 80 - la proyección conserva pendientes sin los defaults engañosos del contrato legado
+  ---
+  duration_ms: 0.273792
+  type: 'test'
+  ...
+# (node:12869) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/graph/derive-signals.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: derives query-specific capabilities instead of requiring a static topics file
+ok 81 - derives query-specific capabilities instead of requiring a static topics file
+  ---
+  duration_ms: 2.530792
+  type: 'test'
+  ...
+# Subtest: distance is context in miles and can be computed independently from score
+ok 82 - distance is context in miles and can be computed independently from score
+  ---
+  duration_ms: 0.191875
+  type: 'test'
+  ...
+# (node:12870) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/conditional-decision.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# Subtest: conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real)
+    # Subtest: frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404
+    ok 1 - frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404
+      ---
+      duration_ms: 26.733458
+      type: 'test'
+      ...
+    # Subtest: motivos obligatorios; la alternativa debe pertenecer al snapshot
+    ok 2 - motivos obligatorios; la alternativa debe pertenecer al snapshot
+      ---
+      duration_ms: 11.921834
+      type: 'test'
+      ...
+    # Subtest: elegir con costo pendiente → elección condicional guardada con su campaña (una transacción)
+    ok 3 - elegir con costo pendiente → elección condicional guardada con su campaña (una transacción)
+      ---
+      duration_ms: 23.882041
+      type: 'test'
+      ...
+    # Subtest: idempotencia: misma clave+payload → misma decisión; otra clave/payload → conflicto
+    ok 4 - idempotencia: misma clave+payload → misma decisión; otra clave/payload → conflicto
+      ---
+      duration_ms: 29.246125
+      type: 'test'
+      ...
+    # Subtest: excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente
+    ok 5 - excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente
+      ---
+      duration_ms: 24.545917
+      type: 'test'
+      ...
+    # Subtest: dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan
+    ok 6 - dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan
+      ---
+      duration_ms: 36.513834
+      type: 'test'
+      ...
+    # Subtest: razones distintas por alternativa; decidir no fabrica claims ni evidencia
+    ok 7 - razones distintas por alternativa; decidir no fabrica claims ni evidencia
+      ---
+      duration_ms: 11.920291
+      type: 'test'
+      ...
+    # Subtest: guardar un organizador conserva una investigación: no crea inversión ni campaña
+    ok 8 - guardar un organizador conserva una investigación: no crea inversión ni campaña
+      ---
+      duration_ms: 87.325916
+      type: 'test'
+      ...
+    # Subtest: rollback conjunto: una caída al confirmar la campaña no deja decisión suelta
+    ok 9 - rollback conjunto: una caída al confirmar la campaña no deja decisión suelta
+      ---
+      duration_ms: 201.477292
+      type: 'test'
+      ...
+    # Subtest: tenant señuelo: la decisión real no existe para él, ni por ruta ni por SQL de aplicación
+    ok 10 - tenant señuelo: la decisión real no existe para él, ni por ruta ni por SQL de aplicación
+      ---
+      duration_ms: 11.757542
+      type: 'test'
+      ...
+    1..10
+ok 83 - conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real)
+  ---
+  duration_ms: 1118.098458
+  type: 'test'
+  ...
+# (node:12882) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/curated-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: curated-manifest: parseo estricto del manifiesto de curación
+    # Subtest: el manifiesto fixture valida completo
+    ok 1 - el manifiesto fixture valida completo
+      ---
+      duration_ms: 2.701708
+      type: 'test'
+      ...
+    # Subtest: clave desconocida y responsable ausente se rechazan
+    ok 2 - clave desconocida y responsable ausente se rechazan
+      ---
+      duration_ms: 0.403292
+      type: 'test'
+      ...
+    # Subtest: extracto sobredimensionado y claim de perfil se rechazan
+    ok 3 - extracto sobredimensionado y claim de perfil se rechazan
+      ---
+      duration_ms: 42.173958
+      type: 'test'
+      ...
+    # Subtest: la versión desconocida no se interpreta como la actual
+    ok 4 - la versión desconocida no se interpreta como la actual
+      ---
+      duration_ms: 0.852917
+      type: 'test'
+      ...
+    1..4
+ok 84 - curated-manifest: parseo estricto del manifiesto de curación
+  ---
+  duration_ms: 47.390042
+  type: 'test'
+  ...
+# Subtest: curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
+    # Subtest: carga autorizada: el manifiesto fixture entra completo bajo el tenant real
+    ok 1 - carga autorizada: el manifiesto fixture entra completo bajo el tenant real
+      ---
+      duration_ms: 116.783167
+      type: 'test'
+      ...
+    # Subtest: idempotencia: repetir la carga no duplica eventos ni revisiones
+    ok 2 - idempotencia: repetir la carga no duplica eventos ni revisiones
+      ---
+      duration_ms: 8.302
+      type: 'test'
+      ...
+    # Subtest: fuente replicada e inmutabilidad: mismo id sin cambios pasa; con cambios se rechaza entero
+    ok 3 - fuente replicada e inmutabilidad: mismo id sin cambios pasa; con cambios se rechaza entero
+      ---
+      duration_ms: 60.815083
+      type: 'test'
+      ...
+    # Subtest: una corrección es una revisión NUEVA que conserva la anterior
+    ok 4 - una corrección es una revisión NUEVA que conserva la anterior
+      ---
+      duration_ms: 41.175792
+      type: 'test'
+      ...
+    # Subtest: rutas: sin sesión 401; id inválido 400
+    ok 5 - rutas: sin sesión 401; id inválido 400
+      ---
+      duration_ms: 8.790083
+      type: 'test'
+      ...
+    # Subtest: la lista del catálogo separa vigencia de promesas pendientes
+    ok 6 - la lista del catálogo separa vigencia de promesas pendientes
+      ---
+      duration_ms: 14.571875
+      type: 'test'
+      ...
+    # Subtest: dossier de edición: contradicción con ambas revisiones, costo pendiente y fuentes abribles
+    ok 7 - dossier de edición: contradicción con ambas revisiones, costo pendiente y fuentes abribles
+      ---
+      duration_ms: 13.93675
+      type: 'test'
+      ...
+    # Subtest: homónimos e independencia: identidades separadas, coorganizador sin herencia
+    ok 8 - homónimos e independencia: identidades separadas, coorganizador sin herencia
+      ---
+      duration_ms: 40.550333
+      type: 'test'
+      ...
+    # Subtest: participaciones: rol recorrible empresa → edición → fuente; ausencia de resultado ≠ fracaso
+    ok 9 - participaciones: rol recorrible empresa → edición → fuente; ausencia de resultado ≠ fracaso
+      ---
+      duration_ms: 16.691708
+      type: 'test'
+      ...
+    # Subtest: research persistido: sin catálogo → null (fixture de 08); con catálogo → candidatos vigentes
+    ok 10 - research persistido: sin catálogo → null (fixture de 08); con catálogo → candidatos vigentes
+      ---
+      duration_ms: 50.2065
+      type: 'test'
+      ...
+    # Subtest: tenant señuelo: catálogo vacío por RLS y referencias cruzadas rechazadas
+    ok 11 - tenant señuelo: catálogo vacío por RLS y referencias cruzadas rechazadas
+      ---
+      duration_ms: 27.014208
+      type: 'test'
+      ...
+    # Subtest: reloj controlado: la vigencia cambia al evaluar y el catálogo vencido se declara
+    ok 12 - reloj controlado: la vigencia cambia al evaluar y el catálogo vencido se declara
+      ---
+      duration_ms: 23.264375
+      type: 'test'
+      ...
+    1..12
+ok 85 - curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
+  ---
+  duration_ms: 754.833625
+  type: 'test'
+  ...
+# (node:12883) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/evaluation-run.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# Subtest: evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales)
+    # Subtest: POST sin sesión → 401 (la sesión se valida en el servidor)
+    ok 1 - POST sin sesión → 401 (la sesión se valida en el servidor)
+      ---
+      duration_ms: 2.88575
+      type: 'test'
+      ...
+    # Subtest: un tenantId en el cuerpo se rechaza (no se confía en el navegador)
+    ok 2 - un tenantId en el cuerpo se rechaza (no se confía en el navegador)
+      ---
+      duration_ms: 9.481625
+      type: 'test'
+      ...
+    # Subtest: aceptación: 202 con run y job durable en el MISMO commit
+    ok 3 - aceptación: 202 con run y job durable en el MISMO commit
+      ---
+      duration_ms: 30.735209
+      type: 'test'
+      ...
+    # Subtest: atomicidad: si el encolado falla, NO queda run (ni 202 con trabajo perdido)
+    ok 4 - atomicidad: si el encolado falla, NO queda run (ni 202 con trabajo perdido)
+      ---
+      duration_ms: 10.155209
+      type: 'test'
+      ...
+    # Subtest: idempotencia: misma clave y mismo payload → el MISMO run
+    ok 5 - idempotencia: misma clave y mismo payload → el MISMO run
+      ---
+      duration_ms: 7.005541
+      type: 'test'
+      ...
+    # Subtest: idempotencia: misma clave con OTRO payload → 409
+    ok 6 - idempotencia: misma clave con OTRO payload → 409
+      ---
+      duration_ms: 4.883916
+      type: 'test'
+      ...
+    # Subtest: GET devuelve estado y pasos persistidos; el señuelo no ve el run
+    ok 7 - GET devuelve estado y pasos persistidos; el señuelo no ve el run
+      ---
+      duration_ms: 11.2855
+      type: 'test'
+      ...
+    # Subtest: RLS en SQL de aplicación: contexto señuelo o sin contexto no obtiene la fila
+    ok 8 - RLS en SQL de aplicación: contexto señuelo o sin contexto no obtiene la fila
+      ---
+      duration_ms: 5.150958
+      type: 'test'
+      ...
+    # Subtest: el rol que administra la cola no accede a datos de negocio
+    ok 9 - el rol que administra la cola no accede a datos de negocio
+      ---
+      duration_ms: 8.949291
+      type: 'test'
+      ...
+    # Subtest: reanudación básica: corte del worker tras un paso, reinicio, el MISMO run termina
+    ok 10 - reanudación básica: corte del worker tras un paso, reinicio, el MISMO run termina
+      ---
+      duration_ms: 3413.829542
+      type: 'test'
+      ...
+    # Subtest: lectura tras cerrar la conexión: el run sobrevive al pool que lo escribió
+    ok 11 - lectura tras cerrar la conexión: el run sobrevive al pool que lo escribió
+      ---
+      duration_ms: 25.23625
+      type: 'test'
+      ...
+    # Subtest: GET con id inválido → 400; run inexistente → 404
+    ok 12 - GET con id inválido → 400; run inexistente → 404
+      ---
+      duration_ms: 12.322833
+      type: 'test'
+      ...
+    1..12
+ok 86 - evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales)
+  ---
+  duration_ms: 3894.568875
+  type: 'test'
+  ...
+# (node:12884) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# Subtest: evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)
+    # Subtest: frontera: 401 sin sesión; >3 o ediciones ajenas → 400; tenantId en el cuerpo → 400
+    ok 1 - frontera: 401 sin sesión; >3 o ediciones ajenas → 400; tenantId en el cuerpo → 400
+      ---
+      duration_ms: 18.549625
+      type: 'test'
+      ...
+    # Subtest: aceptación HTTP: 202 con los 4 steps del workflow y job durable; idempotencia por conjunto
+    ok 2 - aceptación HTTP: 202 con los 4 steps del workflow y job durable; idempotencia por conjunto
+      ---
+      duration_ms: 33.657042
+      type: 'test'
+      ...
+    # Subtest: exclusión antes del score, condiciones con respuesta, elegible ≠ recomendado
+    ok 3 - exclusión antes del score, condiciones con respuesta, elegible ≠ recomendado
+      ---
+      duration_ms: 192.259209
+      type: 'test'
+      ...
+    # Subtest: scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes
+    ok 4 - scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes
+      ---
+      duration_ms: 0.326042
+      type: 'test'
+      ...
+    # Subtest: desempate determinístico: empate exacto se resuelve por id estable, no por orden de llegada
+    ok 5 - desempate determinístico: empate exacto se resuelve por id estable, no por orden de llegada
+      ---
+      duration_ms: 0.364416
+      type: 'test'
+      ...
+    # Subtest: modelo sin autoridad: el snapshot persistido conserva el resultado oficial y la advertencia
+    ok 6 - modelo sin autoridad: el snapshot persistido conserva el resultado oficial y la advertencia
+      ---
+      duration_ms: 6.237958
+      type: 'test'
+      ...
+    # Subtest: snapshot inmutable: sin UPDATE/DELETE por grants y sin duplicados por reentrega
+    ok 7 - snapshot inmutable: sin UPDATE/DELETE por grants y sin duplicados por reentrega
+      ---
+      duration_ms: 40.722584
+      type: 'test'
+      ...
+    # Subtest: catálogo disponible ≠ conjunto comparado; sombra v0 registrada sin reutilizar scores
+    ok 8 - catálogo disponible ≠ conjunto comparado; sombra v0 registrada sin reutilizar scores
+      ---
+      duration_ms: 1.884959
+      type: 'test'
+      ...
+    # Subtest: sin política: comparación factual persistida, sin ranking numérico y con «política pendiente»
+    ok 9 - sin política: comparación factual persistida, sin ranking numérico y con «política pendiente»
+      ---
+      duration_ms: 174.05775
+      type: 'test'
+      ...
+    # Subtest: abstención: todas las dimensiones ausentes → insufficient_data, jamás un 0; fallo del proveedor → degradación
+    ok 10 - abstención: todas las dimensiones ausentes → insufficient_data, jamás un 0; fallo del proveedor → degradación
+      ---
+      duration_ms: 148.810417
+      type: 'test'
+      ...
+    # Subtest: guardar y releer: mismas entradas, versiones y resultado desde una conexión nueva
+    ok 11 - guardar y releer: mismas entradas, versiones y resultado desde una conexión nueva
+      ---
+      duration_ms: 36.345292
+      type: 'test'
+      ...
+    # Subtest: invariantes 03–06 sobre la nueva proyección
+    ok 12 - invariantes 03–06 sobre la nueva proyección
+      ---
+      duration_ms: 9.169208
+      type: 'test'
+      ...
+    # Subtest: conflicto de acceso confirmado excluye antes del score (regla pura de eligibility)
+    ok 13 - conflicto de acceso confirmado excluye antes del score (regla pura de eligibility)
+      ---
+      duration_ms: 8.059459
+      type: 'test'
+      ...
+    # Subtest: tenant señuelo: ni el perfil ni el snapshot existen para otra sesión
+    ok 14 - tenant señuelo: ni el perfil ni el snapshot existen para otra sesión
+      ---
+      duration_ms: 18.978625
+      type: 'test'
+      ...
+    1..14
+ok 87 - evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)
+  ---
+  duration_ms: 1293.368584
+  type: 'test'
+  ...
+# (node:12885) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# Subtest: luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+    # Subtest: POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada
+    ok 1 - POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada
+      ---
+      duration_ms: 18.582709
+      type: 'test'
+      ...
+    # Subtest: profileRunId de otro tenant → 400 (RLS: no existe para esta sesión)
+    ok 2 - profileRunId de otro tenant → 400 (RLS: no existe para esta sesión)
+      ---
+      duration_ms: 10.945875
+      type: 'test'
+      ...
+    # Subtest: HTML completo: 202 → obtención en el worker → dossier durable con claims
+    ok 3 - HTML completo: 202 → obtención en el worker → dossier durable con claims
+      ---
+      duration_ms: 220.755583
+      type: 'test'
+      ...
+    # Subtest: transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos
+    ok 4 - transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos
+      ---
+      duration_ms: 370.097083
+      type: 'test'
+      ...
+    # Subtest: duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo
+    ok 5 - duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo
+      ---
+      duration_ms: 25.861167
+      type: 'test'
+      ...
+    # Subtest: HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed
+    ok 6 - HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed
+      ---
+      duration_ms: 145.341584
+      type: 'test'
+      ...
+    # Subtest: redirección dentro de la allowlist: se valida y se sigue
+    ok 7 - redirección dentro de la allowlist: se valida y se sigue
+      ---
+      duration_ms: 150.784333
+      type: 'test'
+      ...
+    # Subtest: redirección fuera de la allowlist: fallo con URL solicitada, intento y causa
+    ok 8 - redirección fuera de la allowlist: fallo con URL solicitada, intento y causa
+      ---
+      duration_ms: 116.187292
+      type: 'test'
+      ...
+    # Subtest: límite de tamaño: la descarga se corta y el run falla con causa visible
+    ok 9 - límite de tamaño: la descarga se corta y el run falla con causa visible
+      ---
+      duration_ms: 34.92025
+      type: 'test'
+      ...
+    # Subtest: timeout: la obtención vence y el run falla con causa visible
+    ok 10 - timeout: la obtención vence y el run falla con causa visible
+      ---
+      duration_ms: 235.914333
+      type: 'test'
+      ...
+    # Subtest: prompt injection en la descripción: texto de la fuente = dato, jamás instrucción
+    ok 11 - prompt injection en la descripción: texto de la fuente = dato, jamás instrucción
+      ---
+      duration_ms: 73.83625
+      type: 'test'
+      ...
+    # Subtest: identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad
+    ok 12 - identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad
+      ---
+      duration_ms: 158.843583
+      type: 'test'
+      ...
+    # Subtest: reanudación idempotente: repetir persist_dossier no duplica material
+    ok 13 - reanudación idempotente: repetir persist_dossier no duplica material
+      ---
+      duration_ms: 6.86625
+      type: 'test'
+      ...
+    1..13
+ok 88 - luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+  ---
+  duration_ms: 2084.876166
+  type: 'test'
+  ...
+# (node:12888) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/migration-concurrency.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: migraciones en bases distintas toleran un ALTER ROLE concurrente del mismo cluster
+ok 89 - migraciones en bases distintas toleran un ALTER ROLE concurrente del mismo cluster
+  ---
+  duration_ms: 1163.716875
+  type: 'test'
+  ...
+# (node:12900) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/tenant-isolation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# Subtest: tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15)
+    # Subtest: API y listados: los IDs conocidos del otro tenant no existen para el señuelo
+    ok 1 - API y listados: los IDs conocidos del otro tenant no existen para el señuelo
+      ---
+      duration_ms: 79.877417
+      type: 'test'
+      ...
+    # Subtest: claims referenciados: comparación, importación y decisión con IDs ajenos se rechazan
+    ok 2 - claims referenciados: comparación, importación y decisión con IDs ajenos se rechazan
+      ---
+      duration_ms: 22.983416
+      type: 'test'
+      ...
+    # Subtest: idempotencia: la clave del otro tenant no deduplica hacia su run
+    ok 3 - idempotencia: la clave del otro tenant no deduplica hacia su run
+      ---
+      duration_ms: 23.009084
+      type: 'test'
+      ...
+    # Subtest: sesiones: expirada o sin pertenencia → 401; nunca un tenant por defecto
+    ok 4 - sesiones: expirada o sin pertenencia → 401; nunca un tenant por defecto
+      ---
+      duration_ms: 7.696292
+      type: 'test'
+      ...
+    # Subtest: pool de conexiones: el contexto de una conexión reutilizada no se filtra al siguiente tenant
+    ok 5 - pool de conexiones: el contexto de una conexión reutilizada no se filtra al siguiente tenant
+      ---
+      duration_ms: 26.974792
+      type: 'test'
+      ...
+    # Subtest: acceso directo de aplicación a una fila ajena queda bloqueado por RLS (roles sin bypass)
+    ok 6 - acceso directo de aplicación a una fila ajena queda bloqueado por RLS (roles sin bypass)
+      ---
+      duration_ms: 22.328125
+      type: 'test'
+      ...
+    # Subtest: el worker real rechaza jobs con tenant/payload discordante sin tocar el run
+    ok 7 - el worker real rechaza jobs con tenant/payload discordante sin tocar el run
+      ---
+      duration_ms: 950.586209
+      type: 'test'
+      ...
+    # Subtest: ningún error de cruce revela el contenido del otro tenant
+    ok 8 - ningún error de cruce revela el contenido del otro tenant
+      ---
+      duration_ms: 1.610375
+      type: 'test'
+      ...
+    1..8
+ok 90 - tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15)
+  ---
+  duration_ms: 2277.10625
+  type: 'test'
+  ...
+# (node:12912) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/integration/worker-recovery.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+# [env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+# [env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+# Subtest: worker-recovery: matriz de caídas con procesos reales (ticket 15)
+    # Subtest: SIGKILL con la obtención EN VUELO: nada confirmado se pierde; la llamada no confirmada se repite y queda trazada
+    ok 1 - SIGKILL con la obtención EN VUELO: nada confirmado se pierde; la llamada no confirmada se repite y queda trazada
+      ---
+      duration_ms: 1691.078917
+      type: 'test'
+      ...
+    # Subtest: SIGKILL tras guardar claims (paso sin confirmar): la reanudación no duplica efectos
+    ok 2 - SIGKILL tras guardar claims (paso sin confirmar): la reanudación no duplica efectos
+      ---
+      duration_ms: 1559.412458
+      type: 'test'
+      ...
+    # Subtest: SIGKILL entre el commit de un paso y el siguiente: el avance confirmado no se re-ejecuta
+    ok 3 - SIGKILL entre el commit de un paso y el siguiente: el avance confirmado no se re-ejecuta
+      ---
+      duration_ms: 1291.692625
+      type: 'test'
+      ...
+    # Subtest: SIGKILL tras confirmar el snapshot (paso sin confirmar): un solo snapshot oficial
+    ok 4 - SIGKILL tras confirmar el snapshot (paso sin confirmar): un solo snapshot oficial
+      ---
+      duration_ms: 1196.310709
+      type: 'test'
+      ...
+    # Subtest: SIGKILL con el run terminal pero el job sin confirmar: la re-entrega no repite efectos
+    ok 5 - SIGKILL con el run terminal pero el job sin confirmar: la re-entrega no repite efectos
+      ---
+      duration_ms: 2167.376875
+      type: 'test'
+      ...
+    # Subtest: carrera determinística: el perdedor no publica un segundo snapshot NI degrada el run completado
+    ok 6 - carrera determinística: el perdedor no publica un segundo snapshot NI degrada el run completado
+      ---
+      duration_ms: 148.219458
+      type: 'test'
+      ...
+    # Subtest: cola caída en la aceptación: nada persistido; el reintento del cliente repite la llamada y queda trazado
+    ok 7 - cola caída en la aceptación: nada persistido; el reintento del cliente repite la llamada y queda trazado
+      ---
+      duration_ms: 17.320209
+      type: 'test'
+      ...
+    # Subtest: timeout y salida inválida del modelo: dossier completo con explicación determinística y degradación declarada
+    ok 8 - timeout y salida inválida del modelo: dossier completo con explicación determinística y degradación declarada
+      ---
+      duration_ms: 493.682917
+      type: 'test'
+      ...
+    # Subtest: fuente caída que agota reintentos: fallido y visible, sin recomendación preparada que lo oculte
+    ok 9 - fuente caída que agota reintentos: fallido y visible, sin recomendación preparada que lo oculte
+      ---
+      duration_ms: 2268.161083
+      type: 'test'
+      ...
+    # Subtest: los registros reconstruyen run→steps→claims→snapshot→decisión, sin secretos ni texto privado
+    ok 10 - los registros reconstruyen run→steps→claims→snapshot→decisión, sin secretos ni texto privado
+      ---
+      duration_ms: 33.355625
+      type: 'test'
+      ...
+    1..10
+ok 91 - worker-recovery: matriz de caídas con procesos reales (ticket 15)
+  ---
+  duration_ms: 12351.338
+  type: 'test'
+  ...
+# (node:12923) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/markets/global-market-search.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: normalizes worldwide Trends rows and explicit X locations
+ok 92 - normalizes worldwide Trends rows and explicit X locations
+  ---
+  duration_ms: 2.395583
+  type: 'test'
+  ...
+# Subtest: builds focused signal queries from natural product descriptions
+ok 93 - builds focused signal queries from natural product descriptions
+  ---
+  duration_ms: 2.167958
+  type: 'test'
+  ...
+# Subtest: ranks three countries from query-specific geographic evidence
+ok 94 - ranks three countries from query-specific geographic evidence
+  ---
+  duration_ms: 4.744125
+  type: 'test'
+  ...
+# Subtest: keeps a labeled worldwide fallback when every live source is unavailable
+ok 95 - keeps a labeled worldwide fallback when every live source is unavailable
+  ---
+  duration_ms: 1.188125
+  type: 'test'
+  ...
+# (node:12924) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/scoring/community-score.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: comunidad completa con evidencia: score alto y reasons respaldadas
+ok 96 - comunidad completa con evidencia: score alto y reasons respaldadas
+  ---
+  duration_ms: 0.952209
+  type: 'test'
+  ...
+# Subtest: evidencia vacía: sin reasons y confidence null (pero score se computa)
+ok 97 - evidencia vacía: sin reasons y confidence null (pero score se computa)
+  ---
+  duration_ms: 0.150583
+  type: 'test'
+  ...
+# Subtest: stack vacío → stackOverlap null (no 0)
+ok 98 - stack vacío → stackOverlap null (no 0)
+  ---
+  duration_ms: 0.16675
+  type: 'test'
+  ...
+# Subtest: sin cadencia conocida → cadenceReliability null
+ok 99 - sin cadencia conocida → cadenceReliability null
+  ---
+  duration_ms: 0.099666
+  type: 'test'
+  ...
+# Subtest: sin evidencia de sponsors → exclusivityGap null (no inferir ausencia)
+ok 100 - sin evidencia de sponsors → exclusivityGap null (no inferir ausencia)
+  ---
+  duration_ms: 0.096875
+  type: 'test'
+  ...
+# (node:12925) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/scoring/roi.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: inputs completos: costo por dev calificado + banda
+ok 101 - inputs completos: costo por dev calificado + banda
+  ---
+  duration_ms: 1.123208
+  type: 'test'
+  ...
+# Subtest: falta el precio del tier → null + "No disponible" (nunca se estima el precio)
+ok 102 - falta el precio del tier → null + "No disponible" (nunca se estima el precio)
+  ---
+  duration_ms: 0.107375
+  type: 'test'
+  ...
+# Subtest: falta icpFitRate → null + "No disponible"
+ok 103 - falta icpFitRate → null + "No disponible"
+  ---
+  duration_ms: 0.081125
+  type: 'test'
+  ...
+# Subtest: attendance 0 → null (no dividir por cero)
+ok 104 - attendance 0 → null (no dividir por cero)
+  ---
+  duration_ms: 0.14625
+  type: 'test'
+  ...
+# (node:12926) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/scoring/score-utils.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: renormaliza sobre las dimensiones activas: una sola dim activa = 100
+ok 105 - renormaliza sobre las dimensiones activas: una sola dim activa = 100
+  ---
+  duration_ms: 0.690416
+  type: 'test'
+  ...
+# Subtest: null NUNCA es 0: null y 0 dan scores distintos
+ok 106 - null NUNCA es 0: null y 0 dan scores distintos
+  ---
+  duration_ms: 0.123708
+  type: 'test'
+  ...
+# Subtest: todas las dimensiones null → score 0
+ok 107 - todas las dimensiones null → score 0
+  ---
+  duration_ms: 0.081833
+  type: 'test'
+  ...
+# Subtest: coverageRatio: fracción del target cubierta, null si falta un conjunto
+ok 108 - coverageRatio: fracción del target cubierta, null si falta un conjunto
+  ---
+  duration_ms: 0.119959
+  type: 'test'
+  ...
+# Subtest: clamp01 acota a [0,1]
+ok 109 - clamp01 acota a [0,1]
+  ---
+  duration_ms: 0.160916
+  type: 'test'
+  ...
+# (node:12928) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/scoring/theme-score.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: momentum: ratio 2.0 (+100%) → 1.0
+ok 110 - momentum: ratio 2.0 (+100%) → 1.0
+  ---
+  duration_ms: 0.854375
+  type: 'test'
+  ...
+# Subtest: sin githubMomentum cae a newsSalience
+ok 111 - sin githubMomentum cae a newsSalience
+  ---
+  duration_ms: 0.140292
+  type: 'test'
+  ...
+# Subtest: sin requiredCapabilities → criticalPath null
+ok 112 - sin requiredCapabilities → criticalPath null
+  ---
+  duration_ms: 0.17075
+  type: 'test'
+  ...
+# Subtest: reasons del tema citan evidencia no vacía
+ok 113 - reasons del tema citan evidencia no vacía
+  ---
+  duration_ms: 0.143959
+  type: 'test'
+  ...
+# (node:12929) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/ui/evidence-links.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes
+ok 114 - las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes
+  ---
+  duration_ms: 9.20425
+  type: 'test'
+  ...
+# Subtest: el dossier sintético no ofrece abrir un listado inexistente
+ok 115 - el dossier sintético no ofrece abrir un listado inexistente
+  ---
+  duration_ms: 1.745875
+  type: 'test'
+  ...
+# Subtest: un enlace público real se conserva y un esquema ejecutable nunca se publica
+ok 116 - un enlace público real se conserva y un esquema ejecutable nunca se publica
+  ---
+  duration_ms: 1.069292
+  type: 'test'
+  ...
+# Subtest: el transporte de demo y su captura histórica no se presentan como obtención real de Luma
+ok 117 - el transporte de demo y su captura histórica no se presentan como obtención real de Luma
+  ---
+  duration_ms: 0.71075
+  type: 'test'
+  ...
+# Subtest: el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico
+ok 118 - el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico
+  ---
+  duration_ms: 3.984291
+  type: 'test'
+  ...
+1..118
+# tests 214
+# suites 0
+# pass 214
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14190.716042

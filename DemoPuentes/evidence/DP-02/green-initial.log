@@ -1,0 +1,80 @@
+TAP version 13
+# (node:95847) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/lib/contracts/evaluation-validation.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: control con soporte
+ok 1 - control con soporte
+  ---
+  duration_ms: 46.468125
+  type: 'test'
+  ...
+# Subtest: USD 3000 + USD 3000 > USD 5000
+ok 2 - USD 3000 + USD 3000 > USD 5000
+  ---
+  duration_ms: 2.022833
+  type: 'test'
+  ...
+# Subtest: partida pendiente
+ok 3 - partida pendiente
+  ---
+  duration_ms: 1.034959
+  type: 'test'
+  ...
+# Subtest: moneda incomparable
+ok 4 - moneda incomparable
+  ---
+  duration_ms: 1.322291
+  type: 'test'
+  ...
+# Subtest: audiencia pendiente
+ok 5 - audiencia pendiente
+  ---
+  duration_ms: 0.932333
+  type: 'test'
+  ...
+# Subtest: audiencia ausente
+ok 6 - audiencia ausente
+  ---
+  duration_ms: 0.441459
+  type: 'test'
+  ...
+# Subtest: fecha contradicha
+ok 7 - fecha contradicha
+  ---
+  duration_ms: 0.471708
+  type: 'test'
+  ...
+# Subtest: investigación conserva confirmed
+ok 8 - investigación conserva confirmed
+  ---
+  duration_ms: 1.463125
+  type: 'test'
+  ...
+# Subtest: investigación usa el día local de SF
+ok 9 - investigación usa el día local de SF
+  ---
+  duration_ms: 2.42525
+  type: 'test'
+  ...
+# Subtest: El patrocinio cuesta 10 USD y la audiencia está confirmada.
+ok 10 - El patrocinio cuesta 10 USD y la audiencia está confirmada.
+  ---
+  duration_ms: 70.68225
+  type: 'test'
+  ...
+# Subtest: El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.
+ok 11 - El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.
+  ---
+  duration_ms: 0.790333
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 692.279541

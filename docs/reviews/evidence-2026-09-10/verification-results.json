@@ -1,0 +1,66 @@
+[
+  {
+    "name": "unit-integration",
+    "command": [
+      "node",
+      "--test",
+      "tests/**/*.test.ts"
+    ],
+    "exit_code": 0,
+    "duration_s": 14.23,
+    "started_utc": "2026-09-10T03:51:05Z",
+    "tests": 214,
+    "pass": 214,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  {
+    "name": "e2e-sf",
+    "command": [
+      "node",
+      "--test",
+      "tests/e2e/sf-organizer-research.spec.ts"
+    ],
+    "exit_code": 0,
+    "duration_s": 37.09,
+    "started_utc": "2026-09-10T03:51:29Z",
+    "tests": 11,
+    "pass": 11,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  {
+    "name": "e2e-reopen",
+    "command": [
+      "node",
+      "--test",
+      "tests/e2e/reopen-evaluation.spec.ts"
+    ],
+    "exit_code": 0,
+    "duration_s": 52.45,
+    "started_utc": "2026-09-10T03:52:42Z",
+    "tests": 9,
+    "pass": 9,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  {
+    "name": "e2e-persisted",
+    "command": [
+      "node",
+      "--test",
+      "tests/e2e/persisted-evaluation.spec.ts"
+    ],
+    "exit_code": 0,
+    "duration_s": 31.16,
+    "started_utc": "2026-09-10T03:53:48Z",
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  }
+]

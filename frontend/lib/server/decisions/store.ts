@@ -44,6 +44,7 @@ import {
   parseEvaluationSnapshot,
   type ValidationResult,
 } from '../../contracts/evaluation-validation.ts';
+import { hasAffirmativeSupport } from '../../evidence/claim-support.ts';
 import { withTenantTransaction } from '../db/pool.ts';
 import type { DecisionCampaignInput, DecisionConditionInput, DecisionReviseBody, DecisionSaveBody } from './wire.ts';
 
@@ -135,7 +136,7 @@ function withSnapshotConditions(
   alternative: SnapshotAlternative,
   verdict: EvaluationDecision['verdict'],
 ): DecisionCondition[] {
-  if (verdict !== 'chosen') return conditions;
+  if (verdict === 'discarded') return conditions;
   const present = new Set(conditions.map((condition) => condition.id));
   const inherited = alternative.conditions
     .filter((condition) => !present.has(condition.id))
@@ -157,7 +158,12 @@ function withSnapshotConditions(
 
 function moneyClaimFromCostClaim(claim: ClaimRevision): MoneyClaim {
   if (claim.value.kind === 'money') {
-    if (claim.sourceIds.length > 0)
+    if (claim.status === 'inferred' || claim.status === 'contradicted') return {
+      status: claim.status, amount: claim.value.amount, currency: claim.value.currency,
+      sourceIds: claim.sourceIds, basis: claim.method ?? 'método no documentado', note: claim.note,
+    };
+    if (claim.status === 'pending') return { status: 'unknown', note: claim.note ?? 'Importe pendiente de confirmar; no es cotización' };
+    if (hasAffirmativeSupport(claim))
       return { status: 'quoted', amount: claim.value.amount, currency: claim.value.currency, sourceIds: claim.sourceIds };
     return {
       status: 'estimated',
@@ -188,7 +194,7 @@ function composeCampaignDraft(args: {
   if (input === null && previous !== null) {
     // Revisión sin borrador nuevo: el borrador vigente se confirma tal cual
     // junto a la revisión (misma identidad de campaña).
-    return { ...previous, decisionId };
+    return { ...previous, decisionId, openQuestions: [...new Set([...previous.openQuestions, ...conditions.filter(c => c.status === 'open').map(c => c.description)])] };
   }
   const objectiveFallback =
     previous?.objective ??
@@ -205,6 +211,7 @@ function composeCampaignDraft(args: {
           id: `cost-${index + 1}-${randomUUID().slice(0, 8)}`,
           label: claim.attribute.slice('cost:'.length),
           amount: moneyClaimFromCostClaim(claim),
+          evidence: claim,
         })));
   const openQuestions =
     input?.openQuestions ??
@@ -221,7 +228,7 @@ function composeCampaignDraft(args: {
         ? { status: 'defined', kind: input.modality.kind, detail: input.modality.detail }
         : (previous?.modality ?? { status: 'pending' }),
     costItems,
-    openQuestions,
+    openQuestions: [...new Set([...openQuestions, ...conditions.filter(c => c.status === 'open').map(c => c.description)])],
     commitments: (input?.commitments ?? previous?.commitments ?? []).map((commitment, index) => ({
       id: 'id' in commitment && typeof commitment.id === 'string' ? commitment.id : `cmt-${index + 1}-${randomUUID().slice(0, 8)}`,
       description: commitment.description,

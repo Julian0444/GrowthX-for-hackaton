@@ -39,15 +39,29 @@ function migrationsDir(): string {
 async function ensureRoles(client: pg.ClientBase): Promise<void> {
   for (const spec of APP_ROLES) {
     const password = process.env[spec.passwordEnv] ?? spec.devDefault;
-    const { rows } = await client.query('select 1 from pg_roles where rolname = $1', [spec.role]);
-    if (rows.length === 0) {
-      // Identificador fijo de la lista blanca de arriba; la contraseña viaja
-      // como literal escapado (CREATE ROLE no admite parámetros).
-      await client.query(
-        `create role ${spec.role} login password '${password.replaceAll("'", "''")}'`,
-      );
-    } else {
-      await client.query(`alter role ${spec.role} login password '${password.replaceAll("'", "''")}'`);
+    for (let attempt = 0; ; attempt++) {
+      try {
+        const { rows } = await client.query('select 1 from pg_roles where rolname = $1', [spec.role]);
+        if (rows.length === 0) {
+          // Identificador fijo de la lista blanca de arriba; la contraseña viaja
+          // como literal escapado (CREATE ROLE no admite parámetros).
+          await client.query(
+            `create role ${spec.role} login password '${password.replaceAll("'", "''")}'`,
+          );
+        } else {
+          await client.query(`alter role ${spec.role} login password '${password.replaceAll("'", "''")}'`);
+        }
+        break;
+      } catch (error) {
+        // Los roles son compartidos por todo el cluster, pero los advisory
+        // locks pertenecen a cada base. Otra base puede cambiar esta misma
+        // fila de catálogo. Releer/reaplicar este rol es idempotente y cada
+        // sentencia usa autocommit; no se repiten migraciones ni otros errores.
+        const concurrentUpdate = error instanceof Error && 'code' in error &&
+          error.code === 'XX000' && error.message === 'tuple concurrently updated';
+        if (!concurrentUpdate || attempt >= 5) throw error;
+        await new Promise(resolve => setTimeout(resolve, 20 * 2 ** attempt));
+      }
     }
   }
 }
@@ -151,9 +165,9 @@ export async function runMigrations(adminUrl?: string): Promise<MigrateResult> {
   await client.connect();
   try {
     // Serializa corridas concurrentes (dos suites de integración en paralelo,
-    // dos `pnpm db:migrate`): sin esto, los ALTER ROLE de ensureRoles chocan
-    // con «tuple concurrently updated». El lock es de sesión y se libera solo
-    // al cerrar la conexión (client.end del finally).
+    // dos `pnpm db:migrate`) en esta misma base. Los roles compartidos entre
+    // bases requieren además el retry acotado de ensureRoles. El lock es de
+    // sesión y se libera al cerrar la conexión (client.end del finally).
     await client.query("select pg_advisory_lock(hashtext('growthx.migrations'))");
     await ensureRoles(client);
     const appliedFiles = await applySqlMigrations(client);

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "node_modules/next/dist/bin/next",
+    "build",
+    "--webpack"
+  ],
+  "cwd": "/tmp/growthx-dp02-build",
+  "exit_code": 0,
+  "duration_seconds": 10.06,
+  "database": "isolated PostgreSQL port 55442"
+}

@@ -11,7 +11,7 @@
 // handlers bajo `node --test` sin resolver de tsconfig.
 
 import { NextResponse } from 'next/server';
-import { resolveSessionContext } from '../../../lib/server/auth/session.ts';
+import { resolveHttpSession } from '../../../lib/server/auth/http-session.ts';
 import { getAppPool, isEvaluationDbConfigured } from '../../../lib/server/db/pool.ts';
 import { readDecisionsBySnapshot, saveDecision } from '../../../lib/server/decisions/store.ts';
 import { parseDecisionSaveBody } from '../../../lib/server/decisions/wire.ts';
@@ -27,23 +27,14 @@ function unavailable(): NextResponse {
   );
 }
 
-function unauthorized(): NextResponse {
-  return NextResponse.json(
-    { error: 'unauthorized', message: 'Sesión requerida (cookie growthx_session o Bearer).' },
-    { status: 401 },
-  );
-}
-
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export async function POST(request: Request): Promise<NextResponse> {
   checkEnvOnce();
   if (!isEvaluationDbConfigured()) return unavailable();
-  const session = await resolveSessionContext(request).catch((error: unknown) => {
-    console.warn(`[decisions] resolución de sesión falló: ${(error as Error).message}`);
-    return null;
-  });
-  if (!session) return unauthorized();
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
 
   let payload: unknown;
   try {
@@ -93,8 +84,9 @@ export async function POST(request: Request): Promise<NextResponse> {
 export async function GET(request: Request): Promise<NextResponse> {
   checkEnvOnce();
   if (!isEvaluationDbConfigured()) return unavailable();
-  const session = await resolveSessionContext(request).catch(() => null);
-  if (!session) return unauthorized();
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
   const snapshotId = new URL(request.url).searchParams.get('snapshotId');
   if (!snapshotId || snapshotId.trim().length === 0) {
     return NextResponse.json(

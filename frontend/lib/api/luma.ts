@@ -1,7 +1,8 @@
 // Parser de páginas de evento de Luma (§10, POST /api/events/ingest).
-// Estrategia: JSON-LD (application/ld+json, @type Event) primero — Luma lo
-// publica completo —, OG meta como respaldo. Nada se inventa: cada campo
-// ausente queda como warning y baja la confidence (cobertura de campos).
+// JSON-LD (application/ld+json, @type Event) identifica una página de evento;
+// OG solo puede completar su nombre. Un título genérico (portada, calendario
+// o página vacía) no prueba que exista un evento. Cada campo ausente queda
+// como warning y baja la confidence (cobertura de campos).
 
 import type { EventIngestResponse, EventOpportunity } from "./types"
 
@@ -36,12 +37,21 @@ function first(value: unknown): unknown {
   return Array.isArray(value) ? value[0] : value
 }
 
+function htmlAttributes(tag: string): Map<string, string> {
+  const attributes = new Map<string, string>()
+  for (const match of tag.matchAll(/([^\s=/>]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g)) {
+    attributes.set(match[1].toLowerCase(), match[2] ?? match[3] ?? match[4])
+  }
+  return attributes
+}
+
 function findJsonLdEvent(html: string): JsonRecord | null {
-  const blocks = html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)
+  const blocks = html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)
   for (const match of blocks) {
+    if (htmlAttributes(match[1]).get("type")?.toLowerCase() !== "application/ld+json") continue
     let data: unknown
     try {
-      data = JSON.parse(match[1])
+      data = JSON.parse(match[2])
     } catch {
       continue
     }
@@ -51,31 +61,46 @@ function findJsonLdEvent(html: string): JsonRecord | null {
     for (const candidate of candidates) {
       const record = asRecord(candidate)
       const type = record?.["@type"]
-      if (record && (type === "Event" || (Array.isArray(type) && type.includes("Event")))) return record
+      const types = Array.isArray(type) ? type : [type]
+      if (record && types.some((value) => value === "Event" || value === "https://schema.org/Event" || value === "http://schema.org/Event")) return record
     }
   }
   return null
 }
 
 function ogContent(html: string, property: string): string | undefined {
-  const match = new RegExp(`<meta[^>]*property="og:${property}"[^>]*content="([^"]*)"`, "i").exec(html)
-  return match ? match[1] : undefined
+  for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = htmlAttributes(match[0])
+    if (attributes.get("property")?.toLowerCase() === `og:${property}`)
+      return asString(attributes.get("content"))
+  }
+  return undefined
 }
 
 function mapAvailability(availability: string | undefined): string | undefined {
   if (!availability) return undefined
   const value = availability.replace(/^https?:\/\/schema\.org\//i, "")
-  if (value === "InStock") return "open"
+  // Una oferta disponible también puede exigir aprobación del anfitrión.
+  // InStock no documenta las condiciones de acceso de una persona/equipo.
   if (value === "SoldOut") return "sold_out"
-  return value.toLowerCase()
+  return undefined
 }
 
 export function parseLumaEvent(html: string, url: string, observedAt: string): EventIngestResponse {
   const warnings: string[] = []
   const ld = findJsonLdEvent(html)
 
-  const name = asString(ld?.name) ?? ogContent(html, "title")
-  if (!ld) warnings.push("no structured data (JSON-LD) on the page — fell back to OG meta")
+  if (!ld) {
+    return {
+      event: null,
+      extraction: {
+        status: "failed",
+        warnings: ["la página no publica datos estructurados de un evento; no se importa una página genérica como evento"],
+        fieldsExtracted: [],
+      },
+    }
+  }
+  const name = asString(ld.name) ?? ogContent(html, "title")
   if (!name) {
     return {
       event: null,
@@ -106,6 +131,8 @@ export function parseLumaEvent(html: string, url: string, observedAt: string): E
 
   if (!startsAt) warnings.push("start date not present in structured data")
   if (!city) warnings.push("location not published on the event page")
+  if (offer?.availability && !registrationStatus)
+    warnings.push("La disponibilidad de entradas no confirma acceso abierto; aprobación, invitación y condiciones de inscripción quedan pendientes.")
   // Luma no lista sponsors ni premios en su JSON-LD; extraerlos del texto libre
   // sería adivinar — se declara en lugar de inventar.
   warnings.push("sponsors not present in structured data")

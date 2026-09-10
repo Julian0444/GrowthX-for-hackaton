@@ -39,7 +39,14 @@ export function sessionTokenFromRequest(request: Request): string | null {
       const [name, ...rest] = part.trim().split('=');
       if (name === SESSION_COOKIE) {
         const value = rest.join('=').trim();
-        if (value.length > 0) return decodeURIComponent(value);
+        if (value.length > 0) {
+          try {
+            return decodeURIComponent(value);
+          } catch {
+            // Cookie malformada = credencial inválida, no caída de PostgreSQL.
+            return null;
+          }
+        }
       }
     }
   }

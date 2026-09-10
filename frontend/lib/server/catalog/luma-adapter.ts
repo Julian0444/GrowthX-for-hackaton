@@ -121,6 +121,9 @@ function validateRedirectTarget(target: URL): string | null {
 
 export interface LumaFetchOptions {
   fetchImpl?: typeof fetch;
+  // Solo el worker que activa un transporte de prueba aporta esta marca;
+  // nunca se infiere de la URL ni del HTML no confiable.
+  isFixture?: true;
   timeoutMs?: number;
   maxBytes?: number;
   maxRedirects?: number;
@@ -195,6 +198,8 @@ export interface LumaFetchOutput {
   htmlBytes: number;
   extraction: LumaExtractionSummary;
   fields: LumaEventFields;
+  // Opcional para conservar la relectura de steps anteriores a esta marca.
+  isFixture?: true;
 }
 
 // Sanea texto extraído del HTML: es dato no confiable — se quitan controles,
@@ -268,8 +273,8 @@ export async function fetchLumaEvent(
 
   const html = await readBodyCapped(response, maxBytes);
   const fetchedAt = now().toISOString();
-  // Reutiliza el parser actual (lib/api/luma.ts): JSON-LD primero, OG de
-  // respaldo; campos ausentes quedan como warnings, nunca se inventan.
+  // JSON-LD identifica un evento; OG solo completa su nombre. Metadatos de
+  // páginas genéricas nunca se convierten en un dossier de evento.
   const parsed = parseLumaEvent(html, current.toString(), fetchedAt);
   if (parsed.extraction.status === 'failed' || parsed.event === null)
     throw new LumaIngestError(
@@ -289,6 +294,7 @@ export async function fetchLumaEvent(
       : null;
 
   return {
+    ...(options.isFixture === true ? { isFixture: true as const } : {}),
     requestedUrl: validated.canonical,
     finalUrl: current.toString(),
     canonicalUrl: lumaIdentityUrl(current.toString()) ?? validated.canonical,
@@ -325,6 +331,17 @@ const ISO_LOCAL_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?$/;
 // ausente o irreconocible queda unknown — jamás la fecha actual.
 export function declaredDateFromLuma(startsAt: string | null): DeclaredDate {
   if (startsAt === null) return { precision: 'unknown' };
+  // Date.parse normaliza días imposibles (31 de febrero → marzo). Comprobar
+  // el día publicado antes de clasificar evita convertir ese error en una
+  // fecha utilizable por elegibilidad; la zona del instante no cambia el día
+  // que la fuente intentó declarar.
+  const day = startsAt.slice(0, 10);
+  const midnight = Date.parse(`${day}T00:00:00Z`);
+  if (
+    !ISO_DAY_RE.test(day) ||
+    Number.isNaN(midnight) ||
+    new Date(midnight).toISOString().slice(0, 10) !== day
+  ) return { precision: 'unknown' };
   if (ISO_DAY_RE.test(startsAt) && !Number.isNaN(Date.parse(`${startsAt}T00:00:00Z`)))
     return { precision: 'date_only', date: startsAt, timezone: null };
   if (ISO_INSTANT_RE.test(startsAt) && !Number.isNaN(Date.parse(startsAt))) {
@@ -463,7 +480,9 @@ export async function persistLumaDossier(
         loadHash,
         requestedBy,
         output.fetchedAt,
-        `Importación durable de ${output.canonicalUrl} (run ${runId}); material extraído automáticamente, sin revisión humana.`,
+        output.isFixture
+          ? `Importación durable de ${output.canonicalUrl} (run ${runId}); transporte fixture de prueba, sin consulta a Luma real. No acredita un evento real ni cobertura comercial.`
+          : `Importación durable de ${output.canonicalUrl} (run ${runId}); material extraído automáticamente, sin revisión humana.`,
       ],
     );
     const { rows: loadRows } = await client.query(
@@ -483,7 +502,7 @@ export async function persistLumaDossier(
         collector: 'growthx-worker',
         fetchedAt: output.fetchedAt,
         publishedAt: null,
-        method: 'http_get+jsonld_extraction',
+        method: output.isFixture ? 'test_fixture+jsonld_extraction' : 'http_get+jsonld_extraction',
         geoScope: output.fields.city ? 'city' : 'unknown',
         content: { kind: 'hash', sha256: output.htmlSha256 },
         usageRestrictions: [],
@@ -539,7 +558,7 @@ export async function persistLumaDossier(
             value,
             status,
             sourceIds: [sourceId],
-            method: 'jsonld_extraction',
+            method: output.isFixture ? 'test_fixture+jsonld_extraction' : 'jsonld_extraction',
             note: null,
             reviewer: null,
             reviewedAt: output.fetchedAt,
@@ -563,6 +582,10 @@ export async function persistLumaDossier(
       fields.city !== null
         ? ({ scope: 'city', name: fields.city } as const)
         : base?.location ?? ({ scope: 'unknown', name: null } as const);
+    // Toda importación identifica al evento por su nombre. Incluso una
+    // reimportación que no publique ningún otro campo debe conservar una
+    // referencia a SU fuente, sin heredar la procedencia de otra revisión.
+    addClaim('name', { kind: 'text', text: fields.name }, 'announced');
     if (fields.startsAt !== null) addClaim('date', { kind: 'date', date: startDate }, 'announced');
     else if (effectiveStartDate.precision === 'unknown')
       addPendingIfNew('date', 'Start date not published as structured data on the event page.');

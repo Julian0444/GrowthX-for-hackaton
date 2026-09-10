@@ -9,7 +9,7 @@
 // existencia ajena (RLS).
 
 import { NextResponse } from 'next/server';
-import { resolveSessionContext } from '../../../../lib/server/auth/session.ts';
+import { resolveHttpSession } from '../../../../lib/server/auth/http-session.ts';
 import { getAppPool, isEvaluationDbConfigured } from '../../../../lib/server/db/pool.ts';
 import { readDecision, reviseDecision } from '../../../../lib/server/decisions/store.ts';
 import { parseDecisionReviseBody } from '../../../../lib/server/decisions/wire.ts';
@@ -22,13 +22,6 @@ function unavailable(): NextResponse {
       message: 'La base de evaluaciones no está configurada; la decisión persistida no está disponible (modo degradado).',
     },
     { status: 503 },
-  );
-}
-
-function unauthorized(): NextResponse {
-  return NextResponse.json(
-    { error: 'unauthorized', message: 'Sesión requerida (cookie growthx_session o Bearer).' },
-    { status: 401 },
   );
 }
 
@@ -50,8 +43,9 @@ export async function GET(
 ): Promise<NextResponse> {
   checkEnvOnce();
   if (!isEvaluationDbConfigured()) return unavailable();
-  const session = await resolveSessionContext(request).catch(() => null);
-  if (!session) return unauthorized();
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
   const { id } = await params;
   if (!UUID_RE.test(id)) return invalidId();
   try {
@@ -70,8 +64,9 @@ export async function PATCH(
 ): Promise<NextResponse> {
   checkEnvOnce();
   if (!isEvaluationDbConfigured()) return unavailable();
-  const session = await resolveSessionContext(request).catch(() => null);
-  if (!session) return unauthorized();
+  const auth = await resolveHttpSession(request);
+  if (!auth.ok) return auth.response;
+  const session = auth.session;
   const { id } = await params;
   if (!UUID_RE.test(id)) return invalidId();
 

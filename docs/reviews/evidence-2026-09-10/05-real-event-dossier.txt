@@ -1,0 +1,66 @@
+Browser tab: 1004461148, Title: "GrowXth — Developer Growth Intelligence", URL: "http://localhost:3000/?run=70e00629-8a56-452e-a84c-f5944913c144".
+0 AXWebArea GrowXth — Developer Growth Intelligence, URL: localhost:3000/?run=70e00629-8a56-452e-a84c-f5944913c144
+	1 container
+		2 container
+			3 button Growth Atlas Investigación · SF
+				4 text Growth Atlas
+				5 text Investigación · SF
+			6 container Navegación principal
+				7 button Resumen
+				8 button Organizadores
+				9 button Eventos
+				10 button Decisiones
+				11 button Perfil
+			12 container
+				13 text Catálogo acotado.
+				14 text Fuentes antes de decidir.
+			37 container
+				38 text SAN FRANCISCO
+				39 heading Eventos, Value: 1
+					40 text Eventos
+				41 text Cada edición, con sus fuentes y condiciones.
+				42 button Editar perfil · v1
+			21 text 4  organizadores ·  8  ediciones en el catálogo Verificación:  2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z Material sintético: prueba el mecanismo; no acredita cobertura real de SF.
+			27 container Estado persistido
+				28 container
+					29 text Investigación 70e00629-8a56-452e-a84c-f5944913c144  ·  Completado
+				89 content list
+					90 container
+						91 text Validar perfil : Completado  · intentos  1
+					92 container
+						93 text Obtener página del evento : Completado  · intentos  1
+					94 container
+						95 text Persistir dossier : Completado  · intentos  1
+					96 container
+						97 text Publicar resultado : Completado  · intentos  1
+			98 button Volver a eventos
+				99 text Volver a 
+				100 text eventos
+			101 text Lectura actual del catálogo persistido
+			102 container
+				103 text DOSSIER DE EDICIÓN
+				104 heading AI Security Hackathon - By Hackathons.team, Value: 2
+					105 text AI Security Hackathon - By Hackathons.team
+				106 text ID:  luma-7a4iutvp  ·  upcoming  ·  1  revisión(es)
+				107 link Description: Abrir listado de la edición, Value: lu.ma/7a4iutvp
+				108 text Automatically imported from a user-provided Luma URL: fields are the page's announcements, not curated review. Verificado 2026-09-10T03:51:32.943Z por b247ee72-b41b-4309-90ba-615d84687a02 Organizadores: DATE 2026-09-13T09:30:00.000-07:00 (-07:00) announced  ·  alcance pendiente Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				109 link Description: luma, Value: luma.com/7a4iutvp
+				110 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY LOCATION San Francisco announced  ·  city Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				111 link Description: luma, Value: luma.com/7a4iutvp
+				112 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY AUDIENCE Audience not published as structured data on the event page. Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				113 link Description: luma, Value: luma.com/7a4iutvp
+				114 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY What audience size and profile can the organizer evidence for this edition? ACCESS Registration/access status not published as structured data. Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				115 link Description: luma, Value: luma.com/7a4iutvp
+				116 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY Is registration open or invite-only? Ask the organizer to confirm access. COST — ATTENDANCE Attendance cost not published as structured data on the event page. Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				117 link Description: luma, Value: luma.com/7a4iutvp
+				118 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY Which sponsorship items does the organizer offer, and at what price? NAME AI Security Hackathon - By Hackathons.team announced  ·  alcance pendiente Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				119 link Description: luma, Value: luma.com/7a4iutvp
+				120 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY ORGANIZER Wasmer announced  ·  alcance pendiente Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				121 link Description: luma, Value: luma.com/7a4iutvp
+				122 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY VENUE 501 Folsom St announced  ·  alcance pendiente Método:  jsonld_extraction  · revisión:  2026-09-10T03:51:32.943Z  ·
+				123 link Description: luma, Value: luma.com/7a4iutvp
+				124 text obtained 2026-09-10 publication date unknown http_get+jsonld_extraction SCOPE: CITY
+				125 heading Participaciones documentadas, Value: 3
+					126 text Participaciones documentadas
+
+The focused UI element is 0 AXWebArea GrowXth — Developer Growth Intelligence, URL: localhost:3000/?run=70e00629-8a56-452e-a84c-f5944913c144

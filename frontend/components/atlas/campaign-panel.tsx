@@ -98,7 +98,7 @@ export function composeManualCampaignDraft(view: CampaignView): string {
     "Partidas de costo:",
     ...view.costItems.map((item) => `- ${item.label}: ${fieldText(item.value)}`),
     view.costCompleteness === "has_unknown_items"
-      ? "Hay partidas sin costo conocido: no existe un total."
+      ? "Hay partidas pendientes de confirmar: no existe un total."
       : "Todas las partidas listadas tienen valor.",
     "Preguntas abiertas:",
     ...view.openQuestions.map((question) => `- ${question}`),
@@ -170,62 +170,66 @@ export function CampaignDraftPanel({
           )}
         </p>
       )}
-      <p>
-        <b>Objetivo:</b> {view.objective}
-      </p>
-      <p>
-        <b>Definición de éxito:</b> {fieldText(view.successDefinition)}
-      </p>
-      <p>
-        <b>Modalidad:</b> {fieldText(view.modality)}
-      </p>
-      <div data-testid="campaign-draft-costs">
+      <div className="campaign-overview">
         <p>
-          <b>Partidas de costo</b> (una partida desconocida queda pendiente; no se suma como 0):
+          <b>Objetivo:</b> {view.objective}
         </p>
-        <ul>
-          {view.costItems.map((item) => (
-            <li key={item.label}>
-              {item.label}: {fieldText(item.value)}
-            </li>
-          ))}
-        </ul>
-        {view.costCompleteness === "has_unknown_items" && (
-          <p className="research-meta">Hay partidas sin costo conocido: no existe un total de campaña.</p>
-        )}
+        <p>
+          <b>Definición de éxito:</b> {fieldText(view.successDefinition)}
+        </p>
+        <p>
+          <b>Modalidad:</b> {fieldText(view.modality)}
+        </p>
       </div>
-      {view.openQuestions.length > 0 && (
-        <div>
+      <div className="campaign-grid">
+        <div className="campaign-block" data-testid="campaign-draft-costs">
           <p>
-            <b>Preguntas abiertas</b> (registradas; no se envía ninguna):
+            <b>Partidas de costo</b> (una partida desconocida queda pendiente; no se suma como 0):
           </p>
           <ul>
-            {view.openQuestions.map((question, index) => (
-              <li key={index}>{question}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <div data-testid="campaign-draft-commitments">
-        <p>
-          <b>Compromisos</b> — estimación y meta no se presentan como acuerdo; «acordado» exige quién confirmó, cuándo y
-          evidencia:
-        </p>
-        {view.commitments.length === 0 ? (
-          <p className="research-meta">Sin compromisos registrados.</p>
-        ) : (
-          <ul>
-            {view.commitments.map((commitment, index) => (
-              <li key={index}>
-                <b>{COMMITMENT_KIND_LABEL[commitment.kind]}</b>
-                {commitment.kind === "agreed" && (commitment.supported ? " · con soporte" : " · SIN soporte")} —{" "}
-                {commitment.description}
+            {view.costItems.map((item) => (
+              <li key={item.label}>
+                {item.label}: {fieldText(item.value)}
               </li>
             ))}
           </ul>
+          {view.costCompleteness === "has_unknown_items" && (
+            <p className="research-meta">Hay partidas pendientes de confirmar: no existe un total de campaña.</p>
+          )}
+        </div>
+        {view.openQuestions.length > 0 && (
+          <div className="campaign-block campaign-questions">
+            <p>
+              <b>Preguntas abiertas</b> (registradas; no se envía ninguna):
+            </p>
+            <ul>
+              {view.openQuestions.map((question, index) => (
+                <li key={index}>{question}</li>
+              ))}
+            </ul>
+          </div>
         )}
+        <div className="campaign-block campaign-commitments" data-testid="campaign-draft-commitments">
+          <p>
+            <b>Compromisos</b> — estimación y meta no se presentan como acuerdo; «acordado» exige quién confirmó, cuándo y
+            evidencia:
+          </p>
+          {view.commitments.length === 0 ? (
+            <p className="research-meta">Sin compromisos registrados.</p>
+          ) : (
+            <ul>
+              {view.commitments.map((commitment, index) => (
+                <li key={index}>
+                  <b>{COMMITMENT_KIND_LABEL[commitment.kind]}</b>
+                  {commitment.kind === "agreed" && (commitment.supported ? " · con soporte" : " · SIN soporte")} —{" "}
+                  {commitment.description}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-      <button className="research-button" type="button" onClick={copyDraft}>
+      <button className="research-button research-primary" type="button" onClick={copyDraft}>
         Copiar borrador manual
       </button>
     </section>

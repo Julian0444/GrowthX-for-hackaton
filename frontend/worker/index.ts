@@ -91,7 +91,7 @@ async function main(): Promise<void> {
     : undefined;
   const lumaFixture = process.env.GROWTHX_WORKER_LUMA_FIXTURE || null;
   const lumaIngest = lumaFixture
-    ? { fetchImpl: fixtureTransport(lumaFixture, process.env.GROWTHX_WORKER_LUMA_CALLS_FILE || null) }
+    ? { fetchImpl: fixtureTransport(lumaFixture, process.env.GROWTHX_WORKER_LUMA_CALLS_FILE || null), isFixture: true as const }
     : {};
   const pollingIntervalSeconds = Math.max(
     0.5,

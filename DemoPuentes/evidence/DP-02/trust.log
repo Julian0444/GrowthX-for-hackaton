@@ -1,0 +1,178 @@
+TAP version 13
+# (node:99332) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente
+ok 1 - la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente
+  ---
+  duration_ms: 13.693125
+  type: 'test'
+  ...
+# Subtest: el día UTC dentro de la ventana no admite un evento cuyo día local es anterior
+ok 2 - el día UTC dentro de la ventana no admite un evento cuyo día local es anterior
+  ---
+  duration_ms: 1.019375
+  type: 'test'
+  ...
+# Subtest: los offsets declarados negativos y positivos conservan ambos bordes inclusivos
+ok 3 - los offsets declarados negativos y positivos conservan ambos bordes inclusivos
+  ---
+  duration_ms: 0.468375
+  type: 'test'
+  ...
+# Subtest: la zona IANA respeta el horario de invierno y no asume un offset fijo para SF
+ok 4 - la zona IANA respeta el horario de invierno y no asume un offset fijo para SF
+  ---
+  duration_ms: 0.386292
+  type: 'test'
+  ...
+# Subtest: una fecha sin hora se compara tal como fue declarada
+ok 5 - una fecha sin hora se compara tal como fue declarada
+  ---
+  duration_ms: 0.231084
+  type: 'test'
+  ...
+# Subtest: una zona no reconocida mantiene pendiente la ventana en vez de inventar el día
+ok 6 - una zona no reconocida mantiene pendiente la ventana en vez de inventar el día
+  ---
+  duration_ms: 0.19075
+  type: 'test'
+  ...
+# (node:99333) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: control con soporte
+ok 7 - control con soporte
+  ---
+  duration_ms: 15.511792
+  type: 'test'
+  ...
+# Subtest: USD 3000 + USD 3000 > USD 5000
+ok 8 - USD 3000 + USD 3000 > USD 5000
+  ---
+  duration_ms: 0.473208
+  type: 'test'
+  ...
+# Subtest: partida pendiente
+ok 9 - partida pendiente
+  ---
+  duration_ms: 0.224125
+  type: 'test'
+  ...
+# Subtest: moneda incomparable
+ok 10 - moneda incomparable
+  ---
+  duration_ms: 0.265709
+  type: 'test'
+  ...
+# Subtest: audiencia pendiente
+ok 11 - audiencia pendiente
+  ---
+  duration_ms: 0.323834
+  type: 'test'
+  ...
+# Subtest: audiencia ausente
+ok 12 - audiencia ausente
+  ---
+  duration_ms: 0.157459
+  type: 'test'
+  ...
+# Subtest: fecha contradicha
+ok 13 - fecha contradicha
+  ---
+  duration_ms: 0.233875
+  type: 'test'
+  ...
+# Subtest: contratos del caso reproducido
+ok 14 - contratos del caso reproducido
+  ---
+  duration_ms: 0.239333
+  type: 'test'
+  ...
+# Subtest: investigación conserva confirmed
+ok 15 - investigación conserva confirmed
+  ---
+  duration_ms: 0.860584
+  type: 'test'
+  ...
+# Subtest: investigación usa el día local de SF
+ok 16 - investigación usa el día local de SF
+  ---
+  duration_ms: 0.51075
+  type: 'test'
+  ...
+# Subtest: El patrocinio cuesta 10 USD y la audiencia está confirmada.
+ok 17 - El patrocinio cuesta 10 USD y la audiencia está confirmada.
+  ---
+  duration_ms: 12.689208
+  type: 'test'
+  ...
+# Subtest: El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.
+ok 18 - El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.
+  ---
+  duration_ms: 0.408833
+  type: 'test'
+  ...
+# Subtest: paquetes alternativos no se suman; partidas de la misma opción sí
+ok 19 - paquetes alternativos no se suman; partidas de la misma opción sí
+  ---
+  duration_ms: 0.590541
+  type: 'test'
+  ...
+# Subtest: un costo conocido + moneda extranjera o estimación no acreditan presupuesto completo
+ok 20 - un costo conocido + moneda extranjera o estimación no acreditan presupuesto completo
+  ---
+  duration_ms: 0.344458
+  type: 'test'
+  ...
+# Subtest: acceso pendiente y contradicho conserva condición, no incompatibilidad
+ok 21 - acceso pendiente y contradicho conserva condición, no incompatibilidad
+  ---
+  duration_ms: 0.206167
+  type: 'test'
+  ...
+# Subtest: fecha contradicha no excluye por el valor disputado aun fuera de ventana
+ok 22 - fecha contradicha no excluye por el valor disputado aun fuera de ventana
+  ---
+  duration_ms: 0.259584
+  type: 'test'
+  ...
+# Subtest: fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambos caminos
+ok 23 - fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambos caminos
+  ---
+  duration_ms: 0.206334
+  type: 'test'
+  ...
+# Subtest: narrativa positiva publica exactamente fecha, atributo y estado seleccionados
+ok 24 - narrativa positiva publica exactamente fecha, atributo y estado seleccionados
+  ---
+  duration_ms: 0.400416
+  type: 'test'
+  ...
+# Subtest: un atributo de costo con valor fecha no es un claim admitido
+ok 25 - un atributo de costo con valor fecha no es un claim admitido
+  ---
+  duration_ms: 0.230333
+  type: 'test'
+  ...
+# (node:99334) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/trust-decision.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-02: comparación → guardado → lectura con incertidumbre y confirmed (PostgreSQL real)
+ok 26 - DP-02: comparación → guardado → lectura con incertidumbre y confirmed (PostgreSQL real)
+  ---
+  duration_ms: 486.067167
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 674.219666

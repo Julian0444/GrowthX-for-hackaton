@@ -214,6 +214,7 @@ function buildManifest(): CurationManifest {
     claims: [
       // Elegible: fecha, lugar urbano observado, acceso abierto, costo dentro
       // del presupuesto, audiencia afín con soporte.
+      claim('clm-cmp-aaa-date-r1', 'ed-cmp-aaa-elegible', 'date', { kind: 'date', date: { precision: 'instant', iso: '2026-11-10T18:00:00-08:00', timezone: 'America/Los_Angeles' } }, 'observed', ['src-cmp-luma']),
       claim('clm-cmp-aaa-loc-r1', 'ed-cmp-aaa-elegible', 'location', { kind: 'location', scope: 'city', name: 'San Francisco' }, 'observed', ['src-cmp-luma']),
       claim('clm-cmp-aaa-acc-r1', 'ed-cmp-aaa-elegible', 'access', { kind: 'text', text: 'Registro abierto según el listado' }, 'observed', ['src-cmp-luma']),
       claim('clm-cmp-aaa-cost-r1', 'ed-cmp-aaa-elegible', 'cost:sponsorship', { kind: 'money', amount: 1500, currency: 'USD' }, 'observed', ['src-cmp-tarifa']),
@@ -585,7 +586,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     assert.ok(mainResult.warnings.some((w) => /500/.test(w)), 'la advertencia viaja en el resultado');
     // Registro del adaptador: modelo, versión de prompt, duración y uso.
     assert.equal(narrative.model, 'gemini-2.5-flash');
-    assert.equal(narrative.promptVersion, 'comparison-narrative/1');
+    assert.equal(narrative.promptVersion, 'comparison-narrative/2');
     assert.ok(narrative.durationMs >= 0);
     assert.equal(narrative.usage?.totalTokens, 140);
 

@@ -7,7 +7,7 @@ import type { SourceRecord } from "../../lib/contracts/evaluation"
 import { dateLabel, isSanFrancisco, latestEdition } from "./research-model"
 
 export function DossierValue({ value }: { value: DossierValueView }) {
-  return <div className={`research-fact${value.conflict ? ' research-conflict' : ''}`}>
+  return <div className={`research-fact fact-${value.field.state}${value.conflict ? ' research-conflict' : ''}`}>
     <strong>{value.label}</strong>
     <p>{value.field.state === 'pending' ? value.field.note ?? 'Pendiente' : value.field.display}</p>
     {value.field.state === 'known' && <small>{value.field.claimStatus ?? 'Curación declarada'} · {value.field.scope ?? 'alcance pendiente'} {value.field.pendingNote}</small>}
@@ -37,7 +37,7 @@ function Participation({ item, onEdition }: { item: DossierParticipationView; on
 export function OrganizerDossier({ read, editions, onEdition }: { read: OrganizerDossierRead; editions: EditionDossierRead[]; onEdition: (id: string) => void }) {
   const view = projectOrganizerDossierView(read)
   const own = editions.filter(e => latestEdition(e).organizerIds.includes(read.organizerId))
-  return <section data-testid="organizer-dossier">
+  return <section className="dossier-surface" data-testid="organizer-dossier">
     <span className="eyebrow">Expediente del organizador</span><h2>{view.displayName}</h2><p className="research-meta">ID: {view.organizerId} · {view.revisionCount} revisión(es)</p>
     {view.confirmedAliases.map(a => <div key={a.alias}>Alias confirmado: {a.alias}<SourceRecordLinks sources={a.sources} /></div>)}
     {view.proposedAliases.length > 0 && <p>Aliases sin confirmar: {view.proposedAliases.join(', ')}</p>}
@@ -60,13 +60,15 @@ export function OrganizerDossier({ read, editions, onEdition }: { read: Organize
 }
 export function EditionDossier({ read, onEdition, onOrganizer }: { read: EditionDossierRead; onEdition: (id: string) => void; onOrganizer: (id: string) => void }) {
   const view = projectEditionDossierView(read)
-  return <section data-testid="edition-dossier">
+  return <section className="dossier-surface" data-testid="edition-dossier">
     <span className="eyebrow">Dossier de edición</span><h2>{view.name}</h2><p className="research-meta">ID: {view.editionId} · {view.validity.validity} · {view.editionRevisionCount} revisión(es)</p>
-    {view.canonicalUrl && <a className="research-link" href={view.canonicalUrl} target="_blank" rel="noreferrer">Abrir listado de la edición</a>}
-    {view.materialNote && <p>{view.materialNote}</p>}
-    <p>{view.curation ? `Verificado ${view.curation.verifiedAt} por ${view.curation.authorizedBy}` : 'Fecha de cobertura pendiente'}</p>
+    {view.listingLink.href && <a className="research-link" href={view.listingLink.href} target="_blank" rel="noreferrer">Abrir listado de la edición</a>}
+    {view.listingLink.kind === 'synthetic' && <p className="research-meta">Listado de prueba · no corresponde a una página real.</p>}
+    {view.listingLink.kind === 'invalid' && <p className="research-meta">Enlace del listado no disponible.</p>}
+    {view.materialNote && <p className="dossier-material">{view.materialNote}</p>}
+    <p className="research-meta dossier-verification">{view.curation ? `Verificado ${view.curation.verifiedAt} por ${view.curation.authorizedBy}` : 'Fecha de cobertura pendiente'}</p>
     <p>Organizadores: {view.organizers.map(o => <button className="research-link" key={o.organizerId} onClick={() => onOrganizer(o.organizerId)}>{o.displayName} ({o.organizerId})</button>)}</p>
-    {[view.date, view.location, view.audience, view.access, ...view.costs, ...view.otherClaims].map(c => <DossierValue key={c.attribute} value={c} />)}
+    <div className="dossier-facts">{[view.date, view.location, view.audience, view.access, ...view.costs, ...view.otherClaims].map(c => <DossierValue key={c.attribute} value={c} />)}</div>
     <h3>Participaciones documentadas</h3>{view.participations.filter(p => p.editionId === read.editionId).map(p => <Participation key={p.participationId} item={p} onEdition={onEdition} />)}
   </section>
 }

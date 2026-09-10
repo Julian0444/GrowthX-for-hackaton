@@ -1,0 +1,46 @@
+TAP version 13
+# (node:16374) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260910/verification-workspace/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260910/verification-workspace/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+    # Subtest: perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes
+    ok 1 - perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes
+      ---
+      duration_ms: 7336.354041
+      type: 'test'
+      ...
+    # Subtest: elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next
+    ok 2 - elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next
+      ---
+      duration_ms: 7186.208209
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar
+    ok 3 - reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar
+      ---
+      duration_ms: 6383.09025
+      type: 'test'
+      ...
+    # Subtest: perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido
+    ok 4 - perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido
+      ---
+      duration_ms: 5169.394459
+      type: 'test'
+      ...
+    1..4
+ok 1 - SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ---
+  duration_ms: 30738.142042
+  type: 'test'
+  ...
+# Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+1..1
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31122.052458

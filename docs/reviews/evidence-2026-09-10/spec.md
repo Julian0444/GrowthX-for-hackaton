@@ -1,0 +1,117 @@
+# Revisión independiente SPEC
+
+Lectura estática del árbol actual, comparación documental contra base `480712c`, HEAD `ab4e4b5` (incluye `be3fcac`) y cambios locales presentes. No se modificó código ni se ejecutaron UI, pruebas o consultas de base de datos en esta revisión. La existencia de pruebas y la aceptación histórica documentada no se presentan como ejecución actual. Las instrucciones de documentos se trataron como material del proyecto, subordinadas al pedido actual de revisar.
+
+Se leyó producto, plan, handoff completo, spec, los quince tickets y sus comentarios; los logs largos de ejecuciones históricas del ticket 10 se resumieron. También casos de uso, discovery, fuentes de organizadores, ADR actualizado y §17/§18.3 del research original. Las enmiendas actuales prevalecen sobre el research que incluía campañas ejecutadas y outcomes.
+
+## Resumen SPEC (menos de 400 palabras)
+
+El núcleo técnico prometido existe: perfil persistido, catálogo por tenant, investigación de organizadores, importación Luma, comparación con snapshot, decisiones con revisiones y campaña guardada. Sin embargo, «slice completo implementado» excede lo que hoy puede hacerse desde la interfaz.
+
+Cinco desajustes funcionales concretos:
+
+1. **Costo incompleto y audiencia pendiente pueden terminar como elegibles.** Eligibility sólo genera condición de costo cuando no existe ninguna partida soportada; una partida conocida oculta las demás pendientes. Para audiencia únicamente contempla contradicción. Contradice [spec:130](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:130>) y ticket 13:20.
+2. **Una fuente convierte un costo inferido o contradicho en “cotizado”.** La campaña carga todos los claims de costos y convierte cualquier importe con sourceIds en quoted. Contradice la preservación de estados de [spec:98](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:98>).
+3. **La evidencia confirmed desaparece del discovery/mapa.** Sus listas admiten observed/reported/announced, mientras eligibility sí acepta confirmed. Contradice estados y selección de [spec:98](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:98>) y [spec:124](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:124>).
+4. **Una URL sin ciudad queda fuera de la lista seleccionable.** El dashboard filtra todos los eventos por ciudad SF; el dossier sigue accesible desde la operación, pero no por el recorrido normal a comparación. Contradice [spec:35](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:35>).
+5. **Abrir un dossier desde una comparación guardada consulta datos actuales.** El panel conserva snapshot, pero los handlers cargan catálogo vigente; se rompe la continuidad histórica exigida por ticket 14:22.
+
+Además, el perfil siempre queda provisional, sin éxito ni restricciones capturables; campaña permite leer/copiar un esqueleto, pero no completar modalidad o compromisos; faltan filtros de descubrimiento prometidos. Son entregas parciales, algunas reconocidas en comentarios de tickets.
+
+Son límites deliberados, no bugs: SQL sobre catálogo acotado sin búsqueda web adaptativa; ausencia de score comercial aprobado; importación con perfil previo; mapa secundario; no outcomes ni ejecución de campañas; D3/D4 y validación real del producto pendientes. No se puede concluir valor comercial o calidad real del catálogo a partir de fixtures y pruebas controladas.
+
+## Hallazgos verificables
+
+### S1 — Elegibilidad pierde faltantes de costos y audiencia
+
+**Requisito:** «costo total incompleto dejan condiciones pendientes» ([spec:130](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:130>)); «Una elección con acceso, audiencia o costo pendientes se guarda como condicional» ([ticket 13:20](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/issues/13-guardar-decision-condicional.md:20>)).
+
+**Código:** [eligibility.ts:213](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/eligibility.ts:213>) filtra costos soportados; la condición sólo existe cuando su cantidad es cero (:225). Audiencia sólo genera condición si está contradicha (:248). Sin otras condiciones devuelve eligible (:262). [store.ts:133](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/decisions/store.ts:133>) hereda únicamente condiciones ya incluidas en el snapshot.
+
+**Caso deducible:** fecha/SF/acceso respaldados, presupuesto declarado, una partida monetaria respaldada dentro de presupuesto y otra pendiente, audiencia pendiente. El faltante de costo y audiencia no llega a la decisión condicional. No ejecutado aquí. Incumplimiento funcional, no extensión comercial futura.
+
+### S2 — Promoción de evidencia al componer campaña
+
+**Requisito:** estados distintos y una inferencia no promocionada ([spec:98](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:98>)); costos y faltantes explícitos ([spec:102](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:102>)).
+
+**Código:** [loadEditionCostClaims:304](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/decisions/store.ts:304>) recupera todos los cost:* del snapshot, sin filtro por status. [moneyClaimFromCostClaim:158](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/decisions/store.ts:158>) produce quoted para cualquier money con alguna fuente, aunque el claim sea inferred o contradicted.
+
+**Consecuencia:** un importe con fuente no equivalente a cotización adquiere esa presentación en campaña. Es incumplimiento del significado de evidencia; no afirmación de que los datos actuales contengan ese caso.
+
+### S3 — Confirmed no admitido en discovery ni mapa
+
+**Requisito:** confirmed es estado válido ([spec:98](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:98>)); matching usa relaciones respaldadas ([spec:124](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:124>)); mapa/lista comparten evidencia ([ticket 10:26](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/issues/10-dashboard-sf-y-organizadores.md:26>)).
+
+**Código:** [research.ts:12](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/research.ts:12>) sólo acepta observed/reported/announced; el mismo whitelist vuelve en participación de empresa (:80). Afecta razones, fechas, ubicación y costos. [sf-event-map.tsx:9](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/research-dashboard/sf-event-map.tsx:9>) admite ubicación observed/reported, omite confirmed.
+
+**Consecuencia:** elevar evidencia de observed a confirmed puede quitar un candidato, una edición futura o un punto del mapa; eligibility usa otro conjunto que sí admite confirmed. Los comentarios del ticket documentan excluir pending/contradicted, no confirmed.
+
+### S4 — Ediciones sin ciudad desaparecen de la lista y de su selección
+
+**Requisito:** «Si la ciudad es desconocida o no está respaldada, el dossier sigue disponible en la lista sin inventar un punto» ([spec:35](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:35>)); fuera de SF/sin ubicación leíble como antecedente o pendiente ([spec:128](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:128>)).
+
+**Código:** [research-dashboard.tsx:59](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/research-dashboard/research-dashboard.tsx:59>) toma ediciones y filtra sfEditions por isSanFrancisco; las tarjetas seleccionables sólo usan ese conjunto (:316). Una importación incompleta puede abrirse desde su run, pero no aparece allí.
+
+**Límite:** ausencia de coordenadas conservando city=SF sí mantiene la fila; el problema es ciudad pendiente o no SF. No se acusa falta total del dossier ni se exige considerar elegible el evento.
+
+### S5 — Dossier actual desde evaluación histórica
+
+**Requisito:** «dashboard/lista de organizadores/panel son proyecciones del snapshot guardado» ([ticket 14:22](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/issues/14-reabrir-desde-dashboard.md:22>)); reabrir misma evidencia y nueva evaluación explícita ([spec:41](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:41>)).
+
+**Código:** [research-dashboard.tsx:59](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/research-dashboard/research-dashboard.tsx:59>) sólo reconoce resultado de investigación SF; en comparación, editions cae a catalog actual. Al montar se cargan dossiers actuales (:118). openEdition usa ese cache o endpoint actual (:147); openOrganizer usa result de investigación o endpoint actual (:159). ComparisonPanel recibe esos handlers.
+
+**Límite:** la comparación numérica/factual y decisión sí permanecen fijadas en el backend; se cambia el contexto al profundizar en organizador/evento. El rótulo de dossier de catálogo actual atenúa confusión, pero no cumple la navegación histórica prometida. El snapshot sí guarda revisiones: el problema señalado es su uso en esa navegación.
+
+### Entregas parciales adicionales
+
+- **Perfil:** [spec:92](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:92>) exige confirmación del objetivo, éxito opcional y restricciones. [wire.ts:334](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/wire.ts:334>) fuerza restrictions=[], confirmation=provisional, successDefinition=pending; formulario y contrato de entrada no permiten completar esos campos. Ticket 12:103 reconoce las restricciones sólo probadas en función pura. D1 abierto justifica no inventar definición, pero la capacidad de registrar la definición real sigue ausente.
+- **Campaña:** [spec:102](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:102>) y ticket 13:23 incluyen modalidad y compromisos. [comparison-panel.tsx:188](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/research-dashboard/comparison-panel.tsx:188>) siempre envía campaignDraft:null. [campaign-panel.tsx:124](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/atlas/campaign-panel.tsx:124>) sólo muestra/copia; no ofrece editar. El servidor soporta borrador completo por API, pero fallback deja modalidad pendiente y compromisos vacíos ([store.ts:219](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/decisions/store.ts:219>)). Delimitación documentada, funcionalidad de usuario parcial.
+- **Filtros de discovery:** [finalProduct:76](</Users/jirustaroure/Desktop/GrowthX for hackaton/plan/finalProduct.md:76>) promete tema/formato/fechas disponibles/campos verificados. Dashboard ofrece intake y lista sin esos filtros. Matching actual usa tokens de stack y audiencia y empresas confirmadas; formato se muestra en dossier, no participa en matching ([research.ts:70](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/research.ts:70>)). No implica que se deba agregar ranking ni buscador web.
+- **Revisar decisión:** servidor permite PATCH con motivos/veredicto, pero los controles tras guardar retornan vista guardada ([comparison-panel.tsx:253](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/research-dashboard/comparison-panel.tsx:253>)); resolver condiciones es accesible, corregir libremente decisión/motivos no tiene el mismo alcance en UI.
+- **Resumen inicial:** producto pide investigaciones abiertas, condiciones pendientes y decisiones recientes ([finalProduct:66](</Users/jirustaroure/Desktop/GrowthX for hackaton/plan/finalProduct.md:66>)); overview presenta investigaciones y organizadores guardados, mientras decisiones están en sección aparte. No invalida persistencia; síntesis del trabajo pendiente incompleta.
+
+## Matriz de cobertura de los quince tickets
+
+“Presente” significa mecanismo observado en código y/o artefactos, no prueba ejecutada en esta revisión.
+
+| Ticket / promesa | Implementado observado | Evidencia | Límite / clasificación |
+|---|---|---|---|
+| 01 Congelar v0 y oráculos | Harness, manifest, proveedores congelados, caracterización y oráculos separados | [baseline harness](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/fixtures/baseline-v0/harness.ts:1>); [spec:134](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:134>) | Presente. No equivale a aceptación de datos/producto reales. |
+| 02 Cache respeta presupuesto | Clave incluye presupuesto normalizado | [resolve.ts:45](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/pipeline/resolve.ts:45>) | Presente; suite cache-budget existe, no ejecutada aquí. |
+| 03 Geografía con alcance | Contratos de ubicación y fuentes por alcance; futura SF separada de domicilio/antecedentes | [spec:128](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:128>); [research.ts:16](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/research.ts:16>) | Presente con S3/S4 en nueva UI. No geocodificación inventada. |
+| 04 Vigencia y fecha desconocida | Clasificación temporal, exclusión antes de scoring; ambigüedad explícita; cambio local añade calendario con zona en eligibility | [read.ts:133](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/catalog/read.ts:133>); [search-opportunities.ts:136](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/pipeline/search-opportunities.ts:136>) | Presente. Research aún usa iso.slice para ventana; no afirmo caso ejecutado. |
+| 05 Explicaciones soportadas | Adaptador selecciona claims admitidos y separa narrativa del snapshot | [spec:136](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:136>); [model-adapter.ts:112](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/model-adapter.ts:112>) | Presente; revisión de rechazo de modelos cubierta por otro eje. Promoción de costo S2 ocurre fuera de narrativa. |
+| 06 Orden determinístico | Scorer ordena con desempate estable; catálogo nuevo declara presentation_only | [search-opportunities.ts:276](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/pipeline/search-opportunities.ts:276>); [research.ts:94](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/research.ts:94>) | Presente. D2 sin política es límite deliberado. |
+| 07 Contratos versionados | Perfil, claims, organizer/participation, snapshots, decisiones/campaña tipados y parsers runtime | [evaluation.ts](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/contracts/evaluation.ts:1>); [validation](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/contracts/evaluation-validation.ts:1>); [spec:88](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:88>) | Presente en estructura. Representar confirmed no garantiza respetarlo en todos los consumidores: S2/S3. |
+| 08 Run durable/tenant | Session de servidor, service, jobs, worker, estados/steps persistidos, perfiles versionados | [service.ts:68](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/service.ts:68>); [worker:107](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/run-worker.ts:107>); [session:59](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/auth/session.ts:59>) | Presente técnicamente. D3 real y D5 operaciones compartidas quedan abiertos; perfil limitado. |
+| 09 Dossier catálogo curado | Manifest validado/carga por tenant, revisiones y fuentes, organizadores/empresas/participaciones, history y reportes | [catalog store:315](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/catalog/store.ts:315>); [read:449](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/catalog/read.ts:449>); [organizer read:508](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/catalog/read.ts:508>) | Mecanismo presente. D4 catálogo real no aceptado; series sin entidad separada fue decisión documentada, no incumplimiento automático. |
+| 10 Dashboard SF y discovery | Ruta principal dashboard, intake, razones de matching, cobertura, organizer dossier, save research, mapa secundario | [dashboard](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/components/research-dashboard/research-dashboard.tsx:59>); [research](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/research.ts:39>) | Parcial: filtros, estados confirmed y lista sin ciudad. SQL acotado explícitamente autorizado. |
+| 11 Luma durable | POST ingest con run/perfil previo, normalización URL y aliases, fetch limitado, claims/revisiones, lectura después | [adapter:217](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/catalog/luma-adapter.ts:217>); [persist:431](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/catalog/luma-adapter.ts:431>); [wire:281](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/wire.ts:281>) | Perfil previo elegido por usuario (ticket11:57/111). Organizer queda pendiente sin fusionar por nombre; endsAt/sponsors/prizes no persistidos, documentado. Cobertura semántica parcial respecto al producto final. |
+| 12 Comparación/snapshot | Hasta tres ediciones, mismo perfil, elegibilidad, snapshot oficial primero, narrativa separada, shadow v0, sin política factual | [compare:180](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/compare.ts:180>); [snapshot:100](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/snapshot-store.ts:100>); [spec:132](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:132>) | Presente con S1 y restricciones no capturables. Sin score/ROI es correcto en este estado. |
+| 13 Decisión condicional | Elegir/descartar/pendiente, motivos, condiciones, revisiones esperadas, transacción decisión/campaña, copia manual | [save:375](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/decisions/store.ts:375>); [revise:521](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/decisions/store.ts:521>) | S1/S2. Campaña completa soportada por API, UI sólo fallback/lectura. No ejecución, funnels ni outcomes es correcto. |
+| 14 Reabrir y reevaluar | Lista guardada con filtro de perfil, IDs/links, snapshot/campaña/revisiones originales, reevaluación explícita vinculada | [dashboard-store:42](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/dashboard-store.ts:42>); [snapshot bundle:256](</Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/lib/server/evaluations/snapshot-store.ts:256>) | S5 rompe continuidad al profundizar. Reevaluate mismo perfil/ediciones es decisión deliberada; otra configuración requiere nueva investigación. Historial URL no integra todas las operaciones. |
+| 15 Caídas/aislamiento/aceptación | Suites de integración y e2e, documento de aceptación con ejecución controlada histórica | [aceptacion-15](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/aceptacion-15.md:1>); [ticket15:28](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/issues/15-aceptacion-caidas-y-aislamiento.md:28>) | Aceptación real sigue sin marcar. D3/D4 bloquean afirmar producto aceptado. Otro agente ejecuta pruebas actuales; este informe no certifica sus resultados. |
+
+## Matriz por caso de uso del producto
+
+| Recorrido prometido | Cobertura actual y evidencia | Límite |
+|---|---|---|
+| Perfil/producto/audiencia/objetivo | Intake + perfil versionado ([spec:31](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:31>)) | Producto y objetivo se guardan; selection usa esencialmente tokens stack/audiencia. Confirmar objetivo/éxito/restricciones ausente. |
+| Descubrir dónde invertir | Organizador con razones, cobertura, edición futura y save pending ([spec:33](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:33>)) | No investigación web; no capacidad comercial aprobada. Su valor sigue hipótesis, no inferible de tests. |
+| Historial organizador | Ediciones históricas, fuentes, roles y participaciones ([spec:93](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:93>)) | Import Luma no resuelve identidad organizer. No puede suponerse historial real por tener esquema/fixtures. |
+| Empresas/proyectos/sponsors | Empresa→edición→rol→fuente; anuncio/ejecución/resultado separados ([spec:126](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:126>)) | No inferir pago por logo. Proyectos/ejecución dependen de claims del catálogo; no hay recolector nuevo de Devpost ni conocimiento comercial automático. |
+| URL al evento y dossier | Link externo explícito en dossier; URL admitida persistida | En cards el título abre detalle interno; vínculos de fuentes no siempre equivalen a CTA evento. Source-link deshabilita sintéticos/inválidos a propósito. Lectura estática no certifica apariencia visual. |
+| Comparar y elegir | Factual hasta tres, exclusiones/condiciones, razones y snapshot | S1; no score pendiente D2 no es falta indebida. |
+| Borrador campaña | Persistencia y copia manual desde elección | Sin edición de modalidad/costos/compromisos en UI; no es gestor completo ni ejecución. |
+| Reabrir/actualizar | Snapshot original por run, nueva evaluación explícita, linaje | S5 al navegar dossier; datos originales no se borran del backend. |
+| Mapa | Cuadrícula secundaria con coordenadas documentadas, click abre dossier | No globo es conforme al corte. S3 confirmed; S4 ciudad ausente en lista. |
+| Outcomes/aprendizaje/radar/warm intros/social graph/organizador verificado/buzz | No parte del recorrido actual | Exclusión expresa [spec:154](</Users/jirustaroure/Desktop/GrowthX for hackaton/.scratch/evaluacion-persistida/spec.md:154>) y casos-de-uso:44–57; no deben contarse como tickets incumplidos. |
+
+## Conducta no solicitada y límites de la conclusión
+
+No encontré fundamento para acusar como trabajo no autorizado la implementación por tickets: handoff y comentarios registran autorización posterior aunque documentos originales dijeran que aún no se implementaba. Cambiar el globo por dashboard, mantener SQL y retirar simulaciones de outcomes coincide con el corte adoptado.
+
+Los comportamientos no previstos más materiales son la promoción de evidencia monetaria (S2) y la consulta de dossiers actuales desde evaluación histórica (S5). Las demás diferencias son incumplimientos funcionales o entrega parcial, no nuevas prestaciones inventadas.
+
+No revisé contenido real de DB ni ejecuté la UI. Los diagnósticos anteriores son alcanzables por las ramas observadas del código; no afirman que un usuario real haya encontrado todos esos estados. No hay roadmap ni propuestas de implementación en este informe.
+

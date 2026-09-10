@@ -11,6 +11,9 @@
 // otra ciudad no la satisface; un organizador puede investigarse igual sin que
 // eso publique una inversión elegible.
 
+import { hasAffirmativeSupport as supported, locationSupport } from '../../evidence/claim-support.ts';
+import { declaredCalendarDay } from '../../evidence/calendar.ts';
+import { assessCosts } from '../../evidence/costs.ts';
 import type {
   ClaimRevision,
   EligibilityResult,
@@ -25,6 +28,7 @@ export interface CandidateEligibility {
   organizerId: string | null;
   eligibility: EligibilityResult;
   conditions: PendingCondition[];
+  researchBlockers: string[]; // conflictos conocidos o lugar/fecha sin resolver
   // Nota fija del contrato de esta etapa: elegible ≠ recomendado. Recomendar
   // gasto exige además una edición futura y una modalidad concretas (decisión
   // condicional de tickets posteriores).
@@ -34,15 +38,12 @@ export interface CandidateEligibility {
 export const ELIGIBLE_IS_NOT_RECOMMENDED =
   'Elegible no significa recomendado: recomendar gasto exige una edición futura y una modalidad concretas, y una decisión registrada.';
 
-const AFFIRMATIVE = ['announced', 'reported', 'observed', 'confirmed'];
-
-const supported = (claim: ClaimRevision): boolean =>
-  AFFIRMATIVE.includes(claim.status) && claim.sourceIds.length > 0;
 
 const normalize = (text: string): string => text.toLowerCase().replace(/\s+/g, ' ').trim();
 
 const latestClaims = (read: EditionDossierRead): ClaimRevision[] =>
   read.claims.map((chain) => chain.revisions[chain.revisions.length - 1]);
+
 
 let conditionSeq = 0;
 const condition = (
@@ -76,7 +77,14 @@ export function evaluateEligibility(input: {
   // ---- Fecha: vigencia con la política temporal del ticket 04 ----
   // Vencida bajo cualquier zona posible = conflicto confirmado → excluye.
   // Pendiente o ambigua = condición, jamás una fecha inventada.
-  if (dossier.validity.validity === 'past') {
+  const dateClaims = claims.filter(c => c.attribute === 'date');
+  const contradictedDate = dateClaims.some(c => c.status === 'contradicted');
+  if (contradictedDate || !dateClaims.some(c => supported(c) && c.value.kind === 'date')) {
+    conditions.push(condition(editionId, 'fecha-soporte',
+      contradictedDate ? `Fecha contradicha: ${dateClaims.filter(c => c.status === 'contradicted').map(c => c.note).join('; ')}` : 'Fecha sin soporte suficiente.',
+      '¿Qué fuente resuelve la fecha y su zona horaria?', true));
+  }
+  if (!contradictedDate && dossier.validity.validity === 'past') {
     exclusionReasons.push(`Fecha vencida: ${dossier.validity.reason}`);
   } else if (dossier.validity.validity === 'date_pending' || dossier.validity.validity === 'date_ambiguous') {
     conditions.push(
@@ -90,27 +98,33 @@ export function evaluateEligibility(input: {
     );
   }
 
+  if (edition.startDate.precision === 'date_only') {
+    conditions.push(condition(editionId, 'fecha-hora', 'Fecha sin hora exacta; conservar el día declarado y confirmar hora y zona.', '¿A qué hora y en qué zona comienza la edición?', true));
+  }
+
   // ---- Ventana del perfil: un día declarado fuera de la ventana es un
   // conflicto confirmado de fecha contra las restricciones del perfil ----
-  const day =
-    edition.startDate.precision === 'instant'
-      ? edition.startDate.iso.slice(0, 10)
-      : edition.startDate.precision === 'date_only'
-        ? edition.startDate.date
-        : null;
-  if (day !== null) {
+  const day = declaredCalendarDay(edition.startDate);
+  if (!contradictedDate && day !== null) {
     if (profile.window.from !== null && day < profile.window.from)
       exclusionReasons.push(`La fecha declarada (${day}) es anterior a la ventana del perfil (${profile.window.from}).`);
     if (profile.window.to !== null && day > profile.window.to)
       exclusionReasons.push(`La fecha declarada (${day}) es posterior a la ventana del perfil (${profile.window.to}).`);
+  } else if (day === null && edition.startDate.precision === 'instant') {
+    conditions.push(condition(
+      editionId,
+      'zona-horaria',
+      'La zona horaria declarada no permite verificar el día del evento contra la ventana del perfil.',
+      '¿Cuál es la zona horaria verificable de la edición?',
+      true,
+    ));
   }
 
   // ---- Ciudad: SF con respaldo urbano ----
   const locationClaims = claims.filter((c) => c.attribute === 'location');
   const urbanSupported = locationClaims.filter(
     (c) =>
-      supported(c) &&
-      c.status !== 'announced' &&
+      locationSupport(c).usable &&
       c.value.kind === 'location' &&
       (c.value.scope === 'city' || c.value.scope === 'venue') &&
       c.value.name !== null,
@@ -120,7 +134,8 @@ export function evaluateEligibility(input: {
   );
   const declaredElsewhere =
     edition.location.scope === 'city' && edition.location.name !== null && !isSanFrancisco(edition.location);
-  if (urbanElsewhere || declaredElsewhere) {
+  const contradictedLocation = locationClaims.some(c => c.status === 'contradicted');
+  if (!contradictedLocation && (urbanElsewhere || declaredElsewhere)) {
     const name =
       urbanElsewhere && urbanElsewhere.value.kind === 'location'
         ? urbanElsewhere.value.name
@@ -132,7 +147,6 @@ export function evaluateEligibility(input: {
     const sfSupported = urbanSupported.some(
       (c) => c.value.kind === 'location' && isSanFrancisco({ scope: 'city', name: c.value.name }),
     );
-    const contradictedLocation = locationClaims.some((c) => c.status === 'contradicted');
     if (!sfSupported || contradictedLocation) {
       conditions.push(
         condition(
@@ -140,13 +154,15 @@ export function evaluateEligibility(input: {
           'ciudad',
           contradictedLocation
             ? 'La ubicación está contradicha entre fuentes: sin ciudad respaldada no hay elegibilidad en SF.'
-            : 'Sin fuente urbana (no solo anunciada) que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis.',
+            : 'Sin fuente urbana que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis.',
           '¿Qué fuente urbana verificable respalda que la edición ocurre en San Francisco?',
           true,
         ),
       );
     }
   }
+
+  const scheduleConditions = [...conditions];
 
   // ---- Acceso: conflicto confirmado excluye; desconocido queda pendiente ----
   const accessClaims = claims.filter((c) => c.attribute === 'access');
@@ -158,11 +174,12 @@ export function evaluateEligibility(input: {
         .map((r) => ({ claim, restriction: r })),
     )
     .at(0);
-  if (restrictionHit && restrictionHit.claim.value.kind === 'text') {
+  const uncertainAccess = accessClaims.some(c => !supported(c));
+  if (!uncertainAccess && restrictionHit && restrictionHit.claim.value.kind === 'text') {
     exclusionReasons.push(
       `Acceso incompatible confirmado: la restricción del perfil «${restrictionHit.restriction}» coincide con el acceso documentado («${restrictionHit.claim.value.text}»).`,
     );
-  } else if (supportedAccess.length === 0) {
+  } else if (supportedAccess.length === 0 || uncertainAccess) {
     conditions.push(
       condition(
         editionId,
@@ -174,32 +191,12 @@ export function evaluateEligibility(input: {
     );
   }
 
-  // ---- Presupuesto: una partida con soporte que excede el presupuesto
-  // declarado es un conflicto confirmado; el costo desconocido queda pendiente
-  // y NO cuenta como cero ----
-  const costClaims = claims.filter((c) => c.attribute.startsWith('cost:'));
-  const supportedCosts = costClaims.filter((c) => supported(c) && c.value.kind === 'money');
-  if (profile.budget.status === 'declared') {
-    const budget = profile.budget;
-    for (const claim of supportedCosts) {
-      if (claim.value.kind === 'money' && claim.value.currency === budget.currency && claim.value.amount > budget.amount) {
-        exclusionReasons.push(
-          `Presupuesto en conflicto confirmado: la partida «${claim.attribute.slice('cost:'.length)}» publicada (${claim.value.currency} ${claim.value.amount}) excede el presupuesto declarado (${budget.currency} ${budget.amount}).`,
-        );
-      }
-    }
-  }
-  if (supportedCosts.length === 0) {
-    conditions.push(
-      condition(
-        editionId,
-        'costo',
-        'Costo total desconocido: ninguna partida con soporte. No se suma como cero ni habilita por puntaje.',
-        '¿Cuáles son las partidas de patrocinio y su costo? (tarifario o propuesta del organizador)',
-        true,
-      ),
-    );
-  }
+  // Costos acumulables y paquetes alternativos se evalúan una sola vez.
+  const costs = assessCosts(claims, profile.budget);
+  exclusionReasons.push(...costs.conflicts);
+  for (const note of costs.pending) conditions.push(condition(
+    editionId, 'costo', note, '¿Cuál es el costo completo, la moneda y el paquete a contratar?', true,
+  ));
   if (profile.budget.status !== 'declared') {
     conditions.push(
       condition(
@@ -214,6 +211,10 @@ export function evaluateEligibility(input: {
 
   // ---- Audiencia contradicha: condición con el motivo de la contradicción ----
   const contradictedAudience = claims.find((c) => c.attribute === 'audience' && c.status === 'contradicted');
+  const audienceClaims = claims.filter(c => c.attribute === 'audience');
+  if (!audienceClaims.some(c => supported(c) && (c.value.kind === 'text' || c.value.kind === 'number')) || audienceClaims.some(c => !supported(c))) {
+    conditions.push(condition(editionId, 'audiencia-pendiente', 'Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil.', '¿Qué audiencia documentada participa en esta edición?', false));
+  }
   if (contradictedAudience) {
     conditions.push(
       condition(
@@ -238,6 +239,7 @@ export function evaluateEligibility(input: {
     organizerId: edition.organizerIds[0] ?? null,
     eligibility,
     conditions,
+    researchBlockers: [...exclusionReasons, ...scheduleConditions.map(c => c.description)],
     note: ELIGIBLE_IS_NOT_RECOMMENDED,
   };
 }

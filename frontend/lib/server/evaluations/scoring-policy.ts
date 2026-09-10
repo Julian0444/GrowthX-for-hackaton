@@ -11,13 +11,15 @@
 // se declaran `approval: 'test_only'` — sus pesos no se despliegan como
 // política comercial ni habilitan publicar un ranking de inversión.
 
+import { hasAffirmativeSupport as supported } from '../../evidence/claim-support.ts';
+import { assessCosts } from '../../evidence/costs.ts';
 import type { ClaimRevision, EvaluationProfile, ObjectiveKind } from '../../contracts/evaluation.ts';
 import type { EditionDossierRead } from '../catalog/read.ts';
 import { activeWeightFraction, clamp01, weightedScore } from '../scoring/score-utils.ts';
 
-// ============ Features (features/1) ============
+// ============ Features (features/2) ============
 
-export const FEATURE_SET_VERSION = 'features/1';
+export const FEATURE_SET_VERSION = 'features/2';
 
 // Un feature usado por el scorer: valor null = no computable, con la razón del
 // dato ausente persistida junto al snapshot (criterio del ticket).
@@ -43,8 +45,6 @@ const tokens = (text: string): string[] =>
 const latestClaims = (read: EditionDossierRead): ClaimRevision[] =>
   read.claims.map((chain) => chain.revisions[chain.revisions.length - 1]);
 
-const supported = (claim: ClaimRevision): boolean =>
-  ['announced', 'reported', 'observed', 'confirmed'].includes(claim.status) && claim.sourceIds.length > 0;
 
 // Extracción determinística de features desde los claims del dossier. Se
 // persiste SIEMPRE (con o sin política): es la parte factual de «qué usó (o
@@ -118,52 +118,19 @@ export function extractFeatures(profile: EvaluationProfile, dossier: EditionDoss
   // partidas CONOCIDAS (cada partida conocida es un límite inferior). Costo
   // desconocido o presupuesto no declarado → null con razón: un costo
   // desconocido JAMÁS cuenta como cero.
-  const costClaims = claims.filter(
-    (c) => c.attribute.startsWith('cost:') && supported(c) && c.value.kind === 'money',
-  );
-  if (costClaims.length === 0) {
-    features.push({
-      key: 'cost_fit',
-      value: null,
-      missingReason: 'costo desconocido: ninguna partida con soporte; no cuenta como cero',
-      claimRevisionIds: claims.filter((c) => c.attribute.startsWith('cost:')).map((c) => c.id),
-      note: null,
-    });
-  } else if (profile.budget.status !== 'declared') {
-    features.push({
-      key: 'cost_fit',
-      value: null,
-      missingReason: 'presupuesto no declarado en el perfil: no se puede evaluar el encaje de costo',
-      claimRevisionIds: costClaims.map((c) => c.id),
-      note: null,
-    });
-  } else {
-    const budget = profile.budget;
-    const sameCurrency = costClaims.filter(
-      (c) => c.value.kind === 'money' && c.value.currency === budget.currency,
-    );
-    if (sameCurrency.length === 0) {
-      features.push({
-        key: 'cost_fit',
-        value: null,
-        missingReason: `las partidas conocidas están en otra moneda que el presupuesto (${budget.currency}): sin conversión no hay encaje`,
-        claimRevisionIds: costClaims.map((c) => c.id),
-        note: null,
-      });
-    } else {
-      const knownTotal = sameCurrency.reduce(
-        (sum, c) => sum + (c.value.kind === 'money' ? c.value.amount : 0),
-        0,
-      );
-      features.push({
-        key: 'cost_fit',
-        value: budget.amount > 0 ? clamp01(1 - knownTotal / budget.amount) : 0,
-        missingReason: null,
-        claimRevisionIds: sameCurrency.map((c) => c.id),
-        note: `partidas conocidas: ${budget.currency} ${knownTotal} (límite inferior; puede haber partidas sin publicar)`,
-      });
-    }
-  }
+  const costClaims = claims.filter(c => c.attribute.startsWith('cost:'));
+  const costs = assessCosts(claims, profile.budget);
+  const missingReason = profile.budget.status !== 'declared' ? 'presupuesto no declarado'
+    : costs.pending.length ? costs.pending.join(' ') : null;
+  features.push({
+    key: 'cost_fit',
+    value: missingReason !== null || profile.budget.status !== 'declared' || costs.knownLowerBound === null
+      ? null : profile.budget.amount > 0 ? clamp01(1 - costs.knownLowerBound / profile.budget.amount) : 0,
+    missingReason,
+    claimRevisionIds: costClaims.map(c => c.id),
+    note: missingReason === null && profile.budget.status === 'declared'
+      ? `partidas acumulables conocidas: ${profile.budget.currency} ${costs.knownLowerBound} (límite inferior; puede haber partidas sin publicar)` : null,
+  });
 
   return features;
 }
@@ -177,7 +144,7 @@ export interface ScoringPolicy {
   approval:
     | { status: 'approved'; approvedBy: string; approvedAt: string }
     | { status: 'test_only'; note: string };
-  // Pesos por feature del set features/1. La renormalización sobre dimensiones
+  // Pesos por feature del set features/2. La renormalización sobre dimensiones
   // activas la hace weightedScore (null nunca es 0).
   weights: Record<FeatureKey, number>;
 }

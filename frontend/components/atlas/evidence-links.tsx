@@ -5,6 +5,7 @@
 import type { ReactElement } from "react"
 import type { SourceRecord } from "@/lib/contracts/evaluation"
 import type { Evidence } from "@/lib/contracts/growxth"
+import { evidenceLink, sourceLink } from "../../lib/evidence/source-link"
 
 const BADGE_LABEL: Record<Evidence["status"], string> = {
   observed: "Observed",
@@ -31,34 +32,37 @@ export function SourceRecordLinks({
 }): ReactElement | null {
   if (sources.length === 0 && unresolvedIds.length === 0) return null
   return (
-    <div className="source-records" style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 4 }}>
-      {sources.map((source) => (
+    <div className="source-records">
+      {sources.map((source) => {
+        const link = sourceLink(source)
+        return (
         <span
           key={source.id}
           className="source-record"
-          style={{ display: "flex", alignItems: "baseline", gap: 8, fontSize: 12, flexWrap: "wrap" }}
         >
-          {source.url ? (
-            <a href={source.url} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>
+          {link.href ? (
+            <a href={link.href} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>
               {source.provider}
             </a>
           ) : (
             <span>{source.provider}</span>
           )}
-          {source.locator ? <span style={{ opacity: 0.7 }}>({source.locator})</span> : null}
-          <span style={{ opacity: 0.7 }}>{`obtained ${source.fetchedAt.slice(0, 10)}`}</span>
-          <span style={{ opacity: 0.7 }}>
+          {link.kind === "synthetic" && <span className="source-date">Fuente de prueba · no abre una página real.</span>}
+          {link.kind === "invalid" && <span className="source-date">Enlace no disponible.</span>}
+          {source.locator ? <span className="source-locator">({source.locator})</span> : null}
+          <span className="source-date">{`obtained ${source.fetchedAt.slice(0, 10)}`}</span>
+          <span className="source-date">
             {source.publishedAt ? `published ${source.publishedAt.slice(0, 10)}` : "publication date unknown"}
           </span>
-          <span style={{ opacity: 0.7 }}>{source.method}</span>
+          <span className="source-method">{source.method}</span>
           <span
             className={`badge scope-${source.geoScope}`}
-            style={{ fontSize: 10, padding: "1px 6px", borderRadius: 4, border: "1px solid currentColor", opacity: 0.75 }}
           >
             {`scope: ${source.geoScope}`}
           </span>
         </span>
-      ))}
+        )
+      })}
       {unresolvedIds.map((id) => (
         <span key={id} style={{ fontSize: 12, fontStyle: "italic", opacity: 0.7 }}>
           {`source “${id}” not included in this read — reference unresolved, not invented`}
@@ -83,19 +87,22 @@ export function EvidenceLinks({
 
   return (
     <div className="evidence-links" style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 6 }}>
-      {items.map((e) => (
+      {items.map((e) => {
+        const link = evidenceLink(e.url, e.status === "prepared")
+        return (
         <span
           key={e.id}
           className="evidence-link"
           style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12 }}
         >
-          {e.url ? (
-            <a href={e.url} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>
+          {link.href ? (
+            <a href={link.href} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>
               {e.title}
             </a>
           ) : (
             <span>{e.title}</span>
           )}
+          {link.kind === "synthetic" && <span>Fuente de prueba · no abre una página real.</span>}
           <time dateTime={e.observedAt} style={{ opacity: 0.7 }}>
             {e.observedAt.slice(0, 10)}
           </time>
@@ -123,7 +130,8 @@ export function EvidenceLinks({
             {BADGE_LABEL[e.status]}
           </span>
         </span>
-      ))}
+        )
+      })}
     </div>
   )
 }

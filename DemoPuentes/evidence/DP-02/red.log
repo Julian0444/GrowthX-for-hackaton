@@ -1,0 +1,296 @@
+TAP version 13
+# (node:93306) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/lib/contracts/evaluation-validation.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: control con soporte
+ok 1 - control con soporte
+  ---
+  duration_ms: 14.271333
+  type: 'test'
+  ...
+# Subtest: USD 3000 + USD 3000 > USD 5000
+not ok 2 - USD 3000 + USD 3000 > USD 5000
+  ---
+  duration_ms: 1.032209
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:22:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'eligible'
+    - 'excluded'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'excluded'
+  actual: 'eligible'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:25:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: partida pendiente
+not ok 3 - partida pendiente
+  ---
+  duration_ms: 0.326542
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:22:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'eligible'
+    - 'conditional'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'conditional'
+  actual: 'eligible'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:25:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: moneda incomparable
+not ok 4 - moneda incomparable
+  ---
+  duration_ms: 0.1995
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:22:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'eligible'
+    - 'conditional'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'conditional'
+  actual: 'eligible'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:25:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: audiencia pendiente
+not ok 5 - audiencia pendiente
+  ---
+  duration_ms: 0.247292
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:22:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'eligible'
+    - 'conditional'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'conditional'
+  actual: 'eligible'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:25:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: audiencia ausente
+not ok 6 - audiencia ausente
+  ---
+  duration_ms: 0.160834
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:22:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'eligible'
+    - 'conditional'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'conditional'
+  actual: 'eligible'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:25:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: fecha contradicha
+not ok 7 - fecha contradicha
+  ---
+  duration_ms: 0.389375
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:22:4'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'eligible'
+    - 'conditional'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'conditional'
+  actual: 'eligible'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:25:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: investigación conserva confirmed
+not ok 8 - investigación conserva confirmed
+  ---
+  duration_ms: 0.621041
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'Falta fuente urbana verificada para la ubicación de la edición',
+    +   'Fecha sin soporte concluyente'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'Falta fuente urbana verificada para la ubicación de la edición'
+    1: 'Fecha sin soporte concluyente'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:27:52)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: investigación usa el día local de SF
+not ok 9 - investigación usa el día local de SF
+  ---
+  duration_ms: 0.424708
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'Fuera de la ventana indicada'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'Fuera de la ventana indicada'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:28:56)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: El patrocinio cuesta 10 USD y la audiencia está confirmada.
+not ok 10 - El patrocinio cuesta 10 USD y la audiencia está confirmada.
+  ---
+  duration_ms: 18.55575
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:30:166'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(result.status!=='validated'||result.proposals.every(p=>p.summary!==summary))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:32:9)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.
+not ok 11 - El evento garantiza contrataciones y el acceso exclusivo ya está confirmado.
+  ---
+  duration_ms: 1.181292
+  type: 'test'
+  location: '/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:30:166'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(result.status!=='validated'||result.proposals.every(p=>p.summary!==summary))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.mjs:32:9)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 1
+# fail 10
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 204.729125

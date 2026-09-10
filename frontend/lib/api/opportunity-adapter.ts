@@ -63,6 +63,7 @@ import type {
 // Relativo (no alias `@/`) para que los tests de node --test lo resuelvan sin
 // gancho de alias.
 import { classifyEventValidity, type EventValidity } from "../temporal/event-validity.ts"
+import { evidenceLink, isSyntheticSource, sameEvidenceUrl, type EvidenceLink } from "../evidence/source-link.ts"
 
 // Zoom más cerrado que el de país: para plays de SF encuadramos el barrio.
 export const NEIGHBORHOOD_ZOOM = 6
@@ -370,7 +371,9 @@ function projectClaim(claim: ClaimRevision, sourcesById: Map<string, SourceRecor
     // Qué falta confirmar viaja con el valor: una contradicción muestra su
     // motivo; un estado pendiente se declara.
     pendingNote:
-      claim.status === "contradicted" ? claim.note : claim.status === "pending" ? "pendiente de confirmación" : null,
+      claim.status === "contradicted" ? claim.note
+        : claim.status === "inferred" ? `inferencia (${claim.method ?? "método no documentado"})${claim.note ? ` · ${claim.note}` : ""}; pendiente de confirmar`
+        : claim.status === "pending" ? "pendiente de confirmación" : null,
   }
   switch (claim.value.kind) {
     case "text":
@@ -450,20 +453,30 @@ function projectCampaignWithSources(
           )
         : pendingField("modalidad pendiente de acordar"),
     costItems: campaign.costItems.map((item) => ({
-      label: item.label,
+      label: item.evidence?.costComposition?.kind === "alternative"
+        ? `${item.label} · opción ${item.evidence.costComposition.optionId} (${item.evidence.costComposition.groupId})`
+        : item.label,
       value:
         item.amount.status === "quoted"
           ? knownField(`${item.amount.currency} ${item.amount.amount}`, {
+              claimStatus: item.evidence?.status ?? null,
               sourceIds: item.amount.sourceIds,
               obtainedAt: obtainedAtFrom(item.amount.sourceIds, sourcesById),
             })
+          : item.amount.status === "inferred" || item.amount.status === "contradicted"
+            ? knownField(`${item.amount.currency} ${item.amount.amount}`, {
+                claimStatus: item.amount.status,
+                sourceIds: item.amount.sourceIds,
+                obtainedAt: obtainedAtFrom(item.amount.sourceIds, sourcesById),
+                pendingNote: `${item.amount.status === "inferred" ? "Inferido" : "Contradicho"} · base: ${item.amount.basis}${item.amount.note ? ` · ${item.amount.note}` : ""}; pendiente de resolver, no es cotización`,
+              })
           : item.amount.status === "estimated"
             ? knownField(`${item.amount.currency} ${item.amount.amount}`, {
                 pendingNote: `estimación (${item.amount.basis}); no es un costo confirmado`,
               })
             : pendingField(item.amount.note ?? "partida sin costo conocido; no se suma como 0"),
     })),
-    costCompleteness: campaign.costItems.some((item) => item.amount.status === "unknown")
+    costCompleteness: campaign.costItems.length === 0 || campaign.costItems.some((item) => item.amount.status !== "quoted")
       ? "has_unknown_items"
       : "all_items_valued",
     openQuestions: campaign.openQuestions,
@@ -885,6 +898,7 @@ export interface EditionDossierViewModel {
   editionId: string
   name: string
   canonicalUrl: string | null
+  listingLink: EvidenceLink
   validity: EditionValidityView
   curation: CurationInfo | null
   materialNote: string | null
@@ -1184,10 +1198,18 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
     ),
   ]
 
+  // Solo las fuentes de la revisión mostrada deciden si el listado es de
+  // prueba: una importación real posterior no hereda la etiqueta del fixture.
+  const listingSourceIds = new Set(read.claims.flatMap(chain => chain.revisions)
+    .filter(claim => latestEdition.claimRevisionIds.includes(claim.id))
+    .flatMap(claim => claim.sourceIds))
   return {
     editionId: read.editionId,
     name: latestEdition.name,
     canonicalUrl: latestEdition.canonicalUrl,
+    listingLink: evidenceLink(latestEdition.canonicalUrl,
+      read.curation?.material === "synthetic" || read.sources.some(source =>
+        listingSourceIds.has(source.id) && sameEvidenceUrl(source.url, latestEdition.canonicalUrl) && isSyntheticSource(source))),
     validity: read.validity,
     curation: read.curation,
     materialNote:

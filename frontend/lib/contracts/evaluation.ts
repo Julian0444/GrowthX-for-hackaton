@@ -59,6 +59,7 @@ export type DeclaredDate =
 export type MoneyClaim =
   | { status: 'quoted'; amount: number; currency: string; sourceIds: string[] } // cotizado/publicado, con soporte
   | { status: 'estimated'; amount: number; currency: string; basis: string }
+  | { status: 'inferred' | 'contradicted'; amount: number; currency: string; sourceIds: string[]; basis: string; note: string | null }
   | { status: 'unknown'; note: string | null };
 
 // Condición pendiente de un candidato: información faltante que condiciona la
@@ -168,6 +169,13 @@ export type ClaimValue =
   | { kind: 'location'; scope: GeoScope; name: string | null }
   | { kind: 'pending'; note: string | null };
 
+// Ausencia en registros v1 anteriores = partida acumulable. Los paquetes
+// alternativos requieren grupo y opción explícitos; varias partidas de una
+// misma opción sí se acumulan. No se deduce esto desde el nombre del costo.
+export type CostComposition =
+  | { kind: 'additive' }
+  | { kind: 'alternative'; groupId: string; optionId: string };
+
 // Cada ClaimRevision es una revisión inmutable de un claim: `claimId` es la
 // identidad estable a través de revisiones y `previousRevisionId` la relación
 // de revisión (null = primera). Una inferencia nunca se promociona por votos:
@@ -178,6 +186,7 @@ export interface ClaimRevision {
   claimId: string;
   subject: ClaimSubject;
   attribute: string; // 'access', 'audience', 'cost:<partida>', …
+  costComposition?: CostComposition;
   value: ClaimValue;
   status: ClaimStatus;
   sourceIds: string[]; // evidencia vinculada; su existencia es integridad relacional (08/09)
@@ -397,6 +406,7 @@ export interface CampaignCostItem {
   id: string;
   label: string;
   amount: MoneyClaim;
+  evidence?: ClaimRevision; // revisión original, sin promover su estado al guardar
 }
 
 // Borrador de campaña. Deliberadamente SIN costo total ni ROI: sumar partidas
@@ -502,7 +512,7 @@ export interface CampaignView {
   successDefinition: ProjectedField;
   modality: ProjectedField;
   costItems: { label: string; value: ProjectedField }[];
-  costCompleteness: 'all_items_valued' | 'has_unknown_items'; // sin total inventado en ningún caso
+  costCompleteness: 'all_items_valued' | 'has_unknown_items'; // incluye importes inferidos/contradichos/estimados; sin total inventado
   openQuestions: string[];
   commitments: { description: string; kind: CommitmentKind; supported: boolean }[];
 }

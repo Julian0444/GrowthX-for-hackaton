@@ -220,11 +220,14 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     const dossier = page.getByTestId('organizer-dossier');
     assert.match(await dossier.innerText(), /Berlin/);
     assert.match(await dossier.innerText(), /Resultado comercial desconocido/);
-    assert.equal(await dossier.locator('a[href="https://quiverlabs.example/events"]').count() > 0, true);
+    assert.equal(await dossier.locator('a[href="https://quiverlabs.example/events"]').count(), 0);
+    assert.match(await dossier.innerText(), /sitio del sponsor \(synthetic\)/);
+    assert.match(await dossier.innerText(), /Fuente de prueba/);
     await dossier.locator('[data-participation-id="part-quiver-berlin"]').getByRole('button').click();
     const event = page.getByTestId('edition-dossier');
     assert.match(await event.innerText(), /Berlin/); assert.match(await event.innerText(), /paid_sponsor/);
-    assert.equal(await event.getByRole('link', { name: 'Abrir listado de la edición' }).getAttribute('href'), 'https://baybuilders.example/berlin-2025');
+    assert.equal(await event.getByRole('link', { name: 'Abrir listado de la edición' }).count(), 0);
+    assert.match(await event.innerText(), /Listado de prueba/);
     assert.equal(await page.getByTestId('sf-map').count(), 0);
     await nav('Organizadores');
     await page.locator('[data-organizer-id="org-bay-builders"]').getByRole('button', { name: /Ver edición futura de SF/ }).click();

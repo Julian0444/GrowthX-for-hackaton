@@ -30,6 +30,7 @@ import type { ComparisonCandidateView, ComparisonViewModel } from "../../lib/api
 import { projectCampaignDraft } from "../../lib/api/opportunity-adapter"
 import {
   comparisonResult,
+  fetchDecisionRead,
   fetchEvaluation,
   fetchSnapshotDecisions,
   reviseConditionalDecision,
@@ -64,13 +65,15 @@ interface PreviousEvaluation {
 
 function Field({ label, field }: { label: string; field: ProjectedField }) {
   return (
-    <p className="research-meta">
+    <p className={`comparison-field field-${field.state}`}>
       <b>{label}:</b>{" "}
+      <span>
       {field.state === "known"
         ? `${field.display}${field.pendingNote ? ` · ${field.pendingNote}` : ""}${field.obtainedAt ? ` · obtenido ${field.obtainedAt}` : ""}`
         : field.state === "ambiguous"
           ? `${field.display} · ${field.note}`
           : `Pendiente${field.note ? ` · ${field.note}` : ""}`}
+      </span>
     </p>
   )
 }
@@ -164,6 +167,7 @@ function DecisionControls({
   const [note, setNote] = useState<string | null>(null)
   const [resolving, setResolving] = useState<string | null>(null)
   const [resolvedNote, setResolvedNote] = useState("")
+  const [revisionConflict, setRevisionConflict] = useState<string | null>(null)
   // Reintentar una aceptación incierta conserva la clave idempotente; editar
   // el contenido crea otra (misma regla que launch/compare del dashboard).
   const submission = useRef<{ body: string; key: string } | null>(null)
@@ -202,8 +206,23 @@ function DecisionControls({
     }
   }
 
+  async function reloadDecision(message: string) {
+    if (!saved) return
+    setBusy(true)
+    const outcome = await fetchDecisionRead(saved.decisionId)
+    setBusy(false)
+    if (outcome.status === "ok") {
+      setRevisionConflict(null)
+      onSaved(outcome.read)
+      setNote(`${message} Se cargó la revisión actual. Revisá las condiciones antes de volver a confirmar tu respuesta.`)
+    } else {
+      setRevisionConflict(message)
+      setNote(`${message} ${outcome.status === "unauthorized" ? "Se requiere una sesión para leer la revisión actual." : outcome.status === "missing" ? "La decisión no está disponible para esta sesión." : "No se pudo leer la revisión actual."} Tu respuesta escrita se conserva; reintentá la lectura antes de confirmar.`)
+    }
+  }
+
   async function resolveCondition(conditionId: string) {
-    if (!saved || busy) return
+    if (!saved || busy || revisionConflict) return
     const noteText = resolvedNote.trim()
     if (noteText.length === 0) {
       setNote("Registrá qué respuesta llegó: la resolución exige su nota.")
@@ -217,12 +236,16 @@ function DecisionControls({
       expectedRevision: saved.decision.revision,
       resolveConditions: [{ conditionId, resolvedNote: noteText }],
     })
-    setBusy(false)
     if (outcome.status === "saved") {
+      setBusy(false)
       setResolving(null)
       setResolvedNote("")
       onSaved(outcome.read)
+    } else if (outcome.status === "conflict") {
+      setRevisionConflict(outcome.message)
+      await reloadDecision(outcome.message)
     } else {
+      setBusy(false)
       setNote(outcome.message)
     }
   }
@@ -281,12 +304,12 @@ function DecisionControls({
                           placeholder="Qué respuesta llegó"
                           aria-label="Respuesta que resuelve la condición"
                         />
-                        <button className="research-link" type="button" disabled={busy} onClick={() => void resolveCondition(condition.id)}>
+                        <button className="research-link" type="button" disabled={busy || revisionConflict !== null} onClick={() => void resolveCondition(condition.id)}>
                           Confirmar resolución
                         </button>
                       </span>
                     ) : (
-                      <button className="research-link" type="button" onClick={() => { setResolving(condition.id); setResolvedNote("") }}>
+                      <button className="research-link" type="button" disabled={busy || revisionConflict !== null} onClick={() => { setResolving(condition.id); setResolvedNote("") }}>
                         Marcar resuelta
                       </button>
                     ))}
@@ -314,6 +337,8 @@ function DecisionControls({
           </button>
         )}
         {note && <p role="alert" className="research-meta">⚠ {note}</p>}
+        {revisionConflict && <button className="research-link" type="button" disabled={busy} onClick={() => void reloadDecision(revisionConflict)}>Reintentar lectura de la decisión</button>}
+        {resolving && resolvedNote && saved.decision.conditions.some(condition => condition.id === resolving && condition.status === "resolved") && <p className="research-meta">Tu respuesta sin guardar: {resolvedNote}. La condición ya fue resuelta en otra revisión.</p>}
       </div>
     )
   }
@@ -352,7 +377,7 @@ function DecisionControls({
     return (
       <>
         {previousNote}
-        <button className="research-button" type="button" onClick={() => setOpen(true)} data-testid="decision-open">
+        <button className="research-button research-primary" type="button" onClick={() => setOpen(true)} data-testid="decision-open">
           Registrar decisión
         </button>
       </>
@@ -417,16 +442,16 @@ function DecisionControls({
       <details>
         <summary className="research-meta">Agregar condición (pregunta al organizador, respuesta esperada, efecto, responsable, plazo)</summary>
         <div className="research-decision-condition">
-          <input value={conditionDraft.pendingItem} onChange={(e) => setConditionDraft({ ...conditionDraft, pendingItem: e.target.value })} placeholder="Dato o claim pendiente" aria-label="Dato pendiente" />
-          <input value={conditionDraft.question ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, question: e.target.value })} placeholder="Pregunta al organizador (no se envía)" aria-label="Pregunta al organizador" />
-          <input value={conditionDraft.expectedAnswer ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, expectedAnswer: e.target.value })} placeholder="Respuesta esperada" aria-label="Respuesta esperada" />
+          <label>Dato pendiente<input value={conditionDraft.pendingItem} onChange={(e) => setConditionDraft({ ...conditionDraft, pendingItem: e.target.value })} placeholder="Dato o claim pendiente" aria-label="Dato pendiente" /></label>
+          <label>Pregunta al organizador<input value={conditionDraft.question ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, question: e.target.value })} placeholder="Pregunta al organizador (no se envía)" aria-label="Pregunta al organizador" /></label>
+          <label>Respuesta esperada<input value={conditionDraft.expectedAnswer ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, expectedAnswer: e.target.value })} placeholder="Respuesta esperada" aria-label="Respuesta esperada" /></label>
           <select value={conditionDraft.effect ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, effect: e.target.value === "" ? null : (e.target.value as "chosen" | "discarded") })} aria-label="Efecto sobre la decisión">
             <option value="">Efecto: por definir</option>
             <option value="chosen">Si se confirma → elegir</option>
             <option value="discarded">Si se confirma → descartar</option>
           </select>
-          <input value={conditionDraft.owner ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, owner: e.target.value })} placeholder="Responsable (si se conoce)" aria-label="Responsable" />
-          <input value={conditionDraft.dueBy ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, dueBy: e.target.value })} placeholder="Plazo YYYY-MM-DD (si se conoce)" aria-label="Plazo" />
+          <label>Responsable<input value={conditionDraft.owner ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, owner: e.target.value })} placeholder="Responsable (si se conoce)" aria-label="Responsable" /></label>
+          <label>Plazo<input value={conditionDraft.dueBy ?? ""} onChange={(e) => setConditionDraft({ ...conditionDraft, dueBy: e.target.value })} placeholder="Plazo YYYY-MM-DD (si se conoce)" aria-label="Plazo" /></label>
           <button
             className="research-button"
             type="button"
@@ -441,7 +466,7 @@ function DecisionControls({
         </div>
       </details>
       <div className="research-actions">
-        <button className="research-button" type="button" disabled={busy} onClick={() => void save()} data-testid="decision-save">
+        <button className="research-button research-primary" type="button" disabled={busy} onClick={() => void save()} data-testid="decision-save">
           {busy ? "Guardando…" : "Guardar decisión"}
         </button>
         <button className="research-link" type="button" onClick={() => setOpen(false)}>
@@ -665,6 +690,7 @@ export function ComparisonPanel({
         </p>
       )}
       {toast && <p role="status">{toast}</p>}
+      <div className="comparison-grid">
       {view.candidates.map((candidate, index) => (
         <article
           className="research-event research-comparison-candidate"
@@ -782,6 +808,7 @@ export function ComparisonPanel({
           />
         </article>
       ))}
+      </div>
       <p className="research-meta" data-testid="comparison-narrative-status">
         Redacción:{" "}
         {view.narrative
