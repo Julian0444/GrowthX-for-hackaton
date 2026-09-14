@@ -1,3 +1,4 @@
+import { revealComparisonAudit, revealSavedEvaluations } from '../support/research-ui.ts';
 // Ticket 15: la demo completa del slice bajo caídas y cruces — navegador,
 // Next, PostgreSQL y worker en procesos REALES. Se ejecuta con `pnpm test` y
 // `pnpm test:e2e`. Requiere PostgreSQL local (pnpm db:up && pnpm db:migrate) y
@@ -159,7 +160,7 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     await closePools();
     await admin.query("update pgboss.job set state = 'cancelled' where state in ('created','retry','active') and data->>'tenantId' = any($1)", [[tenant.tenantId, decoy.tenantId]]);
     for (const seeded of [tenant, decoy]) {
-      for (const table of ['campaign_drafts','decisions','snapshot_narratives','snapshots','organizer_research','run_logs','run_steps','runs','profiles','claim_revision_sources','claim_revisions','claims','participation_revisions','participations','edition_revisions','event_editions','organizer_revisions','organizers','sources','companies','catalog_loads','sessions','memberships'])
+      for (const table of ['campaign_drafts','decisions','snapshot_narratives','snapshots','organizer_research','discovery_operations','discovery_runs','source_actor_operations','source_reads','run_logs','run_steps','runs','profiles','claim_revision_sources','claim_revisions','claims','participation_revisions','participations','edition_revisions','event_editions','organizer_revisions','organizers','sources','companies','catalog_loads','sessions','memberships'])
         await admin.query(`delete from growthx.${table} where tenant_id=$1`, [seeded.tenantId]);
       await admin.query('delete from growthx.tenants where id=$1', [seeded.tenantId]);
       await admin.query('delete from growthx.app_users where id=$1', [seeded.userId]);
@@ -205,7 +206,7 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     assert.match(result.narrative?.motive ?? '', /GEMINI_API_KEY ausente/, 'un worker ajeno con claves procesó el run (cola compartida): apagá tu worker de desarrollo para correr este e2e');
   };
 
-  let researchId = '', ingestId = '', importedEditionId = '', importedEditionRevisionId = '';
+  let researchId = '', catalogResearchId = '', ingestId = '', importedEditionId = '', importedEditionRevisionId = '';
   await t.test('perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes', async () => {
     // Worker 1 con transporte de fixture y barrera de kill: procesará la
     // investigación normalmente y morirá ABRUPTAMENTE al persistir el dossier.
@@ -214,22 +215,30 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     await armContext(context);
     const page = await newPage(context);
     await page.goto(base);
-    await nav(page, 'Perfil');
-    await page.getByLabel('Producto', { exact: true }).fill('Herramienta de agentes');
-    await page.getByLabel('Audiencia', { exact: true }).fill('Equipos backend que construyen agentes');
-    await page.getByLabel('Stack y temas').fill('python, agents');
-    await page.getByRole('button', { name: 'Feedback técnico', exact: true }).click();
-    await page.getByRole('button', { name: 'Revisar interpretación', exact: true }).click();
-    await page.getByRole('button', { name: 'Confirmar e investigar SF' }).click();
+    // El contenido SSR precede a la hidratación: esperar la lectura del
+    // dashboard evita perder el primer click antes de conectar los handlers.
+    await page.getByTestId('research-coverage').waitFor();
+    await nav(page, 'Brief');
+    await page.getByLabel('Product', { exact: true }).fill('Herramienta de agentes');
+    await page.getByLabel('Audience', { exact: true }).fill('Equipos backend que construyen agentes');
+    await page.getByLabel('Stack and topics').fill('python, agents');
+    await page.getByRole('button', { name: 'Technical feedback', exact: true }).click();
+    await page.getByRole('button', { name: 'Review brief', exact: true }).click();
+    await page.getByRole('button', { name: 'Confirm and research SF' }).click();
     await page.getByTestId('run-progress').waitFor();
     researchId = new URL(page.url()).searchParams.get('run')!;
-    await complete(researchId);
+    const discoveryRun=await complete(researchId);
+    assert.equal(discoveryRun.discovery?.candidates.length,0,'sin key no se devuelven organizadores fixture');
+    // Keep a separately requested legacy catalog run for the historical
+    // organizer/dossier regression. The new main run remains real discovery.
+    const legacy=await api('/api/evaluations',{method:'POST',body:JSON.stringify({idempotencyKey:randomUUID(),mode:'catalog_research',researchScope:'sf_organizers',profile:{product:'Herramienta de agentes',audienceDescription:'Equipos backend que construyen agentes',audienceProfiles:[],stack:['python','agents'],budget:{status:'unknown'},window:{from:null,to:null},objective:{kind:'feedback'}}})});
+    assert.equal(legacy.status,202);catalogResearchId=(await legacy.json()).runId;await complete(catalogResearchId);
 
     // Pegar la URL en Eventos: la aceptación es durable (202 + runId).
-    await nav(page, 'Eventos');
+    await nav(page, 'Events');
     await page.getByLabel('Luma event URL').fill(IMPORT_URL);
     const accepting = page.waitForResponse(r => r.url().endsWith('/api/events/ingest') && r.request().method() === 'POST');
-    await page.getByRole('button', { name: 'Importar', exact: true }).click();
+    await page.getByRole('button', { name: 'Import', exact: true }).click();
     assert.equal((await accepting).status(), 202);
     ingestId = await eventually(async () => { const id = new URL(page.url()).searchParams.get('run'); return id && id !== researchId ? id : null; }, 'run de importación');
     // «Una persona pega la URL y cierra la pestaña.»
@@ -271,14 +280,14 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     await armContext(reopened);
     const page2 = await newPage(reopened);
     await page2.goto(`${base}/?run=${ingestId}`);
-    await nav(page2, 'Eventos');
+    await nav(page2, 'Events');
     const ingestPanel = page2.getByTestId('ingest-run');
     await ingestPanel.waitFor();
-    assert.match(await ingestPanel.innerText(), new RegExp(ingestId));
-    assert.match(await ingestPanel.innerText(), /Dossier parcial/);
-    await ingestPanel.getByRole('button', { name: 'Abrir dossier persistido' }).click();
+    await ingestPanel.getByText('Import technical details',{exact:true}).click(); assert.match(await ingestPanel.innerText(), new RegExp(ingestId));
+    assert.match(await ingestPanel.innerText(), /Partial evidence/);
+    await ingestPanel.getByRole('button', { name: 'Open saved dossier' }).click();
     await page2.getByTestId('edition-dossier').waitFor();
-    assert.match(await page2.getByTestId('edition-dossier').innerText(), new RegExp(importedEditionId));
+    assert.match(await page2.getByTestId('edition-dossier').getAttribute('data-edition-id') ?? '', new RegExp(importedEditionId));
     await capture(page2, 'persisted-import');
     await reopened.close();
   });
@@ -290,19 +299,20 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     const context = await browser.newContext({ viewport: { width: 1366, height: 900 } });
     await armContext(context);
     const page = await newPage(context);
-    // Con el run de importación abierto, la lista de Eventos sale del catálogo
-    // PERSISTIDO (que ya incluye la edición importada); la comparación reutiliza
-    // el perfil de la investigación guardada de la sesión.
+    // DP-09: the import run includes only its own edition. A comparison with
+    // another catalog edition requires explicitly opening the current view.
     await page.goto(`${base}/?run=${ingestId}`);
-    await nav(page, 'Eventos');
+    await nav(page, 'Events');
     const list = page.getByTestId('sf-edition-list');
     await list.locator(`[data-edition-id="${importedEditionId}"]`).waitFor();
     // La edición de otra ciudad no aparece como oportunidad local de SF.
     assert.equal(await list.locator('[data-edition-id="ed-berlin-future"]').count(), 0, 'Berlin no se vuelve oportunidad local');
+    assert.equal(await list.locator('[data-edition-id]').count(), 1, 'import run is scoped');
+    await page.getByText('Research scope and saved revisions',{exact:true}).click(); await page.getByRole('button', { name: 'View current catalog (separate view)' }).click();
     for (const editionId of [importedEditionId, SUMMIT])
-      await list.locator(`[data-edition-id="${editionId}"]`).getByLabel(/Seleccionar para comparar/).check();
+      await list.locator(`[data-edition-id="${editionId}"]`).getByLabel(/Compare/).check();
     const accepting = page.waitForResponse(r => r.url().endsWith('/api/evaluations') && r.request().method() === 'POST');
-    await page.getByRole('button', { name: /Comparar seleccionadas/ }).click();
+    await page.getByRole('button', { name: /Compare selected/ }).click();
     assert.equal((await accepting).status(), 202);
     cmpId = await eventually(async () => { const id = new URL(page.url()).searchParams.get('run'); return id && id !== researchId && id !== ingestId ? id : null; }, 'run de comparación');
     const cmpRun = await complete(cmpId);
@@ -312,18 +322,18 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     assert.equal(imported.eligibility.status, 'conditional', 'el dossier con pendientes queda condicionado, no excluido ni elegible');
 
     // Elegir condicionalmente la edición importada, con condición completa.
-    await panel(page).waitFor();
+    await panel(page).waitFor(); await revealComparisonAudit(page);
     const imported$ = candidate(page, importedEditionId);
     await imported$.getByTestId('decision-open').click();
-    await imported$.getByLabel('Motivos de la decisión').fill('Audiencia y ciudad publicadas por la página\nCosto y acceso por confirmar con el organizador');
-    await imported$.getByText('Agregar condición (pregunta al organizador').click();
-    await imported$.getByLabel('Dato pendiente').fill('Costo del patrocinio');
-    await imported$.getByLabel('Pregunta al organizador').fill('¿Cuál es la tarifa y qué incluye?');
-    await imported$.getByLabel('Respuesta esperada').fill('Tarifario con monto y moneda');
-    await imported$.getByLabel('Efecto sobre la decisión').selectOption('discarded');
-    await imported$.getByLabel('Responsable').fill('Julian');
-    await imported$.getByLabel('Plazo').fill(`${futureYear}-02-28`);
-    await imported$.getByRole('button', { name: 'Agregar condición', exact: true }).click();
+    await imported$.getByLabel('Decision reasons').fill('Audiencia y ciudad publicadas por la página\nCosto y acceso por confirmar con el organizador');
+    await imported$.getByText('Add a condition: question').click();
+    await imported$.getByLabel('Pending item').fill('Costo del patrocinio');
+    await imported$.getByLabel('Question to organizer').fill('¿Cuál es la tarifa y qué incluye?');
+    await imported$.getByLabel('Expected answer').fill('Tarifario con monto y moneda');
+    await imported$.getByLabel('Effect on the decision').selectOption('discarded');
+    await imported$.getByLabel('Owner', {exact:true}).fill('Julian');
+    await imported$.getByLabel('Due date').fill(`${futureYear}-02-28`);
+    await imported$.getByRole('button', { name: 'Add condition', exact: true }).click();
     const saving = page.waitForResponse(r => r.url().endsWith('/api/decisions') && r.request().method() === 'POST');
     await imported$.getByTestId('decision-save').click();
     assert.equal((await saving).status(), 201);
@@ -360,16 +370,16 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     assert.equal(await page.getByTestId('campaign-draft-id').innerText(), campaignId);
     assert.equal(await page.getByTestId('campaign-draft-decision-id').innerText(), decision.decisionId);
     assert.equal(await page.getByTestId('campaign-draft-snapshot-id').innerText(), cmp.snapshotId);
-    await page.getByRole('button', { name: 'Volver a la comparación' }).click();
-    await panel(page).waitFor();
+    await page.getByRole('button', { name: 'Back to comparison' }).click();
+    await panel(page).waitFor(); await revealComparisonAudit(page);
     const imported$ = candidate(page, importedEditionId);
     await imported$.getByTestId('candidate-decision').waitFor();
     assert.equal(await imported$.getByTestId('candidate-decision').getAttribute('data-decision-id'), decision.decisionId);
-    assert.equal(await imported$.getByTestId('decision-state').innerText(), 'Elegida · elección condicional');
+    assert.equal(await imported$.getByTestId('decision-state').innerText(), 'Chosen · conditional choice');
     assert.equal(await imported$.getByTestId('decision-revision').innerText(), '1');
     const blockText = await imported$.getByTestId('candidate-decision').innerText();
     for (const reason of decision.decision.reasons) assert.ok(blockText.includes(reason), `motivo «${reason}» visible`);
-    assert.match(blockText, /Costo del patrocinio.*Responsable: Julian/);
+    assert.match(blockText, /Costo del patrocinio.*Owner: Julian/);
     // Evidencia fijada por el snapshot: la revisión exacta del dossier importado.
     const fixed = await imported$.getByTestId('candidate-fixed-revisions').innerText();
     assert.ok(fixed.includes(importedEditionRevisionId), 'la revisión de edición importada quedó fijada por el snapshot');
@@ -396,18 +406,18 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
   await t.test('perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido', async () => {
     // El recorrido parte de la investigación del perfil (sus organizadores
     // pertinentes de SF), no de la comparación.
-    await page.goto(`${base}/?run=${researchId}`);
-    await nav(page, 'Organizadores');
+    await page.goto(`${base}/?run=${catalogResearchId}`);
+    await nav(page, 'Organizers');
     const bay = page.locator('[data-organizer-id="org-bay-builders"]');
     await bay.waitFor();
     assert.equal(await page.getByTestId('sf-map').count(), 0, 'el mapa no se abre en todo el recorrido');
-    await bay.getByRole('button', { name: 'Abrir expediente' }).click();
+    await bay.getByRole('button', { name: 'Open organizer evidence' }).click();
     const dossier = page.getByTestId('organizer-dossier');
     await dossier.waitFor();
     // Antecedente con empresa y rol; el resultado comercial ausente se muestra
     // desconocido (no éxito ni fracaso).
     assert.match(await dossier.innerText(), /Berlin/);
-    assert.match(await dossier.innerText(), /Resultado comercial desconocido/);
+    assert.match(await dossier.innerText(), /Commercial outcome unknown/);
     await dossier.locator('[data-participation-id="part-quiver-berlin"]').getByRole('button').click();
     const event = page.getByTestId('edition-dossier');
     await event.waitFor();
@@ -415,13 +425,13 @@ test('SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado
     assert.match(await event.innerText(), /paid_sponsor/);
     assert.equal(await page.getByTestId('sf-map').count(), 0);
     // …y de vuelta a la decisión guardada, desde la lista, sin mapa.
-    await nav(page, 'Decisiones');
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
     const rows = page.getByTestId('evaluation-list').locator('[data-testid="saved-evaluation"]');
     await eventually(async () => (await rows.count()) === 1 ? true : null, 'lista con la evaluación guardada');
     assert.equal(await rows.first().getAttribute('data-run-id'), cmpId);
     const savedDecision = rows.first().locator(`[data-decision-id="${decision.decisionId}"]`);
-    assert.match(await savedDecision.innerText(), /Elegida · elección condicional · revisión 1/);
-    await savedDecision.getByRole('button', { name: 'Abrir decisión', exact: true }).click();
+    assert.match(await savedDecision.innerText(), /Chosen · conditional choice · revision 1/);
+    await savedDecision.getByRole('button', { name: 'Open decision', exact: true }).click();
     await candidate(page, importedEditionId).getByTestId('candidate-decision').waitFor();
     assert.equal(await page.getByTestId('sf-map').count(), 0);
     await capture(page, 'persisted-organizers');

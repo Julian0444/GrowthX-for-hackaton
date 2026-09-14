@@ -7,6 +7,6 @@
   ],
   "cwd": "/tmp/growthx-dp02-build",
   "exit_code": 0,
-  "duration_seconds": 10.06,
+  "duration_seconds": 8.55,
   "database": "isolated PostgreSQL port 55442"
 }

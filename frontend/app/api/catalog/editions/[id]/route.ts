@@ -27,18 +27,18 @@ export async function GET(
   const session = auth.session;
   const { id } = await params;
   if (!CATALOG_ID.test(id)) {
-    return NextResponse.json({ error: 'invalid_id', message: 'editionId inválido.' }, { status: 400 });
+    return NextResponse.json({ error: 'invalid_id', message: 'Invalid editionId.' }, { status: 400 });
   }
   try {
     const dossier = await readEditionDossier(getAppPool(), session.tenantId, id, new Date().toISOString());
     if (!dossier) {
-      return NextResponse.json({ error: 'not_found', message: 'Edición inexistente.' }, { status: 404 });
+      return NextResponse.json({ error: 'not_found', message: 'Edition not found.' }, { status: 404 });
     }
     return NextResponse.json(dossier);
   } catch (error) {
-    console.error(`[catalog] lectura del dossier falló: ${(error as Error).message}`);
+    console.error(`[catalog] dossier read failed: ${(error as Error).message}`);
     return NextResponse.json(
-      { error: 'read_failed', message: 'No se pudo leer el dossier.' },
+      { error: 'read_failed', message: 'Could not read the dossier.' },
       { status: 503 },
     );
   }

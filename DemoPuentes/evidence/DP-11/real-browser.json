@@ -1,0 +1,56 @@
+{
+  "browser": "Chrome via CUA",
+  "origin": "http://localhost:3000",
+  "briefRunId": "4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0",
+  "decisionId": "af10470d-6902-4faf-a87a-75aa511265c4",
+  "originalBriefLink": "/?run=4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0&decision=af10470d-6902-4faf-a87a-75aa511265c4&revision=1&view=campaign",
+  "clipboardEqualsOriginal": true,
+  "clipboardCharacters": 4036,
+  "concurrency": {
+    "firstRevision": 1,
+    "tabASaved": 2,
+    "staleTabBTextAndOwnerPreserved": true,
+    "tabBSavedAfterExplicitRead": 3
+  },
+  "mapComparisonUrl": "http://localhost:3000/?run=683695df-b761-432c-9839-fb2a11f6a8f8",
+  "refreshRunId": "ea8b3034-a82e-4342-a89e-e1c6d1f0f0da",
+  "originalPin": {
+    "revision": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+    "lat": "37.787215024828",
+    "lng": "-122.394478898761"
+  },
+  "newPin": {
+    "revision": "edition-rev-015ab2848e136549a8ea2ab3",
+    "lat": "37.787215024828",
+    "lng": "-122.394478898761"
+  },
+  "reopenedPin": {
+    "revision": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+    "lat": "37.787215024828",
+    "lng": "-122.394478898761"
+  },
+  "realRefreshNote": "Four real public pages read. New revision; venue and coordinates did not physically change. Isolated E2E separately moves the venue.",
+  "copyFailure": "Copy from an unfocused tab was rejected and visibly reported; clipboard unchanged. Active-tab retry matched revision 1 exactly.",
+  "responsive": {
+    "desktop": "1366x900",
+    "mobile": "390x844",
+    "mobileDocumentWidth": 390,
+    "mobileScrollWidth": 390,
+    "checked": "Saved revision 3 and edit form; no further business writes"
+  },
+  "latestLinkFromIndex": "/?run=4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0&decision=af10470d-6902-4faf-a87a-75aa511265c4&revision=3&view=campaign",
+  "clipboardFiles": {
+    "real-clipboard.txt": {
+      "bytes": 4104,
+      "sha256": "b7634bac252efb8881621ddf3214eb0f396fa4509bfe2d1d6c3b262595151d90"
+    },
+    "real-inquiry-clipboard.txt": {
+      "bytes": 4110,
+      "sha256": "ed45b325d1ac0389ee8f7356c8b8251b9c2213969222920fd1d10e20ac1d05f1"
+    },
+    "real-reopened-clipboard.txt": {
+      "bytes": 4104,
+      "sha256": "b7634bac252efb8881621ddf3214eb0f396fa4509bfe2d1d6c3b262595151d90"
+    }
+  }
+}

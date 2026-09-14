@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "--env-file=.env.local",
+    "scripts/smoke-exa-discovery.ts",
+    "../DemoPuentes/evidence/DP-04"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 2.67,
+  "database": "isolated PostgreSQL port 55444"
+}

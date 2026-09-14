@@ -347,7 +347,7 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     assert.equal(berlin?.validity.validity, 'past');
     const roadshow = body.editions.find((edition) => edition.editionId === 'ed-us-roadshow-2027');
     assert.ok(roadshow?.pendingAttributes.includes('city'), 'alcance país: ciudad pendiente');
-    assert.match(String(body.note), /Material sintético etiquetado/);
+    assert.match(String(body.note), /Labeled synthetic material/);
   });
 
   await t.test('dossier de edición: contradicción con ambas revisiones, costo pendiente y fuentes abribles', async () => {
@@ -411,7 +411,7 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     const bDossier = await readOrganizerDossier(appPool, real.tenantId, 'org-mission-ai-b', T1);
     assert.ok(bDossier);
     assert.equal(bDossier.coverage.antecedentsDocumented, 0);
-    assert.match(String(bDossier.coverage.note), /insuficiencia de cobertura/);
+    assert.match(String(bDossier.coverage.note), /insufficient coverage/);
 
     // Dos organizadores comparables con un antecedente documentado cada uno.
     const bay = await readOrganizerDossier(appPool, real.tenantId, 'org-bay-builders', T1);
@@ -454,8 +454,8 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     if (sponsor.outcome.state === 'unknown') assert.match(sponsor.outcome.note, /not evidence of failure/);
   });
 
-  await t.test('research persistido: sin catálogo → null (fixture de 08); con catálogo → candidatos vigentes', async () => {
-    // El tenant señuelo no cargó catálogo: el worker cae al fixture preparado.
+  await t.test('research persistido: sin catálogo → null (cobertura insuficiente); con catálogo → candidatos vigentes', async () => {
+    // El tenant señuelo no cargó catálogo: el worker informa cobertura insuficiente.
     const none = await researchPersistedCatalog(getWorkerPool(), decoy.tenantId, {
       stack: ['python'],
       evaluationInstant: T1,
@@ -475,8 +475,8 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     const bay = research.candidates.find((candidate) => candidate.organizerId === 'org-bay-builders')!;
     assert.ok(bay.matchedAttributes.some((reason) => /python/.test(reason)));
     assert.ok(bay.pending.some((pending) => /costo/.test(pending)));
-    assert.match(research.catalogNote, /sintético/);
-    assert.match(research.catalogNote, /vencieron/);
+    assert.match(research.catalogNote, /synthetic/);
+    assert.match(research.catalogNote, /were already past/);
 
     // Reloj en T3: todo vencido → límite declarado, sin candidatos y sin seeds.
     const expired = await researchPersistedCatalog(getWorkerPool(), real.tenantId, {
@@ -485,7 +485,7 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     });
     assert.ok(expired);
     assert.equal(expired.candidates.length, 0);
-    assert.match(expired.catalogNote, /no se rellena con seeds históricos/);
+    assert.match(expired.catalogNote, /historical seeds do not fill gaps/);
   });
 
   await t.test('tenant señuelo: catálogo vacío por RLS y referencias cruzadas rechazadas', async () => {
@@ -494,7 +494,7 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     assert.equal(listResponse.status, 200);
     const listBody = (await listResponse.json()) as { editions: unknown[]; note: string | null };
     assert.equal(listBody.editions.length, 0);
-    assert.match(String(listBody.note), /No hay catálogo curado/);
+    assert.match(String(listBody.note), /No curated catalog/);
     const editionResponse = await getEdition(
       getRequest('/api/catalog/editions/ed-sf-dev-summit-2027', decoy.token),
       { params: Promise.resolve({ id: 'ed-sf-dev-summit-2027' }) },
@@ -581,7 +581,7 @@ test('curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
     // Catálogo sin opciones vigentes: se declara; los 136 seeds NO aparecen.
     const atT3 = await listCatalogEditions(appPool, real.tenantId, T3);
     assert.equal(atT3.upcomingCount, 0);
-    assert.match(String(atT3.note), /no se rellena con seeds históricos/);
+    assert.match(String(atT3.note), /historical seeds do not fill gaps/);
     assert.equal(atT3.editions.length, 5, 'siguen siendo solo las ediciones curadas');
     assert.ok(atT3.editions.every((edition) => edition.editionId.startsWith('ed-')));
   });

@@ -1,0 +1,109 @@
+{
+  "at": "2026-09-10T23:24:14.901714+00:00",
+  "acceptanceCriteriaVerified": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "regressionTests": 334,
+  "focusedTests": 12,
+  "e2eDistinctChecks": 30,
+  "e2eAccounting": {
+    "existingRegressionPassed": 17,
+    "mapAndBriefFinalPassed": 12,
+    "dp07FinalPassed": 1
+  },
+  "supersededFailures": {
+    "e2e-final": "Legacy WebGL harness, resolved in e2e-map-resolved",
+    "e2e-regression": "17 passed, one legacy WebGL harness failure resolved in e2e-map-resolved",
+    "regression": "Legacy prompt version assertion /2 updated to /3"
+  },
+  "commands": {
+    "regression-final": {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/**/*.test.ts"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 64.97,
+      "database": "isolated PostgreSQL port 55447"
+    },
+    "final-focused": {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/acceptance/explicable-comparison.test.ts",
+        "tests/integration/explicable-comparison.test.ts"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 1.2,
+      "database": "isolated PostgreSQL port 55447"
+    },
+    "browser-final": {
+      "command": [
+        "node",
+        "--test",
+        "tests/e2e/explicable-comparison.spec.ts"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 10.1,
+      "database": "isolated PostgreSQL port 55447"
+    },
+    "e2e-map-resolved": {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/e2e/sf-organizer-research.spec.ts",
+        "tests/e2e/research-brief.spec.ts"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 175.38,
+      "database": "isolated PostgreSQL port 55447"
+    },
+    "build": {
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 8.84,
+      "database": "isolated PostgreSQL port 55447"
+    },
+    "typecheck": {
+      "command": [
+        "pnpm",
+        "exec",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 2.16,
+      "database": "isolated PostgreSQL port 55447"
+    },
+    "lint": {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "cwd": "/tmp/growthx-dp07-production",
+      "exit_code": 0,
+      "duration_seconds": 5.69,
+      "database": "isolated PostgreSQL port 55447"
+    }
+  }
+}

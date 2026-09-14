@@ -1,0 +1,22 @@
+{
+  "DemoPuentes/PuentesHandoff.md": {
+    "before": "8fd61f83345649255b51652d0f21481258c8411e729d55466390c1d1a41cf709",
+    "after": "8fd61f83345649255b51652d0f21481258c8411e729d55466390c1d1a41cf709",
+    "unchanged": true
+  },
+  "DemoPuentes/implementation-plan.md": {
+    "before": "6e7c40b94f52a94d30013163b17c1c438decc02cb39125990c58bf52008368e5",
+    "after": "6e7c40b94f52a94d30013163b17c1c438decc02cb39125990c58bf52008368e5",
+    "unchanged": true
+  },
+  "DemoPuentes/README.md": {
+    "before": "c2f0d0cfb5b7f94842b5422445e2e3204cf603e7c30f81d212c258b6e5e3d8fd",
+    "after": "c2f0d0cfb5b7f94842b5422445e2e3204cf603e7c30f81d212c258b6e5e3d8fd",
+    "unchanged": true
+  },
+  "frontend/app/globals.css": {
+    "before": "66f11f3a9e352777cd5d05e25adf7de53517c0752a173854c3add4e00d0ec802",
+    "after": "66f11f3a9e352777cd5d05e25adf7de53517c0752a173854c3add4e00d0ec802",
+    "unchanged": true
+  }
+}

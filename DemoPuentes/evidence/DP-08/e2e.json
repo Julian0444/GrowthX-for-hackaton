@@ -1,0 +1,10 @@
+{
+  "command": [
+    "pnpm",
+    "test:e2e"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h",
+  "exit_code": 0,
+  "duration_seconds": 166.6,
+  "database": "isolated PostgreSQL port 55448"
+}

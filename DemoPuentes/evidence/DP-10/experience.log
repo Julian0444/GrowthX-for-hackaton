@@ -1,0 +1,118 @@
+$ node --test tests/e2e/research-experience.spec.ts
+(node:46522) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ✖ desktop response, source action and technical disclosure (327.9565ms)
+  ✖ evidence panel preserves map, selection, scroll and keyboard focus (30421.625541ms)
+  ✖ out-of-order polling appends findings without moving cards or selection (1308.283417ms)
+  ✖ mobile retains every action, traps evidence focus and restores selection (30065.447333ms)
+  ✔ empty filters are recoverable; unknown location and contradiction stay explicit (567.453542ms)
+  ✔ provider, map and server failures keep saved findings and allow explicit recovery (1984.510166ms)
+✖ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors (66608.083167ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67042.75175
+
+✖ failing tests:
+
+test at tests/e2e/research-experience.spec.ts:38:11
+✖ desktop response, source action and technical disclosure (327.9565ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Why explore:[\s\S]*Full participation cost is unknown/. Input:
+  
+  'Opportunity · confirm conditions\n' +
+    '1 sources\n' +
+    'Evento a\n' +
+    '\n' +
+    'Oct 1, 2026, 6:00 PM PDT · San Francisco\n' +
+    '\n' +
+    'Why explore: Fit with your brief is still being researched. Inspect the published program and audience.\n' +
+    '\n' +
+    'To confirm: Confirm the proposed activity and the full commercial terms.\n' +
+    '\n' +
+    'Review participation requirements\n' +
+    'Open event ↗\n' +
+    'Show on map\n' +
+    'Compare\n' +
+    '\n' +
+    '● Location announced\n' +
+    '\n' +
+    'Opportunity · confirm conditions\n' +
+    '1 sources\n' +
+    'Evento city\n' +
+    '\n' +
+    'Oct 1, 2026, 6:00 PM PDT · San Francisco\n' +
+    '\n' +
+    'Why explore: Fit with your brief is still being researched. Inspect the published program and audience.\n' +
+    '\n' +
+    'To confirm: Confirm the proposed activity and the full commercial terms.\n' +
+    '\n' +
+    'Review participation requirements\n' +
+    'Open event ↗\n' +
+    'Select event without a point\n' +
+    'Compare\n' +
+    '\n' +
+    'City only · venue pending'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:41:12)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processImmediate (node:internal/timers:472:9)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:38:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Opportunity · confirm conditions\n1 sources\nEvento a\n\nOct 1, 2026, 6:00 PM PDT · San Francisco\n\nWhy explore: Fit with your brief is still being researched. Inspect the published program and audience.\n\nTo confirm: Confirm the proposed activity and the full commercial terms.\n\nReview participation requirements\nOpen event ↗\nShow on map\nCompare\n\n● Location announced\n\nOpportunity · confirm conditions\n1 sources\nEvento city\n\nOct 1, 2026, 6:00 PM PDT · San Francisco\n\nWhy explore: Fit with your brief is still being researched. Inspect the published program and audience.\n\nTo confirm: Confirm the proposed activity and the full commercial terms.\n\nReview participation requirements\nOpen event ↗\nSelect event without a point\nCompare\n\nCity only · venue pending',
+    expected: /Why explore:[\s\S]*Full participation cost is unknown/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/e2e/research-experience.spec.ts:49:11
+✖ evidence panel preserves map, selection, scroll and keyboard focus (30421.625541ms)
+  locator.press: Timeout 30000ms exceeded.
+  Call log:
+    - waiting for getByTestId('sf-edition-list').locator('[data-edition-id="a"]').getByRole('button', { name: 'Review quote requirements' })
+  
+      at TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:52:94)
+      at async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:49:3) {
+    name: 'TimeoutError'
+  }
+
+test at tests/e2e/research-experience.spec.ts:61:11
+✖ out-of-order polling appends findings without moving cards or selection (1308.283417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:66:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:61:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/e2e/research-experience.spec.ts:68:11
+✖ mobile retains every action, traps evidence focus and restores selection (30065.447333ms)
+  locator.click: Timeout 30000ms exceeded.
+  Call log:
+    - waiting for getByTestId('sf-edition-list').locator('[data-edition-id="a"]').getByRole('button', { name: 'Review quote requirements' })
+  
+      at TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:71:71)
+      at async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts:68:3) {
+    name: 'TimeoutError'
+  }
+[ELIFECYCLE] Command failed with exit code 1.

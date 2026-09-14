@@ -1,0 +1,294 @@
+$ node --test tests/e2e/sf-organizer-research.spec.ts && node --test tests/e2e/reopen-evaluation.spec.ts && node --test tests/e2e/persisted-evaluation.spec.ts && node --test tests/e2e/research-brief.spec.ts && node --test tests/e2e/exa-discovery.spec.ts && node --test tests/e2e/source-reading.spec.ts && node --test tests/e2e/relationships.spec.ts && node --test tests/e2e/explicable-comparison.spec.ts
+(node:49737) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ✔ entrada dashboard, sesión y perfil corregible antes de investigar (12215.468208ms)
+  ✔ homónimos independientes y guardado durable sin edición elegible (3527.95475ms)
+  ✖ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (63.414167ms)
+  ✖ logo ambiguo y edición futura fuera de SF no se recomiendan (170.247375ms)
+  ✖ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (63.128459ms)
+  ✖ revisión del perfil, ausencia de coincidencia e importador disponible (2919.089542ms)
+  ✔ sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones (442.386792ms)
+  ✔ matching usa la última revisión y la identidad confirmada, no nombres parecidos (894.202709ms)
+  ✔ error del worker se persiste y aparece en el dashboard (9136.6015ms)
+  ✔ sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global (363.193167ms)
+✖ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales (46647.675875ms)
+ℹ Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+ℹ tests 11
+ℹ suites 0
+ℹ pass 6
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47184.016875
+
+✖ failing tests:
+
+test at tests/e2e/sf-organizer-research.spec.ts:222:11
+✖ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (63.414167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Fuente de prueba/. Input:
+  
+  'ORGANIZER EVIDENCE\n' +
+    'Bay Builders Collective (synthetic)\n' +
+    'Technical identity\n' +
+    '\n' +
+    'Unconfirmed aliases: BayBuilders SF\n' +
+    '\n' +
+    'Identity, experience and open questions\n' +
+    'FOCUS\n' +
+    '\n' +
+    'ai, agents, python, devtools\n' +
+    '\n' +
+    'announced · Scope pending\n' +
+    'Source details\n' +
+    '\n' +
+    'Published community descriptions are not attendance records. The operational contact, actual audience and commercial outcomes remain unverified unless explicitly documented below.\n' +
+    '\n' +
+    'Editions and background\n' +
+    'Berlin Future (synthetic)\n' +
+    '\n' +
+    'Berlin · Dec 1, 2027, 6:00 PM GMT+1\n' +
+    '\n' +
+    'Documented role: Organization listed in this revision\n' +
+    '\n' +
+    'Outside SF or city pending; not a local opportunity\n' +
+    '\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'sin dato de audiencia; no se estima uno\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What audience size and profile can the organizer evidence for this edition?\n' +
+    '\n' +
+    'Format: awaiting evidence.\n' +
+    '\n' +
+    'Builders Night Berlin 2025 (synthetic)\n' +
+    '\n' +
+    'Berlin · Nov 15, 2025, 6:00 PM GMT+1\n' +
+    '\n' +
+    'Documented role: Organization listed in this revision\n' +
+    '\n' +
+    'Past edition · background\n' +
+    '\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'sin dato de audiencia; no se estima uno\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What audience size and profile can the organizer evidence for this edition?\n' +
+    '\n' +
+    'Format: awaiting evidence.\n' +
+    '\n' +
+    'SF Dev Summit 2027 (synthetic)\n' +
+    '\n' +
+    'San Francisco · Mar 10, 2027, 6:00 PM PST\n' +
+    '\n' +
+    'Documented role: Organization listed in this revision\n' +
+    '\n' +
+    'SF edition; review conditions\n' +
+    '\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    '150 asistentes anunciados\n' +
+    '\n' +
+    'contradicted · Scope pending El sitio del organizador anuncia 150 asistentes; el reporte comunitario estima ~60. Discrepancia sin resolver.\n' +
+    'Source details\n' +
+    'Conflicting revisions\n' +
+    '\n' +
+    '150 asistentes anunciados · announced · Sep 8, 2026\n' +
+    '\n' +
+    'Technical reference\n' +
+    'sitio del organizador (synthetic)\n' +
+    'Test source · not a real page.\n' +
+    'Obtained Sep 8, 2026\n' +
+    'Source metadata\n' +
+    '\n' +
+    '150 asistentes anunciados · contradicted · Sep 8, 2026\n' +
+    '\n' +
+    'Technical reference\n' +
+    '\n' +
+    'El sitio del organizador anuncia 150 asistentes; el reporte comunitario estima ~60. Discrepancia sin resolver.\n' +
+    '\n' +
+    'sitio del organizador (synthetic)\n' +
+    'Test source · not a real page.\n' +
+    'Obtained Sep 8, 2026\n' +
+    'Source metadata\n' +
+    'newsletter comunitaria (synthetic)\n' +
+    'Test source · not a real page.\n' +
+    'Obtained Sep 8, 2026\n' +
+    'Source metadata\n' +
+    '\n' +
+    'Which source is right? Ask the organizer to reconcile the conflicting figures before deciding.\n' +
+    '\n' +
+    'Format: awaiting evidence.\n' +
+    '\n' +
+    'Companies → edition → role → source\n' +
+    'QUIVER LABS (SYNTHETIC)\n' +
+    'Company: comp-quiverlabs\n' +
+    '\n' +
+    '→ Builders Night Berlin 2025 (synthetic) → paid_sponsor · reported\n' +
+    '\n' +
+    'Announced: Anunciada como sponsor del track de agentes.\n' +
+    '\n' +
+    'Reported execution: El recap reporta el booth operativo ambos días.\n' +
+    '\n' +
+    'Commercial outcome unknown. Missing data does not establish success or failure.\n' +
+    '\n' +
+    'sitio del sponsor (synthetic)\n' +
+    'Test source · not a real page.\n' +
+    'Obtained Sep 8, 2026\n' +
+    'Source metadata'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:231:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:222:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ORGANIZER EVIDENCE\nBay Builders Collective (synthetic)\nTechnical identity\n\nUnconfirmed aliases: BayBuilders SF\n\nIdentity, experience and open questions\nFOCUS\n\nai, agents, python, devtools\n\nannounced · Scope pending\nSource details\n\nPublished community descriptions are not attendance records. The operational contact, actual audience and commercial outcomes remain unverified unless explicitly documented below.\n\nEditions and background\nBerlin Future (synthetic)\n\nBerlin · Dec 1, 2027, 6:00 PM GMT+1\n\nDocumented role: Organization listed in this revision\n\nOutside SF or city pending; not a local opportunity\n\nAUDIENCE\n\nsin dato de audiencia; no se estima uno\n\nSource details\n\nWhat audience size and profile can the organizer evidence for this edition?\n\nFormat: awaiting evidence.\n\nBuilders Night Berlin 2025 (synthetic)\n\nBerlin · Nov 15, 2025, 6:00 PM GMT+1\n\nDocumented role: Organization listed in this revision\n\nPast edition · background\n\nAUDIENCE\n\nsin dato de audiencia; no se estima uno\n\nSource details\n\nWhat audience size and profile can the organizer evidence for this edition?\n\nFormat: awaiting evidence.\n\nSF Dev Summit 2027 (synthetic)\n\nSan Francisco · Mar 10, 2027, 6:00 PM PST\n\nDocumented role: Organization listed in this revision\n\nSF edition; review conditions\n\nAUDIENCE\n\n150 asistentes anunciados\n\ncontradicted · Scope pending El sitio del organizador anuncia 150 asistentes; el reporte comunitario estima ~60. Discrepancia sin resolver.\nSource details\nConflicting revisions\n\n150 asistentes anunciados · announced · Sep 8, 2026\n\nTechnical reference\nsitio del organizador (synthetic)\nTest source · not a real page.\nObtained Sep 8, 2026\nSource metadata\n\n150 asistentes anunciados · contradicted · Sep 8, 2026\n\nTechnical reference\n\nEl sitio del organizador anuncia 150 asistentes; el reporte comunitario estima ~60. Discrepancia sin resolver.\n\nsitio del organizador (synthetic)\nTest source · not a real page.\nObtained Sep 8, 2026\nSource metadata\nnewsletter comunitaria (synthetic)\nTest source · not a real page.\nObtained Sep 8, 2026\nSource metadata\n\nWhich source is right? Ask the organizer to reconcile the conflicting figures before deciding.\n\nFormat: awaiting evidence.\n\nCompanies → edition → role → source\nQUIVER LABS (SYNTHETIC)\nCompany: comp-quiverlabs\n\n→ Builders Night Berlin 2025 (synthetic) → paid_sponsor · reported\n\nAnnounced: Anunciada como sponsor del track de agentes.\n\nReported execution: El recap reporta el booth operativo ambos días.\n\nCommercial outcome unknown. Missing data does not establish success or failure.\n\nsitio del sponsor (synthetic)\nTest source · not a real page.\nObtained Sep 8, 2026\nSource metadata',
+    expected: /Fuente de prueba/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/e2e/sf-organizer-research.spec.ts:247:11
+✖ logo ambiguo y edición futura fuera de SF no se recomiendan (170.247375ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /no prueba patrocinio pagado/. Input:
+  
+  'ORGANIZER EVIDENCE\n' +
+    'Golden Gate ML Circle (synthetic)\n' +
+    'Technical identity\n' +
+    'Identity, experience and open questions\n' +
+    'FOCUS\n' +
+    '\n' +
+    'ml, data, python\n' +
+    '\n' +
+    'announced · Scope pending\n' +
+    'Source details\n' +
+    '\n' +
+    'Published community descriptions are not attendance records. The operational contact, actual audience and commercial outcomes remain unverified unless explicitly documented below.\n' +
+    '\n' +
+    'Editions and background\n' +
+    'GG ML Night junio 2025 (synthetic)\n' +
+    '\n' +
+    'San Francisco · Jun 12, 2025, 6:00 PM PDT\n' +
+    '\n' +
+    'Documented role: Organization listed in this revision\n' +
+    '\n' +
+    'Past edition · background\n' +
+    '\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'sin dato de audiencia; no se estima uno\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What audience size and profile can the organizer evidence for this edition?\n' +
+    '\n' +
+    'Format: awaiting evidence.\n' +
+    '\n' +
+    'GG ML Night (synthetic)\n' +
+    '\n' +
+    'San Francisco · Oct 1, 2027 · Timezone pending\n' +
+    '\n' +
+    'Documented role: Organization listed in this revision\n' +
+    '\n' +
+    'SF edition; review conditions\n' +
+    '\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'sin dato de audiencia; no se estima uno\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What audience size and profile can the organizer evidence for this edition?\n' +
+    '\n' +
+    'Format: awaiting evidence.\n' +
+    '\n' +
+    'US Builders Roadshow 2027 (synthetic)\n' +
+    '\n' +
+    'United States · May 1, 2027 · Timezone pending\n' +
+    '\n' +
+    'Documented role: Organization listed in this revision\n' +
+    '\n' +
+    'Outside SF or city pending; not a local opportunity\n' +
+    '\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'sin dato de audiencia; no se estima uno\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What audience size and profile can the organizer evidence for this edition?\n' +
+    '\n' +
+    'Format: awaiting evidence.\n' +
+    '\n' +
+    'Companies → edition → role → source\n' +
+    'NIMBUSDB (SYNTHETIC)\n' +
+    'Company: comp-nimbusdb\n' +
+    '\n' +
+    '→ GG ML Night junio 2025 (synthetic) → logo_present · observed\n' +
+    '\n' +
+    'Announced: Unknown\n' +
+    '\n' +
+    'Reported execution: Unknown\n' +
+    '\n' +
+    'Commercial outcome unknown. Missing data does not establish success or failure.\n' +
+    '\n' +
+    'Logo present: does not establish paid sponsorship or commercial success.\n' +
+    '\n' +
+    'galería del evento (synthetic)\n' +
+    'Test source · not a real page.\n' +
+    'Obtained Sep 8, 2026\n' +
+    'Source metadata'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:251:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:247:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ORGANIZER EVIDENCE\nGolden Gate ML Circle (synthetic)\nTechnical identity\nIdentity, experience and open questions\nFOCUS\n\nml, data, python\n\nannounced · Scope pending\nSource details\n\nPublished community descriptions are not attendance records. The operational contact, actual audience and commercial outcomes remain unverified unless explicitly documented below.\n\nEditions and background\nGG ML Night junio 2025 (synthetic)\n\nSan Francisco · Jun 12, 2025, 6:00 PM PDT\n\nDocumented role: Organization listed in this revision\n\nPast edition · background\n\nAUDIENCE\n\nsin dato de audiencia; no se estima uno\n\nSource details\n\nWhat audience size and profile can the organizer evidence for this edition?\n\nFormat: awaiting evidence.\n\nGG ML Night (synthetic)\n\nSan Francisco · Oct 1, 2027 · Timezone pending\n\nDocumented role: Organization listed in this revision\n\nSF edition; review conditions\n\nAUDIENCE\n\nsin dato de audiencia; no se estima uno\n\nSource details\n\nWhat audience size and profile can the organizer evidence for this edition?\n\nFormat: awaiting evidence.\n\nUS Builders Roadshow 2027 (synthetic)\n\nUnited States · May 1, 2027 · Timezone pending\n\nDocumented role: Organization listed in this revision\n\nOutside SF or city pending; not a local opportunity\n\nAUDIENCE\n\nsin dato de audiencia; no se estima uno\n\nSource details\n\nWhat audience size and profile can the organizer evidence for this edition?\n\nFormat: awaiting evidence.\n\nCompanies → edition → role → source\nNIMBUSDB (SYNTHETIC)\nCompany: comp-nimbusdb\n\n→ GG ML Night junio 2025 (synthetic) → logo_present · observed\n\nAnnounced: Unknown\n\nReported execution: Unknown\n\nCommercial outcome unknown. Missing data does not establish success or failure.\n\nLogo present: does not establish paid sponsorship or commercial success.\n\ngalería del evento (synthetic)\nTest source · not a real page.\nObtained Sep 8, 2026\nSource metadata',
+    expected: /no prueba patrocinio pagado/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/e2e/sf-organizer-research.spec.ts:258:11
+✖ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (63.128459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:262:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:258:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/e2e/sf-organizer-research.spec.ts:273:11
+✖ revisión del perfil, ausencia de coincidencia e importador disponible (2919.089542ms)
+  locator.innerText: Error: strict mode violation: locator('main') resolved to 2 elements:
+      1) <main class="relative h-svh w-full overflow-hidden">…</main> aka getByRole('main').filter({ hasText: 'Skip to researchGrowth' })
+      2) <main tabindex="-1" id="research-main" class="research-main">…</main> aka locator('#research-main')
+  
+  Call log:
+    - waiting for locator('main')
+  
+      at TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:287:45)
+      at async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts:273:3)
+[ELIFECYCLE] Command failed with exit code 1.

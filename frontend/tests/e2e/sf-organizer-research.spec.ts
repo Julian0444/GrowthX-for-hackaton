@@ -13,6 +13,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import pg from 'pg';
 import { chromium } from 'playwright';
+import { CONTROLLED_MAP_STYLE } from '../fixtures/sf-map.ts';
 import { hashSessionToken } from '../../lib/server/auth/session.ts';
 import { runMigrations } from '../../lib/server/db/migrate.ts';
 import { closePools, getAppPool, withTenantTransaction } from '../../lib/server/db/pool.ts';
@@ -109,7 +110,7 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
   const port = await freePort(), base = `http://127.0.0.1:${port}`;
   const next = processRunner([path.join(FRONTEND,'node_modules/next/dist/bin/next'), 'dev', '--webpack', '--hostname', '127.0.0.1', '--port', String(port)], temp);
   let worker: ReturnType<typeof processRunner> | null = null;
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ channel: 'chrome', headless: true });
   t.after(async () => {
     await browser.close();
     if (worker) await stop(worker.child);
@@ -117,7 +118,7 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     await closePools();
     // Solo filas de los tenants creados por esta prueba (sin tocar el tenant dev).
     for (const seeded of [tenant, decoy]) {
-      for (const table of ['organizer_research','run_logs','run_steps','runs','profiles','claim_revision_sources','claim_revisions','claims','participation_revisions','participations','edition_revisions','event_editions','organizer_revisions','organizers','sources','companies','catalog_loads','sessions','memberships'])
+      for (const table of ['organizer_research','discovery_operations','discovery_runs','run_logs','run_steps','runs','profiles','claim_revision_sources','claim_revisions','claims','participation_revisions','participations','edition_revisions','event_editions','organizer_revisions','organizers','sources','companies','catalog_loads','sessions','memberships'])
         await admin.query(`delete from growthx.${table} where tenant_id=$1`, [seeded.tenantId]);
       await admin.query('delete from growthx.tenants where id=$1', [seeded.tenantId]);
       await admin.query('delete from growthx.app_users where id=$1', [seeded.userId]);
@@ -136,6 +137,7 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
   page.on('pageerror', e => errors.push(e.message));
   await context.route('**/*', route => {
     const url = route.request().url();
+    if (url.startsWith('https://tiles.openfreemap.org/')) return route.fulfill({ json: CONTROLLED_MAP_STYLE });
     if (/\/api\/opportunities\/search|api\.exa|apify|generativelanguage/.test(url)) { globalCalls.push(url); return route.abort(); }
     return route.continue();
   });
@@ -155,22 +157,26 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     await page.goto(base);
     await page.getByTestId('research-coverage').waitFor();
     assert.equal(await page.getByTestId('sf-map').count(), 0);
-    for (const label of ['Resumen','Organizadores','Eventos','Decisiones','Perfil']) assert.equal(await page.getByRole('navigation').getByRole('button', { name: label, exact: true }).count(), 1);
-    await nav('Perfil');
-    await page.getByLabel('Producto', { exact: true }).fill('Herramienta para equipos que construyen agentes');
-    await page.getByLabel('Audiencia', { exact: true }).fill('Audiencia inicial a corregir');
-    await page.getByLabel('Stack y temas').fill('python, agents');
-    await page.getByRole('button', { name: 'Feedback técnico', exact: true }).click();
-    await page.getByLabel('Nombre de empresa comparable').fill('Quiver Labs');
-    await page.getByRole('button', { name: 'Agregar empresa', exact: true }).click();
-    await page.getByLabel('Identidad de Quiver Labs', { exact: true }).selectOption('comp-quiverlabs');
-    await page.getByRole('button', { name: 'Revisar interpretación', exact: true }).click();
+    for (const label of ['Research','Organizers','Events','Decisions','Brief']) assert.equal(await page.getByRole('navigation').getByRole('button', { name: label, exact: true }).count(), 1);
+    await nav('Brief');
+    await page.getByLabel('Product', { exact: true }).fill('Herramienta para equipos que construyen agentes');
+    await page.getByLabel('Audience', { exact: true }).fill('Audiencia inicial a corregir');
+    await page.getByLabel('Stack and topics').fill('python, agents');
+    await page.getByRole('button', { name: 'Technical feedback', exact: true }).click();
+    await page.getByLabel('Comparable company name').fill('Quiver Labs');
+    await page.getByRole('button', { name: 'Add company', exact: true }).click();
+    await page.getByLabel('Identity of Quiver Labs', { exact: true }).selectOption('comp-quiverlabs');
+    await page.getByRole('button', { name: 'Review brief', exact: true }).click();
     assert.match(await page.getByTestId('profile-review').innerText(), /comp-quiverlabs/);
     assert.equal((await context.request.get(`${base}/api/evaluations`).then(r => r.json())).runs.length, 0);
-    await page.getByRole('button', { name: 'Corregir interpretación' }).click();
-    await page.getByLabel('Audiencia', { exact: true }).fill('Equipos backend que construyen agentes');
-    await page.getByRole('button', { name: 'Revisar interpretación', exact: true }).click();
-    await page.getByRole('button', { name: 'Confirmar e investigar SF' }).click();
+    await page.getByRole('button', { name: 'Edit interpretation' }).click();
+    await page.getByLabel('Audience', { exact: true }).fill('Equipos backend que construyen agentes');
+    await page.getByRole('button', { name: 'Review brief', exact: true }).click();
+    // Compatibility of saved sf-organizers/1 runs. The primary form now
+    // launches Exa; exa-discovery.spec.ts verifies that unmodified request.
+    const legacy = await context.request.post(`${base}/api/evaluations`, { data: researchBody({ product:'Herramienta para equipos que construyen agentes', audienceDescription:'Equipos backend que construyen agentes', stack:['python','agents'], comparableCompanies:[{ name:'Quiver Labs (synthetic)', companyId:'comp-quiverlabs', relation:'comparable', confirmation:'confirmed' }] }) });
+    assert.equal(legacy.status(),202,await legacy.text()); firstId=(await legacy.json()).runId;
+    await page.goto(`${base}/?run=${firstId}`);
     await page.getByTestId('run-progress').waitFor();
     firstId = new URL(page.url()).searchParams.get('run')!;
     assert.ok(firstId);
@@ -184,7 +190,7 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     assert.equal((await readRun(firstId)).state, 'queued');
     worker = processRunner(['worker/index.ts'], FRONTEND);
     firstRun = await complete(firstId);
-    await nav('Organizadores');
+    await nav('Organizers');
     await page.locator('[data-organizer-id="org-bay-builders"]').waitFor();
     assert.equal((firstRun.result as SfResearchResult).coverage.matched, 4);
     await capture('organizers');
@@ -197,41 +203,41 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     assert.equal(await a.count(), 1); assert.equal(await b.count(), 1);
     assert.match(await a.innerText(), /Sin edición futura/);
     const savingResponse = page.waitForResponse(r => r.url().endsWith(`/api/evaluations/${firstId}/organizers/org-mission-ai-a`) && r.request().method() === 'POST');
-    await a.getByRole('button', { name: 'Guardar para investigar', exact: true }).click();
+    await a.getByRole('button', { name: 'Save for research', exact: true }).click();
     const saveReply = await savingResponse;
     assert.equal(saveReply.status(), 200, await saveReply.text());
-    await a.getByRole('button', { name: 'Guardado · investigación pendiente', exact: true }).waitFor();
+    await a.getByRole('button', { name: 'Saved for research', exact: true }).waitFor();
     const saved = await context.request.post(`${base}/api/evaluations/${firstId}/organizers/org-mission-ai-a`, { data: {} });
     assert.equal(saved.status(), 200);
     assert.equal((await admin.query('select count(*)::int as n from growthx.organizer_research where tenant_id=$1 and run_id=$2', [tenant.tenantId,firstId])).rows[0].n, 1);
-    await page.reload(); await nav('Organizadores');
-    await page.locator('[data-organizer-id="org-mission-ai-a"]').getByRole('button', { name: 'Guardado · investigación pendiente', exact: true }).waitFor();
+    await page.reload(); await nav('Organizers');
+    await page.locator('[data-organizer-id="org-mission-ai-a"]').getByRole('button', { name: 'Saved for research', exact: true }).waitFor();
     assert.equal((await readRun(firstId)).savedOrganizers[0].state, 'pending_research');
-    await page.locator('[data-organizer-id="org-mission-ai-b"]').getByRole('button', { name: 'Abrir expediente' }).click();
+    await page.locator('[data-organizer-id="org-mission-ai-b"]').getByRole('button', { name: 'Open organizer evidence' }).click();
     const dossier = page.getByTestId('organizer-dossier');
     assert.doesNotMatch(await dossier.innerText(), /Quiver Labs|Berlin 2025/);
-    await nav('Organizadores');
+    await nav('Organizers');
   });
 
   await t.test('razones → expediente → empresa → edición → rol → fuente; resultado desconocido', async () => {
     const bay = page.locator('[data-organizer-id="org-bay-builders"]');
     assert.match(await bay.innerText(), /comp|Quiver/);
-    await bay.getByRole('button', { name: 'Abrir expediente' }).click();
+    await bay.getByRole('button', { name: 'Open organizer evidence' }).click();
     const dossier = page.getByTestId('organizer-dossier');
     assert.match(await dossier.innerText(), /Berlin/);
-    assert.match(await dossier.innerText(), /Resultado comercial desconocido/);
+    assert.match(await dossier.innerText(), /Commercial outcome unknown/);
     assert.equal(await dossier.locator('a[href="https://quiverlabs.example/events"]').count(), 0);
     assert.match(await dossier.innerText(), /sitio del sponsor \(synthetic\)/);
-    assert.match(await dossier.innerText(), /Fuente de prueba/);
+    assert.match(await dossier.innerText(), /Test source/);
     await dossier.locator('[data-participation-id="part-quiver-berlin"]').getByRole('button').click();
     const event = page.getByTestId('edition-dossier');
     assert.match(await event.innerText(), /Berlin/); assert.match(await event.innerText(), /paid_sponsor/);
-    assert.equal(await event.getByRole('link', { name: 'Abrir listado de la edición' }).count(), 0);
-    assert.match(await event.innerText(), /Listado de prueba/);
+    assert.equal(await event.getByRole('link', { name: 'Open event listing' }).count(), 0);
+    assert.match(await event.innerText(), /Test listing/);
     assert.equal(await page.getByTestId('sf-map').count(), 0);
-    await nav('Organizadores');
-    await page.locator('[data-organizer-id="org-bay-builders"]').getByRole('button', { name: /Ver edición futura de SF/ }).click();
-    assert.match(await page.getByTestId('edition-dossier').innerText(), /Revisiones en contradicción/);
+    await nav('Organizers');
+    await page.locator('[data-organizer-id="org-bay-builders"]').getByRole('button', { name: /Explore future SF edition/ }).click();
+    assert.match(await page.getByTestId('edition-dossier').innerText(), /Conflicting revisions/);
     assert.match(await page.getByTestId('edition-dossier').innerText(), /150/);
     assert.match(await page.getByTestId('edition-dossier').innerText(), /60/);
     await capture('dossier');
@@ -239,10 +245,10 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
   });
 
   await t.test('logo ambiguo y edición futura fuera de SF no se recomiendan', async () => {
-    await nav('Organizadores');
-    await page.locator('[data-organizer-id="org-gg-ml"]').getByRole('button', { name: 'Abrir expediente' }).click();
+    await nav('Organizers');
+    await page.locator('[data-organizer-id="org-gg-ml"]').getByRole('button', { name: 'Open organizer evidence' }).click();
     assert.match(await page.getByTestId('organizer-dossier').innerText(), /logo_present/);
-    assert.match(await page.getByTestId('organizer-dossier').innerText(), /no prueba patrocinio pagado/);
+    assert.match(await page.getByTestId('organizer-dossier').innerText(), /does not establish paid sponsorship/);
     const result = firstRun.result as SfResearchResult;
     assert.equal(result.candidates.flatMap(c => c.futureSfEditionIds).includes('ed-berlin-future'), false);
     assert.equal(result.candidates.flatMap(c => c.futureSfEditionIds).includes('ed-us-roadshow-2027'), false);
@@ -250,41 +256,43 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
   });
 
   await t.test('Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida', async () => {
-    await nav('Eventos');
+    await nav('Events');
     const identities = () => page.getByTestId('sf-edition-list').locator('[data-edition-id]').evaluateAll(elements => elements.map(e => [e.getAttribute('data-edition-id'), e.getAttribute('data-source-ids')]));
-    const list = await identities(); assert.equal(list.length, 3);
-    assert.equal(await page.getByTestId('sf-map').count(), 0);
-    await page.getByRole('button', { name: 'Mapa', exact: true }).click();
+    const list = await identities(); assert.deepEqual(list.map(e => e[0]).sort(), (firstRun.result as SfResearchResult).editions.map(e => e.editionId).sort());
+    assert.equal(await page.getByTestId('sf-map').count(), 1, 'desktop starts with the connected map');
+    await page.getByRole('button', { name: 'Map', exact: true }).click();
     assert.deepEqual(await identities(), list);
+    await page.locator('[data-map-state="ready"]').waitFor().catch(async error => { throw new Error(`${error.message} · ${await page.getByTestId('sf-map').innerText()} · ${errors.join('; ')}`); });
     await capture('map');
     assert.equal(await page.locator('[data-point-edition-id="ed-sf-dev-summit-2027"]').count(), 1);
     assert.equal(await page.locator('[data-point-edition-id="ed-ml-night-2026"]').count(), 0, 'sin fuente urbana no se inventa punto');
     assert.equal(await page.locator('[data-point-edition-id="ed-berlin-future"]').count(), 0);
-    await page.getByRole('button', { name: 'Lista', exact: true }).click(); assert.deepEqual(await identities(), list);
+    await page.getByRole('button', { name: 'List', exact: true }).click(); assert.deepEqual(await identities(), list);
   });
 
   await t.test('revisión del perfil, ausencia de coincidencia e importador disponible', async () => {
-    await nav('Perfil');
-    await page.getByLabel('Stack y temas').fill('cobol');
-    await page.getByLabel('Audiencia', { exact: true }).fill('Ejecutivos bancarios');
-    await page.getByRole('button', { name: 'Quitar empresa' }).click();
+    await nav('Brief');
+    await page.getByLabel('Stack and topics').fill('cobol');
+    await page.getByLabel('Audience', { exact: true }).fill('Ejecutivos bancarios');
+    await page.getByRole('button', { name: 'Remove company' }).click();
     await capture('profile');
-    await page.getByRole('button', { name: 'Revisar interpretación', exact: true }).click();
-    await page.getByRole('button', { name: 'Confirmar e investigar SF' }).click();
-    const secondId = await eventually(async () => { const id = new URL(page.url()).searchParams.get('run'); return id && id !== firstId ? id : null; }, 'nueva revisión');
+    await page.getByRole('button', { name: 'Review brief', exact: true }).click();
+    const accepted = await context.request.post(`${base}/api/evaluations`, { data:{...researchBody({product:firstRun.profile.product,stack:['cobol'],audienceDescription:'Ejecutivos bancarios'}),previousRunId:firstId} });
+    assert.equal(accepted.status(),202); const secondId=(await accepted.json()).runId;
+    await page.goto(`${base}/?run=${secondId}`);
     const revised = await complete(secondId);
     assert.equal(revised.previousRunId, firstId); assert.equal(revised.profile.profileVersion, 2);
     assert.equal((revised.result as SfResearchResult).candidates.length, 0);
     await page.getByLabel('Luma event URL').waitFor();
-    assert.match(await page.locator('main').innerText(), /límite del catálogo/);
+    assert.match(await page.locator('main').innerText(), /catálogo|catalog/);
     assert.deepEqual((await readRun(firstId)).result, firstRun.result, 'la revisión no reescribe la investigación anterior');
     const lineages = await admin.query('select lineage_id, version from growthx.profiles where tenant_id=$1 order by version', [tenant.tenantId]);
     assert.deepEqual(lineages.rows.map(r => r.version), [1,2]); assert.equal(lineages.rows[0].lineage_id, lineages.rows[1].lineage_id);
     // Ticket 13: la sección Decisiones dejó de ser un placeholder — ahora
     // explica que la decisión se registra sobre el panel de la comparación.
-    await nav('Decisiones'); assert.match(await page.locator('main').innerText(), /se registran sobre el panel de una comparación/);
+    await nav('Decisions'); assert.match(await page.locator('main').innerText(), /comparison/);
     assert.equal(await page.getByTestId('sf-map').count(), 0);
-    await nav('Resumen'); await page.getByRole('button', { name: firstRun.profile.product, exact: true }).first().waitFor();
+    await nav('Research'); await page.getByRole('button', { name: firstRun.profile.product, exact: true }).first().waitFor();
   });
 
   await t.test('sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones', async () => {
@@ -332,8 +340,8 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     assert.equal(failed.steps.find(s => s.name === 'research_catalog')?.attempts, 4);
     await page.goto(`${base}/?run=${id}`);
     await page.getByTestId('run-progress').waitFor();
-    await eventually(async () => (await page.getByTestId('run-progress').innerText()).includes('Fallido') ? true : null, 'error visible');
-    assert.match(await page.getByTestId('run-progress').innerText(), /inválido/);
+    await eventually(async () => (await page.getByTestId('run-progress').innerText()).includes('Interrupted') ? true : null, 'error visible');
+    await page.getByText('Technical details',{exact:true}).click(); assert.match(await page.getByTestId('run-progress').innerText(), /inválido/);
     assert.equal(await page.getByTestId('sf-map').count(), 0);
   });
 
@@ -345,7 +353,7 @@ test('SF: dashboard y organizadores con navegador, PostgreSQL y worker reales', 
     assert.match(result.catalogNote, /No hay catálogo/);
     assert.deepEqual(globalCalls, []); assert.deepEqual(errors, []);
     const screenshot = process.env.GROWTHX_E2E_SCREENSHOT;
-    if (screenshot) { await nav('Perfil'); await page.screenshot({ path: screenshot, fullPage: true }); }
+    if (screenshot) { await nav('Brief'); await page.screenshot({ path: screenshot, fullPage: true }); }
   });
   t.diagnostic(`Next real y worker real; ${globalCalls.length} llamadas al pipeline global. Catálogo sintético explícito.`);
 });

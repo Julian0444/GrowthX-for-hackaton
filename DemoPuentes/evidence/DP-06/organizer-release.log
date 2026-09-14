@@ -1,0 +1,25 @@
+(node:61669) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ✔ entrada dashboard, sesión y perfil corregible antes de investigar (9578.799375ms)
+  ✔ homónimos independientes y guardado durable sin edición elegible (3574.68425ms)
+  ✔ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (4688.558875ms)
+  ✔ logo ambiguo y edición futura fuera de SF no se recomiendan (1030.972917ms)
+  ✔ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (960.891792ms)
+  ✔ revisión del perfil, ausencia de coincidencia e importador disponible (3071.892583ms)
+  ✔ sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones (536.439791ms)
+  ✔ matching usa la última revisión y la identidad confirmada, no nombres parecidos (740.279667ms)
+  ✔ error del worker se persiste y aparece en el dashboard (8830.892875ms)
+  ✔ sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global (197.9425ms)
+✔ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales (38640.325792ms)
+ℹ Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39091.504959

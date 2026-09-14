@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/e2e/source-reading.spec.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 14.26,
+  "database": "isolated PostgreSQL port 55445"
+}

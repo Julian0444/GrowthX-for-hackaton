@@ -1,0 +1,80 @@
+(node:42564) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-08 durable location evidence and current consumers
+  ✔ complete address persists query, provider, interpolated accuracy, date, original claims and UI point (0.485584ms)
+  ✔ replay after commit and new DB connection keep ids and avoid another call (17.011208ms)
+  ✔ same normalized query/source version cache survives independent run, while new source version makes a request (39.880667ms)
+  ✔ new address creates a revision; saved snapshot consumers retain original position and source (161.06575ms)
+  ✔ published source coordinates make zero geocoder calls; city, hidden, street and invalid coordinates stay in list (333.0585ms)
+  ✔ provider failure is persisted and replayed; the existing worker still completes the research run (109.556833ms)
+  ✔ street-capable adapter represents one match only as approximate; multiple matches stay pending (154.876208ms)
+  ✔ tenant isolation, aggregate allowance and crash reservation prevent leaks or duplicate starts (23.491084ms)
+✔ DP-08 durable location evidence and current consumers (1074.076542ms)
+(node:42565) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada (8.357459ms)
+  ✔ profileRunId de otro tenant → 400 (RLS: no existe para esta sesión) (3.877584ms)
+  ✔ HTML completo: 202 → obtención en el worker → dossier durable con claims (155.060292ms)
+  ✔ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (289.934208ms)
+  ✔ duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo (11.90425ms)
+  ✔ HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed (111.885958ms)
+  ✔ redirección dentro de la allowlist: se valida y se sigue (99.614417ms)
+  ✔ redirección fuera de la allowlist: fallo con URL solicitada, intento y causa (110.077208ms)
+  ✔ límite de tamaño: la descarga se corta y el run falla con causa visible (51.307291ms)
+  ✔ timeout: la obtención vence y el run falla con causa visible (235.91725ms)
+  ✔ prompt injection en la descripción: texto de la fuente = dato, jamás instrucción (73.815958ms)
+  ✖ identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad (66.621875ms)
+  ✔ reanudación idempotente: repetir persist_dossier no duplica material (6.635417ms)
+✖ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales) (1390.693958ms)
+(node:42566) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery
+  ✔ DP-04 proposed source is read in its tenant/run; new full evidence does not rewrite the search source or invent entities (308.509333ms)
+  ✔ rich source persists exact fragments, contradicted dates and public location; fresh DB connection reads identical evidence (182.422333ms)
+  ✔ a sparse new page keeps prior supported attributes, public address and revision IDs (64.124625ms)
+  ✔ published venue coordinates without city remain usable under the DP-03 venue scope (108.964209ms)
+  ✔ cache reuse retains fetchedAt, failure retains stale evidence, and caches cannot cross tenants (50.904708ms)
+  ✔ Actor run ID survives actual SIGKILL; restarted client polls exactly that Actor and retains a partial failed dataset (221.050708ms)
+  ✔ unknown Actor start response is never repeated; reservation survives and provider secrets are not logged (16.065666ms)
+  ✔ global budget caps concurrent runs across tenants; no per-session reset; missing key consumes nothing (23.851083ms)
+✔ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery (1058.340417ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 30
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1650.459375
+
+✖ failing tests:
+
+test at tests/integration/luma-dossier.test.ts:618:11
+✖ identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad (66.621875ms)
+  AssertionError [ERR_ASSERTION]: una revisión NUEVA encadenada, no otra identidad
+  
+  3 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts:673:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts:618:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

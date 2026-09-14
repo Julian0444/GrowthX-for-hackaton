@@ -1,0 +1,228 @@
+TAP version 13
+# (node:64184) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP06 browser: controlled sources -> organizer -> previous edition -> company/project -> evidence
+ok 1 - DP06 browser: controlled sources -> organizer -> previous edition -> company/project -> evidence
+  ---
+  duration_ms: 8112.638833
+  type: 'test'
+  ...
+# controlled: event -> organizer -> previous edition -> company/project -> exact relationship fragments; reload and mobile; no paid providers.
+# (node:64503) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+    # Subtest: guardar una elección condicional, ver su campaña y copiar el enlace interno
+    ok 1 - guardar una elección condicional, ver su campaña y copiar el enlace interno
+      ---
+      duration_ms: 7536.118833
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+    ok 2 - reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+      ---
+      duration_ms: 10045.934416
+      type: 'test'
+      ...
+    # Subtest: navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+    ok 3 - navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+      ---
+      duration_ms: 42947.81975
+      type: 'test'
+      ...
+    # Subtest: lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+    ok 4 - lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+      ---
+      duration_ms: 4640.736375
+      type: 'test'
+      ...
+    # Subtest: vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+    ok 5 - vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+      ---
+      duration_ms: 2903.345417
+      type: 'test'
+      ...
+    # Subtest: reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+    ok 6 - reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+      ---
+      duration_ms: 5236.786708
+      type: 'test'
+      ...
+    # Subtest: un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+    ok 7 - un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+      ---
+      duration_ms: 1284.387583
+      type: 'test'
+      ...
+    # Subtest: dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+    ok 8 - dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+      ---
+      duration_ms: 2493.148
+      type: 'test'
+      ...
+    1..8
+ok 2 - SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ---
+  duration_ms: 86017.690958
+  type: 'test'
+  ...
+# Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+# (node:66233) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+not ok 3 - DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+  ---
+  duration_ms: 13851.060917
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts:74:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    locator.waitFor: Error: strict mode violation: getByTestId('saved-brief-questions') resolved to 2 elements:
+        1) <details data-testid="saved-brief-questions">…</details> aka getByTestId('research-technical').getByTestId('saved-brief-questions')
+        2) <details data-testid="saved-brief-questions">…</details> aka getByText('Saved questions · brief v1¿Qu')
+    
+    Call log:
+      - waiting for getByTestId('saved-brief-questions') to be visible
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts:121:153)
+  ...
+# (node:66446) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+    # Subtest: desktop response, source action and technical disclosure
+    ok 1 - desktop response, source action and technical disclosure
+      ---
+      duration_ms: 713.119333
+      type: 'test'
+      ...
+    # Subtest: evidence panel preserves map, selection, scroll and keyboard focus
+    ok 2 - evidence panel preserves map, selection, scroll and keyboard focus
+      ---
+      duration_ms: 168.025125
+      type: 'test'
+      ...
+    # Subtest: out-of-order polling appends findings without moving cards or selection
+    ok 3 - out-of-order polling appends findings without moving cards or selection
+      ---
+      duration_ms: 794.975667
+      type: 'test'
+      ...
+    # Subtest: mobile retains every action, traps evidence focus and restores selection
+    ok 4 - mobile retains every action, traps evidence focus and restores selection
+      ---
+      duration_ms: 244.843416
+      type: 'test'
+      ...
+    # Subtest: empty filters are recoverable; unknown location and contradiction stay explicit
+    ok 5 - empty filters are recoverable; unknown location and contradiction stay explicit
+      ---
+      duration_ms: 497.420208
+      type: 'test'
+      ...
+    # Subtest: provider, map and server failures keep saved findings and allow explicit recovery
+    ok 6 - provider, map and server failures keep saved findings and allow explicit recovery
+      ---
+      duration_ms: 1998.259
+      type: 'test'
+      ...
+    1..6
+ok 4 - DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ---
+  duration_ms: 5761.802375
+  type: 'test'
+  ...
+# (node:66563) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+    # Subtest: same filtered set, published location, source link, selection and dossier by keyboard
+    ok 1 - same filtered set, published location, source link, selection and dossier by keyboard
+      ---
+      duration_ms: 1323.807708
+      type: 'test'
+      ...
+    # Subtest: new result updates markers without replacing map or recentering; same venue identities remain distinct
+    ok 2 - new result updates markers without replacing map or recentering; same venue identities remain distinct
+      ---
+      duration_ms: 3882.336666
+      type: 'test'
+      ...
+    # Subtest: mobile switches list/map without losing selection or map, with filters and zero points
+    ok 3 - mobile switches list/map without losing selection or map, with filters and zero points
+      ---
+      duration_ms: 604.725875
+      type: 'test'
+      ...
+    # Subtest: run change and unmount remove old markers/listeners; no catalog leakage
+    ok 4 - run change and unmount remove old markers/listeners; no catalog leakage
+      ---
+      duration_ms: 2516.408166
+      type: 'test'
+      ...
+    # Subtest: snapshot geography and dossier remain old; current data requires a separate view
+    ok 5 - snapshot geography and dossier remain old; current data requires a separate view
+      ---
+      duration_ms: 1563.465084
+      type: 'test'
+      ...
+    # Subtest: style failure preserves mobile list and can recover
+    ok 6 - style failure preserves mobile list and can recover
+      ---
+      duration_ms: 1221.151042
+      type: 'test'
+      ...
+    # Subtest: tiles failure preserves mobile list and can recover
+    ok 7 - tiles failure preserves mobile list and can recover
+      ---
+      duration_ms: 1294.394875
+      type: 'test'
+      ...
+    # Subtest: WebGL context loss exposes the list and retry creates one new map
+    ok 8 - WebGL context loss exposes the list and retry creates one new map
+      ---
+      duration_ms: 127.929042
+      type: 'test'
+      ...
+    # Subtest: WebGL initialization failure leaves usable list
+    ok 9 - WebGL initialization failure leaves usable list
+      ---
+      duration_ms: 352.438292
+      type: 'test'
+      ...
+    1..9
+ok 5 - DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ---
+  duration_ms: 14111.669208
+  type: 'test'
+  ...
+# Owned Next and Chrome closed.
+# (node:66777) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/source-reading.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile
+ok 6 - DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile
+  ---
+  duration_ms: 6698.588
+  type: 'test'
+  ...
+# Controlled HTML; real PostgreSQL, queue, worker, Next and Chromium. Audience/sponsor/address fragments, both dates, same revision after reload, tenant 404 and no mobile overflow. No paid providers.
+1..6
+# tests 29
+# suites 0
+# pass 28
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 137420.349625

@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from 'next'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import './globals.css'
+import '../components/research-dashboard/sf-event-map.css'
+import '../components/research-dashboard/research-experience.css'
 
 export const metadata: Metadata = {
   title: 'GrowXth — Developer Growth Intelligence',

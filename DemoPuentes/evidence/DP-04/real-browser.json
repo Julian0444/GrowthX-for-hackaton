@@ -1,0 +1,13 @@
+{
+  "runId": "d90a63c5-9dd6-4486-ab8b-e29e45be31f9",
+  "production": true,
+  "pages": 5,
+  "viewports": [
+    "1366x900",
+    "390x844"
+  ],
+  "sameSourceIdsAfterClosingTab": true,
+  "providerCallsBeforeAndAfter": 1,
+  "reportedCostUsd": 0.007,
+  "pageErrors": []
+}

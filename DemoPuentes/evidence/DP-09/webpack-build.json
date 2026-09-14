@@ -1,0 +1,13 @@
+{
+  "command": [
+    "pnpm",
+    "build",
+    "--webpack"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-p9yxxq3r/frontend",
+  "databasePort": 55459,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 0,
+  "durationSeconds": 19.68
+}

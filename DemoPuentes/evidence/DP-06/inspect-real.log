@@ -1,0 +1,118 @@
+{
+  "runId": "e17896a7-fffa-44ff-975f-ab4c38701482",
+  "result": {
+    "kind": "background_research",
+    "status": "partial",
+    "version": 1,
+    "material": "imported",
+    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+    "limitations": [
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase: La página respondió 403",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo: La página respondió 403",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk: La página respondió 403",
+      "https://sf.aitinkerers.org/organizers: La página respondió 403"
+    ],
+    "sourceCount": 2,
+    "organizerIds": [
+      "organizer-c65ea5ee11a9e13d7a13bd36"
+    ],
+    "attemptedUrls": [
+      "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "https://sf.aitinkerers.org/organizers"
+    ],
+    "editionRevisionIds": [
+      "edition-rev-56861c94c5a23a386c6659a6-geo",
+      "edition-rev-f97bd76c9603e5a6b47ac24c-geo"
+    ]
+  },
+  "pages": [
+    {
+      "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "contextBlocks": 101,
+      "truncated": false,
+      "orgAttr": [
+        {
+          "note": null,
+          "value": {
+            "kind": "text",
+            "text": "AI Tinkerers - San Francisco"
+          },
+          "status": "announced",
+          "attribute": "organizer",
+          "fragmentIds": [
+            "fragment-63570ff0e6d5bac8"
+          ]
+        }
+      ],
+      "identity": [
+        {
+          "text": "Part of a global AI Tinkerers hackathon",
+          "heading": "",
+          "locator": "HTML line 2449"
+        },
+        {
+          "text": "On Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day.",
+          "heading": "A global hackathon with OpenAI",
+          "locator": "HTML line 2602"
+        },
+        {
+          "text": "This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.",
+          "heading": "Who should come",
+          "locator": "HTML line 2746"
+        }
+      ],
+      "links": []
+    },
+    {
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "contextBlocks": 86,
+      "truncated": false,
+      "orgAttr": [
+        {
+          "note": null,
+          "value": {
+            "kind": "text",
+            "text": "AI Tinkerers - San Francisco"
+          },
+          "status": "announced",
+          "attribute": "organizer",
+          "fragmentIds": [
+            "fragment-63570ff0e6d5bac8"
+          ]
+        }
+      ],
+      "identity": [
+        {
+          "text": "AI Tinkerers SF - Secure Agents Buildathon",
+          "heading": "AI Tinkerers SF - Secure Agents Buildathon",
+          "locator": "HTML line 2465"
+        },
+        {
+          "text": "This is not a theory day. No slide decks. No hand-wavy security talk. You’ll spend the day building production-minded agents with other vetted AI Tinkerers who care about robustness, safe execution, permissioning, data boundaries, and real-world failure modes.",
+          "heading": "Event Overview",
+          "locator": "HTML line 2520"
+        },
+        {
+          "text": "We’re giving the AI Tinkerers Community free trial access to Google Cloud’s cutting-edge AI tools to power your hackathon projects.",
+          "heading": "Start building now!",
+          "locator": "HTML line 2596"
+        },
+        {
+          "text": "Subscribe to AI Tinkerers - San Francisco",
+          "heading": "Subscribe to AI Tinkerers - San Francisco",
+          "locator": "HTML line 3677"
+        },
+        {
+          "text": "You are subscribed to AI Tinkerers - San Francisco preferences",
+          "heading": "Subscribe to AI Tinkerers - San Francisco",
+          "locator": "HTML line 3697"
+        }
+      ],
+      "links": []
+    }
+  ]
+}

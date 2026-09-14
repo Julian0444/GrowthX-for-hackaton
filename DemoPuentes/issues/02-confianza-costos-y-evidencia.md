@@ -1,7 +1,7 @@
 # DP-02 — Corregir los defectos que pueden distorsionar una decisión
 
 Status: ready-for-agent
-Execution: in-progress
+Execution: verified
 
 **Fase:** A — Reglas confiables.
 **Especificación:** [DemoPuentes](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/spec.md>).
@@ -17,13 +17,13 @@ Corregir reglas existentes de dinero, audiencia, fecha y soporte de claims. Mant
 
 ## Criterios de aceptación
 
-- [ ] Un costo inferred o contradicted con sourceIds no se guarda como quoted. Mantener su estado, base y advertencia hasta la campaña.
-- [ ] Partidas acumulables conocidas de USD 3000 + USD 3000 frente a USD 5000 generan conflicto; una partida pendiente y monedas no comparables conservan condición. No sumar paquetes alternativos.
-- [ ] Audiencia ausente o pendiente, acceso pendiente y costo incompleto se heredan como condiciones relevantes; no equivalen a cero ni a incompatibilidad confirmada.
-- [ ] Una fecha contradicha exige resolverla. Investigación y comparación usan el día de la zona declarada y conservan fechas ambiguas.
-- [ ] confirmed no pierde soporte al pasar por investigación. La política para ubicación anunciada se distingue de confirmación humana y se reutiliza en DP-08/09.
-- [ ] Los resúmenes factuales se limitan a atributos y valores admitidos o composición determinística. Una cita a una fecha no puede respaldar un precio ni una garantía de contratación.
-- [ ] Convertir los casos reproducidos en regresiones contra el comportamiento correcto, incluyendo control positivo. No copiar assertions que esperan el defecto.
+- [x] Un costo inferred o contradicted con sourceIds no se guarda como quoted. Mantener su estado, base y advertencia hasta la campaña.
+- [x] Partidas acumulables conocidas de USD 3000 + USD 3000 frente a USD 5000 generan conflicto; una partida pendiente y monedas no comparables conservan condición. No sumar paquetes alternativos.
+- [x] Audiencia ausente o pendiente, acceso pendiente y costo incompleto se heredan como condiciones relevantes; no equivalen a cero ni a incompatibilidad confirmada.
+- [x] Una fecha contradicha exige resolverla. Investigación y comparación usan el día de la zona declarada y conservan fechas ambiguas.
+- [x] confirmed no pierde soporte al pasar por investigación. La política para ubicación anunciada se distingue de confirmación humana y se reutiliza en DP-08/09.
+- [x] Los resúmenes factuales se limitan a atributos y valores admitidos o composición determinística. Una cita a una fecha no puede respaldar un precio ni una garantía de contratación.
+- [x] Convertir los casos reproducidos en regresiones contra el comportamiento correcto, incluyendo control positivo. No copiar assertions que esperan el defecto.
 
 ## Demostración
 
@@ -54,4 +54,14 @@ Registrar archivos cambiados, resultado observable, comprobaciones ejecutadas y 
 
 ## Comments
 
-Creado el 10 de septiembre de 2026 a partir de la redefinición y la solicitud de conservar el mapa. Trabajo especificado; implementación todavía no ejecutada por este ticket.
+Verificado el 10 de septiembre de 2026. Sin dependencias bloqueantes. Se conservaron los cambios existentes, incluido el cálculo del día local de comparación, que ahora comparte investigación.
+
+Implementación: reglas compartidas en `frontend/lib/evidence/{calendar,claim-support,costs}.ts`; consumidores en `evaluations/{eligibility,research,scoring-policy,model-adapter}.ts`, `decisions/store.ts`, contratos/parsers, `opportunity-adapter.ts`, `sf-event-map.tsx` y el texto de `campaign-panel.tsx`. Se agregaron regresiones en `tests/acceptance/trust-regressions.test.ts`, `tests/integration/trust-decision.test.ts`, `tests/ui/trust-evidence.test.ts` y su fixture. Los controles positivos de las suites anteriores de decisión/snapshot incorporan soporte explícito de fecha; se conservan sus verificaciones.
+
+Resultado observable: inferencias y contradicciones conservan estado, base, advertencia, fuentes y revisión al guardar/releer/revisar campaña; el parser también impide promoverlas a cotización. USD 3000 + USD 3000 excluye frente a USD 5000; paquetes alternativos no se suman. Faltantes y monedas incomparables conservan condiciones, incluso al guardar una decisión pendiente. Una edición futura con faltantes comerciales sigue investigable. Confirmed conserva matches y soporte de ubicación; anunciado no se confunde con confirmación humana. El modelo solo selecciona claims: los resúmenes publicables se componen determinísticamente con atributo, valor y estado.
+
+Verificación ejecutada: reproducción inicial **10 fallos + 1 control correcto**; suite final **238/238** funciones/integración, **25/25** comprobaciones en los tres E2E existentes, **cero omitidas**. Guardado y lectura usan PostgreSQL real aislado en 55442, incluyendo tenant señuelo, idempotencia, revisiones y fortalecimiento real de claims. TypeScript, ESLint y build de producción con webpack: exit 0. [Matriz, logs, capturas, comandos y handoff](../evidence/DP-02/README.md).
+
+Límites: estas pruebas usan catálogo/transportes controlados, no son validación comercial ni smoke de proveedores reales. No hay conversión de monedas ni geocodificación nueva. DP-08/09 deben reutilizar la política de soporte y agregar procedencia/precisión; DP-11 mantiene navegación histórica y brief completo. Los payloads v1 anteriores siguen legibles y no se reescriben decisiones históricas. Los paquetes requieren metadatos explícitos de grupo/opción. No quedan criterios pendientes dentro de DP-02.
+
+Este agente no ejecutó commit, push, despliegues ni mensajes externos. Durante la verificación apareció externamente `1eed2ac`, que incorporó trabajo en curso y DP-01; se conservó sin modificar su historia.

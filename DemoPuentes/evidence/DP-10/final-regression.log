@@ -1,0 +1,580 @@
+(node:68558) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/baseline-v0.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness (2.683917ms)
+✔ seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado (3.599334ms)
+✔ fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración (1.341917ms)
+✔ repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida (71.642625ms)
+✔ repetición: una petición no grabada falla en lugar de salir a la red (0.643416ms)
+✔ caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto (17.127ms)
+ℹ fuentes distintas del manifiesto v0: lib/contracts/growxth.ts, lib/server/pipeline/resolve.ts, lib/server/pipeline/global-market-search.ts, lib/server/pipeline/search-opportunities.ts, lib/server/reasoning/gemini.ts, lib/server/discovery/exa-events.ts, lib/server/graph/derive-signals.ts, lib/server/markets/city-catalog.ts, lib/server/scoring/score-utils.ts, lib/server/audit/labels.ts, lib/server/env.ts, lib/api/opportunity-adapter.ts, lib/api/types.ts, app/api/opportunities/search/route.ts. La igualdad con la caracterización solo se exige sobre v0; la corrección la prueban 02–06.
+✔ oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada (11.766ms)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición secuencial (USD 20.000)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición concurrente (USD 20.000)
+ℹ O1 (ticket 02) invariante: una petición equivalente (mismo presupuesto) sí reutiliza la respuesta
+ℹ O2 (ticket 03) corregido: mercado con señal de Trends exclusivamente nacional (India) presentado con market.city como ubicación (basis country)
+ℹ O2 (ticket 03) corregido: resultado de Exa sin lugar en el texto recibe como location la ciudad de la consulta
+ℹ O3 (ticket 04) corregido: oportunidades locales cuyo evento ya venció en el reloj congelado y aun así se citan como «upcoming»
+ℹ O3 (ticket 04) corregido: evento sin fecha: startsAt que el adaptador entrega a la UI
+ℹ O3 (ticket 04) corregido: recap de un evento del 12 Ago 2026 publicado el 5 Sep se cita como listing vivo (observed) en la razón de Exa
+ℹ O4 (ticket 05) corregido: narrativa que solo cita un id inexistente: se publica como razón y con qué citas
+ℹ O4 (ticket 05) corregido: narrativa de San Francisco que cita evidencia de Bengaluru (ajena): publicada como razón factual
+ℹ O4 (ticket 05) corregido: cifra («40+ meetups por trimestre») respaldada solo por un listing de un evento: publicada como razón factual
+ℹ O5 (ticket 06) corregido: orden de opportunities con modelo (rank invertido) frente al orden determinístico
+ℹ O5 (ticket 06) corregido: rank que el adaptador entrega a la UI sigue al orden del array recibido
+ℹ O5 (ticket 06) invariante: scores por oportunidad con y sin modelo
+✔ matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos (1.117542ms)
+(node:68559) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/cache-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza (47.958042ms)
+✔ concurrente: presupuestos distintos no comparten la promesa en curso (1.757125ms)
+✔ proveedor controlado: se observa qué evaluación produjo cada respuesta (1.939833ms)
+✔ fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto (0.69775ms)
+✔ frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo (31.44325ms)
+✔ normalización única: caracterización del sentinel de presupuesto desconocido (0.08775ms)
+(node:68562) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente (14.697ms)
+✔ el día UTC dentro de la ventana no admite un evento cuyo día local es anterior (0.36425ms)
+✔ los offsets declarados negativos y positivos conservan ambos bordes inclusivos (0.381875ms)
+✔ la zona IANA respeta el horario de invierno y no asume un offset fijo para SF (0.14675ms)
+✔ una fecha sin hora se compara tal como fue declarada (0.133333ms)
+✔ una zona no reconocida mantiene pendiente la ventana en vez de inventar el día (0.22425ms)
+(node:68565) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/event-validity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha (3.265ms)
+✔ demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca (16.200958ms)
+✔ seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan (13.743584ms)
+✔ adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento (1.029125ms)
+✔ Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece (35.341ms)
+✔ predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05 (2.3875ms)
+✔ fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente (0.432208ms)
+✔ fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente (0.858959ms)
+(node:68580) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP07 historical technical evidence favors research; sponsor remains its actual role and source (36.343958ms)
+✔ DP07 new payments/hiring brief changes reason, proposed activity and useful question without borrowing previous buyer inference (4.207084ms)
+✔ DP07 contradicted/missing references, wrong identity and award-only evidence cannot support priority (7.117709ms)
+✔ DP07 city pending remains conditional without point; free restrictions and unknown audience reach result (0.399875ms)
+✔ DP07 cost gates run before priority: additive costs exclude, mixed/incomplete/contradicted stay conditional (2.3865ms)
+✔ DP07 affirmed claim strengthening preserves support, equal evidence remains unordered (1.812417ms)
+(node:68581) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/geographic-scope.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ fixture país: un dato de Trends sobre India sigue siendo observación de país (14.391416ms)
+✔ fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado (1.437ms)
+✔ fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado (44.066791ms)
+(node:68582) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/llm-rank-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+✔ el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual (49.635583ms)
+✔ grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5) (10.249792ms)
+✔ candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco (0.631917ms)
+✔ desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable) (0.607583ms)
+✔ desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden (1.63125ms)
+✔ ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números (1.458833ms)
+(node:68594) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/reasoning-support.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1) (50.027625ms)
+✔ cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2) (0.156209ms)
+✔ cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida) (8.480125ms)
+✔ afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica (0.404708ms)
+✔ propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza (0.366459ms)
+✔ fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad (1.157709ms)
+✔ JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos (0.422959ms)
+✔ descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia (0.328458ms)
+✔ auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta (0.255333ms)
+(node:68595) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/session-unavailable.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401
+  ✔ GET evaluaciones (3.636042ms)
+  ✔ POST evaluación (0.922292ms)
+  ✔ GET run (0.504042ms)
+  ✔ POST importación (0.715667ms)
+  ✔ GET catálogo (0.437083ms)
+  ✔ GET edición (0.367167ms)
+  ✔ GET organizador (0.261959ms)
+  ✔ GET decisiones (0.302375ms)
+  ✔ POST decisión (0.342917ms)
+  ✔ GET decisión (0.317458ms)
+  ✔ PATCH decisión (0.285708ms)
+  ✔ POST guardar organizador (0.298375ms)
+  ✔ una sesión válida conserva el usuario y tenant resueltos por el servidor (1.134667ms)
+✔ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401 (59.492167ms)
+(node:68596) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/trust-regressions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ control con soporte (15.117916ms)
+✔ USD 3000 + USD 3000 > USD 5000 (0.33425ms)
+✔ partida pendiente (0.218875ms)
+✔ moneda incomparable (0.285084ms)
+✔ audiencia pendiente (0.212542ms)
+✔ audiencia ausente (0.160208ms)
+✔ fecha contradicha (0.179333ms)
+✔ contratos del caso reproducido (0.312125ms)
+✔ investigación conserva confirmed (0.927416ms)
+✔ investigación usa el día local de SF (0.229042ms)
+✔ El patrocinio cuesta 10 USD y la audiencia está confirmada. (27.74775ms)
+✔ El evento garantiza contrataciones y el acceso exclusivo ya está confirmado. (0.256542ms)
+✔ paquetes alternativos no se suman; partidas de la misma opción sí (0.506208ms)
+✔ un costo conocido + moneda extranjera o estimación no acreditan presupuesto completo (0.282125ms)
+✔ acceso pendiente y contradicho conserva condición, no incompatibilidad (0.188ms)
+✔ fecha contradicha no excluye por el valor disputado aun fuera de ventana (0.272291ms)
+✔ fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambos caminos (0.206292ms)
+✔ narrativa positiva publica exactamente fecha, atributo y estado seleccionados (0.233167ms)
+✔ un atributo de costo con valor fecha no es un claim admitido (0.181083ms)
+✔ la composición de costos es explícita y los contratos v1 anteriores siguen legibles (0.222875ms)
+✔ una narrativa de costo conserva su atributo, importe y estado inferido (0.274208ms)
+(node:68597) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/atlas/arcs.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ origen: ubicación del usuario si existe, si no San Francisco (1.600208ms)
+✔ path = bézier cuadrática "M x0 y0Q cx cy x1 y1", redondeada a 1 decimal (0.269958ms)
+✔ el arco siempre se comba hacia el norte, independientemente del sentido (0.141667ms)
+✔ bulge clampeado a [12, 60] (0.07275ms)
+✔ origen == destino → sin arco (0.204709ms)
+✔ determinista: mismo input → mismo output, sin depender del reloj (0.315792ms)
+✔ escalonado por rank: 950ms + 240ms por posición; el cometa arranca al terminar el arco (0.1405ms)
+✔ todos los arcos parten del origen (0.085542ms)
+(node:68608) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/apify.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ runs an Actor with server-side auth and reads its dataset (34.218417ms)
+✔ degrades without exposing or requiring a token (0.0945ms)
+✔ keeps partial dataset items when an Actor exceeds its wait budget (0.563959ms)
+(node:68609) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls (2.708167ms)
+✔ DP04 URL identity only merges proven aliases; same names and different query editions remain separate (1.818583ms)
+✔ DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors (49.528584ms)
+(node:68610) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (2.099125ms)
+✔ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.188083ms)
+✔ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.17ms)
+✔ DP-08 Census uses address interpolation and county 06075, not bbox or first match (0.545458ms)
+✔ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (31.980833ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (0.574542ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (7.568625ms)
+✔ DP-08 same street/number in a different visible city contradicts the source point (0.574292ms)
+(node:68611) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes (2.75ms)
+✔ Luma: un título OG de página vacía o calendario no crea un dossier de evento (32.109917ms)
+✔ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.549667ms)
+✔ Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes (1.420125ms)
+✔ Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación (2.322917ms)
+✔ Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos (0.655708ms)
+✔ Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos (0.483416ms)
+✔ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (1.990459ms)
+(node:68622) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06: real contract shapes, explicit roles, identity and buyer-specific antecedent (20.516708ms)
+✔ DP06: homonyms, corporate location and editions with different years never merge by name (0.958875ms)
+✔ DP06: calendar and JSON-LD name are not silently organizers; host and coorganizer separate (0.645333ms)
+✔ DP06: logo and presenter without sponsor block never become sponsorship or ROI (1.582459ms)
+✔ DP06: wrong edition backlink and unlinked repository never create project relationship (2.959ms)
+✔ DP06: an award does not establish technology; partial reviewed coverage not extrapolated (2.2085ms)
+✔ DP06: Vultr sponsor in Paris is a separate role from present host in SF (3.512208ms)
+✔ DP06: source without Event metadata is retained without inventing an edition (0.173ms)
+✔ DP06: date contradiction stays contradicted and instructions do not enter facts (0.535958ms)
+✔ DP06: input rejects mixed provenance, foreign fields and unsafe destination (0.275167ms)
+✔ DP06: AIT explicit structured chapter attribution + visible event role works without subscription chrome (1.571209ms)
+(node:68623) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (44.120458ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (1.294833ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (1.439833ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (0.960875ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (0.611458ms)
+✔ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (2.823792ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (63.111958ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (2.106041ms)
+(node:68624) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/contracts/evaluation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ payload válido: el bundle incompleto pero bien formado pasa entero y sin mutaciones (4.593583ms)
+✔ payload inválido se rechaza con ruta y motivo; las claves desconocidas no se ignoran (0.434542ms)
+✔ una versión de contrato desconocida se rechaza; no se interpreta como la actual (0.221292ms)
+✔ fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy (13.277833ms)
+✔ costo incompleto: la partida pendiente viaja como pendiente y no existe un total (0.311875ms)
+✔ una localización nacional no coloca el evento en una ciudad ni en el mapa (0.322209ms)
+✔ una contradicción viaja como contradicción, con su motivo visible (0.283084ms)
+✔ score ausente se distingue de cero; «sin evento elegible» se distingue de error técnico (0.540458ms)
+✔ un compromiso acordado sin soporte se rechaza; una estimación no se disfraza de acuerdo (0.420375ms)
+✔ identidades separadas: aliases exigen confirmación con soporte y un logo no crea patrocinio ni resultados (0.508791ms)
+✔ la decisión exige autor del servidor, motivos y relación de revisión coherente (0.221375ms)
+✔ las reglas de objeto no comprueban integridad relacional (eso es 08/09) (0.413ms)
+✔ round-trip por JSON: serializar, releer y validar conserva el agregado idéntico (1.678292ms)
+✔ la proyección conserva pendientes sin los defaults engañosos del contrato legado (0.24625ms)
+(node:68625) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/contracts/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: brief completo y legado; preguntas ligadas a producto, audiencia y objetivo; dinero separado (4.502625ms)
+✔ DP03: rechaza datos inválidos y campos operativos/tenant en el brief (0.319916ms)
+✔ DP03: contratos de fuentes y relaciones preservan premio, herramienta y edición sin atribuir eficacia (1.035ms)
+✔ DP03: ubicación anterior, ciudad, fallo y contradicción no fabrican un punto (0.736834ms)
+✔ DP03: parcial/error/insuficiente y consumo desconocido son estados distintos de éxito/cero (0.352833ms)
+✔ DP03: comparación, dossier y mapa conservan la revisión seleccionada aunque exista una nueva (8.472834ms)
+(node:68636) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/graph/derive-signals.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ derives query-specific capabilities instead of requiring a static topics file (1.736875ms)
+✔ distance is context in miles and can be computed independently from score (0.120041ms)
+(node:68637) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/conditional-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404 (13.709208ms)
+  ✔ motivos obligatorios; la alternativa debe pertenecer al snapshot (4.549334ms)
+  ✔ elegir con costo pendiente → elección condicional guardada con su campaña (una transacción) (11.649208ms)
+  ✔ idempotencia: misma clave+payload → misma decisión; otra clave/payload → conflicto (13.133792ms)
+  ✔ excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente (11.77975ms)
+  ✔ dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan (17.373083ms)
+  ✔ razones distintas por alternativa; decidir no fabrica claims ni evidencia (7.872042ms)
+  ✔ guardar un organizador conserva una investigación: no crea inversión ni campaña (61.417083ms)
+  ✔ rollback conjunto: una caída al confirmar la campaña no deja decisión suelta (94.833333ms)
+  ✔ tenant señuelo: la decisión real no existe para él, ni por ruta ni por SQL de aplicación (5.217166ms)
+✔ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real) (595.643625ms)
+(node:68648) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/curated-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ curated-manifest: parseo estricto del manifiesto de curación
+  ✔ el manifiesto fixture valida completo (2.756875ms)
+  ✔ clave desconocida y responsable ausente se rechazan (37.413542ms)
+  ✔ extracto sobredimensionado y claim de perfil se rechazan (0.853084ms)
+  ✔ la versión desconocida no se interpreta como la actual (0.206625ms)
+✔ curated-manifest: parseo estricto del manifiesto de curación (42.400333ms)
+▶ curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
+  ✔ carga autorizada: el manifiesto fixture entra completo bajo el tenant real (90.810417ms)
+  ✔ idempotencia: repetir la carga no duplica eventos ni revisiones (5.664708ms)
+  ✔ fuente replicada e inmutabilidad: mismo id sin cambios pasa; con cambios se rechaza entero (35.247167ms)
+  ✔ una corrección es una revisión NUEVA que conserva la anterior (20.535459ms)
+  ✔ rutas: sin sesión 401; id inválido 400 (5.365084ms)
+  ✔ la lista del catálogo separa vigencia de promesas pendientes (8.431792ms)
+  ✔ dossier de edición: contradicción con ambas revisiones, costo pendiente y fuentes abribles (12.648625ms)
+  ✔ homónimos e independencia: identidades separadas, coorganizador sin herencia (29.046083ms)
+  ✔ participaciones: rol recorrible empresa → edición → fuente; ausencia de resultado ≠ fracaso (12.089333ms)
+  ✔ research persistido: sin catálogo → null (cobertura insuficiente); con catálogo → candidatos vigentes (30.596417ms)
+  ✔ tenant señuelo: catálogo vacío por RLS y referencias cruzadas rechazadas (18.5ms)
+  ✔ reloj controlado: la vigencia cambia al evaluar y el catálogo vencido se declara (23.731541ms)
+✔ curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real) (360.600625ms)
+(node:68656) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/evaluation-run.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401 (la sesión se valida en el servidor) (3.531417ms)
+  ✔ un tenantId en el cuerpo se rechaza (no se confía en el navegador) (10.104959ms)
+  ✔ aceptación: 202 con run y job durable en el MISMO commit (30.227416ms)
+  ✔ atomicidad: si el encolado falla, NO queda run (ni 202 con trabajo perdido) (8.09ms)
+  ✔ idempotencia: misma clave y mismo payload → el MISMO run (4.342959ms)
+  ✔ idempotencia: misma clave con OTRO payload → 409 (3.458916ms)
+  ✔ GET devuelve estado y pasos persistidos; el señuelo no ve el run (9.696791ms)
+  ✔ RLS en SQL de aplicación: contexto señuelo o sin contexto no obtiene la fila (2.137125ms)
+  ✔ el rol que administra la cola no accede a datos de negocio (9.545ms)
+  ✔ reanudación básica: corte del worker tras un paso, reinicio, el MISMO run termina (3704.633084ms)
+  ✔ lectura tras cerrar la conexión: el run sobrevive al pool que lo escribió (26.371042ms)
+  ✔ GET con id inválido → 400; run inexistente → 404 (12.746042ms)
+✔ evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales) (3955.144625ms)
+(node:68725) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; >3 o ediciones ajenas → 400; tenantId en el cuerpo → 400 (10.93675ms)
+  ✔ aceptación HTTP: 202 con los 4 steps del workflow y job durable; idempotencia por conjunto (15.715ms)
+  ✔ exclusión antes del score, condiciones con respuesta, elegible ≠ recomendado (117.301875ms)
+  ✔ scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes (0.183875ms)
+  ✔ desempate determinístico: empate exacto se resuelve por id estable, no por orden de llegada (0.153667ms)
+  ✔ modelo sin autoridad: el snapshot persistido conserva el resultado oficial y la advertencia (4.047708ms)
+  ✔ snapshot inmutable: sin UPDATE/DELETE por grants y sin duplicados por reentrega (23.827708ms)
+  ✔ catálogo disponible ≠ conjunto comparado; sombra v0 registrada sin reutilizar scores (1.370042ms)
+  ✔ sin política: comparación factual persistida, sin ranking numérico y con «política pendiente» (84.947417ms)
+  ✔ abstención: todas las dimensiones ausentes → insufficient_data, jamás un 0; fallo del proveedor → degradación (62.52625ms)
+  ✔ guardar y releer: mismas entradas, versiones y resultado desde una conexión nueva (17.369083ms)
+  ✔ invariantes 03–06 sobre la nueva proyección (5.922833ms)
+  ✔ conflicto de acceso confirmado excluye antes del score (regla pura de eligibility) (3.869ms)
+  ✔ tenant señuelo: ni el perfil ni el snapshot existen para otra sesión (10.377708ms)
+✔ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real) (580.564541ms)
+(node:68738) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance
+  ✔ new workflow acceptance is idempotent and atomic with its queued job (27.611583ms)
+  ✔ acceptance idempotency and real persisted sources; aliases deduplicate without claims (158.301833ms)
+  ✔ missing key performs no calls and no reservations, never fixture fallback (38.534458ms)
+  ✔ partial first response survives 429, no repeat of the charged attempt (54.978666ms)
+  ✔ timeouts and missing response are explicit, bounded and retain reservations (106.483917ms)
+  ✔ crash after dispatch: restart preserves uncertain attempt, no additional provider call (20.576791ms)
+  ✔ SIGKILL of a separate worker releases lease and preserves the dispatched attempt (254.109958ms)
+  ✔ crash after provider response before commit cannot silently spend again (20.566417ms)
+  ✔ crash after source commit reuses same source IDs and continues remaining queries (66.793875ms)
+  ✔ deadline survives restart and excludes new calls (44.835125ms)
+  ✔ concurrent delivery cannot duplicate the live provider request (22.567542ms)
+  ✔ aggregate cap is shared across runs and tenants, even in parallel (58.826667ms)
+  ✔ unexpected reported charge suspends new calls rather than trusting an obsolete tariff (68.018708ms)
+✔ DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance (1015.277667ms)
+(node:68762) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP07 persisted comparison, revised brief, immutable antecedents and model authority
+  ✔ snapshot fixes selected and historical edition, relationship, claim and source revisions (2.638792ms)
+  ✔ new brief is validated, versioned and changes explanation, constraints, objective and question (118.560958ms)
+  ✔ new catalog revision does not change the original dossier, historical organizer, sources or decisions (15.915083ms)
+  ✔ foreign tenant cannot read snapshot or select editions/profiles; invalid references roll back (8.744708ms)
+  ✔ model cannot create prices or success from historical years, change priority, or cite another edition (29.84075ms)
+✔ DP07 persisted comparison, revised brief, immutable antecedents and model authority (676.632542ms)
+(node:68773) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-08 durable location evidence and current consumers
+  ✔ complete address persists query, provider, interpolated accuracy, date, original claims and UI point (0.632708ms)
+  ✔ replay after commit and new DB connection keep ids and avoid another call (18.547084ms)
+  ✔ same normalized query/source version cache survives independent run, while new source version makes a request (33.195833ms)
+  ✔ new address creates a revision; saved snapshot consumers retain original position and source (138.243917ms)
+  ✔ published source coordinates make zero geocoder calls; city, hidden, street and invalid coordinates stay in list (247.884458ms)
+  ✔ provider failure is persisted and replayed; the existing worker still completes the research run (108.525083ms)
+  ✔ street-capable adapter represents one match only as approximate; multiple matches stay pending (123.018458ms)
+  ✔ tenant isolation, aggregate allowance and crash reservation prevent leaks or duplicate starts (27.394709ms)
+✔ DP-08 durable location evidence and current consumers (918.403458ms)
+(node:68785) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada (11.696042ms)
+  ✔ profileRunId de otro tenant → 400 (RLS: no existe para esta sesión) (4.414208ms)
+  ✔ HTML completo: 202 → obtención en el worker → dossier durable con claims (135.196917ms)
+  ✔ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (220.044958ms)
+  ✔ duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo (15.233667ms)
+  ✔ HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed (140.247333ms)
+  ✔ redirección dentro de la allowlist: se valida y se sigue (308.154625ms)
+  ✔ redirección fuera de la allowlist: fallo con URL solicitada, intento y causa (107.281375ms)
+  ✔ límite de tamaño: la descarga se corta y el run falla con causa visible (29.482667ms)
+  ✔ timeout: la obtención vence y el run falla con causa visible (244.387791ms)
+  ✔ prompt injection en la descripción: texto de la fuente = dato, jamás instrucción (114.013ms)
+  ✔ identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad (149.284917ms)
+  ✔ reanudación idempotente: repetir persist_dossier no duplica material (5.051833ms)
+✔ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales) (1641.428916ms)
+(node:68807) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/migration-concurrency.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ migraciones en bases distintas toleran un ALTER ROLE concurrente del mismo cluster (425.983875ms)
+(node:68821) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP06 durable relationships under real PostgreSQL roles
+  ✔ acceptance atomic, replay key and tenant mismatch (13.874417ms)
+  ✔ worker reads six sources, stops after read commit and resumes without consuming again (421.2865ms)
+  ✔ RLS hides all new relations and queue has no business grants (6.755042ms)
+  ✔ expired deadline recovers committed pages without additional requests (30.2585ms)
+  ✔ explicit refresh chains revisions; partial failures retain linked project support and original revision (327.1615ms)
+  ✔ Vultr current host links to Paris sponsorship without creating organizing history (179.256583ms)
+  ✔ DP04 discovery proposal -> DP05 full reading -> persisted relations; snippet remains unmodified (445.026459ms)
+  ✔ failed proposal reads are recovered from the discovery run without repeated requests (98.915292ms)
+  ✔ foreign evidence and wrong-edition claim references roll back all relationship writes (242.275875ms)
+  ✔ existing Luma identity and claim chains are reused; different year is a new edition (305.732792ms)
+✔ DP06 durable relationships under real PostgreSQL roles (2157.71925ms)
+(node:68858) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: revisiones, referencias por fragmento, lecturas antiguas y aislamiento en PostgreSQL (249.114042ms)
+ℹ Dos revisiones y preguntas diferentes; v1 original intacta; costo comercial separado; fragmentos/roles correctos; fuentes, empresas y run ajenos rechazados; sin fallback sintético.
+(node:68868) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery
+  ✔ DP-04 proposed source is read in its tenant/run; new full evidence does not rewrite the search source or invent entities (303.988333ms)
+  ✔ rich source persists exact fragments, contradicted dates and public location; fresh DB connection reads identical evidence (150.015583ms)
+  ✔ a sparse new page keeps prior supported attributes, public address and revision IDs (63.093416ms)
+  ✔ published venue coordinates without city remain usable under the DP-03 venue scope (85.645875ms)
+  ✔ cache reuse retains fetchedAt, failure retains stale evidence, and caches cannot cross tenants (41.365542ms)
+  ✔ Actor run ID survives actual SIGKILL; restarted client polls exactly that Actor and retains a partial failed dataset (316.171625ms)
+  ✔ unknown Actor start response is never repeated; reservation survives and provider secrets are not logged (25.274375ms)
+  ✔ global budget caps concurrent runs across tenants; no per-session reset; missing key consumes nothing (49.846417ms)
+✔ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery (1123.488708ms)
+(node:68920) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/tenant-isolation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15)
+  ✔ API y listados: los IDs conocidos del otro tenant no existen para el señuelo (30.725417ms)
+  ✔ claims referenciados: comparación, importación y decisión con IDs ajenos se rechazan (9.804709ms)
+  ✔ idempotencia: la clave del otro tenant no deduplica hacia su run (9.844875ms)
+  ✔ sesiones: expirada o sin pertenencia → 401; nunca un tenant por defecto (2.515125ms)
+  ✔ pool de conexiones: el contexto de una conexión reutilizada no se filtra al siguiente tenant (14.065458ms)
+  ✔ acceso directo de aplicación a una fila ajena queda bloqueado por RLS (roles sin bypass) (15.751ms)
+  ✔ el worker real rechaza jobs con tenant/payload discordante sin tocar el run (949.387084ms)
+  ✔ ningún error de cruce revela el contenido del otro tenant (1.881ms)
+✔ tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15) (2002.271333ms)
+(node:68946) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/trust-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-02: comparación → guardado → lectura con incertidumbre y confirmed (PostgreSQL real) (641.715416ms)
+ℹ e-observed: comparación eligible; campaña quoted; revisión y fuentes conservadas; lectura idéntica
+ℹ e-inferred: comparación conditional; campaña inferred; revisión y fuentes conservadas; lectura idéntica
+ℹ e-contradicted: comparación conditional; campaña contradicted; revisión y fuentes conservadas; lectura idéntica
+ℹ e-pending: comparación conditional; campaña unknown; revisión y fuentes conservadas; lectura idéntica
+ℹ Fortalecer a confirmed: mismo organizador y mismas ediciones futuras; razones usan las revisiones confirmadas
+(node:68958) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/worker-recovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ worker-recovery: matriz de caídas con procesos reales (ticket 15)
+  ✔ SIGKILL con la obtención EN VUELO: nada confirmado se pierde; la llamada no confirmada se repite y queda trazada (1584.636708ms)
+  ✔ SIGKILL tras guardar claims (paso sin confirmar): la reanudación no duplica efectos (1536.296458ms)
+  ✔ SIGKILL entre el commit de un paso y el siguiente: el avance confirmado no se re-ejecuta (1320.309916ms)
+  ✔ SIGKILL tras confirmar el snapshot (paso sin confirmar): un solo snapshot oficial (1347.221208ms)
+  ✔ SIGKILL con el run terminal pero el job sin confirmar: la re-entrega no repite efectos (2300.946917ms)
+  ✔ carrera determinística: el perdedor no publica un segundo snapshot NI degrada el run completado (240.61325ms)
+  ✔ cola caída en la aceptación: nada persistido; el reintento del cliente repite la llamada y queda trazado (19.084375ms)
+  ✔ timeout y salida inválida del modelo: dossier completo con explicación determinística y degradación declarada (547.554542ms)
+  ✔ fuente caída que agota reintentos: fallido y visible, sin recomendación preparada que lo oculte (2412.333791ms)
+  ✔ los registros reconstruyen run→steps→claims→snapshot→decisión, sin secretos ni texto privado (23.593375ms)
+✔ worker-recovery: matriz de caídas con procesos reales (ticket 15) (12772.033125ms)
+(node:69199) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/markets/global-market-search.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normalizes worldwide Trends rows and explicit X locations (1.914792ms)
+✔ builds focused signal queries from natural product descriptions (1.0205ms)
+✔ ranks three countries from query-specific geographic evidence (2.627959ms)
+✔ keeps a labeled worldwide fallback when every live source is unavailable (0.399333ms)
+(node:69200) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/community-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ comunidad completa con evidencia: score alto y reasons respaldadas (1.190917ms)
+✔ evidencia vacía: sin reasons y confidence null (pero score se computa) (0.13375ms)
+✔ stack vacío → stackOverlap null (no 0) (0.080458ms)
+✔ sin cadencia conocida → cadenceReliability null (0.101541ms)
+✔ sin evidencia de sponsors → exclusivityGap null (no inferir ausencia) (0.0785ms)
+(node:69201) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/roi.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ inputs completos: costo por dev calificado + banda (1.5385ms)
+✔ falta el precio del tier → null + "No disponible" (nunca se estima el precio) (0.073917ms)
+✔ falta icpFitRate → null + "No disponible" (0.559542ms)
+✔ attendance 0 → null (no dividir por cero) (0.108417ms)
+(node:69212) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/score-utils.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ renormaliza sobre las dimensiones activas: una sola dim activa = 100 (0.859958ms)
+✔ null NUNCA es 0: null y 0 dan scores distintos (0.102584ms)
+✔ todas las dimensiones null → score 0 (0.060375ms)
+✔ coverageRatio: fracción del target cubierta, null si falta un conjunto (0.557875ms)
+✔ clamp01 acota a [0,1] (0.104666ms)
+(node:69214) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/theme-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ momentum: ratio 2.0 (+100%) → 1.0 (1.033084ms)
+✔ sin githubMomentum cae a newsSalience (0.113459ms)
+✔ sin requiredCapabilities → criticalPath null (0.120042ms)
+✔ reasons del tema citan evidencia no vacía (0.139334ms)
+(node:69215) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/evidence-links.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes (21.228541ms)
+✔ el dossier sintético no ofrece abrir un listado inexistente (6.894417ms)
+✔ un enlace público real se conserva y un esquema ejecutable nunca se publica (1.121875ms)
+✔ el transporte de demo y su captura histórica no se presentan como obtención real de Luma (0.803583ms)
+✔ el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico (7.459583ms)
+(node:69216) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/research-experience.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP10 partial results keep their arrival order across polls, deduplicate and remove absent identities (1.654334ms)
+✔ DP10 readable dates preserve the declared local calendar day and ambiguity (13.666709ms)
+✔ DP10 progress derives from persisted stages and published evidence, not elapsed timers (0.274291ms)
+✔ DP10 unknown price remains a visible next action, not a compatible total (1.767625ms)
+✔ DP10 the background name comes from a prior edition, never the current edition in the same evidence basis (0.17775ms)
+(node:69227) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/sf-map.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-09 uses DP-08 policy for announced/confirmed, approximate, city-only and contradicted locations (17.004333ms)
+✔ DP-09 projects only the run, never unrelated catalog editions; discovery and running imports stay empty (1.472667ms)
+✔ DP-09 run revision and comparison snapshot keep original geography after catalog update (1.010458ms)
+✔ DP-09 nearby/coincident venues group without changing identity or coordinate axes (1.25375ms)
+(node:69228) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/trust-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ campaña y texto copiable conservan incertidumbre, base y advertencia (92.884708ms)
+✔ ubicación announced y confirmed comparten soporte pero no confirmación humana (38.781583ms)
+ℹ tests 339
+ℹ suites 0
+ℹ pass 339
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40360.479

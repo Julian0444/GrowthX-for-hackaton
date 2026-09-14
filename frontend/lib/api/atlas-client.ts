@@ -1,9 +1,9 @@
+import type { ResearchBriefInput, ResearchPlan } from '../contracts/evaluation'
 // Cliente HTTP compartido. Único punto por donde el frontend habla con el
 // backend. Vive en lib/api/ (canónico); NO existe lib/client/.
 
 import type {
   EvaluationProfile,
-  ComparableCompanyRef,
   ClaimRevision,
   CompanyRecord,
   DeclaredDate,
@@ -65,10 +65,10 @@ export async function searchOpportunities(req: SearchRequest): Promise<SearchRes
     degraded: true,
     warnings: [
       ...fixture.warnings,
-      "Backend no disponible; sirviendo fixture preparado.",
+      "Backend unavailable; showing prepared fixture data.",
       ...(expiredEvents > 0
         ? [
-            `${expiredEvents} evento${expiredEvents === 1 ? "" : "s"} del fixture ya ocurrieron; son antecedentes históricos, no oportunidades vigentes.`,
+            `${expiredEvents} fixture event${expiredEvents === 1 ? "" : "s"} already occurred; historical background, not current opportunities.`,
           ]
         : []),
     ],
@@ -152,6 +152,7 @@ export interface ComparisonStartInput {
   idempotencyKey: string
   mode: "investment_comparison"
   profileRunId: string
+  profile?: import("../contracts/evaluation").ResearchBriefInput
   editionIds: string[] // 1..3 ediciones del catálogo del tenant
   // Ticket 14: «Reevaluar» crea OTRO run vinculado al run de comparación
   // anterior; el snapshot y la decisión previos siguen disponibles tal cual.
@@ -264,19 +265,9 @@ export function startComparison(input: ComparisonStartInput): Promise<StartEvalu
 export interface EvaluationStartInput {
   idempotencyKey: string
   mode: "catalog_research"
-  researchScope?: "sf_organizers"
+  researchScope?: "sf_organizers" | "sf_discovery"
   previousRunId?: string
-  profile: {
-    product: string
-    comparableCompanies?: ComparableCompanyRef[]
-    audienceDescription: string
-    audienceProfiles: string[]
-    stack: string[]
-    // Presupuesto desconocido es un estado explícito, nunca 0.
-    budget: { status: "declared"; amount: number; currency: string } | { status: "unknown" }
-    window: { from: string | null; to: string | null }
-    objective: { kind: "adoption" | "feedback" | "hiring" | "awareness" }
-  }
+  profile: ResearchBriefInput
 }
 
 export interface EvaluationStepView {
@@ -296,6 +287,8 @@ export interface EvaluationRunView {
   workflowVersion: string
   profileId: string
   profile: EvaluationProfile
+  researchPlan?: ResearchPlan | null
+  discovery?: import('../contracts/discovery').DiscoveryView | null
   previousRunId: string | null
   // URL solicitada de un run de importación Luma (null en investigaciones).
   requestedUrl: string | null
@@ -539,50 +532,9 @@ export function fetchOrganizerDossier(
 // la lectura en memoria de la Launch Room: la decisión persistida no tiene
 // consensus ni confidenceDelta.
 
-export interface DecisionConditionDraft {
-  snapshotConditionId: string | null
-  pendingItem: string // claim o dato pendiente
-  question: string | null // pregunta al organizador (guardarla no envía nada)
-  expectedAnswer: string | null
-  effect: "chosen" | "discarded" | null // efecto sobre la decisión
-  owner: string | null // responsable, si se conoce
-  dueBy: string | null // plazo, si se conoce
-}
-
-export interface CampaignDraftInput {
-  objective: string | null
-  successDefinition: string | null
-  modality: { kind: "sponsorship" | "workshop" | "co_hosted" | "booth" | "other"; detail: string | null } | null
-  costItems: { label: string; amount: unknown }[] | null
-  openQuestions: string[] | null
-  commitments: {
-    description: string
-    kind: "estimate" | "goal" | "agreed"
-    owner: string | null
-    dueBy: string | null
-    confirmation: { method: string; sourceIds: string[]; confirmedBy: string; confirmedAt: string } | null
-  }[]
-}
-
-export interface DecisionSaveInput {
-  idempotencyKey: string
-  snapshotId: string
-  editionId: string
-  verdict: "chosen" | "discarded" | "pending"
-  reasons: string[]
-  conditions: DecisionConditionDraft[]
-  campaignDraft: CampaignDraftInput | null // solo con verdict 'chosen'
-}
-
-export interface DecisionReviseInput {
-  idempotencyKey?: string
-  expectedRevision: number // revisión leída; obsoleta → conflicto, no sobrescritura
-  verdict?: "chosen" | "discarded" | "pending"
-  reasons?: string[]
-  addConditions?: DecisionConditionDraft[]
-  resolveConditions?: { conditionId: string; resolvedNote: string }[]
-  campaignDraft?: CampaignDraftInput | null
-}
+export type { DecisionConditionInput as DecisionConditionDraft, DecisionCampaignInput as CampaignDraftInput, DecisionSaveBody as DecisionSaveInput } from '../contracts/decision';
+import type { DecisionSaveBody as DecisionSaveInput, DecisionReviseBody } from '../contracts/decision';
+export type DecisionReviseInput = {expectedRevision: number; idempotencyKey?: string} & Partial<Omit<DecisionReviseBody, 'expectedRevision' | 'idempotencyKey'>>;
 
 // Lectura completa: última revisión, cadena conservada, campaña de la última
 // revisión y los ids del snapshot/alternativa (contrato 07).
@@ -675,9 +627,9 @@ export type DecisionFetchOutcome =
   | { status: "unavailable" }
 
 // Lectura persistida de una decisión por su identidad. Nunca lanza.
-export async function fetchDecisionRead(decisionId: string): Promise<DecisionFetchOutcome> {
+export async function fetchDecisionRead(decisionId: string, revision?: number): Promise<DecisionFetchOutcome> {
   try {
-    const response = await fetch(`/api/decisions/${encodeURIComponent(decisionId)}`, { cache: "no-store" })
+    const response = await fetch(`/api/decisions/${encodeURIComponent(decisionId)}${revision === undefined ? "" : `?revision=${revision}`}`, { cache: "no-store" })
     if (response.status === 401) return { status: "unauthorized" }
     if (response.status === 404) return { status: "missing" }
     if (!response.ok) return { status: "unavailable" }

@@ -1,0 +1,2231 @@
+{
+  "at": "2026-09-10T23:17:37.926112+00:00",
+  "origin": "Existing admitted real sources in localhost database; no fresh provider fetches. Catalog also contains explicitly labelled synthetic material, not selected here.",
+  "checks": {
+    "sixCompletedComparisons": true,
+    "productObjectiveRestrictionsAndWindowChanged": true,
+    "originalReopened": true,
+    "allSnapshotsMatchOriginalPublishedRuns": true,
+    "exactReferencesPinned": true,
+    "originalBuyerBriefRestoredAsLatestRevision": true
+  },
+  "runs": [
+    {
+      "runId": "bb91d863-f090-4139-892e-8a54e14e737d",
+      "snapshotId": "7ac1ca51-9454-4053-a27f-837aaef5703e",
+      "profile": {
+        "id": "cfaad0d8-6ebd-41a0-b7bc-5968cf2963ff",
+        "stack": [
+          "Python",
+          "agentes de IA",
+          "APIs",
+          "observabilidad"
+        ],
+        "budget": {
+          "amount": 20000,
+          "status": "declared",
+          "currency": "USD"
+        },
+        "window": {
+          "to": "2026-12-31",
+          "from": "2026-09-10"
+        },
+        "product": "Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.",
+        "audience": {
+          "profiles": [],
+          "description": "Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas."
+        },
+        "createdAt": "2026-09-10T17:28:04.832Z",
+        "objective": {
+          "kind": "feedback",
+          "confirmation": "provisional",
+          "successDefinition": {
+            "status": "pending"
+          }
+        },
+        "restrictions": [],
+        "profileVersion": 1,
+        "contractVersion": "1",
+        "comparableCompanies": []
+      },
+      "evaluatedAt": "2026-09-10T23:09:42.000Z",
+      "snapshotMatchesOriginalPublishedRun": true,
+      "snapshotSha256": "3c35af7f6d0eebaeac8a43b38c5e72e038e3b17772ab073ce9bb55acf763c993",
+      "reading": {
+        "version": "research-comparison/1",
+        "priority": {
+          "kind": "investigate_first",
+          "criteria": [
+            "Aplicar primero fecha, ciudad, acceso, audiencia y costos de DP-02; excluidos no compiten.",
+            "Afinidad temática explícita entre el brief y programa/proyecto documentado, sin usar premios, marcas ni cifras como afinidad.",
+            "Antecedente de la misma identidad y rol por edición; una experiencia de patrocinio no acredita organización.",
+            "Priorizar solo una diferencia factual: antecedente pertinente frente a ausencia de ese soporte. Empates conservan presentación sin orden de inversión."
+          ],
+          "editionIds": [
+            "edition-d54a42d3ba8672ab20f9aeec"
+          ],
+          "explanation": "Investigar primero Agents, Everywhere: Bots, Channels, & More — Global Hackathon: es la única candidata sin exclusión con antecedente temático pertinente y vínculo de identidad documentado. Las demás no tienen ese soporte en la cobertura revisada. Resolver sus condiciones antes de comprometer presupuesto."
+        },
+        "differences": null,
+        "alternatives": [
+          {
+            "cost": "sponsorship [pending]: importe pendiente attendance [announced]: USD 0 Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: https://schema.org/OfflineEventAttendanceMode | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Explorar una sesión de feedback voluntario sobre el producto con participantes pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                  "sourceIds": [
+                    "background-source-47aa031920df734b87c388a9"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-fa3cc0e8733d89217bbe6537"
+                  ],
+                  "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "relevance": {
+              "text": "Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "RAISE 2025 · agentic AI hackathon · Paris: rol previo sponsor [reported]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Vultr: sponsor [reported]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                    "sourceIds": [
+                      "background-source-47aa031920df734b87c388a9"
+                    ],
+                    "relationshipIds": [
+                      "relationship-37a8dd5d93aaebdd47b120a5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-443f1a35f64859e937e3f3e9"
+                    ],
+                    "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                  },
+                  {
+                    "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                    "sourceIds": [
+                      "background-source-c7d10b468ee0442a6884c677"
+                    ],
+                    "relationshipIds": [
+                      "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                    ],
+                    "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 1 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          },
+          {
+            "cost": "attendance [announced]: USD 0 sponsorship [pending]: importe pendiente Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: https://schema.org/OfflineEventAttendanceMode [announced]. Explorar una sesión de feedback voluntario sobre el producto con participantes pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-d338fb706df2ac9b9812f813"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [
+                    "relationship-263b9267e5ff86c316ba43e5"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-e798e9bdbefdc361ed052d63",
+                  "sourceIds": [
+                    "background-source-fbd51fe609f1db84e0862f03"
+                  ],
+                  "relationshipIds": [
+                    "relationship-088e366e1f2585f5c2398064",
+                    "relationship-0fabe03f3d046d27645c6a92",
+                    "relationship-af9ad988b7846086fb150694"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-64de455ace26ed0014e99637",
+                    "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                    "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                    "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                  ],
+                  "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+            "relevance": {
+              "text": "Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, hay afinidad temática en agentes, observabilidad. El antecedente documentado permite preguntar por una actividad similar en la edición actual. Es una hipótesis de pertinencia; falta validar audiencia efectiva y disponibilidad.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [
+                    "relationship-263b9267e5ff86c316ba43e5"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-e798e9bdbefdc361ed052d63",
+                  "sourceIds": [
+                    "background-source-fbd51fe609f1db84e0862f03"
+                  ],
+                  "relationshipIds": [
+                    "relationship-088e366e1f2585f5c2398064",
+                    "relationship-0fabe03f3d046d27645c6a92",
+                    "relationship-af9ad988b7846086fb150694"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-64de455ace26ed0014e99637",
+                    "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                    "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                    "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                  ],
+                  "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                }
+              ]
+            },
+            "antecedents": [
+              {
+                "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: rol previo organizer [announced]. program:technical_background [announced]: Monitoring, auditing, and recovery patterns for long-running agents Google Cloud: sponsor [announced]. Wordware: venue [announced]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                    "sourceIds": [
+                      "background-source-505eef0cd878fae2b7f5dcce"
+                    ],
+                    "relationshipIds": [
+                      "relationship-263b9267e5ff86c316ba43e5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                    ],
+                    "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                  },
+                  {
+                    "editionId": "edition-e798e9bdbefdc361ed052d63",
+                    "sourceIds": [
+                      "background-source-fbd51fe609f1db84e0862f03"
+                    ],
+                    "relationshipIds": [
+                      "relationship-088e366e1f2585f5c2398064",
+                      "relationship-0fabe03f3d046d27645c6a92",
+                      "relationship-af9ad988b7846086fb150694"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-64de455ace26ed0014e99637",
+                      "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                      "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                      "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                    ],
+                    "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Permiten una actividad de feedback para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.» con «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.»?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 1 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 1 condición(es) material(es) abierta(s).",
+              "status": "supported"
+            },
+            "matchedCriteria": [
+              "antecedente_pertinente"
+            ]
+          }
+        ]
+      },
+      "eligibility": [
+        {
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            }
+          ]
+        },
+        {
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            }
+          ]
+        }
+      ],
+      "editionRevisions": [
+        {
+          "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "name": "The Agent Arena Hackathon"
+        },
+        {
+          "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+        },
+        {
+          "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "name": "AI Tinkerers SF - Secure Agents Buildathon"
+        },
+        {
+          "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "name": "RAISE 2025 · agentic AI hackathon"
+        }
+      ],
+      "sources": [
+        {
+          "id": "background-source-47aa031920df734b87c388a9",
+          "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "fetchedAt": "2026-09-10T22:41:56.008Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-505eef0cd878fae2b7f5dcce",
+          "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "fetchedAt": "2026-09-10T22:42:44.239Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-c7d10b468ee0442a6884c677",
+          "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+          "fetchedAt": "2026-09-10T22:41:57.276Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-fbd51fe609f1db84e0862f03",
+          "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "fetchedAt": "2026-09-10T22:42:44.454Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        }
+      ],
+      "narrative": {
+        "model": "gemini-2.5-flash",
+        "usage": null,
+        "motive": "GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.",
+        "status": "deterministic_only",
+        "version": 1,
+        "warnings": [],
+        "discarded": null,
+        "proposals": [],
+        "durationMs": 0,
+        "snapshotId": "7ac1ca51-9454-4053-a27f-837aaef5703e",
+        "promptVersion": "comparison-narrative/3"
+      }
+    },
+    {
+      "runId": "f759e1bc-d191-4e8d-8e6d-935d326c3592",
+      "snapshotId": "b1a852d9-fa65-467f-a75c-18b2c94598de",
+      "profile": {
+        "id": "cfaad0d8-6ebd-41a0-b7bc-5968cf2963ff",
+        "stack": [
+          "Python",
+          "agentes de IA",
+          "APIs",
+          "observabilidad"
+        ],
+        "budget": {
+          "amount": 20000,
+          "status": "declared",
+          "currency": "USD"
+        },
+        "window": {
+          "to": "2026-12-31",
+          "from": "2026-09-10"
+        },
+        "product": "Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.",
+        "audience": {
+          "profiles": [],
+          "description": "Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas."
+        },
+        "createdAt": "2026-09-10T17:28:04.832Z",
+        "objective": {
+          "kind": "feedback",
+          "confirmation": "provisional",
+          "successDefinition": {
+            "status": "pending"
+          }
+        },
+        "restrictions": [],
+        "profileVersion": 1,
+        "contractVersion": "1",
+        "comparableCompanies": []
+      },
+      "evaluatedAt": "2026-09-10T23:13:19.557Z",
+      "snapshotMatchesOriginalPublishedRun": true,
+      "snapshotSha256": "30dcc10954b505c589ffcf468976de4468a84d8371de544abbf7bc731c28e6b4",
+      "reading": {
+        "version": "research-comparison/1",
+        "priority": {
+          "kind": "investigate_first",
+          "criteria": [
+            "Aplicar primero fecha, ciudad, acceso, audiencia y costos de DP-02; excluidos no compiten.",
+            "Afinidad temática explícita entre el brief y programa/proyecto documentado, sin usar premios, marcas ni cifras como afinidad.",
+            "Antecedente de la misma identidad y rol por edición; una experiencia de patrocinio no acredita organización.",
+            "Priorizar solo una diferencia factual: antecedente pertinente frente a ausencia de ese soporte. Empates conservan presentación sin orden de inversión."
+          ],
+          "editionIds": [
+            "edition-d54a42d3ba8672ab20f9aeec"
+          ],
+          "explanation": "Investigar primero Agents, Everywhere: Bots, Channels, & More — Global Hackathon: es la única candidata sin exclusión con antecedente temático pertinente y vínculo de identidad documentado. Las demás no tienen ese soporte en la cobertura revisada. Resolver sus condiciones antes de comprometer presupuesto."
+        },
+        "differences": {
+          "note": "Mismo brief declarado. Mismas revisiones de evidencia. Se conserva la prioridad de investigación. El snapshot original no se modifica.",
+          "alternatives": [
+            {
+              "changes": [
+                "Actividad: Modalidad publicada: presencial | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios."
+              ],
+              "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+            },
+            {
+              "changes": [
+                "Actividad: Modalidad publicada: presencial [announced]. Actividad propuesta por el comprador: Explorar una sesión de feedback voluntario sobre el producto con participantes pertinentes. La participación comercial requiere autorización y precio propios."
+              ],
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec"
+            }
+          ],
+          "briefChanges": [],
+          "previousSnapshotId": "7ac1ca51-9454-4053-a27f-837aaef5703e"
+        },
+        "alternatives": [
+          {
+            "cost": "sponsorship [pending]: importe pendiente attendance [announced]: USD 0 Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                  "sourceIds": [
+                    "background-source-47aa031920df734b87c388a9"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-fa3cc0e8733d89217bbe6537"
+                  ],
+                  "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "relevance": {
+              "text": "Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "RAISE 2025 · agentic AI hackathon · Paris: rol previo sponsor [reported]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Vultr: sponsor [reported]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                    "sourceIds": [
+                      "background-source-47aa031920df734b87c388a9"
+                    ],
+                    "relationshipIds": [
+                      "relationship-37a8dd5d93aaebdd47b120a5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-443f1a35f64859e937e3f3e9"
+                    ],
+                    "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                  },
+                  {
+                    "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                    "sourceIds": [
+                      "background-source-c7d10b468ee0442a6884c677"
+                    ],
+                    "relationshipIds": [
+                      "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                    ],
+                    "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 1 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          },
+          {
+            "cost": "attendance [announced]: USD 0 sponsorship [pending]: importe pendiente Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial [announced]. Actividad propuesta por el comprador: Explorar una sesión de feedback voluntario sobre el producto con participantes pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-d338fb706df2ac9b9812f813"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [
+                    "relationship-263b9267e5ff86c316ba43e5"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-e798e9bdbefdc361ed052d63",
+                  "sourceIds": [
+                    "background-source-fbd51fe609f1db84e0862f03"
+                  ],
+                  "relationshipIds": [
+                    "relationship-088e366e1f2585f5c2398064",
+                    "relationship-0fabe03f3d046d27645c6a92",
+                    "relationship-af9ad988b7846086fb150694"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-64de455ace26ed0014e99637",
+                    "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                    "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                    "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                  ],
+                  "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+            "relevance": {
+              "text": "Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, hay afinidad temática en agentes, observabilidad. El antecedente documentado permite preguntar por una actividad similar en la edición actual. Es una hipótesis de pertinencia; falta validar audiencia efectiva y disponibilidad.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [
+                    "relationship-263b9267e5ff86c316ba43e5"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-e798e9bdbefdc361ed052d63",
+                  "sourceIds": [
+                    "background-source-fbd51fe609f1db84e0862f03"
+                  ],
+                  "relationshipIds": [
+                    "relationship-088e366e1f2585f5c2398064",
+                    "relationship-0fabe03f3d046d27645c6a92",
+                    "relationship-af9ad988b7846086fb150694"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-64de455ace26ed0014e99637",
+                    "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                    "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                    "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                  ],
+                  "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                }
+              ]
+            },
+            "antecedents": [
+              {
+                "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: rol previo organizer [announced]. Programa [announced]: Monitoring, auditing, and recovery patterns for long-running agents Google Cloud: sponsor [announced]. Wordware: venue [announced]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                    "sourceIds": [
+                      "background-source-505eef0cd878fae2b7f5dcce"
+                    ],
+                    "relationshipIds": [
+                      "relationship-263b9267e5ff86c316ba43e5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                    ],
+                    "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                  },
+                  {
+                    "editionId": "edition-e798e9bdbefdc361ed052d63",
+                    "sourceIds": [
+                      "background-source-fbd51fe609f1db84e0862f03"
+                    ],
+                    "relationshipIds": [
+                      "relationship-088e366e1f2585f5c2398064",
+                      "relationship-0fabe03f3d046d27645c6a92",
+                      "relationship-af9ad988b7846086fb150694"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-64de455ace26ed0014e99637",
+                      "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                      "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                      "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                    ],
+                    "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Permiten una actividad de feedback para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.» con «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.»?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 1 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 1 condición(es) material(es) abierta(s).",
+              "status": "supported"
+            },
+            "matchedCriteria": [
+              "antecedente_pertinente"
+            ]
+          }
+        ]
+      },
+      "eligibility": [
+        {
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            }
+          ]
+        },
+        {
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            }
+          ]
+        }
+      ],
+      "editionRevisions": [
+        {
+          "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "name": "The Agent Arena Hackathon"
+        },
+        {
+          "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+        },
+        {
+          "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "name": "AI Tinkerers SF - Secure Agents Buildathon"
+        },
+        {
+          "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "name": "RAISE 2025 · agentic AI hackathon"
+        }
+      ],
+      "sources": [
+        {
+          "id": "background-source-47aa031920df734b87c388a9",
+          "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "fetchedAt": "2026-09-10T22:41:56.008Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-505eef0cd878fae2b7f5dcce",
+          "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "fetchedAt": "2026-09-10T22:42:44.239Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-c7d10b468ee0442a6884c677",
+          "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+          "fetchedAt": "2026-09-10T22:41:57.276Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-fbd51fe609f1db84e0862f03",
+          "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "fetchedAt": "2026-09-10T22:42:44.454Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        }
+      ],
+      "narrative": {
+        "model": "gemini-2.5-flash",
+        "usage": null,
+        "motive": "GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.",
+        "status": "deterministic_only",
+        "version": 1,
+        "warnings": [],
+        "discarded": null,
+        "proposals": [],
+        "durationMs": 0,
+        "snapshotId": "b1a852d9-fa65-467f-a75c-18b2c94598de",
+        "promptVersion": "comparison-narrative/3"
+      }
+    },
+    {
+      "runId": "6086a9fd-0fdc-4d6b-a810-6aa4dc567a64",
+      "snapshotId": "35619f2e-d87d-45e5-84d7-306cb0ae6ac9",
+      "profile": {
+        "id": "7018ef4f-238d-4c10-b4c9-99d7a090ec76",
+        "stack": [
+          "pagos"
+        ],
+        "budget": {
+          "amount": 200,
+          "status": "declared",
+          "currency": "EUR"
+        },
+        "window": {
+          "to": "2026-12-31",
+          "from": "2026-09-10"
+        },
+        "formats": [],
+        "product": "Pagos para comercios",
+        "audience": {
+          "profiles": [],
+          "description": "Equipos de pagos"
+        },
+        "createdAt": "2026-09-10T23:13:50.347Z",
+        "geography": {
+          "city": "San Francisco",
+          "timezone": "America/Los_Angeles"
+        },
+        "objective": {
+          "kind": "hiring",
+          "confirmation": "provisional",
+          "successDefinition": {
+            "status": "pending"
+          }
+        },
+        "restrictions": [
+          "Solo contactos con opt-in",
+          "No comprar listas"
+        ],
+        "profileVersion": 2,
+        "contractVersion": "1",
+        "comparableCompanies": []
+      },
+      "evaluatedAt": "2026-09-10T23:13:51.568Z",
+      "snapshotMatchesOriginalPublishedRun": true,
+      "snapshotSha256": "1a2d69c3321f02285e69cd52ec47a1c1844295655d63c2a7cac77b46cc288b1c",
+      "reading": {
+        "version": "research-comparison/1",
+        "priority": {
+          "kind": "insufficient",
+          "criteria": [
+            "Aplicar primero fecha, ciudad, acceso, audiencia y costos de DP-02; excluidos no compiten.",
+            "Afinidad temática explícita entre el brief y programa/proyecto documentado, sin usar premios, marcas ni cifras como afinidad.",
+            "Antecedente de la misma identidad y rol por edición; una experiencia de patrocinio no acredita organización.",
+            "Priorizar solo una diferencia factual: antecedente pertinente frente a ausencia de ese soporte. Empates conservan presentación sin orden de inversión."
+          ],
+          "editionIds": [],
+          "explanation": "Ninguna opción tiene soporte suficiente para priorizar investigación con este brief. Pedir un programa o proyecto pertinente, audiencia documentada y condiciones de participación; no se completan tres recomendaciones."
+        },
+        "differences": {
+          "note": "Cambió el brief; cada alternativa se evaluó con la nueva revisión. Mismas revisiones de evidencia. Cambió la prioridad o su explicación. El snapshot original no se modifica.",
+          "alternatives": [
+            {
+              "changes": [
+                "Condición nueva: Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+                "Condición nueva: Restricción del comprador por verificar: Solo contactos con opt-in",
+                "Condición nueva: Restricción del comprador por verificar: No comprar listas",
+                "Pertinencia: Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión."
+              ],
+              "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+            },
+            {
+              "changes": [
+                "Condición nueva: Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+                "Condición nueva: Restricción del comprador por verificar: Solo contactos con opt-in",
+                "Condición nueva: Restricción del comprador por verificar: No comprar listas",
+                "Pertinencia: Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+                "Actividad: Modalidad publicada: presencial [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios."
+              ],
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec"
+            }
+          ],
+          "briefChanges": [
+            {
+              "after": "\"Pagos para comercios\"",
+              "field": "product",
+              "before": "\"Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.\""
+            },
+            {
+              "after": "{\"description\":\"Equipos de pagos\",\"profiles\":[]}",
+              "field": "audience",
+              "before": "{\"description\":\"Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.\",\"profiles\":[]}"
+            },
+            {
+              "after": "{\"kind\":\"hiring\",\"confirmation\":\"provisional\",\"successDefinition\":{\"status\":\"pending\"}}",
+              "field": "objective",
+              "before": "{\"kind\":\"feedback\",\"confirmation\":\"provisional\",\"successDefinition\":{\"status\":\"pending\"}}"
+            },
+            {
+              "after": "{\"status\":\"declared\",\"amount\":200,\"currency\":\"EUR\"}",
+              "field": "budget",
+              "before": "{\"status\":\"declared\",\"amount\":20000,\"currency\":\"USD\"}"
+            },
+            {
+              "after": "[\"Solo contactos con opt-in\",\"No comprar listas\"]",
+              "field": "restrictions",
+              "before": "[]"
+            },
+            {
+              "after": "[]",
+              "field": "formats",
+              "before": "null"
+            },
+            {
+              "after": "[\"pagos\"]",
+              "field": "stack",
+              "before": "[\"Python\",\"agentes de IA\",\"APIs\",\"observabilidad\"]"
+            },
+            {
+              "after": "{\"city\":\"San Francisco\",\"timezone\":\"America/Los_Angeles\"}",
+              "field": "geography",
+              "before": "null"
+            }
+          ],
+          "previousSnapshotId": "b1a852d9-fa65-467f-a75c-18b2c94598de"
+        },
+        "alternatives": [
+          {
+            "cost": "sponsorship [pending]: importe pendiente attendance [announced]: USD 0 Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                  "sourceIds": [
+                    "background-source-47aa031920df734b87c388a9"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-fa3cc0e8733d89217bbe6537"
+                  ],
+                  "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "relevance": {
+              "text": "Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "RAISE 2025 · agentic AI hackathon · Paris: rol previo sponsor [reported]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Vultr: sponsor [reported]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                    "sourceIds": [
+                      "background-source-47aa031920df734b87c388a9"
+                    ],
+                    "relationshipIds": [
+                      "relationship-37a8dd5d93aaebdd47b120a5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-443f1a35f64859e937e3f3e9"
+                    ],
+                    "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                  },
+                  {
+                    "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                    "sourceIds": [
+                      "background-source-c7d10b468ee0442a6884c677"
+                    ],
+                    "relationshipIds": [
+                      "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                    ],
+                    "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 4 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          },
+          {
+            "cost": "attendance [announced]: USD 0 sponsorship [pending]: importe pendiente Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base. Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-d338fb706df2ac9b9812f813"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+            "relevance": {
+              "text": "Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: rol previo organizer [announced]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Google Cloud: sponsor [announced]. Wordware: venue [announced]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                    "sourceIds": [
+                      "background-source-505eef0cd878fae2b7f5dcce"
+                    ],
+                    "relationshipIds": [
+                      "relationship-263b9267e5ff86c316ba43e5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                    ],
+                    "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                  },
+                  {
+                    "editionId": "edition-e798e9bdbefdc361ed052d63",
+                    "sourceIds": [
+                      "background-source-fbd51fe609f1db84e0862f03"
+                    ],
+                    "relationshipIds": [
+                      "relationship-088e366e1f2585f5c2398064",
+                      "relationship-0fabe03f3d046d27645c6a92",
+                      "relationship-af9ad988b7846086fb150694"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                      "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                      "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                    ],
+                    "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 4 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          }
+        ]
+      },
+      "eligibility": [
+        {
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-2",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-restriccion-3",
+              "resolution": "¿Cómo se cumple «Solo contactos con opt-in» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: Solo contactos con opt-in",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-restriccion-4",
+              "resolution": "¿Cómo se cumple «No comprar listas» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: No comprar listas",
+              "blocksEligibility": true
+            }
+          ]
+        },
+        {
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-2",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-3",
+              "resolution": "¿Cómo se cumple «Solo contactos con opt-in» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: Solo contactos con opt-in",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-4",
+              "resolution": "¿Cómo se cumple «No comprar listas» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: No comprar listas",
+              "blocksEligibility": true
+            }
+          ]
+        }
+      ],
+      "editionRevisions": [
+        {
+          "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "name": "The Agent Arena Hackathon"
+        },
+        {
+          "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+        },
+        {
+          "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "name": "AI Tinkerers SF - Secure Agents Buildathon"
+        },
+        {
+          "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "name": "RAISE 2025 · agentic AI hackathon"
+        }
+      ],
+      "sources": [
+        {
+          "id": "background-source-47aa031920df734b87c388a9",
+          "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "fetchedAt": "2026-09-10T22:41:56.008Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-505eef0cd878fae2b7f5dcce",
+          "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "fetchedAt": "2026-09-10T22:42:44.239Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-c7d10b468ee0442a6884c677",
+          "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+          "fetchedAt": "2026-09-10T22:41:57.276Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-fbd51fe609f1db84e0862f03",
+          "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "fetchedAt": "2026-09-10T22:42:44.454Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        }
+      ],
+      "narrative": {
+        "model": "gemini-2.5-flash",
+        "usage": null,
+        "motive": "GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.",
+        "status": "deterministic_only",
+        "version": 1,
+        "warnings": [],
+        "discarded": null,
+        "proposals": [],
+        "durationMs": 0,
+        "snapshotId": "35619f2e-d87d-45e5-84d7-306cb0ae6ac9",
+        "promptVersion": "comparison-narrative/3"
+      }
+    },
+    {
+      "runId": "e25eaf3c-4e71-4bf9-9829-25074814b75e",
+      "snapshotId": "acf7ca43-0a11-4191-83e7-55cb55cfe5be",
+      "profile": {
+        "id": "b23405c7-dc11-438c-a620-a8823a346182",
+        "stack": [
+          "pagos"
+        ],
+        "budget": {
+          "amount": 200,
+          "status": "declared",
+          "currency": "EUR"
+        },
+        "window": {
+          "to": "2026-12-31",
+          "from": "2026-09-10"
+        },
+        "formats": [],
+        "product": "Pagos para comercios",
+        "audience": {
+          "profiles": [],
+          "description": "Equipos de pagos"
+        },
+        "createdAt": "2026-09-10T23:14:43.060Z",
+        "geography": {
+          "city": "San Francisco",
+          "timezone": "America/Los_Angeles"
+        },
+        "objective": {
+          "kind": "hiring",
+          "confirmation": "provisional",
+          "successDefinition": {
+            "status": "pending"
+          }
+        },
+        "restrictions": [
+          "Solo contactos con opt-in",
+          "No comprar listas"
+        ],
+        "profileVersion": 3,
+        "contractVersion": "1",
+        "comparableCompanies": []
+      },
+      "evaluatedAt": "2026-09-10T23:14:43.585Z",
+      "snapshotMatchesOriginalPublishedRun": true,
+      "snapshotSha256": "7c59c4f137bec40b22d5f8b72df335e6453f911cf229c63b672f3dbfa86e0452",
+      "reading": {
+        "version": "research-comparison/1",
+        "priority": {
+          "kind": "insufficient",
+          "criteria": [
+            "Aplicar primero fecha, ciudad, acceso, audiencia y costos de DP-02; excluidos no compiten.",
+            "Afinidad temática explícita entre el brief y programa/proyecto documentado, sin usar premios, marcas ni cifras como afinidad.",
+            "Antecedente de la misma identidad y rol por edición; una experiencia de patrocinio no acredita organización.",
+            "Priorizar solo una diferencia factual: antecedente pertinente frente a ausencia de ese soporte. Empates conservan presentación sin orden de inversión."
+          ],
+          "editionIds": [],
+          "explanation": "Ninguna opción tiene soporte suficiente para priorizar investigación con este brief. Pedir un programa o proyecto pertinente, audiencia documentada y condiciones de participación; no se completan tres recomendaciones."
+        },
+        "differences": {
+          "note": "Mismo brief declarado. Mismas revisiones de evidencia. Se conserva la prioridad de investigación. El snapshot original no se modifica.",
+          "alternatives": [
+            {
+              "changes": [
+                "Sin diferencias materiales en participación, condiciones, pertinencia o actividad."
+              ],
+              "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+            },
+            {
+              "changes": [
+                "Sin diferencias materiales en participación, condiciones, pertinencia o actividad."
+              ],
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec"
+            }
+          ],
+          "briefChanges": [],
+          "previousSnapshotId": "35619f2e-d87d-45e5-84d7-306cb0ae6ac9"
+        },
+        "alternatives": [
+          {
+            "cost": "sponsorship [pending]: importe pendiente attendance [announced]: USD 0 Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                  "sourceIds": [
+                    "background-source-47aa031920df734b87c388a9"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-fa3cc0e8733d89217bbe6537"
+                  ],
+                  "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "relevance": {
+              "text": "Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "RAISE 2025 · agentic AI hackathon · Paris: rol previo sponsor [reported]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Vultr: sponsor [reported]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                    "sourceIds": [
+                      "background-source-47aa031920df734b87c388a9"
+                    ],
+                    "relationshipIds": [
+                      "relationship-37a8dd5d93aaebdd47b120a5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-443f1a35f64859e937e3f3e9"
+                    ],
+                    "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                  },
+                  {
+                    "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                    "sourceIds": [
+                      "background-source-c7d10b468ee0442a6884c677"
+                    ],
+                    "relationshipIds": [
+                      "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                    ],
+                    "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 4 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          },
+          {
+            "cost": "attendance [announced]: USD 0 sponsorship [pending]: importe pendiente Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base. Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-d338fb706df2ac9b9812f813"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+            "relevance": {
+              "text": "Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: rol previo organizer [announced]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Google Cloud: sponsor [announced]. Wordware: venue [announced]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                    "sourceIds": [
+                      "background-source-505eef0cd878fae2b7f5dcce"
+                    ],
+                    "relationshipIds": [
+                      "relationship-263b9267e5ff86c316ba43e5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                    ],
+                    "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                  },
+                  {
+                    "editionId": "edition-e798e9bdbefdc361ed052d63",
+                    "sourceIds": [
+                      "background-source-fbd51fe609f1db84e0862f03"
+                    ],
+                    "relationshipIds": [
+                      "relationship-088e366e1f2585f5c2398064",
+                      "relationship-0fabe03f3d046d27645c6a92",
+                      "relationship-af9ad988b7846086fb150694"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                      "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                      "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                    ],
+                    "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 4 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          }
+        ]
+      },
+      "eligibility": [
+        {
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-2",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-restriccion-3",
+              "resolution": "¿Cómo se cumple «Solo contactos con opt-in» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: Solo contactos con opt-in",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-restriccion-4",
+              "resolution": "¿Cómo se cumple «No comprar listas» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: No comprar listas",
+              "blocksEligibility": true
+            }
+          ]
+        },
+        {
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-2",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-3",
+              "resolution": "¿Cómo se cumple «Solo contactos con opt-in» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: Solo contactos con opt-in",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-4",
+              "resolution": "¿Cómo se cumple «No comprar listas» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: No comprar listas",
+              "blocksEligibility": true
+            }
+          ]
+        }
+      ],
+      "editionRevisions": [
+        {
+          "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "name": "The Agent Arena Hackathon"
+        },
+        {
+          "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+        },
+        {
+          "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "name": "AI Tinkerers SF - Secure Agents Buildathon"
+        },
+        {
+          "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "name": "RAISE 2025 · agentic AI hackathon"
+        }
+      ],
+      "sources": [
+        {
+          "id": "background-source-47aa031920df734b87c388a9",
+          "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "fetchedAt": "2026-09-10T22:41:56.008Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-505eef0cd878fae2b7f5dcce",
+          "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "fetchedAt": "2026-09-10T22:42:44.239Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-c7d10b468ee0442a6884c677",
+          "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+          "fetchedAt": "2026-09-10T22:41:57.276Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-fbd51fe609f1db84e0862f03",
+          "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "fetchedAt": "2026-09-10T22:42:44.454Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        }
+      ],
+      "narrative": {
+        "model": "gemini-2.5-flash",
+        "usage": null,
+        "motive": "GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.",
+        "status": "deterministic_only",
+        "version": 1,
+        "warnings": [],
+        "discarded": null,
+        "proposals": [],
+        "durationMs": 0,
+        "snapshotId": "acf7ca43-0a11-4191-83e7-55cb55cfe5be",
+        "promptVersion": "comparison-narrative/3"
+      }
+    },
+    {
+      "runId": "28d1cdef-ed88-433a-b648-958f0fceb874",
+      "snapshotId": "90b8c4ab-8a4f-40f4-939a-04cfc76278a6",
+      "profile": {
+        "id": "62d2522e-8ec0-4b1e-aba4-52fba9ec5848",
+        "stack": [
+          "pagos"
+        ],
+        "budget": {
+          "amount": 200,
+          "status": "declared",
+          "currency": "EUR"
+        },
+        "window": {
+          "to": "2026-10-30",
+          "from": "2026-09-20"
+        },
+        "formats": [],
+        "product": "Pagos para comercios",
+        "audience": {
+          "profiles": [],
+          "description": "Equipos de pagos"
+        },
+        "createdAt": "2026-09-10T23:15:56.529Z",
+        "geography": {
+          "city": "San Francisco",
+          "timezone": "America/Los_Angeles"
+        },
+        "objective": {
+          "kind": "hiring",
+          "confirmation": "provisional",
+          "successDefinition": {
+            "status": "pending"
+          }
+        },
+        "restrictions": [
+          "Solo contactos con opt-in",
+          "No comprar listas"
+        ],
+        "profileVersion": 4,
+        "contractVersion": "1",
+        "comparableCompanies": []
+      },
+      "evaluatedAt": "2026-09-10T23:15:57.642Z",
+      "snapshotMatchesOriginalPublishedRun": true,
+      "snapshotSha256": "eecdf3e96561d8789a42a07aa9d6d27d6edd2a36e0df2ce3d3f422eeeb380fba",
+      "reading": {
+        "version": "research-comparison/1",
+        "priority": {
+          "kind": "insufficient",
+          "criteria": [
+            "Aplicar primero fecha, ciudad, acceso, audiencia y costos de DP-02; excluidos no compiten.",
+            "Afinidad temática explícita entre el brief y programa/proyecto documentado, sin usar premios, marcas ni cifras como afinidad.",
+            "Antecedente de la misma identidad y rol por edición; una experiencia de patrocinio no acredita organización.",
+            "Priorizar solo una diferencia factual: antecedente pertinente frente a ausencia de ese soporte. Empates conservan presentación sin orden de inversión."
+          ],
+          "editionIds": [],
+          "explanation": "Ninguna opción tiene soporte suficiente para priorizar investigación con este brief. Pedir un programa o proyecto pertinente, audiencia documentada y condiciones de participación; no se completan tres recomendaciones."
+        },
+        "differences": {
+          "note": "Cambió el brief; cada alternativa se evaluó con la nueva revisión. Mismas revisiones de evidencia. Se conserva la prioridad de investigación. El snapshot original no se modifica.",
+          "alternatives": [
+            {
+              "changes": [
+                "Sin diferencias materiales en participación, condiciones, pertinencia o actividad."
+              ],
+              "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+            },
+            {
+              "changes": [
+                "Participación: conditional → excluded. La fecha declarada (2026-09-12) es anterior a la ventana del perfil (2026-09-20)."
+              ],
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec"
+            }
+          ],
+          "briefChanges": [
+            {
+              "after": "{\"from\":\"2026-09-20\",\"to\":\"2026-10-30\"}",
+              "field": "window",
+              "before": "{\"from\":\"2026-09-10\",\"to\":\"2026-12-31\"}"
+            }
+          ],
+          "previousSnapshotId": "acf7ca43-0a11-4191-83e7-55cb55cfe5be"
+        },
+        "alternatives": [
+          {
+            "cost": "sponsorship [pending]: importe pendiente attendance [announced]: USD 0 Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                  "sourceIds": [
+                    "background-source-47aa031920df734b87c388a9"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-fa3cc0e8733d89217bbe6537"
+                  ],
+                  "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "relevance": {
+              "text": "Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "RAISE 2025 · agentic AI hackathon · Paris: rol previo sponsor [reported]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Vultr: sponsor [reported]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                    "sourceIds": [
+                      "background-source-47aa031920df734b87c388a9"
+                    ],
+                    "relationshipIds": [
+                      "relationship-37a8dd5d93aaebdd47b120a5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-443f1a35f64859e937e3f3e9"
+                    ],
+                    "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                  },
+                  {
+                    "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                    "sourceIds": [
+                      "background-source-c7d10b468ee0442a6884c677"
+                    ],
+                    "relationshipIds": [
+                      "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                    ],
+                    "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 4 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          },
+          {
+            "cost": "attendance [announced]: USD 0 sponsorship [pending]: importe pendiente Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base. Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-d338fb706df2ac9b9812f813"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+            "relevance": {
+              "text": "Para «Pagos para comercios», dirigido a «Equipos de pagos» y con objetivo de contratación, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: rol previo organizer [announced]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Google Cloud: sponsor [announced]. Wordware: venue [announced]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                    "sourceIds": [
+                      "background-source-505eef0cd878fae2b7f5dcce"
+                    ],
+                    "relationshipIds": [
+                      "relationship-263b9267e5ff86c316ba43e5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                    ],
+                    "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                  },
+                  {
+                    "editionId": "edition-e798e9bdbefdc361ed052d63",
+                    "sourceIds": [
+                      "background-source-fbd51fe609f1db84e0862f03"
+                    ],
+                    "relationshipIds": [
+                      "relationship-088e366e1f2585f5c2398064",
+                      "relationship-0fabe03f3d046d27645c6a92",
+                      "relationship-af9ad988b7846086fb150694"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                      "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                      "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                    ],
+                    "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Existe otra edición o modalidad que resuelva este conflicto: La fecha declarada (2026-09-12) es anterior a la ventana del perfil (2026-09-20).?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 4 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          }
+        ]
+      },
+      "eligibility": [
+        {
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-2",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-restriccion-3",
+              "resolution": "¿Cómo se cumple «Solo contactos con opt-in» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: Solo contactos con opt-in",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-restriccion-4",
+              "resolution": "¿Cómo se cumple «No comprar listas» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: No comprar listas",
+              "blocksEligibility": true
+            }
+          ]
+        },
+        {
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "eligibility": {
+            "status": "excluded",
+            "reasons": [
+              "La fecha declarada (2026-09-12) es anterior a la ventana del perfil (2026-09-20)."
+            ]
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Moneda no comparable: «attendance» en USD frente al presupuesto en EUR; requiere conversión explícita con fecha y base.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-2",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-3",
+              "resolution": "¿Cómo se cumple «Solo contactos con opt-in» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: Solo contactos con opt-in",
+              "blocksEligibility": true
+            },
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-4",
+              "resolution": "¿Cómo se cumple «No comprar listas» en la modalidad de esta edición?",
+              "description": "Restricción del comprador por verificar: No comprar listas",
+              "blocksEligibility": true
+            }
+          ]
+        }
+      ],
+      "editionRevisions": [
+        {
+          "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "name": "The Agent Arena Hackathon"
+        },
+        {
+          "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+        },
+        {
+          "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "name": "AI Tinkerers SF - Secure Agents Buildathon"
+        },
+        {
+          "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "name": "RAISE 2025 · agentic AI hackathon"
+        }
+      ],
+      "sources": [
+        {
+          "id": "background-source-47aa031920df734b87c388a9",
+          "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "fetchedAt": "2026-09-10T22:41:56.008Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-505eef0cd878fae2b7f5dcce",
+          "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "fetchedAt": "2026-09-10T22:42:44.239Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-c7d10b468ee0442a6884c677",
+          "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+          "fetchedAt": "2026-09-10T22:41:57.276Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-fbd51fe609f1db84e0862f03",
+          "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "fetchedAt": "2026-09-10T22:42:44.454Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        }
+      ],
+      "narrative": {
+        "model": "gemini-2.5-flash",
+        "usage": null,
+        "motive": "GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.",
+        "status": "deterministic_only",
+        "version": 1,
+        "warnings": [],
+        "discarded": null,
+        "proposals": [],
+        "durationMs": 0,
+        "snapshotId": "90b8c4ab-8a4f-40f4-939a-04cfc76278a6",
+        "promptVersion": "comparison-narrative/3"
+      }
+    },
+    {
+      "runId": "4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0",
+      "snapshotId": "6e3e1c38-70cd-4c87-9adc-182bcd36698b",
+      "profile": {
+        "id": "42279a81-3273-4539-922c-c55b9468d3f2",
+        "stack": [
+          "Python",
+          "agentes de IA",
+          "APIs",
+          "observabilidad"
+        ],
+        "budget": {
+          "amount": 20000,
+          "status": "declared",
+          "currency": "USD"
+        },
+        "window": {
+          "to": "2026-12-31",
+          "from": "2026-09-10"
+        },
+        "formats": [],
+        "product": "Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.",
+        "audience": {
+          "profiles": [],
+          "description": "Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas."
+        },
+        "createdAt": "2026-09-10T23:17:00.598Z",
+        "geography": {
+          "city": "San Francisco",
+          "timezone": "America/Los_Angeles"
+        },
+        "objective": {
+          "kind": "feedback",
+          "confirmation": "provisional",
+          "successDefinition": {
+            "status": "pending"
+          }
+        },
+        "restrictions": [],
+        "profileVersion": 5,
+        "contractVersion": "1",
+        "comparableCompanies": []
+      },
+      "evaluatedAt": "2026-09-10T23:17:01.634Z",
+      "snapshotMatchesOriginalPublishedRun": true,
+      "snapshotSha256": "f5c7cfa8cb88085d1ac753c575681c700a37064ca7fad5b48857128e899ac654",
+      "reading": {
+        "version": "research-comparison/1",
+        "priority": {
+          "kind": "investigate_first",
+          "criteria": [
+            "Aplicar primero fecha, ciudad, acceso, audiencia y costos de DP-02; excluidos no compiten.",
+            "Afinidad temática explícita entre el brief y programa/proyecto documentado, sin usar premios, marcas ni cifras como afinidad.",
+            "Antecedente de la misma identidad y rol por edición; una experiencia de patrocinio no acredita organización.",
+            "Priorizar solo una diferencia factual: antecedente pertinente frente a ausencia de ese soporte. Empates conservan presentación sin orden de inversión."
+          ],
+          "editionIds": [
+            "edition-d54a42d3ba8672ab20f9aeec"
+          ],
+          "explanation": "Investigar primero Agents, Everywhere: Bots, Channels, & More — Global Hackathon: es la única candidata sin exclusión con antecedente temático pertinente y vínculo de identidad documentado. Las demás no tienen ese soporte en la cobertura revisada. Resolver sus condiciones antes de comprometer presupuesto."
+        },
+        "differences": {
+          "note": "Cambió el brief; cada alternativa se evaluó con la nueva revisión. Mismas revisiones de evidencia. Se conserva la prioridad de investigación. El snapshot original no se modifica.",
+          "alternatives": [
+            {
+              "changes": [
+                "Sin diferencias materiales en participación, condiciones, pertinencia o actividad."
+              ],
+              "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+            },
+            {
+              "changes": [
+                "Sin diferencias materiales en participación, condiciones, pertinencia o actividad."
+              ],
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec"
+            }
+          ],
+          "briefChanges": [
+            {
+              "after": "[]",
+              "field": "formats",
+              "before": "null"
+            },
+            {
+              "after": "{\"city\":\"San Francisco\",\"timezone\":\"America/Los_Angeles\"}",
+              "field": "geography",
+              "before": "null"
+            }
+          ],
+          "previousSnapshotId": "b1a852d9-fa65-467f-a75c-18b2c94598de"
+        },
+        "alternatives": [
+          {
+            "cost": "sponsorship [pending]: importe pendiente attendance [announced]: USD 0 Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Antes de proponer una actividad, confirmar programa y audiencia pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                  "sourceIds": [
+                    "background-source-47aa031920df734b87c388a9"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-fa3cc0e8733d89217bbe6537"
+                  ],
+                  "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "relevance": {
+              "text": "Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, no encontramos programa o proyecto documentado que establezca afinidad específica. Preguntar por casos de uso y audiencia pertinentes antes de proponer inversión.",
+              "basis": []
+            },
+            "antecedents": [
+              {
+                "text": "RAISE 2025 · agentic AI hackathon · Paris: rol previo sponsor [reported]. No hay programa o proyecto con afinidad temática comprobable en esta lectura. Vultr: sponsor [reported]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                    "sourceIds": [
+                      "background-source-47aa031920df734b87c388a9"
+                    ],
+                    "relationshipIds": [
+                      "relationship-37a8dd5d93aaebdd47b120a5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-443f1a35f64859e937e3f3e9"
+                    ],
+                    "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+                  },
+                  {
+                    "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                    "sourceIds": [
+                      "background-source-c7d10b468ee0442a6884c677"
+                    ],
+                    "relationshipIds": [
+                      "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                    ],
+                    "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Qué programa o proyecto previo demuestra afinidad con este producto y su audiencia?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 0 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 1 condición(es) material(es) abierta(s).",
+              "status": "insufficient"
+            },
+            "matchedCriteria": []
+          },
+          {
+            "cost": "attendance [announced]: USD 0 sponsorship [pending]: importe pendiente Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. Confirmar qué incluye el precio completo de la modalidad; tickets, premios o créditos no son tarifas de patrocinio.",
+            "modality": {
+              "text": "Modalidad publicada: presencial [announced]. Actividad propuesta por el comprador: Explorar una sesión de feedback voluntario sobre el producto con participantes pertinentes. La participación comercial requiere autorización y precio propios.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [],
+                  "claimRevisionIds": [
+                    "background-claim-rev-d338fb706df2ac9b9812f813"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [
+                    "relationship-263b9267e5ff86c316ba43e5"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-e798e9bdbefdc361ed052d63",
+                  "sourceIds": [
+                    "background-source-fbd51fe609f1db84e0862f03"
+                  ],
+                  "relationshipIds": [
+                    "relationship-088e366e1f2585f5c2398064",
+                    "relationship-0fabe03f3d046d27645c6a92",
+                    "relationship-af9ad988b7846086fb150694"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-64de455ace26ed0014e99637",
+                    "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                    "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                    "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                  ],
+                  "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                }
+              ],
+              "status": "published"
+            },
+            "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+            "relevance": {
+              "text": "Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, hay afinidad temática en agentes, observabilidad. El antecedente documentado permite preguntar por una actividad similar en la edición actual. Es una hipótesis de pertinencia; falta validar audiencia efectiva y disponibilidad.",
+              "basis": [
+                {
+                  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                  "sourceIds": [
+                    "background-source-505eef0cd878fae2b7f5dcce"
+                  ],
+                  "relationshipIds": [
+                    "relationship-263b9267e5ff86c316ba43e5"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                  ],
+                  "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                },
+                {
+                  "editionId": "edition-e798e9bdbefdc361ed052d63",
+                  "sourceIds": [
+                    "background-source-fbd51fe609f1db84e0862f03"
+                  ],
+                  "relationshipIds": [
+                    "relationship-088e366e1f2585f5c2398064",
+                    "relationship-0fabe03f3d046d27645c6a92",
+                    "relationship-af9ad988b7846086fb150694"
+                  ],
+                  "claimRevisionIds": [
+                    "background-claim-rev-64de455ace26ed0014e99637",
+                    "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                    "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                    "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                  ],
+                  "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                }
+              ]
+            },
+            "antecedents": [
+              {
+                "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: rol previo organizer [announced]. Programa [announced]: Monitoring, auditing, and recovery patterns for long-running agents Google Cloud: sponsor [announced]. Wordware: venue [announced]. La publicación conserva su estado; no acredita pago, ejecución, asistencia ni retorno comercial.",
+                "basis": [
+                  {
+                    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                    "sourceIds": [
+                      "background-source-505eef0cd878fae2b7f5dcce"
+                    ],
+                    "relationshipIds": [
+                      "relationship-263b9267e5ff86c316ba43e5"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                    ],
+                    "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+                  },
+                  {
+                    "editionId": "edition-e798e9bdbefdc361ed052d63",
+                    "sourceIds": [
+                      "background-source-fbd51fe609f1db84e0862f03"
+                    ],
+                    "relationshipIds": [
+                      "relationship-088e366e1f2585f5c2398064",
+                      "relationship-0fabe03f3d046d27645c6a92",
+                      "relationship-af9ad988b7846086fb150694"
+                    ],
+                    "claimRevisionIds": [
+                      "background-claim-rev-64de455ace26ed0014e99637",
+                      "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                      "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                      "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                    ],
+                    "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+                  }
+                ]
+              }
+            ],
+            "nextQuestion": "¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Permiten una actividad de feedback para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.» con «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.»?",
+            "evidenceQuality": {
+              "note": "0 afirmación(es) temática(s) actuales y 1 antecedente(s) pertinente(s) revisados. Cobertura de fuentes, sin extrapolar proyectos a asistentes. 1 condición(es) material(es) abierta(s).",
+              "status": "supported"
+            },
+            "matchedCriteria": [
+              "antecedente_pertinente"
+            ]
+          }
+        ]
+      },
+      "eligibility": [
+        {
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d0281a2afe1eb40ed6d8bae9-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            }
+          ]
+        },
+        {
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "eligibility": {
+            "note": "Condicionado por información faltante; ninguna condición se resuelve por puntaje.",
+            "status": "conditional"
+          },
+          "conditions": [
+            {
+              "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+              "resolution": "¿Cuál es el costo completo, la moneda y el paquete a contratar?",
+              "description": "Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero.",
+              "blocksEligibility": true
+            }
+          ]
+        }
+      ],
+      "editionRevisions": [
+        {
+          "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "name": "The Agent Arena Hackathon"
+        },
+        {
+          "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+        },
+        {
+          "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "name": "AI Tinkerers SF - Secure Agents Buildathon"
+        },
+        {
+          "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "name": "RAISE 2025 · agentic AI hackathon"
+        }
+      ],
+      "sources": [
+        {
+          "id": "background-source-47aa031920df734b87c388a9",
+          "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "fetchedAt": "2026-09-10T22:41:56.008Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-505eef0cd878fae2b7f5dcce",
+          "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "fetchedAt": "2026-09-10T22:42:44.239Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-c7d10b468ee0442a6884c677",
+          "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+          "fetchedAt": "2026-09-10T22:41:57.276Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        },
+        {
+          "id": "background-source-fbd51fe609f1db84e0862f03",
+          "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "fetchedAt": "2026-09-10T22:42:44.454Z",
+          "isFixture": null,
+          "method": "http_get+relationship_extraction"
+        }
+      ],
+      "narrative": {
+        "model": "gemini-2.5-flash",
+        "usage": null,
+        "motive": "GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.",
+        "status": "deterministic_only",
+        "version": 1,
+        "warnings": [],
+        "discarded": null,
+        "proposals": [],
+        "durationMs": 0,
+        "snapshotId": "6e3e1c38-70cd-4c87-9adc-182bcd36698b",
+        "promptVersion": "comparison-narrative/3"
+      }
+    }
+  ]
+}

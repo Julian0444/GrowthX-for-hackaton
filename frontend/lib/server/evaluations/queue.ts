@@ -62,7 +62,7 @@ export const transactionalEvaluationQueue: EvaluationQueue = {
     if (jobId === null) {
       // singletonKey ya en cola: para un run recién insertado no debería pasar;
       // se trata como fallo de aceptación (la transacción entera se revierte).
-      throw new Error(`La cola rechazó el job del run ${job.runId} (singleton duplicado)`);
+      throw new Error(`The queue rejected the job for run ${job.runId} (singleton duplicado)`);
     }
   },
 };

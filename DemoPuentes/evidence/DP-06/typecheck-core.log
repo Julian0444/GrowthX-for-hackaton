@@ -1,0 +1,6 @@
+lib/server/geocoding/resolve.ts(77,354): error TS2353: Object literal may only specify known properties, and 'text' does not exist in type '{ kind: "excerpt"; excerpt: string; }'.
+lib/server/geocoding/resolve.ts(77,491): error TS2322: Type '"complete"' is not assignable to type '"error" | "partial" | "insufficient" | "obtained"'.
+lib/server/relationships/resolve.ts(111,334): error TS2345: Argument of type '{ text: string; locator: string; }' is not assignable to parameter of type '{ text: string; locator: string; heading: string; }'.
+  Property 'heading' is missing in type '{ text: string; locator: string; }' but required in type '{ text: string; locator: string; heading: string; }'.
+lib/server/relationships/resolve.ts(180,120): error TS2345: Argument of type '{ text: string; locator: string; }' is not assignable to parameter of type '{ text: string; locator: string; heading: string; }'.
+  Property 'heading' is missing in type '{ text: string; locator: string; }' but required in type '{ text: string; locator: string; heading: string; }'.

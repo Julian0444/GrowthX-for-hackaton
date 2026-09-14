@@ -1,0 +1,352 @@
+{
+  "ticket": "DP-03",
+  "date": "2026-09-10",
+  "scope": "Only changes added during DP-03; existing dirty files are audited separately. Hashes identify the checked local revision, without creating a git commit.",
+  "checks": {
+    "tests": {
+      "command": [
+        "node",
+        "--test",
+        "tests/**/*.test.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 12.0,
+      "database": "isolated PostgreSQL port 55443"
+    },
+    "e2e": {
+      "command": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 126.4,
+      "database": "isolated PostgreSQL port 55443"
+    },
+    "typecheck": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 2.51,
+      "database": "isolated PostgreSQL port 55443"
+    },
+    "lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "lib/contracts/evaluation.ts",
+        "lib/contracts/evaluation-validation.ts",
+        "lib/research",
+        "lib/temporal/declared-date.ts",
+        "lib/server/evaluations/wire.ts",
+        "lib/server/evaluations/service.ts",
+        "lib/server/evaluations/snapshot-store.ts",
+        "lib/server/evaluations/run-worker.ts",
+        "lib/server/evidence/store.ts",
+        "lib/server/catalog/store.ts",
+        "lib/server/catalog/read.ts",
+        "lib/api/opportunity-adapter.ts",
+        "lib/api/atlas-client.ts",
+        "components/atlas/onboarding-intake.tsx",
+        "components/research-dashboard",
+        "tests/contracts/research-brief.test.ts",
+        "tests/integration/research-brief.test.ts",
+        "tests/fixtures/research-brief.ts",
+        "tests/e2e/research-brief.spec.ts",
+        "tests/e2e/persisted-evaluation.spec.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 3.06,
+      "database": "isolated PostgreSQL port 55443"
+    },
+    "build": {
+      "command": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp03-build-vl2svk18",
+      "exit_code": 0,
+      "duration_seconds": 4.75,
+      "database": "isolated PostgreSQL port 55443"
+    }
+  },
+  "build_application_sources": {
+    "all_match": true,
+    "files": [
+      "frontend/app/globals.css",
+      "frontend/components/atlas/onboarding-intake.tsx",
+      "frontend/components/research-dashboard/comparison-panel.tsx",
+      "frontend/components/research-dashboard/research-dashboard.tsx",
+      "frontend/components/research-dashboard/research-dossier.tsx",
+      "frontend/components/research-dashboard/sf-event-map.tsx",
+      "frontend/lib/api/atlas-client.ts",
+      "frontend/lib/api/opportunity-adapter.ts",
+      "frontend/lib/contracts/evaluation-validation.ts",
+      "frontend/lib/contracts/evaluation.ts",
+      "frontend/lib/research/brief-plan.ts",
+      "frontend/lib/research/edition-location.ts",
+      "frontend/lib/server/catalog/fixture-manifest.ts",
+      "frontend/lib/server/catalog/read.ts",
+      "frontend/lib/server/catalog/research.ts",
+      "frontend/lib/server/catalog/store.ts",
+      "frontend/lib/server/evaluations/run-worker.ts",
+      "frontend/lib/server/evaluations/service.ts",
+      "frontend/lib/server/evaluations/snapshot-store.ts",
+      "frontend/lib/server/evaluations/wire.ts",
+      "frontend/lib/server/evidence/store.ts",
+      "frontend/lib/temporal/declared-date.ts"
+    ]
+  },
+  "changed_files": {
+    "CONTEXT.md": "fcddda99ad4a149e4fb0112442bb6ee3151708a6afc810d03527c28fd46c4550",
+    "DemoPuentes/PuentesHandoff.md": "c3a7f075cb08ec2c14d18d93d516f58bf01356205793371d38d44089b65a15ad",
+    "DemoPuentes/README.md": "b6983cc8bffd9980d88875bfae291313bf6d67845a9e919a98df9aeb9c001a25",
+    "DemoPuentes/implementation-plan.md": "376009e1a254a90f2b5878b593464ffdfe1247679c0f6a74e86ab9ba74acd534",
+    "DemoPuentes/issues/03-brief-y-contratos-de-investigacion.md": "5ff16346a1e77282197d585ba064a64a47a77d1de19aebed10f4389f13940c3d",
+    "docs/adr/0001-arquitectura-agente-growth-atlas.md": "199327d64c8e6d9bfd4b254560394cc20ed09f4cbf7c85ee69c6b6fc942806aa",
+    "frontend/app/globals.css": "51ec3dad1f672bbdf22784292f333733add4b5e249bd8c128bd4422e6deb6d39",
+    "frontend/components/atlas/onboarding-intake.tsx": "ee64a343bd5121d4ddfb467a860cda9d1035045fac9eccbd9697f5db45fd37a3",
+    "frontend/components/research-dashboard/comparison-panel.tsx": "58c44e4127ff8e44066c885c452f376c10daaca664e7ba070f394afcf8052f99",
+    "frontend/components/research-dashboard/research-dashboard.tsx": "13bbdab0f42cd655f25c84c22e24248d29d8e939f8cd4fd586fef6e3a082310b",
+    "frontend/components/research-dashboard/research-dossier.tsx": "9c5d85d2c63426c76ef87fedbda92474953233c5cadfb1833e22cda93699b22e",
+    "frontend/components/research-dashboard/sf-event-map.tsx": "37687ed9fd31c4d55d71f02444df06f1c5c502c7b492c5ee5b6c1d7ab8d60524",
+    "frontend/db/README.md": "67a9edb8956c57b15a821936a7c96d868b7c1d70f4f6f181867616954227b1ce",
+    "frontend/lib/api/atlas-client.ts": "94f174eccc903aae7cdcaef9b8e57a6d90ef19f781ddaa81a721858bc890e8de",
+    "frontend/lib/api/opportunity-adapter.ts": "681652b76b69968f94d1ee07092042637c8c0bc170fac1fa72c5cec25bbf4cfb",
+    "frontend/lib/contracts/evaluation-validation.ts": "53885eb4c7b7b57fa2d64ec37f14e956447808ef8aba55a0309a7663bd57a0f7",
+    "frontend/lib/contracts/evaluation.ts": "2e69daabfaca7369808f3a2075d6ef29dc15786e3e1bd1477de6ef4dbd23b598",
+    "frontend/lib/research/brief-plan.ts": "ba4c2d84570a490af7544acdb547c5b5cde4df935ced75876204a3d3afb2112e",
+    "frontend/lib/research/edition-location.ts": "afbd70d799b688c194848899816305b98e12d8f7fa57176348197ff8e214ad08",
+    "frontend/lib/server/catalog/fixture-manifest.ts": "bb0544ff62181e112e537036ed3f244c794a64bb415b21423bbf7e9873b6745d",
+    "frontend/lib/server/catalog/read.ts": "053e43251718ded3ad78d6e51092ec99dc048528776d53e390514cdd95003c9f",
+    "frontend/lib/server/catalog/research.ts": "58bd4a3f241db384e060ac5c50b7fd697925754c3efecc4756d1d7335e6fd15c",
+    "frontend/lib/server/catalog/store.ts": "f4c62353cd8474d6b94880e96771e972850cc1f2ba32a1bb24533c16e0de4d62",
+    "frontend/lib/server/evaluations/run-worker.ts": "3eeb703ab45be6b53c2e46e4fc99e3d8a62a7efe19ebcd5b905499f00178dddf",
+    "frontend/lib/server/evaluations/service.ts": "9bae5dc805eaa1ad0497e1dc828276dad26d9562a3b900182e4b1515ffea1759",
+    "frontend/lib/server/evaluations/snapshot-store.ts": "9142d7c19ee774a340c8f4e8bfe3552b1f6934b4400294e8d442693c98bf14ac",
+    "frontend/lib/server/evaluations/wire.ts": "b0d6bae72b7ab78d01f32ef2111d6f766ae81d736757ef09b6edddce38cd9360",
+    "frontend/lib/server/evidence/store.ts": "8a2bf9f60bfa4ef66a48315ccaf706faa8370ef816199c44e13433cdb7f7628f",
+    "frontend/lib/temporal/declared-date.ts": "138cdd33c776739f8e476df6229ec5a7161d2141c2dddb3bca4c694461ccce27",
+    "frontend/package.json": "0976bd2076e951994f394bedaf9fade64c8ec87028dfbe0f9751e01b39808ac7",
+    "frontend/tests/contracts/evaluation.test.ts": "b085aa4b1628134f62e2792eaf5ae27e55416eed2e93ccc306a18d8114b4c1b4",
+    "frontend/tests/contracts/research-brief.test.ts": "3c3c4fb23991ad65f98d2948081774d1a934408e17c9c470192a5f24c6c940bc",
+    "frontend/tests/e2e/persisted-evaluation.spec.ts": "4d78d46b9e4f6fb2391ac081d1b6a81f394b36bc212f7e7bd7f7a9d7120b6928",
+    "frontend/tests/e2e/research-brief.spec.ts": "d7b23c4a28156dfb3ac802f441436a88aa8a09bc50e23956e71c742e315964d3",
+    "frontend/tests/fixtures/research-brief.ts": "0d73988419707e69f0274b643e1e794c67333243099da378d187558cc038aea6",
+    "frontend/tests/integration/curated-dossier.test.ts": "40b47fc2fa96b8ef5b9a29c41539f33580c7860ce3395d5050e96e8dbbb26112",
+    "frontend/tests/integration/evaluation-run.test.ts": "bf8a651d74cc7f21d4a6d1b821f7fb518c16f7de7690f9445066ab564eb99b24",
+    "frontend/tests/integration/research-brief.test.ts": "0dd7325443a2f1bb4a76574954f88b5d8657a301dde8d2bd72b57d96b6fa07bf",
+    "frontend/tests/ui/trust-evidence.test.ts": "1eca3cf575d9c0df2ca52a251c610ab3cd22fcea09175ed12adad016b9cf352f"
+  },
+  "evidence_files": {
+    "DemoPuentes/evidence/DP-03/README.md": "84751450eea99bbdf923f15ed67255905ad61122a1defce4c18364aaba4ab5a7",
+    "DemoPuentes/evidence/DP-03/build.json": "437511b67db5587b15c6961a3bb281cbfdddf01c0d1354ae8a81bbe96ac34f97",
+    "DemoPuentes/evidence/DP-03/build.log": "ae498677608cda07dbddf4235077a0fdbe378cd88a095bac7866d7b33df82855",
+    "DemoPuentes/evidence/DP-03/e2e-brief.json": "9b3db44d3983598fe5518a97179d50928cd037e1882d93f92b7a4d8b277a03e1",
+    "DemoPuentes/evidence/DP-03/e2e-brief.log": "002919484add2632559606e81a54c1e299289c04b3f5ca78dd1675016a3e74ab",
+    "DemoPuentes/evidence/DP-03/e2e-persisted.json": "c9d823895dca7259908fdc84af67b9d470a63224eb8386ca89ce7848355475af",
+    "DemoPuentes/evidence/DP-03/e2e-persisted.log": "855c7836b92acaa3b1c230636fdb82f6d76852cfcf864e944dda2ca6b837ce39",
+    "DemoPuentes/evidence/DP-03/e2e.json": "bf74fb52744b4c3fc86695def559a34b987a5cbbffd361d5b802761021e157d3",
+    "DemoPuentes/evidence/DP-03/e2e.log": "f4328b8ccbd20526d7f2ebb2448fc6eccfbaf383d05fce98c252e840e67aef8d",
+    "DemoPuentes/evidence/DP-03/lint.json": "08d6dd8c607fb038afe574e3fda4b986dca55a0e6f56c5bb40f871a40cb3bb4a",
+    "DemoPuentes/evidence/DP-03/lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "DemoPuentes/evidence/DP-03/run-check.py": "316a6f83af8cb290342a2cd87b7c765c3fab90e82562be3b4fd2a5138bae5719",
+    "DemoPuentes/evidence/DP-03/screenshots/brief-mobile.png": "4b74b6395493e50ccc9809cef0a8b670ffc7e4736c2707da388f20348513489c",
+    "DemoPuentes/evidence/DP-03/screenshots/brief-review-v1.png": "13873579ba851b0d23a3006144a4c2c36aeb56a47f3f11087b7e2de996381578",
+    "DemoPuentes/evidence/DP-03/screenshots/brief-review-v2.png": "8d4a729c6e9ccfe5427d14545c21f9e886797f89b6ee5348b8865ff377dddb73",
+    "DemoPuentes/evidence/DP-03/screenshots/brief-selection.png": "a38317a46bfc006b8756e9fb82dd84b43ad21c43a3529dcaa5cd10dd64165da5",
+    "DemoPuentes/evidence/DP-03/screenshots/dossier.png": "a77a8f2799d35f0bc46721ab10a1dbe62b79d10c43d33e1f1f68be212deecac4",
+    "DemoPuentes/evidence/DP-03/screenshots/map.png": "86b8f4b843e7274acf723c1a3acf8263972eb924abf036c27f1a97b6d29905c0",
+    "DemoPuentes/evidence/DP-03/screenshots/organizers.png": "b8f699ae52bbb0a43746c8775daf12a9453a3a4cc674fe29b13906fd3034ec65",
+    "DemoPuentes/evidence/DP-03/screenshots/persisted-decision.png": "2827d4891f8dbcd2c199760edd9ad91a6d5c435d6369828e350cc2d7a286f9ae",
+    "DemoPuentes/evidence/DP-03/screenshots/persisted-import.png": "e92181be3a9dd137ae57ebaa3e47976a7c76fb60565ce91db4878bf40ca1ccde",
+    "DemoPuentes/evidence/DP-03/screenshots/persisted-organizers.png": "fedad51a25b9edec2b2d1fb6568c5d405da4565ceb488b549c17520b862486dc",
+    "DemoPuentes/evidence/DP-03/screenshots/persisted-reopen.png": "8172661b519e53c22a34e2027bbaab213534e35dc2e5a60d814a8ac82d0c7501",
+    "DemoPuentes/evidence/DP-03/screenshots/profile.png": "29dd88ba3fdac8d9ab01df40ee5d9a16e7a6f20fcca1d7cc46c88ff4489cda59",
+    "DemoPuentes/evidence/DP-03/screenshots/reopen-campaign.png": "863b7ba2f31264eeaaa70444720009fb24ab77cc537399c21642e52a808309f3",
+    "DemoPuentes/evidence/DP-03/screenshots/reopen-decision.png": "ba67fd7f83e57445d812d0960bac88d399c9d89d987251a338db0e2398b44be5",
+    "DemoPuentes/evidence/DP-03/screenshots/reopen-list.png": "82b2441659b35fd3e0f32dae43e59f431cd86edd2ca497828da5a5098f17c628",
+    "DemoPuentes/evidence/DP-03/screenshots/reopen-validity.png": "6c6f4a87fc3e6a5de9c9cad766e46b31d149f3f214330503483e0f4f0b1b47d8",
+    "DemoPuentes/evidence/DP-03/targeted.json": "db39390e8bf8593306be4a93bc5eb0eea7df811a7dcb50e69c6c05b413e2ff60",
+    "DemoPuentes/evidence/DP-03/targeted.log": "6c2375bb8ec799f2e62b69d341a0f5a762560ad5d215e45cf375f039d15cc934",
+    "DemoPuentes/evidence/DP-03/tests.json": "b952ee7c12cec610802e2379d71c2ab709f2e8b935444e3d6f1945ffdfd09c76",
+    "DemoPuentes/evidence/DP-03/tests.log": "4ea34b9c84440315b5b29ec12929f724c1ea4151929bc4e6b6f9635649ec2bb5",
+    "DemoPuentes/evidence/DP-03/typecheck.json": "5d65b6262959695ce7e415f6853a37020bb19f91de3cece10bdfaf29f69b82d2",
+    "DemoPuentes/evidence/DP-03/typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "initial_worktree_preservation": {
+    "DemoPuentes/evidence/DP-02/README.md": {
+      "initial_sha256": "68b0f90fbaee52aee55527e9a0dc2930740577b8c4b68b34955196d21a049f66",
+      "final_sha256": "68b0f90fbaee52aee55527e9a0dc2930740577b8c4b68b34955196d21a049f66",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/e2e-final.json": {
+      "initial_sha256": "8406a08d0ba9c9272ce3240c6ea0544e4040138b91467635d4fd889d7e165fcf",
+      "final_sha256": "8406a08d0ba9c9272ce3240c6ea0544e4040138b91467635d4fd889d7e165fcf",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/e2e-final.log": {
+      "initial_sha256": "b55c3c4cab0f9fd0cd5cd6f95af01764b694bdf4a193cbe6517c5459505eb7f7",
+      "final_sha256": "b55c3c4cab0f9fd0cd5cd6f95af01764b694bdf4a193cbe6517c5459505eb7f7",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/run-check.py": {
+      "initial_sha256": "fea72c9e3d4221806620cd9ef4bc47307cf2f58f19c491a25b09dfd644bc530c",
+      "final_sha256": "fea72c9e3d4221806620cd9ef4bc47307cf2f58f19c491a25b09dfd644bc530c",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/verified-files.json": {
+      "initial_sha256": "d5e55472977ff491965a594f5f1e4fc024aae7ab0472395248d09b6daf07c2ca",
+      "final_sha256": "d5e55472977ff491965a594f5f1e4fc024aae7ab0472395248d09b6daf07c2ca",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/dp-01-afirmaciones.md": {
+      "initial_sha256": "a939256d91370a94b6cea9b9e5d9ff6dbdbbacc647d6a0a871c3c59c293bae48",
+      "final_sha256": "a939256d91370a94b6cea9b9e5d9ff6dbdbbacc647d6a0a871c3c59c293bae48",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/dp-01-organizadores.md": {
+      "initial_sha256": "ba3728242f3adabfbd9c270fb404427f28c5a8b072611e6570f4cc3c78d04fa4",
+      "final_sha256": "ba3728242f3adabfbd9c270fb404427f28c5a8b072611e6570f4cc3c78d04fa4",
+      "result": "unchanged"
+    },
+    "DemoPuentes/PuentesHandoff.md": {
+      "initial_sha256": "21362f333314c4aebb698eb9723b098426ca9d2340ec65c9bb1194da6bd7fca5",
+      "final_sha256": "c3a7f075cb08ec2c14d18d93d516f58bf01356205793371d38d44089b65a15ad",
+      "result": "updated_within_DP03_scope"
+    },
+    "DemoPuentes/README.md": {
+      "initial_sha256": "14798ce1c818b79d18f5c0cd76f58911f947f5edd3272e4e8c4d32aee10ea7c9",
+      "final_sha256": "b6983cc8bffd9980d88875bfae291313bf6d67845a9e919a98df9aeb9c001a25",
+      "result": "updated_within_DP03_scope"
+    },
+    "DemoPuentes/evidence/DP-02/build.json": {
+      "initial_sha256": "84d9db545bf683f163cc7ae9971d76134fa2999fcf4eb3b0222e1dc5274455b3",
+      "final_sha256": "84d9db545bf683f163cc7ae9971d76134fa2999fcf4eb3b0222e1dc5274455b3",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/build.log": {
+      "initial_sha256": "0aeed6e7a2a2cb34379cbafdea4bf1c68dd22f953c4f352889cfacc604837a95",
+      "final_sha256": "0aeed6e7a2a2cb34379cbafdea4bf1c68dd22f953c4f352889cfacc604837a95",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/dossier.png": {
+      "initial_sha256": "a91b6cfe08173562587342279483a7c05353a9fead42c8fa386b90515fb758c3",
+      "final_sha256": "a91b6cfe08173562587342279483a7c05353a9fead42c8fa386b90515fb758c3",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/map.png": {
+      "initial_sha256": "3f2066574cc8d2bf17f32afa82ca5c3bf3efdd962624ac9b8746e3af5a483dfd",
+      "final_sha256": "3f2066574cc8d2bf17f32afa82ca5c3bf3efdd962624ac9b8746e3af5a483dfd",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/organizers.png": {
+      "initial_sha256": "447f7fe691378a5cc7a2f67f39dea22fb5e05695615ad066379b873a9f2d890e",
+      "final_sha256": "447f7fe691378a5cc7a2f67f39dea22fb5e05695615ad066379b873a9f2d890e",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/persisted-decision.png": {
+      "initial_sha256": "15c29f372633807391ca19f2cbefc070dc8384a3ae409492e1358d1908981a01",
+      "final_sha256": "15c29f372633807391ca19f2cbefc070dc8384a3ae409492e1358d1908981a01",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/persisted-import.png": {
+      "initial_sha256": "fb9db99c9027cde20114d17319ef4760099805b6b8061386f2e7da3da67d2a34",
+      "final_sha256": "fb9db99c9027cde20114d17319ef4760099805b6b8061386f2e7da3da67d2a34",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/persisted-organizers.png": {
+      "initial_sha256": "2fa890e84da849f6cec09d24d86bf7d73ae66197220b1aa69ec3dd223dac0c93",
+      "final_sha256": "2fa890e84da849f6cec09d24d86bf7d73ae66197220b1aa69ec3dd223dac0c93",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/persisted-reopen.png": {
+      "initial_sha256": "0463456fda2a94a72ceb4bd9751ddb24b691ba258bf89469ef6e3733ad0c5d13",
+      "final_sha256": "0463456fda2a94a72ceb4bd9751ddb24b691ba258bf89469ef6e3733ad0c5d13",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/reopen-campaign.png": {
+      "initial_sha256": "f3cd5d354949fae8f9a949a471ca9a2155fcfa8a960621587be1bf82d6486432",
+      "final_sha256": "f3cd5d354949fae8f9a949a471ca9a2155fcfa8a960621587be1bf82d6486432",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/reopen-decision.png": {
+      "initial_sha256": "e6c81ed81e03e9da47a0c37fe1ec139601f7b10071607289ac9b81c341b594ba",
+      "final_sha256": "e6c81ed81e03e9da47a0c37fe1ec139601f7b10071607289ac9b81c341b594ba",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/reopen-list.png": {
+      "initial_sha256": "b827e4f05d178574d840b1b0b61ff66783a5469832c46179a5e36c8d5f521df0",
+      "final_sha256": "b827e4f05d178574d840b1b0b61ff66783a5469832c46179a5e36c8d5f521df0",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/DP-02/screenshots/reopen-validity.png": {
+      "initial_sha256": "1198a963b51970bec95b14912cf75cb2e547d5064aa26d652be07a847f6d18ad",
+      "final_sha256": "1198a963b51970bec95b14912cf75cb2e547d5064aa26d652be07a847f6d18ad",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/dp-01-antecedentes.md": {
+      "initial_sha256": "cd854faa0dbbba2d09f00ef3b80e4bdb215c11b2fdc01d6e705d8a186e583416",
+      "final_sha256": "cd854faa0dbbba2d09f00ef3b80e4bdb215c11b2fdc01d6e705d8a186e583416",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/dp-01-caso-y-fuentes.md": {
+      "initial_sha256": "a7b15618bcad1ae7623ea129d8ae31bb830ca0246f5dce056839f8ad88ae986e",
+      "final_sha256": "a7b15618bcad1ae7623ea129d8ae31bb830ca0246f5dce056839f8ad88ae986e",
+      "result": "unchanged"
+    },
+    "DemoPuentes/evidence/dp-01-verificacion.md": {
+      "initial_sha256": "0eca9da47c4a67008d6e16c98507c1d3f064a340c6d0f015cb038a81ef538c12",
+      "final_sha256": "0eca9da47c4a67008d6e16c98507c1d3f064a340c6d0f015cb038a81ef538c12",
+      "result": "unchanged"
+    },
+    "DemoPuentes/implementation-plan.md": {
+      "initial_sha256": "417d1e8de235b886e3e33eae716f9df3934002fe1fd1889f21525422bed7222f",
+      "final_sha256": "376009e1a254a90f2b5878b593464ffdfe1247679c0f6a74e86ab9ba74acd534",
+      "result": "updated_within_DP03_scope"
+    },
+    "DemoPuentes/issues/01-caso-real-y-fuentes.md": {
+      "initial_sha256": "5f2ee2b44188ef8a0f32a3dc5a53e8284a573e19b59eed23f6ed961c6f492661",
+      "final_sha256": "5f2ee2b44188ef8a0f32a3dc5a53e8284a573e19b59eed23f6ed961c6f492661",
+      "result": "unchanged"
+    },
+    "DemoPuentes/issues/02-confianza-costos-y-evidencia.md": {
+      "initial_sha256": "92236de4d79151e1e8b5d4959dd64640f54de6718299313ce22ea17fa1378e04",
+      "final_sha256": "92236de4d79151e1e8b5d4959dd64640f54de6718299313ce22ea17fa1378e04",
+      "result": "unchanged"
+    },
+    "DemoPuentes/issues/03-brief-y-contratos-de-investigacion.md": {
+      "initial_sha256": "adb27d05071739f694b7e0f1c32dd6013dc4ea8305eb69b15e1f40e9bcb852b0",
+      "final_sha256": "5ff16346a1e77282197d585ba064a64a47a77d1de19aebed10f4389f13940c3d",
+      "result": "updated_within_DP03_scope"
+    },
+    "DemoPuentes/issues/06-organizador-sponsors-y-proyectos.md": {
+      "initial_sha256": "399cad017d7b5e931fdd1ce343e0575c5a57e911a7b94319ad6cda3563fc38ae",
+      "final_sha256": "399cad017d7b5e931fdd1ce343e0575c5a57e911a7b94319ad6cda3563fc38ae",
+      "result": "unchanged"
+    },
+    "frontend/db/README.md": {
+      "initial_sha256": "a8ce04ff3382f8e03d25d518ba45e56f8933a47e5a7c8c7cd4c2fbe2c017cb7e",
+      "final_sha256": "67a9edb8956c57b15a821936a7c96d868b7c1d70f4f6f181867616954227b1ce",
+      "result": "updated_within_DP03_scope"
+    },
+    "frontend/package.json": {
+      "initial_sha256": "78a52ff74fb2c1e1716d3960cd877de98a41df95ad59a572756365098882590e",
+      "final_sha256": "0976bd2076e951994f394bedaf9fade64c8ec87028dfbe0f9751e01b39808ac7",
+      "result": "updated_within_DP03_scope"
+    }
+  },
+  "test_environment": {
+    "container": "growthx-dp03-verification",
+    "port": 55443,
+    "status": "stopped_after_checks",
+    "user_database_written": false
+  }
+}

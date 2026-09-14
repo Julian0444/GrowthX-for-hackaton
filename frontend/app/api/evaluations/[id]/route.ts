@@ -27,7 +27,7 @@ export async function GET(
   const session = auth.session;
   const { id } = await params;
   if (!UUID_RE.test(id)) {
-    return NextResponse.json({ error: 'invalid_id', message: 'runId inválido.' }, { status: 400 });
+    return NextResponse.json({ error: 'invalid_id', message: 'Invalid runId.' }, { status: 400 });
   }
   try {
     const run = await evaluationService.getRun({ tenantId: session.tenantId, runId: id });
@@ -36,9 +36,9 @@ export async function GET(
     }
     return NextResponse.json(run);
   } catch (error) {
-    console.error(`[evaluations] lectura falló: ${(error as Error).message}`);
+    console.error(`[evaluations] read failed: ${(error as Error).message}`);
     return NextResponse.json(
-      { error: 'read_failed', message: 'No se pudo leer el run.' },
+      { error: 'read_failed', message: 'Could not read the research run.' },
       { status: 503 },
     );
   }

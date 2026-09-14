@@ -1,0 +1,8 @@
+✓ Lockfile passes supply-chain policies (verified 2h ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+[WARN] Failed to create bin at /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/node_modules/.bin/baseline-browser-mapping. ENOENT: no such file or directory, chmod '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/node_modules/.bin/baseline-browser-mapping'
+[WARN] Failed to create bin at /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/node_modules/.pnpm/sharp@0.34.5/node_modules/sharp/node_modules/.bin/semver. ENOENT: no such file or directory, chmod '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/node_modules/.pnpm/sharp@0.34.5/node_modules/sharp/node_modules/.bin/semver'
+
+Done in 550ms using pnpm v11.8.0
+$ eslint .

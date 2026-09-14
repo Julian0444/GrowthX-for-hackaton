@@ -1,0 +1,33 @@
+[
+  {
+    "runId": "683695df-b761-432c-9839-fb2a11f6a8f8",
+    "snapshotId": "1d7a7322-a5a3-4820-acc5-72a309085580",
+    "bundleSha256": "2fc47c5f7b0a02746cbb6a2e85141a2ee79303c704ca1cf8087ed8e0ec322763",
+    "editionRevisionIds": [
+      "edition-rev-72f2a9cce09525f99c185f1e-geo"
+    ],
+    "sourceIds": [
+      "background-source-04f52245a1ff64ca7378c010",
+      "background-source-0c9f71b03dca6464a4b72a33",
+      "background-source-db5c4924886ffec73b2dfec1",
+      "edition-rev-72f2a9cce09525f99c185f1e-geo-source"
+    ]
+  },
+  {
+    "runId": "4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0",
+    "snapshotId": "6e3e1c38-70cd-4c87-9adc-182bcd36698b",
+    "bundleSha256": "dc5ffe1b62f72a962cdda412c64a9202cb920e8238288ed3f62750b7a9c4b460",
+    "editionRevisionIds": [
+      "edition-rev-000d0e76fda7ae4810b06423-geo",
+      "edition-rev-5623a76ed1495827bf29a63c-geo",
+      "edition-rev-d0fe09ead5da74717d30449b-geo",
+      "edition-rev-f40b0c34ccfe68347d66bdc9"
+    ],
+    "sourceIds": [
+      "background-source-47aa031920df734b87c388a9",
+      "background-source-505eef0cd878fae2b7f5dcce",
+      "background-source-c7d10b468ee0442a6884c677",
+      "background-source-fbd51fe609f1db84e0862f03"
+    ]
+  }
+]

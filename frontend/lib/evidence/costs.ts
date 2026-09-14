@@ -7,7 +7,7 @@ export function assessCosts(claims: ClaimRevision[], budget: BudgetDeclaration) 
   const costs = claims.filter(c => c.attribute.startsWith('cost:'));
   const pending: string[] = [];
   const conflicts: string[] = [];
-  if (!costs.length) pending.push('Costo total desconocido: ninguna partida con soporte. No se interpreta como cero.');
+  if (!costs.length) pending.push('Total cost unknown: no supported cost items. Unknown cost is not zero.');
   let common = 0;
   const groups = new Map<string, Map<string, number>>();
   for (const claim of costs) {
@@ -19,12 +19,12 @@ export function assessCosts(claims: ClaimRevision[], budget: BudgetDeclaration) 
       if (!options.has(composition.optionId)) options.set(composition.optionId, 0);
     }
     if (!hasAffirmativeSupport(claim) || claim.value.kind !== 'money') {
-      pending.push(`Costo incompleto: partida «${claim.attribute.slice(5)}» ${claim.status}; ${claim.note ?? (claim.value.kind === 'pending' ? claim.value.note : null) ?? 'falta importe respaldado'}; no cuenta como cero.`);
+      pending.push(`Incomplete cost: item «${claim.attribute.slice(5)}» ${claim.status}; ${claim.note ?? (claim.value.kind === 'pending' ? claim.value.note : null) ?? 'supported amount missing'}; it does not count as zero.`);
       continue;
     }
     if (budget.status !== 'declared') continue;
     if (claim.value.currency !== budget.currency) {
-      pending.push(`Moneda no comparable: «${claim.attribute.slice(5)}» en ${claim.value.currency} frente al presupuesto en ${budget.currency}; requiere conversión explícita con fecha y base.`);
+      pending.push(`Currency is not comparable: «${claim.attribute.slice(5)}» in ${claim.value.currency} against the budget in ${budget.currency}; requires an explicit conversion with date and basis.`);
       continue;
     }
     if (composition?.kind === 'alternative' && options) {
@@ -36,10 +36,10 @@ export function assessCosts(claims: ClaimRevision[], budget: BudgetDeclaration) 
   let lowerBound = common;
   for (const [group, options] of groups) {
     lowerBound += Math.min(...options.values());
-    pending.push(`Paquetes alternativos del grupo «${group}»: elegir una opción y confirmar su costo completo; no se suman entre sí.`);
+    pending.push(`Alternative packages in group «${group}»: choose one option and confirm its complete cost; alternatives are not added together.`);
   }
   if (budget.status === 'declared' && lowerBound > budget.amount) {
-    conflicts.push(`Presupuesto en conflicto confirmado: las partidas acumulables conocidas suman al menos ${budget.currency} ${lowerBound}, que excede el presupuesto declarado (${budget.currency} ${budget.amount}).`);
+    conflicts.push(`Confirmed budget conflict: known cumulative items total at least ${budget.currency} ${lowerBound}, exceeding the declared budget (${budget.currency} ${budget.amount}).`);
   }
   return { conflicts, pending, knownLowerBound: budget.status === 'declared' ? lowerBound : null };
 }

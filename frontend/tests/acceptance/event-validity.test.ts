@@ -435,9 +435,9 @@ test('fallback del cliente sin red: el fixture se identifica como histórico y n
     const response = await atlasClient.searchOpportunities(h.BASELINE_REQUEST);
 
     assert.equal(response.degraded, true);
-    assert.ok(response.warnings.some((warning) => warning.includes('Backend no disponible')));
+    assert.ok(response.warnings.some((warning) => warning.includes('Backend unavailable')));
     assert.ok(
-      response.warnings.some((warning) => /2 evento.*antecedentes históricos/i.test(warning)),
+      response.warnings.some((warning) => /2 fixture events.*historical background/i.test(warning)),
       `el fallback identifica los eventos ya ocurridos: ${JSON.stringify(response.warnings)}`,
     );
     const presented = v0.adapter.toLegacyShape(response).opportunities.flatMap((item) => item.events);

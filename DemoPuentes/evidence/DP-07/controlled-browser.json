@@ -1,0 +1,16 @@
+{
+  "material": "controlled synthetic evidence; real PostgreSQL, worker and production browser",
+  "runId": "3ad04d76-7a94-4252-9e55-45ccb9e7cca5",
+  "revisedRunId": "a38d2437-afaa-4d8f-bc19-90a19eda284b",
+  "snapshotId": "b4a0a8f0-29d9-4bb7-a2cf-41dd275aa79d",
+  "checks": {
+    "twoAlternatives": true,
+    "antecedentFragment": true,
+    "pinnedDossier": true,
+    "briefEdit": true,
+    "differences": true,
+    "mobileNoOverflow": true,
+    "reopenedUnchanged": true
+  },
+  "errors": []
+}

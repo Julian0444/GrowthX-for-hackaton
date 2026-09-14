@@ -525,8 +525,8 @@ test('worker-recovery: matriz de caídas con procesos reales (ticket 15)', { tim
     const editionId = (done.result as { editionId: string }).editionId;
     const dossier = await readEditionDossier(getAppPool(), real.tenantId, editionId, new Date().toISOString());
     assert.ok(dossier);
-    assert.equal(dossier.sources.find((source) => source.id === `luma-${runId}-src`)?.method, 'test_fixture+jsonld_extraction', 'reanudar conserva que el transporte del worker era un fixture');
-    assert.match(dossier.curation?.note ?? '', /sin consulta a Luma real/);
+    assert.equal(dossier.sources.find((source) => source.id === `luma-${runId}-src`)?.method, 'test_fixture+visible_text+jsonld_extraction', 'reanudar conserva que el transporte del worker era un fixture');
+    assert.match(dossier.curation?.note ?? '', /without querying real Luma/);
   });
 
   // ======== Criterio: interrupción DESPUÉS de guardar el snapshot ========
@@ -558,7 +558,7 @@ test('worker-recovery: matriz de caídas con procesos reales (ticket 15)', { tim
     // Degradación de la redacción declarada (sin clave): estado + motivo
     // persistidos, uso/costo explícitamente desconocido.
     assert.equal(cmp1.narrative?.status, 'deterministic_only');
-    assert.match(cmp1.narrative?.motive ?? '', /GEMINI_API_KEY ausente/);
+    assert.match(cmp1.narrative?.motive ?? '', /GEMINI_API_KEY missing/);
     assert.equal(cmp1.narrative?.usage, null, 'uso desconocido queda explícito, no se estima');
     const { rows: narratives } = await admin.query('select count(*)::int as n from growthx.snapshot_narratives where snapshot_id = $1', [cmp1.snapshotId]);
     assert.equal(narratives[0].n, 1);
@@ -709,7 +709,7 @@ test('worker-recovery: matriz de caídas con procesos reales (ticket 15)', { tim
     );
     assert.equal(job[0].n, 1, 'el despacho durable existe junto con el 202');
     const { rows: trace } = await admin.query(
-      `select count(*)::int as n from growthx.run_logs where run_id = $1 and message = 'comparación de inversión aceptada'`,
+      `select count(*)::int as n from growthx.run_logs where run_id = $1 and message = 'investment comparison accepted'`,
       [runId],
     );
     assert.equal(trace[0].n, 1, 'la aceptación repetida quedó trazada');
@@ -784,7 +784,7 @@ test('worker-recovery: matriz de caídas con procesos reales (ticket 15)', { tim
 
     // La causa visible es la del adaptador (fuente inalcanzable), sin filtrar
     // detalles internos del transporte.
-    assert.match(failed.error ?? '', /no se pudo alcanzar la página del evento/, 'la causa real queda visible');
+    assert.match(failed.error ?? '', /network error/, 'la causa real queda visible');
     const steps = stepsByName(failed);
     assert.equal(steps.fetch_event_page.attempts, 4, '1 intento + 3 reintentos, el límite declarado');
     assert.equal(steps.fetch_event_page.state, 'failed');

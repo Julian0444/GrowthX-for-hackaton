@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "scripts/smoke-street-map.ts"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-5eklvrc1/frontend",
+  "databasePort": 55459,
+  "databaseName": "growthx_dp09_real",
+  "providerKeysLoaded": false,
+  "exitCode": 0,
+  "durationSeconds": 22.68
+}

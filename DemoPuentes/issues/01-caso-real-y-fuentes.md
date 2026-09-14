@@ -13,16 +13,16 @@ Fijar un comprador ilustrativo y un conjunto de fuentes actuales que permitan de
 
 ## Alcance y dependencias
 
-Buscar un objetivo de tres oportunidades futuras en SF y antecedentes de dos organizadores. Verificar manualmente las páginas y sus relaciones. La cantidad es objetivo de cobertura, no permiso para completar huecos. Incluir un evento con coordenadas publicadas o una dirección pública que pueda resolverse.
+Buscar un objetivo de tres oportunidades futuras en SF y antecedentes de dos organizadores. Verificar manualmente las páginas y sus relaciones. La cantidad es objetivo de cobertura, no permiso para completar huecos. SF restringe las oportunidades futuras; los antecedentes pueden ser de otras ciudades y deben conservar el rol de la entidad en cada edición. Tener un antecedente como sponsor no equivale a tener trayectoria como organizador. Incluir un evento con coordenadas publicadas o una dirección pública que pueda resolverse.
 
 ## Criterios de aceptación
 
 - [x] Registrar perfil, objetivo, presupuesto, ventana temporal y por qué ese ejemplo es adecuado; el comprador ilustrativo no se presenta como cliente.
 - [x] Para cada opción registrar URL, fecha de consulta, fecha del evento, ciudad, organizador/rol y al menos una pregunta material; distinguir lo leído de lo inferido.
 - [x] Conservar referencias a sponsors, proyectos o recaps de la edición correcta cuando existan. Identificar al menos un antecedente positivo útil y una restricción o pendiente.
-- [x] Documentar un hallazgo que cambie qué investigar, qué modalidad proponer o qué condición exigir. Una contradicción de fecha por sí sola no sustituye el antecedente positivo.
+- [x] Documentar un hallazgo con antes, evidencia, después y condición de avance: debe cambiar qué investigar, qué modalidad proponer o qué condición exigir. Identificar como ilustrativo cualquier antes/después reconstruido. Una contradicción de fecha por sí sola no sustituye el antecedente positivo.
 - [x] Seleccionar al menos un evento con ubicación respaldada para el recorrido del mapa, sin buscar direcciones ocultas tras registro.
-- [x] Producir un pequeño conjunto de referencia revisado: afirmaciones esperadas, fragmentos y cosas que no se pueden afirmar. Separar material real de fixtures.
+- [x] Producir un pequeño conjunto de referencia revisado: cada afirmación decisiva debe tener entidad/edición, atributo, estado, fuente, fecha de consulta y fragmento o localizador específico, junto con lo que no permite afirmar. Separar premio, herramienta declarada, rol del sponsor y eficacia; una cita genérica no acredita todos esos atributos. Separar material real de fixtures.
 - [x] En una primera comprobación de 60–90 minutos decidir si el caso tiene soporte. Si no, cambiar el ejemplo o registrar cobertura insuficiente; no mantener una historia sin fuentes para satisfacer la estética.
 
 ## Demostración
@@ -53,10 +53,18 @@ Registrar archivos cambiados, resultado observable, comprobaciones ejecutadas y 
 
 Implementado y verificado el 10 de septiembre de 2026 por Codex para el alcance documental de DP-01. Blocked by: Ninguna. Ticket, spec y plan leídos completos; consultadas las secciones pertinentes del producto, auditoría y manifiesto. Los cambios existentes se conservaron; se detectó actividad concurrente en DP-02 y no se intervino allí.
 
-**Entrega:** [caso y fuentes](../evidence/dp-01-caso-y-fuentes.md), [antecedentes](../evidence/dp-01-antecedentes.md) y [verificación con matriz de aceptación](../evidence/dp-01-verificacion.md). Comprador ilustrativo de observabilidad de agentes, USD 5.000, ventana 10/09–22/10/2026; tres opciones futuras SF. Referencia R1–R11 con fragmentos, roles por edición, inferencias, condiciones y afirmaciones que no se pueden hacer. Índice del plan y README actualizados.
+**Entrega:** [caso y fuentes](../evidence/dp-01-caso-y-fuentes.md), [antecedentes](../evidence/dp-01-antecedentes.md) y [verificación con matriz de aceptación](../evidence/dp-01-verificacion.md). Comprador ilustrativo de observabilidad de agentes, USD 5.000, ventana 10/09–22/10/2026; tres opciones futuras SF. Referencia R1–R15 vinculada al [soporte por afirmación](../evidence/dp-01-afirmaciones.md), con roles por edición, inferencias, condiciones y afirmaciones que no se pueden hacer. Índice del plan y README actualizados.
 
 **Resultado observable:** antecedentes públicos de proyectos de AI Tinkerers justifican explorar un desafío instrumentado/soporte técnico; Hackathons.team todavía no publica resultados propios y requiere condiciones diferentes. Vultr aporta historial como sponsor en París, sin atribuirle organización previa en SF. AI Security Hackathon publica dirección coincidente en dos fuentes y coordenadas en su enlace de mapa. Las otras opciones permanecen sin punto por sede oculta o ciudad sola.
 
 **Verificación:** abiertas las tres fichas en navegador público; fuentes primarias de antecedentes y condiciones revisadas; galería y detalle de proyecto contrastados; fecha/año/zonas de Agent Arena comprobados con JSON-LD público; dirección/enlace de mapa inspeccionados. Enlaces locales, conversión temporal y diff revisados. No se sustituyó esta comprobación por build ni por tests de vigencia web. Se decidió mantener el caso en un corte anticipado dentro del bloque inicial previsto de 60–90 minutos; el tiempo real y la cobertura están registrados en la verificación, sin afirmar una hora de trabajo no transcurrida.
 
 **Límites y siguiente paso:** los anuncios no pasan a confirmación humana/comercial; no hay cotización completa, disponibilidad de patrocinio ni ROI verificados. Algunas fuentes requieren navegador por 403 del lector. Los eventos del 12/13 de septiembre deben revisarse antes de una demo posterior. DP-03 recibe esta referencia; discovery, contratos, mapa, carga real en catálogo y aceptación integrada siguen en sus tickets. No hubo commit, push, despliegue, mensajes externos ni escritura de DB.
+
+**Revisión final tras el contraste con Claude (10/09/2026):** corregida la exigencia errónea de dos historiales locales. La entrega contiene **dos organizadores actuales con antecedentes (AIT organizando en SF; Vultr patrocinando en París), uno con historial como organizador**. Se conservan las [fichas de organizadores](../evidence/dp-01-organizadores.md), los roles diferentes, la falta de resultados propios de Hackathons.team, el conflicto de su portada y el formato global de O1. Esos últimos límites ya estaban documentados; no son hallazgos nuevos de esta corrección.
+
+Se explicitó el antes/hallazgo/después/condición de avance del comprador ilustrativo. El antes es explorar una participación técnica sin entregables definidos; no comprar logo, que el brief ya descartaba. Se añadió soporte por atributo y una correspondencia completa con R1–R15. La revisión separó premio, herramienta declarada, descripción del proyecto y eficacia no verificada; también registró la etiqueta PDT inconsistente del antecedente de diciembre sin derivar una hora UTC. Los criterios se precisaron en estos puntos, sin añadir obligación geográfica a los antecedentes.
+
+Execution permanece verified para la referencia documental, con límites comerciales y operativos pendientes. El registro de verificación y el handoff reflejan esta corrección. DP-03 debe consumir el soporte por afirmación; esto no implementa sus contratos ni modifica la app.
+
+**Verificación de la corrección:** fuentes reabiertas y pasajes contrastados; 11 documentos con 83 enlaces locales válidos; 51 registros de soporte conectados con los 15 resultados esperados; fechas y zonas revisadas; diff sin errores. Se conservaron idénticos los 19 archivos ajenos de DP-02 registrados al empezar esta revisión. Detalle en la matriz de verificación.

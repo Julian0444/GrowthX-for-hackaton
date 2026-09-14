@@ -1,7 +1,7 @@
 # DP-12 — Cerrar la aceptación con datos reales y preparar la demo
 
 Status: ready-for-agent
-Execution: pending
+Execution: in-progress
 
 **Fase:** F — Entrega demostrable.
 **Especificación:** [DemoPuentes](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/spec.md>).
@@ -57,3 +57,5 @@ Registrar archivos cambiados, resultado observable, comprobaciones ejecutadas y 
 ## Comments
 
 Creado el 10 de septiembre de 2026 a partir de la redefinición y la solicitud de conservar el mapa. Trabajo especificado; implementación todavía no ejecutada por este ticket.
+
+Inicio DP-12 — 10/09/2026: lecturas previas y árbol conservados en evidence/DP-12/preflight.json. Comprobación real prioritaria en localhost y reutilización de DP-11; el único desfase inicial con sus 283 archivos de frontend es next-env.d.ts generado por dev. El usuario amplió el alcance a todo el texto del dashboard/frontend en inglés, incluidos mensajes guardados que aparecen en español. Se traduce la presentación sin modificar datos ni fuentes originales. Esto requiere regresiones focalizadas y build aislado. Video aún no proporcionado; no se marcará verified mientras falte su revisión.

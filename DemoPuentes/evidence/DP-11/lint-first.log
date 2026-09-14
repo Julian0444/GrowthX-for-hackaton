@@ -1,0 +1,12 @@
+$ eslint .
+
+/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/lib/server/decisions/store.ts
+  138:3  warning  'verdict' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/decision-brief.spec.ts
+  55:6  error  'rejected' is never reassigned. Use 'const' instead  prefer-const
+
+✖ 2 problems (1 error, 1 warning)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
+[ELIFECYCLE] Command failed with exit code 1.

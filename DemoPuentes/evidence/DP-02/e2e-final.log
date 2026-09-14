@@ -1,0 +1,199 @@
+$ node --test tests/e2e/sf-organizer-research.spec.ts && node --test tests/e2e/reopen-evaluation.spec.ts && node --test tests/e2e/persisted-evaluation.spec.ts
+TAP version 13
+# (node:9632) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+    # Subtest: entrada dashboard, sesión y perfil corregible antes de investigar
+    ok 1 - entrada dashboard, sesión y perfil corregible antes de investigar
+      ---
+      duration_ms: 7556.332042
+      type: 'test'
+      ...
+    # Subtest: homónimos independientes y guardado durable sin edición elegible
+    ok 2 - homónimos independientes y guardado durable sin edición elegible
+      ---
+      duration_ms: 3362.008042
+      type: 'test'
+      ...
+    # Subtest: razones → expediente → empresa → edición → rol → fuente; resultado desconocido
+    ok 3 - razones → expediente → empresa → edición → rol → fuente; resultado desconocido
+      ---
+      duration_ms: 4156.934041
+      type: 'test'
+      ...
+    # Subtest: logo ambiguo y edición futura fuera de SF no se recomiendan
+    ok 4 - logo ambiguo y edición futura fuera de SF no se recomiendan
+      ---
+      duration_ms: 1035.885584
+      type: 'test'
+      ...
+    # Subtest: Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida
+    ok 5 - Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida
+      ---
+      duration_ms: 954.738291
+      type: 'test'
+      ...
+    # Subtest: revisión del perfil, ausencia de coincidencia e importador disponible
+    ok 6 - revisión del perfil, ausencia de coincidencia e importador disponible
+      ---
+      duration_ms: 3461.810541
+      type: 'test'
+      ...
+    # Subtest: sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones
+    ok 7 - sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones
+      ---
+      duration_ms: 618.2725
+      type: 'test'
+      ...
+    # Subtest: matching usa la última revisión y la identidad confirmada, no nombres parecidos
+    ok 8 - matching usa la última revisión y la identidad confirmada, no nombres parecidos
+      ---
+      duration_ms: 1251.957625
+      type: 'test'
+      ...
+    # Subtest: error del worker se persiste y aparece en el dashboard
+    ok 9 - error del worker se persiste y aparece en el dashboard
+      ---
+      duration_ms: 8502.70875
+      type: 'test'
+      ...
+    # Subtest: sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global
+    ok 10 - sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global
+      ---
+      duration_ms: 207.962084
+      type: 'test'
+      ...
+    1..10
+ok 1 - SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ---
+  duration_ms: 36415.673625
+  type: 'test'
+  ...
+# Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+1..1
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 36813.483875
+TAP version 13
+# (node:10364) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+    # Subtest: guardar una elección condicional, ver su campaña y copiar el enlace interno
+    ok 1 - guardar una elección condicional, ver su campaña y copiar el enlace interno
+      ---
+      duration_ms: 6258.782791
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+    ok 2 - reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+      ---
+      duration_ms: 6435.9425
+      type: 'test'
+      ...
+    # Subtest: navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+    ok 3 - navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+      ---
+      duration_ms: 7324.721792
+      type: 'test'
+      ...
+    # Subtest: lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+    ok 4 - lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+      ---
+      duration_ms: 8470.640625
+      type: 'test'
+      ...
+    # Subtest: vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+    ok 5 - vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+      ---
+      duration_ms: 896.45275
+      type: 'test'
+      ...
+    # Subtest: reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+    ok 6 - reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+      ---
+      duration_ms: 6804.101791
+      type: 'test'
+      ...
+    # Subtest: un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+    ok 7 - un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+      ---
+      duration_ms: 1623.601167
+      type: 'test'
+      ...
+    # Subtest: dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+    ok 8 - dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+      ---
+      duration_ms: 2902.442875
+      type: 'test'
+      ...
+    1..8
+ok 1 - SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ---
+  duration_ms: 48211.988125
+  type: 'test'
+  ...
+# Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+1..1
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 48591.99
+TAP version 13
+# (node:11099) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+    # Subtest: perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes
+    ok 1 - perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes
+      ---
+      duration_ms: 7393.1905
+      type: 'test'
+      ...
+    # Subtest: elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next
+    ok 2 - elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next
+      ---
+      duration_ms: 6270.509083
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar
+    ok 3 - reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar
+      ---
+      duration_ms: 6462.695209
+      type: 'test'
+      ...
+    # Subtest: perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido
+    ok 4 - perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido
+      ---
+      duration_ms: 5272.342
+      type: 'test'
+      ...
+    1..4
+ok 1 - SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ---
+  duration_ms: 30038.106625
+  type: 'test'
+  ...
+# Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+1..1
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 30417.064166

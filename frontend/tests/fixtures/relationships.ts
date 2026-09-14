@@ -1,0 +1,17 @@
+import { AIT_CURRENT, AIT_PAST, AIT_GALLERY, AIT_PROJECTS, VULTR_CURRENT, VULTR_PAST } from '../../lib/server/relationships/reference-sources.ts';
+export { AIT_CURRENT, AIT_PAST, AIT_GALLERY, AIT_PROJECTS, VULTR_CURRENT, VULTR_PAST };
+export const NOW='2026-09-10T22:00:00.000Z';
+export function eventHtml(name:string,date:string,body:string,extra:Record<string,unknown>={}){
+ return `<html><head><title>${name}</title><script type="application/ld+json">${JSON.stringify({'@type':'Event',name,startDate:date,location:{'@type':'Place',address:{addressLocality:'San Francisco'}},...extra})}</script></head><body><h1>${name}</h1>${body}</body></html>`;
+}
+export function relationshipRoutes():Record<string,string>{return {
+ [AIT_CURRENT]:eventHtml('Agents, Everywhere','2026-09-12T17:00:00Z',`<p>Part of a global AI Tinkerers hackathon</p><p>Subscribe to AI Tinkerers - San Francisco</p><p>This is a builders-only AI Tinkerers event, and attendance is by application only.</p><h2>Who should come</h2><p>Engineers and agent builders.</p><h2>Global Sponsors</h2><p><a href="https://openai.com/">OpenAI</a></p><h2>Developer Infrastructure Partners</h2><p><a href="https://exa.ai/">Exa</a></p><h2>Event details</h2><p>Location: Shared upon acceptance</p>`),
+ [AIT_PAST]:eventHtml('AI Tinkerers SF - Secure Agents Buildathon','2025-12-06T17:00:00Z',`<p>Subscribe to AI Tinkerers - San Francisco</p><p>Building production-minded agents with other vetted AI Tinkerers</p><p>Monitoring, auditing, and recovery patterns for long-running agents</p><h2>Sponsor & Community Engagement</h2><p>Thank you to Google Cloud!</p><h2>Venue Host</h2><p><a href="https://wordware.ai/">Wordware</a></p><a href="${AIT_GALLERY}">Winners & Projects</a>`),
+ [AIT_GALLERY]:`<h1>Secure Agents Buildathon</h1><p>San Francisco · December 6, 2025</p><p>6 projects</p><a href="${AIT_PROJECTS[0]}">Citadel</a><a href="${AIT_PROJECTS[1]}">Cleo</a>`,
+ [AIT_PROJECTS[0]]:`<a href="${AIT_GALLERY}">Back to Showcase</a><p>1st Place Winner</p><h1>The Citadel: Neuro-Symbolic Security Gateway</h1><h2>Project Description</h2><p>The Citadel is a security gateway for MCP, tracking agent behavior.</p><h2>Products & Tools</h2><p>Google Cloud</p><h2>Additional Links</h2><a href="https://github.com/NineSunsInc/fast-mcp-scanner">Github Project</a>`,
+ [AIT_PROJECTS[1]]:`<a href="${AIT_GALLERY}">Back to Showcase</a><p>2nd Place Winner</p><h1>MyCodeDontJiggleJiggle</h1><h2>Project Description</h2><p>Cleo generates collateral with a human in the loop.</p><h2>Products & Tools</h2><p>Google Cloud</p>`,
+ 'https://sf.aitinkerers.org/organizers':`<h1>AI Tinkerers SF</h1><p>Ian Butler</p><p>Chapter Lead</p>`,
+ [VULTR_CURRENT]:eventHtml('The Agent Arena Hackathon','2026-09-26T16:00:00Z',`<p>Join the hackathon hosted by Vultr.</p><a href="/u/vultr">Vultr</a><p>Vultr is bringing the tools for builders: VM backends and serverless inference.</p><p>All attendees must apply and be approved.</p>`),
+ [VULTR_PAST]:`<h1>Inside RAISE Summit 2025</h1><p>Last week, Vultr participated in the 2025 RAISE Summit, hosted in Paris.</p><p>One exciting part was sponsoring the agentic AI hackathon, organized by our partner lablab.ai.</p>`,
+};}
+export const fixtureFetch=(routes:Record<string,string>,calls:string[]=[]) => (async(input:RequestInfo|URL)=>{const url=String(input);calls.push(url);return new Response(routes[url]??'Unavailable',{status:routes[url]?200:403,headers:{'content-type':'text/html'}});}) as typeof fetch;

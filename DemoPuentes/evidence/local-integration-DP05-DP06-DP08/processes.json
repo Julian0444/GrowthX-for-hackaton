@@ -1,0 +1,28 @@
+[
+  {
+    "name": "app",
+    "pid": 70978,
+    "log": "/tmp/growthx-local-app.log",
+    "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+    "command": [
+      "/opt/homebrew/opt/node@25/bin/node",
+      "node_modules/next/dist/bin/next",
+      "dev",
+      "--webpack",
+      "--port",
+      "3000"
+    ]
+  },
+  {
+    "name": "worker",
+    "pid": 70979,
+    "log": "/tmp/growthx-local-worker.log",
+    "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+    "command": [
+      "/opt/homebrew/opt/node@25/bin/node",
+      "--env-file=.env.local",
+      "--watch",
+      "worker/index.ts"
+    ]
+  }
+]

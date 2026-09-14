@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-10T22:40:30.198Z",
+  "databasePort": 54329,
+  "appliedFiles": [
+    "008-source-reading.sql",
+    "009-dp06-relationships.sql",
+    "010-location-resolution.sql"
+  ],
+  "existingRolePasswordsPreserved": true
+}

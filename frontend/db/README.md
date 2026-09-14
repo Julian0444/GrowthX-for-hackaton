@@ -60,12 +60,18 @@ pnpm dev      # Next en :3000 (o la entrada growthx-frontend de .claude/launch.j
 pnpm worker   # proceso worker separado (pg-boss + pasos del run)
 ```
 
+Para trabajar en local con recarga automática, usá `pnpm dev` y, en otra
+terminal, `pnpm worker:dev`. Este último carga `frontend/.env.local` y reinicia
+el worker cuando cambia su código o sus módulos importados. Next actualiza
+la página al guardar los cambios. Mantené Docker y ambos procesos activos;
+si cambiás las variables de entorno, reiniciá los procesos.
+
 Demo del ticket 08: completar el intake → 202 con `runId` (queda en la URL como
 `?run=…`) → detener el worker (Ctrl+C o `GROWTHX_WORKER_EXIT_AFTER_STEP=research_catalog pnpm worker`)
 → recargar el dashboard: el run sigue visible con sus pasos persistidos →
-`pnpm worker` de nuevo: el run termina. La fuente del paso controlado es un
-fixture de prueba (`lib/server/evaluations/fixture-catalog.ts`), material
-preparado que no publica eventos ficticios como reales.
+`pnpm worker` de nuevo: el run termina. Sin catálogo, el paso declara cobertura insuficiente (DP-03); no rellena
+la investigación con fixtures. Las pruebas cargan material sintético de forma
+explícita en un tenant aislado.
 
 ## 5. Tests de integración
 
@@ -74,3 +80,59 @@ reales contra el contenedor local (crea un schema/estado propio por corrida).
 Si `GROWTHX_ADMIN_DATABASE_URL` no está definida usa la URL del contenedor
 local; si la base no responde, la suite se salta con aviso (arrancarla con
 `pnpm db:up && pnpm db:migrate`).
+
+
+## DP-03: extensiones compatibles del brief y la evidencia
+
+No requiere migración SQL: brief, preguntas, fragmentos y relaciones utilizan
+los JSONB existentes. `profiles.payload` conserva confirmación, éxito,
+restricciones, formatos y geografía; `runs.input.researchPlan` fija preguntas,
+versión del perfil y cupos separados del presupuesto comercial. Una entrada
+anterior sin plan se lee como `null`.
+
+Fuentes/claims/ediciones admiten fragmentos y ubicación con precisión explícita.
+Los upserts validan el contrato y la pertenencia de cada fuente, fragmento y
+entidad al tenant. Las lecturas de catálogo y snapshots incluyen esos campos.
+No se modifican registros históricos para asignar precisión a coordenadas
+anteriores. Progreso y consumo por proveedor quedan definidos para DP-04/05;
+no se habilita gasto ni una nueva infraestructura durable.
+
+## DP-04: discovery real y acotado
+
+La migración aditiva `007-discovery-exa.sql` agrega planes/operaciones bajo RLS
+y un cupo común de Exa; se aplica con el runner de migraciones existente.
+El formulario crea `sf-discovery/1`. Los runs anteriores `sf-organizers/1`
+mantienen su lectura original.
+
+Configurar `EXA_API_KEY` solamente en el servidor/worker (`frontend/.env.local`
+en desarrollo, ignorado por Git). `pnpm worker:dev` carga ese archivo; después
+de cambiar una clave hay que reiniciar el worker o provocar un reinicio de su
+watch por un cambio de código. No colocar la clave en variables `NEXT_PUBLIC_`.
+
+Límites: 3 consultas, 5 resultados por consulta, 12 s por solicitud y 45 s por
+run desde que empieza discovery, conservados tras reinicios. Cada intento
+reserva USD 0,02 antes de enviar; hasta USD 0,06 por run, dentro de un cupo
+común de USD 10 por instalación PostgreSQL. Una respuesta incierta conserva
+la reserva y no se reenvía automáticamente. El costo informado y desconocido
+se muestran aparte; el cupo no representa el saldo de la cuenta ni el
+presupuesto comercial. No se modifica ni reinicia el cupo al crear otro tenant.
+
+Si el proveedor informa un costo mayor que la reserva, `discovery_allowance`
+queda suspendido. Una revisión administrativa debe reconciliar los intentos
+y las tarifas antes de reanudar; no resetear el saldo para desbloquear un run.
+Los roles app/queue no pueden modificar el cupo.
+
+Las fuentes propuestas viven en `growthx.sources`. La respuesta y cada
+intento viven en `discovery_operations`, y el resultado final en `runs.result`.
+`EvaluationRunView.discovery` es la entrada para DP-05/06: candidatos por URL,
+sourceIds y consultas; todavía sin inventar ediciones. El almacén de claims
+rechaza usar directamente un resultado de búsqueda como evidencia.
+
+Sin key o con falla/cupo agotado se conserva progreso parcial/insuficiente y
+no se consulta el catálogo sintético como fallback. Las pruebas controladas
+usan `GROWTHX_WORKER_EXA_FIXTURE` explícito y etiquetan su material como
+sintético; ese transporte no se activa por ausencia de credenciales.
+
+La evidencia y la consulta real opt-in están en
+[DP-04](../../DemoPuentes/evidence/DP-04/README.md). Los tests de CI no llaman a
+Exa ni cargan `.env.local`.

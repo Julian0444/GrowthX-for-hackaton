@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "node_modules/eslint/bin/eslint.js",
+    "components/research-dashboard/research-dossier.tsx",
+    "scripts/verify-background-reopen.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 1.94,
+  "database": "isolated PostgreSQL port 55446"
+}

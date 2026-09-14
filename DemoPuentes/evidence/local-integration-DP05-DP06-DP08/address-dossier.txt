@@ -1,0 +1,159 @@
+- main:
+  - complementary:
+    - button "Growth Atlas Investigación · SF":
+      - generic: Growth Atlas
+      - generic: Investigación · SF
+    - navigation "Navegación principal":
+      - button "Resumen":
+        - generic: Resumen
+      - button "Organizadores":
+        - generic: Organizadores
+      - button "Eventos":
+        - generic: Eventos
+      - button "Decisiones":
+        - generic: Decisiones
+      - button "Perfil":
+        - generic: Perfil
+    - paragraph:
+      - text: Investigación acotada.
+      - text: Fuentes antes de decidir.
+  - generic: San Francisco
+  - heading "Eventos" [level=1]
+  - paragraph: Cada edición, con sus fuentes y condiciones.
+  - button "Editar perfil · v1"
+  - generic: 5 organizadores · 10 ediciones en el catálogo
+  - generic: "Carga / obtención: 2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z · 2026-09-10T03:52:48.856Z · 2026-09-10T22:41:28.548Z"
+  - generic: "Material sintético: prueba el mecanismo; no acredita cobertura real de SF."
+  - region "Estado persistido":
+    - paragraph: Investigación fda043a0-ae92-4809-b150-d0d71c62b1d8 · Completado
+    - list:
+      - generic: "Validar perfil:"
+      - text: Completado · intentos 1
+      - generic: "Leer antecedentes y proyectos:"
+      - text: Completado · intentos 1
+      - generic: "Guardar relaciones y evidencia:"
+      - text: Completado · intentos 1
+      - generic: "Publicar resultado:"
+      - text: Completado · intentos 1
+  - button "Volver a eventos"
+  - paragraph: Lectura actual del catálogo persistido
+  - generic: Dossier de edición
+  - heading "AI Security Hackathon" [level=2]
+  - paragraph: "ID: edition-4322ef61414369d9f52fb3a5 · upcoming · 2 revisión(es)"
+  - link "Abrir listado de la edición":
+    - /url: https://www.hackathons.team/events/ai-security-hackathon-2026
+  - paragraph: "Automatically read from public sources: claims keep their announced or reported status, without human verification."
+  - paragraph: Fuente obtenida 2026-09-10T22:41:28.548Z · extracción automática, sin revisión humana
+  - strong: Why this matters for your brief
+  - paragraph: For Revisión QA 10/09 — Plataforma de observabilidad para agentes de IA con SDK Python y TypeScript. Buscamos que equipos usen nuestras trazas y evaluaciones en producción. (adoption), reviewed material does not yet establish this organizer's delivery history. Request relevant previous editions, voluntary project references, an operational contact and full costs before choosing a format.
+  - generic: inferred · alcance pendiente inferencia (bounded_public_source_extraction) · Buyer-specific research hypothesis; no performance ranking or commercial return inferred.; pendiente de confirmar
+  - generic "Evidence · 2 fragment(s)"
+  - strong: What to verify next
+  - paragraph: Confirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote.
+  - generic "Source details"
+  - paragraph: What confirms “buyer:next_step” for this edition?
+  - paragraph:
+    - text: "Organizers / listed hosts:"
+    - button "Hackathons.team"
+  - strong: Date
+  - paragraph: 2026-09-13T09:30:00-07:00 (-07:00)
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Location
+  - paragraph: San Francisco
+  - generic: announced · city
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Audience
+  - paragraph: "The brief: This is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here. Who should come: Security researchers, agent builders, red-teamers, and anyone who ships. Solo or teams of 1 to 5, all levels. Remote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Access
+  - paragraph: "Who should come: Remote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day. Spots are limited."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Cost — attendance
+  - paragraph: USD 0
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Cost — sponsorship
+  - paragraph: Edition-specific sponsorship quote and total participation cost remain unknown.
+  - generic "Source details"
+  - paragraph: Which sponsorship items does the organizer offer, and at what price?
+  - strong: Structured attribution (role unresolved)
+  - paragraph: Julius Olsson
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Venue
+  - paragraph: EF (Entrepreneur First), floors 1 and 2
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Actual audience
+  - paragraph: Actual attendance and its composition were not documented in the reviewed material.
+  - generic "Source details"
+  - paragraph: What confirms “audience:observed” for this edition?
+  - strong: Published end date
+  - paragraph: 2026-09-13T19:30:00-07:00
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Format
+  - paragraph: "https://schema.org/OfflineEventAttendanceMode | The brief: This is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 2 fragment(s)"
+  - strong: Name
+  - paragraph: AI Security Hackathon
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Commercial outcomes
+  - paragraph: No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.
+  - generic "Source details"
+  - paragraph: What confirms “commercial:outcome” for this edition?
+  - strong: Date in visible text
+  - paragraph: DateSun, Sep 13 2026
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Operational responsibility
+  - paragraph: Operational contact for this edition has not been verified.
+  - generic "Source details"
+  - paragraph: What confirms “organizer:responsible” for this edition?
+  - strong: Program
+  - paragraph: "The day: 9:30 Doors Coffee, team forming, pick your target. 10:00 Build Eight hours. Ship something that runs. 18:00 Demos Live demos, judging, prizes. Judging: Working demo on a real target Technical depth Originality Shock factor Progress on the day"
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Public address
+  - paragraph: 501 Folsom St, San Francisco, CA, 94105, US | EF, 501 Folsom St · San Francisco | WhereEF, 501 Folsom St, SF
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 3 fragment(s)"
+  - region "Ubicación y precisión":
+    - heading "Ubicación pública" [level=3]
+    - paragraph: 501 Folsom St, San Francisco, CA, 94105, US · announced
+    - paragraph: address · geocoded · aproximada (interpolada)
+    - paragraph: Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso.
+    - generic "Procedencia de ubicación" [active]
+    - paragraph: us-census · 2026-09-10T22:41:29.354Z
+    - paragraph: "Consulta: 501 Folsom St, San Francisco, CA, 94105, US"
+    - paragraph: "Coincidencia: 501 FOLSOM ST, SAN FRANCISCO, CA, 94105"
+    - paragraph: "Caché: miss · Public_AR_Current/Current_Current;dp08-v1 · Condado 06075"
+    - link "www.hackathons.team":
+      - /url: https://www.hackathons.team/events/ai-security-hackathon-2026
+    - generic: obtained 2026-09-10
+    - generic: publication date unknown
+    - generic: http_get+relationship_extraction
+    - generic: "obtained · freshness: current"
+    - generic: "scope: unknown"
+    - link "us-census":
+      - /url: https://geocoding.geo.census.gov/geocoder/
+    - generic: (Consulta de dirección pública de esta edición)
+    - generic: obtained 2026-09-10
+    - generic: publication date unknown
+    - generic: address_geocoding
+    - generic: "obtained · freshness: unknown · Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso."
+    - generic: "scope: city"
+  - region "Relaciones de esta edición":
+    - heading "Relaciones con soporte específico" [level=3]
+    - article:
+      - strong: Hackathons.team
+      - paragraph: organizer · announced · edition
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - heading "Participaciones documentadas" [level=3]
+- alert

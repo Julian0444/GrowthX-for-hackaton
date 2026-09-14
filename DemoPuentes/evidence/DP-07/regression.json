@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/**/*.test.ts"
+  ],
+  "cwd": "/tmp/growthx-dp07-production",
+  "exit_code": 1,
+  "duration_seconds": 69.34,
+  "database": "isolated PostgreSQL port 55447"
+}

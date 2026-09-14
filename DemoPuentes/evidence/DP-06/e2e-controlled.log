@@ -1,0 +1,179 @@
+(node:46274) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP06 browser: controlled sources -> organizer -> previous edition -> project -> evidence (4428.350667ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4859.501208
+
+✖ failing tests:
+
+test at tests/e2e/relationships.spec.ts:19:68
+✖ DP06 browser: controlled sources -> organizer -> previous edition -> project -> evidence (4428.350667ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Why this matters for your brief/. Input:
+  
+  'DOSSIER DE EDICIÓN\n' +
+    'Agents, Everywhere\n' +
+    '\n' +
+    'ID: edition-d54a42d3ba8672ab20f9aeec · upcoming · 2 revisión(es)\n' +
+    '\n' +
+    'Listado de prueba · no corresponde a una página real.\n' +
+    '\n' +
+    'Synthetic labeled material (open decision D4): it proves the mechanism, not real events.\n' +
+    '\n' +
+    'Curación declarada 2026-09-10T22:14:23.379Z por growthx-worker (automatic extraction)\n' +
+    '\n' +
+    'WHY THIS MATTERS FOR YOUR BRIEF\n' +
+    '\n' +
+    'For Observabilidad para agentes (adoption), The Citadel: Neuro-Symbolic Security Gateway in AI Tinkerers SF - Secure Agents Buildathon provides a concrete published project to discuss instrumenting and evaluating an agent. Explore a voluntary integration with a repository/demo and feedback. This is a proposal, not an available or purchased activity for this edition.\n' +
+    '\n' +
+    'inferred · alcance pendiente inferencia (bounded_public_source_extraction) · Buyer-specific research hypothesis; no performance ranking or commercial return inferred.; pendiente de confirmar\n' +
+    'Evidence · 3 fragment(s)\n' +
+    'WHAT TO VERIFY NEXT\n' +
+    '\n' +
+    'Confirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “buyer:next_step” for this edition?\n' +
+    '\n' +
+    'Organizers / listed hosts: AI Tinkerers San Francisco\n' +
+    '\n' +
+    'DATE\n' +
+    '\n' +
+    '2026-09-12T17:00:00Z (UTC)\n' +
+    '\n' +
+    'Curación declarada · alcance pendiente\n' +
+    'Source details\n' +
+    'LOCATION\n' +
+    '\n' +
+    'San Francisco\n' +
+    '\n' +
+    'announced · city\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'Agents, Everywhere: This is a builders-only AI Tinkerers event, and attendance is by application only. Who should come: Engineers and agent builders.\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'ACCESS\n' +
+    '\n' +
+    'Agents, Everywhere: This is a builders-only AI Tinkerers event, and attendance is by application only.\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'COST — SPONSORSHIP\n' +
+    '\n' +
+    'Edition-specific sponsorship quote and total participation cost remain unknown.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'Which sponsorship items does the organizer offer, and at what price?\n' +
+    '\n' +
+    'GLOBAL PROGRAM SPONSORS\n' +
+    '\n' +
+    'OpenAI\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'LOCATION ACCESS\n' +
+    '\n' +
+    'Event details: Location: Shared upon acceptance\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'COMMERCIAL OUTCOMES\n' +
+    '\n' +
+    'No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “commercial:outcome” for this edition?\n' +
+    '\n' +
+    'OPERATIONAL RESPONSIBILITY\n' +
+    '\n' +
+    'Operational contact for this edition has not been verified.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “organizer:responsible” for this edition?\n' +
+    '\n' +
+    'DATE:STRUCTURED\n' +
+    '\n' +
+    '2026-09-12T17:00:00Z\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'ACTUAL AUDIENCE\n' +
+    '\n' +
+    'Actual attendance and its composition were not documented in the reviewed material.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “audience:observed” for this edition?\n' +
+    '\n' +
+    'NAME\n' +
+    '\n' +
+    'Agents, Everywhere\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'INFRASTRUCTURE PARTNERS\n' +
+    '\n' +
+    'Exa\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'Ubicación pública\n' +
+    '\n' +
+    'San Francisco · announced\n' +
+    '\n' +
+    'city · unknown\n' +
+    '\n' +
+    'Dirección oculta; no se reconstruye la sede.\n' +
+    '\n' +
+    'Procedencia de ubicación\n' +
+    'Relaciones con soporte específico\n' +
+    'AI TINKERERS SAN FRANCISCO\n' +
+    '\n' +
+    'organizer · announced · edition\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'OPENAI\n' +
+    '\n' +
+    'sponsor · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'EXA\n' +
+    '\n' +
+    'infrastructure_partner · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'Participaciones documentadas'
+  
+      at TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/relationships.spec.ts:43:9)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'DOSSIER DE EDICIÓN\nAgents, Everywhere\n\nID: edition-d54a42d3ba8672ab20f9aeec · upcoming · 2 revisión(es)\n\nListado de prueba · no corresponde a una página real.\n\nSynthetic labeled material (open decision D4): it proves the mechanism, not real events.\n\nCuración declarada 2026-09-10T22:14:23.379Z por growthx-worker (automatic extraction)\n\nWHY THIS MATTERS FOR YOUR BRIEF\n\nFor Observabilidad para agentes (adoption), The Citadel: Neuro-Symbolic Security Gateway in AI Tinkerers SF - Secure Agents Buildathon provides a concrete published project to discuss instrumenting and evaluating an agent. Explore a voluntary integration with a repository/demo and feedback. This is a proposal, not an available or purchased activity for this edition.\n\ninferred · alcance pendiente inferencia (bounded_public_source_extraction) · Buyer-specific research hypothesis; no performance ranking or commercial return inferred.; pendiente de confirmar\nEvidence · 3 fragment(s)\nWHAT TO VERIFY NEXT\n\nConfirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote.\n\nSource details\n\nWhat confirms “buyer:next_step” for this edition?\n\nOrganizers / listed hosts: AI Tinkerers San Francisco\n\nDATE\n\n2026-09-12T17:00:00Z (UTC)\n\nCuración declarada · alcance pendiente\nSource details\nLOCATION\n\nSan Francisco\n\nannounced · city\nEvidence · 1 fragment(s)\nAUDIENCE\n\nAgents, Everywhere: This is a builders-only AI Tinkerers event, and attendance is by application only. Who should come: Engineers and agent builders.\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nACCESS\n\nAgents, Everywhere: This is a builders-only AI Tinkerers event, and attendance is by application only.\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nCOST — SPONSORSHIP\n\nEdition-specific sponsorship quote and total participation cost remain unknown.\n\nSource details\n\nWhich sponsorship items does the organizer offer, and at what price?\n\nGLOBAL PROGRAM SPONSORS\n\nOpenAI\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nLOCATION ACCESS\n\nEvent details: Location: Shared upon acceptance\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nCOMMERCIAL OUTCOMES\n\nNo documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.\n\nSource details\n\nWhat confirms “commercial:outcome” for this edition?\n\nOPERATIONAL RESPONSIBILITY\n\nOperational contact for this edition has not been verified.\n\nSource details\n\nWhat confirms “organizer:responsible” for this edition?\n\nDATE:STRUCTURED\n\n2026-09-12T17:00:00Z\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nACTUAL AUDIENCE\n\nActual attendance and its composition were not documented in the reviewed material.\n\nSource details\n\nWhat confirms “audience:observed” for this edition?\n\nNAME\n\nAgents, Everywhere\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nINFRASTRUCTURE PARTNERS\n\nExa\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nUbicación pública\n\nSan Francisco · announced\n\ncity · unknown\n\nDirección oculta; no se reconstruye la sede.\n\nProcedencia de ubicación\nRelaciones con soporte específico\nAI TINKERERS SAN FRANCISCO\n\norganizer · announced · edition\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nOPENAI\n\nsponsor · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nEXA\n\ninfrastructure_partner · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nParticipaciones documentadas',
+    expected: /Why this matters for your brief/,
+    operator: 'match',
+    diff: 'simple'
+  }

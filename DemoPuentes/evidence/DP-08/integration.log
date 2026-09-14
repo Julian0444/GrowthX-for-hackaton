@@ -1,0 +1,22 @@
+(node:40923) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-08 durable location evidence and current consumers
+  ✔ complete address persists query, provider, interpolated accuracy, date, original claims and UI point (0.490834ms)
+  ✔ replay after commit and new DB connection keep ids and avoid another call (14.498459ms)
+  ✔ same normalized query/source version cache survives independent run, while new source version makes a request (28.94325ms)
+  ✔ new address creates a revision; saved snapshot consumers retain original position and source (100.489959ms)
+  ✔ published source coordinates make zero geocoder calls; city, hidden, street and invalid coordinates stay in list (216.624667ms)
+  ✔ provider failure is persisted and replayed; the existing worker still completes the research run (76.201042ms)
+  ✔ street-capable adapter represents one match only as approximate; multiple matches stay pending (87.235417ms)
+  ✔ tenant isolation, aggregate allowance and crash reservation prevent leaks or duplicate starts (24.16375ms)
+✔ DP-08 durable location evidence and current consumers (764.302791ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1050.209542

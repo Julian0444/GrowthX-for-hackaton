@@ -17,6 +17,7 @@ import {
   CatalogIntegrityError,
   upsertClaimRevisions,
   upsertSources,
+  verifyEvidenceReferences,
   type UpsertCounts,
 } from '../evidence/store.ts';
 import { manifestHash, type CurationManifest } from './manifest.ts';
@@ -26,6 +27,7 @@ import type {
   OrganizerRevision,
   ParticipationRevision,
 } from '../../contracts/evaluation.ts';
+import { parseEventEditionRevision } from '../../contracts/evaluation-validation.ts';
 
 export interface CatalogLoadSummary {
   status: 'loaded' | 'already_loaded';
@@ -127,7 +129,7 @@ async function upsertRevision(
   return 'inserted';
 }
 
-async function upsertCompanies(
+export async function upsertCompanies(
   client: pg.ClientBase,
   tenantId: string,
   companies: CompanyRecord[],
@@ -159,7 +161,7 @@ async function upsertCompanies(
   return counts;
 }
 
-async function upsertOrganizerRevisions(
+export async function upsertOrganizerRevisions(
   client: pg.ClientBase,
   tenantId: string,
   revisions: OrganizerRevision[],
@@ -173,6 +175,10 @@ async function upsertOrganizerRevisions(
     entityColumn: 'organizer_id',
   };
   for (const revision of revisions) {
+    if (revision.companyId) {
+      const company = await client.query('select 1 from growthx.companies where id=$1', [revision.companyId]);
+      if (!company.rows.length) throw new CatalogIntegrityError(['Empresa vinculada al organizador no disponible bajo el tenant.']);
+    }
     // Un alias confirmado exige soporte existente bajo el tenant.
     const aliasSources = revision.aliases.flatMap((alias) => alias.sourceIds);
     const missing = await missingSources(client, aliasSources);
@@ -215,6 +221,18 @@ export async function upsertEditionRevisions(
     entityColumn: 'edition_id',
   };
   for (const revision of revisions) {
+    const parsed = parseEventEditionRevision(revision);
+    if (!parsed.ok) throw new CatalogIntegrityError(parsed.issues.map(i => `${i.path}: ${i.message}`));
+    const missing = await missingSources(client, [...(revision.publicLocation?.sourceIds ?? []), ...(revision.relationships ?? []).flatMap(r => r.sourceIds)]);
+    if (missing.length) throw new CatalogIntegrityError(['Fuentes de ubicación o relación no disponibles bajo este tenant.']);
+    for (const relation of revision.relationships ?? []) {
+      await verifyEvidenceReferences(client, relation.evidence);
+      if (relation.entity.type === 'project') continue; // identidad externa conservada en esta revisión
+      const table = relation.entity.type === 'organizer' ? 'growthx.organizers' : 'growthx.companies';
+      const id = relation.entity.type === 'organizer' ? relation.entity.organizerId : relation.entity.companyId;
+      const { rows } = await client.query(`select 1 from ${table} where id = $1`, [id]);
+      if (!rows.length) throw new CatalogIntegrityError(['Entidad de relación no disponible bajo este tenant.']);
+    }
     // organiza/coorganiza: cada organizador debe existir; un coorganizador
     // enlazado acá NO hereda otras ediciones (la relación es por edición).
     let ok = true;
@@ -310,6 +328,12 @@ async function verifyClaimRevisionRefs(
     .filter((id) => !found.has(id))
     .map((id) => `${refs.get(id)}: claimRevisionId «${id}» inexistente bajo el tenant`);
   if (issues.length > 0) throw new CatalogIntegrityError(issues);
+  for (const edition of manifest.editions) {
+    const relationClaimIds = (edition.relationships ?? []).flatMap(r => r.claimRevisionIds);
+    if (!relationClaimIds.length) continue;
+    const { rows: claims } = await client.query('select subject_type, subject_id from growthx.claim_revisions where id = any($1)', [relationClaimIds]);
+    if (claims.some(c => c.subject_type !== 'edition' || c.subject_id !== edition.editionId)) throw new CatalogIntegrityError(['Los claims de relación deben pertenecer a la edición vinculada.']);
+  }
 }
 
 export async function loadCuratedCatalog(

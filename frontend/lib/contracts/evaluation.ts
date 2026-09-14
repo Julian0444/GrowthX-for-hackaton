@@ -1,3 +1,4 @@
+import type { ComparisonReading } from './comparison.ts';
 // Contratos versionados del recorrido de evaluación persistida (ticket 07).
 //
 // Solo tipos e interfaces: cero lógica, cero imports de runtime (misma regla
@@ -13,10 +14,8 @@
 //   La integridad relacional —pertenencia al tenant, existencia de los ids
 //   referenciados— se comprueba en los tickets 08 y 09, no acá: un `sourceIds`
 //   con un id irresoluble es un objeto válido con una referencia por resolver.
-// - DECISIÓN ABIERTA D1 (objetivo/éxito del comprador) y D2 (política numérica)
-//   se representan explícitamente (`confirmation: 'provisional'`,
-//   `successDefinition: pending`, `policy: none`); no bloquean estos contratos
-//   ni se resuelven inventando pesos.
+// - Objetivo/éxito conservan lo declarado por el comprador. Solo una omisión
+//   queda provisional/pendiente. Sin política numérica aprobada se usa none.
 
 import type { NarrativeState } from './growxth';
 
@@ -125,7 +124,86 @@ export interface EvaluationProfile {
   restrictions: string[];
   objective: ObjectiveDeclaration;
   comparableCompanies: ComparableCompanyRef[];
+  // Ausencia en v1 anterior = no declarado; no reconstruirlo desde el stack.
+  geography?: { city: 'San Francisco'; timezone: 'America/Los_Angeles' };
+  formats?: string[];
 }
+
+// Entrada común a UI y HTTP. Las omisiones conservan los defaults históricos
+// solo cuando el comprador NO declaró el dato.
+export interface ResearchBriefInput {
+  product: string;
+  audienceDescription: string;
+  audienceProfiles: string[];
+  stack: string[];
+  budget: { status: 'declared'; amount: number; currency: string } | { status: 'unknown' };
+  window: EvaluationWindow;
+  objective: { kind: ObjectiveKind; confirmation?: ObjectiveDeclaration['confirmation']; successDefinition?: ObjectiveDeclaration['successDefinition'] };
+  restrictions?: string[];
+  formats?: string[];
+  geography?: EvaluationProfile['geography'];
+  comparableCompanies?: ComparableCompanyRef[];
+}
+
+export interface ResearchQuestion { id: string; topic: 'fit' | 'objective' | 'success' | 'eligibility' | 'history' | 'restriction'; text: string }
+export interface ResearchPlan {
+  contractVersion: EvaluationContractVersion;
+  profileId: string;
+  profileVersion: number;
+  questions: ResearchQuestion[];
+  // Estos son límites operativos, jamás el presupuesto comercial del perfil.
+  providerLimits: ProviderLimit[];
+}
+export interface ProviderLimit {
+  provider: string;
+  enabled: boolean;
+  maxRequests: number;
+  maxCost: { amount: number; currency: string } | null;
+  scope: 'run';
+}
+export interface ProviderConsumption {
+  provider: string;
+  runId: string;
+  operationId: string;
+  requests: { status: 'known'; count: number } | { status: 'unknown'; reason: string };
+  cost: { status: 'known'; amount: number; currency: string } | { status: 'unknown'; reason: string };
+  recordedAt: string;
+}
+export interface ResearchFinding {
+  id: string;
+  editionId: string;
+  editionRevisionId: string;
+  status: 'partial' | 'supported' | 'insufficient' | 'error';
+  claimRevisionIds: string[];
+  sourceIds: string[];
+  limitation: string | null;
+}
+export interface ResearchProgress {
+  contractVersion: EvaluationContractVersion;
+  runId: string;
+  status: 'queued' | 'running' | 'partial' | 'completed' | 'insufficient' | 'failed';
+  stage: string;
+  terminal: boolean; // partial puede finalizar por cupo; no implica trabajo todavía activo
+  attempts: number;
+  findings: ResearchFinding[];
+  limitations: string[];
+  // Fixtures solo en runs de prueba explícitos, nunca como fallback web.
+  material: 'real' | 'synthetic';
+  updatedAt: string;
+}
+export interface ResearchPresentationState {
+  runId: string | null;
+  selectedEditionId: string | null;
+  selectedEditionRevisionId: string | null;
+}
+
+export interface EvidenceReference {
+  sourceId: string;
+  // Al menos uno. El fragmentId se resuelve contra SourceRecord.fragments.
+  fragmentId: string | null;
+  locator: string | null;
+}
+export interface SourceFragment { id: string; text: string; locator: string }
 
 // ============ Fuente, claim y revisión ============
 
@@ -149,6 +227,15 @@ export interface SourceRecord {
     | { kind: 'hash'; sha256: string } // cuando no se puede conservar extracto
     | { kind: 'none' };
   usageRestrictions: string[];
+  requestedUrl?: string | null;
+  canonicalUrl?: string | null;
+  title?: string | null;
+  fragments?: SourceFragment[];
+  retrieval?: {
+    status: 'obtained' | 'partial' | 'error' | 'insufficient';
+    limitation: string | null;
+    freshness: 'current' | 'stale' | 'unknown';
+  };
 }
 
 // Sujeto de un claim: identidades separadas, nunca intercambiables.
@@ -190,6 +277,7 @@ export interface ClaimRevision {
   value: ClaimValue;
   status: ClaimStatus;
   sourceIds: string[]; // evidencia vinculada; su existencia es integridad relacional (08/09)
+  evidence?: EvidenceReference[];
   method: string | null; // método de extracción/verificación
   note: string | null; // p.ej. qué contradice a qué cuando status = 'contradicted'
   reviewer: string | null; // null = ingesta inicial sin revisión humana
@@ -214,6 +302,8 @@ export interface OrganizerRevision {
   id: string; // id de esta revisión
   organizerId: string; // identidad estable; homónimos NO se fusionan
   displayName: string;
+  // Explicit identity bridge, supported by identity claims; never name matching.
+  companyId?: string;
   aliases: OrganizerAlias[];
   claimRevisionIds: string[];
   revisedAt: string;
@@ -227,6 +317,52 @@ export interface EditionLocation {
   name: string | null; // nombre en el alcance respaldado; 'country' no coloca en ciudad
 }
 
+export interface LocationResolution {
+  outcome: 'published' | 'resolved' | 'pending' | 'failed';
+  query: string | null;
+  normalizedQuery: string | null;
+  sourceVersion: string;
+  claimRevisionIds: string[];
+  checkedAt: string;
+  cache: 'hit' | 'miss' | 'not_applicable';
+  accuracy: 'published' | 'interpolated' | 'unknown';
+  providerVersion: string | null;
+  matchedAddress: string | null;
+  countyGeoid: string | null;
+  failureCode: string | null;
+}
+
+export interface PublicEventLocation {
+  resolution?: LocationResolution;
+  originalAddress: string | null;
+  address: { streetAddress: string | null; locality: string | null; region: string | null; postalCode: string | null; country: string | null } | null;
+  venue: string | null;
+  city: string | null;
+  precision: 'venue' | 'address' | 'street' | 'city' | 'unknown';
+  method: 'published_coordinates' | 'geocoded' | 'manual' | 'unknown';
+  provider: string | null;
+  resolvedAt: string | null;
+  sourceIds: string[];
+  status: ClaimStatus;
+  limitation: string | null;
+}
+
+// Relaciones acotadas a una edición. Un proyecto tiene identidad propia,
+// pero sus afirmaciones siguen siendo claims de ESA edición (project:<id>:…).
+// Sponsor no especifica pago; un premio o herramienta se respalda por separado.
+export interface EditionRelationship {
+  id: string;
+  editionId: string;
+  entity: { type: 'organizer'; organizerId: string } | { type: 'company'; companyId: string } | { type: 'project'; projectId: string; name: string; url: string };
+  role: 'organizer' | 'co_organizer' | 'host' | 'calendar' | 'sponsor' | 'presenter' | 'venue' | 'venue_partner' | 'infrastructure_partner' | 'logo_present' | 'published_project';
+  status: ClaimStatus;
+  scope: 'edition' | 'global_program';
+  sourceIds: string[];
+  evidence: EvidenceReference[];
+  claimRevisionIds: string[];
+  limitation: string | null;
+}
+
 export interface EventEditionRevision {
   contractVersion: EvaluationContractVersion;
   id: string; // id de esta revisión
@@ -238,6 +374,8 @@ export interface EventEditionRevision {
   startDate: DeclaredDate;
   location: EditionLocation;
   coordinates: { lat: number; lng: number } | null; // solo con respaldo urbano; null = sin punto en el mapa
+  publicLocation?: PublicEventLocation;
+  relationships?: EditionRelationship[];
   claimRevisionIds: string[];
   revisedAt: string;
   previousRevisionId: string | null;
@@ -350,6 +488,8 @@ export interface EvaluationSnapshot {
   alternatives: SnapshotAlternative[];
   ordering: SnapshotOrdering;
   outcome: SnapshotOutcome;
+  decisionReading?: ComparisonReading; // DP-07; ausente en snapshots históricos
+  sourceIds?: string[]; // fuentes inmutables fijadas explícitamente por DP-07
   narrative: NarrativeState | null; // null = sin etapa de redacción
 }
 
@@ -360,12 +500,21 @@ export interface EvaluationSnapshot {
 // Responsable y plazo se guardan SI SE CONOCEN (ticket 13): null es ausencia
 // real, nunca un string vacío ni un default. Registrar la condición no envía
 // ningún mensaje al organizador.
+export interface BuyerResponse {
+  attributedTo: string;
+  support: string;
+  sourceIds: string[];
+  recordedBy: string; // server session; a buyer report does not certify the organizer
+  recordedAt: string;
+}
+
 export interface DecisionCondition {
   id: string;
   description: string; // el dato/claim pendiente y la pregunta al organizador con su respuesta esperada
   answerWouldChangeTo: 'chosen' | 'discarded' | null;
   status: 'open' | 'resolved';
   resolvedNote: string | null;
+  response?: BuyerResponse; // additive: older resolutions retain their original text
   owner: string | null; // responsable de conseguir la respuesta; null = no se conoce
   dueBy: string | null; // plazo (día o instante ISO); null = no se conoce
 }
@@ -379,6 +528,7 @@ export interface EvaluationDecision {
   snapshotId: string;
   editionId: string; // alternativa decidida
   verdict: 'chosen' | 'discarded' | 'pending';
+  intent?: 'explore_first' | null; // investigation priority, represented as pending participation
   reasons: string[]; // nunca vacío
   conditions: DecisionCondition[];
   decidedBy: { userId: string; resolvedBy: 'server_session' };
@@ -406,6 +556,7 @@ export interface CampaignCostItem {
   id: string;
   label: string;
   amount: MoneyClaim;
+  declaration?: BuyerResponse;
   evidence?: ClaimRevision; // revisión original, sin promover su estado al guardar
 }
 
@@ -417,9 +568,10 @@ export interface CampaignDraftRecord {
   id: string;
   decisionId: string; // decisión de origen
   objective: string;
+  owner?: string | null;
   successDefinition: string | null; // texto libre; null = pendiente
   modality:
-    | { status: 'defined'; kind: 'sponsorship' | 'workshop' | 'co_hosted' | 'booth' | 'other'; detail: string | null }
+    | { status: 'defined'; kind: 'sponsorship' | 'workshop' | 'co_hosted' | 'booth' | 'other'; detail: string | null; basis?: 'proposed' | 'offered'; declaration?: BuyerResponse }
     | { status: 'pending' };
   costItems: CampaignCostItem[];
   openQuestions: string[];
@@ -492,6 +644,7 @@ export interface DossierClaimView {
 // qué falta confirmar.
 export interface DossierView {
   editionId: string;
+  editionRevisionId: string | null;
   name: string;
   organizer: ProjectedField;
   date: ProjectedField; // pendiente/ambigua explícita; jamás «hoy»
@@ -517,11 +670,11 @@ export interface CampaignView {
   commitments: { description: string; kind: CommitmentKind; supported: boolean }[];
 }
 
-// Mapa local secundario: solo puntos con ubicación urbana respaldada y
+// Mapa integrado: solo puntos con ubicación urbana respaldada y
 // coordenadas. Lo demás sigue accesible en la lista, sin punto inventado.
 export interface LocalMapView {
-  points: { editionId: string; name: string; lat: number; lng: number; locationName: string }[];
-  listedWithoutPoint: { editionId: string; name: string; reason: string }[];
+  points: { editionId: string; editionRevisionId: string; name: string; lat: number; lng: number; locationName: string; precision: PublicEventLocation['precision'] }[];
+  listedWithoutPoint: { editionId: string; editionRevisionId: string | null; name: string; reason: string }[];
 }
 
 export interface EvaluationSummaryView {
@@ -531,7 +684,7 @@ export interface EvaluationSummaryView {
 }
 
 // Proyección de lectura para dashboard, lista de organizadores, dossier,
-// campaña y mapa local secundario. Conserva pendientes y ambigüedades: la
+// campaña y mapa integrado. Conserva pendientes y ambigüedades: la
 // pantalla decide cómo mostrarlos, no si existen.
 export interface EvaluationReadProjection {
   contractVersion: EvaluationContractVersion;

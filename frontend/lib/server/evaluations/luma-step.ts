@@ -9,6 +9,8 @@
 // observación y la persistencia queda determinística e idempotente.
 
 import type pg from 'pg';
+import { cachedSourceRead, type SourceReadContext } from '../sources/cache.ts';
+import { parseKnownSourceRead, SourceReadError, type KnownSourceRead } from '../sources/reader.ts';
 import {
   fetchLumaEvent,
   persistLumaDossier,
@@ -33,8 +35,27 @@ export type LumaIngestStepOptions = LumaFetchOptions;
 export async function runFetchEventPageStep(
   url: string,
   options: LumaIngestStepOptions = {},
+  context?: SourceReadContext,
 ): Promise<LumaFetchOutput> {
-  return fetchLumaEvent(url, options);
+  const obtain=()=>fetchLumaEvent(url,options);
+  if(!context)return obtain();
+  return cachedSourceRead(context,url,obtain,value=>{
+    const reading=parseKnownSourceRead(value);
+    if ('fields' in reading || 'extraction' in reading)
+      return parseLumaFetchOutput(reading) as LumaFetchOutput & KnownSourceRead;
+    // DP-04's proposal reader can fill the common cache first. Derive the
+    // Luma projection from those validated observations without another fetch
+    // or requiring the raw HTML to be retained.
+    const text=(attribute:string)=>{const value=reading.fullContent.attributes.find(a=>a.attribute===attribute)?.value;return value?.kind==='text'?value.text:null;};
+    const name=text('name');
+    if(!reading.fullContent.eventIdentified || !name)throw new SourceReadError('La lectura guardada no identifica un evento; no se inventa un dossier.');
+    const warnings=[...reading.fullContent.warnings];
+    for(const attribute of ['date:structured','location','audience','access','organizer','cost:attendance'])
+      if(!reading.fullContent.attributes.some(a=>a.attribute===attribute))warnings.push(`${attribute} not obtained`);
+    return {...reading,extraction:{status:warnings.length?'partial':'complete',warnings,fieldsExtracted:reading.fullContent.attributes.map(a=>a.attribute)},
+      fields:{name,startsAt:text('date:structured'),endsAt:text('end_date'),venue:reading.fullContent.location?.venue??null,city:reading.fullContent.location?.city??null,
+        coordinates:reading.fullContent.coordinates,organizerName:text('organizer'),registrationStatus:null}} as LumaFetchOutput & KnownSourceRead;
+  },options);
 }
 
 // La salida persistida del paso de obtención vuelve de PostgreSQL como JSON
@@ -74,8 +95,12 @@ export function parseLumaFetchOutput(value: unknown): LumaFetchOutput {
     !stringOrNull(fields.organizerName) ||
     !stringOrNull(fields.registrationStatus)
   ) {
-    throw new Error('salida persistida de fetch_event_page con forma desconocida; no se interpreta');
+    throw new Error('persisted fetch_event_page output has an unknown structure; it is not interpreted');
   }
+  if(record.fullContent !== undefined || record.reading !== undefined) parseKnownSourceRead(value);
+  if(!extraction.warnings.every(x=>typeof x==='string')||!extraction.fieldsExtracted.every(x=>typeof x==='string'))throw new Error('invalid persisted extraction output');
+  const coords=fields.coordinates as {lat?:unknown;lng?:unknown}|null;
+  if(coords!==null&&(!coords||typeof coords.lat!=='number'||typeof coords.lng!=='number'||!Number.isFinite(coords.lat)||!Number.isFinite(coords.lng)||Math.abs(coords.lat)>90||Math.abs(coords.lng)>180))throw new Error('invalid persisted coordinates');
   return value as LumaFetchOutput;
 }
 
@@ -101,6 +126,7 @@ export interface LumaIngestResult {
   sourceId: string;
   linkedToExistingEdition: boolean;
   extraction: LumaFetchOutput['extraction'];
+  reading?: LumaFetchOutput['reading'];
 }
 
 export function buildLumaIngestResult(
@@ -117,5 +143,6 @@ export function buildLumaIngestResult(
     sourceId: persisted.sourceId,
     linkedToExistingEdition: persisted.linkedToExistingEdition,
     extraction: fetchOutput.extraction,
+    ...(fetchOutput.reading?{reading:fetchOutput.reading}:{}),
   };
 }

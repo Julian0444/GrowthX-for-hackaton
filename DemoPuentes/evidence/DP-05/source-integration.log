@@ -1,0 +1,22 @@
+(node:3935) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery
+  ✔ DP-04 proposed source is read in its tenant/run; new full evidence does not rewrite the search source or invent entities (342.808459ms)
+  ✔ rich source persists exact fragments, contradicted dates and public location; fresh DB connection reads identical evidence (148.424333ms)
+  ✔ a sparse new page keeps prior supported attributes, public address and revision IDs (54.701833ms)
+  ✔ published venue coordinates without city remain usable under the DP-03 venue scope (72.638ms)
+  ✔ cache reuse retains fetchedAt, failure retains stale evidence, and caches cannot cross tenants (36.896833ms)
+  ✔ Actor run ID survives actual SIGKILL; restarted client polls exactly that Actor and retains a partial failed dataset (252.386708ms)
+  ✔ unknown Actor start response is never repeated; reservation survives and provider secrets are not logged (14.737166ms)
+  ✔ global budget caps concurrent runs across tenants; no per-session reset; missing key consumes nothing (25.437792ms)
+✔ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery (1048.095958ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1535.104916

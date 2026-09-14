@@ -1,0 +1,35 @@
+$ node scripts/copy-maplibre-worker.mjs && next build
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.6s
+  Running TypeScript ...
+  Finished TypeScript in 4.2s ...
+  Collecting page data using 13 workers ...
+  Generating static pages using 13 workers (0/10) ...
+  Generating static pages using 13 workers (2/10) 
+  Generating static pages using 13 workers (4/10) 
+  Generating static pages using 13 workers (7/10) 
+✓ Generating static pages using 13 workers (10/10) in 137ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/catalog/editions
+├ ƒ /api/catalog/editions/[id]
+├ ƒ /api/decisions
+├ ƒ /api/decisions/[id]
+├ ƒ /api/evaluations
+├ ƒ /api/evaluations/[id]
+├ ƒ /api/evaluations/[id]/organizers/[organizerId]
+├ ƒ /api/events/background
+├ ƒ /api/events/ingest
+├ ƒ /api/og/opportunity
+├ ƒ /api/opportunities/search
+└ ƒ /api/organizers/[id]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

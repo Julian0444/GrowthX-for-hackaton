@@ -25,7 +25,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       {
         error: 'evaluations_unavailable',
         message:
-          'La base de evaluaciones no está configurada; el run durable no está disponible (modo degradado).',
+          'The evaluations database is not configured; saved research is unavailable (degraded mode).',
       },
       { status: 503 },
     );
@@ -40,7 +40,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     payload = await request.json();
   } catch {
     return NextResponse.json(
-      { error: 'invalid_body', message: 'El cuerpo debe ser JSON.' },
+      { error: 'invalid_body', message: 'The request body must be JSON.' },
       { status: 400 },
     );
   }
@@ -71,7 +71,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         return NextResponse.json(
           {
             error: 'idempotency_conflict',
-            message: 'La clave idempotente ya se usó con otro payload.',
+            message: 'The idempotency key was already used with a different request.',
           },
           { status: 409 },
         );
@@ -83,9 +83,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
   } catch (error) {
     // Sin job durable no hay 202: la transacción entera se revirtió.
-    console.error(`[evaluations] aceptación falló: ${(error as Error).message}`);
+    console.error(`[evaluations] request acceptance failed: ${(error as Error).message}`);
     return NextResponse.json(
-      { error: 'accept_failed', message: 'No se pudo registrar el run; no quedó trabajo pendiente.' },
+      { error: 'accept_failed', message: 'Could not register the research run; no work was queued.' },
       { status: 503 },
     );
   }
@@ -102,7 +102,7 @@ export async function GET(request: Request): Promise<NextResponse> {
   if (!isEvaluationDbConfigured()) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
   const profileId = new URL(request.url).searchParams.get('profileId');
   if (profileId !== null && !UUID_RE.test(profileId)) {
-    return NextResponse.json({ error: 'invalid_query', message: 'profileId debe ser el id (uuid) de un perfil de esta sesión.' }, { status: 400 });
+    return NextResponse.json({ error: 'invalid_query', message: 'profileId must be the UUID of a profile in this session.' }, { status: 400 });
   }
   try {
     const auth = await resolveHttpSession(request);
@@ -111,6 +111,6 @@ export async function GET(request: Request): Promise<NextResponse> {
     const { readResearchHome } = await import('../../../lib/server/evaluations/dashboard-store.ts');
     return NextResponse.json(await readResearchHome(session.tenantId, { profileId }));
   } catch {
-    return NextResponse.json({ error: 'read_failed', message: 'No se pudo leer el dashboard.' }, { status: 503 });
+    return NextResponse.json({ error: 'read_failed', message: 'Could not read the dashboard.' }, { status: 503 });
   }
 }

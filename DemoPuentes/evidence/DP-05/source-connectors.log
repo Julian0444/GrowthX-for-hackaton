@@ -1,0 +1,20 @@
+(node:70540) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (90.455333ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (2.666125ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (2.0005ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (1.255083ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (1.277458ms)
+✔ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (2.609625ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (63.677042ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (2.584209ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 484.866958

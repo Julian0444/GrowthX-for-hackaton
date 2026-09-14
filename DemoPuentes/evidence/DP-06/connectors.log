@@ -1,0 +1,22 @@
+(node:41483) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06: real contract shapes, explicit roles, identity and buyer-specific antecedent (34.286416ms)
+✔ DP06: homonyms, corporate location and editions with different years never merge by name (2.0325ms)
+✔ DP06: calendar and JSON-LD name are not silently organizers; host and coorganizer separate (1.386625ms)
+✔ DP06: logo and presenter without sponsor block never become sponsorship or ROI (1.656083ms)
+✔ DP06: wrong edition backlink and unlinked repository never create project relationship (5.204958ms)
+✔ DP06: an award does not establish technology; partial reviewed coverage not extrapolated (3.677833ms)
+✔ DP06: Vultr sponsor in Paris is a separate role from present host in SF (7.236583ms)
+✔ DP06: source without Event metadata is retained without inventing an edition (0.132167ms)
+✔ DP06: date contradiction stays contradicted and instructions do not enter facts (0.358375ms)
+✔ DP06: input rejects mixed provenance, foreign fields and unsafe destination (0.212375ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 373.748916

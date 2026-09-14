@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "node_modules/next/dist/bin/next",
+    "build"
+  ],
+  "cwd": "/tmp/growthx-dp06-production",
+  "exit_code": 0,
+  "duration_seconds": 8.12,
+  "database": "isolated PostgreSQL port 55446"
+}

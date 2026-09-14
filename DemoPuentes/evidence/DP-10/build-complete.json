@@ -1,0 +1,12 @@
+{
+  "command": [
+    "pnpm",
+    "build"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend",
+  "databasePort": 55460,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 0,
+  "durationSeconds": 8.29
+}

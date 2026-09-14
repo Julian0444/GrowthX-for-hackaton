@@ -1,0 +1,58 @@
+(node:47085) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (2.179ms)
+✔ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.167ms)
+✔ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.144625ms)
+✔ DP-08 Census uses address interpolation and county 06075, not bbox or first match (0.482292ms)
+✔ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (29.752833ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (0.556208ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (6.556458ms)
+✔ DP-08 same street/number in a different visible city contradicts the source point (0.513ms)
+(node:47088) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; >3 o ediciones ajenas → 400; tenantId en el cuerpo → 400 (12.38325ms)
+  ✔ aceptación HTTP: 202 con los 4 steps del workflow y job durable; idempotencia por conjunto (27.634ms)
+  ✔ exclusión antes del score, condiciones con respuesta, elegible ≠ recomendado (203.600708ms)
+  ✔ scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes (0.173417ms)
+  ✔ desempate determinístico: empate exacto se resuelve por id estable, no por orden de llegada (0.123959ms)
+  ✔ modelo sin autoridad: el snapshot persistido conserva el resultado oficial y la advertencia (7.152417ms)
+  ✔ snapshot inmutable: sin UPDATE/DELETE por grants y sin duplicados por reentrega (37.754834ms)
+  ✔ catálogo disponible ≠ conjunto comparado; sombra v0 registrada sin reutilizar scores (1.22775ms)
+  ✔ sin política: comparación factual persistida, sin ranking numérico y con «política pendiente» (89.828208ms)
+  ✔ abstención: todas las dimensiones ausentes → insufficient_data, jamás un 0; fallo del proveedor → degradación (64.695042ms)
+  ✔ guardar y releer: mismas entradas, versiones y resultado desde una conexión nueva (20.927833ms)
+  ✔ invariantes 03–06 sobre la nueva proyección (14.397333ms)
+  ✔ conflicto de acceso confirmado excluye antes del score (regla pura de eligibility) (5.062459ms)
+  ✔ tenant señuelo: ni el perfil ni el snapshot existen para otra sesión (10.57175ms)
+✔ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real) (801.70875ms)
+(node:47108) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/english-system.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP12 legacy excluded dates render in English without changing persisted text (11.054958ms)
+✔ DP12 known historical conditions preserve amounts, identifiers and unresolved status (3.905792ms)
+✔ DP12 missing venue display retains uncertainty and does not invent coordinates (0.2395ms)
+(node:47112) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/sf-map.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-09 uses DP-08 policy for announced/confirmed, approximate, city-only and contradicted locations (15.78625ms)
+✔ DP-09 projects only the run, never unrelated catalog editions; discovery and running imports stay empty (1.15725ms)
+✔ DP-09 run revision and comparison snapshot keep original geography after catalog update (1.371ms)
+✔ DP-09 nearby/coincident venues group without changing identity or coordinate axes (1.217417ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1640.404291

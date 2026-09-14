@@ -1,3 +1,4 @@
+import { resolveRunLocations } from '../geocoding/run.ts';
 // Procesamiento de un run en el worker (ticket 08). Server-only; lo invoca
 // worker/index.ts desde el handler de pg-boss.
 //
@@ -18,7 +19,7 @@ import type { EvaluationProfile } from '../../contracts/evaluation.ts';
 import { researchSfOrganizers, SF_WORKFLOW } from './research.ts';
 import { researchPersistedCatalog } from '../catalog/research.ts';
 import { withTenantTransaction } from '../db/pool.ts';
-import { researchFixtureCatalog, type CatalogResearchResult } from './fixture-catalog.ts';
+import type { CatalogResearchResult } from './fixture-catalog.ts';
 import {
   buildLumaIngestResult,
   LUMA_INGEST_WORKFLOW,
@@ -36,6 +37,9 @@ import {
   type ComparisonStepOptions,
 } from './compare.ts';
 import { RUN_MAX_ATTEMPTS, type EvaluationJobData } from './queue-config.ts';
+import { DISCOVERY_WORKFLOW } from '../../contracts/discovery.ts';
+import { runDiscoveryStep, readDiscovery, type DiscoveryStepOptions } from '../discovery/durable.ts';
+import { BACKGROUND_WORKFLOW, readBackground, parseBackgroundRead, resolveBackground, persistBackground, type BackgroundResult } from '../relationships/durable.ts';
 
 // Pedido de corte controlado tras completar un paso (demo del ticket y test de
 // reanudación): el paso ya confirmó su avance; el job vuelve a la cola y el
@@ -67,6 +71,7 @@ export interface ProcessRunDeps {
   // inyectables en tests (política ficticia explícita, transporte controlado,
   // reloj fijo). En producción quedan los defaults (sin política — D2).
   comparison?: ComparisonStepOptions;
+  discovery?: DiscoveryStepOptions;
 }
 
 interface StepRow {
@@ -108,7 +113,7 @@ export async function processEvaluationRun(
   job: EvaluationJobData,
   deps: ProcessRunDeps,
 ): Promise<void> {
-  const { pool, exitAfterStep = null, lumaIngest = {}, comparison = {}, testBarrier } = deps;
+  const { pool, exitAfterStep = null, lumaIngest = {}, comparison = {}, discovery = {}, testBarrier } = deps;
   const { runId, tenantId } = job;
 
   // Intento: reclamar el run bajo su tenant. Un run completado se ignora
@@ -134,7 +139,7 @@ export async function processEvaluationRun(
       runId,
       attempt,
       level: 'info',
-      message: `intento ${attempt}/${RUN_MAX_ATTEMPTS} iniciado`,
+      message: `attempt ${attempt}/${RUN_MAX_ATTEMPTS} iniciado`,
     });
     return { attempt, profileId: run.profile_id, workflowVersion: run.workflow_version };
   });
@@ -176,7 +181,7 @@ export async function processEvaluationRun(
         });
       });
 
-      const output = await executeStep(step.name, { pool, tenantId, runId, profileId, outputs, workflowVersion, lumaIngest, comparison });
+      const output = await executeStep(step.name, { pool, tenantId, runId, profileId, outputs, workflowVersion, lumaIngest, comparison, discovery: { ...discovery, testBarrier: discovery.testBarrier ?? testBarrier } });
       outputs.set(step.name, output);
 
       testBarrier?.(`before_step_commit:${step.name}`);
@@ -250,7 +255,7 @@ export async function processEvaluationRun(
         level: 'error',
         message: finalFailure
           ? `fallo definitivo tras ${attempt} intentos: ${message}`
-          : `intento ${attempt} falló, reintento pendiente: ${message}`,
+          : `attempt ${attempt} failed, retry pending: ${message}`,
       });
     });
     throw error;
@@ -268,9 +273,20 @@ async function executeStep(
     workflowVersion: string;
     lumaIngest: LumaIngestStepOptions;
     comparison: ComparisonStepOptions;
+    discovery: DiscoveryStepOptions;
   },
 ): Promise<unknown> {
   switch (name) {
+    case 'read_relationship_sources':
+      return readBackground(ctx, ctx.lumaIngest);
+    case 'persist_relationships': {
+      const reading = parseBackgroundRead(ctx.outputs.get('read_relationship_sources'));
+      const profile = await loadProfile(ctx);
+      const persisted = await persistBackground(ctx, resolveBackground(reading.pages, { runId: ctx.runId, primaryUrl: reading.primaryUrl, profile, limitations: reading.limitations }), reading);
+      return resolveRunLocations(ctx, persisted);
+    }
+    case 'discover_sources':
+      return runDiscoveryStep(ctx.pool, ctx.tenantId, ctx.runId, ctx.discovery);
     // Ticket 12: etapa determinística de la comparación — elegibilidad antes
     // del score, features con razón de ausencia, política (o su ausencia),
     // sombra v0 y snapshot oficial INMUTABLE confirmado acá, antes de pedir
@@ -279,7 +295,7 @@ async function executeStep(
       const profile = await loadProfile(ctx);
       const input = await loadRunInput(ctx);
       if (!Array.isArray(input.editionIds) || input.editionIds.some((id) => typeof id !== 'string')) {
-        throw new Error(`run ${ctx.runId} sin selección de ediciones para comparar`);
+        throw new Error(`run ${ctx.runId} has no edition selection to compare`);
       }
       return runEvaluateCandidatesStep(
         ctx.pool,
@@ -303,8 +319,8 @@ async function executeStep(
     // HTTP solo validó la URL y encoló. La salida no conserva HTML completo.
     case 'fetch_event_page': {
       const input = await loadRunInput(ctx);
-      if (typeof input.url !== 'string') throw new Error(`run ${ctx.runId} sin URL de importación`);
-      return runFetchEventPageStep(input.url, ctx.lumaIngest);
+      if (typeof input.url !== 'string') throw new Error(`run ${ctx.runId} has no import URL`);
+      return runFetchEventPageStep(input.url, ctx.lumaIngest, { pool: ctx.pool, tenantId: ctx.tenantId, runId: ctx.runId });
     }
     case 'persist_dossier': {
       const fetched = parseLumaFetchOutput(ctx.outputs.get('fetch_event_page'));
@@ -314,22 +330,34 @@ async function executeStep(
       const profile = await loadProfile(ctx);
       if (ctx.workflowVersion === SF_WORKFLOW)
         return researchSfOrganizers(ctx.pool, ctx.tenantId, profile, new Date().toISOString());
-      // Ticket 09: con catálogo curado bajo el tenant se investiga el material
-      // PERSISTIDO (vigencia evaluada al instante del paso; sin opciones
-      // vigentes se declara el límite, no se rellena con seeds). Solo un tenant
-      // que nunca cargó catálogo cae al fixture preparado de 08 (D4 pendiente).
+      // Sin catálogo, cobertura insuficiente. Nunca activar fixtures como
+      // degradación de un run real, tampoco para clientes HTTP anteriores.
       const persisted = await researchPersistedCatalog(ctx.pool, ctx.tenantId, {
         stack: profile.stack,
         evaluationInstant: new Date().toISOString(),
       });
-      if (persisted) return persisted;
-      const result = researchFixtureCatalog({
-        stack: profile.stack,
-        audienceDescription: profile.audience.description,
-      });
-      return result;
+      return persisted ?? {
+        kind: 'catalog_research', catalogNote: 'Insufficient coverage: no catalog is loaded for this session. Research was not replaced with fixtures.',
+        candidates: [], coverage: { organizersInCatalog: 0, matched: 0 },
+      };
     }
     case 'publish_result': {
+      if (ctx.workflowVersion === BACKGROUND_WORKFLOW) {
+        const result = ctx.outputs.get('persist_relationships') as BackgroundResult | undefined;
+        if (!result || result.kind !== 'background_research') throw new Error('Missing persisted relationship result');
+        await withTenantTransaction(ctx.pool, ctx.tenantId, async client => {
+          await client.query('update growthx.runs set result=$2,updated_at=now() where id=$1', [ctx.runId, JSON.stringify(result)]);
+        });
+        return { published: true, editionId: result.editionId };
+      }
+      if (ctx.workflowVersion === DISCOVERY_WORKFLOW) {
+        return withTenantTransaction(ctx.pool, ctx.tenantId, async client => {
+          const discovery = await readDiscovery(client, ctx.runId);
+          if (!discovery?.progress.terminal) throw new Error('Discovery has not finished yet');
+          await client.query('update growthx.runs set result=$2,updated_at=now() where id=$1', [ctx.runId, JSON.stringify(discovery)]);
+          return { published: true, sources: discovery.sources.length };
+        });
+      }
       if (ctx.workflowVersion === COMPARISON_WORKFLOW) {
         // El resultado publicado se compone RELEYENDO el snapshot persistido y
         // su registro de redacción: lo que la UI muestra es lo confirmado en
@@ -347,7 +375,7 @@ async function executeStep(
         const fetched = parseLumaFetchOutput(ctx.outputs.get('fetch_event_page'));
         const persisted = ctx.outputs.get('persist_dossier') as LumaPersistOutcome | undefined;
         if (!persisted || typeof persisted.editionId !== 'string') {
-          throw new Error('publish_result sin salida de persist_dossier');
+          throw new Error('publish_result has no persist_dossier output');
         }
         const result = buildLumaIngestResult(fetched, persisted);
         await withTenantTransaction(ctx.pool, ctx.tenantId, async (client) => {
@@ -360,7 +388,7 @@ async function executeStep(
       }
       const research = ctx.outputs.get('research_catalog') as CatalogResearchResult | import('../../../components/research-dashboard/research-types.ts').SfResearchResult | undefined;
       if (!research || (research.kind !== 'catalog_research' && research.kind !== 'sf_organizer_research')) {
-        throw new Error('publish_result sin salida de research_catalog');
+        throw new Error('publish_result has no research_catalog output');
       }
       await withTenantTransaction(ctx.pool, ctx.tenantId, async (client) => {
         await client.query('update growthx.runs set result = $2, updated_at = now() where id = $1', [
@@ -371,7 +399,7 @@ async function executeStep(
       return { published: true };
     }
     default:
-      throw new Error(`paso desconocido «${name}» para ${ctx.runId}`);
+      throw new Error(`unknown step «${name}» para ${ctx.runId}`);
   }
 }
 
@@ -407,7 +435,7 @@ async function loadProfile(ctx: {
   const parsed = parseEvaluationProfile(payload);
   if (!parsed.ok) {
     const detail = parsed.issues.map((issue) => `${issue.path}: ${issue.message}`).join('; ');
-    throw new Error(`perfil ${ctx.profileId} inválido según contrato: ${detail}`);
+    throw new Error(`perfil ${ctx.profileId} violates the contract: ${detail}`);
   }
   return parsed.value;
 }

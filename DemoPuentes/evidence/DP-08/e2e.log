@@ -1,0 +1,115 @@
+✓ Lockfile passes supply-chain policies (verified 2h ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 430ms using pnpm v11.8.0
+$ node --test tests/e2e/sf-organizer-research.spec.ts && node --test tests/e2e/reopen-evaluation.spec.ts && node --test tests/e2e/persisted-evaluation.spec.ts && node --test tests/e2e/research-brief.spec.ts && node --test tests/e2e/exa-discovery.spec.ts && node --test tests/e2e/source-reading.spec.ts
+(node:48257) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ✔ entrada dashboard, sesión y perfil corregible antes de investigar (7586.328625ms)
+  ✔ homónimos independientes y guardado durable sin edición elegible (3281.180042ms)
+  ✔ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (4638.905875ms)
+  ✔ logo ambiguo y edición futura fuera de SF no se recomiendan (1039.138ms)
+  ✔ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (952.404709ms)
+  ✔ revisión del perfil, ausencia de coincidencia e importador disponible (2774.707583ms)
+  ✔ sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones (403.529875ms)
+  ✔ matching usa la última revisión y la identidad confirmada, no nombres parecidos (1019.943708ms)
+  ✔ error del worker se persiste y aparece en el dashboard (8625.002584ms)
+  ✔ sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global (363.737458ms)
+✔ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales (34865.883125ms)
+ℹ Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35242.113208
+(node:48814) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ✔ guardar una elección condicional, ver su campaña y copiar el enlace interno (5435.007ms)
+  ✔ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (4590.570334ms)
+  ✔ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (8602.314958ms)
+  ✔ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (9421.978166ms)
+  ✔ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (868.545792ms)
+  ✔ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (6801.550792ms)
+  ✔ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (1748.653084ms)
+  ✔ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (2629.9385ms)
+✔ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales) (45396.505625ms)
+ℹ Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45750.889333
+(node:49535) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ✔ perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes (10688.21475ms)
+  ✔ elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next (8578.622834ms)
+  ✔ reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar (4427.029458ms)
+  ✔ perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido (4755.661042ms)
+✔ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL) (32015.714041ms)
+ℹ Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32374.417
+(node:50057) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier (15261.962208ms)
+ℹ Dos briefs, dos revisiones reabiertas, objetivos/éxito/moneda conservados; identidad de lista/pin/dossier; 1366×900 y 390×844 sin overflow; HTTP tenant ajeno 404.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15612.492292
+(node:50327) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/tests/e2e/exa-discovery.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 main brief → durable Exa proposals → worker restart → closed tab reopened (14023.226583ms)
+ℹ Unmodified primary request, Exa fixture explicitly synthetic, 3 attempts persisted, worker process stopped/restarted, same source IDs after tab closure, no fixture organizer fallback, 404 cross tenant, desktop/mobile.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14370.459375
+(node:50531) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/tests/e2e/source-reading.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile (21788.070542ms)
+ℹ Controlled HTML; real PostgreSQL, queue, worker, Next and Chromium. Audience/sponsor/address fragments, both dates, same revision after reload, tenant 404 and no mobile overflow. No paid providers.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22164.098584

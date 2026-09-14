@@ -1,0 +1,123 @@
+TAP version 13
+# (node:56686) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+    # Subtest: guardar una elección condicional, ver su campaña y copiar el enlace interno
+    ok 1 - guardar una elección condicional, ver su campaña y copiar el enlace interno
+      ---
+      duration_ms: 7146.135125
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+    ok 2 - reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+      ---
+      duration_ms: 8500.436042
+      type: 'test'
+      ...
+    # Subtest: navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+    not ok 3 - navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+      ---
+      duration_ms: 21682.618416
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.click: Timeout 20000ms exceeded.
+        Call log:
+          - waiting for getByTestId('evaluation-list').locator('[data-decision-id="5c33d33f-3d8d-4bc2-94ab-8a00bf431612"]').getByRole('button', { name: 'Abrir campaña camp-540b54b2-afc6-4505-aecf-a49d6a0e70c1', exact: true })
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:354:97)
+        async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:3)
+      ...
+    # Subtest: lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+    not ok 4 - lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+      ---
+      duration_ms: 20277.92975
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:419:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.click: Timeout 20000ms exceeded.
+        Call log:
+          - waiting for getByTestId('comparison-panel').locator('[data-edition-id="ed-sf-dev-summit-2027"]').getByRole('button', { name: 'Open organizer dossier' })
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:440:91)
+        async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:419:3)
+      ...
+    # Subtest: vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+    ok 5 - vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+      ---
+      duration_ms: 3004.129
+      type: 'test'
+      ...
+    # Subtest: reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+    not ok 6 - reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+      ---
+      duration_ms: 20596.07625
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:488:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.waitFor: Timeout 20000ms exceeded.
+        Call log:
+          - waiting for getByTestId('reevaluation-note') to be visible
+            38 × locator resolved to hidden <p data-testid="reevaluation-note">…</p>
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:503:49)
+        async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:488:3)
+      ...
+    # Subtest: un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+    ok 7 - un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+      ---
+      duration_ms: 1711.191667
+      type: 'test'
+      ...
+    # Subtest: dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+    not ok 8 - dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+      ---
+      duration_ms: 22045.912792
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:567:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.click: Timeout 20000ms exceeded.
+        Call log:
+          - waiting for getByTestId('comparison-panel').locator('[data-edition-id="ed-sf-dev-summit-2027"]').getByRole('button', { name: 'Reintentar lectura de la decisión', exact: true })
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:608:122)
+        async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:567:3)
+      ...
+    1..8
+not ok 1 - SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ---
+  duration_ms: 114435.598625
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:120:1'
+  failureType: 'subtestsFailed'
+  error: '4 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+1..1
+# tests 9
+# suites 0
+# pass 4
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 115000.352084

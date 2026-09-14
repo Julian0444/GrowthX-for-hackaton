@@ -1,0 +1,3 @@
+Browser tab: 1004461497, Title: "GrowXth — Developer Growth Intelligence", URL: "http://localhost:3000/?run=4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0".
+There has been no change in the accessibility tree.
+The focused UI element is 120 button (expanded) View background evidence, Secondary Actions: Collapse

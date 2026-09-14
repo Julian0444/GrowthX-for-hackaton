@@ -45,7 +45,7 @@ function htmlAttributes(tag: string): Map<string, string> {
   return attributes
 }
 
-function findJsonLdEvent(html: string): JsonRecord | null {
+export function findJsonLdEvent(html: string): JsonRecord | null {
   const blocks = html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)
   for (const match of blocks) {
     if (htmlAttributes(match[1]).get("type")?.toLowerCase() !== "application/ld+json") continue

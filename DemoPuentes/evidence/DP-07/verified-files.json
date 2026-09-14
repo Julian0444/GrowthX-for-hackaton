@@ -1,0 +1,120 @@
+{
+  "at": "2026-09-10T23:24:30.432510+00:00",
+  "note": "Touched DP-07 paths; shared files also contain pre-existing/concurrent work. Hashes identify the tested cut, not attribution of their complete git diff.",
+  "files": {
+    "frontend/lib/contracts/comparison.ts": {
+      "sha256": "4dff631fa25751dc1351315e81079f084473ef4cc0f2bb61f5885fabe5ab4044",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/contracts/evaluation.ts": {
+      "sha256": "7d8675f0eb0be24472ce5b9987fdd6b8d6aff082104be896c31b6808553567de",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/contracts/evaluation-validation.ts": {
+      "sha256": "f3b66956ebb4bf36aa9203a9bd085279adc7388ed598dc30f929b74448b781c7",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/decision-reading.ts": {
+      "sha256": "cea39f2dcfceed57da30e5dd4b8e1af7956d1d4818908efb322d26cc5469bac5",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/compare.ts": {
+      "sha256": "0d649f239425dfa04f644cd37c51202fb102e31ec6db4411e44d65b07a675ba0",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/eligibility.ts": {
+      "sha256": "d388d4c0f0b17c493866e3cc9295b9a5f6dd9b9d4e6f13648922a16050cdc6f1",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/model-adapter.ts": {
+      "sha256": "566f281ec45161b29fd23175738b36537b9df188cead3aa403e9d99b55d4338f",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/snapshot-store.ts": {
+      "sha256": "c1a5624ede14b829c59713d62b0ad008b0ddf479ee7d3760e2a1c620331fc24a",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/service.ts": {
+      "sha256": "546a79df60f348a40542b41aaf218b0d28209d51a0ce7f329fa594fdc15bc39b",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/server/evaluations/wire.ts": {
+      "sha256": "44db65bc3ff4e832c3555be5676f4b14f4f2be4cc9325922af2b75347bcbfad6",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/api/atlas-client.ts": {
+      "sha256": "446647c275db7a9322b76a331d33a458e77789018c4fb792354675d303071581",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/lib/api/opportunity-adapter.ts": {
+      "sha256": "417bde7b44bc3cd2b36f3301dd986ea508ff375b7d2dde52be1e84170e6e2156",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/components/research-dashboard/comparison-panel.tsx": {
+      "sha256": "388e8ec031028d2e665a9e0668d21a1648e86bb6fac1ab1a08b2f33e73204c22",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/components/research-dashboard/comparison-reading.tsx": {
+      "sha256": "c363f8620e555235238905e6781293049ca0d32a2cef2201b6d89389b9058074",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/components/research-dashboard/comparison-reading.css": {
+      "sha256": "95492ce3bef3dd1f4ed2e35e9058b665499f55299e5fb20d3323d84cffb5dfd8",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/components/research-dashboard/comparison-brief-editor.tsx": {
+      "sha256": "298f6bf0d2bf4412f563c1d46d00e10771c3d836740d480b76790b0502ad7144",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/components/research-dashboard/comparison-differences.tsx": {
+      "sha256": "de7ce445b5afab975aaaaa49b8a9c1175d73b61c4917658973263c0bd1edb4fb",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/components/research-dashboard/research-dashboard.tsx": {
+      "sha256": "7080f146a3f6a059f05b9fb07e47be7f0898e766a9b8b97892c3bfbb43c17bfb",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/fixtures/comparison.ts": {
+      "sha256": "18b0987cb24fdde9e5140e4d3ab516110ca03c813b9736508fa5cc92976aa5db",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/fixtures/sf-map.ts": {
+      "sha256": "2907378f038606e36aa4d57502930faa66f94ab7be8090eb719da869d6155be2",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/acceptance/explicable-comparison.test.ts": {
+      "sha256": "825f52f9ab148fb277a0564c22a7cb19653801306051e88306e51347e0a28945",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/integration/explicable-comparison.test.ts": {
+      "sha256": "03e5f5ff33dbecc9d8ac0b2491dc9ad984550a10914f6649fddb4db2a2d37e16",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/integration/evaluation-snapshot.test.ts": {
+      "sha256": "3de03b2d4a217dfac7e146683f65bcbdd59842611274eff7c1c87790436925eb",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/e2e/explicable-comparison.spec.ts": {
+      "sha256": "51da5f33721db4e438db8972b44172ebf9a1da7bab1a88684578495ae291ca59",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/tests/e2e/sf-street-map.spec.ts": {
+      "sha256": "d8cffd33de45726ba385aa3dde8456cadcd2dbb55b0d42443d5a713799c3408f",
+      "sameAsIsolatedVerification": true
+    },
+    "frontend/package.json": {
+      "sha256": "050e08a61d81f935fb57c452afffbc350278ae6b5409663ee78345b9a1d8eb3a",
+      "sameAsIsolatedVerification": true
+    }
+  },
+  "sharedDocuments": {
+    "DemoPuentes/PuentesHandoff.md": {
+      "sha256": "8fd61f83345649255b51652d0f21481258c8411e729d55466390c1d1a41cf709",
+      "unchangedSincePreflight": true
+    },
+    "DemoPuentes/implementation-plan.md": {
+      "sha256": "6e7c40b94f52a94d30013163b17c1c438decc02cb39125990c58bf52008368e5",
+      "unchangedSincePreflight": true
+    }
+  }
+}

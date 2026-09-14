@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-09-11T00:44:19.762798+00:00",
+  "application": "http://localhost:3000",
+  "browser": "Google Chrome, existing local session through CUA",
+  "realRuns": [
+    "4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0",
+    "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+    "6086a9fd-0fdc-4d6b-a810-6aa4dc567a64"
+  ],
+  "viewports": [
+    {
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "desktopComparisonActionBottoms": [
+    836.7734375,
+    886.7734375,
+    812.078125,
+    862.078125
+  ],
+  "checks": {
+    "compactBriefAndEditor": true,
+    "currentBriefExplanationSeparatedFromOriginalReading": true,
+    "realSourceOpened": true,
+    "realJsonLdFragmentExpanded": true,
+    "sameListMapContext": true,
+    "cityAndPrivateVenueNoPins": true,
+    "approximateCensusPointLabelled": true,
+    "markerEnter": true,
+    "evidenceEscapeRestoresFocus": true,
+    "mobileNativeModal": true,
+    "mobileTabFocusContained": true,
+    "mobileSelectionSurvivesListMap": true,
+    "emptyFilterRecovery": true,
+    "insufficientEvidence": true,
+    "requiredReasonValidationWithoutWrite": true,
+    "missingRunRetryWithoutIndefiniteLoading": true,
+    "horizontalOverflow": false
+  },
+  "localBusinessWritesPerformedByThisTask": 0,
+  "providerOutages": "503/WebGL/style/tiles tested with controlled transport in isolated production Chrome, not a claimed live provider outage",
+  "temporaryViewportOverrideReset": true,
+  "leftOpen": "comparison v5"
+}

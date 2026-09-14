@@ -1,0 +1,871 @@
+(node:42986) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/baseline-v0.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness (5.370041ms)
+✔ seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado (10.025ms)
+✔ fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración (1.541084ms)
+✔ repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida (285.30825ms)
+✔ repetición: una petición no grabada falla en lugar de salir a la red (1.001416ms)
+✔ caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto (44.280833ms)
+ℹ fuentes distintas del manifiesto v0: lib/contracts/growxth.ts, lib/server/pipeline/resolve.ts, lib/server/pipeline/global-market-search.ts, lib/server/pipeline/search-opportunities.ts, lib/server/reasoning/gemini.ts, lib/server/discovery/exa-events.ts, lib/server/graph/derive-signals.ts, lib/server/markets/city-catalog.ts, lib/server/scoring/score-utils.ts, lib/server/audit/labels.ts, lib/server/env.ts, lib/api/opportunity-adapter.ts, lib/api/types.ts, app/api/opportunities/search/route.ts. La igualdad con la caracterización solo se exige sobre v0; la corrección la prueban 02–06.
+✔ oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada (28.10625ms)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición secuencial (USD 20.000)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición concurrente (USD 20.000)
+ℹ O1 (ticket 02) invariante: una petición equivalente (mismo presupuesto) sí reutiliza la respuesta
+ℹ O2 (ticket 03) corregido: mercado con señal de Trends exclusivamente nacional (India) presentado con market.city como ubicación (basis country)
+ℹ O2 (ticket 03) corregido: resultado de Exa sin lugar en el texto recibe como location la ciudad de la consulta
+ℹ O3 (ticket 04) corregido: oportunidades locales cuyo evento ya venció en el reloj congelado y aun así se citan como «upcoming»
+ℹ O3 (ticket 04) corregido: evento sin fecha: startsAt que el adaptador entrega a la UI
+ℹ O3 (ticket 04) corregido: recap de un evento del 12 Ago 2026 publicado el 5 Sep se cita como listing vivo (observed) en la razón de Exa
+ℹ O4 (ticket 05) corregido: narrativa que solo cita un id inexistente: se publica como razón y con qué citas
+ℹ O4 (ticket 05) corregido: narrativa de San Francisco que cita evidencia de Bengaluru (ajena): publicada como razón factual
+ℹ O4 (ticket 05) corregido: cifra («40+ meetups por trimestre») respaldada solo por un listing de un evento: publicada como razón factual
+ℹ O5 (ticket 06) corregido: orden de opportunities con modelo (rank invertido) frente al orden determinístico
+ℹ O5 (ticket 06) corregido: rank que el adaptador entrega a la UI sigue al orden del array recibido
+ℹ O5 (ticket 06) invariante: scores por oportunidad con y sin modelo
+✔ matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos (0.571625ms)
+(node:42987) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/cache-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza (182.55025ms)
+✔ concurrente: presupuestos distintos no comparten la promesa en curso (9.294708ms)
+✔ proveedor controlado: se observa qué evaluación produjo cada respuesta (6.156583ms)
+✔ fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto (2.635125ms)
+✔ frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo (99.986833ms)
+✔ normalización única: caracterización del sentinel de presupuesto desconocido (0.165584ms)
+(node:42988) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/acceptance/eligibility-window.test.ts (396.967167ms)
+(node:42989) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/event-validity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha (34.609292ms)
+✔ demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca (36.024375ms)
+✔ seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan (44.506708ms)
+✔ adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento (1.57925ms)
+✔ Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece (101.28ms)
+✔ predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05 (3.736542ms)
+✔ fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente (0.694167ms)
+✔ fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente (1.471ms)
+(node:42990) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/acceptance/explicable-comparison.test.ts (344.307584ms)
+(node:42991) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/geographic-scope.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ fixture país: un dato de Trends sobre India sigue siendo observación de país (33.122083ms)
+✔ fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado (1.925292ms)
+✔ fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado (157.2725ms)
+(node:42992) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/llm-rank-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+✔ el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual (166.396875ms)
+✔ grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5) (34.425875ms)
+✔ candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco (1.403167ms)
+✔ desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable) (1.379875ms)
+✔ desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden (2.89275ms)
+✔ ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números (2.47175ms)
+(node:42993) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/reasoning-support.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1) (175.538583ms)
+✔ cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2) (0.269833ms)
+✔ cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida) (16.2235ms)
+✔ afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica (0.694208ms)
+✔ propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza (0.609958ms)
+✔ fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad (1.981208ms)
+✔ JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos (0.749167ms)
+✔ descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia (0.526458ms)
+✔ auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta (0.393958ms)
+(node:42994) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/session-unavailable.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401 (105.44475ms)
+(node:42995) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/trust-regressions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/acceptance/trust-regressions.test.ts (456.512583ms)
+(node:42996) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/atlas/arcs.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ origen: ubicación del usuario si existe, si no San Francisco (2.548667ms)
+✔ path = bézier cuadrática "M x0 y0Q cx cy x1 y1", redondeada a 1 decimal (0.419ms)
+✔ el arco siempre se comba hacia el norte, independientemente del sentido (0.264084ms)
+✔ bulge clampeado a [12, 60] (0.156792ms)
+✔ origen == destino → sin arco (0.327ms)
+✔ determinista: mismo input → mismo output, sin depender del reloj (0.558292ms)
+✔ escalonado por rank: 950ms + 240ms por posición; el cometa arranca al terminar el arco (40.146584ms)
+✔ todos los arcos parten del origen (0.314417ms)
+(node:42997) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/apify.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ runs an Actor with server-side auth and reads its dataset (169.888625ms)
+✔ degrades without exposing or requiring a token (0.146292ms)
+✔ keeps partial dataset items when an Actor exceeds its wait budget (1.095042ms)
+(node:42998) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls (9.7215ms)
+✔ DP04 URL identity only merges proven aliases; same names and different query editions remain separate (17.797916ms)
+✔ DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors (86.914958ms)
+(node:42999) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (5.405708ms)
+✔ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.323917ms)
+✔ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.299875ms)
+✔ DP-08 Census uses address interpolation and county 06075, not bbox or first match (0.928541ms)
+✔ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (59.366667ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (1.090625ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (13.620917ms)
+✔ DP-08 same street/number in a different visible city contradicts the source point (1.001584ms)
+(node:43000) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes (4.475209ms)
+✔ Luma: un título OG de página vacía o calendario no crea un dossier de evento (65.827ms)
+✔ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.910542ms)
+✔ Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes (2.401292ms)
+✔ Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación (3.760958ms)
+✔ Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos (1.099291ms)
+✔ Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos (0.775625ms)
+✔ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (2.6375ms)
+(node:43001) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06: real contract shapes, explicit roles, identity and buyer-specific antecedent (30.56775ms)
+✔ DP06: homonyms, corporate location and editions with different years never merge by name (1.649375ms)
+✔ DP06: calendar and JSON-LD name are not silently organizers; host and coorganizer separate (0.943167ms)
+✔ DP06: logo and presenter without sponsor block never become sponsorship or ROI (1.878334ms)
+✔ DP06: wrong edition backlink and unlinked repository never create project relationship (4.775042ms)
+✔ DP06: an award does not establish technology; partial reviewed coverage not extrapolated (3.748ms)
+✔ DP06: Vultr sponsor in Paris is a separate role from present host in SF (4.79525ms)
+✔ DP06: source without Event metadata is retained without inventing an edition (0.208166ms)
+✔ DP06: date contradiction stays contradicted and instructions do not enter facts (0.574667ms)
+✔ DP06: input rejects mixed provenance, foreign fields and unsafe destination (0.352208ms)
+✔ DP06: AIT explicit structured chapter attribution + visible event role works without subscription chrome (2.154625ms)
+(node:43012) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (74.998ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (1.935416ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (2.071834ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (1.091542ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (0.767417ms)
+✔ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (6.879167ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (63.010791ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (3.332583ms)
+(node:43013) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/contracts/evaluation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ payload válido: el bundle incompleto pero bien formado pasa entero y sin mutaciones (7.425958ms)
+✔ payload inválido se rechaza con ruta y motivo; las claves desconocidas no se ignoran (0.707459ms)
+✔ una versión de contrato desconocida se rechaza; no se interpreta como la actual (0.359208ms)
+✔ fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy (22.545292ms)
+✔ costo incompleto: la partida pendiente viaja como pendiente y no existe un total (0.65825ms)
+✔ una localización nacional no coloca el evento en una ciudad ni en el mapa (0.6545ms)
+✔ una contradicción viaja como contradicción, con su motivo visible (0.816292ms)
+✔ score ausente se distingue de cero; «sin evento elegible» se distingue de error técnico (1.360459ms)
+✔ un compromiso acordado sin soporte se rechaza; una estimación no se disfraza de acuerdo (1.271125ms)
+✔ identidades separadas: aliases exigen confirmación con soporte y un logo no crea patrocinio ni resultados (0.5785ms)
+✔ la decisión exige autor del servidor, motivos y relación de revisión coherente (0.301416ms)
+✔ las reglas de objeto no comprueban integridad relacional (eso es 08/09) (0.638ms)
+✔ round-trip por JSON: serializar, releer y validar conserva el agregado idéntico (1.126ms)
+✔ la proyección conserva pendientes sin los defaults engañosos del contrato legado (0.341791ms)
+(node:43016) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/contracts/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: brief completo y legado; preguntas ligadas a producto, audiencia y objetivo; dinero separado (6.733625ms)
+✔ DP03: rechaza datos inválidos y campos operativos/tenant en el brief (0.454167ms)
+✔ DP03: contratos de fuentes y relaciones preservan premio, herramienta y edición sin atribuir eficacia (1.409667ms)
+✔ DP03: ubicación anterior, ciudad, fallo y contradicción no fabrican un punto (0.891917ms)
+✔ DP03: parcial/error/insuficiente y consumo desconocido son estados distintos de éxito/cero (0.438083ms)
+✔ DP03: comparación, dossier y mapa conservan la revisión seleccionada aunque exista una nueva (12.922583ms)
+(node:43017) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/graph/derive-signals.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ derives query-specific capabilities instead of requiring a static topics file (2.639375ms)
+✔ distance is context in miles and can be computed independently from score (0.187417ms)
+(node:43019) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/conditional-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/conditional-decision.test.ts (334.738167ms)
+(node:43021) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/curated-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ curated-manifest: parseo estricto del manifiesto de curación
+  ✔ el manifiesto fixture valida completo (4.154666ms)
+  ✔ clave desconocida y responsable ausente se rechazan (84.050291ms)
+  ✔ extracto sobredimensionado y claim de perfil se rechazan (1.192334ms)
+  ✔ la versión desconocida no se interpreta como la actual (0.246625ms)
+✔ curated-manifest: parseo estricto del manifiesto de curación (91.869958ms)
+▶ curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
+  ✔ carga autorizada: el manifiesto fixture entra completo bajo el tenant real (167.207584ms)
+  ✔ idempotencia: repetir la carga no duplica eventos ni revisiones (18.59675ms)
+  ✔ fuente replicada e inmutabilidad: mismo id sin cambios pasa; con cambios se rechaza entero (100.15625ms)
+  ✔ una corrección es una revisión NUEVA que conserva la anterior (33.79725ms)
+  ✔ rutas: sin sesión 401; id inválido 400 (8.303291ms)
+  ✔ la lista del catálogo separa vigencia de promesas pendientes (15.148625ms)
+  ✔ dossier de edición: contradicción con ambas revisiones, costo pendiente y fuentes abribles (18.089375ms)
+  ✔ homónimos e independencia: identidades separadas, coorganizador sin herencia (33.7925ms)
+  ✔ participaciones: rol recorrible empresa → edición → fuente; ausencia de resultado ≠ fracaso (14.738625ms)
+  ✔ research persistido: sin catálogo → null (cobertura insuficiente); con catálogo → candidatos vigentes (42.025167ms)
+  ✔ tenant señuelo: catálogo vacío por RLS y referencias cruzadas rechazadas (34.004125ms)
+  ✔ reloj controlado: la vigencia cambia al evaluar y el catálogo vencido se declara (33.913542ms)
+✔ curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real) (649.722625ms)
+(node:43022) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/evaluation-run.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/evaluation-run.test.ts (330.053584ms)
+(node:43023) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/evaluation-snapshot.test.ts (383.969334ms)
+(node:43024) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/exa-discovery.test.ts (381.014708ms)
+(node:43025) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/explicable-comparison.test.ts (358.271125ms)
+(node:43026) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/location-resolution.test.ts (367.189041ms)
+(node:43027) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/luma-dossier.test.ts (331.461417ms)
+(node:43028) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/migration-concurrency.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ migraciones en bases distintas toleran un ALTER ROLE concurrente del mismo cluster (589.833417ms)
+(node:43029) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/relationships.test.ts (355.711125ms)
+(node:43030) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/research-brief.test.ts (332.9345ms)
+(node:43031) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/source-reading.test.ts (345.09675ms)
+(node:43032) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/tenant-isolation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/tenant-isolation.test.ts (359.825625ms)
+(node:43043) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/trust-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/trust-decision.test.ts (320.476625ms)
+(node:43044) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/integration/worker-recovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+}
+
+Node.js v25.5.0
+✖ tests/integration/worker-recovery.test.ts (320.763625ms)
+(node:43045) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/markets/global-market-search.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normalizes worldwide Trends rows and explicit X locations (2.268833ms)
+✔ builds focused signal queries from natural product descriptions (1.308416ms)
+✔ ranks three countries from query-specific geographic evidence (3.508041ms)
+✔ keeps a labeled worldwide fallback when every live source is unavailable (0.513459ms)
+(node:43046) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/community-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ comunidad completa con evidencia: score alto y reasons respaldadas (2.029667ms)
+✔ evidencia vacía: sin reasons y confidence null (pero score se computa) (0.213ms)
+✔ stack vacío → stackOverlap null (no 0) (0.129ms)
+✔ sin cadencia conocida → cadenceReliability null (0.115208ms)
+✔ sin evidencia de sponsors → exclusivityGap null (no inferir ausencia) (0.132292ms)
+(node:43047) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/roi.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ inputs completos: costo por dev calificado + banda (2.513875ms)
+✔ falta el precio del tier → null + "No disponible" (nunca se estima el precio) (0.125875ms)
+✔ falta icpFitRate → null + "No disponible" (0.103958ms)
+✔ attendance 0 → null (no dividir por cero) (0.098459ms)
+(node:43048) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/score-utils.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ renormaliza sobre las dimensiones activas: una sola dim activa = 100 (1.159291ms)
+✔ null NUNCA es 0: null y 0 dan scores distintos (0.13325ms)
+✔ todas las dimensiones null → score 0 (0.681834ms)
+✔ coverageRatio: fracción del target cubierta, null si falta un conjunto (0.19675ms)
+✔ clamp01 acota a [0,1] (0.118791ms)
+(node:43049) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/scoring/theme-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ momentum: ratio 2.0 (+100%) → 1.0 (1.249ms)
+✔ sin githubMomentum cae a newsSalience (0.111666ms)
+✔ sin requiredCapabilities → criticalPath null (0.092167ms)
+✔ reasons del tema citan evidencia no vacía (0.130167ms)
+(node:43050) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/evidence-links.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes (20.960167ms)
+✖ el dossier sintético no ofrece abrir un listado inexistente (6.229291ms)
+✔ un enlace público real se conserva y un esquema ejecutable nunca se publica (2.06075ms)
+✖ el transporte de demo y su captura histórica no se presentan como obtención real de Luma (0.58ms)
+✖ el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico (5.119459ms)
+(node:43051) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/sf-map.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-09 uses DP-08 policy for announced/confirmed, approximate, city-only and contradicted locations (18.783ms)
+✔ DP-09 projects only the run, never unrelated catalog editions; discovery and running imports stay empty (1.5945ms)
+✔ DP-09 run revision and comparison snapshot keep original geography after catalog update (1.049334ms)
+✔ DP-09 nearby/coincident venues group without changing identity or coordinate axes (1.376125ms)
+(node:43052) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/trust-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ campaña y texto copiable conservan incertidumbre, base y advertencia (90.351041ms)
+✖ ubicación announced y confirmed comparten soporte pero no confirmación humana (43.943959ms)
+ℹ tests 180
+ℹ suites 0
+ℹ pass 158
+ℹ fail 22
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5252.230708
+
+✖ failing tests:
+
+test at tests/acceptance/eligibility-window.test.ts:1:1
+✖ tests/acceptance/eligibility-window.test.ts (396.967167ms)
+  'test failed'
+
+test at tests/acceptance/explicable-comparison.test.ts:1:1
+✖ tests/acceptance/explicable-comparison.test.ts (344.307584ms)
+  'test failed'
+
+test at tests/acceptance/session-unavailable.test.ts:44:1
+✖ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401 (105.44475ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-model.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/acceptance/session-unavailable.test.ts:10:12)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/research/presentation'
+  }
+
+test at tests/acceptance/trust-regressions.test.ts:1:1
+✖ tests/acceptance/trust-regressions.test.ts (456.512583ms)
+  'test failed'
+
+test at tests/integration/conditional-decision.test.ts:1:1
+✖ tests/integration/conditional-decision.test.ts (334.738167ms)
+  'test failed'
+
+test at tests/integration/evaluation-run.test.ts:1:1
+✖ tests/integration/evaluation-run.test.ts (330.053584ms)
+  'test failed'
+
+test at tests/integration/evaluation-snapshot.test.ts:1:1
+✖ tests/integration/evaluation-snapshot.test.ts (383.969334ms)
+  'test failed'
+
+test at tests/integration/exa-discovery.test.ts:1:1
+✖ tests/integration/exa-discovery.test.ts (381.014708ms)
+  'test failed'
+
+test at tests/integration/explicable-comparison.test.ts:1:1
+✖ tests/integration/explicable-comparison.test.ts (358.271125ms)
+  'test failed'
+
+test at tests/integration/location-resolution.test.ts:1:1
+✖ tests/integration/location-resolution.test.ts (367.189041ms)
+  'test failed'
+
+test at tests/integration/luma-dossier.test.ts:1:1
+✖ tests/integration/luma-dossier.test.ts (331.461417ms)
+  'test failed'
+
+test at tests/integration/relationships.test.ts:1:1
+✖ tests/integration/relationships.test.ts (355.711125ms)
+  'test failed'
+
+test at tests/integration/research-brief.test.ts:1:1
+✖ tests/integration/research-brief.test.ts (332.9345ms)
+  'test failed'
+
+test at tests/integration/source-reading.test.ts:1:1
+✖ tests/integration/source-reading.test.ts (345.09675ms)
+  'test failed'
+
+test at tests/integration/tenant-isolation.test.ts:1:1
+✖ tests/integration/tenant-isolation.test.ts (359.825625ms)
+  'test failed'
+
+test at tests/integration/trust-decision.test.ts:1:1
+✖ tests/integration/trust-decision.test.ts (320.476625ms)
+  'test failed'
+
+test at tests/integration/worker-recovery.test.ts:1:1
+✖ tests/integration/worker-recovery.test.ts (320.763625ms)
+  'test failed'
+
+test at tests/ui/evidence-links.test.ts:41:1
+✖ las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes (20.960167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Fuente de prueba/. Input:
+  
+  '<div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-dev-summit · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-a"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>landing del evento</p><p>Published Aug 20, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-a · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-community-report"><span>newsletter comunitaria (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>párrafo 3</p><p>Published Sep 1, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-community-report · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-berlin"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Nov 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-berlin · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-sponsor-page"><span>sitio del sponsor (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>entrada «Berlin 2025»</p><p>Published Oct 1, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-sponsor-page · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-logo-wall"><span>galería del evento (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>foto del muro de sponsors</p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-logo-wall · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-luma-ml-night"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Aug 30, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-ml-night · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-b"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-b · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-sf-2025"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Jun 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-sf-2025 · obtained 2026-09-08T00:00:00Z</p></details></div></div>'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/evidence-links.test.ts:46:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-dev-summit · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-a"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>landing del evento</p><p>Published Aug 20, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-a · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-community-report"><span>newsletter comunitaria (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>párrafo 3</p><p>Published Sep 1, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-community-report · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-berlin"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Nov 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-berlin · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-sponsor-page"><span>sitio del sponsor (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>entrada «Berlin 2025»</p><p>Published Oct 1, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-sponsor-page · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-logo-wall"><span>galería del evento (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>foto del muro de sponsors</p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-logo-wall · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-luma-ml-night"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Aug 30, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-ml-night · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-b"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-b · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-sf-2025"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Jun 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-sf-2025 · obtained 2026-09-08T00:00:00Z</p></details></div></div>',
+    expected: /Fuente de prueba/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/ui/evidence-links.test.ts:49:1
+✖ el dossier sintético no ofrece abrir un listado inexistente (6.229291ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Listado de prueba/. Input:
+  
+  '<section class="dossier-surface" data-testid="edition-dossier" data-edition-id="ed-sf-dev-summit-2027" data-edition-revision-id="ed-sf-dev-summit-2027-r1"><span class="eyebrow">Event evidence</span><h2>SF Dev Summit 2027 (synthetic)</h2><p>Mar 10, 2027, 6:00 PM PST · Review conditions</p><p class="research-meta">Test listing · not a real page.</p><p class="dossier-material">Synthetic labeled material (open decision D4): it proves the mechanism, not real events.</p><p class="event-pending"><b>To confirm:</b> Full participation cost is unknown. Request an edition-specific quote before committing budget.</p><p class="research-meta dossier-verification">Curated Sep 8, 2026 por Curaduría sintética (fixture de CI)</p><p>Organizers / listed hosts: </p><div class="dossier-facts"><div class="research-fact fact-known"><strong>Date</strong><p>Mar 10, 2027, 6:00 PM PST</p><small>Curated · Scope pending </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-known"><strong>Location</strong><p>San Francisco</p><small>Curated · city </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-pending"><strong>Audience</strong><p>sin dato de audiencia; no se estima uno</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">What audience size and profile can the organizer evidence for this edition?</p></div><div class="research-fact fact-pending"><strong>Access</strong><p>sin dato de acceso; no se asume abierto ni cerrado</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Is registration open or invite-only? Ask the organizer to confirm access.</p></div><div class="research-fact fact-pending"><strong>Cost</strong><p>sin partidas de costo conocidas; no se suman como 0</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Which sponsorship items does the organizer offer, and at what price?</p></div></div><section aria-label="Location and precision" data-testid="location-evidence"><h3>Public location</h3><p>Sede sintética SF · announced</p><p>venue</p><p>● Location announced</p><details><summary>Location provenance</summary><p>manual · Coordenadas de prueba, no sede real.</p><p>fixture · Sep 7, 2026</p><div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span></div></div></details></section><section class="dossier-source-summary" aria-label="Source summary"><h3>Sources · 9</h3><p>Source metadata is listed once. Each fact above links to the excerpt that supports it.</p><div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-dev-summit · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-a"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>landing del evento</p><p>Published Aug 20, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-a · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-community-report"><span>newsletter comunitaria (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>párrafo 3</p><p>Published Sep 1, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-community-report · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-berlin"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Nov 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-berlin · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-sponsor-page"><span>sitio del sponsor (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>entrada «Berlin 2025»</p><p>Published Oct 1, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-sponsor-page · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-logo-wall"><span>galería del evento (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>foto del muro de sponsors</p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-logo-wall · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-luma-ml-night"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Aug 30, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-ml-night · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-b"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-b · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-sf-2025"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Jun 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-sf-2025 · obtained 2026-09-08T00:00:00Z</p></details></div></div></section><details><summary>Technical identity and saved revision</summary><p>ed-sf-dev-summit-2027 · ed-sf-dev-summit-2027-r1 · 1 revisions</p></details><h3>Documented participation</h3></section>'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/evidence-links.test.ts:59:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<section class="dossier-surface" data-testid="edition-dossier" data-edition-id="ed-sf-dev-summit-2027" data-edition-revision-id="ed-sf-dev-summit-2027-r1"><span class="eyebrow">Event evidence</span><h2>SF Dev Summit 2027 (synthetic)</h2><p>Mar 10, 2027, 6:00 PM PST · Review conditions</p><p class="research-meta">Test listing · not a real page.</p><p class="dossier-material">Synthetic labeled material (open decision D4): it proves the mechanism, not real events.</p><p class="event-pending"><b>To confirm:</b> Full participation cost is unknown. Request an edition-specific quote before committing budget.</p><p class="research-meta dossier-verification">Curated Sep 8, 2026 por Curaduría sintética (fixture de CI)</p><p>Organizers / listed hosts: </p><div class="dossier-facts"><div class="research-fact fact-known"><strong>Date</strong><p>Mar 10, 2027, 6:00 PM PST</p><small>Curated · Scope pending </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-known"><strong>Location</strong><p>San Francisco</p><small>Curated · city </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-pending"><strong>Audience</strong><p>sin dato de audiencia; no se estima uno</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">What audience size and profile can the organizer evidence for this edition?</p></div><div class="research-fact fact-pending"><strong>Access</strong><p>sin dato de acceso; no se asume abierto ni cerrado</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Is registration open or invite-only? Ask the organizer to confirm access.</p></div><div class="research-fact fact-pending"><strong>Cost</strong><p>sin partidas de costo conocidas; no se suman como 0</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Which sponsorship items does the organizer offer, and at what price?</p></div></div><section aria-label="Location and precision" data-testid="location-evidence"><h3>Public location</h3><p>Sede sintética SF · announced</p><p>venue</p><p>● Location announced</p><details><summary>Location provenance</summary><p>manual · Coordenadas de prueba, no sede real.</p><p>fixture · Sep 7, 2026</p><div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span></div></div></details></section><section class="dossier-source-summary" aria-label="Source summary"><h3>Sources · 9</h3><p>Source metadata is listed once. Each fact above links to the excerpt that supports it.</p><div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-dev-summit · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-a"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>landing del evento</p><p>Published Aug 20, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-a · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-community-report"><span>newsletter comunitaria (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>párrafo 3</p><p>Published Sep 1, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-community-report · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-berlin"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Nov 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-berlin · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-sponsor-page"><span>sitio del sponsor (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>entrada «Berlin 2025»</p><p>Published Oct 1, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-sponsor-page · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-logo-wall"><span>galería del evento (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>foto del muro de sponsors</p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-logo-wall · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-luma-ml-night"><span>luma (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Aug 30, 2026 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-luma-ml-night · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-organizer-site-b"><span>sitio del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Publication date unknown · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-organizer-site-b · obtained 2026-09-08T00:00:00Z</p></details></div><div class="source-record" data-source-id="src-recap-sf-2025"><span>blog del organizador (synthetic)</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p></p><p>Published Jun 20, 2025 · scope: city</p><p>manual_curation</p><p class="research-meta">Source: src-recap-sf-2025 · obtained 2026-09-08T00:00:00Z</p></details></div></div></section><details><summary>Technical identity and saved revision</summary><p>ed-sf-dev-summit-2027 · ed-sf-dev-summit-2027-r1 · 1 revisions</p></details><h3>Documented participation</h3></section>',
+    expected: /Listado de prueba/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/ui/evidence-links.test.ts:71:1
+✖ el transporte de demo y su captura histórica no se presentan como obtención real de Luma (0.58ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Fuente de prueba/. Input:
+  
+  '<div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>test_fixture+jsonld_extraction</p><p class="research-meta">Source: src-luma-dev-summit · obtained 2026-09-08T00:00:00Z</p></details></div></div>'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/evidence-links.test.ts:76:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<div class="source-records"><div class="source-record" data-source-id="src-luma-dev-summit"><span>luma</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>test_fixture+jsonld_extraction</p><p class="research-meta">Source: src-luma-dev-summit · obtained 2026-09-08T00:00:00Z</p></details></div></div>',
+    expected: /Fuente de prueba/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/ui/evidence-links.test.ts:83:1
+✖ el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico (5.119459ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Listado de prueba/. Input:
+  
+  '<section class="dossier-surface" data-testid="edition-dossier" data-edition-id="ed-sf-dev-summit-2027" data-edition-revision-id="ed-sf-dev-summit-2027-r1"><span class="eyebrow">Event evidence</span><h2>SF Dev Summit 2027 (synthetic)</h2><p>Mar 10, 2027, 6:00 PM PST · Review conditions</p><p class="research-meta">Test listing · not a real page.</p><p class="dossier-material">Automatically read from public sources: claims keep their announced or reported status, without human verification.</p><p class="event-pending"><b>To confirm:</b> Full participation cost is unknown. Request an edition-specific quote before committing budget.</p><p class="research-meta dossier-verification">Source obtained Sep 8, 2026 · automatically extracted; not human verified</p><p>Organizers / listed hosts: </p><div class="dossier-facts"><div class="research-fact fact-known"><strong>Date</strong><p>Mar 10, 2027, 6:00 PM PST</p><small>Curated · Scope pending </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-known"><strong>Location</strong><p>San Francisco</p><small>Curated · city </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-pending"><strong>Audience</strong><p>sin dato de audiencia; no se estima uno</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">What audience size and profile can the organizer evidence for this edition?</p></div><div class="research-fact fact-pending"><strong>Access</strong><p>sin dato de acceso; no se asume abierto ni cerrado</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Is registration open or invite-only? Ask the organizer to confirm access.</p></div><div class="research-fact fact-pending"><strong>Cost</strong><p>sin partidas de costo conocidas; no se suman como 0</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Which sponsorship items does the organizer offer, and at what price?</p></div></div><section aria-label="Location and precision" data-testid="location-evidence"><h3>Public location</h3><p>Sede sintética SF · announced</p><p>venue</p><p>Location pending · no supported point</p><details><summary>Location provenance</summary><p>manual · Coordenadas de prueba, no sede real.</p><p>fixture · Sep 7, 2026</p></details></section><section class="dossier-source-summary" aria-label="Source summary"><h3>Sources · 1</h3><p>Source metadata is listed once. Each fact above links to the excerpt that supports it.</p><div class="source-records"><div class="source-record" data-source-id="fixture-source"><span>luma</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>test_fixture+jsonld_extraction</p><p class="research-meta">Source: fixture-source · obtained 2026-09-08T00:00:00Z</p></details></div></div></section><details><summary>Technical identity and saved revision</summary><p>ed-sf-dev-summit-2027 · ed-sf-dev-summit-2027-r1 · 1 revisions</p></details><h3>Documented participation</h3></section>'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/evidence-links.test.ts:99:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<section class="dossier-surface" data-testid="edition-dossier" data-edition-id="ed-sf-dev-summit-2027" data-edition-revision-id="ed-sf-dev-summit-2027-r1"><span class="eyebrow">Event evidence</span><h2>SF Dev Summit 2027 (synthetic)</h2><p>Mar 10, 2027, 6:00 PM PST · Review conditions</p><p class="research-meta">Test listing · not a real page.</p><p class="dossier-material">Automatically read from public sources: claims keep their announced or reported status, without human verification.</p><p class="event-pending"><b>To confirm:</b> Full participation cost is unknown. Request an edition-specific quote before committing budget.</p><p class="research-meta dossier-verification">Source obtained Sep 8, 2026 · automatically extracted; not human verified</p><p>Organizers / listed hosts: </p><div class="dossier-facts"><div class="research-fact fact-known"><strong>Date</strong><p>Mar 10, 2027, 6:00 PM PST</p><small>Curated · Scope pending </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-known"><strong>Location</strong><p>San Francisco</p><small>Curated · city </small><details data-testid="claim-evidence"><summary>Source details</summary><small>Method: manual_curation · reviewed: Sep 8, 2026 · Curaduría sintética (fixture de CI)</small></details></div><div class="research-fact fact-pending"><strong>Audience</strong><p>sin dato de audiencia; no se estima uno</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">What audience size and profile can the organizer evidence for this edition?</p></div><div class="research-fact fact-pending"><strong>Access</strong><p>sin dato de acceso; no se asume abierto ni cerrado</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Is registration open or invite-only? Ask the organizer to confirm access.</p></div><div class="research-fact fact-pending"><strong>Cost</strong><p>sin partidas de costo conocidas; no se suman como 0</p><details data-testid="claim-evidence"><summary>Source details</summary></details><p class="research-pending">Which sponsorship items does the organizer offer, and at what price?</p></div></div><section aria-label="Location and precision" data-testid="location-evidence"><h3>Public location</h3><p>Sede sintética SF · announced</p><p>venue</p><p>Location pending · no supported point</p><details><summary>Location provenance</summary><p>manual · Coordenadas de prueba, no sede real.</p><p>fixture · Sep 7, 2026</p></details></section><section class="dossier-source-summary" aria-label="Source summary"><h3>Sources · 1</h3><p>Source metadata is listed once. Each fact above links to the excerpt that supports it.</p><div class="source-records"><div class="source-record" data-source-id="fixture-source"><span>luma</span><span class="source-date">Test source · not a real page.</span><span class="source-date">Obtained Sep 8, 2026</span><details><summary>Source metadata</summary><p>sección «About this event»</p><p>Published Aug 15, 2026 · scope: city</p><p>test_fixture+jsonld_extraction</p><p class="research-meta">Source: fixture-source · obtained 2026-09-08T00:00:00Z</p></details></div></div></section><details><summary>Technical identity and saved revision</summary><p>ed-sf-dev-summit-2027 · ed-sf-dev-summit-2027-r1 · 1 revisions</p></details><h3>Documented participation</h3></section>',
+    expected: /Listado de prueba/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/ui/trust-evidence.test.ts:57:1
+✖ ubicación announced y confirmed comparten soporte pero no confirmación humana (43.943959ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(html.includes('Un pin no es una recomendación de inversión'))
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/ui/trust-evidence.test.ts:68:38)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

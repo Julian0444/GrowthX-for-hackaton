@@ -1,0 +1,30 @@
+{
+  "command": [
+    "node",
+    "node_modules/eslint/bin/eslint.js",
+    "lib/contracts/evaluation.ts",
+    "lib/contracts/evaluation-validation.ts",
+    "lib/research",
+    "lib/temporal/declared-date.ts",
+    "lib/server/evaluations/wire.ts",
+    "lib/server/evaluations/service.ts",
+    "lib/server/evaluations/snapshot-store.ts",
+    "lib/server/evaluations/run-worker.ts",
+    "lib/server/evidence/store.ts",
+    "lib/server/catalog/store.ts",
+    "lib/server/catalog/read.ts",
+    "lib/api/opportunity-adapter.ts",
+    "lib/api/atlas-client.ts",
+    "components/atlas/onboarding-intake.tsx",
+    "components/research-dashboard",
+    "tests/contracts/research-brief.test.ts",
+    "tests/integration/research-brief.test.ts",
+    "tests/fixtures/research-brief.ts",
+    "tests/e2e/research-brief.spec.ts",
+    "tests/e2e/persisted-evaluation.spec.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 3.06,
+  "database": "isolated PostgreSQL port 55443"
+}

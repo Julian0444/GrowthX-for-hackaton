@@ -21,12 +21,14 @@
 //   se guarda como elección CONDICIONAL: las condiciones del snapshot no
 //   cubiertas por la persona se conservan abiertas en la decisión.
 // - Decisión y borrador de campaña se confirman en UNA transacción, con clave
-//   de idempotencia; descartar o dejar pendiente no crea ninguna campaña.
+//   de idempotencia; explorar primero crea un borrador de investigación,
+//   descartar o dejar pendiente sin esa intención no crea ninguna campaña.
 // - Registrar una condición o su resolución NO envía ningún mensaje.
 
 import { createHash, randomUUID } from 'node:crypto';
 import type pg from 'pg';
 import type {
+  BuyerResponse,
   CampaignDraftRecord,
   ClaimRevision,
   DecisionCondition,
@@ -46,6 +48,7 @@ import {
 } from '../../contracts/evaluation-validation.ts';
 import { hasAffirmativeSupport } from '../../evidence/claim-support.ts';
 import { withTenantTransaction } from '../db/pool.ts';
+import { readSnapshotSourceIds } from '../evaluations/snapshot-store.ts';
 import type { DecisionCampaignInput, DecisionConditionInput, DecisionReviseBody, DecisionSaveBody } from './wire.ts';
 
 export interface DecisionSessionContext {
@@ -82,12 +85,12 @@ export type ReviseDecisionOutcome =
   | { status: 'idempotency_conflict'; message: string };
 
 const EXCLUDED_MESSAGE =
-  'Un evento excluido por una restricción confirmada no se convierte en elección viable mediante un click: corregir el dato requiere nueva evidencia y una reevaluación (otro run con otro snapshot).';
+  'An event excluded by a confirmed restriction cannot become a viable choice with a click: correcting the information requires new evidence and reevaluation in a new run and snapshot.';
 
 function mustParse<T>(kind: string, result: ValidationResult<T>): T {
   if (!result.ok) {
     const detail = result.issues.map((issue) => `${issue.path}: ${issue.message}`).join('; ');
-    throw new Error(`${kind} inválido según contrato: ${detail}`);
+    throw new Error(`${kind} violates the contract: ${detail}`);
   }
   return result.value;
 }
@@ -111,8 +114,8 @@ function isUniqueViolation(error: unknown, constraint: string): boolean {
 // GUARDADAS en el registro (nada se envía a nadie).
 function composeConditionDescription(input: DecisionConditionInput): string {
   let description = input.pendingItem;
-  if (input.question) description += ` — Pregunta al organizador: ${input.question}`;
-  if (input.expectedAnswer) description += ` — Respuesta esperada: ${input.expectedAnswer}`;
+  if (input.question) description += ` — Organizer question: ${input.question}`;
+  if (input.expectedAnswer) description += ` — Expected answer: ${input.expectedAnswer}`;
   return description;
 }
 
@@ -134,16 +137,15 @@ function conditionFromInput(input: DecisionConditionInput): DecisionCondition {
 function withSnapshotConditions(
   conditions: DecisionCondition[],
   alternative: SnapshotAlternative,
-  verdict: EvaluationDecision['verdict'],
 ): DecisionCondition[] {
-  if (verdict === 'discarded') return conditions;
+  // Material conditions remain visible even when the human discards an option.
   const present = new Set(conditions.map((condition) => condition.id));
   const inherited = alternative.conditions
     .filter((condition) => !present.has(condition.id))
     .map((condition) => ({
       id: condition.id,
       description: condition.resolution
-        ? `${condition.description} — Qué respuesta la resolvería: ${condition.resolution}`
+        ? `${condition.description} — Answer needed to resolve this: ${condition.resolution}`
         : condition.description,
       answerWouldChangeTo: null,
       status: 'open' as const,
@@ -154,27 +156,49 @@ function withSnapshotConditions(
   return [...conditions, ...inherited];
 }
 
+function buyerResponse(ctx: DecisionSessionContext, attribution?: {attributedTo: string; support: string; sourceIds: string[]}): BuyerResponse {
+  return {attributedTo: attribution?.attributedTo ?? 'Buyer', support: attribution?.support ?? 'Buyer statement only; no external support supplied',
+    sourceIds: attribution?.sourceIds ?? [], recordedBy: ctx.userId, recordedAt: new Date().toISOString()};
+}
+
+// References must be in this immutable snapshot, not merely guessable IDs in another tenant.
+async function validateSupport(client: pg.PoolClient, snapshot: EvaluationSnapshot, campaign: DecisionCampaignInput | null, resolutions: DecisionReviseBody['resolveConditions']): Promise<string | null> {
+  if (campaign?.modality?.basis === 'offered' && !campaign.modality.attribution) return 'An offered modality needs attribution and support.';
+  const ids = new Set(snapshot.sourceIds ?? []);
+  const references = [
+    ...resolutions.flatMap(r => r.attribution?.sourceIds ?? []),
+    ...(campaign?.modality?.attribution?.sourceIds ?? []),
+    ...(campaign?.costItems ?? []).flatMap(c => [...(c.attribution?.sourceIds ?? []), ...(typeof c.amount === 'object' && c.amount !== null && 'sourceIds' in c.amount && Array.isArray(c.amount.sourceIds) ? c.amount.sourceIds : [])]),
+    ...(campaign?.commitments ?? []).flatMap(c => c.confirmation?.sourceIds ?? []),
+  ];
+  if (references.some(id => !ids.has(id))) {
+    for (const id of await readSnapshotSourceIds(client, snapshot)) ids.add(id);
+  }
+  if (references.some(id => typeof id !== 'string' || !ids.has(id))) return 'Support must reference sources from this saved snapshot.';
+  return null;
+}
+
 // ============ Composición del borrador de campaña ============
 
 function moneyClaimFromCostClaim(claim: ClaimRevision): MoneyClaim {
   if (claim.value.kind === 'money') {
     if (claim.status === 'inferred' || claim.status === 'contradicted') return {
       status: claim.status, amount: claim.value.amount, currency: claim.value.currency,
-      sourceIds: claim.sourceIds, basis: claim.method ?? 'método no documentado', note: claim.note,
+      sourceIds: claim.sourceIds, basis: claim.method ?? 'method not documented', note: claim.note,
     };
-    if (claim.status === 'pending') return { status: 'unknown', note: claim.note ?? 'Importe pendiente de confirmar; no es cotización' };
+    if (claim.status === 'pending') return { status: 'unknown', note: claim.note ?? 'Amount pending confirmation; this is not a quote' };
     if (hasAffirmativeSupport(claim))
       return { status: 'quoted', amount: claim.value.amount, currency: claim.value.currency, sourceIds: claim.sourceIds };
     return {
       status: 'estimated',
       amount: claim.value.amount,
       currency: claim.value.currency,
-      basis: `claim ${claim.status} sin fuente vinculada`,
+      basis: `claim ${claim.status} without a linked source`,
     };
   }
   return {
     status: 'unknown',
-    note: claim.value.kind === 'pending' && claim.value.note ? claim.value.note : 'partida sin costo conocido; no se suma como 0',
+    note: claim.value.kind === 'pending' && claim.value.note ? claim.value.note : 'item without known cost; not added as zero',
   };
 }
 
@@ -189,30 +213,28 @@ function composeCampaignDraft(args: {
   profile: EvaluationProfile;
   conditions: DecisionCondition[];
   editionCostClaims: ClaimRevision[];
+  ctx: DecisionSessionContext;
 }): CampaignDraftRecord {
-  const { decisionId, input, previous, profile, conditions, editionCostClaims } = args;
+  const { decisionId, input, previous, profile, conditions, editionCostClaims, ctx } = args;
   if (input === null && previous !== null) {
     // Revisión sin borrador nuevo: el borrador vigente se confirma tal cual
     // junto a la revisión (misma identidad de campaña).
-    return { ...previous, decisionId, openQuestions: [...new Set([...previous.openQuestions, ...conditions.filter(c => c.status === 'open').map(c => c.description)])] };
+    return { ...previous, decisionId, openQuestions: [...new Set([...previous.openQuestions.filter(q => !conditions.some(c => c.status === 'resolved' && c.description === q)), ...conditions.filter(c => c.status === 'open').map(c => c.description)])] };
   }
   const objectiveFallback =
     previous?.objective ??
-    `${profile.objective.kind}${profile.objective.confirmation === 'provisional' ? ' (objetivo provisional del perfil; por confirmar por el comprador)' : ''}`;
+    `${profile.objective.kind}${profile.objective.confirmation === 'provisional' ? ' (provisional brief objective; buyer confirmation pending)' : ''}`;
   const successFallback =
     previous?.successDefinition ??
     (profile.objective.successDefinition.status === 'defined' ? profile.objective.successDefinition.text : null);
-  const costItemsInput = input?.costItems ?? null;
-  const costItems =
-    costItemsInput !== null
-      ? costItemsInput.map((item, index) => ({ id: `cost-${index + 1}-${randomUUID().slice(0, 8)}`, label: item.label, amount: item.amount as MoneyClaim }))
-      : (previous?.costItems ??
-        editionCostClaims.map((claim, index) => ({
-          id: `cost-${index + 1}-${randomUUID().slice(0, 8)}`,
-          label: claim.attribute.slice('cost:'.length),
-          amount: moneyClaimFromCostClaim(claim),
-          evidence: claim,
-        })));
+  const inheritedCosts = previous?.costItems.filter(item => item.evidence) ?? editionCostClaims.map((claim, index) => ({
+    id: `cost-${index + 1}-${randomUUID().slice(0, 8)}`, label: claim.attribute.slice('cost:'.length),
+    amount: moneyClaimFromCostClaim(claim), evidence: claim,
+  }));
+  const costItems = input?.costItems != null
+    ? [...inheritedCosts, ...input.costItems.map(item => ({id: `cost-${randomUUID()}`, label: item.label,
+        amount: item.amount as MoneyClaim, declaration: buyerResponse(ctx, item.attribution)}))]
+    : (previous?.costItems ?? inheritedCosts);
   const openQuestions =
     input?.openQuestions ??
     previous?.openQuestions ??
@@ -222,13 +244,14 @@ function composeCampaignDraft(args: {
     id: previous?.id ?? `camp-${randomUUID()}`,
     decisionId,
     objective: input?.objective ?? objectiveFallback,
-    successDefinition: input?.successDefinition ?? successFallback,
+    ...(input?.owner !== undefined ? {owner: input.owner} : previous?.owner !== undefined ? {owner: previous.owner} : {}),
+    successDefinition: input !== null ? input.successDefinition : successFallback,
     modality:
       input?.modality != null
-        ? { status: 'defined', kind: input.modality.kind, detail: input.modality.detail }
-        : (previous?.modality ?? { status: 'pending' }),
+        ? { status: 'defined', kind: input.modality.kind, detail: input.modality.detail, basis: input.modality.basis ?? 'proposed', declaration: buyerResponse(ctx, input.modality.attribution) }
+        : (input !== null ? {status:'pending'} : previous?.modality ?? { status: 'pending' }),
     costItems,
-    openQuestions: [...new Set([...openQuestions, ...conditions.filter(c => c.status === 'open').map(c => c.description)])],
+    openQuestions: [...new Set([...openQuestions.filter(q => !conditions.some(c => c.status === 'resolved' && c.description === q)), ...conditions.filter(c => c.status === 'open').map(c => c.description)])],
     commitments: (input?.commitments ?? previous?.commitments ?? []).map((commitment, index) => ({
       id: 'id' in commitment && typeof commitment.id === 'string' ? commitment.id : `cmt-${index + 1}-${randomUUID().slice(0, 8)}`,
       description: commitment.description,
@@ -393,7 +416,7 @@ export async function saveDecision(
           return { status: 'saved', read: existingByKey.read, deduplicated: true };
         return {
           status: 'idempotency_conflict',
-          message: 'La clave idempotente ya se usó con otro contenido: una decisión editada usa otra clave.',
+          message: 'This idempotency key was already used with different content: an edited decision needs another key.',
         };
       }
 
@@ -403,14 +426,14 @@ export async function saveDecision(
       if (!alternative)
         return {
           status: 'invalid',
-          message: `la edición «${body.editionId}» no es una alternativa de este snapshot: la decisión se registra contra lo evaluado`,
+          message: `the edition «${body.editionId}» is not an alternative in this snapshot: decisions must refer to evaluated options`,
         };
       if (body.verdict === 'chosen' && alternative.eligibility.status === 'excluded')
         return { status: 'excluded_conflict', message: EXCLUDED_MESSAGE };
-      if (body.campaignDraft !== null && body.verdict !== 'chosen')
+      if (body.campaignDraft !== null && body.verdict !== 'chosen' && body.intent !== 'explore_first')
         return {
           status: 'invalid',
-          message: 'descartar o dejar pendiente no crea una campaña: el borrador acompaña solo a una elección',
+          message: 'discarding or leaving pending does not create a campaign: a draft accompanies only a chosen option',
         };
 
       const { rows: existingRows } = await client.query(
@@ -423,18 +446,22 @@ export async function saveDecision(
           decisionId: existingRows[0].decision_id as string,
           currentRevision: Number(existingRows[0].current),
           message:
-            'Esta alternativa ya tiene una decisión registrada: una corrección es una revisión nueva (PATCH con la revisión esperada), no otra decisión.',
+            'This alternative already has a recorded decision: a correction needs a new revision (PATCH with the expected revision), not another decision.',
         };
       }
 
+      const supportError = await validateSupport(client, snapshot, body.campaignDraft, []);
+      if (supportError) return {status: 'invalid', message: supportError};
+      if (body.conditions.some(c => c.snapshotConditionId && !alternative.conditions.some(a => a.id === c.snapshotConditionId))) return {status:'invalid', message:'Unknown snapshot condition'};
       const decisionIdentity = randomUUID();
-      const conditions = withSnapshotConditions(body.conditions.map(conditionFromInput), alternative, body.verdict);
+      const conditions = withSnapshotConditions(body.conditions.map(conditionFromInput), alternative);
       const decisionResult = parseEvaluationDecision({
         contractVersion: '1',
         id: randomUUID(),
         snapshotId: body.snapshotId,
         editionId: body.editionId,
         verdict: body.verdict,
+        ...(body.intent !== undefined ? {intent: body.intent} : {}),
         reasons: body.reasons,
         conditions,
         decidedBy: { userId: ctx.userId, resolvedBy: 'server_session' },
@@ -450,7 +477,7 @@ export async function saveDecision(
       const decision = decisionResult.value;
 
       let campaign: CampaignDraftRecord | null = null;
-      if (body.verdict === 'chosen') {
+      if (body.verdict === 'chosen' || body.intent === 'explore_first') {
         const profile = await loadProfile(client, snapshot.profileId);
         const editionCostClaims = await loadEditionCostClaims(client, snapshot, body.editionId);
         const campaignResult = parseCampaignDraft(
@@ -461,6 +488,7 @@ export async function saveDecision(
             profile,
             conditions,
             editionCostClaims,
+            ctx,
           }),
         );
         if (!campaignResult.ok)
@@ -503,7 +531,7 @@ export async function saveDecision(
           status: 'already_decided',
           decisionId: rows[0].decision_id as string,
           currentRevision: chain[chain.length - 1].revision,
-          message: 'Otra pestaña registró la decisión primero: leé la registrada y revisala con la revisión esperada.',
+          message: 'Another tab recorded the decision first: read it and update it using the expected revision.',
         };
       });
     }
@@ -514,7 +542,7 @@ export async function saveDecision(
         if (existing.row.payload_hash === payloadHash) return { status: 'saved', read: existing.read, deduplicated: true };
         return {
           status: 'idempotency_conflict',
-          message: 'La clave idempotente ya se usó con otro contenido: una decisión editada usa otra clave.',
+          message: 'This idempotency key was already used with different content: an edited decision needs another key.',
         };
       });
     }
@@ -541,7 +569,7 @@ export async function reviseDecision(
             return { status: 'revised', read: existingByKey.read, deduplicated: true };
           return {
             status: 'idempotency_conflict',
-            message: 'La clave idempotente ya se usó con otro contenido: una revisión editada usa otra clave.',
+            message: 'This idempotency key was already used with different content: an edited revision needs another key.',
           };
         }
       }
@@ -554,7 +582,7 @@ export async function reviseDecision(
         return {
           status: 'stale_revision',
           currentRevision: latest.revision,
-          message: `La decisión ya va por la revisión ${latest.revision}: otra pestaña la actualizó. Releé antes de revisar; los motivos guardados no se sobrescriben en silencio.`,
+          message: `The decision is already at revision ${latest.revision}: another tab updated it. Read it again before editing; saved reasons are not silently overwritten.`,
         };
 
       const snapshot = await loadSnapshot(client, latest.snapshotId);
@@ -563,28 +591,33 @@ export async function reviseDecision(
       if (!alternative) return { status: 'not_found' };
 
       const verdict = body.verdict ?? latest.verdict;
+      const intent = body.intent !== undefined ? body.intent : (body.verdict && body.verdict !== latest.verdict ? null : latest.intent);
       if (verdict === 'chosen' && alternative.eligibility.status === 'excluded')
         return { status: 'excluded_conflict', message: EXCLUDED_MESSAGE };
-      if (body.campaignDraft !== null && verdict !== 'chosen')
+      if (body.campaignDraft !== null && verdict !== 'chosen' && intent !== 'explore_first')
         return {
           status: 'invalid',
-          message: 'descartar o dejar pendiente no crea una campaña: el borrador acompaña solo a una elección',
+          message: 'discarding or leaving pending does not create a campaign: a draft accompanies only a chosen option',
         };
 
+      const supportError = await validateSupport(client, snapshot, body.campaignDraft, body.resolveConditions);
+      if (supportError) return {status: 'invalid', message: supportError};
       let conditions: DecisionCondition[] = latest.conditions.map((condition) => ({ ...condition }));
       for (const resolve of body.resolveConditions) {
         const target = conditions.find((condition) => condition.id === resolve.conditionId);
         if (!target)
-          return { status: 'invalid', message: `la condición «${resolve.conditionId}» no existe en esta decisión` };
+          return { status: 'invalid', message: `the condition «${resolve.conditionId}» does not exist in this decision` };
         if (target.status === 'resolved')
           return {
             status: 'invalid',
-            message: `la condición «${resolve.conditionId}» ya está resuelta: confirmarla otra vez no suma nada (la resolución registrada se conserva)`,
+            message: `the condition «${resolve.conditionId}» is already resolved: confirming it again adds nothing (the recorded resolution is preserved)`,
           };
         target.status = 'resolved';
         target.resolvedNote = resolve.resolvedNote;
+        target.response = buyerResponse(ctx, resolve.attribution);
       }
-      conditions = withSnapshotConditions([...conditions, ...body.addConditions.map(conditionFromInput)], alternative, verdict);
+      if (body.addConditions.some(c => c.snapshotConditionId && !alternative.conditions.some(a => a.id === c.snapshotConditionId))) return {status:'invalid', message:'Unknown snapshot condition'};
+      conditions = withSnapshotConditions([...conditions, ...body.addConditions.map(conditionFromInput)], alternative);
 
       const decisionResult = parseEvaluationDecision({
         contractVersion: '1',
@@ -592,6 +625,7 @@ export async function reviseDecision(
         snapshotId: latest.snapshotId,
         editionId: latest.editionId,
         verdict,
+        ...(intent !== undefined ? {intent} : {}),
         reasons: body.reasons ?? latest.reasons,
         conditions,
         decidedBy: { userId: ctx.userId, resolvedBy: 'server_session' },
@@ -607,7 +641,7 @@ export async function reviseDecision(
       const decision = decisionResult.value;
 
       let campaign: CampaignDraftRecord | null = null;
-      if (verdict === 'chosen') {
+      if (verdict === 'chosen' || intent === 'explore_first') {
         const { rows: previousCampaignRows } = await client.query(
           `select payload from growthx.campaign_drafts
             where decision_id = $1
@@ -628,6 +662,7 @@ export async function reviseDecision(
             profile,
             conditions,
             editionCostClaims,
+            ctx,
           }),
         );
         if (!campaignResult.ok)
@@ -655,16 +690,21 @@ export async function reviseDecision(
       };
     });
   } catch (error) {
-    if (isUniqueViolation(error, 'decisions_tenant_id_decision_id_revision_key')) {
+    if (isUniqueViolation(error, 'decisions_tenant_id_decision_id_revision_key') || isUniqueViolation(error, 'decisions_tenant_id_decision_id_previous_revision_id_key') || isUniqueViolation(error, 'decisions_idempotency')) {
       // Dos pestañas revisaron a la vez con la misma revisión esperada: una
       // ganó; esta recibe conflicto en vez de sobrescribir en silencio.
       return withTenantTransaction(pool, ctx.tenantId, async (client): Promise<ReviseDecisionOutcome> => {
+        if (body.idempotencyKey) {
+          const existing = await readByIdempotencyKey(client, body.idempotencyKey);
+          if (existing && existing.row.payload_hash === payloadHash) return {status:'revised', read:existing.read, deduplicated:true};
+          if (existing) return {status:'idempotency_conflict', message:'Idempotency key already used with different content'};
+        }
         const chain = await readChain(client, decisionId);
         if (chain.length === 0) throw error;
         return {
           status: 'stale_revision',
           currentRevision: chain[chain.length - 1].revision,
-          message: 'Otra pestaña registró su revisión primero: releé la decisión antes de volver a revisar.',
+          message: 'Another tab recorded its revision first: read the decision again before editing.',
         };
       });
     }
@@ -679,10 +719,12 @@ export async function readDecision(
   pool: pg.Pool,
   tenantId: string,
   decisionId: string,
+  revision?: number,
 ): Promise<DecisionReadPayload | null> {
   return withTenantTransaction(pool, tenantId, async (client) => {
-    const chain = await readChain(client, decisionId);
-    if (chain.length === 0) return null;
+    const all = await readChain(client, decisionId);
+    const chain = revision === undefined ? all : all.filter(row => row.revision <= revision);
+    if (chain.length === 0 || (revision !== undefined && chain.at(-1)?.revision !== revision)) return null;
     return readPayloadFromChain(client, chain);
   });
 }

@@ -426,12 +426,12 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
       postRequest({ ...body, editionIds: ['a', 'b', 'c', 'd'] }, real.token),
     );
     assert.equal(four.status, 400);
-    assert.match(String((await four.json()).message), /hasta 3|top 3/i);
+    assert.match(String((await four.json()).message), /up to 3 editions/i);
     const foreign = await postEvaluations(
       postRequest({ ...body, editionIds: ['ed-cmp-aaa-elegible', 'ed-inexistente'] }, real.token),
     );
     assert.equal(foreign.status, 400);
-    assert.match(String((await foreign.json()).message), /fuera del catálogo|no inventa/i);
+    assert.match(String((await foreign.json()).message), /outside the catalog|does not fabricate/i);
     const withTenant = await postEvaluations(postRequest({ ...body, tenantId: decoy.tenantId }, real.token));
     assert.equal(withTenant.status, 400);
   });
@@ -506,7 +506,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     // Conflicto confirmado de presupuesto → excluido ANTES del score.
     const excluded = byId.get('ed-cmp-ccc-sobre-presupuesto')!;
     assert.equal(excluded.eligibility.status, 'excluded');
-    assert.match(excluded.eligibility.status === 'excluded' ? excluded.eligibility.reasons.join(' ') : '', /excede el presupuesto/);
+    assert.match(excluded.eligibility.status === 'excluded' ? excluded.eligibility.reasons.join(' ') : '', /exceeding the declared budget/);
     assert.deepEqual(excluded.scoring, {
       status: 'not_scored',
       reason: 'excluded_before_scoring',
@@ -522,11 +522,11 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     const features = mainResult.featuresByEdition['ed-cmp-bbb-condicionada'];
     const cost = features.find((f: FeatureValue) => f.key === 'cost_fit')!;
     assert.equal(cost.value, null);
-    assert.match(String(cost.missingReason), /no cuenta como cero/);
+    assert.match(String(cost.missingReason), /does not count as zero/);
 
     const eligible = byId.get('ed-cmp-aaa-elegible')!;
     assert.equal(eligible.eligibility.status, 'eligible');
-    assert.match(mainResult.eligibleIsNotRecommended, /no significa recomendado/i);
+    assert.match(mainResult.eligibleIsNotRecommended, /does not imply a recommendation/i);
   });
 
   await t.test('scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes', async () => {
@@ -586,7 +586,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     assert.ok(mainResult.warnings.some((w) => /500/.test(w)), 'la advertencia viaja en el resultado');
     // Registro del adaptador: modelo, versión de prompt, duración y uso.
     assert.equal(narrative.model, 'gemini-2.5-flash');
-    assert.equal(narrative.promptVersion, 'comparison-narrative/2');
+    assert.equal(narrative.promptVersion, 'comparison-narrative/3');
     assert.ok(narrative.durationMs >= 0);
     assert.equal(narrative.usage?.totalTokens, 140);
 
@@ -612,7 +612,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
       },
     );
     assert.equal(foreign.status, 'rejected');
-    assert.match(String(foreign.motive), /ajena/);
+    assert.match(String(foreign.motive), /revision outside this alternative/);
     // Defensa en profundidad del repositorio: un registro con citas fuera del
     // snapshot no se persiste.
     await assert.rejects(
@@ -621,7 +621,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
         status: 'validated',
         proposals: [{ editionId: 'ed-cmp-aaa-elegible', summary: 'x', selectedClaimRevisionIds: ['clm-inexistente'], withheldNote: null }],
       }),
-      /fuera del snapshot/,
+      /revision outside the snapshot/,
     );
   });
 
@@ -676,21 +676,21 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
       'ed-cmp-bbb-condicionada',
       'ed-cmp-ccc-sobre-presupuesto',
     ]);
-    assert.match(catalog.note, /no se completa un top 3/);
+    assert.match(catalog.note, /invented candidates do not fill a top three/);
 
     const shadow = mainResult.v0Shadow;
     const matched = shadow.entries.find((e) => e.editionId === 'ed-cmp-aaa-elegible')!;
     assert.equal(matched.status, 'reference_found_not_comparable');
     if (matched.status === 'reference_found_not_comparable') {
       assert.equal(matched.v0Score, 61);
-      assert.match(matched.reason, /unidad y objetivo distintos/);
+      assert.match(matched.reason, /different unit and objective/);
     }
     // El score v0 NO llenó el score v1 (65 vs 61, y viene de la política).
     const eligible = mainResult.bundle.snapshot.alternatives.find((a) => a.editionId === 'ed-cmp-aaa-elegible')!;
     assert.ok(eligible.scoring.status === 'scored' && eligible.scoring.sKnown !== 61);
     const missing = shadow.entries.find((e) => e.editionId === 'ed-cmp-bbb-condicionada')!;
     assert.equal(missing.status, 'not_comparable');
-    assert.match(missing.reason, /v0 no evaluó este evento/);
+    assert.match(missing.reason, /v0 did not evaluate this event/);
     // La referencia congelada del repo también carga offline (loader real).
     const frozen = await loadFrozenV0Reference();
     assert.ok(frozen && frozen.entries.length === 3, 'characterization.json provee la referencia v0 offline');
@@ -709,7 +709,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     });
     const snapshot = result.bundle.snapshot;
     assert.equal(snapshot.policy.status, 'none');
-    assert.match(snapshot.policy.status === 'none' ? snapshot.policy.note : '', /pendiente/i);
+    assert.match(snapshot.policy.status === 'none' ? snapshot.policy.note : '', /pending/i);
     assert.equal(snapshot.ordering.kind, 'presentation_only');
     for (const alternative of snapshot.alternatives) {
       assert.notEqual(alternative.scoring.status, 'scored');
@@ -717,7 +717,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
         assert.deepEqual(alternative.scoring, {
           status: 'not_scored',
           reason: 'no_policy',
-          note: 'Sin política aplicable (D2): sin score.',
+          note: 'No applicable policy (D2): no score.',
         });
       }
     }
@@ -725,10 +725,10 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     // excluidas; el elegible no se vuelve «recomendado» por serlo.
     const berlin = snapshot.alternatives.find((a) => a.editionId === 'ed-cmp-ddd-berlin')!;
     assert.equal(berlin.eligibility.status, 'excluded');
-    assert.match(berlin.eligibility.status === 'excluded' ? berlin.eligibility.reasons.join(' ') : '', /otra ciudad \(Berlin\)/);
+    assert.match(berlin.eligibility.status === 'excluded' ? berlin.eligibility.reasons.join(' ') : '', /another city \(Berlin\)/);
     const expired = snapshot.alternatives.find((a) => a.editionId === 'ed-cmp-eee-vencida')!;
     assert.equal(expired.eligibility.status, 'excluded');
-    assert.match(expired.eligibility.status === 'excluded' ? expired.eligibility.reasons.join(' ') : '', /Fecha vencida/);
+    assert.match(expired.eligibility.status === 'excluded' ? expired.eligibility.reasons.join(' ') : '', /Past event/);
     // Fallback determinístico del adaptador (sin clave): registrado, no un error.
     assert.equal(result.narrative?.status, 'deterministic_only');
     assert.match(String(result.narrative?.motive), /GEMINI_API_KEY/);
@@ -755,11 +755,11 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     assert.equal(alternative.scoring.status, 'not_scored');
     if (alternative.scoring.status === 'not_scored') {
       assert.equal(alternative.scoring.reason, 'insufficient_data');
-      assert.match(String(alternative.scoring.note), /se abstiene/);
+      assert.match(String(alternative.scoring.note), /the scorer abstains/);
     }
     // Audiencia contradicha y ciudad de alcance país: condiciones visibles.
-    assert.ok(alternative.conditions.some((c) => /contradicha/i.test(c.description)));
-    assert.ok(alternative.conditions.some((c) => /urbana|ciudad/i.test(c.description)));
+    assert.ok(alternative.conditions.some((c) => /Conflicting audience evidence/i.test(c.description)));
+    assert.ok(alternative.conditions.some((c) => /city/i.test(c.description)));
     // Todas las features null CON razón.
     const features = result.featuresByEdition['ed-cmp-fff-opaca'];
     assert.ok(features.every((f: FeatureValue) => f.value === null && f.missingReason !== null));
@@ -807,7 +807,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     // 04: cada fecha proyectada es la DECLARADA por la edición, nunca «hoy».
     const eligibleDate = view.candidates[0].dossier.date;
     assert.equal(eligibleDate.state, 'known');
-    if (eligibleDate.state === 'known') assert.match(eligibleDate.display, /^2026-11-10T18:00:00-08:00/);
+    if (eligibleDate.state === 'known') assert.match(eligibleDate.display, /^Nov 10, 2026, 6:00 PM PST/);
     // 03: el alcance país no se vuelve ciudad ni punto en el mapa.
     const opaque = await service.getRun({
       tenantId: real.tenantId,
@@ -825,7 +825,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     assert.equal(location.state, 'known');
     if (location.state === 'known') {
       assert.equal(location.display, 'United States');
-      assert.match(String(location.pendingNote), /ciudad pendiente/);
+      assert.match(String(location.pendingNote), /City pending/);
     }
     assert.ok(opaqueView.projection.map.listedWithoutPoint.some((p) => p.editionId === 'ed-cmp-fff-opaca'));
     assert.ok(!opaqueView.projection.map.points.some((p) => p.editionId === 'ed-cmp-fff-opaca'));
@@ -859,7 +859,7 @@ test('evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)', a
     assert.equal(verdict.eligibility.status, 'excluded');
     assert.match(
       verdict.eligibility.status === 'excluded' ? verdict.eligibility.reasons.join(' ') : '',
-      /Acceso incompatible confirmado/,
+      /Confirmed access conflict/,
     );
   });
 

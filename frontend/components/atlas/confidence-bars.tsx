@@ -32,9 +32,9 @@ function Bar({ label, value, color }: { label: string; value: number; color: str
 export function CoverageBar({ coverage }: { coverage: number }): ReactElement {
   return (
     <div className="confidence-bars">
-      <Bar label="Cobertura de datos (Q)" value={coverage * 100} color="#8a8f98" />
+      <Bar label="Data coverage (Q)" value={coverage * 100} color="#8a8f98" />
       <span style={{ fontSize: 11, opacity: 0.75 }}>
-        Fracción del peso de la política con dato conocido. No es probabilidad de éxito.
+        Share of policy weight with known data. This is not a probability of success.
       </span>
     </div>
   )

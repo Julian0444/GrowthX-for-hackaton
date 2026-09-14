@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-09-10T23:23:35.512752+00:00",
+  "http": [
+    {
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/maplibre/6.9.0/maplibre-gl-worker.mjs",
+      "status": 200,
+      "contentType": "application/javascript; charset=UTF-8"
+    },
+    {
+      "path": "/maplibre/6.9.0/maplibre-gl-shared.mjs",
+      "status": 200,
+      "contentType": "application/javascript; charset=UTF-8"
+    }
+  ],
+  "database": {
+    "name": "/growthx-postgres",
+    "id": "4d521b780bf99387934d01242e4bbbe8c948e3f42b9b5df3c486ff1b5bf91145",
+    "running": true,
+    "ports": {
+      "5432/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "54329"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "54329"
+        }
+      ]
+    }
+  },
+  "dp09LocalDatabaseWrites": 0,
+  "dp09LocalMigrations": 0,
+  "coordination": "DP07 inici\u00f3 el contenedor existente tras observarlo detenido; DP09 conserv\u00f3 Next y worker locales y verific\u00f3 los assets. No se borraron ni reseedearon datos locales."
+}

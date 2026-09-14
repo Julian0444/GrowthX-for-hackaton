@@ -15,55 +15,8 @@
 
 const SERVER_RESOLVED_KEYS = ['tenantId', 'decidedBy', 'author', 'authorId', 'consensus', 'confidenceDelta'];
 
-export interface DecisionConditionInput {
-  // Condición del snapshot que esta entrada detalla (null = condición nueva
-  // registrada por la persona que decide).
-  snapshotConditionId: string | null;
-  pendingItem: string; // claim o dato pendiente
-  question: string | null; // pregunta al organizador (no se envía ningún mensaje)
-  expectedAnswer: string | null; // respuesta esperada
-  effect: 'chosen' | 'discarded' | null; // efecto sobre la decisión si llega esa respuesta
-  owner: string | null; // responsable, si se conoce
-  dueBy: string | null; // plazo, si se conoce
-}
-
-// Borrador de campaña del cuerpo: campos en null → el servidor compone el
-// mínimo honesto desde el snapshot y el perfil (partidas conocidas/pendientes
-// desde los claims fijados; «por confirmar» donde corresponda — D1/D2).
-export interface DecisionCampaignInput {
-  objective: string | null;
-  successDefinition: string | null;
-  modality: { kind: 'sponsorship' | 'workshop' | 'co_hosted' | 'booth' | 'other'; detail: string | null } | null;
-  costItems: { label: string; amount: unknown }[] | null;
-  openQuestions: string[] | null;
-  commitments: {
-    description: string;
-    kind: 'estimate' | 'goal' | 'agreed';
-    owner: string | null;
-    dueBy: string | null;
-    confirmation: { method: string; sourceIds: string[]; confirmedBy: string; confirmedAt: string } | null;
-  }[];
-}
-
-export interface DecisionSaveBody {
-  idempotencyKey: string;
-  snapshotId: string;
-  editionId: string;
-  verdict: 'chosen' | 'discarded' | 'pending';
-  reasons: string[];
-  conditions: DecisionConditionInput[];
-  campaignDraft: DecisionCampaignInput | null;
-}
-
-export interface DecisionReviseBody {
-  idempotencyKey: string | null;
-  expectedRevision: number; // revisión esperada: obsoleta → conflicto, jamás sobrescritura
-  verdict: 'chosen' | 'discarded' | 'pending' | null;
-  reasons: string[] | null; // null = conservar los de la última revisión
-  addConditions: DecisionConditionInput[];
-  resolveConditions: { conditionId: string; resolvedNote: string }[];
-  campaignDraft: DecisionCampaignInput | null;
-}
+import type { DecisionConditionInput, DecisionCampaignInput, DecisionSaveBody, DecisionReviseBody } from '../../contracts/decision.ts';
+export type { DecisionConditionInput, DecisionCampaignInput, DecisionSaveBody, DecisionReviseBody } from '../../contracts/decision.ts';
 
 export interface WireParseFailure {
   ok: false;
@@ -84,13 +37,13 @@ function unknownKeys(record: Record<string, unknown>, allowed: string[]): WirePa
   const resolved = extra.filter((key) => SERVER_RESOLVED_KEYS.includes(key));
   if (resolved.length > 0)
     return fail(
-      `claves no admitidas: ${resolved.join(', ')} — autor y tenant los resuelve el servidor desde la sesión; consenso y confianza no existen en la decisión persistida`,
+      `unsupported keys: ${resolved.join(', ')} — the server resolves author and tenant from the session; consensus and confidence are not fields of a persisted decision`,
     );
-  return fail(`claves no admitidas en el cuerpo: ${extra.join(', ')}`);
+  return fail(`unsupported body keys: ${extra.join(', ')}`);
 }
 
 function parseTrimmedString(value: unknown, label: string): string | WireParseFailure {
-  if (typeof value !== 'string' || value.trim().length === 0) return fail(`${label} debe ser un string no vacío`);
+  if (typeof value !== 'string' || value.trim().length === 0) return fail(`${label} must be a nonempty string`);
   return value.trim();
 }
 
@@ -100,10 +53,10 @@ function parseNullableString(value: unknown, label: string): string | null | Wir
 }
 
 function parseStringList(value: unknown, label: string): string[] | WireParseFailure {
-  if (!Array.isArray(value)) return fail(`${label} debe ser una lista de strings`);
+  if (!Array.isArray(value)) return fail(`${label} must be a list of strings`);
   const items: string[] = [];
   for (const item of value) {
-    if (typeof item !== 'string' || item.trim().length === 0) return fail(`${label} contiene un valor vacío o no-string`);
+    if (typeof item !== 'string' || item.trim().length === 0) return fail(`${label} contains an empty or non-string value`);
     items.push(item.trim());
   }
   return items;
@@ -114,7 +67,7 @@ function isFailure(value: unknown): value is WireParseFailure {
 }
 
 function parseConditionInput(value: unknown, label: string): DecisionConditionInput | WireParseFailure {
-  if (!isRecord(value)) return fail(`${label} debe ser un objeto`);
+  if (!isRecord(value)) return fail(`${label} must be an object`);
   const extra = unknownKeys(value, ['snapshotConditionId', 'pendingItem', 'question', 'expectedAnswer', 'effect', 'owner', 'dueBy']);
   if (extra) return extra;
   const pendingItem = parseTrimmedString(value.pendingItem, `${label}.pendingItem`);
@@ -131,16 +84,32 @@ function parseConditionInput(value: unknown, label: string): DecisionConditionIn
   if (isFailure(dueBy)) return dueBy;
   const effect = value.effect === undefined ? null : value.effect;
   if (effect !== null && effect !== 'chosen' && effect !== 'discarded')
-    return fail(`${label}.effect debe ser 'chosen', 'discarded' o null`);
+    return fail(`${label}.effect must be 'chosen', 'discarded', or null`);
   return { snapshotConditionId, pendingItem, question, expectedAnswer, effect, owner, dueBy };
+}
+
+function parseAttribution(value: unknown): {attributedTo: string; support: string; sourceIds: string[]} | undefined | WireParseFailure {
+  if (value === undefined) return undefined;
+  if (!isRecord(value)) return fail('attribution must be an object');
+  const extra = unknownKeys(value, ['attributedTo', 'support', 'sourceIds']);
+  if (extra) return extra;
+  const attributedTo = parseTrimmedString(value.attributedTo, 'attributedTo');
+  if (isFailure(attributedTo)) return attributedTo;
+  const support = parseTrimmedString(value.support, 'support');
+  if (isFailure(support)) return support;
+  const sourceIds = parseStringList(value.sourceIds ?? [], 'sourceIds');
+  if (isFailure(sourceIds)) return sourceIds;
+  return { attributedTo, support, sourceIds };
 }
 
 function parseCampaignInput(value: unknown): DecisionCampaignInput | null | WireParseFailure {
   if (value === null || value === undefined) return null;
-  if (!isRecord(value)) return fail('campaignDraft debe ser un objeto o null');
-  const extra = unknownKeys(value, ['objective', 'successDefinition', 'modality', 'costItems', 'openQuestions', 'commitments']);
+  if (!isRecord(value)) return fail('campaignDraft must be an object or null');
+  const extra = unknownKeys(value, ['objective', 'owner', 'successDefinition', 'modality', 'costItems', 'openQuestions', 'commitments']);
   if (extra) return extra;
 
+  const owner = parseNullableString(value.owner, 'campaignDraft.owner');
+  if (isFailure(owner)) return owner;
   const objective = parseNullableString(value.objective, 'campaignDraft.objective');
   if (isFailure(objective)) return objective;
   const successDefinition = parseNullableString(value.successDefinition, 'campaignDraft.successDefinition');
@@ -148,30 +117,36 @@ function parseCampaignInput(value: unknown): DecisionCampaignInput | null | Wire
 
   let modality: DecisionCampaignInput['modality'] = null;
   if (value.modality !== null && value.modality !== undefined) {
-    if (!isRecord(value.modality)) return fail('campaignDraft.modality debe ser un objeto o null');
-    const modalityExtra = unknownKeys(value.modality, ['kind', 'detail']);
+    if (!isRecord(value.modality)) return fail('campaignDraft.modality must be an object or null');
+    const modalityExtra = unknownKeys(value.modality, ['kind', 'detail', 'basis', 'attribution']);
     if (modalityExtra) return modalityExtra;
     const kind = value.modality.kind;
     if (kind !== 'sponsorship' && kind !== 'workshop' && kind !== 'co_hosted' && kind !== 'booth' && kind !== 'other')
       return fail('campaignDraft.modality.kind no admitido');
     const detail = parseNullableString(value.modality.detail, 'campaignDraft.modality.detail');
     if (isFailure(detail)) return detail;
-    modality = { kind, detail };
+    if (value.modality.basis !== undefined && value.modality.basis !== 'proposed' && value.modality.basis !== 'offered') return fail('invalid modality basis');
+    const attribution = parseAttribution(value.modality.attribution);
+    if (isFailure(attribution)) return attribution;
+    if (value.modality.basis === 'offered' && !attribution) return fail('an offered modality needs attribution and support');
+    modality = { kind, detail, ...(value.modality.basis ? {basis: value.modality.basis} : {}), ...(attribution ? {attribution} : {}) };
   }
 
   let costItems: DecisionCampaignInput['costItems'] = null;
   if (value.costItems !== null && value.costItems !== undefined) {
-    if (!Array.isArray(value.costItems)) return fail('campaignDraft.costItems debe ser una lista o null');
+    if (!Array.isArray(value.costItems)) return fail('campaignDraft.costItems must be a list or null');
     costItems = [];
     for (const [index, item] of value.costItems.entries()) {
-      if (!isRecord(item)) return fail(`campaignDraft.costItems[${index}] debe ser un objeto`);
-      const itemExtra = unknownKeys(item, ['label', 'amount']);
+      if (!isRecord(item)) return fail(`campaignDraft.costItems[${index}] must be an object`);
+      const itemExtra = unknownKeys(item, ['label', 'amount', 'attribution']);
       if (itemExtra) return itemExtra;
       const label = parseTrimmedString(item.label, `campaignDraft.costItems[${index}].label`);
       if (isFailure(label)) return label;
       // La forma del MoneyClaim (quoted/estimated/unknown; jamás un faltante
       // como 0) la valida el contrato al componer el registro.
-      costItems.push({ label, amount: item.amount });
+      const attribution = parseAttribution(item.attribution);
+      if (isFailure(attribution)) return attribution;
+      costItems.push({ label, amount: item.amount, ...(attribution ? {attribution} : {}) });
     }
   }
 
@@ -184,23 +159,23 @@ function parseCampaignInput(value: unknown): DecisionCampaignInput | null | Wire
 
   const commitments: DecisionCampaignInput['commitments'] = [];
   if (value.commitments !== undefined) {
-    if (!Array.isArray(value.commitments)) return fail('campaignDraft.commitments debe ser una lista');
+    if (!Array.isArray(value.commitments)) return fail('campaignDraft.commitments must be a list');
     for (const [index, item] of value.commitments.entries()) {
       const label = `campaignDraft.commitments[${index}]`;
-      if (!isRecord(item)) return fail(`${label} debe ser un objeto`);
+      if (!isRecord(item)) return fail(`${label} must be an object`);
       const itemExtra = unknownKeys(item, ['description', 'kind', 'owner', 'dueBy', 'confirmation']);
       if (itemExtra) return itemExtra;
       const description = parseTrimmedString(item.description, `${label}.description`);
       if (isFailure(description)) return description;
       if (item.kind !== 'estimate' && item.kind !== 'goal' && item.kind !== 'agreed')
-        return fail(`${label}.kind debe ser 'estimate', 'goal' o 'agreed'`);
+        return fail(`${label}.kind must be 'estimate', 'goal', or 'agreed'`);
       const owner = parseNullableString(item.owner, `${label}.owner`);
       if (isFailure(owner)) return owner;
       const dueBy = parseNullableString(item.dueBy, `${label}.dueBy`);
       if (isFailure(dueBy)) return dueBy;
       let confirmation: (typeof commitments)[number]['confirmation'] = null;
       if (item.confirmation !== null && item.confirmation !== undefined) {
-        if (!isRecord(item.confirmation)) return fail(`${label}.confirmation debe ser un objeto o null`);
+        if (!isRecord(item.confirmation)) return fail(`${label}.confirmation must be an object or null`);
         const confirmationExtra = unknownKeys(item.confirmation, ['method', 'sourceIds', 'confirmedBy', 'confirmedAt']);
         if (confirmationExtra) return confirmationExtra;
         const method = parseTrimmedString(item.confirmation.method, `${label}.confirmation.method`);
@@ -217,30 +192,31 @@ function parseCampaignInput(value: unknown): DecisionCampaignInput | null | Wire
     }
   }
 
-  return { objective, successDefinition, modality, costItems, openQuestions, commitments };
+  return { objective, ...(value.owner !== undefined ? {owner} : {}), successDefinition, modality, costItems, openQuestions, commitments };
 }
 
 export type DecisionSaveParse = { ok: true; body: DecisionSaveBody } | WireParseFailure;
 
 export function parseDecisionSaveBody(input: unknown): DecisionSaveParse {
-  if (!isRecord(input)) return fail('cuerpo inválido: se esperaba un objeto JSON');
-  const extra = unknownKeys(input, ['idempotencyKey', 'snapshotId', 'editionId', 'verdict', 'reasons', 'conditions', 'campaignDraft']);
+  if (!isRecord(input)) return fail('invalid body: expected a JSON object');
+  const extra = unknownKeys(input, ['idempotencyKey', 'snapshotId', 'editionId', 'verdict', 'intent', 'reasons', 'conditions', 'campaignDraft']);
   if (extra) return extra;
   const idempotencyKey = input.idempotencyKey;
   if (typeof idempotencyKey !== 'string' || idempotencyKey.length < 8 || idempotencyKey.length > 128)
-    return fail('idempotencyKey debe ser un string de 8 a 128 caracteres');
+    return fail('idempotencyKey must be a string of 8 to 128 characters');
   const snapshotId = parseTrimmedString(input.snapshotId, 'snapshotId');
   if (isFailure(snapshotId)) return snapshotId;
   const editionId = parseTrimmedString(input.editionId, 'editionId');
   if (isFailure(editionId)) return editionId;
   if (input.verdict !== 'chosen' && input.verdict !== 'discarded' && input.verdict !== 'pending')
-    return fail("verdict debe ser 'chosen', 'discarded' o 'pending'");
+    return fail("verdict must be 'chosen', 'discarded', or 'pending'");
+  if (input.intent !== undefined && input.intent !== null && input.intent !== 'explore_first') return fail('invalid decision intent');
   const reasons = parseStringList(input.reasons, 'reasons');
   if (isFailure(reasons)) return reasons;
-  if (reasons.length === 0) return fail('una decisión exige sus motivos: reasons no puede estar vacío');
+  if (reasons.length === 0) return fail('a decision requires reasons: reasons cannot be empty');
   const conditions: DecisionConditionInput[] = [];
   if (input.conditions !== undefined) {
-    if (!Array.isArray(input.conditions)) return fail('conditions debe ser una lista');
+    if (!Array.isArray(input.conditions)) return fail('conditions must be a list');
     for (const [index, item] of input.conditions.entries()) {
       const parsed = parseConditionInput(item, `conditions[${index}]`);
       if (isFailure(parsed)) return parsed;
@@ -251,40 +227,41 @@ export function parseDecisionSaveBody(input: unknown): DecisionSaveParse {
   if (isFailure(campaignDraft)) return campaignDraft;
   return {
     ok: true,
-    body: { idempotencyKey, snapshotId, editionId, verdict: input.verdict, reasons, conditions, campaignDraft },
+    body: { idempotencyKey, snapshotId, editionId, verdict: input.verdict, ...(input.intent !== undefined ? {intent: input.intent as 'explore_first' | null} : {}), reasons, conditions, campaignDraft },
   };
 }
 
 export type DecisionReviseParse = { ok: true; body: DecisionReviseBody } | WireParseFailure;
 
 export function parseDecisionReviseBody(input: unknown): DecisionReviseParse {
-  if (!isRecord(input)) return fail('cuerpo inválido: se esperaba un objeto JSON');
-  const extra = unknownKeys(input, ['idempotencyKey', 'expectedRevision', 'verdict', 'reasons', 'addConditions', 'resolveConditions', 'campaignDraft']);
+  if (!isRecord(input)) return fail('invalid body: expected a JSON object');
+  const extra = unknownKeys(input, ['idempotencyKey', 'expectedRevision', 'verdict', 'intent', 'reasons', 'addConditions', 'resolveConditions', 'campaignDraft']);
   if (extra) return extra;
   let idempotencyKey: string | null = null;
   if (input.idempotencyKey !== undefined && input.idempotencyKey !== null) {
     if (typeof input.idempotencyKey !== 'string' || input.idempotencyKey.length < 8 || input.idempotencyKey.length > 128)
-      return fail('idempotencyKey debe ser un string de 8 a 128 caracteres');
+      return fail('idempotencyKey must be a string of 8 to 128 characters');
     idempotencyKey = input.idempotencyKey;
   }
   if (typeof input.expectedRevision !== 'number' || !Number.isInteger(input.expectedRevision) || input.expectedRevision < 1)
-    return fail('expectedRevision debe ser un entero ≥ 1: la revisión que la pestaña leyó');
+    return fail('expectedRevision must be an integer ≥ 1: the revision read by this tab');
   let verdict: DecisionReviseBody['verdict'] = null;
   if (input.verdict !== undefined && input.verdict !== null) {
     if (input.verdict !== 'chosen' && input.verdict !== 'discarded' && input.verdict !== 'pending')
-      return fail("verdict debe ser 'chosen', 'discarded' o 'pending'");
+      return fail("verdict must be 'chosen', 'discarded', or 'pending'");
     verdict = input.verdict;
   }
+  if (input.intent !== undefined && input.intent !== null && input.intent !== 'explore_first') return fail('invalid decision intent');
   let reasons: string[] | null = null;
   if (input.reasons !== undefined && input.reasons !== null) {
     const parsed = parseStringList(input.reasons, 'reasons');
     if (isFailure(parsed)) return parsed;
-    if (parsed.length === 0) return fail('una revisión con reasons exige motivos no vacíos');
+    if (parsed.length === 0) return fail('a revision with reasons requires nonempty reasons');
     reasons = parsed;
   }
   const addConditions: DecisionConditionInput[] = [];
   if (input.addConditions !== undefined) {
-    if (!Array.isArray(input.addConditions)) return fail('addConditions debe ser una lista');
+    if (!Array.isArray(input.addConditions)) return fail('addConditions must be a list');
     for (const [index, item] of input.addConditions.entries()) {
       const parsed = parseConditionInput(item, `addConditions[${index}]`);
       if (isFailure(parsed)) return parsed;
@@ -293,23 +270,25 @@ export function parseDecisionReviseBody(input: unknown): DecisionReviseParse {
   }
   const resolveConditions: DecisionReviseBody['resolveConditions'] = [];
   if (input.resolveConditions !== undefined) {
-    if (!Array.isArray(input.resolveConditions)) return fail('resolveConditions debe ser una lista');
+    if (!Array.isArray(input.resolveConditions)) return fail('resolveConditions must be a list');
     for (const [index, item] of input.resolveConditions.entries()) {
       const label = `resolveConditions[${index}]`;
-      if (!isRecord(item)) return fail(`${label} debe ser un objeto`);
-      const itemExtra = unknownKeys(item, ['conditionId', 'resolvedNote']);
+      if (!isRecord(item)) return fail(`${label} must be an object`);
+      const itemExtra = unknownKeys(item, ['conditionId', 'resolvedNote', 'attribution']);
       if (itemExtra) return itemExtra;
       const conditionId = parseTrimmedString(item.conditionId, `${label}.conditionId`);
       if (isFailure(conditionId)) return conditionId;
       const resolvedNote = parseTrimmedString(item.resolvedNote, `${label}.resolvedNote`);
       if (isFailure(resolvedNote)) return resolvedNote;
-      resolveConditions.push({ conditionId, resolvedNote });
+      const attribution = parseAttribution(item.attribution);
+      if (isFailure(attribution)) return attribution;
+      resolveConditions.push({ conditionId, resolvedNote, ...(attribution ? {attribution} : {}) });
     }
   }
   const campaignDraft = parseCampaignInput(input.campaignDraft);
   if (isFailure(campaignDraft)) return campaignDraft;
   return {
     ok: true,
-    body: { idempotencyKey, expectedRevision: input.expectedRevision, verdict, reasons, addConditions, resolveConditions, campaignDraft },
+    body: { idempotencyKey, expectedRevision: input.expectedRevision, verdict, ...(input.intent !== undefined ? {intent: input.intent as 'explore_first' | null} : {}), reasons, addConditions, resolveConditions, campaignDraft },
   };
 }

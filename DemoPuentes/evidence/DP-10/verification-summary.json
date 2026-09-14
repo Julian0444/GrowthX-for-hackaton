@@ -1,0 +1,36 @@
+{
+  "status": "verified",
+  "acceptanceCriteria": {
+    "passed": 8,
+    "total": 8
+  },
+  "unitIntegration": {
+    "passed": 339,
+    "failed": 0,
+    "skipped": 0,
+    "log": "final-regression.log"
+  },
+  "e2eDistinct": {
+    "leafCasesPassed": 42,
+    "includingFiveContainers": 47,
+    "skipped": 0,
+    "approvedCuts": [
+      "brief-and-organizers-final.log",
+      "e2e-matrix.log (Exa, comparison, persisted-evaluation roots)",
+      "e2e-corrected.log (relationships, reopen-evaluation, source-reading roots)",
+      "map-experience-final.log"
+    ]
+  },
+  "lint": "lint-accepted.json",
+  "buildAndTypeScript": "build-accepted.json",
+  "realBrowser": "real-browser.json",
+  "localDataAudit": "local-preservation.json",
+  "buildRuntimeSourceIdentical": true,
+  "isolatedContainerStopped": true,
+  "pendingOutsideDP10": [
+    "DP-11",
+    "DP-12",
+    "Commercial quote, availability and permissions",
+    "Existing source access and project coverage limits"
+  ]
+}

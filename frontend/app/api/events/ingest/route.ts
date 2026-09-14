@@ -27,7 +27,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       {
         error: 'ingest_unavailable',
         message:
-          'La base de evaluaciones no está configurada; la importación durable no está disponible (modo degradado).',
+          'The evaluations database is not configured; saved imports are unavailable (degraded mode).',
       },
       { status: 503 },
     );
@@ -42,7 +42,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     payload = await request.json();
   } catch {
     return NextResponse.json(
-      { error: 'invalid_body', message: 'El cuerpo debe ser JSON.' },
+      { error: 'invalid_body', message: 'The request body must be JSON.' },
       { status: 400 },
     );
   }
@@ -74,7 +74,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         return NextResponse.json(
           {
             error: 'idempotency_conflict',
-            message: 'La clave idempotente ya se usó con otro payload.',
+            message: 'The idempotency key was already used with a different request.',
           },
           { status: 409 },
         );
@@ -86,9 +86,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
   } catch (error) {
     // Sin job durable no hay 202: la transacción entera se revirtió.
-    console.error(`[events/ingest] aceptación falló: ${(error as Error).message}`);
+    console.error(`[events/ingest] request acceptance failed: ${(error as Error).message}`);
     return NextResponse.json(
-      { error: 'accept_failed', message: 'No se pudo registrar la importación; no quedó trabajo pendiente.' },
+      { error: 'accept_failed', message: 'Could not register the import; no work was queued.' },
       { status: 503 },
     );
   }

@@ -1,0 +1,178 @@
+{
+  "observedAt": "2026-09-10T22:23:31.815796+00:00",
+  "note": "Files touched by DP08. Shared files also contain prior/concurrent changes; hashes do not imply sole authorship. No commit created.",
+  "files": [
+    {
+      "path": "frontend/lib/contracts/evaluation.ts",
+      "sha256": "b4199887430595ecf241c785c6d298264b9a058c0a013047dc1c9bb094733ff3",
+      "before": "d8ca50668cb765e2d3a958ae90dfffd91374e17b09ba1787c49f2e16b0582b6a",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/contracts/evaluation-validation.ts",
+      "sha256": "0460f80386453d04187ce8d2f52cc146668088182fee84a964d1a73d0ccf9b64",
+      "before": "5a5d6fd81b02c4b91474bcb306ba2ecbbfd7a0687b05f4096b0708887476dbf6",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/research/location-policy.ts",
+      "sha256": "4d177c39838d4e747b907c19eb2fb43c4f2a6149539dacc51ce9a1e8d8097c99",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/research/edition-location.ts",
+      "sha256": "3ed3c1770a9a819fbe72c22e860e5e97a72053d050815777725ecfca0c99b324",
+      "before": "afbd70d799b688c194848899816305b98e12d8f7fa57176348197ff8e214ad08",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/geocoding/census.ts",
+      "sha256": "4241d6951eda4c8877300dbe2264a9eeea0e731159dcab5852c6ebc57dc362bd",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/geocoding/cache.ts",
+      "sha256": "94d049d2b8587a28b0e58ad72442480990c98e0ea29b3fc120a4f0adf34c968c",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/geocoding/resolve.ts",
+      "sha256": "894a48604fe04d88c9cff8a3db6febacbdf1ee3a83a1e3b560f200a55e243eb7",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/geocoding/run.ts",
+      "sha256": "622b0fb38ea8eea4664bb2ead5d6d4fd8be18848f867e9e1005280feff179e68",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/catalog/luma-adapter.ts",
+      "sha256": "5005e0e291a15ff62ad9ae265116963c2dc71e050a7a8fc153b0f253ec61fb82",
+      "before": "d322e2681438855cfd8213d9a3714c82e1f958c8a28cbf902c3d5038f5b8b927",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/sources/extract.ts",
+      "sha256": "1a36a53c6052cf323a4d7ac2a367adfdc0970ef8810eb7f8bbd1b6b2e58ff63b",
+      "before": "13b06f7d578407bdc2bb1ac85cfdd3fee272ea966da362ebb41c628e9aa06405",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/server/evaluations/run-worker.ts",
+      "sha256": "3c879253aaf286f7791009548cccd1b7bbb37b07420ace3fbe0e0a9466b789bb",
+      "before": "8bbc099b1d38254017ed66935150a44a51b010c739d4a0ccd08fed1d540547fc",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/lib/api/opportunity-adapter.ts",
+      "sha256": "36f6657b26df6b15940724df23ecc0f29f90efe6e1852e82e4e38fa1b788a1fe",
+      "before": "4e65c59de37220e7fef607e3dfb85b21a86614808ae0c3b2531486d303915dfc",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/components/research-dashboard/location-evidence.tsx",
+      "sha256": "e4cc00f7bebfac759034b41330e6168edec1741d60aeeb99b7339d28c0cf1bc7",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dossier.tsx",
+      "sha256": "2a9a36843067bf84fed7162e97d4ec7b876f0f064d221a83ba68d787c5d0b262",
+      "before": "213156e6c9149f24e3c7406ef7640f5735c946be2b60d7f14be1ff6c0bf74422",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dashboard.tsx",
+      "sha256": "48050db6b2ed538f21092fd213b95b8bd6988cbc228e61cbb66c038195f29d1d",
+      "before": "dbce183c98165f474ee74f23b9b93a2d1bb7e465aff7ad3bb4dd6dbdc5ad0a96",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/components/research-dashboard/sf-event-map.tsx",
+      "sha256": "9918f0b5236f5ef54948da7629ed211e33bb9759038e02f4c21ed6fd2361010b",
+      "before": "37687ed9fd31c4d55d71f02444df06f1c5c502c7b492c5ee5b6c1d7ab8d60524",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/db/migrations/010-location-resolution.sql",
+      "sha256": "50d0b5fea22a24f9e657bea0b88df98184adac42b7dffa743c245c04492f0e4a",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/tests/connectors/location-resolution.test.ts",
+      "sha256": "f26639870c026d353cf3baab66623662be02917779023ad89c8605d28d6c9a4d",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/tests/fixtures/location-resolution.ts",
+      "sha256": "04432925328948e4471773b53dc5562932f1df67de517a32f255d668a7fa7ea4",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/tests/integration/location-resolution.test.ts",
+      "sha256": "9d1c82e555ae2561835532573f387717c429269c7b660bee49d44574c9aecfc4",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/tests/integration/luma-dossier.test.ts",
+      "sha256": "d3a9b5351949ee77de882e8f43e3ed6456a3661c593b87f8f25deca3d56548e7",
+      "before": "50d401dba8941804b7ec41f03074d60134d95c35049b35f88dd89aaeb71d5611",
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/scripts/smoke-location-resolution.ts",
+      "sha256": "6ddaa68ca1f48ee7e86fde9a5aa95001d2b7d005a6bef8fed9f35e066501ea64",
+      "before": null,
+      "matches_production_copy": true
+    },
+    {
+      "path": "frontend/scripts/verify-location-reopen.ts",
+      "sha256": "ee72c0fc4c1e11c5219bafb0bf7f595ebffd7850f60da03aa01e70407604c742",
+      "before": null,
+      "matches_production_copy": true
+    }
+  ],
+  "protectedNotEditedByDP08": [
+    {
+      "path": "DemoPuentes/PuentesHandoff.md",
+      "sha256": "ce47f1daea520f7955e2b1c74944619504e4e03eadfca8460a095d29eaab20fb",
+      "sameAsPreflight": true
+    },
+    {
+      "path": "DemoPuentes/implementation-plan.md",
+      "sha256": "6e7c40b94f52a94d30013163b17c1c438decc02cb39125990c58bf52008368e5",
+      "sameAsPreflight": true
+    },
+    {
+      "path": "DemoPuentes/README.md",
+      "sha256": "c2f0d0cfb5b7f94842b5422445e2e3204cf603e7c30f81d212c258b6e5e3d8fd",
+      "sameAsPreflight": true
+    },
+    {
+      "path": "frontend/lib/server/catalog/store.ts",
+      "sha256": "b510854061cbaaee95c5e2302afb4ebf2315bbc8a7afed61ae9aeca5a3d2bd9e",
+      "sameAsPreflight": true
+    },
+    {
+      "path": "frontend/lib/server/catalog/read.ts",
+      "sha256": "663d1c8d889f692c8cd2a6e7e18afeb88d104164365f987e421c4373d4cd88ba",
+      "sameAsPreflight": false
+    }
+  ],
+  "buildDirectory": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h",
+  "copyOnlyTestAdaptations": [
+    {
+      "path": "tests/e2e/relationships.spec.ts",
+      "change": "Only copied test: equivalent regex without dotAll; shared DP06 correction pending"
+    }
+  ]
+}

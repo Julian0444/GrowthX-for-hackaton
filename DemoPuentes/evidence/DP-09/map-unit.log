@@ -1,0 +1,22 @@
+(node:96612) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-5eklvrc1/frontend/tests/ui/sf-map.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-5eklvrc1/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-09 uses DP-08 policy for announced/confirmed, approximate, city-only and contradicted locations (7.009333ms)
+✔ DP-09 projects only the run, never unrelated catalog editions; discovery and running imports stay empty (6.21075ms)
+✔ DP-09 run revision and comparison snapshot keep original geography after catalog update (1.77525ms)
+✔ DP-09 nearby/coincident venues group without changing identity or coordinate axes (15.315042ms)
+(node:96613) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-5eklvrc1/frontend/tests/ui/trust-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-5eklvrc1/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ campaña y texto copiable conservan incertidumbre, base y advertencia (115.131083ms)
+✔ ubicación announced y confirmed comparten soporte pero no confirmación humana (34.290417ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 795.745125

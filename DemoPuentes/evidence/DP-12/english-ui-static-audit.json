@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-09-11T01:50:52.708Z",
+  "scope": "Static string and JSX audit of frontend/components and frontend/app; TypeScript parsing only. Runtime generated text is separately normalized by englishSystemText. Source fragments and user-authored content are preserved.",
+  "filesScanned": 55,
+  "parseErrors": [],
+  "remainingSpanishMatches": [
+    {
+      "file": "frontend/components/research-dashboard/comparison-panel.tsx",
+      "line": 51,
+      "text": "Descartado por restricción"
+    },
+    {
+      "file": "frontend/components/research-dashboard/comparison-panel.tsx",
+      "line": 326,
+      "text": "Descartado por restricción"
+    },
+    {
+      "file": "frontend/components/research-dashboard/decision-controls.tsx",
+      "line": 92,
+      "text": " — Qué respuesta la resolvería: "
+    }
+  ],
+  "note": "Remaining matches are compatibility keys and an exact historical template matcher, not rendered Spanish UI labels. Static scanning is not a substitute for the browser acceptance or type checking."
+}

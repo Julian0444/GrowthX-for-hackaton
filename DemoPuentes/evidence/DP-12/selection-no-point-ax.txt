@@ -1,0 +1,13 @@
+Browser tab: 1004461513, Title: "GrowXth — Developer Growth Intelligence", URL: "http://localhost:3000/?run=fe244e95-4e5c-4f34-9c0c-a974e6667029&decision=6f9478ed-0306-45c4-92d2-3dbe0928a749&revision=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 31-32, 86-93, 109-157, 163-165
+~				21 button Create brief
++				341 text Loading research…
+~				108 text 0  of  0  events ·  0  mapped ·  0  without a point
++				342 heading No event evidence yet, Value: 3
++					343 text No event evidence yet
++				344 text Add a public event URL below, or open a saved investigation. Source pages still awaiting reading are not event recommendations.
+~					161 button (disabled) Fit results
++					345 container San Francisco street map; arrow keys to pan, plus and minus to zoom
+~					171 text 0  of  0  events mapped in SF ·  0  without a point in this view.
+The focused UI element is 0 AXWebArea GrowXth — Developer Growth Intelligence, URL: localhost:3000/?run=fe244e95-4e5c-4f34-9c0c-a974e6667029&decision=6f9478ed-0306-45c4-92d2-3dbe0928a749&revision=1

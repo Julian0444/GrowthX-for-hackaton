@@ -1,5 +1,6 @@
 "use client"
 
+import { englishSystemText } from "../../lib/research/english"
 import type { FormEvent } from "react"
 import type { RequestState } from "@/lib/api/types"
 import { eventIngestResult, type EvaluationRunView } from "@/lib/api/atlas-client"
@@ -24,18 +25,18 @@ export const INGEST_IDLE: IngestUiState = {
 }
 
 const RUN_STATES: Record<string, string> = {
-  queued: "En cola",
-  running: "En ejecución",
-  completed: "Completada",
-  failed: "Fallida",
-  pending: "Pendiente",
+  queued: "Queued",
+  running: "Running",
+  completed: "Completed",
+  failed: "Failed",
+  pending: "Pending",
 }
 
 const STEP_LABELS: Record<string, string> = {
-  validate_profile: "Validar perfil",
-  fetch_event_page: "Obtener página del evento",
-  persist_dossier: "Persistir dossier",
-  publish_result: "Publicar resultado",
+  validate_profile: "Validate brief",
+  fetch_event_page: "Read event page",
+  persist_dossier: "Save evidence",
+  publish_result: "Save result",
 }
 
 export function EventImport({
@@ -64,7 +65,7 @@ export function EventImport({
 
   return (
     <div className="d-section ingest">
-      <span className="eyebrow">Importar un evento · Luma</span>
+      <span className="eyebrow">Import a Luma event</span>
       <form className="ingest-row" onSubmit={submit} aria-busy={loading}>
         <input
           className="ingest-input"
@@ -77,18 +78,18 @@ export function EventImport({
           aria-label="Luma event URL"
         />
         <button className="ingest-btn" type="submit" disabled={loading}>
-          {loading ? "Importando…" : "Importar"}
+          {loading ? "Importing…" : "Import"}
         </button>
       </form>
 
       {request.status === "error" && (
         <div className="ingest-error" role="alert">
           <p className="msg">
-            <b>La importación no se aceptó</b> — {request.message}
+            <b>Import could not start</b> — {englishSystemText(request.message)}
           </p>
           <div className="actions">
             <button className="req-btn" type="button" onClick={onImport}>
-              Reintentar
+              Retry
             </button>
           </div>
         </div>
@@ -96,40 +97,41 @@ export function EventImport({
 
       {run && (
         <div className="ingest-result" data-testid="ingest-run">
-          <p className="ingest-note">
-            Importación <b>{run.runId}</b> · {RUN_STATES[run.state] ?? run.state}
+          <details><summary>Import technical details</summary><p className="ingest-note">
+            Import <b>{run.runId}</b> · {RUN_STATES[run.state] ?? run.state}
             {run.requestedUrl && <> · {run.requestedUrl}</>}
           </p>
           <ul className="ingest-note">
             {run.steps.map((step) => (
               <li key={step.name}>
-                {STEP_LABELS[step.name] ?? step.name}: {RUN_STATES[step.state] ?? step.state} · intentos{" "}
+                {STEP_LABELS[step.name] ?? step.name}: {RUN_STATES[step.state] ?? step.state} · attempts{" "}
                 {step.attempts}
-                {step.error && <> · {step.error}</>}
+                {step.error && <> · {englishSystemText(step.error)}</>}
               </li>
             ))}
           </ul>
+          </details>
           {run.error && (
-            // Un fallo conserva la URL solicitada, el intento y la causa —
+            // Un fallo conserva the requested URL, el intento y la causa —
             // visibles acá tal como quedaron persistidos.
             <p className="ingest-error" role="alert">
-              Falló la importación de {run.requestedUrl ?? "la URL solicitada"}: {run.error}
+              Import failed for {run.requestedUrl ?? "the requested URL"}: {englishSystemText(run.error)}
             </p>
           )}
           {result && (
             <>
               <p className="ingest-note">
                 {result.linkedToExistingEdition
-                  ? "URL canónica relacionada con la identidad existente del evento: se agregó una revisión de evidencia, no una segunda identidad."
-                  : "Nueva edición registrada en el catálogo del tenant como material importado."}
+                  ? "Matched the existing event identity; saved a new evidence revision."
+                  : "New event saved with automatically imported evidence."}
               </p>
               {result.extraction.warnings.length > 0 && (
                 <p className="ingest-warns">
-                  Dossier parcial — sin datos estructurados: {summarizeWarnings(result.extraction.warnings)}
+                  {result.extraction.status === 'partial' ? 'Partial evidence · coverage and limitations' : 'Coverage and limitations'}: {summarizeWarnings(result.extraction.warnings)}
                 </p>
               )}
               <button className="req-btn" type="button" onClick={() => onOpenDossier(result.editionId)}>
-                Abrir dossier persistido
+                Open saved dossier
               </button>
             </>
           )}

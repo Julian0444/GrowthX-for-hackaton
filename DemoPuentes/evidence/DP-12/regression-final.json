@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-force-exit",
+    "tests/**/*.test.ts"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend",
+  "databasePort": 55472,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 1,
+  "durationSeconds": 35.29
+}

@@ -1,0 +1,21 @@
+$ node --test tests/e2e/research-experience.spec.ts
+(node:48414) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ✔ desktop response, source action and technical disclosure (722.446709ms)
+  ✔ evidence panel preserves map, selection, scroll and keyboard focus (167.027292ms)
+  ✔ out-of-order polling appends findings without moving cards or selection (796.646583ms)
+  ✔ mobile retains every action, traps evidence focus and restores selection (244.760708ms)
+  ✔ empty filters are recoverable; unknown location and contradiction stay explicit (494.782916ms)
+  ✔ provider, map and server failures keep saved findings and allow explicit recovery (2016.530333ms)
+✔ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors (5756.982333ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6195.973709

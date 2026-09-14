@@ -1,3 +1,8 @@
+import { englishSystemText } from "../research/english.ts"
+import { declaredDateLabel } from '../temporal/display-date.ts'
+import { classifyDeclaredDate } from "../temporal/declared-date.ts"
+import { projectEditionPosition } from "../research/edition-location.ts"
+import type { PublicEventLocation, EditionRelationship, EvidenceReference } from "../contracts/evaluation"
 // Adaptador (T3, opción adapter — SIN rediseño). Traduce el SearchResponse del
 // contrato nuevo (growxth.ts) a la forma LEGACY (lib/api/types.ts) que hoy
 // consumen mapa, rail y markers, sin tocar esos componentes.
@@ -317,16 +322,16 @@ function knownField(
     scope: opts.scope ?? null,
     obtainedAt: opts.obtainedAt ?? null,
     sourceIds: opts.sourceIds ?? [],
-    pendingNote: opts.pendingNote ?? null,
+    pendingNote: opts.pendingNote ? englishSystemText(opts.pendingNote) : null,
   }
 }
 
 function pendingField(note: string | null): ProjectedField {
-  return { state: "pending", note }
+  return { state: "pending", note: note ? englishSystemText(note) : null }
 }
 
 function ambiguousField(display: string, note: string, sourceIds: string[] = []): ProjectedField {
-  return { state: "ambiguous", display, note, sourceIds }
+  return { state: "ambiguous", display, note: englishSystemText(note), sourceIds }
 }
 
 // Primera fecha de obtención resoluble entre las fuentes citadas; null si
@@ -342,23 +347,23 @@ function obtainedAtFrom(sourceIds: string[], sourcesById: Map<string, SourceReco
 function projectDeclaredDate(date: DeclaredDate, sourceIds: string[], obtainedAt: string | null): ProjectedField {
   switch (date.precision) {
     case "instant":
-      return knownField(`${date.iso} (${date.timezone})`, { sourceIds, obtainedAt })
+      return knownField(declaredDateLabel(date), { sourceIds, obtainedAt })
     case "date_only":
       if (date.timezone === null) {
         return ambiguousField(
           date.date,
-          "fecha sin zona horaria declarada: el día exacto depende del huso; no se inventa una zona",
+          "Date has no declared timezone: the exact day depends on the timezone; none is assumed",
           sourceIds,
         )
       }
-      return knownField(`${date.date} (${date.timezone})`, { sourceIds, obtainedAt })
+      return knownField(declaredDateLabel(date), { sourceIds, obtainedAt })
     case "ambiguous": {
       const range =
-        date.earliest !== null && date.latest !== null ? ` (posible entre ${date.earliest} y ${date.latest})` : ""
-      return ambiguousField(date.text, `fecha declarada de forma ambigua${range}`, sourceIds)
+        date.earliest !== null && date.latest !== null ? ` (possibly between ${date.earliest} and ${date.latest})` : ""
+      return ambiguousField(date.text, `Ambiguous declared date${range}`, sourceIds)
     }
     case "unknown":
-      return pendingField("fecha pendiente de confirmación; no se sustituye por la fecha actual")
+      return pendingField("Date awaiting confirmation; not replaced with today")
   }
 }
 
@@ -372,8 +377,8 @@ function projectClaim(claim: ClaimRevision, sourcesById: Map<string, SourceRecor
     // motivo; un estado pendiente se declara.
     pendingNote:
       claim.status === "contradicted" ? claim.note
-        : claim.status === "inferred" ? `inferencia (${claim.method ?? "método no documentado"})${claim.note ? ` · ${claim.note}` : ""}; pendiente de confirmar`
-        : claim.status === "pending" ? "pendiente de confirmación" : null,
+        : claim.status === "inferred" ? `Inference (${claim.method ?? "method not documented"})${claim.note ? ` · ${claim.note}` : ""}; awaiting confirmation`
+        : claim.status === "pending" ? "Awaiting confirmation" : null,
   }
   switch (claim.value.kind) {
     case "text":
@@ -389,7 +394,7 @@ function projectClaim(claim: ClaimRevision, sourcesById: Map<string, SourceRecor
     case "location":
       return knownField(claim.value.name ?? claim.value.scope, { ...base, scope: claim.value.scope })
     case "pending":
-      return pendingField(claim.value.note ?? "valor pendiente; no se rellena con un default")
+      return pendingField(claim.value.note ?? "Value pending; no default substituted")
   }
 }
 
@@ -399,25 +404,25 @@ function projectScore(
 ): ProjectedScore {
   if (policy.status !== "applied") {
     // Sin política aprobada no hay score: es un estado visible, jamás un 0.
-    return { state: "no_policy", note: policy.note }
+    return { state: "no_policy", note: englishSystemText(policy.note) }
   }
   if (scoring.status === "scored") {
     return {
       state: "scored",
       sKnown: scoring.sKnown,
       coverage: scoring.coverage,
-      sensitivityNote: scoring.sensitivityNote,
+      sensitivityNote: scoring.sensitivityNote ? englishSystemText(scoring.sensitivityNote) : scoring.sensitivityNote,
       policyId: policy.policyId,
       policyVersion: policy.policyVersion,
     }
   }
-  return { state: "not_scored", reason: scoring.note ?? scoring.reason }
+  return { state: "not_scored", reason: englishSystemText(scoring.note ?? scoring.reason) }
 }
 
 function projectEditionLocation(edition: EventEditionRevision): ProjectedField {
   const { scope, name } = edition.location
   if (scope === "unknown" || name === null) {
-    return pendingField("ubicación pendiente de confirmación; no se asume una ciudad")
+    return pendingField("Location awaiting confirmation; no city assumed")
   }
   return knownField(name, {
     scope,
@@ -425,7 +430,7 @@ function projectEditionLocation(edition: EventEditionRevision): ProjectedField {
     // valor conocido es el país/la región y la ciudad queda pendiente.
     pendingNote:
       scope === "country" || scope === "region" || scope === "global"
-        ? `ciudad pendiente: el soporte tiene alcance «${scope}»`
+        ? `City pending: evidence scope is “${scope}”`
         : null,
   })
 }
@@ -445,20 +450,21 @@ function projectCampaignWithSources(
     successDefinition:
       campaign.successDefinition !== null
         ? knownField(campaign.successDefinition)
-        : pendingField("definición de éxito pendiente; es texto del comprador, no se asume una"),
+        : pendingField("Success definition pending; to be supplied by the buyer"),
     modality:
       campaign.modality.status === "defined"
         ? knownField(
-            campaign.modality.detail ? `${campaign.modality.kind}: ${campaign.modality.detail}` : campaign.modality.kind,
+            `${campaign.modality.kind}${campaign.modality.detail ? `: ${campaign.modality.detail}` : ""} · ${campaign.modality.basis === "offered" ? "offer reported by buyer" : "team proposal; not an offer"}${campaign.modality.declaration ? ` · ${campaign.modality.declaration.attributedTo}: ${campaign.modality.declaration.support}` : " · original attribution not recorded"}`,
           )
-        : pendingField("modalidad pendiente de acordar"),
+        : pendingField("Participation format awaiting agreement"),
     costItems: campaign.costItems.map((item) => ({
       label: item.evidence?.costComposition?.kind === "alternative"
-        ? `${item.label} · opción ${item.evidence.costComposition.optionId} (${item.evidence.costComposition.groupId})`
+        ? `${item.label} · option ${item.evidence.costComposition.optionId} (${item.evidence.costComposition.groupId})`
         : item.label,
       value:
         item.amount.status === "quoted"
           ? knownField(`${item.amount.currency} ${item.amount.amount}`, {
+              pendingNote: item.declaration ? `Quote reported by buyer · ${item.declaration.attributedTo}: ${item.declaration.support}; not independently confirmed` : null,
               claimStatus: item.evidence?.status ?? null,
               sourceIds: item.amount.sourceIds,
               obtainedAt: obtainedAtFrom(item.amount.sourceIds, sourcesById),
@@ -468,20 +474,20 @@ function projectCampaignWithSources(
                 claimStatus: item.amount.status,
                 sourceIds: item.amount.sourceIds,
                 obtainedAt: obtainedAtFrom(item.amount.sourceIds, sourcesById),
-                pendingNote: `${item.amount.status === "inferred" ? "Inferido" : "Contradicho"} · base: ${item.amount.basis}${item.amount.note ? ` · ${item.amount.note}` : ""}; pendiente de resolver, no es cotización`,
+                pendingNote: `${item.amount.status === "inferred" ? "Inferred" : "Contradicted"} · base: ${item.amount.basis}${item.amount.note ? ` · ${item.amount.note}` : ""}; unresolved; not a quote`,
               })
           : item.amount.status === "estimated"
             ? knownField(`${item.amount.currency} ${item.amount.amount}`, {
-                pendingNote: `estimación (${item.amount.basis}); no es un costo confirmado`,
+                pendingNote: `Estimate (${item.amount.basis}); not a confirmed cost`,
               })
-            : pendingField(item.amount.note ?? "partida sin costo conocido; no se suma como 0"),
+            : pendingField(item.amount.note ?? "Item cost unknown; not counted as zero"),
     })),
     costCompleteness: campaign.costItems.length === 0 || campaign.costItems.some((item) => item.amount.status !== "quoted")
       ? "has_unknown_items"
       : "all_items_valued",
     openQuestions: campaign.openQuestions,
     commitments: campaign.commitments.map((c) => ({
-      description: c.description,
+      description: `${c.description}${c.confirmation ? ` · buyer reports confirmation by ${c.confirmation.confirmedBy}, ${c.confirmation.confirmedAt} (${c.confirmation.method})` : ""}`,
       kind: c.kind,
       supported: c.kind === "agreed" && c.confirmation !== null && c.confirmation.sourceIds.length > 0,
     })),
@@ -504,7 +510,6 @@ export function projectEvaluationRead(bundle: EvaluationReadBundle): EvaluationR
   const snapshotClaims = bundle.claims.filter((c) => snapshot.claimRevisionIds.includes(c.id))
   const editionFor = (editionId: string): EventEditionRevision | null =>
     bundle.editions.find((e) => snapshot.editionRevisionIds.includes(e.id) && e.editionId === editionId) ??
-    bundle.editions.find((e) => e.editionId === editionId) ??
     null
 
   const dossiers: DossierView[] = snapshot.ordering.editionIds.map((editionId) => {
@@ -515,7 +520,7 @@ export function projectEvaluationRead(bundle: EvaluationReadBundle): EvaluationR
     )
     const fieldClaim = (attribute: string): ProjectedField => {
       const claim = editionClaims.find((c) => c.attribute === attribute)
-      return claim ? projectClaim(claim, sourcesById) : pendingField(`sin dato de ${attribute}`)
+      return claim ? projectClaim(claim, sourcesById) : pendingField(`No data for ${attribute}`)
     }
     const costs = editionClaims
       .filter((c) => c.attribute.startsWith("cost:"))
@@ -533,58 +538,36 @@ export function projectEvaluationRead(bundle: EvaluationReadBundle): EvaluationR
         : null
     return {
       editionId,
+      editionRevisionId: edition?.id ?? null,
       name: edition?.name ?? editionId,
       organizer:
         alternative?.organizerId == null
-          ? pendingField("organizador pendiente de identificar")
+          ? pendingField("Organizer awaiting identification")
           : organizerRevision
             ? knownField(organizerRevision.displayName, { obtainedAt: organizerRevision.revisedAt })
-            : pendingField("revisión de organizador no incluida en la lectura"),
+            : pendingField("Organizer revision not included in this reading"),
       date: edition
         ? projectDeclaredDate(edition.startDate, [], null)
-        : pendingField("revisión de edición no incluida en la lectura"),
-      location: edition ? projectEditionLocation(edition) : pendingField("revisión de edición no incluida en la lectura"),
+        : pendingField("Event revision not included in this reading"),
+      location: edition ? projectEditionLocation(edition) : pendingField("Event revision not included in this reading"),
       access: fieldClaim("access"),
       audience: fieldClaim("audience"),
       costs,
       otherClaims,
-      eligibility: alternative?.eligibility ?? { status: "conditional", note: "alternativa no incluida en el snapshot" },
+      eligibility: alternative?.eligibility ?? { status: "conditional", note: "Alternative not included in the snapshot" },
       conditions: alternative?.conditions ?? [],
       score: alternative
         ? projectScore(alternative.scoring, snapshot.policy)
-        : { state: "not_scored", reason: "alternativa no incluida en el snapshot" },
+        : { state: "not_scored", reason: "Alternative not included in the snapshot" },
     }
   })
 
   const map: LocalMapView = { points: [], listedWithoutPoint: [] }
   for (const dossier of dossiers) {
     const edition = editionFor(dossier.editionId)
-    if (!edition) {
-      map.listedWithoutPoint.push({
-        editionId: dossier.editionId,
-        name: dossier.name,
-        reason: "revisión de edición no incluida en la lectura",
-      })
-      continue
-    }
-    const urbanScope = edition.location.scope === "venue" || edition.location.scope === "city"
-    if (edition.coordinates !== null && urbanScope && edition.location.name !== null) {
-      map.points.push({
-        editionId: dossier.editionId,
-        name: dossier.name,
-        lat: edition.coordinates.lat,
-        lng: edition.coordinates.lng,
-        locationName: edition.location.name,
-      })
-    } else {
-      map.listedWithoutPoint.push({
-        editionId: dossier.editionId,
-        name: dossier.name,
-        reason: urbanScope
-          ? "sin coordenadas respaldadas"
-          : `ubicación con alcance «${edition.location.scope}»: sin respaldo urbano no hay punto en el mapa`,
-      })
-    }
+    const position = edition ? projectEditionPosition(edition, bundle.sources, snapshotClaims) : null
+    if (position?.mapPoint) map.points.push({ ...position.mapPoint, name: dossier.name })
+    else map.listedWithoutPoint.push({ editionId: dossier.editionId, editionRevisionId: edition?.id ?? null, name: dossier.name, reason: englishSystemText(position?.withoutPointReason ?? "Event revision not included in this reading") })
   }
 
   const organizerList: OrganizerListItem[] = bundle.organizers
@@ -630,16 +613,16 @@ export function projectEvaluationRead(bundle: EvaluationReadBundle): EvaluationR
           : pendingField(profile.budget.note ?? "presupuesto no declarado; no se asume 0"),
       window:
         profile.window.from === null && profile.window.to === null
-          ? pendingField("ventana de fechas no declarada")
+          ? pendingField("Date window not declared")
           : knownField(`${profile.window.from ?? "…"} → ${profile.window.to ?? "…"}`, {
               pendingNote:
-                profile.window.from === null || profile.window.to === null ? "un extremo de la ventana está pendiente" : null,
+                profile.window.from === null || profile.window.to === null ? "One end of the date window is pending" : null,
             }),
       objective: { kind: profile.objective.kind, confirmation: profile.objective.confirmation },
       successDefinition:
         profile.objective.successDefinition.status === "defined"
           ? knownField(profile.objective.successDefinition.text)
-          : pendingField("definición de éxito pendiente del comprador; no se asume un objetivo por defecto"),
+          : pendingField("Buyer success definition pending; no objective assumed"),
       comparableCompanies: profile.comparableCompanies.map((c) => ({
         name: c.name,
         relation: c.relation,
@@ -694,6 +677,7 @@ export interface ComparisonCandidateView {
 }
 
 export interface ComparisonViewModel {
+  bundle: EvaluationReadBundle
   snapshotId: string
   evaluatedAt: string
   // Instante de lectura usado para el aviso de vigencia actual.
@@ -744,7 +728,7 @@ function currentValidityFor(
   return {
     readAt,
     validity: now.validity,
-    notice: `Vigencia actual: el inicio declarado (${start}) ya pasó respecto de la lectura del ${readAt}. El resultado histórico (evaluado al ${evaluatedAt}) no se altera; una reevaluación crea otro run con otro snapshot.`,
+    notice: `Current validity: the declared start (${start}) is before this reading (${readAt}). The historical result (evaluated ${evaluatedAt}) remains unchanged; re-evaluation creates another run and snapshot.`,
   }
 }
 
@@ -813,6 +797,7 @@ export function projectComparisonResult(
 
   const ordering = bundle.snapshot.ordering
   return {
+    bundle,
     snapshotId: result.snapshotId,
     evaluatedAt: result.evaluatedAt,
     readAt,
@@ -820,8 +805,8 @@ export function projectComparisonResult(
     isRanked: ordering.kind === "ranked",
     orderingLabel:
       ordering.kind === "ranked"
-        ? `Ranking del scorer determinístico (política ${ordering.policyId} · ${ordering.policyVersion}); los excluidos no compiten.`
-        : ordering.note,
+        ? `Deterministic ranking (policy ${ordering.policyId} · ${ordering.policyVersion}); excluded options do not compete.`
+        : englishSystemText(ordering.note),
     candidates,
     availableCatalog: result.availableCatalog,
     narrative: result.narrative
@@ -833,7 +818,7 @@ export function projectComparisonResult(
           durationMs: result.narrative.durationMs,
         }
       : null,
-    v0ShadowNote: result.v0Shadow.note,
+    v0ShadowNote: englishSystemText(result.v0Shadow.note),
     warnings: result.warnings,
     eligibleIsNotRecommended: result.eligibleIsNotRecommended,
   }
@@ -853,6 +838,7 @@ export function projectComparisonResult(
 // completo (fuentes abribles, método, revisor) y la cadena de revisiones — una
 // contradicción muestra AMBAS revisiones con sus fuentes; nada se borra.
 export interface DossierValueView {
+  evidence?: EvidenceReference[]
   attribute: string
   label: string
   field: ProjectedField
@@ -895,6 +881,9 @@ export interface DossierParticipationView {
 }
 
 export interface EditionDossierViewModel {
+  editionRevisionId: string
+  publicLocation: PublicEventLocation
+  relationships: EditionRelationship[]
   editionId: string
   name: string
   canonicalUrl: string | null
@@ -916,7 +905,7 @@ export interface EditionDossierViewModel {
   }[]
   organizerPending: string | null
   participations: DossierParticipationView[]
-  mapPoint: { lat: number; lng: number; locationName: string } | null
+  mapPoint: ReturnType<typeof projectEditionPosition>["mapPoint"]
   withoutPointReason: string | null
   editionRevisionCount: number
   openQuestions: string[]
@@ -949,6 +938,12 @@ const UNKNOWN_OUTCOME_NOTE =
   "Commercial result not published — absence of data is not evidence of failure."
 
 function attributeLabel(attribute: string): string {
+  const backgroundLabels: Record<string, string> = { identity: "Identity and public attribution", description: "Organization and experience", chapter_lead: "Chapter leadership (not event staffing)", "history:published": "Published history", "buyer:relevance": "Why this matters for your brief", "buyer:next_step": "What to verify next", "coverage:projects": "Reviewed project coverage", "audience:observed": "Actual audience", "commercial:outcome": "Commercial outcomes", "organizer:responsible": "Operational responsibility", "organizer:structured_attribution": "Structured attribution (role unresolved)", "agenda:conflict": "Conflicting published agenda" }
+  if (backgroundLabels[attribute]) return backgroundLabels[attribute]
+  if (attribute === 'program:technical_background') return 'Announced technical program (previous edition)'
+  if (attribute.startsWith('project:')) return ({ technology: 'Declared technology', award: 'Published award', repository: 'Linked public repository', description: 'Project author’s description' })[attribute.split(':').at(-1)!] ?? 'Project evidence'
+  const readingLabels: Record<string, string> = { address: "Public address", venue: "Venue", coordinates: "Published coordinates", "date:visible": "Date in visible text", "end_date": "Published end date", "sponsors:announced": "Announced sponsors", "sponsors:global": "Global program sponsors", "companies:presenter": "Presented by", "companies:venue_partner": "Venue partner", "companies:infrastructure_partner": "Infrastructure partners", "companies:listed": "Companies listed (role unresolved)", "hosts:listed": "Listed hosts", "location:restriction": "Location access", "sponsorship:terms": "Published sponsorship terms" }
+  if (readingLabels[attribute]) return readingLabels[attribute]
   if (attribute === "date") return "Date"
   if (attribute === "location") return "Location"
   if (attribute === "access") return "Access"
@@ -1007,6 +1002,7 @@ function claimValueView(
   const isPending = latest.status === "pending" || latest.value.kind === "pending"
   const conflict = latest.status === "contradicted"
   return {
+    evidence: latest.evidence ?? [],
     attribute: latest.attribute,
     label: attributeLabel(latest.attribute),
     field,
@@ -1133,11 +1129,11 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
   const accessClaim = latestClaimByAttribute(editionClaims, "access")
   const access = accessClaim
     ? claimValueView(accessClaim, sourcesById)
-    : pendingValueView("access", "sin dato de acceso; no se asume abierto ni cerrado")
+    : pendingValueView("access", "Access unknown; neither open nor closed is assumed")
   const audienceClaim = latestClaimByAttribute(editionClaims, "audience")
   const audience = audienceClaim
     ? claimValueView(audienceClaim, sourcesById)
-    : pendingValueView("audience", "sin dato de audiencia; no se estima uno")
+    : pendingValueView("audience", "Audience unknown; no estimate substituted")
 
   const costClaims = editionClaims.filter((claim) =>
     claim.revisions[claim.revisions.length - 1].attribute.startsWith("cost:"),
@@ -1145,7 +1141,7 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
   const costs =
     costClaims.length > 0
       ? costClaims.map((claim) => claimValueView(claim, sourcesById))
-      : [pendingValueView("cost", "sin partidas de costo conocidas; no se suman como 0")]
+      : [pendingValueView("cost", "No known cost items; not counted as zero")]
 
   const coveredAttributes = new Set(["date", "location", "access", "audience"])
   const otherClaims = editionClaims
@@ -1174,21 +1170,8 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
     participationView(participation, read.companies, editionNames, sourcesById),
   )
 
-  const urbanScope =
-    latestEdition.location.scope === "venue" || latestEdition.location.scope === "city"
-  const mapPoint =
-    latestEdition.coordinates !== null && urbanScope && latestEdition.location.name !== null
-      ? {
-          lat: latestEdition.coordinates.lat,
-          lng: latestEdition.coordinates.lng,
-          locationName: latestEdition.location.name,
-        }
-      : null
-  const withoutPointReason = mapPoint
-    ? null
-    : urbanScope
-      ? "sin coordenadas respaldadas"
-      : `ubicación con alcance «${latestEdition.location.scope}»: sin respaldo urbano no hay punto en el mapa`
+  const position = projectEditionPosition(latestEdition, read.sources, editionClaims.map(c => c.revisions[c.revisions.length - 1]))
+  const { mapPoint, withoutPointReason } = position
 
   const openQuestions = [
     ...new Set(
@@ -1205,6 +1188,9 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
     .flatMap(claim => claim.sourceIds))
   return {
     editionId: read.editionId,
+    editionRevisionId: latestEdition.id,
+    publicLocation: position.location,
+    relationships: latestEdition.relationships ?? [],
     name: latestEdition.name,
     canonicalUrl: latestEdition.canonicalUrl,
     listingLink: evidenceLink(latestEdition.canonicalUrl,
@@ -1216,7 +1202,7 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
       read.curation?.material === "synthetic"
         ? "Synthetic labeled material (open decision D4): it proves the mechanism, not real events."
         : read.curation?.material === "imported"
-          ? "Automatically imported from a user-provided Luma URL: fields are the page's announcements, not curated review."
+          ? "Automatically read from public sources: claims keep their announced or reported status, without human verification."
           : null,
     date,
     location,
@@ -1228,7 +1214,7 @@ export function projectEditionDossierView(read: EditionDossierRead): EditionDoss
     organizerPending: organizers.length === 0 ? pendingQuestionFor("organizer") : null,
     participations,
     mapPoint,
-    withoutPointReason,
+    withoutPointReason: withoutPointReason ? englishSystemText(withoutPointReason) : null,
     editionRevisionCount: read.editionRevisions.length,
     openQuestions,
   }
@@ -1261,7 +1247,7 @@ export function projectOrganizerDossierView(read: OrganizerDossierRead): Organiz
       .map((alias) => alias.alias),
     // Afirmaciones documentadas con su soporte — deliberadamente SIN puntaje
     // único ni generalización automática.
-    claims: read.claims.map((claim) => claimValueView(claim, sourcesById)),
+    claims: read.claims.filter(claim => claim.revisions.at(-1)?.subject.type === 'organizer').map((claim) => claimValueView(claim, sourcesById)),
     upcomingEditions: editionViews.filter((edition) => edition.validity.validity === "upcoming"),
     antecedents: editionViews.filter((edition) => edition.isAntecedent),
     undatedEditions: editionViews.filter(
@@ -1273,4 +1259,37 @@ export function projectOrganizerDossierView(read: OrganizerDossierRead): Organiz
     coverage: read.coverage,
     revisionCount: read.organizerRevisions.length,
   }
+}
+
+// Todas las superficies de una comparación reabierta usan estas revisiones.
+// La vista actual del catálogo se abre explícitamente al salir del run.
+export function snapshotEditionDossiers(bundle: EvaluationReadBundle, options: { includeAntecedents?: boolean } = {}): EditionDossierRead[] {
+  const ids = options.includeAntecedents ? [...new Set(bundle.editions.map(e => e.editionId))] : bundle.snapshot.ordering.editionIds
+  return ids.flatMap(editionId => {
+    const edition = bundle.editions.find(e => e.editionId === editionId && bundle.snapshot.editionRevisionIds.includes(e.id))
+    if (!edition) return []
+    const relatedOrganizerIds = new Set([...edition.organizerIds, ...(edition.relationships??[]).flatMap(r=>r.entity.type==='organizer'?[r.entity.organizerId]:[])])
+    const organizers = bundle.organizers.filter(o => relatedOrganizerIds.has(o.organizerId) && bundle.snapshot.organizerRevisionIds.includes(o.id))
+    return [{ contractVersion: '1', evaluatedAt: bundle.snapshot.evaluatedAt, editionId,
+      editionRevisions: [edition], validity: classifyDeclaredDate(edition.startDate, bundle.snapshot.evaluatedAt),
+      organizers: organizers.map(o => ({ organizerId: o.organizerId, revisions: [o] })),
+      claims: bundle.claims.filter(c => bundle.snapshot.claimRevisionIds.includes(c.id) && ((c.subject.type === 'edition' && c.subject.editionId === editionId) || (c.subject.type === 'organizer' && edition.organizerIds.includes(c.subject.organizerId)))).map(c => ({ claimId: c.claimId, revisions: [c] })),
+      participations: bundle.participations.filter(p => p.editionId === editionId && bundle.snapshot.participationRevisionIds.includes(p.id)).map(p => ({ participationId: p.participationId, revisions: [p] })),
+      companies: bundle.companies, sources: bundle.sources, curation: null,
+    }]
+  })
+}
+
+// Antecedentes históricos del organizador: únicamente revisiones fijadas.
+export function snapshotOrganizerDossier(bundle: EvaluationReadBundle, organizerId: string): OrganizerDossierRead | null {
+  const organizer = bundle.organizers.find(o => o.organizerId === organizerId && bundle.snapshot.organizerRevisionIds.includes(o.id))
+  if (!organizer) return null
+  const editions = snapshotEditionDossiers(bundle, {includeAntecedents:true}).filter(d => {
+    const e = d.editionRevisions[0]
+    return e.organizerIds.includes(organizerId) || e.relationships?.some(r => r.entity.type === 'organizer' ? r.entity.organizerId === organizerId : r.entity.type === 'company' && r.entity.companyId === organizer.companyId)
+  })
+  return {contractVersion:'1',evaluatedAt:bundle.snapshot.evaluatedAt,organizerId,organizerRevisions:[organizer],
+    claims:bundle.claims.filter(c => c.subject.type === 'organizer' && c.subject.organizerId === organizerId).map(c => ({claimId:c.claimId,revisions:[c]})),
+    editions:editions.map(d=>({edition:d.editionRevisions[0],validity:d.validity})),participations:editions.flatMap(d=>d.participations),companies:bundle.companies,sources:bundle.sources,
+    coverage:{antecedentsDocumented:editions.filter(d=>d.validity.validity==='past').length,note:'Only background fixed by this comparison; the current catalog is not queried.'}}
 }

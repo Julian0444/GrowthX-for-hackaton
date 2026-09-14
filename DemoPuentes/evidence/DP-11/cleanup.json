@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-11T01:18:06.099783+00:00",
+  "ownedDatabase": "growthx-dp11-verification",
+  "status": "exited",
+  "dataRemoved": false,
+  "remainingOwnedProcesses": [],
+  "localDatabaseStatus": "running",
+  "otherContainersModified": false,
+  "chromeViewportRestored": true,
+  "auxiliaryConflictTabClosed": true
+}

@@ -90,7 +90,7 @@ export interface PersistedSnapshot {
 function mustParse<T>(kind: string, result: ValidationResult<T>): T {
   if (!result.ok) {
     const detail = result.issues.map((issue) => `${issue.path}: ${issue.message}`).join('; ');
-    throw new Error(`${kind} inválido según contrato: ${detail}`);
+    throw new Error(`${kind} violates the contract: ${detail}`);
   }
   return result.value;
 }
@@ -106,7 +106,7 @@ export async function persistOfficialSnapshot(
   // contrato no se persiste (y la redacción viaja aparte: acá narrative=null).
   const snapshot = mustParse('EvaluationSnapshot', parseEvaluationSnapshot(input.snapshot));
   if (snapshot.narrative !== null)
-    throw new Error('el snapshot oficial se confirma ANTES de la redacción: narrative debe ser null');
+    throw new Error('the official snapshot is confirmed before narration: narrative must be null');
 
   return withTenantTransaction(pool, tenantId, async (client) => {
     // Reentrega del step: si el run ya confirmó su snapshot oficial, ese es el
@@ -116,6 +116,19 @@ export async function persistOfficialSnapshot(
     ]);
     if (existing.length > 0) {
       return { status: 'already_persisted', snapshotId: existing[0].id as string };
+    }
+    if (snapshot.decisionReading) {
+      const refs = snapshot.decisionReading.alternatives.flatMap(a => [a.relevance, a.modality, ...a.antecedents].flatMap(r => r.basis));
+      const editions = (await client.query('select payload from growthx.edition_revisions where id = any($1)', [snapshot.editionRevisionIds])).rows.map(r => mustParse('EventEditionRevision', parseEventEditionRevision(r.payload)));
+      const claims = (await client.query('select payload from growthx.claim_revisions where id = any($1)', [snapshot.claimRevisionIds])).rows.map(r => mustParse('ClaimRevision', parseClaimRevision(r.payload)));
+      const sources = (await client.query('select id from growthx.sources where id = any($1)', [snapshot.sourceIds ?? []])).rows.map(r => r.id as string);
+      if ((snapshot.sourceIds ?? []).some(id => !sources.includes(id))) throw new Error('Fuente fijada inexistente bajo el tenant.');
+      for (const ref of refs) {
+        const edition = editions.find(e => e.id === ref.editionRevisionId && e.editionId === ref.editionId);
+        if (!edition || ref.relationshipIds.some(id => !edition.relationships?.some(r => r.id === id)) ||
+          ref.claimRevisionIds.some(id => !claims.some(c => c.id === id && c.subject.type === 'edition' && c.subject.editionId === ref.editionId)))
+          throw new Error('Reading contains a relationship, edition, or claim outside the saved revision.');
+      }
     }
     await client.query(
       `insert into growthx.snapshots
@@ -156,14 +169,14 @@ export async function persistNarrativeRecord(
       [record.snapshotId],
     );
     if (snapshotRows.length === 0)
-      throw new Error(`snapshot ${record.snapshotId} inexistente bajo el tenant: la redacción no se guarda suelta`);
+      throw new Error(`snapshot ${record.snapshotId} missing for the tenant: narration cannot be saved without its snapshot`);
     const snapshot = mustParse('EvaluationSnapshot', parseEvaluationSnapshot(snapshotRows[0].payload));
     const pinned = new Set(snapshot.claimRevisionIds);
     for (const proposal of record.proposals) {
       const foreign = proposal.selectedClaimRevisionIds.find((id) => !pinned.has(id));
       if (foreign)
         throw new Error(
-          `registro de redacción cita una revisión fuera del snapshot («${foreign}»): no se persiste`,
+          `narrative record cites a revision outside the snapshot («${foreign}»): no se persiste`,
         );
     }
     const { rows: existing } = await client.query(
@@ -249,6 +262,37 @@ export async function readNarrativeBySnapshot(
   });
 }
 
+// Older snapshots omit sourceIds. Their pinned revisions still identify the
+// same source set; writes must validate against this set as well as reads.
+function snapshotSourceIds(snapshot: EvaluationSnapshot, records: Pick<EvaluationReadBundle, 'claims' | 'editions' | 'organizers' | 'participations'>): string[] {
+  const {claims, editions, organizers, participations} = records;
+  return [
+      ...new Set([
+        ...(snapshot.sourceIds ?? []),
+        ...claims.flatMap((claim) => claim.sourceIds),
+        ...editions.flatMap(e => [...(e.publicLocation?.sourceIds ?? []), ...(e.relationships ?? []).flatMap(r => r.sourceIds)]),
+        ...organizers.flatMap((organizer) => organizer.aliases.flatMap((alias) => alias.sourceIds)),
+        ...participations.flatMap((participation) => [
+          ...participation.sourceIds,
+          ...(participation.commercialOutcome.status === 'reported' ? participation.commercialOutcome.sourceIds : []),
+        ]),
+      ]),
+    ];
+}
+
+export async function readSnapshotSourceIds(client: pg.PoolClient, snapshot: EvaluationSnapshot): Promise<string[]> {
+  const read = async <T>(table: string, ids: string[], parse: (payload: unknown) => ValidationResult<T>): Promise<T[]> => {
+    if (!ids.length) return [];
+    const {rows} = await client.query(`select payload from growthx.${table} where id = any($1)`, [ids]);
+    return rows.map(row => mustParse(table, parse(row.payload)));
+  };
+  const claims = await read('claim_revisions', snapshot.claimRevisionIds, parseClaimRevision);
+  const editions = await read('edition_revisions', snapshot.editionRevisionIds, parseEventEditionRevision);
+  const organizers = await read('organizer_revisions', snapshot.organizerRevisionIds, parseOrganizerRevision);
+  const participations = await read('participation_revisions', snapshot.participationRevisionIds, parseParticipationRevision);
+  return snapshotSourceIds(snapshot, {claims, editions, organizers, participations});
+}
+
 // Bundle de lectura del contrato 07: el snapshot más las revisiones EXACTAS
 // que referencia, releídas de las tablas del catálogo y revalidadas. Una
 // referencia irresoluble queda afuera y la proyección la muestra como
@@ -276,7 +320,7 @@ export async function buildReadBundle(
       kind: string,
     ): Promise<T[]> => {
       if (ids.length === 0) return [];
-      const { rows } = await client.query(`select payload from growthx.${table} where id = any($1)`, [ids]);
+      const { rows } = await client.query(`select payload from growthx.${table} where id = any($1) order by id`, [ids]);
       return rows.map((row) => mustParse(kind, parse(row.payload)));
     };
 
@@ -300,29 +344,20 @@ export async function buildReadBundle(
       'ParticipationRevision',
     );
 
-    const sourceIds = [
-      ...new Set([
-        ...claims.flatMap((claim) => claim.sourceIds),
-        ...organizers.flatMap((organizer) => organizer.aliases.flatMap((alias) => alias.sourceIds)),
-        ...participations.flatMap((participation) => [
-          ...participation.sourceIds,
-          ...(participation.commercialOutcome.status === 'reported' ? participation.commercialOutcome.sourceIds : []),
-        ]),
-      ]),
-    ];
+    const sourceIds = snapshotSourceIds(snapshot, {claims, editions, organizers, participations});
     const sources =
       sourceIds.length === 0
         ? []
         : (
-            await client.query('select payload from growthx.sources where id = any($1)', [sourceIds])
+            await client.query('select payload from growthx.sources where id = any($1) order by id', [sourceIds])
           ).rows.map((row) => mustParse<SourceRecord>('SourceRecord', parseSourceRecord(row.payload)));
 
-    const companyIds = [...new Set(participations.map((participation) => participation.companyId))];
+    const companyIds = [...new Set([...participations.map((participation) => participation.companyId), ...organizers.flatMap(o=>o.companyId?[o.companyId]:[]), ...editions.flatMap(e => (e.relationships ?? []).flatMap(r => r.entity.type === 'company' ? [r.entity.companyId] : []))])];
     const companies =
       companyIds.length === 0
         ? []
         : (
-            await client.query('select payload from growthx.companies where id = any($1)', [companyIds])
+            await client.query('select payload from growthx.companies where id = any($1) order by id', [companyIds])
           ).rows.map((row) => mustParse<CompanyRecord>('CompanyRecord', parseCompanyRecord(row.payload)));
 
     return {

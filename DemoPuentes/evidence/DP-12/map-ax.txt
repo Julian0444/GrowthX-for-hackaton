@@ -1,0 +1,5 @@
+Browser tab: 1004461513, Title: "GrowXth — Developer Growth Intelligence", URL: "http://localhost:3000/?run=fe244e95-4e5c-4f34-9c0c-a974e6667029&decision=6f9478ed-0306-45c4-92d2-3dbe0928a749&revision=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 184
++						203 text 300 m
+The focused UI element is 121 checkbox Show on map, Value: 1

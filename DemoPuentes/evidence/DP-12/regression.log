@@ -1,0 +1,2151 @@
+(node:38042) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/baseline-v0.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness (2.235125ms)
+✔ seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado (4.448042ms)
+✔ fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración (0.351292ms)
+✖ repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida (25.680667ms)
+✔ repetición: una petición no grabada falla en lugar de salir a la red (0.909291ms)
+✖ caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto (0.083917ms)
+✖ oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada (0.281ms)
+✔ matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos (0.185208ms)
+(node:38053) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/cache-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza (5.939667ms)
+✖ concurrente: presupuestos distintos no comparten la promesa en curso (0.158791ms)
+✖ proveedor controlado: se observa qué evaluación produjo cada respuesta (0.178375ms)
+✖ fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto (0.196875ms)
+✔ frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo (77.969167ms)
+✖ normalización única: caracterización del sentinel de presupuesto desconocido (0.100458ms)
+(node:38066) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente (12.591625ms)
+✖ el día UTC dentro de la ventana no admite un evento cuyo día local es anterior (1.163417ms)
+✔ los offsets declarados negativos y positivos conservan ambos bordes inclusivos (0.570792ms)
+✔ la zona IANA respeta el horario de invierno y no asume un offset fijo para SF (0.339459ms)
+✔ una fecha sin hora se compara tal como fue declarada (0.135042ms)
+✖ una zona no reconocida mantiene pendiente la ventana en vez de inventar el día (4.202583ms)
+(node:38069) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/event-validity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha (6.270875ms)
+✖ demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca (4.772625ms)
+✖ seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan (0.111917ms)
+✖ adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento (0.109459ms)
+✖ Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece (0.107792ms)
+✖ predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05 (0.661334ms)
+✖ fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente (0.083375ms)
+✖ fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente (0.059542ms)
+(node:38074) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP07 historical technical evidence favors research; sponsor remains its actual role and source (35.624417ms)
+✖ DP07 new payments/hiring brief changes reason, proposed activity and useful question without borrowing previous buyer inference (3.058416ms)
+✔ DP07 contradicted/missing references, wrong identity and award-only evidence cannot support priority (6.450042ms)
+✖ DP07 city pending remains conditional without point; free restrictions and unknown audience reach result (0.3445ms)
+✖ DP07 cost gates run before priority: additive costs exclude, mixed/incomplete/contradicted stay conditional (0.316458ms)
+✔ DP07 affirmed claim strengthening preserves support, equal evidence remains unordered (1.859833ms)
+(node:38110) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/geographic-scope.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ fixture país: un dato de Trends sobre India sigue siendo observación de país (5.387666ms)
+✖ fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado (0.116875ms)
+✖ fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado (0.088417ms)
+(node:38126) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/llm-rank-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual (5.510791ms)
+✖ grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5) (0.166542ms)
+✖ candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco (0.1005ms)
+✖ desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable) (0.083208ms)
+✖ desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden (0.093917ms)
+✖ ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números (0.076958ms)
+(node:38132) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/reasoning-support.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1) (5.952666ms)
+✖ cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2) (0.391583ms)
+✖ cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida) (0.138167ms)
+✖ afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica (0.116833ms)
+✖ propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza (0.091166ms)
+✖ fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad (0.131625ms)
+✖ JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos (0.1055ms)
+✖ descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia (0.086625ms)
+✖ auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta (0.268958ms)
+(node:38141) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/session-unavailable.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401
+  ✔ GET evaluaciones (3.346375ms)
+  ✔ POST evaluación (0.671625ms)
+  ✔ GET run (0.431917ms)
+  ✔ POST importación (0.306916ms)
+  ✔ GET catálogo (0.267125ms)
+  ✔ GET edición (0.603042ms)
+  ✔ GET organizador (0.1985ms)
+  ✔ GET decisiones (0.236542ms)
+  ✔ POST decisión (0.220833ms)
+  ✔ GET decisión (0.234042ms)
+  ✔ PATCH decisión (0.206709ms)
+  ✔ POST guardar organizador (0.194208ms)
+  ✔ una sesión válida conserva el usuario y tenant resueltos por el servidor (0.907375ms)
+✔ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401 (56.656125ms)
+(node:38143) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/trust-regressions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ control con soporte (13.388542ms)
+✔ USD 3000 + USD 3000 > USD 5000 (0.425ms)
+✔ partida pendiente (0.287375ms)
+✔ moneda incomparable (0.172166ms)
+✔ audiencia pendiente (0.308625ms)
+✔ audiencia ausente (1.886792ms)
+✔ fecha contradicha (0.263042ms)
+✔ contratos del caso reproducido (0.260042ms)
+✔ investigación conserva confirmed (1.491291ms)
+✔ investigación usa el día local de SF (0.296542ms)
+✔ El patrocinio cuesta 10 USD y la audiencia está confirmada. (28.660584ms)
+✔ El evento garantiza contrataciones y el acceso exclusivo ya está confirmado. (0.249083ms)
+✔ paquetes alternativos no se suman; partidas de la misma opción sí (0.466334ms)
+✔ un costo conocido + moneda extranjera o estimación no acreditan presupuesto completo (0.211375ms)
+✖ acceso pendiente y contradicho conserva condición, no incompatibilidad (4.542833ms)
+✔ fecha contradicha no excluye por el valor disputado aun fuera de ventana (0.384625ms)
+✔ fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambos caminos (0.214167ms)
+✔ narrativa positiva publica exactamente fecha, atributo y estado seleccionados (0.324083ms)
+✔ un atributo de costo con valor fecha no es un claim admitido (0.16375ms)
+✔ la composición de costos es explícita y los contratos v1 anteriores siguen legibles (0.191792ms)
+✔ una narrativa de costo conserva su atributo, importe y estado inferido (0.253042ms)
+(node:38156) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/atlas/arcs.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ origen: ubicación del usuario si existe, si no San Francisco (1.692417ms)
+✔ path = bézier cuadrática "M x0 y0Q cx cy x1 y1", redondeada a 1 decimal (0.241084ms)
+✔ el arco siempre se comba hacia el norte, independientemente del sentido (0.128083ms)
+✔ bulge clampeado a [12, 60] (0.062625ms)
+✔ origen == destino → sin arco (0.218167ms)
+✔ determinista: mismo input → mismo output, sin depender del reloj (0.254ms)
+✔ escalonado por rank: 950ms + 240ms por posición; el cometa arranca al terminar el arco (0.119875ms)
+✔ todos los arcos parten del origen (0.071791ms)
+(node:38157) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/apify.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ runs an Actor with server-side auth and reads its dataset (30.454167ms)
+✔ degrades without exposing or requiring a token (0.1175ms)
+✔ keeps partial dataset items when an Actor exceeds its wait budget (0.771375ms)
+(node:38159) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls (2.192375ms)
+✔ DP04 URL identity only merges proven aliases; same names and different query editions remain separate (1.686625ms)
+✖ DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors (43.975375ms)
+(node:38160) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (1.65825ms)
+✖ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.796334ms)
+✖ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.132709ms)
+✖ DP-08 Census uses address interpolation and county 06075, not bbox or first match (0.40175ms)
+✖ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (19.82175ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (0.507875ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (5.840375ms)
+✔ DP-08 same street/number in a different visible city contradicts the source point (0.437875ms)
+(node:38162) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes (2.368833ms)
+✖ Luma: un título OG de página vacía o calendario no crea un dossier de evento (28.168333ms)
+✖ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.674833ms)
+✔ Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes (1.445375ms)
+✔ Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación (2.35025ms)
+✔ Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos (1.014208ms)
+✔ Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos (0.530792ms)
+✖ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (1.800417ms)
+(node:38173) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06: real contract shapes, explicit roles, identity and buyer-specific antecedent (19.520292ms)
+✔ DP06: homonyms, corporate location and editions with different years never merge by name (0.852125ms)
+✔ DP06: calendar and JSON-LD name are not silently organizers; host and coorganizer separate (0.715042ms)
+✔ DP06: logo and presenter without sponsor block never become sponsorship or ROI (1.085334ms)
+✔ DP06: wrong edition backlink and unlinked repository never create project relationship (2.339167ms)
+✔ DP06: an award does not establish technology; partial reviewed coverage not extrapolated (1.923583ms)
+✔ DP06: Vultr sponsor in Paris is a separate role from present host in SF (2.863791ms)
+✔ DP06: source without Event metadata is retained without inventing an edition (0.174459ms)
+✔ DP06: date contradiction stays contradicted and instructions do not enter facts (0.391333ms)
+✔ DP06: input rejects mixed provenance, foreign fields and unsafe destination (0.251334ms)
+✔ DP06: AIT explicit structured chapter attribution + visible event role works without subscription chrome (1.247542ms)
+(node:38175) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (43.80675ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (1.14425ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (1.93ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (0.6155ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (0.46825ms)
+✖ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (1.422791ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (59.785375ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (2.096042ms)
+(node:38178) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/contracts/evaluation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/contracts/evaluation.test.ts (136.483958ms)
+(node:38179) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/contracts/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: brief completo y legado; preguntas ligadas a producto, audiencia y objetivo; dinero separado (3.671959ms)
+✔ DP03: rechaza datos inválidos y campos operativos/tenant en el brief (0.21725ms)
+✔ DP03: contratos de fuentes y relaciones preservan premio, herramienta y edición sin atribuir eficacia (0.674959ms)
+✔ DP03: ubicación anterior, ciudad, fallo y contradicción no fabrican un punto (0.410834ms)
+✔ DP03: parcial/error/insuficiente y consumo desconocido son estados distintos de éxito/cero (0.211584ms)
+✖ DP03: comparación, dossier y mapa conservan la revisión seleccionada aunque exista una nueva (4.684167ms)
+(node:38190) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/graph/derive-signals.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ derives query-specific capabilities instead of requiring a static topics file (1.201583ms)
+✔ distance is context in miles and can be computed independently from score (0.102459ms)
+(node:38191) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real)
+  ✖ frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404 (5.902167ms)
+  ✖ motivos obligatorios; la alternativa debe pertenecer al snapshot (2.235625ms)
+  ✔ elegir con costo pendiente → elección condicional guardada con su campaña (una transacción) (21.941041ms)
+  ✔ idempotencia: misma clave+payload → misma decisión; otra clave/payload → conflicto (21.016583ms)
+  ✖ excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente (3.7705ms)
+  ✖ dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan (19.668167ms)
+  ✖ razones distintas por alternativa; decidir no fabrica claims ni evidencia (5.002333ms)
+  ✔ guardar un organizador conserva una investigación: no crea inversión ni campaña (83.619916ms)
+  ✖ rollback conjunto: una caída al confirmar la campaña no deja decisión suelta (100.88425ms)
+  ✔ tenant señuelo: la decisión real no existe para él, ni por ruta ni por SQL de aplicación (7.951917ms)
+✖ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real) (777.043ms)
+(node:38206) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/curated-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/integration/curated-dossier.test.ts (135.93025ms)
+(node:38207) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/decision-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP11 durable actionable decision, exact revision and concurrency (1.287375ms)
+(node:38209) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/evaluation-run.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401 (la sesión se valida en el servidor) (2.503291ms)
+  ✔ un tenantId en el cuerpo se rechaza (no se confía en el navegador) (9.1705ms)
+  ✔ aceptación: 202 con run y job durable en el MISMO commit (39.576208ms)
+  ✔ atomicidad: si el encolado falla, NO queda run (ni 202 con trabajo perdido) (7.6945ms)
+  ✔ idempotencia: misma clave y mismo payload → el MISMO run (4.678917ms)
+  ✔ idempotencia: misma clave con OTRO payload → 409 (3.278292ms)
+  ✔ GET devuelve estado y pasos persistidos; el señuelo no ve el run (9.139208ms)
+  ✔ RLS en SQL de aplicación: contexto señuelo o sin contexto no obtiene la fila (2.693375ms)
+  ✔ el rol que administra la cola no accede a datos de negocio (11.949792ms)
+  ✖ reanudación básica: corte del worker tras un paso, reinicio, el MISMO run termina (3370.773917ms)
+  ✔ lectura tras cerrar la conexión: el run sobrevive al pool que lo escribió (26.671375ms)
+  ✔ GET con id inválido → 400; run inexistente → 404 (33.333542ms)
+✖ evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales) (3629.937917ms)
+(node:38278) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/integration/evaluation-snapshot.test.ts (219.461375ms)
+(node:38290) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance
+  ✔ new workflow acceptance is idempotent and atomic with its queued job (51.021041ms)
+  ✔ acceptance idempotency and real persisted sources; aliases deduplicate without claims (289.997041ms)
+  ✔ missing key performs no calls and no reservations, never fixture fallback (73.42375ms)
+  ✔ partial first response survives 429, no repeat of the charged attempt (105.992958ms)
+  ✔ timeouts and missing response are explicit, bounded and retain reservations (121.680625ms)
+  ✔ crash after dispatch: restart preserves uncertain attempt, no additional provider call (26.641208ms)
+  ✔ SIGKILL of a separate worker releases lease and preserves the dispatched attempt (354.463791ms)
+  ✔ crash after provider response before commit cannot silently spend again (63.714541ms)
+  ✔ crash after source commit reuses same source IDs and continues remaining queries (646.363958ms)
+  ✖ deadline survives restart and excludes new calls (90.395916ms)
+  ✖ concurrent delivery cannot duplicate the live provider request (16.489792ms)
+  ✔ aggregate cap is shared across runs and tenants, even in parallel (111.959667ms)
+  ✖ unexpected reported charge suspends new calls rather than trusting an obsolete tariff (93.778791ms)
+✖ DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance (13965.773875ms)
+(node:38496) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP07 persisted comparison, revised brief, immutable antecedents and model authority
+  ✔ snapshot fixes selected and historical edition, relationship, claim and source revisions (2.28325ms)
+  ✔ new brief is validated, versioned and changes explanation, constraints, objective and question (110.463209ms)
+  ✔ new catalog revision does not change the original dossier, historical organizer, sources or decisions (12.518584ms)
+  ✔ foreign tenant cannot read snapshot or select editions/profiles; invalid references roll back (8.072208ms)
+  ✖ model cannot create prices or success from historical years, change priority, or cite another edition (23.903041ms)
+✖ DP07 persisted comparison, revised brief, immutable antecedents and model authority (588.039292ms)
+(node:38507) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/integration/location-resolution.test.ts (184.883ms)
+(node:38508) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+  ✖ POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada (8.415083ms)
+  ✖ profileRunId de otro tenant → 400 (RLS: no existe para esta sesión) (4.002167ms)
+  ✔ HTML completo: 202 → obtención en el worker → dossier durable con claims (136.2975ms)
+  ✖ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (80.121166ms)
+  ✔ duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo (11.434833ms)
+  ✔ HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed (66.87075ms)
+  ✔ redirección dentro de la allowlist: se valida y se sigue (65.086042ms)
+  ✔ redirección fuera de la allowlist: fallo con URL solicitada, intento y causa (81.857958ms)
+  ✖ límite de tamaño: la descarga se corta y el run falla con causa visible (30.407334ms)
+  ✔ timeout: la obtención vence y el run falla con causa visible (236.371416ms)
+  ✔ prompt injection en la descripción: texto de la fuente = dato, jamás instrucción (98.979333ms)
+  ✔ identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad (142.939916ms)
+  ✔ reanudación idempotente: repetir persist_dossier no duplica material (4.077333ms)
+✖ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales) (1108.626458ms)
+(node:38529) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/migration-concurrency.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ migraciones en bases distintas toleran un ALTER ROLE concurrente del mismo cluster (340.700125ms)
+(node:38530) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP06 durable relationships under real PostgreSQL roles
+  ✔ acceptance atomic, replay key and tenant mismatch (16.313167ms)
+  ✔ worker reads six sources, stops after read commit and resumes without consuming again (431.944291ms)
+  ✔ RLS hides all new relations and queue has no business grants (6.809958ms)
+  ✔ expired deadline recovers committed pages without additional requests (34.568708ms)
+  ✔ explicit refresh chains revisions; partial failures retain linked project support and original revision (319.702875ms)
+  ✔ Vultr current host links to Paris sponsorship without creating organizing history (156.727541ms)
+  ✖ DP04 discovery proposal -> DP05 full reading -> persisted relations; snippet remains unmodified (39.540208ms)
+  ✖ failed proposal reads are recovered from the discovery run without repeated requests (35.204959ms)
+  ✔ foreign evidence and wrong-edition claim references roll back all relationship writes (195.007791ms)
+  ✔ existing Luma identity and claim chains are reused; different year is a new edition (285.386708ms)
+✖ DP06 durable relationships under real PostgreSQL roles (1606.128334ms)
+(node:38562) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/integration/research-brief.test.ts (175.524042ms)
+(node:38563) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/integration/source-reading.test.ts (185.735542ms)
+(node:38564) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/tenant-isolation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15)
+  ✔ API y listados: los IDs conocidos del otro tenant no existen para el señuelo (39.005709ms)
+  ✖ claims referenciados: comparación, importación y decisión con IDs ajenos se rechazan (4.692542ms)
+  ✔ idempotencia: la clave del otro tenant no deduplica hacia su run (10.555375ms)
+  ✔ sesiones: expirada o sin pertenencia → 401; nunca un tenant por defecto (2.719584ms)
+  ✔ pool de conexiones: el contexto de una conexión reutilizada no se filtra al siguiente tenant (14.987666ms)
+  ✔ acceso directo de aplicación a una fila ajena queda bloqueado por RLS (roles sin bypass) (15.802209ms)
+  ✔ el worker real rechaza jobs con tenant/payload discordante sin tocar el run (948.427208ms)
+  ✔ ningún error de cruce revela el contenido del otro tenant (2.3895ms)
+✖ tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15) (1822.314834ms)
+(node:38590) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/trust-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/integration/trust-decision.test.ts (183.692708ms)
+(node:38591) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ worker-recovery: matriz de caídas con procesos reales (ticket 15)
+  ✔ SIGKILL con la obtención EN VUELO: nada confirmado se pierde; la llamada no confirmada se repite y queda trazada (1379.728458ms)
+  ✔ SIGKILL tras guardar claims (paso sin confirmar): la reanudación no duplica efectos (1280.715333ms)
+  ✖ SIGKILL entre el commit de un paso y el siguiente: el avance confirmado no se re-ejecuta (1253.887375ms)
+  ✖ SIGKILL tras confirmar el snapshot (paso sin confirmar): un solo snapshot oficial (1282.224959ms)
+  ✔ SIGKILL con el run terminal pero el job sin confirmar: la re-entrega no repite efectos (2213.318042ms)
+  ✔ carrera determinística: el perdedor no publica un segundo snapshot NI degrada el run completado (190.907625ms)
+  ✖ cola caída en la aceptación: nada persistido; el reintento del cliente repite la llamada y queda trazado (17.525083ms)
+  ✔ timeout y salida inválida del modelo: dossier completo con explicación determinística y degradación declarada (509.002917ms)
+  ✖ fuente caída que agota reintentos: fallido y visible, sin recomendación preparada que lo oculte (2840.734209ms)
+  ✔ los registros reconstruyen run→steps→claims→snapshot→decisión, sin secretos ni texto privado (25.276167ms)
+✖ worker-recovery: matriz de caídas con procesos reales (ticket 15) (12254.463083ms)
+(node:38764) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/markets/global-market-search.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normalizes worldwide Trends rows and explicit X locations (1.533166ms)
+✔ builds focused signal queries from natural product descriptions (1.01975ms)
+✔ ranks three countries from query-specific geographic evidence (2.558709ms)
+✔ keeps a labeled worldwide fallback when every live source is unavailable (0.4385ms)
+(node:38765) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/scoring/community-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ comunidad completa con evidencia: score alto y reasons respaldadas (0.8775ms)
+✔ evidencia vacía: sin reasons y confidence null (pero score se computa) (0.093667ms)
+✔ stack vacío → stackOverlap null (no 0) (0.057625ms)
+✔ sin cadencia conocida → cadenceReliability null (0.079583ms)
+✔ sin evidencia de sponsors → exclusivityGap null (no inferir ausencia) (0.063417ms)
+(node:38766) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/scoring/roi.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ inputs completos: costo por dev calificado + banda (1.862125ms)
+✔ falta el precio del tier → null + "No disponible" (nunca se estima el precio) (0.0695ms)
+✔ falta icpFitRate → null + "No disponible" (0.055625ms)
+✔ attendance 0 → null (no dividir por cero) (0.050167ms)
+(node:38777) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/scoring/score-utils.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ renormaliza sobre las dimensiones activas: una sola dim activa = 100 (0.671459ms)
+✔ null NUNCA es 0: null y 0 dan scores distintos (0.076333ms)
+✔ todas las dimensiones null → score 0 (0.045292ms)
+✔ coverageRatio: fracción del target cubierta, null si falta un conjunto (0.61425ms)
+✔ clamp01 acota a [0,1] (0.058125ms)
+(node:38778) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/scoring/theme-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ momentum: ratio 2.0 (+100%) → 1.0 (0.805625ms)
+✔ sin githubMomentum cae a newsSalience (0.095666ms)
+✔ sin requiredCapabilities → criticalPath null (0.065833ms)
+✔ reasons del tema citan evidencia no vacía (0.109709ms)
+(node:38779) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/english-system.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP12 legacy excluded dates render in English without changing persisted text (5.959667ms)
+✔ DP12 known historical conditions preserve amounts, identifiers and unresolved status (3.17825ms)
+✔ DP12 reviewed legacy templates preserve each dynamic value and English display is stable (48.719292ms)
+(node:38781) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/evidence-links.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes (18.248625ms)
+✔ el dossier sintético no ofrece abrir un listado inexistente (9.217708ms)
+✔ un enlace público real se conserva y un esquema ejecutable nunca se publica (0.809417ms)
+✔ el transporte de demo y su captura histórica no se presentan como obtención real de Luma (0.615834ms)
+✔ el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico (8.204792ms)
+(node:38792) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/research-experience.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/ui/research-experience.test.ts (122.427584ms)
+(node:38793) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/sf-map.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/ui/sf-map.test.ts (126.145959ms)
+(node:38794) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/trust-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/esm/resolve:275
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+}
+
+Node.js v25.5.0
+✖ tests/ui/trust-evidence.test.ts (279.321208ms)
+ℹ tests 275
+ℹ suites 0
+ℹ pass 184
+ℹ fail 91
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45290.840292
+
+✖ failing tests:
+
+test at tests/acceptance/baseline-v0.test.ts:93:1
+✖ repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida (25.680667ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/baseline-v0.test.ts:125:1
+✖ caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto (0.083917ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/baseline-v0.test.ts:148:1
+✖ oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada (0.281ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/cache-budget.test.ts:51:1
+✖ secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza (5.939667ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/cache-budget.test.ts:31:12)
+      at nextStep (node:internal/modules/customization_hooks:189:26) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/cache-budget.test.ts:66:1
+✖ concurrente: presupuestos distintos no comparten la promesa en curso (0.158791ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/cache-budget.test.ts:31:12)
+      at nextStep (node:internal/modules/customization_hooks:189:26) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/cache-budget.test.ts:77:1
+✖ proveedor controlado: se observa qué evaluación produjo cada respuesta (0.178375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/cache-budget.test.ts:31:12)
+      at nextStep (node:internal/modules/customization_hooks:189:26) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/cache-budget.test.ts:112:1
+✖ fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto (0.196875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/cache-budget.test.ts:31:12)
+      at nextStep (node:internal/modules/customization_hooks:189:26) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/cache-budget.test.ts:179:1
+✖ normalización única: caracterización del sentinel de presupuesto desconocido (0.100458ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/cache-budget.test.ts:31:12)
+      at nextStep (node:internal/modules/customization_hooks:189:26) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/eligibility-window.test.ts:37:1
+✖ el día UTC dentro de la ventana no admite un evento cuyo día local es anterior (1.163417ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /2026-09-30.*anterior/. Input:
+  
+  'The declared date (2026-09-30) is before the brief window (2026-10-01).'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/eligibility-window.test.ts:40:56)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'The declared date (2026-09-30) is before the brief window (2026-10-01).',
+    expected: /2026-09-30.*anterior/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/acceptance/eligibility-window.test.ts:66:1
+✖ una zona no reconocida mantiene pendiente la ventana en vez de inventar el día (4.202583ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(result.conditions.some(condition => /zona horaria/i.test(condition.description)))
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/eligibility-window.test.ts:69:10)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/acceptance/event-validity.test.ts:147:1
+✖ demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca (4.772625ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/event-validity.test.ts:222:1
+✖ seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan (0.111917ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/event-validity.test.ts:250:1
+✖ adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento (0.109459ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/event-validity.test.ts:305:1
+✖ Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece (0.107792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/event-validity.test.ts:332:1
+✖ predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05 (0.661334ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/event-validity.test.ts:398:1
+✖ fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente (0.083375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/event-validity.test.ts:430:1
+✖ fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente (0.059542ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/explicable-comparison.test.ts:11:1
+✖ DP07 historical technical evidence favors research; sponsor remains its actual role and source (35.624417ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /desconocido|pendiente/. Input:
+  
+  'sponsorship [pending]: amount pending Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/explicable-comparison.test.ts:15:269)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'sponsorship [pending]: amount pending Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.',
+    expected: /desconocido|pendiente/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/acceptance/explicable-comparison.test.ts:19:1
+✖ DP07 new payments/hiring brief changes reason, proposed activity and useful question without borrowing previous buyer inference (3.058416ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Pagos para comercios.*contratación/. Input:
+  
+  'For «Pagos para comercios», targeting «Equipos de pagos» with a goal of hiring, no documented program or project establishes specific fit. Ask for relevant use cases and audience before proposing investment.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/explicable-comparison.test.ts:22:144)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'For «Pagos para comercios», targeting «Equipos de pagos» with a goal of hiring, no documented program or project establishes specific fit. Ask for relevant use cases and audience before proposing investment.',
+    expected: /Pagos para comercios.*contratación/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/acceptance/explicable-comparison.test.ts:31:1
+✖ DP07 city pending remains conditional without point; free restrictions and unknown audience reach result (0.3445ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /ubicación queda pendiente.*Audiencia pendiente.*opt-in.*workshop/. Input:
+  
+  'No source supports the city: location remains pending and the event is not assumed to be in SF. Audience evidence is pending or insufficient to assess fit with the brief. Buyer restriction to verify: Solo contactos con opt-in Requested format remains unconfirmed: workshop.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/explicable-comparison.test.ts:34:111)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'No source supports the city: location remains pending and the event is not assumed to be in SF. Audience evidence is pending or insufficient to assess fit with the brief. Buyer restriction to verify: Solo contactos con opt-in Requested format remains unconfirmed: workshop.',
+    expected: /ubicación queda pendiente.*Audiencia pendiente.*opt-in.*workshop/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/acceptance/explicable-comparison.test.ts:37:1
+✖ DP07 cost gates run before priority: additive costs exclude, mixed/incomplete/contradicted stay conditional (0.316458ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /incompleto|Moneda no comparable/. Input:
+  
+  'sponsorship [observed]: USD 3000 travel [pending]: amount pending Incomplete cost: item «travel» pending; Missing quote; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/explicable-comparison.test.ts:40:170)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'sponsorship [observed]: USD 3000 travel [pending]: amount pending Incomplete cost: item «travel» pending; Missing quote; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.',
+    expected: /incompleto|Moneda no comparable/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/acceptance/geographic-scope.test.ts:69:1
+✖ fixture país: un dato de Trends sobre India sigue siendo observación de país (5.387666ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/geographic-scope.test.ts:107:1
+✖ fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado (0.116875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/geographic-scope.test.ts:164:1
+✖ fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado (0.088417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/llm-rank-authority.test.ts:143:1
+✖ el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual (5.510791ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/llm-rank-authority.test.ts:188:1
+✖ grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5) (0.166542ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/llm-rank-authority.test.ts:244:1
+✖ candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco (0.1005ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/llm-rank-authority.test.ts:327:1
+✖ desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable) (0.083208ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/llm-rank-authority.test.ts:375:1
+✖ desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden (0.093917ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/llm-rank-authority.test.ts:448:1
+✖ ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números (0.076958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:112:1
+✖ cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1) (5.952666ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:155:1
+✖ cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2) (0.391583ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:183:1
+✖ cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida) (0.138167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:232:1
+✖ afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica (0.116833ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:267:1
+✖ propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza (0.091166ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:321:1
+✖ fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad (0.131625ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:336:1
+✖ JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos (0.1055ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:359:1
+✖ descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia (0.086625ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/reasoning-support.test.ts:409:1
+✖ auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta (0.268958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolve (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/fixtures/baseline-v0/harness.ts:58:47)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:749:14) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/acceptance/trust-regressions.test.ts:57:1
+✖ acceso pendiente y contradicho conserva condición, no incompatibilidad (4.542833ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(result.conditions.some(c=>/acceso/i.test(c.description)))
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/acceptance/trust-regressions.test.ts:62:10)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/connectors/exa-discovery.test.ts:32:1
+✖ DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors (43.975375ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /plazo/. Input:
+  
+  'Error: Exa timed out; usage unknown.'
+  
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/exa-discovery.test.ts:44:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Exa timed out; usage unknown.
+        at Timeout.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/discovery/exa-search.ts:48:110)
+        at listOnTimeout (node:internal/timers:605:17)
+        at process.processTimers (node:internal/timers:541:7),
+    expected: /plazo/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/connectors/location-resolution.test.ts:16:1
+✖ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.796334ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Solo ciudad/. Input:
+  
+  'City or venue name only, without a public address; no venue marker.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:17:124)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'City or venue name only, without a public address; no venue marker.',
+    expected: /Solo ciudad/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/connectors/location-resolution.test.ts:22:1
+✖ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.132709ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Coordenadas/. Input:
+  
+  'Coordinates conflict with the declared SF location; review latitude/longitude.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:23:133)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Coordinates conflict with the declared SF location; review latitude/longitude.',
+    expected: /Coordenadas/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/connectors/location-resolution.test.ts:27:1
+✖ DP-08 Census uses address interpolation and county 06075, not bbox or first match (0.40175ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Múltiples/. Input:
+  
+  'Error: Multiple matches; address pending.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:30:116)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Multiple matches; address pending.
+        at parseCensusMatches (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/geocoding/census.ts:31:52)
+        at file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:30:127
+        at getActual (node:assert:586:5)
+        at strict.throws (node:assert:734:24)
+        at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:30:116)
+        at Test.runInAsyncScope (node:async_hooks:212:14)
+        at Test.run (node:internal/test_runner/test:1109:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+        at Test.postRun (node:internal/test_runner/test:1238:19)
+        at Test.run (node:internal/test_runner/test:1166:12),
+    expected: /Múltiples/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/connectors/location-resolution.test.ts:36:1
+✖ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (19.82175ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No se pudo/. Input:
+  
+  'Error: The geocoder could not be reached; the address is preserved.'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:43:14)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: The geocoder could not be reached; the address is preserved.
+        at Object.lookup (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/geocoding/census.ts:60:15)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/location-resolution.test.ts:43:14)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:786:7),
+    expected: /No se pudo/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/connectors/luma.test.ts:24:1
+✖ Luma: un título OG de página vacía o calendario no crea un dossier de evento (28.168333ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /extracción fallida/. Input:
+  
+  'SourceReadError: extraction failed: the page does not identify an event through JSON-LD'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:26:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SourceReadError: extraction failed: the page does not identify an event through JSON-LD
+        at fetchLumaEvent (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/catalog/luma-adapter.ts:174:11)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:26:5)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:786:7),
+    expected: /extracción fallida/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/connectors/luma.test.ts:35:1
+✖ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.674833ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /extracción fallida/. Input:
+  
+  'SourceReadError: extraction failed: the page does not identify an event through JSON-LD'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:37:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SourceReadError: extraction failed: the page does not identify an event through JSON-LD
+        at fetchLumaEvent (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/catalog/luma-adapter.ts:174:11)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:37:3)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:786:7),
+    expected: /extracción fallida/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/connectors/luma.test.ts:95:1
+✖ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (1.800417ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /forma desconocida/. Input:
+  
+  'Error: persisted fetch_event_page output has an unknown structure; it is not interpreted'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:104:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: persisted fetch_event_page output has an unknown structure; it is not interpreted
+        at parseLumaFetchOutput (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/evaluations/luma-step.ts:98:11)
+        at file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:104:23
+        at getActual (node:assert:586:5)
+        at strict.throws (node:assert:734:24)
+        at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/luma.test.ts:104:10)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:786:7),
+    expected: /forma desconocida/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/connectors/source-reading.test.ts:45:1
+✖ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (1.422791ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /límite/. Input:
+  
+  'SourceReadError: The page exceeds the limit of 20 bytes'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/source-reading.test.ts:50:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:786:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SourceReadError: The page exceeds the limit of 20 bytes
+        at readBodyCapped (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/sources/reader.ts:70:63)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async work (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/sources/reader.ts:103:20)
+        at async fetchKnownHtml (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/sources/reader.ts:107:16)
+        at async readKnownSource (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/sources/reader.ts:123:26)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/connectors/source-reading.test.ts:50:3)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:786:7),
+    expected: /límite/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/contracts/evaluation.test.ts:1:1
+✖ tests/contracts/evaluation.test.ts (136.483958ms)
+  'test failed'
+
+test at tests/contracts/research-brief.test.ts:98:1
+✖ DP03: comparación, dossier y mapa conservan la revisión seleccionada aunque exista una nueva (4.684167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english' imported from /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/api/opportunity-adapter.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:991:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+      at #resolve (node:internal/modules/esm/loader:695:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/research/english'
+  }
+
+test at tests/integration/conditional-decision.test.ts:344:11
+✖ frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404 (5.902167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /resuelve el servidor/i. Input:
+  
+  'unsupported keys: tenantId — the server resolves author and tenant from the session; consensus and confidence are not fields of a persisted decision'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:358:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:344:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unsupported keys: tenantId — the server resolves author and tenant from the session; consensus and confidence are not fields of a persisted decision',
+    expected: /resuelve el servidor/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/conditional-decision.test.ts:374:11
+✖ motivos obligatorios; la alternativa debe pertenecer al snapshot (2.235625ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /motivos/i. Input:
+  
+  'a decision requires reasons: reasons cannot be empty'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:385:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:374:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a decision requires reasons: reasons cannot be empty',
+    expected: /motivos/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/conditional-decision.test.ts:523:11
+✖ excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente (3.7705ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /nueva evidencia y una reevaluación/i. Input:
+  
+  'An event excluded by a confirmed restriction cannot become a viable choice with a click: correcting the information requires new evidence and reevaluation in a new run and snapshot.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:535:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:523:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'An event excluded by a confirmed restriction cannot become a viable choice with a click: correcting the information requires new evidence and reevaluation in a new run and snapshot.',
+    expected: /nueva evidencia y una reevaluación/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/conditional-decision.test.ts:584:11
+✖ dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan (19.668167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /ya está resuelta/i. Input:
+  
+  'the condition «dcond-df3e6659-9042-4da7-9f1c-8247ab974b15» is already resolved: confirming it again adds nothing (the recorded resolution is preserved)'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:639:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:584:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'the condition «dcond-df3e6659-9042-4da7-9f1c-8247ab974b15» is already resolved: confirming it again adds nothing (the recorded resolution is preserved)',
+    expected: /ya está resuelta/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/conditional-decision.test.ts:656:11
+✖ razones distintas por alternativa; decidir no fabrica claims ni evidencia (5.002333ms)
+  AssertionError [ERR_ASSERTION]: una decisión por alternativa decidida
+  
+  2 !== 3
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:660:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:656:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/conditional-decision.test.ts:684:11
+✖ rollback conjunto: una caída al confirmar la campaña no deja decisión suelta (100.88425ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /acordado/i. Input:
+  
+  '$.commitments[0].confirmation: an AGREED commitment requires support: who confirmed, when, method, and confirmation evidence'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:751:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/conditional-decision.test.ts:684:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '$.commitments[0].confirmation: an AGREED commitment requires support: who confirmed, when, method, and confirmation evidence',
+    expected: /acordado/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/curated-dossier.test.ts:1:1
+✖ tests/integration/curated-dossier.test.ts (135.93025ms)
+  'test failed'
+
+test at tests/integration/decision-brief.test.ts:22:1
+✖ DP11 durable actionable decision, exact revision and concurrency (1.287375ms)
+  AssertionError [ERR_ASSERTION]: DP11 isolated DB required
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/decision-brief.test.ts:23:9)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/integration/evaluation-run.test.ts:352:11
+✖ reanudación básica: corte del worker tras un paso, reinicio, el MISMO run termina (3370.773917ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Cobertura insuficiente/. Input:
+  
+  'Insufficient coverage: no catalog is loaded for this session. Research was not replaced with fixtures.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/evaluation-run.test.ts:390:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/evaluation-run.test.ts:352:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Insufficient coverage: no catalog is loaded for this session. Research was not replaced with fixtures.',
+    expected: /Cobertura insuficiente/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/evaluation-snapshot.test.ts:1:1
+✖ tests/integration/evaluation-snapshot.test.ts (219.461375ms)
+  'test failed'
+
+test at tests/integration/exa-discovery.test.ts:129:11
+✖ deadline survives restart and excludes new calls (90.395916ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /duración/. Input:
+  
+  'Maximum run duration reached; retrieved sources are preserved. Las páginas encontradas son propuestas de fuentes. Falta leerlas and vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:133:125)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:129:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Maximum run duration reached; retrieved sources are preserved. Las páginas encontradas son propuestas de fuentes. Falta leerlas and vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.',
+    expected: /duración/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/exa-discovery.test.ts:136:11
+✖ concurrent delivery cannot duplicate the live provider request (16.489792ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /worker activo/. Input:
+  
+  'Error: Discovery already has an active worker; redelivery pending.'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:140:18)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:136:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Discovery already has an active worker; redelivery pending.
+        at runDiscoveryStep (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/discovery/durable.ts:90:24)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:140:18)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:136:3)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3),
+    expected: /worker activo/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/integration/exa-discovery.test.ts:155:11
+✖ unexpected reported charge suspends new calls rather than trusting an obsolete tariff (93.778791ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /suspendido/. Input:
+  
+  'Exa operational allowance exhausted or suspended. No additional query was sent.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:160:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/exa-discovery.test.ts:155:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Exa operational allowance exhausted or suspended. No additional query was sent.',
+    expected: /suspendido/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/explicable-comparison.test.ts:59:10
+✖ model cannot create prices or success from historical years, change priority, or cite another edition (23.903041ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Antecedente/. Input:
+  
+  'program:technical_background [announced]: Historical edition edition-e798e9bdbefdc361ed052d63: Monitoring, auditing, and recovery patterns for long-running agents · Program announced for this historical edition; delivery and attendee adoption are not observed.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/explicable-comparison.test.ts:63:285)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/explicable-comparison.test.ts:59:2)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'program:technical_background [announced]: Historical edition edition-e798e9bdbefdc361ed052d63: Monitoring, auditing, and recovery patterns for long-running agents · Program announced for this historical edition; delivery and attendee adoption are not observed.',
+    expected: /Antecedente/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/location-resolution.test.ts:1:1
+✖ tests/integration/location-resolution.test.ts (184.883ms)
+  'test failed'
+
+test at tests/integration/luma-dossier.test.ts:268:11
+✖ POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada (8.415083ms)
+  AssertionError [ERR_ASSERTION]: causa esperada para «https://lu.ma/»
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:284:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:268:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'URL rechazada: the URL must point to an event page (path missing)',
+    expected: /ruta/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/luma-dossier.test.ts:295:11
+✖ profileRunId de otro tenant → 400 (RLS: no existe para esta sesión) (4.002167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /investigación previa/. Input:
+  
+  'Durable import requires previous research for this session (brief unavailable).'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:303:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:295:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Durable import requires previous research for this session (brief unavailable).',
+    expected: /investigación previa/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/luma-dossier.test.ts:397:11
+✖ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (80.121166ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /transporte fixture de prueba, sin consulta a Luma real/. Input:
+  
+  'Durable import from https://lu.ma/fixture-provenance (run ffda8c78-8e77-4763-a027-257489aa6c47); test fixture transport, without querying real Luma. Does not establish a real event or commercial coverage.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:413:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:397:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Durable import from https://lu.ma/fixture-provenance (run ffda8c78-8e77-4763-a027-257489aa6c47); test fixture transport, without querying real Luma. Does not establish a real event or commercial coverage.',
+    expected: /transporte fixture de prueba, sin consulta a Luma real/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/luma-dossier.test.ts:546:11
+✖ límite de tamaño: la descarga se corta y el run falla con causa visible (30.407334ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /límite de 5000 bytes/. Input:
+  
+  'SourceReadError: The page exceeds the limit of 5000 bytes'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:553:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:546:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: SourceReadError: The page exceeds the limit of 5000 bytes
+        at fetchLumaEvent (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/catalog/luma-adapter.ts:169:25)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async cachedSourceRead (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/sources/cache.ts:47:20)
+        at async processEvaluationRun (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/lib/server/evaluations/run-worker.ts:184:22)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:553:5)
+        at async Test.run (node:internal/test_runner/test:1116:7)
+        at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/luma-dossier.test.ts:546:3)
+        at async Test.run (node:internal/test_runner/test:1116:7),
+    expected: /límite de 5000 bytes/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/integration/relationships.test.ts:73:10
+✖ DP04 discovery proposal -> DP05 full reading -> persisted relations; snippet remains unmodified (39.540208ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(source)
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/relationships.test.ts:76:121)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/relationships.test.ts:73:2)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/integration/relationships.test.ts:83:10
+✖ failed proposal reads are recovered from the discovery run without repeated requests (35.204959ms)
+  TypeError: Cannot read properties of undefined (reading 'id')
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/relationships.test.ts:88:115)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/relationships.test.ts:83:2)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/integration/research-brief.test.ts:1:1
+✖ tests/integration/research-brief.test.ts (175.524042ms)
+  'test failed'
+
+test at tests/integration/source-reading.test.ts:1:1
+✖ tests/integration/source-reading.test.ts (185.735542ms)
+  'test failed'
+
+test at tests/integration/tenant-isolation.test.ts:422:11
+✖ claims referenciados: comparación, importación y decisión con IDs ajenos se rechazan (4.692542ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /fuera del catálogo/. Input:
+  
+  '{"error":"invalid_profile","message":"Editions outside the catalog for this session: ed-iso-real-only. The comparison does not fabricate candidates."}'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/tenant-isolation.test.ts:435:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/tenant-isolation.test.ts:422:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"error":"invalid_profile","message":"Editions outside the catalog for this session: ed-iso-real-only. The comparison does not fabricate candidates."}',
+    expected: /fuera del catálogo/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/trust-decision.test.ts:1:1
+✖ tests/integration/trust-decision.test.ts (183.692708ms)
+  'test failed'
+
+test at tests/integration/worker-recovery.test.ts:503:11
+✖ SIGKILL entre el commit de un paso y el siguiente: el avance confirmado no se re-ejecuta (1253.887375ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sin consulta a Luma real/. Input:
+  
+  'Durable import from https://lu.ma/growthx-rec-c (run fb709204-2245-43f8-96cd-49eee1dcfd31); test fixture transport, without querying real Luma. Does not establish a real event or commercial coverage.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:529:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:503:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Durable import from https://lu.ma/growthx-rec-c (run fb709204-2245-43f8-96cd-49eee1dcfd31); test fixture transport, without querying real Luma. Does not establish a real event or commercial coverage.',
+    expected: /sin consulta a Luma real/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/worker-recovery.test.ts:535:11
+✖ SIGKILL tras confirmar el snapshot (paso sin confirmar): un solo snapshot oficial (1282.224959ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /GEMINI_API_KEY ausente/. Input:
+  
+  'GEMINI_API_KEY missing: model narrative unavailable; the deterministic explanation remains available.'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:561:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:535:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'GEMINI_API_KEY missing: model narrative unavailable; the deterministic explanation remains available.',
+    expected: /GEMINI_API_KEY ausente/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/integration/worker-recovery.test.ts:685:11
+✖ cola caída en la aceptación: nada persistido; el reintento del cliente repite la llamada y queda trazado (17.525083ms)
+  AssertionError [ERR_ASSERTION]: la aceptación repetida quedó trazada
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:715:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:685:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/worker-recovery.test.ts:770:11
+✖ fuente caída que agota reintentos: fallido y visible, sin recomendación preparada que lo oculte (2840.734209ms)
+  AssertionError [ERR_ASSERTION]: la causa real queda visible
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:787:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/integration/worker-recovery.test.ts:770:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'The source could not be read (network error or incomplete response)',
+    expected: /error de red/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/ui/research-experience.test.ts:1:1
+✖ tests/ui/research-experience.test.ts (122.427584ms)
+  'test failed'
+
+test at tests/ui/sf-map.test.ts:1:1
+✖ tests/ui/sf-map.test.ts (126.145959ms)
+  'test failed'
+
+test at tests/ui/trust-evidence.test.ts:1:1
+✖ tests/ui/trust-evidence.test.ts (279.321208ms)
+  'test failed'

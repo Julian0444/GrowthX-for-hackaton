@@ -1,0 +1,1368 @@
+{
+  "at": "2026-09-10T22:44:41.180Z",
+  "base": "http://localhost:3000",
+  "material": "real public HTTP via browser -> app -> queue -> worker",
+  "originalRun": "21279a0a-9fe0-4968-b900-29af59463fe6",
+  "runs": [
+    {
+      "id": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+      "workflow_version": "background-research/1",
+      "state": "completed",
+      "created_at": "2026-09-10T22:41:28.243Z",
+      "result": {
+        "kind": "background_research",
+        "status": "completed",
+        "version": 1,
+        "material": "imported",
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "limitations": [],
+        "sourceCount": 4,
+        "organizerIds": [
+          "organizer-04587d2ea2cbaaa1d349711c"
+        ],
+        "attemptedUrls": [
+          "https://www.hackathons.team/events/ai-security-hackathon-2026",
+          "https://www.hackathons.team/about",
+          "https://www.hackathons.team/",
+          "https://www.hackathons.team/sponsor/enquire"
+        ],
+        "editionRevisionIds": [
+          "edition-rev-72f2a9cce09525f99c185f1e-geo"
+        ]
+      }
+    },
+    {
+      "id": "7d43b762-b599-4759-b657-0848612a94c2",
+      "workflow_version": "background-research/1",
+      "state": "completed",
+      "created_at": "2026-09-10T22:41:53.906Z",
+      "result": {
+        "kind": "background_research",
+        "status": "completed",
+        "version": 1,
+        "material": "imported",
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "limitations": [],
+        "sourceCount": 2,
+        "organizerIds": [
+          "organizer-d0350d3075591b98188bfa06",
+          "organizer-17a4d73021fb1f28da17cd13"
+        ],
+        "attemptedUrls": [
+          "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "https://blogs.vultr.com/vultr-at-RAISE-2025"
+        ],
+        "editionRevisionIds": [
+          "edition-rev-000d0e76fda7ae4810b06423-geo",
+          "edition-rev-f40b0c34ccfe68347d66bdc9"
+        ]
+      }
+    },
+    {
+      "id": "4ea79f69-9aa0-45c4-a7b9-31fb3be59455",
+      "workflow_version": "luma-ingest/1",
+      "state": "completed",
+      "created_at": "2026-09-10T22:42:18.967Z",
+      "result": {
+        "kind": "luma_event_ingest",
+        "reading": {
+          "cache": "miss",
+          "status": "obtained",
+          "version": 1,
+          "failures": [],
+          "strategy": "http_get",
+          "checkedAt": "2026-09-10T22:42:19.954Z",
+          "freshness": "current",
+          "limitation": null
+        },
+        "version": 1,
+        "sourceId": "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-src",
+        "editionId": "luma-7a4iutvp",
+        "extraction": {
+          "status": "complete",
+          "warnings": [
+            "La disponibilidad de entradas no confirma acceso abierto; aprobación, invitación y condiciones de inscripción quedan pendientes.",
+            "prize pool not present in structured data"
+          ],
+          "fieldsExtracted": [
+            "name",
+            "startsAt",
+            "endsAt",
+            "venue",
+            "city",
+            "coordinates",
+            "organizer",
+            "date:structured",
+            "end_date",
+            "format",
+            "location",
+            "address",
+            "companies:presenter",
+            "hosts:listed",
+            "audience",
+            "sponsors:announced",
+            "companies:venue_partner",
+            "program",
+            "access",
+            "date:visible"
+          ]
+        },
+        "canonicalUrl": "https://lu.ma/7a4iutvp",
+        "requestedUrl": "https://lu.ma/7a4iutvp",
+        "editionRevisionId": "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-edition",
+        "linkedToExistingEdition": true
+      }
+    },
+    {
+      "id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "workflow_version": "background-research/1",
+      "state": "completed",
+      "created_at": "2026-09-10T22:42:42.956Z",
+      "result": {
+        "kind": "background_research",
+        "status": "partial",
+        "version": 1,
+        "material": "imported",
+        "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+        "limitations": [
+          "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase: La página respondió 403",
+          "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo: La página respondió 403",
+          "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk: La página respondió 403",
+          "https://sf.aitinkerers.org/organizers: La página respondió 403"
+        ],
+        "sourceCount": 2,
+        "organizerIds": [
+          "organizer-c65ea5ee11a9e13d7a13bd36"
+        ],
+        "attemptedUrls": [
+          "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+          "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+          "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+          "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+          "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+          "https://sf.aitinkerers.org/organizers"
+        ],
+        "editionRevisionIds": [
+          "edition-rev-5623a76ed1495827bf29a63c-geo",
+          "edition-rev-d0fe09ead5da74717d30449b-geo"
+        ]
+      }
+    }
+  ],
+  "reads": [
+    {
+      "run_id": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+      "canonical_url": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:41:28.366Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:41:28.548Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": {
+        "city": "San Francisco",
+        "venue": "EF (Entrepreneur First), floors 1 and 2",
+        "method": "unknown",
+        "status": "announced",
+        "address": {
+          "region": "CA",
+          "country": "US",
+          "locality": "San Francisco",
+          "postalCode": "94105",
+          "streetAddress": "501 Folsom St"
+        },
+        "provider": null,
+        "precision": "city",
+        "limitation": "No published coordinates; geocoding has not been performed.",
+        "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US"
+      },
+      "content_hash": "91048922f902295ecea4d08ccba90b0a5bbf72094684d0468593eb9cadebcb9b"
+    },
+    {
+      "run_id": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+      "canonical_url": "https://www.hackathons.team/about",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:41:28.595Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:41:28.617Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": "6201f7326c4f0b508f5f36411d24125e3e674e7f0ab106991e7fac5027d44908"
+    },
+    {
+      "run_id": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+      "canonical_url": "https://www.hackathons.team/",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:41:28.645Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:41:28.683Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": "0646c9702c08679b4afb074511a136dc1f179783af1b72601f5f60d0d8f06f08"
+    },
+    {
+      "run_id": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+      "canonical_url": "https://www.hackathons.team/sponsor/enquire",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:41:28.696Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:41:28.755Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": "3b405dd3f4bd63bf1a5da104c7f4c29e7685657f27a903b2b57f3b39d64265ff"
+    },
+    {
+      "run_id": "7d43b762-b599-4759-b657-0848612a94c2",
+      "canonical_url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:41:54.371Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:41:56.008Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": {
+        "city": "San Francisco",
+        "venue": "San Francisco, CA",
+        "method": "unknown",
+        "status": "announced",
+        "address": {
+          "region": "CA",
+          "country": "US",
+          "locality": "San Francisco",
+          "postalCode": null,
+          "streetAddress": null
+        },
+        "provider": null,
+        "precision": "city",
+        "limitation": "No published coordinates; geocoding has not been performed.",
+        "originalAddress": null
+      },
+      "content_hash": "3fb2d85367bbc1669bd8bde6195aefdf770ebe73ef5fa0afd7f4aaa39211f358"
+    },
+    {
+      "run_id": "7d43b762-b599-4759-b657-0848612a94c2",
+      "canonical_url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:41:56.047Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:41:57.276Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": "ec17afef33c3467b8942c7d2d575d7c0c6c493e5c1452eeaa5381fd6e22c3994"
+    },
+    {
+      "run_id": "4ea79f69-9aa0-45c4-a7b9-31fb3be59455",
+      "canonical_url": "https://lu.ma/7a4iutvp",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:42:19.495Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:42:19.954Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": {
+        "lat": 37.786980299999996,
+        "lng": -122.39447709999999
+      },
+      "extracted_location": {
+        "city": "San Francisco",
+        "venue": "501 Folsom St",
+        "method": "published_coordinates",
+        "status": "announced",
+        "address": {
+          "region": "CA",
+          "country": "USA",
+          "locality": "San Francisco",
+          "postalCode": "94105",
+          "streetAddress": "501 Folsom St"
+        },
+        "provider": "event JSON-LD",
+        "precision": "address",
+        "limitation": "Published point associated with the place; metric accuracy and entrance not verified.",
+        "originalAddress": "501 Folsom St, San Francisco, CA, 94105, USA"
+      },
+      "content_hash": "70dec47e9497bc3b1cb08d0a797c232e2232f76bd93117a2cdc9518342ad79bc"
+    },
+    {
+      "run_id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "canonical_url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:42:43.517Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:42:44.239Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": {
+        "city": "San Francisco",
+        "venue": null,
+        "method": "unknown",
+        "status": "announced",
+        "address": null,
+        "provider": null,
+        "precision": "city",
+        "limitation": "Address withheld until acceptance; no location reconstructed.",
+        "originalAddress": null
+      },
+      "content_hash": "7150095ac8a5315794742b06c0a7d5aab29a5d72f542c865379952a93058bdb9"
+    },
+    {
+      "run_id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "canonical_url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "material": "real",
+      "state": "succeeded",
+      "error": null,
+      "checked_at": "2026-09-10T22:42:44.302Z",
+      "reading": {
+        "cache": "miss",
+        "status": "obtained",
+        "version": 1,
+        "failures": [],
+        "strategy": "http_get",
+        "checkedAt": "2026-09-10T22:42:44.454Z",
+        "freshness": "current",
+        "limitation": null
+      },
+      "published_coordinates": null,
+      "extracted_location": {
+        "city": "San Francisco",
+        "venue": null,
+        "method": "unknown",
+        "status": "announced",
+        "address": null,
+        "provider": null,
+        "precision": "city",
+        "limitation": "Address withheld until acceptance; no location reconstructed.",
+        "originalAddress": null
+      },
+      "content_hash": "06b424aad404ef2c77797997703b4056754cef1eebb61b64bff04fd4318f254a"
+    },
+    {
+      "run_id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "canonical_url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "material": "real",
+      "state": "failed",
+      "error": "La página respondió 403",
+      "checked_at": "2026-09-10T22:42:44.490Z",
+      "reading": null,
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": null
+    },
+    {
+      "run_id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "canonical_url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "material": "real",
+      "state": "failed",
+      "error": "La página respondió 403",
+      "checked_at": "2026-09-10T22:42:44.520Z",
+      "reading": null,
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": null
+    },
+    {
+      "run_id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "canonical_url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "material": "real",
+      "state": "failed",
+      "error": "La página respondió 403",
+      "checked_at": "2026-09-10T22:42:44.608Z",
+      "reading": null,
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": null
+    },
+    {
+      "run_id": "422c3de4-20c0-47a5-8e64-d23e0a8cac58",
+      "canonical_url": "https://sf.aitinkerers.org/organizers",
+      "material": "real",
+      "state": "failed",
+      "error": "La página respondió 403",
+      "checked_at": "2026-09-10T22:42:44.706Z",
+      "reading": null,
+      "published_coordinates": null,
+      "extracted_location": null,
+      "content_hash": null
+    }
+  ],
+  "lookups": [
+    {
+      "run_id": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+      "state": "completed",
+      "output": {
+        "cache": "miss",
+        "error": null,
+        "matches": [
+          {
+            "accuracy": "interpolated",
+            "precision": "address",
+            "coordinates": {
+              "lat": 37.787215024828,
+              "lng": -122.394478898761
+            },
+            "countyGeoid": "06075",
+            "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105"
+          }
+        ],
+        "checkedAt": "2026-09-10T22:41:29.354Z",
+        "failureCode": null
+      },
+      "created_at": "2026-09-10T22:41:28.883Z"
+    }
+  ],
+  "current": [
+    {
+      "editionId": "edition-4322ef61414369d9f52fb3a5",
+      "editionRevisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+      "canonicalUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+      "publicLocation": {
+        "resolution": {
+          "outcome": "resolved",
+          "query": "501 Folsom St, San Francisco, CA, 94105, US",
+          "normalizedQuery": "501 FOLSOM ST SAN FRANCISCO CA 94105 US",
+          "sourceVersion": "03c53487bab9073409db3ae0d665663947382418ab541b50f57113a0fd96a107",
+          "claimRevisionIds": [
+            "background-claim-rev-edd025c33a765d9a05a89a6e",
+            "background-claim-rev-f289e0c7537dc55b8d47c708",
+            "background-claim-rev-f6c9d03137e02f2ed44c6ae8"
+          ],
+          "checkedAt": "2026-09-10T22:41:29.354Z",
+          "cache": "miss",
+          "accuracy": "interpolated",
+          "providerVersion": "Public_AR_Current/Current_Current;dp08-v1",
+          "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105",
+          "countyGeoid": "06075",
+          "failureCode": null
+        },
+        "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US",
+        "address": {
+          "streetAddress": "501 Folsom St",
+          "locality": "San Francisco",
+          "region": "CA",
+          "postalCode": "94105",
+          "country": "US"
+        },
+        "venue": "EF (Entrepreneur First), floors 1 and 2",
+        "city": "San Francisco",
+        "precision": "address",
+        "method": "geocoded",
+        "provider": "us-census",
+        "resolvedAt": "2026-09-10T22:41:29.354Z",
+        "sourceIds": [
+          "background-source-04f52245a1ff64ca7378c010",
+          "edition-rev-72f2a9cce09525f99c185f1e-geo-source"
+        ],
+        "status": "announced",
+        "limitation": "Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso."
+      },
+      "projection": {
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "editionRevisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+        "location": {
+          "resolution": {
+            "outcome": "resolved",
+            "query": "501 Folsom St, San Francisco, CA, 94105, US",
+            "normalizedQuery": "501 FOLSOM ST SAN FRANCISCO CA 94105 US",
+            "sourceVersion": "03c53487bab9073409db3ae0d665663947382418ab541b50f57113a0fd96a107",
+            "claimRevisionIds": [
+              "background-claim-rev-edd025c33a765d9a05a89a6e",
+              "background-claim-rev-f289e0c7537dc55b8d47c708",
+              "background-claim-rev-f6c9d03137e02f2ed44c6ae8"
+            ],
+            "checkedAt": "2026-09-10T22:41:29.354Z",
+            "cache": "miss",
+            "accuracy": "interpolated",
+            "providerVersion": "Public_AR_Current/Current_Current;dp08-v1",
+            "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105",
+            "countyGeoid": "06075",
+            "failureCode": null
+          },
+          "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US",
+          "address": {
+            "streetAddress": "501 Folsom St",
+            "locality": "San Francisco",
+            "region": "CA",
+            "postalCode": "94105",
+            "country": "US"
+          },
+          "venue": "EF (Entrepreneur First), floors 1 and 2",
+          "city": "San Francisco",
+          "precision": "address",
+          "method": "geocoded",
+          "provider": "us-census",
+          "resolvedAt": "2026-09-10T22:41:29.354Z",
+          "sourceIds": [
+            "background-source-04f52245a1ff64ca7378c010",
+            "edition-rev-72f2a9cce09525f99c185f1e-geo-source"
+          ],
+          "status": "announced",
+          "limitation": "Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso."
+        },
+        "mapPoint": {
+          "editionId": "edition-4322ef61414369d9f52fb3a5",
+          "editionRevisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+          "lat": 37.787215024828,
+          "lng": -122.394478898761,
+          "locationName": "EF (Entrepreneur First), floors 1 and 2",
+          "precision": "address",
+          "status": "announced",
+          "method": "geocoded",
+          "accuracy": "interpolated",
+          "approximate": true,
+          "geojson": {
+            "type": "Point",
+            "coordinates": [
+              -122.394478898761,
+              37.787215024828
+            ]
+          }
+        },
+        "withoutPointReason": null
+      },
+      "relationships": [
+        {
+          "id": "relationship-8874ea46dd194a326d2c8ad0",
+          "editionId": "edition-4322ef61414369d9f52fb3a5",
+          "entity": {
+            "type": "organizer",
+            "organizerId": "organizer-04587d2ea2cbaaa1d349711c"
+          },
+          "role": "organizer",
+          "status": "announced",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-0c9f71b03dca6464a4b72a33",
+            "background-source-04f52245a1ff64ca7378c010"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-0c9f71b03dca6464a4b72a33",
+              "fragmentId": "fragment-f411236157139ac076848303",
+              "locator": null
+            },
+            {
+              "sourceId": "background-source-04f52245a1ff64ca7378c010",
+              "fragmentId": "fragment-331e07470bb7385948dee5c7",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-fd2893764ba3d196e2af70d1"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        }
+      ]
+    },
+    {
+      "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+      "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo",
+      "canonicalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "publicLocation": {
+        "resolution": {
+          "outcome": "pending",
+          "query": null,
+          "normalizedQuery": null,
+          "sourceVersion": "07583049ac28944575e7942580c67d53c763501d51a91f727bc8bb2c13134e54",
+          "claimRevisionIds": [
+            "background-claim-rev-1a4d72809217adc00c55721a",
+            "background-claim-rev-407f745514438472dfd7a203"
+          ],
+          "checkedAt": "2026-09-10T22:41:57.437Z",
+          "cache": "not_applicable",
+          "accuracy": "unknown",
+          "providerVersion": null,
+          "matchedAddress": null,
+          "countyGeoid": null,
+          "failureCode": null
+        },
+        "originalAddress": null,
+        "address": {
+          "streetAddress": null,
+          "locality": "San Francisco",
+          "region": "CA",
+          "postalCode": null,
+          "country": "US"
+        },
+        "venue": "San Francisco, CA",
+        "city": "San Francisco",
+        "precision": "city",
+        "method": "unknown",
+        "provider": null,
+        "resolvedAt": null,
+        "sourceIds": [
+          "background-source-47aa031920df734b87c388a9"
+        ],
+        "status": "announced",
+        "limitation": "Solo ciudad o sede sin dirección pública; sin punto de venue."
+      },
+      "projection": {
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo",
+        "location": {
+          "resolution": {
+            "outcome": "pending",
+            "query": null,
+            "normalizedQuery": null,
+            "sourceVersion": "07583049ac28944575e7942580c67d53c763501d51a91f727bc8bb2c13134e54",
+            "claimRevisionIds": [
+              "background-claim-rev-1a4d72809217adc00c55721a",
+              "background-claim-rev-407f745514438472dfd7a203"
+            ],
+            "checkedAt": "2026-09-10T22:41:57.437Z",
+            "cache": "not_applicable",
+            "accuracy": "unknown",
+            "providerVersion": null,
+            "matchedAddress": null,
+            "countyGeoid": null,
+            "failureCode": null
+          },
+          "originalAddress": null,
+          "address": {
+            "streetAddress": null,
+            "locality": "San Francisco",
+            "region": "CA",
+            "postalCode": null,
+            "country": "US"
+          },
+          "venue": "San Francisco, CA",
+          "city": "San Francisco",
+          "precision": "city",
+          "method": "unknown",
+          "provider": null,
+          "resolvedAt": null,
+          "sourceIds": [
+            "background-source-47aa031920df734b87c388a9"
+          ],
+          "status": "announced",
+          "limitation": "Solo ciudad o sede sin dirección pública; sin punto de venue."
+        },
+        "mapPoint": null,
+        "withoutPointReason": "Solo ciudad o sede sin dirección pública; sin punto de venue."
+      },
+      "relationships": [
+        {
+          "id": "relationship-37a8dd5d93aaebdd47b120a5",
+          "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+          "entity": {
+            "type": "organizer",
+            "organizerId": "organizer-d0350d3075591b98188bfa06"
+          },
+          "role": "host",
+          "status": "announced",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-47aa031920df734b87c388a9"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-47aa031920df734b87c388a9",
+              "fragmentId": "fragment-cec986ee0eb72274cc7ba2b9",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-443f1a35f64859e937e3f3e9"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        }
+      ]
+    },
+    {
+      "editionId": "edition-725d68dbc9a97e89ac367bc7",
+      "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9",
+      "canonicalUrl": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "projection": {
+        "editionId": "edition-725d68dbc9a97e89ac367bc7",
+        "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9",
+        "location": {
+          "originalAddress": null,
+          "address": null,
+          "venue": null,
+          "city": "Paris",
+          "precision": "unknown",
+          "method": "unknown",
+          "provider": null,
+          "resolvedAt": null,
+          "sourceIds": [],
+          "status": "pending",
+          "limitation": "Registro anterior sin precisión ni procedencia documentada de coordenadas."
+        },
+        "mapPoint": null,
+        "withoutPointReason": "Registro anterior sin precisión ni procedencia documentada de coordenadas."
+      },
+      "relationships": [
+        {
+          "id": "relationship-b4fcfd7ac7a4ce2ec5193a2a",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "entity": {
+            "type": "company",
+            "companyId": "company-d0350d3075591b98188bfa06"
+          },
+          "role": "sponsor",
+          "status": "reported",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-c7d10b468ee0442a6884c677"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-c7d10b468ee0442a6884c677",
+              "fragmentId": "fragment-a9fbe85d7aab750e37cec324",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-dab06f746b2427a04acde94b",
+          "editionId": "edition-725d68dbc9a97e89ac367bc7",
+          "entity": {
+            "type": "organizer",
+            "organizerId": "organizer-17a4d73021fb1f28da17cd13"
+          },
+          "role": "organizer",
+          "status": "reported",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-c7d10b468ee0442a6884c677"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-c7d10b468ee0442a6884c677",
+              "fragmentId": "fragment-a9fbe85d7aab750e37cec324",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-ad8ba3874282997e639b0dfa"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        }
+      ]
+    },
+    {
+      "editionId": "luma-7a4iutvp",
+      "editionRevisionId": "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-edition",
+      "canonicalUrl": "https://lu.ma/7a4iutvp",
+      "publicLocation": {
+        "originalAddress": "501 Folsom St, San Francisco, CA, 94105, USA",
+        "address": {
+          "streetAddress": "501 Folsom St",
+          "locality": "San Francisco",
+          "region": "CA",
+          "postalCode": "94105",
+          "country": "USA"
+        },
+        "venue": "501 Folsom St",
+        "city": "San Francisco",
+        "precision": "address",
+        "method": "published_coordinates",
+        "provider": "event JSON-LD",
+        "resolvedAt": "2026-09-10T22:42:19.954Z",
+        "sourceIds": [
+          "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-src"
+        ],
+        "status": "announced",
+        "limitation": "Published point associated with the place; metric accuracy and entrance not verified."
+      },
+      "projection": {
+        "editionId": "luma-7a4iutvp",
+        "editionRevisionId": "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-edition",
+        "location": {
+          "originalAddress": "501 Folsom St, San Francisco, CA, 94105, USA",
+          "address": {
+            "streetAddress": "501 Folsom St",
+            "locality": "San Francisco",
+            "region": "CA",
+            "postalCode": "94105",
+            "country": "USA"
+          },
+          "venue": "501 Folsom St",
+          "city": "San Francisco",
+          "precision": "address",
+          "method": "published_coordinates",
+          "provider": "event JSON-LD",
+          "resolvedAt": "2026-09-10T22:42:19.954Z",
+          "sourceIds": [
+            "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-src"
+          ],
+          "status": "announced",
+          "limitation": "Published point associated with the place; metric accuracy and entrance not verified."
+        },
+        "mapPoint": {
+          "editionId": "luma-7a4iutvp",
+          "editionRevisionId": "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-edition",
+          "lat": 37.786980299999996,
+          "lng": -122.39447709999999,
+          "locationName": "501 Folsom St",
+          "precision": "address",
+          "status": "announced",
+          "method": "published_coordinates",
+          "accuracy": "published",
+          "approximate": false,
+          "geojson": {
+            "type": "Point",
+            "coordinates": [
+              -122.39447709999999,
+              37.786980299999996
+            ]
+          }
+        },
+        "withoutPointReason": null
+      }
+    },
+    {
+      "editionId": "edition-e798e9bdbefdc361ed052d63",
+      "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo",
+      "canonicalUrl": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "publicLocation": {
+        "resolution": {
+          "outcome": "pending",
+          "query": null,
+          "normalizedQuery": null,
+          "sourceVersion": "853b31d4299fe387e2b136fcd3fd282d40ba8fe796f5ebafa0bfdb2e5f5a8068",
+          "claimRevisionIds": [
+            "background-claim-rev-1df9523c02b732b704c96a76",
+            "background-claim-rev-54a709ef6e9cbee00aa9e594",
+            "background-claim-rev-8a241ffa18cabc9a555e5daf"
+          ],
+          "checkedAt": "2026-09-10T22:42:45.023Z",
+          "cache": "not_applicable",
+          "accuracy": "unknown",
+          "providerVersion": null,
+          "matchedAddress": null,
+          "countyGeoid": null,
+          "failureCode": null
+        },
+        "originalAddress": null,
+        "address": null,
+        "venue": null,
+        "city": "San Francisco",
+        "precision": "city",
+        "method": "unknown",
+        "provider": null,
+        "resolvedAt": null,
+        "sourceIds": [
+          "background-source-fbd51fe609f1db84e0862f03"
+        ],
+        "status": "announced",
+        "limitation": "Dirección oculta; no se reconstruye la sede."
+      },
+      "projection": {
+        "editionId": "edition-e798e9bdbefdc361ed052d63",
+        "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo",
+        "location": {
+          "resolution": {
+            "outcome": "pending",
+            "query": null,
+            "normalizedQuery": null,
+            "sourceVersion": "853b31d4299fe387e2b136fcd3fd282d40ba8fe796f5ebafa0bfdb2e5f5a8068",
+            "claimRevisionIds": [
+              "background-claim-rev-1df9523c02b732b704c96a76",
+              "background-claim-rev-54a709ef6e9cbee00aa9e594",
+              "background-claim-rev-8a241ffa18cabc9a555e5daf"
+            ],
+            "checkedAt": "2026-09-10T22:42:45.023Z",
+            "cache": "not_applicable",
+            "accuracy": "unknown",
+            "providerVersion": null,
+            "matchedAddress": null,
+            "countyGeoid": null,
+            "failureCode": null
+          },
+          "originalAddress": null,
+          "address": null,
+          "venue": null,
+          "city": "San Francisco",
+          "precision": "city",
+          "method": "unknown",
+          "provider": null,
+          "resolvedAt": null,
+          "sourceIds": [
+            "background-source-fbd51fe609f1db84e0862f03"
+          ],
+          "status": "announced",
+          "limitation": "Dirección oculta; no se reconstruye la sede."
+        },
+        "mapPoint": null,
+        "withoutPointReason": "Dirección oculta; no se reconstruye la sede."
+      },
+      "relationships": [
+        {
+          "id": "relationship-088e366e1f2585f5c2398064",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "entity": {
+            "type": "organizer",
+            "organizerId": "organizer-c65ea5ee11a9e13d7a13bd36"
+          },
+          "role": "organizer",
+          "status": "announced",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-fbd51fe609f1db84e0862f03"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-fbd51fe609f1db84e0862f03",
+              "fragmentId": "fragment-90f003c3faf067c8a3fcb9a3",
+              "locator": null
+            },
+            {
+              "sourceId": "background-source-fbd51fe609f1db84e0862f03",
+              "fragmentId": "fragment-028a938ce75e3b8a24a9ef90",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-7fcce123e6a07bd885ccde8d"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-0fabe03f3d046d27645c6a92",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "entity": {
+            "type": "company",
+            "companyId": "company-cd8183ccec2672cfff185ec3"
+          },
+          "role": "sponsor",
+          "status": "announced",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-fbd51fe609f1db84e0862f03"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-fbd51fe609f1db84e0862f03",
+              "fragmentId": "fragment-a4859be370752256e4008eee",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-8ca9e50520af8b9e01a4cafa"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-af9ad988b7846086fb150694",
+          "editionId": "edition-e798e9bdbefdc361ed052d63",
+          "entity": {
+            "type": "company",
+            "companyId": "company-40de1bd6700b7ba4e689591e"
+          },
+          "role": "venue",
+          "status": "announced",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-fbd51fe609f1db84e0862f03"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-fbd51fe609f1db84e0862f03",
+              "fragmentId": "fragment-26473f0e9aea3e1475f298e1",
+              "locator": null
+            },
+            {
+              "sourceId": "background-source-fbd51fe609f1db84e0862f03",
+              "fragmentId": "fragment-1d316fc0f1fd8997cd7edeb6",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        }
+      ]
+    },
+    {
+      "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+      "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo",
+      "canonicalUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "publicLocation": {
+        "resolution": {
+          "outcome": "pending",
+          "query": null,
+          "normalizedQuery": null,
+          "sourceVersion": "fad54903d27f1b67b2c40eef12118153800fe61f7726301e446f11efc3831050",
+          "claimRevisionIds": [
+            "background-claim-rev-14001c023c548b3b24bc414d",
+            "background-claim-rev-152ef2bac226ec677af30922"
+          ],
+          "checkedAt": "2026-09-10T22:42:45.012Z",
+          "cache": "not_applicable",
+          "accuracy": "unknown",
+          "providerVersion": null,
+          "matchedAddress": null,
+          "countyGeoid": null,
+          "failureCode": null
+        },
+        "originalAddress": null,
+        "address": null,
+        "venue": null,
+        "city": "San Francisco",
+        "precision": "city",
+        "method": "unknown",
+        "provider": null,
+        "resolvedAt": null,
+        "sourceIds": [
+          "background-source-505eef0cd878fae2b7f5dcce"
+        ],
+        "status": "announced",
+        "limitation": "Dirección oculta; no se reconstruye la sede."
+      },
+      "projection": {
+        "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+        "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo",
+        "location": {
+          "resolution": {
+            "outcome": "pending",
+            "query": null,
+            "normalizedQuery": null,
+            "sourceVersion": "fad54903d27f1b67b2c40eef12118153800fe61f7726301e446f11efc3831050",
+            "claimRevisionIds": [
+              "background-claim-rev-14001c023c548b3b24bc414d",
+              "background-claim-rev-152ef2bac226ec677af30922"
+            ],
+            "checkedAt": "2026-09-10T22:42:45.012Z",
+            "cache": "not_applicable",
+            "accuracy": "unknown",
+            "providerVersion": null,
+            "matchedAddress": null,
+            "countyGeoid": null,
+            "failureCode": null
+          },
+          "originalAddress": null,
+          "address": null,
+          "venue": null,
+          "city": "San Francisco",
+          "precision": "city",
+          "method": "unknown",
+          "provider": null,
+          "resolvedAt": null,
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "status": "announced",
+          "limitation": "Dirección oculta; no se reconstruye la sede."
+        },
+        "mapPoint": null,
+        "withoutPointReason": "Dirección oculta; no se reconstruye la sede."
+      },
+      "relationships": [
+        {
+          "id": "relationship-263b9267e5ff86c316ba43e5",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "organizer",
+            "organizerId": "organizer-c65ea5ee11a9e13d7a13bd36"
+          },
+          "role": "organizer",
+          "status": "announced",
+          "scope": "edition",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-8626b2a2f478a40fbbda9939",
+              "locator": null
+            },
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-63570ff0e6d5bac82e59102a",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-85e8d9b611a28cfe7cd00733"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-c2134734487cf86c04cc6b89",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-04d39e8bd5d50dd5367f9de9"
+          },
+          "role": "sponsor",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-8f961cbe876e98c0",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-ad9db75b0577da886e705c09"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-198890c8c451708c81db8cb6",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-d1062216db62afcd9ae14625"
+          },
+          "role": "sponsor",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-8f961cbe876e98c0",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-f1cd0351090fc4914c994425"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-4b0bbf0ea383b9522298e64f",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-6dba8b525a6dbd9e0e91e5ce"
+          },
+          "role": "sponsor",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-8f961cbe876e98c0",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-dd8e5547e01c17ce1ffa6057"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-1fc12951207af9e53cb6b2d6",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-4e5366f94fed9021301ddf67"
+          },
+          "role": "infrastructure_partner",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-c6f7cfe1f5da3859",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-1ae4fa646ebf66ea54775a8c"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-b1a370e09ca9849bf4585ffb",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-23b2ced502ed35435b02845d"
+          },
+          "role": "infrastructure_partner",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-c6f7cfe1f5da3859",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-c289c7cb6b58d25210dede99"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-a1a14e9a353ac2f7de585220",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-51017da681cdf1133998fabb"
+          },
+          "role": "infrastructure_partner",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-c6f7cfe1f5da3859",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-fad5e2d68ef6f9f1e2c644f2"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-3fbcced638ec7d9860c3e9e6",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-1f66f5dc7537b166bd957f63"
+          },
+          "role": "infrastructure_partner",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-c6f7cfe1f5da3859",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-fec37f325092ac650a394578"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        },
+        {
+          "id": "relationship-32d0779c4784db933e8e69d1",
+          "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+          "entity": {
+            "type": "company",
+            "companyId": "company-0aefaaa7f96166bd3822aadc"
+          },
+          "role": "infrastructure_partner",
+          "status": "announced",
+          "scope": "global_program",
+          "sourceIds": [
+            "background-source-505eef0cd878fae2b7f5dcce"
+          ],
+          "evidence": [
+            {
+              "sourceId": "background-source-505eef0cd878fae2b7f5dcce",
+              "fragmentId": "fragment-c6f7cfe1f5da3859",
+              "locator": null
+            }
+          ],
+          "claimRevisionIds": [
+            "background-claim-rev-ab3d2b148f63aba5dcda06fc"
+          ],
+          "limitation": "Published role only; payment, attendance and commercial return are not established."
+        }
+      ]
+    }
+  ],
+  "providerCounts": {
+    "census": 1,
+    "exa": "0",
+    "apify": "0"
+  }
+}

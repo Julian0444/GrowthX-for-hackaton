@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-09-10T22:22:37.859Z",
+  "build": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp08-production-659hz90h",
+  "checks": [
+    "original geographic revision reopens",
+    "interpolation/provenance visible",
+    "city stays in list with reason and without marker",
+    "keyboard selection in current map opens same edition despite overlapping source markers",
+    "mobile no horizontal overflow",
+    "no new source/geocoder/paid requests"
+  ],
+  "additionalRequests": 0,
+  "requestCount": 1
+}

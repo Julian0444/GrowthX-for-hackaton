@@ -1,0 +1,233 @@
+(node:91517) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/explicable-comparison.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP07 production browser: select two -> inspect pinned antecedent -> edit brief -> differences -> reopen unchanged (10128.855292ms)
+(node:91691) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ✔ perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes (10507.226875ms)
+  ✖ elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next (31768.397ms)
+  ✖ reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar (1717.921458ms)
+  ✖ perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido (0.468ms)
+✖ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL) (48896.383375ms)
+ℹ Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+(node:92430) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ✖ guardar una elección condicional, ver su campaña y copiar el enlace interno (2726.586542ms)
+  ✖ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (1536.799375ms)
+  ✖ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (0.370458ms)
+  ✖ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (0.160208ms)
+  ✖ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (34.64025ms)
+  ✖ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (39.228666ms)
+  ✖ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (703.39375ms)
+  ✖ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (0.448292ms)
+✖ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales) (11729.275917ms)
+ℹ Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+(node:92613) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors (1.266417ms)
+(node:92614) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ✔ same filtered set, published location, source link, selection and dossier by keyboard (1272.055583ms)
+  ✔ new result updates markers without replacing map or recentering; same venue identities remain distinct (3684.097625ms)
+  ✔ mobile switches list/map without losing selection or map, with filters and zero points (586.511584ms)
+  ✔ run change and unmount remove old markers/listeners; no catalog leakage (2550.493667ms)
+  ✔ snapshot geography and dossier remain old; current data requires a separate view (1180.090625ms)
+  ✔ style failure preserves mobile list and can recover (1251.327125ms)
+  ✔ tiles failure preserves mobile list and can recover (1215.47325ms)
+  ✔ WebGL context loss exposes the list and retry creates one new map (109.548667ms)
+  ✔ WebGL initialization failure leaves usable list (345.831625ms)
+✔ DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures (13289.3705ms)
+ℹ Owned Next and Chrome closed.
+ℹ tests 26
+ℹ suites 0
+ℹ pass 12
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85857.83325
+
+✖ failing tests:
+
+test at tests/e2e/persisted-evaluation.spec.ts:298:11
+✖ elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next (31768.397ms)
+  locator.fill: Timeout 20000ms exceeded.
+  Call log:
+    - waiting for getByTestId('comparison-panel').locator('[data-edition-id="luma-growthx-e2e-persisted"]').getByLabel('Open question')
+  
+      at TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:330:49)
+      at async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:298:3) {
+    name: 'TimeoutError'
+  }
+
+test at tests/e2e/persisted-evaluation.spec.ts:361:11
+✖ reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar (1717.921458ms)
+  Error: ▲ Next.js 16.2.6 (webpack)
+  - Local:         http://127.0.0.1:53871
+  - Network:       http://127.0.0.1:53871
+  ✓ Ready in 292ms
+  ⨯ Another next dev server is already running.
+  
+  - Local:        http://localhost:54782
+  - PID:          91711
+  - Dir:          /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-persisted-e2e-rlYCPd
+  - Log:          .next/dev/logs/next-development.log
+  
+  Run kill 91711 to stop it.
+  [?25h
+  
+      at file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:147:49
+      at eventually (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:60:25)
+      at async startNext (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:146:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:362:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:361:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/persisted-evaluation.spec.ts:406:11
+✖ perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido (0.468ms)
+  TypeError: Cannot read properties of undefined (reading 'goto')
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:409:16)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at TestContext.test (node:internal/test_runner/test:367:20)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts:406:11)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:217:11
+✖ guardar una elección condicional, ver su campaña y copiar el enlace interno (2726.586542ms)
+  locator.fill: Error: strict mode violation: getByTestId('comparison-panel').locator('[data-edition-id="ed-sf-dev-summit-2027"]').getByLabel('Owner') resolved to 2 elements:
+      1) <input value="" aria-label="Brief owner"/> aka getByRole('textbox', { name: 'Brief owner' })
+      2) <input value="" aria-label="Owner"/> aka getByRole('textbox', { name: 'Owner', exact: true })
+  
+  Call log:
+    - waiting for getByTestId('comparison-panel').locator('[data-edition-id="ed-sf-dev-summit-2027"]').getByLabel('Owner')
+  
+      at TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:238:38)
+      at async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:217:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:281:11
+✖ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (1536.799375ms)
+  Error: ▲ Next.js 16.2.6 (webpack)
+  - Local:         http://127.0.0.1:61845
+  - Network:       http://127.0.0.1:61845
+  ✓ Ready in 205ms
+  ⨯ Another next dev server is already running.
+  
+  - Local:        http://localhost:56149
+  - PID:          92446
+  - Dir:          /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-reopen-e2e-7NKiD3
+  - Log:          .next/dev/logs/next-development.log
+  
+  Run kill 92446 to stop it.
+  [?25h
+  
+      at file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:136:49
+      at eventually (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:56:25)
+      at async startNext (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:135:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:282:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:281:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:345:11
+✖ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (0.370458ms)
+  TypeError: Cannot read properties of undefined (reading 'getByRole')
+      at nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:347:13)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at TestContext.test (node:internal/test_runner/test:367:20)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:345:11)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:419:11
+✖ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (0.160208ms)
+  TypeError: Cannot read properties of undefined (reading 'getByRole')
+      at nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:420:11)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at TestContext.test (node:internal/test_runner/test:367:20)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:419:11)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:463:11
+✖ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (34.64025ms)
+  TypeError: Cannot read properties of undefined (reading 'decisionId')
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:470:53)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:463:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:489:11
+✖ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (39.228666ms)
+  TypeError: Cannot read properties of undefined (reading 'waitForResponse')
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:494:28)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:489:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:536:11
+✖ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (703.39375ms)
+  TypeError: Cannot read properties of undefined (reading 'getByRole')
+      at nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:547:11)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:536:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:570:11
+✖ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (0.448292ms)
+  TypeError: Cannot read properties of undefined (reading 'decisionId')
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:571:79)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at TestContext.test (node:internal/test_runner/test:367:20)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts:570:11)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/research-experience.spec.ts:11:1
+✖ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors (1.266417ms)
+  AssertionError [ERR_ASSERTION]: Use the dedicated DP10 test database
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/research-experience.spec.ts:12:10)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "lib/server/db/migrate.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 0.77,
+  "database": "isolated PostgreSQL port 55448"
+}

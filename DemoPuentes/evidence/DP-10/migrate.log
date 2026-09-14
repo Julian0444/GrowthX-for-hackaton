@@ -1,0 +1,12 @@
+✓ Lockfile passes supply-chain policies (verified 1h ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 627ms using pnpm v11.8.0
+$ node lib/server/db/migrate.ts
+(node:40483) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/lib/server/db/migrate.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Migraciones aplicadas: 001-evaluacion-persistida.sql, 002-catalogo-curado.sql, 003-dashboard-sf.sql, 004-importacion-luma.sql, 005-comparacion-y-snapshot.sql, 006-decision-condicional.sql, 007-discovery-exa.sql, 008-source-reading.sql, 009-dp06-relationships.sql, 010-location-resolution.sql
+Esquema pgboss y cola de evaluaciones verificados.

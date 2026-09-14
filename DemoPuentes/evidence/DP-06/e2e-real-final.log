@@ -1,0 +1,26 @@
+(node:51889) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP06 browser: real public sources -> organizer -> previous edition -> project -> evidence (14606.58325ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14973.868875
+
+✖ failing tests:
+
+test at tests/e2e/relationships.spec.ts:19:68
+✖ DP06 browser: real public sources -> organizer -> previous edition -> project -> evidence (14606.58325ms)
+  locator.click: Error: strict mode violation: getByTestId('edition-dossier').locator('[data-relationship-id]').filter({ hasText: 'Vultr' }).getByText('Evidence for this edition and role', { exact: true }) resolved to 2 elements:
+      1) <summary>Evidence for this edition and role</summary> aka getByText('Evidence for this edition and').first()
+      2) <summary>Evidence for this edition and role</summary> aka getByText('Evidence for this edition and').nth(1)
+  
+  Call log:
+    - waiting for getByTestId('edition-dossier').locator('[data-relationship-id]').filter({ hasText: 'Vultr' }).getByText('Evidence for this edition and role', { exact: true })
+  
+      at TestContext.<anonymous> (/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/tests/e2e/relationships.spec.ts:81:161)

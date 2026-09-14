@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-force-exit",
+    "--test-reporter=tap",
+    "tests/e2e/reopen-evaluation.spec.ts",
+    "tests/e2e/research-brief.spec.ts",
+    "tests/e2e/relationships.spec.ts",
+    "tests/e2e/sf-street-map.spec.ts",
+    "tests/e2e/source-reading.spec.ts",
+    "tests/e2e/research-experience.spec.ts"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend",
+  "databasePort": 55460,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 1,
+  "durationSeconds": 137.5
+}

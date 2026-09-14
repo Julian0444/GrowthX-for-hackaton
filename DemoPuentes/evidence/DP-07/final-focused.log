@@ -1,0 +1,29 @@
+(node:2040) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/acceptance/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP07 historical technical evidence favors research; sponsor remains its actual role and source (34.999958ms)
+✔ DP07 new payments/hiring brief changes reason, proposed activity and useful question without borrowing previous buyer inference (4.249209ms)
+✔ DP07 contradicted/missing references, wrong identity and award-only evidence cannot support priority (7.441666ms)
+✔ DP07 city pending remains conditional without point; free restrictions and unknown audience reach result (0.427125ms)
+✔ DP07 cost gates run before priority: additive costs exclude, mixed/incomplete/contradicted stay conditional (2.371166ms)
+✔ DP07 affirmed claim strengthening preserves support, equal evidence remains unordered (2.201083ms)
+(node:2044) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/integration/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP07 persisted comparison, revised brief, immutable antecedents and model authority
+  ✔ snapshot fixes selected and historical edition, relationship, claim and source revisions (2.42375ms)
+  ✔ new brief is validated, versioned and changes explanation, constraints, objective and question (85.058667ms)
+  ✔ new catalog revision does not change the original dossier, historical organizer, sources or decisions (13.748792ms)
+  ✔ foreign tenant cannot read snapshot or select editions/profiles; invalid references roll back (6.492459ms)
+  ✔ model cannot create prices or success from historical years, change priority, or cite another edition (29.02475ms)
+✔ DP07 persisted comparison, revised brief, immutable antecedents and model authority (527.163875ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1124.417834

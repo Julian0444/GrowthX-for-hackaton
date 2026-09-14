@@ -29,7 +29,7 @@ export async function researchSfOrganizers(pool: pg.Pool, tenantId: string, prof
       order by organizer_id`);
     const organizers = rows.map(row => {
       const parsed = parseOrganizerRevision(row.payload);
-      if (!parsed.ok) throw new Error('Revisión de organizador inválida');
+      if (!parsed.ok) throw new Error('Invalid organizer revision');
       return parsed.value;
     });
     const loads = await client.query('select verified_at, material from growthx.catalog_loads order by verified_at');
@@ -64,18 +64,18 @@ export async function researchSfOrganizers(pool: pg.Pool, tenantId: string, prof
       if (!dossier.editions.some(e => e.edition.editionId === participation.editionId)) continue;
       if (!comparableIds.includes(participation.companyId) || !supported({ status: participation.roleStatus, sourceIds: participation.sourceIds })) continue;
       const company = dossier.companies.find(c => c.id === participation.companyId);
-      reasons.push({ attribute: 'empresa comparable', text: `${company?.name ?? participation.companyId} → ${participation.editionId} → ${participation.role} · ${participation.roleStatus}. Resultado comercial ${participation.commercialOutcome.status === 'unknown' ? 'desconocido' : 'reportado; consultar fuente'}.`, sourceIds: participation.sourceIds, revisionIds: [participation.id] });
+      reasons.push({ attribute: 'comparable company', text: `${company?.name ?? participation.companyId} → ${participation.editionId} → ${participation.role} · ${participation.roleStatus}. Commercial outcome ${participation.commercialOutcome.status === 'unknown' ? 'unknown' : 'reported; inspect source'}.`, sourceIds: participation.sourceIds, revisionIds: [participation.id] });
     }
     if (!reasons.length) continue;
     const futureSfEditionIds = ownEditions.filter(e => futureSfConditions(e, profile).length === 0).map(e => e.editionId);
-    const pending = ['Afinidad por factores explícitos; no mide reputación, popularidad ni probabilidad de ROI.',
-      'Acceso, audiencia y costo total requieren revisión antes de una decisión de inversión.'];
+    const pending = ['Fit based on explicit factors; this does not measure reputation, popularity, or probability of ROI.',
+      'Access, audience, and total cost require review before an investment decision.'];
     for (const read of ownEditions) {
       const name = read.editionRevisions.at(-1)!.name;
       pending.push(...evaluateEligibility({ dossier: read, profile }).conditions.map(c => `${name}: ${c.description}`));
     }
-    if (!futureSfEditionIds.length) pending.push('Sin edición futura de SF con fecha, lugar y restricciones respaldados. Se puede guardar como investigación pendiente.');
-    if (!dossier.coverage.antecedentsDocumented) pending.push('Sin antecedentes históricos documentados.');
+    if (!futureSfEditionIds.length) pending.push('No future SF edition has a supported date, location, and restrictions. It can be saved as pending research.');
+    if (!dossier.coverage.antecedentsDocumented) pending.push('No documented historical background.');
     candidates.push({ organizerId: organizer.organizerId, displayName: organizer.displayName, dossier, reasons, futureSfEditionIds, pending });
   }
   return {
@@ -83,7 +83,7 @@ export async function researchSfOrganizers(pool: pg.Pool, tenantId: string, prof
     criteria: { stack: profile.stack, audience: profile.audience.description, comparableCompanyIds: comparableIds, window: profile.window, budget: profile.budget, objective: profile.objective, ordering: 'presentation_only' },
     coverage: { organizers: catalog.organizers.length, editions: editions.length, sfEditions: list.editions.filter(e => isSanFrancisco(e.location)).length, matched: candidates.length,
       verifiedAt: [...new Set(catalog.loads.map(l => (l.verified_at as Date).toISOString()))], material: [...new Set(catalog.loads.map(l => String(l.material)))] },
-    catalogNote: [list.note, !candidates.length ? 'Sin coincidencias respaldadas: este es el límite del catálogo consultado, no una conclusión sobre todos los organizadores de SF.' : 'Orden por ID estable, sin ranking ni política comercial aprobada.'].filter(Boolean).join(' '),
+    catalogNote: [list.note, !candidates.length ? 'No supported matches: this is the limit of the reviewed catalog, not a conclusion about all SF organizers.' : 'Ordered by stable ID, with no ranking or approved commercial policy.'].filter(Boolean).join(' '),
     candidates, editions,
   };
 }

@@ -1,0 +1,3467 @@
+{
+  "observedAt": "2026-09-10T22:14:16.593Z",
+  "environment": "isolated production build + Next + worker + PostgreSQL + Chromium",
+  "tenantId": "ae91ce8b-b44e-49af-b566-c7c4c23e41fd",
+  "baseRunId": "04eeb513-31e5-4677-89b1-a340337abe87",
+  "providerUse": {
+    "censusRequests": 1,
+    "censusCostUsd": 0,
+    "exaCalls": 0,
+    "apifyCalls": 0
+  },
+  "checks": [
+    "real public address to interpolated pin",
+    "source claim and provider provenance",
+    "same revision after reload",
+    "current SVG map pin to dossier",
+    "city-only remains in list without pin",
+    "published coordinates no provider call",
+    "390px no horizontal overflow"
+  ],
+  "operations": [
+    {
+      "run_id": "599d520c-35bf-497b-9ce9-524ca3f96e42",
+      "state": "completed",
+      "output": {
+        "cache": "miss",
+        "error": null,
+        "matches": [
+          {
+            "accuracy": "interpolated",
+            "precision": "address",
+            "coordinates": {
+              "lat": 37.787215024828,
+              "lng": -122.394478898761
+            },
+            "countyGeoid": "06075",
+            "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105"
+          }
+        ],
+        "checkedAt": "2026-09-10T22:14:03.354Z",
+        "failureCode": null
+      },
+      "created_at": "2026-09-10T22:14:02.440Z"
+    }
+  ],
+  "samples": [
+    {
+      "url": "https://www.hackathons.team/events/ai-security-hackathon-2026/",
+      "runId": "599d520c-35bf-497b-9ce9-524ca3f96e42",
+      "result": {
+        "kind": "background_research",
+        "status": "completed",
+        "version": 1,
+        "material": "imported",
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "limitations": [],
+        "sourceCount": 4,
+        "organizerIds": [
+          "organizer-04587d2ea2cbaaa1d349711c"
+        ],
+        "attemptedUrls": [
+          "https://www.hackathons.team/events/ai-security-hackathon-2026",
+          "https://www.hackathons.team/about",
+          "https://www.hackathons.team/",
+          "https://www.hackathons.team/sponsor/enquire"
+        ],
+        "editionRevisionIds": [
+          "edition-rev-04705637e6e7c9d0b374fb59-geo"
+        ]
+      },
+      "read": {
+        "contractVersion": "1",
+        "evaluatedAt": "2026-09-10T22:14:05.293Z",
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "editionRevisions": [
+          {
+            "contractVersion": "1",
+            "id": "edition-rev-04705637e6e7c9d0b374fb59",
+            "editionId": "edition-4322ef61414369d9f52fb3a5",
+            "organizerIds": [
+              "organizer-04587d2ea2cbaaa1d349711c"
+            ],
+            "name": "AI Security Hackathon",
+            "canonicalUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+            "provider": "www.hackathons.team",
+            "startDate": {
+              "precision": "instant",
+              "iso": "2026-09-13T09:30:00-07:00",
+              "timezone": "-07:00"
+            },
+            "location": {
+              "scope": "city",
+              "name": "San Francisco"
+            },
+            "coordinates": null,
+            "publicLocation": {
+              "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US",
+              "address": {
+                "streetAddress": "501 Folsom St",
+                "locality": "San Francisco",
+                "region": "CA",
+                "postalCode": "94105",
+                "country": "US"
+              },
+              "venue": "EF (Entrepreneur First), floors 1 and 2",
+              "city": "San Francisco",
+              "precision": "city",
+              "method": "unknown",
+              "provider": null,
+              "resolvedAt": null,
+              "sourceIds": [
+                "background-source-4d01f505be1e1fa7563bf3fc"
+              ],
+              "status": "announced",
+              "limitation": "No published coordinates; geocoding has not been performed."
+            },
+            "relationships": [
+              {
+                "id": "relationship-8874ea46dd194a326d2c8ad0",
+                "editionId": "edition-4322ef61414369d9f52fb3a5",
+                "entity": {
+                  "type": "organizer",
+                  "organizerId": "organizer-04587d2ea2cbaaa1d349711c"
+                },
+                "role": "organizer",
+                "status": "announced",
+                "scope": "edition",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349",
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-f411236157139ac076848303",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-331e07470bb7385948dee5c7",
+                    "locator": null
+                  }
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-0e0cc0c06c84d56131a0e79a"
+                ],
+                "limitation": "Published role only; payment, attendance and commercial return are not established."
+              }
+            ],
+            "claimRevisionIds": [
+              "background-claim-rev-fe0f8a7f026e03958ddaaf3a",
+              "background-claim-rev-b51babd8a91e57cf0a26a448",
+              "background-claim-rev-0139285cd93eb09b4d2c2ac6",
+              "background-claim-rev-a9ed45e1beb03dda3ac94ac2",
+              "background-claim-rev-e40e85c049bffe2fdfacd3a6",
+              "background-claim-rev-9e0b97f24ad5ecb535a90a5e",
+              "background-claim-rev-90e76895a119446fc3cde713",
+              "background-claim-rev-328d85e6ee69915d6ada0bb2",
+              "background-claim-rev-1bb252b7fbe5f5c8d8e1bdd3",
+              "background-claim-rev-459b65f489cd5118ff7c1493",
+              "background-claim-rev-efa97d0f9c647dfac60ad604",
+              "background-claim-rev-9da9883df7d2a02e5373e128",
+              "background-claim-rev-e17772e28994dc75ba463f21",
+              "background-claim-rev-b8cf458c664b1729d299772f",
+              "background-claim-rev-59b02b0b06206ccb718ded07",
+              "background-claim-rev-9f36773b09f0c1274fb4388c",
+              "background-claim-rev-f20e593914684822d92bd9f9",
+              "background-claim-rev-0e0cc0c06c84d56131a0e79a",
+              "background-claim-rev-936b7112655db77283876ed1",
+              "background-claim-rev-b98f0f19bf9a30e6558b7fd9"
+            ],
+            "revisedAt": "2026-09-10T22:14:02.132Z",
+            "previousRevisionId": null
+          },
+          {
+            "contractVersion": "1",
+            "id": "edition-rev-04705637e6e7c9d0b374fb59-geo",
+            "editionId": "edition-4322ef61414369d9f52fb3a5",
+            "organizerIds": [
+              "organizer-04587d2ea2cbaaa1d349711c"
+            ],
+            "name": "AI Security Hackathon",
+            "canonicalUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+            "provider": "www.hackathons.team",
+            "startDate": {
+              "precision": "instant",
+              "iso": "2026-09-13T09:30:00-07:00",
+              "timezone": "-07:00"
+            },
+            "location": {
+              "scope": "city",
+              "name": "San Francisco"
+            },
+            "coordinates": {
+              "lat": 37.787215024828,
+              "lng": -122.394478898761
+            },
+            "publicLocation": {
+              "resolution": {
+                "outcome": "resolved",
+                "query": "501 Folsom St, San Francisco, CA, 94105, US",
+                "normalizedQuery": "501 FOLSOM ST SAN FRANCISCO CA 94105 US",
+                "sourceVersion": "723624b8ba2ee3c31e159b8deb8e3b6e7a47fc32fe0cb622bd7f3e765d74ecc9",
+                "claimRevisionIds": [
+                  "background-claim-rev-90e76895a119446fc3cde713",
+                  "background-claim-rev-328d85e6ee69915d6ada0bb2",
+                  "background-claim-rev-1bb252b7fbe5f5c8d8e1bdd3"
+                ],
+                "checkedAt": "2026-09-10T22:14:03.354Z",
+                "cache": "miss",
+                "accuracy": "interpolated",
+                "providerVersion": "Public_AR_Current/Current_Current;dp08-v1",
+                "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105",
+                "countyGeoid": "06075",
+                "failureCode": null
+              },
+              "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US",
+              "address": {
+                "streetAddress": "501 Folsom St",
+                "locality": "San Francisco",
+                "region": "CA",
+                "postalCode": "94105",
+                "country": "US"
+              },
+              "venue": "EF (Entrepreneur First), floors 1 and 2",
+              "city": "San Francisco",
+              "precision": "address",
+              "method": "geocoded",
+              "provider": "us-census",
+              "resolvedAt": "2026-09-10T22:14:03.354Z",
+              "sourceIds": [
+                "background-source-4d01f505be1e1fa7563bf3fc",
+                "edition-rev-04705637e6e7c9d0b374fb59-geo-source"
+              ],
+              "status": "announced",
+              "limitation": "Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso."
+            },
+            "relationships": [
+              {
+                "id": "relationship-8874ea46dd194a326d2c8ad0",
+                "editionId": "edition-4322ef61414369d9f52fb3a5",
+                "entity": {
+                  "type": "organizer",
+                  "organizerId": "organizer-04587d2ea2cbaaa1d349711c"
+                },
+                "role": "organizer",
+                "status": "announced",
+                "scope": "edition",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349",
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-f411236157139ac076848303",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-331e07470bb7385948dee5c7",
+                    "locator": null
+                  }
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-0e0cc0c06c84d56131a0e79a"
+                ],
+                "limitation": "Published role only; payment, attendance and commercial return are not established."
+              }
+            ],
+            "claimRevisionIds": [
+              "background-claim-rev-fe0f8a7f026e03958ddaaf3a",
+              "background-claim-rev-b51babd8a91e57cf0a26a448",
+              "background-claim-rev-0139285cd93eb09b4d2c2ac6",
+              "background-claim-rev-a9ed45e1beb03dda3ac94ac2",
+              "background-claim-rev-e40e85c049bffe2fdfacd3a6",
+              "background-claim-rev-9e0b97f24ad5ecb535a90a5e",
+              "background-claim-rev-90e76895a119446fc3cde713",
+              "background-claim-rev-328d85e6ee69915d6ada0bb2",
+              "background-claim-rev-1bb252b7fbe5f5c8d8e1bdd3",
+              "background-claim-rev-459b65f489cd5118ff7c1493",
+              "background-claim-rev-efa97d0f9c647dfac60ad604",
+              "background-claim-rev-9da9883df7d2a02e5373e128",
+              "background-claim-rev-e17772e28994dc75ba463f21",
+              "background-claim-rev-b8cf458c664b1729d299772f",
+              "background-claim-rev-59b02b0b06206ccb718ded07",
+              "background-claim-rev-9f36773b09f0c1274fb4388c",
+              "background-claim-rev-f20e593914684822d92bd9f9",
+              "background-claim-rev-0e0cc0c06c84d56131a0e79a",
+              "background-claim-rev-936b7112655db77283876ed1",
+              "background-claim-rev-b98f0f19bf9a30e6558b7fd9"
+            ],
+            "revisedAt": "2026-09-10T22:14:03.361Z",
+            "previousRevisionId": "edition-rev-04705637e6e7c9d0b374fb59"
+          }
+        ],
+        "validity": {
+          "validity": "upcoming",
+          "reason": "Declared start (2026-09-13T09:30:00-07:00) is at or after the evaluation instant under every possible timezone."
+        },
+        "organizers": [
+          {
+            "organizerId": "organizer-04587d2ea2cbaaa1d349711c",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "organizer-rev-fa544516c254ccd802552eac",
+                "organizerId": "organizer-04587d2ea2cbaaa1d349711c",
+                "displayName": "Hackathons.team",
+                "aliases": [],
+                "claimRevisionIds": [
+                  "background-claim-rev-97b638a0b7aaf9b7fd0c51f9",
+                  "background-claim-rev-e362fbffa4b507e4f4a75d60",
+                  "background-claim-rev-f5269a31247cc6a9fcb76bb3"
+                ],
+                "revisedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          }
+        ],
+        "claims": [
+          {
+            "claimId": "background-claim-018693279cd23ffcf85b5fb0",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-e40e85c049bffe2fdfacd3a6",
+                "claimId": "background-claim-018693279cd23ffcf85b5fb0",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "organizer:structured_attribution",
+                "value": {
+                  "kind": "text",
+                  "text": "Julius Olsson"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-7d39c986d72abed4",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-108907102e37b3ea54042d75",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-90e76895a119446fc3cde713",
+                "claimId": "background-claim-108907102e37b3ea54042d75",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "venue",
+                "value": {
+                  "kind": "text",
+                  "text": "EF (Entrepreneur First), floors 1 and 2"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-e78f0d1a4719740f",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-15828a70977ab9ada40faf82",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-328d85e6ee69915d6ada0bb2",
+                "claimId": "background-claim-15828a70977ab9ada40faf82",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "location",
+                "value": {
+                  "kind": "location",
+                  "scope": "city",
+                  "name": "San Francisco"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-cda03ebf173264e4",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-250121c9a291839ecbac2c35",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-0e0cc0c06c84d56131a0e79a",
+                "claimId": "background-claim-250121c9a291839ecbac2c35",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "relationship:relationship-8874ea46dd194a326d2c8ad0",
+                "value": {
+                  "kind": "text",
+                  "text": "organizer: organizer-04587d2ea2cbaaa1d349711c"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349",
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-f411236157139ac076848303",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-331e07470bb7385948dee5c7",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Published role only; payment, attendance and commercial return are not established.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-272061d59a0c65158900b24d",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-459b65f489cd5118ff7c1493",
+                "claimId": "background-claim-272061d59a0c65158900b24d",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "audience",
+                "value": {
+                  "kind": "text",
+                  "text": "The brief:\nThis is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here.\nWho should come:\nSecurity researchers, agent builders, red-teamers, and anyone who ships. Solo or teams of 1 to 5, all levels.\nRemote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-b8d75d894614d247",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-2d2a7c70803c51f6b34440e8",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-b8cf458c664b1729d299772f",
+                "claimId": "background-claim-2d2a7c70803c51f6b34440e8",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "audience:observed",
+                "value": {
+                  "kind": "pending",
+                  "note": "Actual attendance and its composition were not documented in the reviewed material."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-3430254f41861660f9b14a27",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-0139285cd93eb09b4d2c2ac6",
+                "claimId": "background-claim-3430254f41861660f9b14a27",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "end_date",
+                "value": {
+                  "kind": "text",
+                  "text": "2026-09-13T19:30:00-07:00"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-e43ee46206c7c600",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-4b5b007439fc07deaadb10f3",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-f5269a31247cc6a9fcb76bb3",
+                "claimId": "background-claim-4b5b007439fc07deaadb10f3",
+                "subject": {
+                  "type": "organizer",
+                  "organizerId": "organizer-04587d2ea2cbaaa1d349711c"
+                },
+                "attribute": "history:published",
+                "value": {
+                  "kind": "text",
+                  "text": "hackathons.team is a new initiative, started in 2026 in San Francisco. It is not a company: one organiser, running one-day hackathons properly, with working demos and judges who work in the field being judged. The first event is the AI Security Hackathon on Sunday 13 September 2026. | None yet. hackathons.team started in 2026 and its first event is listed above. After each event concludes, its card moves here with links to the published results and the judging panel."
+                },
+                "status": "reported",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349",
+                  "background-source-476e38678f0626f4b11eb204"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-477489d6b7444323025e4fcc",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-476e38678f0626f4b11eb204",
+                    "fragmentId": "fragment-ef35de3761e86ab76b8cf0a8",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Self-description or attributed report; not independently observed attendance.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-50aab19875567a0ac56de3ef",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-936b7112655db77283876ed1",
+                "claimId": "background-claim-50aab19875567a0ac56de3ef",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "buyer:relevance",
+                "value": {
+                  "kind": "text",
+                  "text": "For Observabilidad para agentes (adoption), reviewed material does not yet establish this organizer's delivery history. Request relevant previous editions, voluntary project references, an operational contact and full costs before choosing a format."
+                },
+                "status": "inferred",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349",
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-f411236157139ac076848303",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-331e07470bb7385948dee5c7",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Buyer-specific research hypothesis; no performance ranking or commercial return inferred.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-685fd1c9a157cfdb8403e393",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-a9ed45e1beb03dda3ac94ac2",
+                "claimId": "background-claim-685fd1c9a157cfdb8403e393",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "format",
+                "value": {
+                  "kind": "text",
+                  "text": "https://schema.org/OfflineEventAttendanceMode | The brief:\nThis is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-013c86031e120ac3",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-c21839405c42e51e",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-699b0a15324494b38bf33500",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-b98f0f19bf9a30e6558b7fd9",
+                "claimId": "background-claim-699b0a15324494b38bf33500",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "buyer:next_step",
+                "value": {
+                  "kind": "pending",
+                  "note": "Confirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-79163ecb0411861686060125",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-9da9883df7d2a02e5373e128",
+                "claimId": "background-claim-79163ecb0411861686060125",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "access",
+                "value": {
+                  "kind": "text",
+                  "text": "Who should come:\nRemote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day.\nSpots are limited."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-2c8beccd6ad6c487",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-7add7c90eed0cfe2c776bed2",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-fe0f8a7f026e03958ddaaf3a",
+                "claimId": "background-claim-7add7c90eed0cfe2c776bed2",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "name",
+                "value": {
+                  "kind": "text",
+                  "text": "AI Security Hackathon"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-c5310f5f6239d89f",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-864ced1c2e1101da8d93109a",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-9e0b97f24ad5ecb535a90a5e",
+                "claimId": "background-claim-864ced1c2e1101da8d93109a",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "cost:attendance",
+                "value": {
+                  "kind": "money",
+                  "amount": 0,
+                  "currency": "USD"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-d5d908fee1b88208",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-869d37cdada430f3fac55caf",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-59b02b0b06206ccb718ded07",
+                "claimId": "background-claim-869d37cdada430f3fac55caf",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "commercial:outcome",
+                "value": {
+                  "kind": "pending",
+                  "note": "No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-c9f608f1b7c05a5f75948635",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-e362fbffa4b507e4f4a75d60",
+                "claimId": "background-claim-c9f608f1b7c05a5f75948635",
+                "subject": {
+                  "type": "organizer",
+                  "organizerId": "organizer-04587d2ea2cbaaa1d349711c"
+                },
+                "attribute": "description",
+                "value": {
+                  "kind": "text",
+                  "text": "Julius Olsson organises the events. hackathons.team is not incorporated, has no staff and is not backed by anyone; it is an initiative run by one person, with the venue, the sponsors and the judges of each event doing the rest. If that changes, this page will say so."
+                },
+                "status": "reported",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-f411236157139ac076848303",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Self-description or attributed report; not independently observed attendance.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-cbdbad4e4446d8d42cece4cd",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-b51babd8a91e57cf0a26a448",
+                "claimId": "background-claim-cbdbad4e4446d8d42cece4cd",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "date:structured",
+                "value": {
+                  "kind": "text",
+                  "text": "2026-09-13T09:30:00-07:00"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-dace63aba5decea6",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-d163e08a95a80b51f4f39ac3",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-f20e593914684822d92bd9f9",
+                "claimId": "background-claim-d163e08a95a80b51f4f39ac3",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "cost:sponsorship",
+                "value": {
+                  "kind": "pending",
+                  "note": "Edition-specific sponsorship quote and total participation cost remain unknown."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-d1e3577a9e495f1e14e1c604",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-e17772e28994dc75ba463f21",
+                "claimId": "background-claim-d1e3577a9e495f1e14e1c604",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "date:visible",
+                "value": {
+                  "kind": "text",
+                  "text": "DateSun, Sep 13 2026"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-a17d1567f690c351",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-d28bb0b33e68e7925e3330dd",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-97b638a0b7aaf9b7fd0c51f9",
+                "claimId": "background-claim-d28bb0b33e68e7925e3330dd",
+                "subject": {
+                  "type": "organizer",
+                  "organizerId": "organizer-04587d2ea2cbaaa1d349711c"
+                },
+                "attribute": "identity",
+                "value": {
+                  "kind": "text",
+                  "text": "Hackathons.team · https://www.hackathons.team/"
+                },
+                "status": "reported",
+                "sourceIds": [
+                  "background-source-60696825afe158c258f90349",
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-60696825afe158c258f90349",
+                    "fragmentId": "fragment-f411236157139ac076848303",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-331e07470bb7385948dee5c7",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Public attribution; no universal reputation or operating responsibility inferred.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-d5bff488ac86179a0519c362",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-9f36773b09f0c1274fb4388c",
+                "claimId": "background-claim-d5bff488ac86179a0519c362",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "organizer:responsible",
+                "value": {
+                  "kind": "pending",
+                  "note": "Operational contact for this edition has not been verified."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-f451f79fb569f9d5aa550a51",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-efa97d0f9c647dfac60ad604",
+                "claimId": "background-claim-f451f79fb569f9d5aa550a51",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "program",
+                "value": {
+                  "kind": "text",
+                  "text": "The day:\n9:30\nDoors\nCoffee, team forming, pick your target.\n10:00\nBuild\nEight hours. Ship something that runs.\n18:00\nDemos\nLive demos, judging, prizes.\nJudging:\nWorking demo on a real target\nTechnical depth\nOriginality\nShock factor\nProgress on the day"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-ab7c9f1a81e3cc8c",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-fcd9cc495184fd13c2e75344",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-1bb252b7fbe5f5c8d8e1bdd3",
+                "claimId": "background-claim-fcd9cc495184fd13c2e75344",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-4322ef61414369d9f52fb3a5"
+                },
+                "attribute": "address",
+                "value": {
+                  "kind": "text",
+                  "text": "501 Folsom St, San Francisco, CA, 94105, US | EF, 501 Folsom St · San Francisco | WhereEF, 501 Folsom St, SF"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-4d01f505be1e1fa7563bf3fc"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-9463db0d72399c35",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-0ae88c23a6751bc8",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-4d01f505be1e1fa7563bf3fc",
+                    "fragmentId": "fragment-102144d0c49e02fa",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:02.132Z",
+                "previousRevisionId": null
+              }
+            ]
+          }
+        ],
+        "participations": [],
+        "companies": [],
+        "sources": [
+          {
+            "contractVersion": "1",
+            "id": "background-source-476e38678f0626f4b11eb204",
+            "url": "https://www.hackathons.team/",
+            "locator": null,
+            "provider": "www.hackathons.team",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:02.261Z",
+            "publishedAt": null,
+            "method": "http_get+relationship_extraction",
+            "geoScope": "unknown",
+            "content": {
+              "kind": "hash",
+              "sha256": "0646c9702c08679b4afb074511a136dc1f179783af1b72601f5f60d0d8f06f08"
+            },
+            "usageRestrictions": [],
+            "requestedUrl": "https://www.hackathons.team/",
+            "canonicalUrl": "https://www.hackathons.team/",
+            "title": "hackathons.team · Events",
+            "fragments": [
+              {
+                "id": "fragment-055a95f9aebaa273",
+                "text": "Next event · Sunday 13 September 2026: Free, by application",
+                "locator": "HTML line 104"
+              },
+              {
+                "id": "fragment-8719b663704c7d8f",
+                "text": "Upcoming events: One day building anything agentic where security is the point, for security researchers, agent builders and red-teamers. Free to enter, $1,750 in prizes.",
+                "locator": "HTML line 130"
+              },
+              {
+                "id": "fragment-39839adf1892629f",
+                "text": "Past events: None yet. hackathons.team started in 2026 and its first event is listed above. After each event concludes, its card moves here with links to the published results and the judging panel.",
+                "locator": "HTML line 150"
+              },
+              {
+                "id": "fragment-653619b2168512c9",
+                "text": "Sun, Sep 13 2026",
+                "locator": "HTML line 100"
+              },
+              {
+                "id": "fragment-ef35de3761e86ab76b8cf0a8",
+                "text": "None yet. hackathons.team started in 2026 and its first event is listed above. After each event concludes, its card moves here with links to the published results and the judging panel.",
+                "locator": "HTML line 150"
+              }
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": null,
+              "freshness": "current"
+            }
+          },
+          {
+            "contractVersion": "1",
+            "id": "background-source-4d01f505be1e1fa7563bf3fc",
+            "url": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+            "locator": null,
+            "provider": "www.hackathons.team",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:02.132Z",
+            "publishedAt": null,
+            "method": "http_get+relationship_extraction",
+            "geoScope": "unknown",
+            "content": {
+              "kind": "hash",
+              "sha256": "91048922f902295ecea4d08ccba90b0a5bbf72094684d0468593eb9cadebcb9b"
+            },
+            "usageRestrictions": [],
+            "requestedUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+            "canonicalUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+            "title": "AI Security Hackathon",
+            "fragments": [
+              {
+                "id": "fragment-c5310f5f6239d89f",
+                "text": "name: AI Security Hackathon",
+                "locator": "JSON-LD Event.name"
+              },
+              {
+                "id": "fragment-dace63aba5decea6",
+                "text": "startDate: 2026-09-13T09:30:00-07:00",
+                "locator": "JSON-LD Event.startDate"
+              },
+              {
+                "id": "fragment-e43ee46206c7c600",
+                "text": "endDate: 2026-09-13T19:30:00-07:00",
+                "locator": "JSON-LD Event.endDate"
+              },
+              {
+                "id": "fragment-013c86031e120ac3",
+                "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+                "locator": "JSON-LD Event.eventAttendanceMode"
+              },
+              {
+                "id": "fragment-7d39c986d72abed4",
+                "text": "organizer.name: Julius Olsson",
+                "locator": "JSON-LD Event.organizer.name"
+              },
+              {
+                "id": "fragment-d5d908fee1b88208",
+                "text": "offers.price: 0; offers.priceCurrency: USD",
+                "locator": "JSON-LD Event.offers"
+              },
+              {
+                "id": "fragment-e78f0d1a4719740f",
+                "text": "location.name: EF (Entrepreneur First), floors 1 and 2",
+                "locator": "JSON-LD Event.location.name"
+              },
+              {
+                "id": "fragment-cda03ebf173264e4",
+                "text": "location.address.addressLocality: San Francisco",
+                "locator": "JSON-LD Event.location.address.addressLocality"
+              },
+              {
+                "id": "fragment-9463db0d72399c35",
+                "text": "location.address: 501 Folsom St, San Francisco, CA, 94105, US",
+                "locator": "JSON-LD Event.location.address"
+              },
+              {
+                "id": "fragment-0ae88c23a6751bc8",
+                "text": "EF, 501 Folsom St · San Francisco",
+                "locator": "HTML line 128"
+              },
+              {
+                "id": "fragment-102144d0c49e02fa",
+                "text": "WhereEF, 501 Folsom St, SF",
+                "locator": "HTML line 134"
+              },
+              {
+                "id": "fragment-b8d75d894614d247",
+                "text": "The brief: This is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here. Who should come: Security researchers, agent builders, red-teamers, and anyone who ships. Solo or teams of 1 to 5, all levels. Remote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day.",
+                "locator": "HTML line 150; HTML line 193; HTML line 194"
+              },
+              {
+                "id": "fragment-c21839405c42e51e",
+                "text": "The brief: This is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here.",
+                "locator": "HTML line 150"
+              },
+              {
+                "id": "fragment-ab7c9f1a81e3cc8c",
+                "text": "The day: 9:30 Doors Coffee, team forming, pick your target. 10:00 Build Eight hours. Ship something that runs. 18:00 Demos Live demos, judging, prizes. Judging: Working demo on a real target Technical depth Originality Shock factor Progress on the day",
+                "locator": "HTML line 170; HTML line 171; HTML line 172; HTML line 183; HTML line 184; HTML line 185; HTML line 186; HTML line 187"
+              },
+              {
+                "id": "fragment-2c8beccd6ad6c487",
+                "text": "Who should come: Remote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day. Spots are limited.",
+                "locator": "HTML line 194; HTML line 201"
+              },
+              {
+                "id": "fragment-a17d1567f690c351",
+                "text": "DateSun, Sep 13 2026",
+                "locator": "HTML line 132"
+              },
+              {
+                "id": "fragment-331e07470bb7385948dee5c7",
+                "text": "hackathons .team Event: https://www.hackathons.team/",
+                "locator": "HTML line 104 a[href]"
+              }
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": null,
+              "freshness": "current"
+            }
+          },
+          {
+            "contractVersion": "1",
+            "id": "background-source-60696825afe158c258f90349",
+            "url": "https://www.hackathons.team/about",
+            "locator": null,
+            "provider": "www.hackathons.team",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:02.203Z",
+            "publishedAt": null,
+            "method": "http_get+relationship_extraction",
+            "geoScope": "unknown",
+            "content": {
+              "kind": "hash",
+              "sha256": "6201f7326c4f0b508f5f36411d24125e3e674e7f0ab106991e7fac5027d44908"
+            },
+            "usageRestrictions": [],
+            "requestedUrl": "https://www.hackathons.team/about",
+            "canonicalUrl": "https://www.hackathons.team/about",
+            "title": "Who we are · hackathons.team",
+            "fragments": [
+              {
+                "id": "fragment-246835a2494ba1a4",
+                "text": "One-day hackathons, judged by people who work in the field.: hackathons.team is a new initiative, started in 2026 in San Francisco. It is not a company: one organiser, running one-day hackathons properly, with working demos and judges who work in the field being judged. The first event is the AI Security Hackathon on Sunday 13 September 2026.",
+                "locator": "HTML line 89"
+              },
+              {
+                "id": "fragment-728438320aa8e273",
+                "text": "Your product in the hands of people building on it against a deadline.: A workshop or office-hours slot during the build. Opt-in introductions to participants who want to hear from you, and recruiting on the day. A short report afterwards: who took part, what was built on your product, and the results. What sponsorship does not include: Any say in who judges. Any access to judge applications, to submissions before the demos, to scorecards, or to who wins. Sponsor-defined tracks are judged by the same panel against the same published rubric: the sponsor sets the challenge, not the outcome. Your employees are welcome to apply to judge. They are assessed on exactly the same standard as everyone else, their affiliation is shown on the panel, and they recuse from any project built on your product or by anyone they work with. Enquire about sponsoring We do not publish packages. Tell us about your company and what you would like to contribute, and we will come back with a proposal for a specific event.",
+                "locator": "HTML line 131; HTML line 132; HTML line 133; HTML line 138; HTML line 139; HTML line 142; HTML line 144"
+              },
+              {
+                "id": "fragment-c52f8add39080eed",
+                "text": "Sponsorship does not buy a seat on the panel.: Sponsorship funds prizes, the venue, food and the tools people build with. It does not buy or guarantee a place on the judging panel, and it gives no say over who judges, which projects they see, how they score, or who wins. Sponsors do not see scorecards. Sponsor employees may apply to judge like anyone else: they are assessed on the same standard, their affiliation is shown on the panel, and they recuse from any project built on their employer's product or by anyone they work with. Every judge, sponsor-affiliated or not, recuses from projects involving their employer, clients, investments or close collaborators.",
+                "locator": "HTML line 195"
+              },
+              {
+                "id": "fragment-877f5bdc574b8fca",
+                "text": "AI Security Hackathon: Our first event. One day building anything agentic where security is the point, for security researchers, agent builders and red-teamers. Free to enter, $1,750 in prizes. Judge applications for this event are open.",
+                "locator": "HTML line 224"
+              },
+              {
+                "id": "fragment-f0f1ff87aeb0fb34",
+                "text": "Sunday, September 13, 2026 · South Park, San Francisco",
+                "locator": "HTML line 222"
+              },
+              {
+                "id": "fragment-f411236157139ac076848303",
+                "text": "Julius Olsson organises the events. hackathons.team is not incorporated, has no staff and is not backed by anyone; it is an initiative run by one person, with the venue, the sponsors and the judges of each event doing the rest. If that changes, this page will say so.",
+                "locator": "HTML line 116"
+              },
+              {
+                "id": "fragment-477489d6b7444323025e4fcc",
+                "text": "hackathons.team is a new initiative, started in 2026 in San Francisco. It is not a company: one organiser, running one-day hackathons properly, with working demos and judges who work in the field being judged. The first event is the AI Security Hackathon on Sunday 13 September 2026.",
+                "locator": "HTML line 89"
+              }
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": null,
+              "freshness": "current"
+            }
+          },
+          {
+            "contractVersion": "1",
+            "id": "edition-rev-04705637e6e7c9d0b374fb59-geo-source",
+            "url": "https://geocoding.geo.census.gov/geocoder/",
+            "locator": "Consulta de dirección pública de esta edición",
+            "provider": "us-census",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:03.354Z",
+            "publishedAt": null,
+            "method": "address_geocoding",
+            "geoScope": "city",
+            "content": {
+              "kind": "excerpt",
+              "excerpt": "{\"provider\":\"us-census\",\"outcome\":\"resolved\",\"query\":\"501 Folsom St, San Francisco, CA, 94105, US\",\"normalizedQuery\":\"501 FOLSOM ST SAN FRANCISCO CA 94105 US\",\"sourceVersion\":\"723624b8ba2ee3c31e159b8deb8e3b6e7a47fc32fe0cb622bd7f3e765d74ecc9\",\"claimRevisionIds\":[\"background-claim-rev-90e76895a119446fc3cde713\",\"background-claim-rev-328d85e6ee69915d6ada0bb2\",\"background-claim-rev-1bb252b7fbe5f5c8d8e1bdd3\"],\"checkedAt\":\"2026-09-10T22:14:03.354Z\",\"cache\":\"miss\",\"accuracy\":\"interpolated\",\"providerVersion\":\"Public_AR_Current/Current_Current;dp08-v1\",\"matchedAddress\":\"501 FOLSOM ST, SAN FRANCISCO, CA, 94105\",\"countyGeoid\":\"06075\",\"failureCode\":null,\"coordinates\":{\"lat\":37.787215024828,\"lng\":-122.394478898761},\"limitation\":\"Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso.\"}"
+            },
+            "usageRestrictions": [
+              "US Census public data; cite U.S. Census Bureau. Address-range interpolation, not rooftop."
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": "Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso.",
+              "freshness": "unknown"
+            }
+          }
+        ],
+        "curation": {
+          "material": "imported",
+          "authorizedBy": "growthx-worker (automatic extraction)",
+          "verifiedAt": "2026-09-10T22:14:02.132Z",
+          "manifestName": "background:599d520c-35bf-497b-9ce9-524ca3f96e42",
+          "note": "Public sources read automatically; no human verification, paid-sponsor inference or ROI claim."
+        }
+      },
+      "position": {
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "editionRevisionId": "edition-rev-04705637e6e7c9d0b374fb59-geo",
+        "location": {
+          "resolution": {
+            "outcome": "resolved",
+            "query": "501 Folsom St, San Francisco, CA, 94105, US",
+            "normalizedQuery": "501 FOLSOM ST SAN FRANCISCO CA 94105 US",
+            "sourceVersion": "723624b8ba2ee3c31e159b8deb8e3b6e7a47fc32fe0cb622bd7f3e765d74ecc9",
+            "claimRevisionIds": [
+              "background-claim-rev-90e76895a119446fc3cde713",
+              "background-claim-rev-328d85e6ee69915d6ada0bb2",
+              "background-claim-rev-1bb252b7fbe5f5c8d8e1bdd3"
+            ],
+            "checkedAt": "2026-09-10T22:14:03.354Z",
+            "cache": "miss",
+            "accuracy": "interpolated",
+            "providerVersion": "Public_AR_Current/Current_Current;dp08-v1",
+            "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105",
+            "countyGeoid": "06075",
+            "failureCode": null
+          },
+          "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US",
+          "address": {
+            "streetAddress": "501 Folsom St",
+            "locality": "San Francisco",
+            "region": "CA",
+            "postalCode": "94105",
+            "country": "US"
+          },
+          "venue": "EF (Entrepreneur First), floors 1 and 2",
+          "city": "San Francisco",
+          "precision": "address",
+          "method": "geocoded",
+          "provider": "us-census",
+          "resolvedAt": "2026-09-10T22:14:03.354Z",
+          "sourceIds": [
+            "background-source-4d01f505be1e1fa7563bf3fc",
+            "edition-rev-04705637e6e7c9d0b374fb59-geo-source"
+          ],
+          "status": "announced",
+          "limitation": "Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso."
+        },
+        "mapPoint": {
+          "editionId": "edition-4322ef61414369d9f52fb3a5",
+          "editionRevisionId": "edition-rev-04705637e6e7c9d0b374fb59-geo",
+          "lat": 37.787215024828,
+          "lng": -122.394478898761,
+          "locationName": "EF (Entrepreneur First), floors 1 and 2",
+          "precision": "address",
+          "status": "announced",
+          "method": "geocoded",
+          "accuracy": "interpolated",
+          "approximate": true,
+          "geojson": {
+            "type": "Point",
+            "coordinates": [
+              -122.394478898761,
+              37.787215024828
+            ]
+          }
+        },
+        "withoutPointReason": null
+      }
+    },
+    {
+      "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "runId": "78c11f88-4798-4958-8a10-46903cd55f7b",
+      "result": {
+        "kind": "background_research",
+        "status": "completed",
+        "version": 1,
+        "material": "imported",
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "limitations": [],
+        "sourceCount": 2,
+        "organizerIds": [
+          "organizer-d0350d3075591b98188bfa06",
+          "organizer-17a4d73021fb1f28da17cd13"
+        ],
+        "attemptedUrls": [
+          "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "https://blogs.vultr.com/vultr-at-RAISE-2025"
+        ],
+        "editionRevisionIds": [
+          "edition-rev-5b6ff923a8c485118534e100-geo",
+          "edition-rev-7e069b9aa45682c9e2c37e3a"
+        ]
+      },
+      "read": {
+        "contractVersion": "1",
+        "evaluatedAt": "2026-09-10T22:14:12.751Z",
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "editionRevisions": [
+          {
+            "contractVersion": "1",
+            "id": "edition-rev-5b6ff923a8c485118534e100",
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "organizerIds": [
+              "organizer-d0350d3075591b98188bfa06"
+            ],
+            "name": "The Agent Arena Hackathon",
+            "canonicalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+            "provider": "cerebralvalley.ai",
+            "startDate": {
+              "precision": "instant",
+              "iso": "2026-09-26T16:00:00.000Z",
+              "timezone": "UTC"
+            },
+            "location": {
+              "scope": "city",
+              "name": "San Francisco"
+            },
+            "coordinates": null,
+            "publicLocation": {
+              "originalAddress": null,
+              "address": {
+                "streetAddress": null,
+                "locality": "San Francisco",
+                "region": "CA",
+                "postalCode": null,
+                "country": "US"
+              },
+              "venue": "San Francisco, CA",
+              "city": "San Francisco",
+              "precision": "city",
+              "method": "unknown",
+              "provider": null,
+              "resolvedAt": null,
+              "sourceIds": [
+                "background-source-a10a6631aa68e21083f04079"
+              ],
+              "status": "announced",
+              "limitation": "No published coordinates; geocoding has not been performed."
+            },
+            "relationships": [
+              {
+                "id": "relationship-37a8dd5d93aaebdd47b120a5",
+                "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                "entity": {
+                  "type": "organizer",
+                  "organizerId": "organizer-d0350d3075591b98188bfa06"
+                },
+                "role": "host",
+                "status": "announced",
+                "scope": "edition",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-cec986ee0eb72274cc7ba2b9",
+                    "locator": null
+                  }
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-fd30aabc6fa4c5b1d8158dea"
+                ],
+                "limitation": "Published role only; payment, attendance and commercial return are not established."
+              }
+            ],
+            "claimRevisionIds": [
+              "background-claim-rev-cd8b71341812de91abdeadae",
+              "background-claim-rev-87fd7c772c23a9583103a86b",
+              "background-claim-rev-78b3491c9dede8fcee913a63",
+              "background-claim-rev-e0d22490ab52a05ff01b9264",
+              "background-claim-rev-f2a93a736afc2a7103bed6e3",
+              "background-claim-rev-fd521460a94628f879f73042",
+              "background-claim-rev-4cd7462ee9b32cc350f7e76a",
+              "background-claim-rev-a0b58206990bfc70bf87fdf0",
+              "background-claim-rev-1a08fbe9705595289a8c7732",
+              "background-claim-rev-b9d89d2fd5948a56f223d2e7",
+              "background-claim-rev-b6cfa6c85d73d46336be7712",
+              "background-claim-rev-27ea5233846b3685c808cab1",
+              "background-claim-rev-93139c18dee0bd2a04ed5922",
+              "background-claim-rev-9e836290e48065518e7e3c3a",
+              "background-claim-rev-0d2ddf027f9b626a57f41758",
+              "background-claim-rev-fd30aabc6fa4c5b1d8158dea",
+              "background-claim-rev-15b455ec213a853e3da9c224",
+              "background-claim-rev-4396ba15cfdd9738ea412941"
+            ],
+            "revisedAt": "2026-09-10T22:14:10.121Z",
+            "previousRevisionId": null
+          },
+          {
+            "contractVersion": "1",
+            "id": "edition-rev-5b6ff923a8c485118534e100-geo",
+            "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+            "organizerIds": [
+              "organizer-d0350d3075591b98188bfa06"
+            ],
+            "name": "The Agent Arena Hackathon",
+            "canonicalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+            "provider": "cerebralvalley.ai",
+            "startDate": {
+              "precision": "instant",
+              "iso": "2026-09-26T16:00:00.000Z",
+              "timezone": "UTC"
+            },
+            "location": {
+              "scope": "city",
+              "name": "San Francisco"
+            },
+            "coordinates": null,
+            "publicLocation": {
+              "resolution": {
+                "outcome": "pending",
+                "query": null,
+                "normalizedQuery": null,
+                "sourceVersion": "d0ba9e886f50490607234a54781c12d6eadbfca809c61a643c5318fc6df353f4",
+                "claimRevisionIds": [
+                  "background-claim-rev-4cd7462ee9b32cc350f7e76a",
+                  "background-claim-rev-a0b58206990bfc70bf87fdf0"
+                ],
+                "checkedAt": "2026-09-10T22:14:11.393Z",
+                "cache": "not_applicable",
+                "accuracy": "unknown",
+                "providerVersion": null,
+                "matchedAddress": null,
+                "countyGeoid": null,
+                "failureCode": null
+              },
+              "originalAddress": null,
+              "address": {
+                "streetAddress": null,
+                "locality": "San Francisco",
+                "region": "CA",
+                "postalCode": null,
+                "country": "US"
+              },
+              "venue": "San Francisco, CA",
+              "city": "San Francisco",
+              "precision": "city",
+              "method": "unknown",
+              "provider": null,
+              "resolvedAt": null,
+              "sourceIds": [
+                "background-source-a10a6631aa68e21083f04079"
+              ],
+              "status": "announced",
+              "limitation": "Solo ciudad o sede sin dirección pública; sin punto de venue."
+            },
+            "relationships": [
+              {
+                "id": "relationship-37a8dd5d93aaebdd47b120a5",
+                "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                "entity": {
+                  "type": "organizer",
+                  "organizerId": "organizer-d0350d3075591b98188bfa06"
+                },
+                "role": "host",
+                "status": "announced",
+                "scope": "edition",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-cec986ee0eb72274cc7ba2b9",
+                    "locator": null
+                  }
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-fd30aabc6fa4c5b1d8158dea"
+                ],
+                "limitation": "Published role only; payment, attendance and commercial return are not established."
+              }
+            ],
+            "claimRevisionIds": [
+              "background-claim-rev-cd8b71341812de91abdeadae",
+              "background-claim-rev-87fd7c772c23a9583103a86b",
+              "background-claim-rev-78b3491c9dede8fcee913a63",
+              "background-claim-rev-e0d22490ab52a05ff01b9264",
+              "background-claim-rev-f2a93a736afc2a7103bed6e3",
+              "background-claim-rev-fd521460a94628f879f73042",
+              "background-claim-rev-4cd7462ee9b32cc350f7e76a",
+              "background-claim-rev-a0b58206990bfc70bf87fdf0",
+              "background-claim-rev-1a08fbe9705595289a8c7732",
+              "background-claim-rev-b9d89d2fd5948a56f223d2e7",
+              "background-claim-rev-b6cfa6c85d73d46336be7712",
+              "background-claim-rev-27ea5233846b3685c808cab1",
+              "background-claim-rev-93139c18dee0bd2a04ed5922",
+              "background-claim-rev-9e836290e48065518e7e3c3a",
+              "background-claim-rev-0d2ddf027f9b626a57f41758",
+              "background-claim-rev-fd30aabc6fa4c5b1d8158dea",
+              "background-claim-rev-15b455ec213a853e3da9c224",
+              "background-claim-rev-4396ba15cfdd9738ea412941"
+            ],
+            "revisedAt": "2026-09-10T22:14:11.393Z",
+            "previousRevisionId": "edition-rev-5b6ff923a8c485118534e100"
+          }
+        ],
+        "validity": {
+          "validity": "upcoming",
+          "reason": "Declared start (2026-09-26T16:00:00.000Z) is at or after the evaluation instant under every possible timezone."
+        },
+        "organizers": [
+          {
+            "organizerId": "organizer-d0350d3075591b98188bfa06",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "organizer-rev-10cac813cbfec42708598fd3",
+                "organizerId": "organizer-d0350d3075591b98188bfa06",
+                "displayName": "Vultr",
+                "companyId": "company-d0350d3075591b98188bfa06",
+                "aliases": [],
+                "claimRevisionIds": [
+                  "background-claim-rev-fa934981e19fd8c25aaf732f",
+                  "background-claim-rev-25beea7b0a9a090b53aab72b"
+                ],
+                "revisedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          }
+        ],
+        "claims": [
+          {
+            "claimId": "background-claim-09c4580a770b12b5da08b8de",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-b9d89d2fd5948a56f223d2e7",
+                "claimId": "background-claim-09c4580a770b12b5da08b8de",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "access",
+                "value": {
+                  "kind": "text",
+                  "text": "The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-33756ad62521fcb9",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-0ad6f522fc018b755279ccee",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-87fd7c772c23a9583103a86b",
+                "claimId": "background-claim-0ad6f522fc018b755279ccee",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "date:structured",
+                "value": {
+                  "kind": "text",
+                  "text": "2026-09-26T16:00:00.000Z"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-5cbe35e7fc108e04",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-14c5ce59aae20058cefb56f5",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-0d2ddf027f9b626a57f41758",
+                "claimId": "background-claim-14c5ce59aae20058cefb56f5",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "cost:sponsorship",
+                "value": {
+                  "kind": "pending",
+                  "note": "Edition-specific sponsorship quote and total participation cost remain unknown."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-14cc44dea3adc3225b7cd0c7",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-fd521460a94628f879f73042",
+                "claimId": "background-claim-14cc44dea3adc3225b7cd0c7",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "cost:attendance",
+                "value": {
+                  "kind": "money",
+                  "amount": 0,
+                  "currency": "USD"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-d5d908fee1b88208",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-235725e51e35d259e44802ff",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-a0b58206990bfc70bf87fdf0",
+                "claimId": "background-claim-235725e51e35d259e44802ff",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "location",
+                "value": {
+                  "kind": "location",
+                  "scope": "city",
+                  "name": "San Francisco"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-cda03ebf173264e4",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-2aac43b7c7ff7591e938f159",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-78b3491c9dede8fcee913a63",
+                "claimId": "background-claim-2aac43b7c7ff7591e938f159",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "end_date",
+                "value": {
+                  "kind": "text",
+                  "text": "2026-09-28T00:00:00.000Z"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-b992b86234c73801",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-2c46f5f069a10c5c09486fa4",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-fd30aabc6fa4c5b1d8158dea",
+                "claimId": "background-claim-2c46f5f069a10c5c09486fa4",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "relationship:relationship-37a8dd5d93aaebdd47b120a5",
+                "value": {
+                  "kind": "text",
+                  "text": "host: organizer-d0350d3075591b98188bfa06"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-cec986ee0eb72274cc7ba2b9",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Published role only; payment, attendance and commercial return are not established.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-310c24f8a72b780c477b80c0",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-cd8b71341812de91abdeadae",
+                "claimId": "background-claim-310c24f8a72b780c477b80c0",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "name",
+                "value": {
+                  "kind": "text",
+                  "text": "The Agent Arena Hackathon"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-35a7e50e67ff9023",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-4c9476f3e81fdfa2a9206f99",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-4cd7462ee9b32cc350f7e76a",
+                "claimId": "background-claim-4c9476f3e81fdfa2a9206f99",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "venue",
+                "value": {
+                  "kind": "text",
+                  "text": "San Francisco, CA"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-9a13c107e22c7dec",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-67830c5f5efb4d78966eeae3",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-b6cfa6c85d73d46336be7712",
+                "claimId": "background-claim-67830c5f5efb4d78966eeae3",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "date:visible",
+                "value": {
+                  "kind": "text",
+                  "text": "San Francisco, CASep 26 at 9:00 AM – Sep 27 at 5:00 PM (PDT)"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-0c473c896a3ce1dd",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-736889bedcf8ccca7834bdfb",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-f2a93a736afc2a7103bed6e3",
+                "claimId": "background-claim-736889bedcf8ccca7834bdfb",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "organizer:structured_attribution",
+                "value": {
+                  "kind": "text",
+                  "text": "Vultr"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-fd84b11cfb8296aa",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-81280d41b878bc5b7bb09426",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-15b455ec213a853e3da9c224",
+                "claimId": "background-claim-81280d41b878bc5b7bb09426",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "buyer:relevance",
+                "value": {
+                  "kind": "text",
+                  "text": "For Observabilidad para agentes (adoption), RAISE 2025 · agentic AI hackathon in Paris documents a prior role. Vultr's sponsorship there does not establish experience organizing in SF. Ask for the local operator, technical support and edition-specific conditions."
+                },
+                "status": "inferred",
+                "sourceIds": [
+                  "background-source-77d529941337bbc34290ca9e"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-77d529941337bbc34290ca9e",
+                    "fragmentId": "fragment-a9fbe85d7aab750e37cec324",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-77d529941337bbc34290ca9e",
+                    "fragmentId": "fragment-a9fbe85d7aab750e37cec324",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Buyer-specific research hypothesis; no performance ranking or commercial return inferred.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-897f564e66056ad704326f13",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-25beea7b0a9a090b53aab72b",
+                "claimId": "background-claim-897f564e66056ad704326f13",
+                "subject": {
+                  "type": "organizer",
+                  "organizerId": "organizer-d0350d3075591b98188bfa06"
+                },
+                "attribute": "description",
+                "value": {
+                  "kind": "text",
+                  "text": "Vultr is bringing the tools for you to build infrastructure powering the next generation of autonomous execution: VM backends, serverless inference, and the compute layer agents run on when they stop talking and start acting."
+                },
+                "status": "reported",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-9914119e25e6cb9d7bb32102",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Self-description or attributed report; not independently observed attendance.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-99a3789d85785d4155c09299",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-93139c18dee0bd2a04ed5922",
+                "claimId": "background-claim-99a3789d85785d4155c09299",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "commercial:outcome",
+                "value": {
+                  "kind": "pending",
+                  "note": "No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-a2f1118d751d077c090134dc",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-e0d22490ab52a05ff01b9264",
+                "claimId": "background-claim-a2f1118d751d077c090134dc",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "format",
+                "value": {
+                  "kind": "text",
+                  "text": "https://schema.org/OfflineEventAttendanceMode | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-013c86031e120ac3",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-33756ad62521fcb9",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-cf70a3e96905e31d3a34e524",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-fa934981e19fd8c25aaf732f",
+                "claimId": "background-claim-cf70a3e96905e31d3a34e524",
+                "subject": {
+                  "type": "organizer",
+                  "organizerId": "organizer-d0350d3075591b98188bfa06"
+                },
+                "attribute": "identity",
+                "value": {
+                  "kind": "text",
+                  "text": "Vultr · https://www.vultr.com/"
+                },
+                "status": "reported",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-cec986ee0eb72274cc7ba2b9",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-fc2c0cbd302ac2f58d5b3904",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": "Public attribution; no universal reputation or operating responsibility inferred.",
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-d120b9768d4d375fb3c084bc",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-4396ba15cfdd9738ea412941",
+                "claimId": "background-claim-d120b9768d4d375fb3c084bc",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "buyer:next_step",
+                "value": {
+                  "kind": "pending",
+                  "note": "Confirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-dc4cdf9a027d58952a54b7d8",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-1a08fbe9705595289a8c7732",
+                "claimId": "background-claim-dc4cdf9a027d58952a54b7d8",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "audience",
+                "value": {
+                  "kind": "text",
+                  "text": "The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "background-source-a10a6631aa68e21083f04079"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "background-source-a10a6631aa68e21083f04079",
+                    "fragmentId": "fragment-33756ad62521fcb9",
+                    "locator": null
+                  }
+                ],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-edb409fde2e936fd396ddbb2",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-9e836290e48065518e7e3c3a",
+                "claimId": "background-claim-edb409fde2e936fd396ddbb2",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "organizer:responsible",
+                "value": {
+                  "kind": "pending",
+                  "note": "Operational contact for this edition has not been verified."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "background-claim-ef565f15fa37182ddd1d7bda",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "background-claim-rev-27ea5233846b3685c808cab1",
+                "claimId": "background-claim-ef565f15fa37182ddd1d7bda",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "edition-d0281a2afe1eb40ed6d8bae9"
+                },
+                "attribute": "audience:observed",
+                "value": {
+                  "kind": "pending",
+                  "note": "Actual attendance and its composition were not documented in the reviewed material."
+                },
+                "status": "pending",
+                "sourceIds": [],
+                "evidence": [],
+                "method": "bounded_public_source_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:10.121Z",
+                "previousRevisionId": null
+              }
+            ]
+          }
+        ],
+        "participations": [],
+        "companies": [],
+        "sources": [
+          {
+            "contractVersion": "1",
+            "id": "background-source-77d529941337bbc34290ca9e",
+            "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+            "locator": null,
+            "provider": "blogs.vultr.com",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:11.250Z",
+            "publishedAt": null,
+            "method": "http_get+relationship_extraction",
+            "geoScope": "unknown",
+            "content": {
+              "kind": "hash",
+              "sha256": "ec17afef33c3467b8942c7d2d575d7c0c6c493e5c1452eeaa5381fd6e22c3994"
+            },
+            "usageRestrictions": [],
+            "requestedUrl": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+            "canonicalUrl": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+            "title": "Inside RAISE Summit 2025: Bringing AI Infrastructure to Center Stage | Vultr Blogs",
+            "fragments": [
+              {
+                "id": "fragment-67267acaae99cf247b16026b",
+                "text": "Last week, Vultr participated in the 2025 RAISE Summit, an extraordinary gathering of global AI leaders hosted in the heart of Paris. Set beneath the glass pyramid of the Carrousel du Louvre, the summit was a celebration of innovation, policy, and real-world AI impact. For Vultr, the location was especially meaningful: Paris is not only home to one of our 32 cloud data center regions, but also a key market where data sovereignty, compliance, and cloud independence matter deeply.",
+                "locator": "HTML line 1"
+              },
+              {
+                "id": "fragment-a9fbe85d7aab750e37cec324",
+                "text": "One of the most exciting parts of the week was sponsoring the agentic AI hackathon, organized by our partner lablab.ai. With over 100 participating teams and more than 50 Vultr-powered submissions, our track was the most popular of the summit. The engagement, creativity, and engineering talent on display were exceptional.",
+                "locator": "HTML line 1"
+              }
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": null,
+              "freshness": "current"
+            }
+          },
+          {
+            "contractVersion": "1",
+            "id": "background-source-a10a6631aa68e21083f04079",
+            "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+            "locator": null,
+            "provider": "cerebralvalley.ai",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:10.121Z",
+            "publishedAt": null,
+            "method": "http_get+relationship_extraction",
+            "geoScope": "unknown",
+            "content": {
+              "kind": "hash",
+              "sha256": "7e5efe053eee2b61396e412cbd93bbf7af8e5f969094fda5c1da66842714fe9a"
+            },
+            "usageRestrictions": [],
+            "requestedUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+            "canonicalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+            "title": "The Agent Arena Hackathon",
+            "fragments": [
+              {
+                "id": "fragment-35a7e50e67ff9023",
+                "text": "name: The Agent Arena Hackathon",
+                "locator": "JSON-LD Event.name"
+              },
+              {
+                "id": "fragment-5cbe35e7fc108e04",
+                "text": "startDate: 2026-09-26T16:00:00.000Z",
+                "locator": "JSON-LD Event.startDate"
+              },
+              {
+                "id": "fragment-b992b86234c73801",
+                "text": "endDate: 2026-09-28T00:00:00.000Z",
+                "locator": "JSON-LD Event.endDate"
+              },
+              {
+                "id": "fragment-013c86031e120ac3",
+                "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+                "locator": "JSON-LD Event.eventAttendanceMode"
+              },
+              {
+                "id": "fragment-fd84b11cfb8296aa",
+                "text": "organizer.name: Vultr",
+                "locator": "JSON-LD Event.organizer.name"
+              },
+              {
+                "id": "fragment-d5d908fee1b88208",
+                "text": "offers.price: 0; offers.priceCurrency: USD",
+                "locator": "JSON-LD Event.offers"
+              },
+              {
+                "id": "fragment-9a13c107e22c7dec",
+                "text": "location.name: San Francisco, CA",
+                "locator": "JSON-LD Event.location.name"
+              },
+              {
+                "id": "fragment-cda03ebf173264e4",
+                "text": "location.address.addressLocality: San Francisco",
+                "locator": "JSON-LD Event.location.address.addressLocality"
+              },
+              {
+                "id": "fragment-33756ad62521fcb9",
+                "text": "The Agent Arena Hackathon: Note: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance.",
+                "locator": "HTML line 50"
+              },
+              {
+                "id": "fragment-0c473c896a3ce1dd",
+                "text": "San Francisco, CASep 26 at 9:00 AM – Sep 27 at 5:00 PM (PDT)",
+                "locator": "HTML line 50"
+              },
+              {
+                "id": "fragment-cec986ee0eb72274cc7ba2b9",
+                "text": "Join us at The Agent Arena Hackathon hosted by Vultr to build what the next generation of agent infrastructure actually looks like in production.",
+                "locator": "HTML line 50"
+              },
+              {
+                "id": "fragment-fc2c0cbd302ac2f58d5b3904",
+                "text": "Vultr: https://cerebralvalley.ai/u/vultr",
+                "locator": "HTML line 50 a[href]"
+              },
+              {
+                "id": "fragment-9914119e25e6cb9d7bb32102",
+                "text": "Vultr is bringing the tools for you to build infrastructure powering the next generation of autonomous execution: VM backends, serverless inference, and the compute layer agents run on when they stop talking and start acting.",
+                "locator": "HTML line 50"
+              }
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": null,
+              "freshness": "current"
+            }
+          }
+        ],
+        "curation": {
+          "material": "imported",
+          "authorizedBy": "growthx-worker (automatic extraction)",
+          "verifiedAt": "2026-09-10T22:14:10.121Z",
+          "manifestName": "background:78c11f88-4798-4958-8a10-46903cd55f7b",
+          "note": "Public sources read automatically; no human verification, paid-sponsor inference or ROI claim."
+        }
+      },
+      "position": {
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "editionRevisionId": "edition-rev-5b6ff923a8c485118534e100-geo",
+        "location": {
+          "resolution": {
+            "outcome": "pending",
+            "query": null,
+            "normalizedQuery": null,
+            "sourceVersion": "d0ba9e886f50490607234a54781c12d6eadbfca809c61a643c5318fc6df353f4",
+            "claimRevisionIds": [
+              "background-claim-rev-4cd7462ee9b32cc350f7e76a",
+              "background-claim-rev-a0b58206990bfc70bf87fdf0"
+            ],
+            "checkedAt": "2026-09-10T22:14:11.393Z",
+            "cache": "not_applicable",
+            "accuracy": "unknown",
+            "providerVersion": null,
+            "matchedAddress": null,
+            "countyGeoid": null,
+            "failureCode": null
+          },
+          "originalAddress": null,
+          "address": {
+            "streetAddress": null,
+            "locality": "San Francisco",
+            "region": "CA",
+            "postalCode": null,
+            "country": "US"
+          },
+          "venue": "San Francisco, CA",
+          "city": "San Francisco",
+          "precision": "city",
+          "method": "unknown",
+          "provider": null,
+          "resolvedAt": null,
+          "sourceIds": [
+            "background-source-a10a6631aa68e21083f04079"
+          ],
+          "status": "announced",
+          "limitation": "Solo ciudad o sede sin dirección pública; sin punto de venue."
+        },
+        "mapPoint": null,
+        "withoutPointReason": "Solo ciudad o sede sin dirección pública; sin punto de venue."
+      }
+    },
+    {
+      "url": "https://luma.com/7a4iutvp",
+      "runId": "acac387a-2bed-426d-bc9d-7db9cee8650b",
+      "read": {
+        "contractVersion": "1",
+        "evaluatedAt": "2026-09-10T22:14:14.848Z",
+        "editionId": "luma-7a4iutvp",
+        "editionRevisions": [
+          {
+            "contractVersion": "1",
+            "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-edition",
+            "editionId": "luma-7a4iutvp",
+            "organizerIds": [],
+            "name": "AI Security Hackathon - By Hackathons.team",
+            "canonicalUrl": "https://lu.ma/7a4iutvp",
+            "provider": "luma",
+            "startDate": {
+              "precision": "instant",
+              "iso": "2026-09-13T09:30:00.000-07:00",
+              "timezone": "-07:00"
+            },
+            "location": {
+              "scope": "city",
+              "name": "San Francisco"
+            },
+            "coordinates": {
+              "lat": 37.786980299999996,
+              "lng": -122.39447709999999
+            },
+            "publicLocation": {
+              "originalAddress": "501 Folsom St, San Francisco, CA, 94105, USA",
+              "address": {
+                "streetAddress": "501 Folsom St",
+                "locality": "San Francisco",
+                "region": "CA",
+                "postalCode": "94105",
+                "country": "USA"
+              },
+              "venue": "501 Folsom St",
+              "city": "San Francisco",
+              "precision": "address",
+              "method": "published_coordinates",
+              "provider": "event JSON-LD",
+              "resolvedAt": "2026-09-10T22:14:14.652Z",
+              "sourceIds": [
+                "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+              ],
+              "status": "announced",
+              "limitation": "Published point associated with the place; metric accuracy and entrance not verified."
+            },
+            "claimRevisionIds": [
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-name",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-date",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-end_date",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-format",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-organizer",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-coordinates",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-venue",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-location",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-address",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-companies-presenter",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-hosts-listed",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-audience",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-sponsors-announced",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-companies-venue_partner",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-program",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-access",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-date-visible",
+              "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-cost-attendance"
+            ],
+            "revisedAt": "2026-09-10T22:14:14.652Z",
+            "previousRevisionId": null
+          }
+        ],
+        "validity": {
+          "validity": "upcoming",
+          "reason": "Declared start (2026-09-13T09:30:00.000-07:00) is at or after the evaluation instant under every possible timezone."
+        },
+        "organizers": [],
+        "claims": [
+          {
+            "claimId": "luma-7a4iutvp.access",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-access",
+                "claimId": "luma-7a4iutvp.access",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "access",
+                "value": {
+                  "kind": "text",
+                  "text": "🗓 WHEN & WHERE:\nAll times Pacific. In-person participation is preferred, but great remote teams are welcome.\n👋 WHO SHOULD COME:\nSpots are limited. Register below."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-1a99927ea12de51b",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.address",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-address",
+                "claimId": "luma-7a4iutvp.address",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "address",
+                "value": {
+                  "kind": "text",
+                  "text": "501 Folsom St, San Francisco, CA, 94105, USA"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-e52b755eeafc8476",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-8269cb919e9dd48b",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-37e976424388becc",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-e6cb42402985d3ab",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-e3d99f30436b3de1",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.audience",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-audience",
+                "claimId": "luma-7a4iutvp.audience",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "audience",
+                "value": {
+                  "kind": "text",
+                  "text": "🔒 AI SECURITY HACKATHON — San Francisco:\nA one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing.\n👋 WHO SHOULD COME:\nSecurity researchers, agent builders, red-teamers, and anyone who ships. Come solo or in teams of 1–5. All experience levels welcome."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-5d878ea2f05b5385",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.companies-presenter",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-companies-presenter",
+                "claimId": "luma-7a4iutvp.companies-presenter",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "companies:presenter",
+                "value": {
+                  "kind": "text",
+                  "text": "Presented by:\nWasmer"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-4e4c87379bb873a2",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.companies-venue_partner",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-companies-venue_partner",
+                "claimId": "luma-7a4iutvp.companies-venue_partner",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "companies:venue_partner",
+                "value": {
+                  "kind": "text",
+                  "text": "🏢 VENUE PARTNER — ENTREPRENEURS FIRST\nEntrepreneurs First (EF) turns exceptional individuals into funded founders. Some might have an early idea, others may need a cofounder. What matters is their potential. We back these founders first, then give them a bridge to Silicon Valley. To date, their companies are worth > $16B."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-aa67e0f9e62ec9fd",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.coordinates",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-coordinates",
+                "claimId": "luma-7a4iutvp.coordinates",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "coordinates",
+                "value": {
+                  "kind": "text",
+                  "text": "37.786980299999996, -122.39447709999999"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-a65ce471e0b00c2c",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.cost-attendance",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-cost-attendance",
+                "claimId": "luma-7a4iutvp.cost-attendance",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "cost:attendance",
+                "value": {
+                  "kind": "pending",
+                  "note": "Attendance cost not published. Sponsorship and total participation cost remain separate."
+                },
+                "status": "pending",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.date",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-date",
+                "claimId": "luma-7a4iutvp.date",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "date",
+                "value": {
+                  "kind": "date",
+                  "date": {
+                    "precision": "instant",
+                    "iso": "2026-09-13T09:30:00.000-07:00",
+                    "timezone": "-07:00"
+                  }
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-f140d4e6a83d29a6",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-b80e7d75958200a3",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.date-visible",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-date-visible",
+                "claimId": "luma-7a4iutvp.date-visible",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "date:visible",
+                "value": {
+                  "kind": "text",
+                  "text": "Sunday, September 13, 2026"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-b80e7d75958200a3",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.end_date",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-end_date",
+                "claimId": "luma-7a4iutvp.end_date",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "end_date",
+                "value": {
+                  "kind": "text",
+                  "text": "2026-09-13T19:30:00.000-07:00"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-85bcd09c9993eeed",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.format",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-format",
+                "claimId": "luma-7a4iutvp.format",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "format",
+                "value": {
+                  "kind": "text",
+                  "text": "https://schema.org/OfflineEventAttendanceMode\n🔒 AI SECURITY HACKATHON — San Francisco:\nA one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-013c86031e120ac3",
+                    "locator": null
+                  },
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-770a0da5ea62a64d",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.hosts-listed",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-hosts-listed",
+                "claimId": "luma-7a4iutvp.hosts-listed",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "hosts:listed",
+                "value": {
+                  "kind": "text",
+                  "text": "Hosted By:\nJulius Olsson\nSahar Mor (Bond AI)\nBuilderBase\nAyush Ojha\nSean Chiu\nTenki Cloud\nAI\nFeatured in\nBond AI - San Francisco and Bay Area\nAI Security Hackathon - By Hackathons.team\n501 Folsom St\nSan Francisco, CA"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-65e41e182cbdd788",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.location",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-location",
+                "claimId": "luma-7a4iutvp.location",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "location",
+                "value": {
+                  "kind": "location",
+                  "scope": "city",
+                  "name": "San Francisco"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-cda03ebf173264e4",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.name",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-name",
+                "claimId": "luma-7a4iutvp.name",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "name",
+                "value": {
+                  "kind": "text",
+                  "text": "AI Security Hackathon - By Hackathons.team"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-dbdedbe53731e65f",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.organizer",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-organizer",
+                "claimId": "luma-7a4iutvp.organizer",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "organizer",
+                "value": {
+                  "kind": "text",
+                  "text": "Wasmer"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-00492147af26691d",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.program",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-program",
+                "claimId": "luma-7a4iutvp.program",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "program",
+                "value": {
+                  "kind": "text",
+                  "text": "🗓 WHEN & WHERE:\n⏱ Doors: 9:30 AM\n🛠 Build: 10:00 AM–6:00 PM\n🎤 Demos & judging: From 6:00 PM\n⚖️ JUDGING:\nWorking demo on a real, authorized target · technical depth · originality · shock factor · progress made on the day."
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-29a55433ff500582",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.sponsors-announced",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-sponsors-announced",
+                "claimId": "luma-7a4iutvp.sponsors-announced",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "sponsors:announced",
+                "value": {
+                  "kind": "text",
+                  "text": "WASMER · TENKI CLOUD"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-bd71539743fc0831",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          },
+          {
+            "claimId": "luma-7a4iutvp.venue",
+            "revisions": [
+              {
+                "contractVersion": "1",
+                "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-venue",
+                "claimId": "luma-7a4iutvp.venue",
+                "subject": {
+                  "type": "edition",
+                  "editionId": "luma-7a4iutvp"
+                },
+                "attribute": "venue",
+                "value": {
+                  "kind": "text",
+                  "text": "501 Folsom St"
+                },
+                "status": "announced",
+                "sourceIds": [
+                  "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src"
+                ],
+                "evidence": [
+                  {
+                    "sourceId": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+                    "fragmentId": "fragment-458ad6f2d983d0fc",
+                    "locator": null
+                  }
+                ],
+                "method": "visible_text+jsonld_extraction",
+                "note": null,
+                "reviewer": null,
+                "reviewedAt": "2026-09-10T22:14:14.652Z",
+                "previousRevisionId": null
+              }
+            ]
+          }
+        ],
+        "participations": [],
+        "companies": [],
+        "sources": [
+          {
+            "contractVersion": "1",
+            "id": "luma-acac387a-2bed-426d-bc9d-7db9cee8650b-src",
+            "url": "https://luma.com/7a4iutvp",
+            "locator": null,
+            "provider": "luma",
+            "collector": "growthx-worker",
+            "fetchedAt": "2026-09-10T22:14:14.652Z",
+            "publishedAt": null,
+            "method": "http_get+visible_text+jsonld_extraction",
+            "geoScope": "city",
+            "content": {
+              "kind": "hash",
+              "sha256": "461bd605711ea4cd70fe53ba44eaeec8eb854e0631f663eec9db5f64737d0caf"
+            },
+            "usageRestrictions": [],
+            "requestedUrl": "https://lu.ma/7a4iutvp",
+            "canonicalUrl": "https://lu.ma/7a4iutvp",
+            "title": "AI Security Hackathon - By Hackathons.team",
+            "fragments": [
+              {
+                "id": "fragment-dbdedbe53731e65f",
+                "text": "name: AI Security Hackathon - By Hackathons.team",
+                "locator": "JSON-LD Event.name"
+              },
+              {
+                "id": "fragment-f140d4e6a83d29a6",
+                "text": "startDate: 2026-09-13T09:30:00.000-07:00",
+                "locator": "JSON-LD Event.startDate"
+              },
+              {
+                "id": "fragment-85bcd09c9993eeed",
+                "text": "endDate: 2026-09-13T19:30:00.000-07:00",
+                "locator": "JSON-LD Event.endDate"
+              },
+              {
+                "id": "fragment-013c86031e120ac3",
+                "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+                "locator": "JSON-LD Event.eventAttendanceMode"
+              },
+              {
+                "id": "fragment-00492147af26691d",
+                "text": "organizer.name: Wasmer",
+                "locator": "JSON-LD Event.organizer.name"
+              },
+              {
+                "id": "fragment-a65ce471e0b00c2c",
+                "text": "location.geo.latitude: 37.786980299999996; location.geo.longitude: -122.39447709999999",
+                "locator": "JSON-LD Event.location.geo"
+              },
+              {
+                "id": "fragment-458ad6f2d983d0fc",
+                "text": "location.name: 501 Folsom St",
+                "locator": "JSON-LD Event.location.name"
+              },
+              {
+                "id": "fragment-cda03ebf173264e4",
+                "text": "location.address.addressLocality: San Francisco",
+                "locator": "JSON-LD Event.location.address.addressLocality"
+              },
+              {
+                "id": "fragment-e52b755eeafc8476",
+                "text": "location.address: 501 Folsom St, San Francisco, California, US",
+                "locator": "JSON-LD Event.location.address"
+              },
+              {
+                "id": "fragment-8269cb919e9dd48b",
+                "text": "501 Folsom St",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-37e976424388becc",
+                "text": "501 Folsom St; San Francisco, CA",
+                "locator": "HTML line 2733; preceding street address"
+              },
+              {
+                "id": "fragment-e6cb42402985d3ab",
+                "text": "📍 EF, 501 Folsom St, San Francisco",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-e3d99f30436b3de1",
+                "text": "501 Folsom St; San Francisco, CA 94105, USA",
+                "locator": "HTML line 2733; preceding street address"
+              },
+              {
+                "id": "fragment-4e4c87379bb873a2",
+                "text": "Presented by: Wasmer",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-65e41e182cbdd788",
+                "text": "Hosted By: Julius Olsson Sahar Mor (Bond AI) BuilderBase Ayush Ojha Sean Chiu Tenki Cloud AI Featured in Bond AI - San Francisco and Bay Area AI Security Hackathon - By Hackathons.team 501 Folsom St San Francisco, CA",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-5d878ea2f05b5385",
+                "text": "🔒 AI SECURITY HACKATHON — San Francisco: A one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing. 👋 WHO SHOULD COME: Security researchers, agent builders, red-teamers, and anyone who ships. Come solo or in teams of 1–5. All experience levels welcome.",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-770a0da5ea62a64d",
+                "text": "🔒 AI SECURITY HACKATHON — San Francisco: A one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing.",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-bd71539743fc0831",
+                "text": "🤝 SPONSORS & SPONSOR PRIZES: 🚀 WASMER Wasmer lets you run apps and code anywhere—from your laptop to the cloud to the browser—in a secure sandbox. The new Wasmer SDK gives AI agents a local sandbox for executing code, making it a natural fit for agentic security projects. Wasmer track — best projects built with the Wasmer SDK: 🥇 1st: $5,000 in Wasmer credits 🥈 2nd: $2,500 in Wasmer credits 🥉 3rd: $1,500 in Wasmer credits Hackathon offer: 3 months of Wasmer Pro free—a $1,500 value. Learn more · SDK documentation ☁️ TENKI CLOUD Winner’s prize: $10,000 in Tenki Cloud credits. Startup program: Eligible startups can access up to $50,000 in credits through Tenki Cloud’s startup program.",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-aa67e0f9e62ec9fd",
+                "text": "🏢 VENUE PARTNER — ENTREPRENEURS FIRST Entrepreneurs First (EF) turns exceptional individuals into funded founders. Some might have an early idea, others may need a cofounder. What matters is their potential. We back these founders first, then give them a bridge to Silicon Valley. To date, their companies are worth > $16B.",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-29a55433ff500582",
+                "text": "🗓 WHEN & WHERE: ⏱ Doors: 9:30 AM 🛠 Build: 10:00 AM–6:00 PM 🎤 Demos & judging: From 6:00 PM ⚖️ JUDGING: Working demo on a real, authorized target · technical depth · originality · shock factor · progress made on the day.",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-1a99927ea12de51b",
+                "text": "🗓 WHEN & WHERE: All times Pacific. In-person participation is preferred, but great remote teams are welcome. 👋 WHO SHOULD COME: Spots are limited. Register below.",
+                "locator": "HTML line 2733"
+              },
+              {
+                "id": "fragment-b80e7d75958200a3",
+                "text": "Sunday, September 13, 2026",
+                "locator": "HTML line 2733"
+              }
+            ],
+            "retrieval": {
+              "status": "obtained",
+              "limitation": null,
+              "freshness": "current"
+            }
+          }
+        ],
+        "curation": {
+          "material": "imported",
+          "authorizedBy": "57c4ef68-e280-4660-a984-d32a78204f89",
+          "verifiedAt": "2026-09-10T22:14:14.652Z",
+          "manifestName": "luma-import:acac387a-2bed-426d-bc9d-7db9cee8650b",
+          "note": "Importación durable de https://lu.ma/7a4iutvp (run acac387a-2bed-426d-bc9d-7db9cee8650b); material extraído automáticamente, sin revisión humana."
+        }
+      },
+      "zeroAdditionalGeocoderCalls": true
+    }
+  ]
+}

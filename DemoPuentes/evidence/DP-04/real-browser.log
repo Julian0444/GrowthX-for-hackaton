@@ -1,0 +1,5 @@
+(node:55155) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/scripts/verify-exa-smoke-browser.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"runId":"d90a63c5-9dd6-4486-ab8b-e29e45be31f9","production":true,"pages":5,"viewports":["1366x900","390x844"],"sameSourceIdsAfterClosingTab":true,"providerCallsBeforeAndAfter":1,"reportedCostUsd":0.007,"pageErrors":[]}

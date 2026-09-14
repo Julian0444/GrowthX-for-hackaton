@@ -1,0 +1,171 @@
+TAP version 13
+# (node:67536) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+not ok 1 - DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+  ---
+  duration_ms: 47383.06375
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts:74:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for locator('[data-point-edition-id="ed-sf-dev-summit-2027"]')
+        - locator resolved to <button type="button" aria-pressed="true" class="sf-location-pin" data-point-edition-id="ed-sf-dev-summit-2027" data-group-edition-ids="ed-sf-dev-summit-2027" data-edition-revision-id="ed-sf-dev-summit-2027-r1" aria-label="Select on map: SF Dev Summit 2027 (synthetic)">•</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="maplibregl-popup-content">…</div> from <div class="maplibregl-popup maplibregl-popup-anchor-top">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="maplibregl-popup-content">…</div> from <div class="maplibregl-popup maplibregl-popup-anchor-top">…</div> subtree intercepts pointer events
+      2 × retrying click action
+          - waiting 100ms
+          - waiting for element to be visible, enabled and stable
+          - element is not stable
+      37 × retrying click action
+           - waiting 500ms
+           - waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="maplibregl-popup-content">…</div> from <div class="maplibregl-popup maplibregl-popup-anchor-top">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+    
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts:148:41)
+  ...
+# (node:68223) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+    # Subtest: desktop response, source action and technical disclosure
+    ok 1 - desktop response, source action and technical disclosure
+      ---
+      duration_ms: 709.199166
+      type: 'test'
+      ...
+    # Subtest: evidence panel preserves map, selection, scroll and keyboard focus
+    ok 2 - evidence panel preserves map, selection, scroll and keyboard focus
+      ---
+      duration_ms: 150.854541
+      type: 'test'
+      ...
+    # Subtest: out-of-order polling appends findings without moving cards or selection
+    ok 3 - out-of-order polling appends findings without moving cards or selection
+      ---
+      duration_ms: 798.547334
+      type: 'test'
+      ...
+    # Subtest: mobile retains every action, traps evidence focus and restores selection
+    ok 4 - mobile retains every action, traps evidence focus and restores selection
+      ---
+      duration_ms: 258.802958
+      type: 'test'
+      ...
+    # Subtest: empty filters are recoverable; unknown location and contradiction stay explicit
+    ok 5 - empty filters are recoverable; unknown location and contradiction stay explicit
+      ---
+      duration_ms: 478.762083
+      type: 'test'
+      ...
+    # Subtest: provider, map and server failures keep saved findings and allow explicit recovery
+    ok 6 - provider, map and server failures keep saved findings and allow explicit recovery
+      ---
+      duration_ms: 2000.483791
+      type: 'test'
+      ...
+    1..6
+ok 2 - DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ---
+  duration_ms: 5786.228042
+  type: 'test'
+  ...
+# (node:68327) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+    # Subtest: same filtered set, published location, source link, selection and dossier by keyboard
+    ok 1 - same filtered set, published location, source link, selection and dossier by keyboard
+      ---
+      duration_ms: 1349.213041
+      type: 'test'
+      ...
+    # Subtest: new result updates markers without replacing map or recentering; same venue identities remain distinct
+    ok 2 - new result updates markers without replacing map or recentering; same venue identities remain distinct
+      ---
+      duration_ms: 3683.187334
+      type: 'test'
+      ...
+    # Subtest: mobile switches list/map without losing selection or map, with filters and zero points
+    ok 3 - mobile switches list/map without losing selection or map, with filters and zero points
+      ---
+      duration_ms: 603.445458
+      type: 'test'
+      ...
+    # Subtest: run change and unmount remove old markers/listeners; no catalog leakage
+    ok 4 - run change and unmount remove old markers/listeners; no catalog leakage
+      ---
+      duration_ms: 2499.377083
+      type: 'test'
+      ...
+    # Subtest: snapshot geography and dossier remain old; current data requires a separate view
+    ok 5 - snapshot geography and dossier remain old; current data requires a separate view
+      ---
+      duration_ms: 1197.376083
+      type: 'test'
+      ...
+    # Subtest: style failure preserves mobile list and can recover
+    ok 6 - style failure preserves mobile list and can recover
+      ---
+      duration_ms: 1260.933416
+      type: 'test'
+      ...
+    # Subtest: tiles failure preserves mobile list and can recover
+    ok 7 - tiles failure preserves mobile list and can recover
+      ---
+      duration_ms: 1221.659333
+      type: 'test'
+      ...
+    # Subtest: WebGL context loss exposes the list and retry creates one new map
+    ok 8 - WebGL context loss exposes the list and retry creates one new map
+      ---
+      duration_ms: 132.590125
+      type: 'test'
+      ...
+    # Subtest: WebGL initialization failure leaves usable list
+    ok 9 - WebGL initialization failure leaves usable list
+      ---
+      duration_ms: 1280.462375
+      type: 'test'
+      ...
+    1..9
+ok 3 - DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ---
+  duration_ms: 14533.081458
+  type: 'test'
+  ...
+# Owned Next and Chrome closed.
+1..3
+# tests 18
+# suites 0
+# pass 17
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 68951.619167

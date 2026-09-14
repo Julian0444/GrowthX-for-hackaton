@@ -1,0 +1,35 @@
+Manual inquiry draft
+Event: Agents, Everywhere: Bots, Channels, & More — Global Hackathon
+Official event: https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon
+Date: Sep 12, 2026, 10:00 AM GMT-7
+Buyer context: Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial. · audience: Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.
+Research objective: feedback (provisional, declared by buyer)
+Budget: USD 20000 · window: 2026-09-10 to 2026-12-31
+Decision: Explore first · participation pending
+Reasons:
+- Verificación DP-11: explorar un workshop técnico por el antecedente Secure Agents Buildathon. No comprometer gasto hasta confirmar acceso, audiencia y cotización completa.
+Research context: Para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.», dirigido a «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.» y con objetivo de feedback, hay afinidad temática en agentes, observabilidad. El antecedente documentado permite preguntar por una actividad similar en la edición actual. Es una hipótesis de pertinencia; falta validar audiencia efectiva y disponibilidad.
+Activity objective: Obtener feedback técnico sobre observabilidad de agentes; borrador de verificación.
+Owner: Equipo de growth · demo DP-11
+Success definition (buyer): pending
+Modality: workshop: Workshop de depuración de agentes propuesto por el equipo; no ofrecido por el organizador. · team proposal; availability unconfirmed · Buyer reports Buyer: Buyer statement only; no external support supplied (recorded by b247ee72-b41b-4309-90ba-615d84687a02, 2026-09-11T00:59:44.133Z)
+Cost items (no complete campaign total established):
+- attendance: USD 0 · quoted
+- sponsorship: Pending — Edition-specific sponsorship quote and total participation cost remain unknown.
+- Materiales para workshop propuesto: Pending — Sin presupuesto ni cotización; confirmar después de acordar formato. · Buyer reports Buyer: Pendiente declarado por el equipo en verificación DP-11. (recorded by b247ee72-b41b-4309-90ba-615d84687a02, 2026-09-11T00:59:44.133Z)
+Conditions and answers:
+- [open] Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. — Qué respuesta la resolvería: ¿Cuál es el costo completo, la moneda y el paquete a contratar?
+Next questions:
+- ¿Aceptan un workshop técnico sobre observabilidad de agentes?
+- ¿Cuál sería el costo completo y qué acceso incluye?
+- ¿Qué audiencia técnica esperan en esta edición?
+- Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. — Qué respuesta la resolvería: ¿Cuál es el costo completo, la moneda y el paquete a contratar?
+- ¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Permiten una actividad de feedback para «Una herramienta que ayuda a equipos de desarrollo a detectar errores y medir el rendimiento de sus agentes de inteligencia artificial.» con «Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.»?
+Saved sources:
+- https://cerebralvalley.ai/e/vultr-the-agent-arena · obtained 2026-09-10T22:41:56.008Z
+- https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon · obtained 2026-09-10T22:42:44.239Z
+- https://blogs.vultr.com/vultr-at-RAISE-2025 · obtained 2026-09-10T22:41:57.276Z
+- https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon · obtained 2026-09-10T22:42:44.454Z
+Saved revision: 1 · 2026-09-11T00:59:44.129Z
+Reopen this brief: http://localhost:3000/?run=4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0&decision=af10470d-6902-4faf-a87a-75aa511265c4&revision=1&view=campaign
+Manual draft only. Saving or copying sends no message, books no activity and commits no money.

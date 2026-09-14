@@ -93,6 +93,9 @@ async function main(): Promise<void> {
   const lumaIngest = lumaFixture
     ? { fetchImpl: fixtureTransport(lumaFixture, process.env.GROWTHX_WORKER_LUMA_CALLS_FILE || null), isFixture: true as const }
     : {};
+  // Explicit test-only transport; never a fallback for a missing API key.
+  const exaFixture = process.env.GROWTHX_WORKER_EXA_FIXTURE || null;
+  const discovery = exaFixture ? { apiKey: 'fixture-key', fetchImpl: fixtureTransport(exaFixture, process.env.GROWTHX_WORKER_EXA_CALLS_FILE || null), isFixture: true } : {};
   const pollingIntervalSeconds = Math.max(
     0.5,
     Number(process.env.GROWTHX_WORKER_POLL_SECONDS ?? '2') || 2,
@@ -128,7 +131,7 @@ async function main(): Promise<void> {
         }
         console.log(`[worker] job ${job.id} → run ${data.runId}`);
         try {
-          await processEvaluationRun(data, { pool, exitAfterStep, testBarrier, lumaIngest });
+          await processEvaluationRun(data, { pool, exitAfterStep, testBarrier, lumaIngest, discovery });
           console.log(`[worker] run ${data.runId} procesado`);
         } catch (error) {
           if (error instanceof WorkerStopRequested) {

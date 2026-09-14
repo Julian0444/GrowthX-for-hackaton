@@ -1,0 +1,498 @@
+{
+  "verifiedAt": "2026-09-10T22:31:08.952601+00:00",
+  "head": "1eed2acefc403034891f6b239374f47a8017270a",
+  "scope": "Files edited or created by DP-06, on top of existing uncommitted work. Shared files also contain preserved DP-08 changes. Evidence outputs are separately listed below.",
+  "files": [
+    {
+      "file": "frontend/app/api/events/background/route.ts",
+      "sha256": "baed5b5b00d4dab91344c909c37fe01a0d8f150e53d79c8e8e967a1e87a69c6a",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/components/research-dashboard/background-panel.tsx",
+      "sha256": "d026ded3aa76deb1a391a70ff0e62ec4465dcda9fda9159a523e8419452b80b3",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/components/research-dashboard/discovery-panel.tsx",
+      "sha256": "2c03a7289aca8a1d57f377480a47f69b66f0c9a96c5fa86a7797ac5bacc42f23",
+      "preflight_sha256": "e660d949d7b007fc7b700e62d5f112014de5e96e1176815a6b488bdb3578700e",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/components/research-dashboard/research-dashboard.tsx",
+      "sha256": "bbb2b7955a960c461f4b2e60eeae504ab098f416d7ebe77a39c0e65b4d75ec5c",
+      "preflight_sha256": "dbce183c98165f474ee74f23b9b93a2d1bb7e465aff7ad3bb4dd6dbdc5ad0a96",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/components/research-dashboard/research-dossier.tsx",
+      "sha256": "268081529ca6fcabaae0e799581e4cec0f7ca9f3d50631bdcc7a9698f693ba63",
+      "preflight_sha256": "213156e6c9149f24e3c7406ef7640f5735c946be2b60d7f14be1ff6c0bf74422",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/db/migrations/009-dp06-relationships.sql",
+      "sha256": "f1fab5c4d35193b078805364b9ec96823b11541d61985b6b196b1a6c4591b59c",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/api/opportunity-adapter.ts",
+      "sha256": "36f6657b26df6b15940724df23ecc0f29f90efe6e1852e82e4e38fa1b788a1fe",
+      "preflight_sha256": "4e65c59de37220e7fef607e3dfb85b21a86614808ae0c3b2531486d303915dfc",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/contracts/background.ts",
+      "sha256": "447dd5041ee0dfcf5f938b0efdf77c45c9b8c5e8a79f85d7897d1f67aedea58c",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/contracts/evaluation.ts",
+      "sha256": "b4199887430595ecf241c785c6d298264b9a058c0a013047dc1c9bb094733ff3",
+      "preflight_sha256": "2e69daabfaca7369808f3a2075d6ef29dc15786e3e1bd1477de6ef4dbd23b598",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/contracts/evaluation-validation.ts",
+      "sha256": "0460f80386453d04187ce8d2f52cc146668088182fee84a964d1a73d0ccf9b64",
+      "preflight_sha256": "a4baed7af50eff6a05af771393f20cdb53417454c9a9990cce6abd65c85e03f4",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/catalog/read.ts",
+      "sha256": "663d1c8d889f692c8cd2a6e7e18afeb88d104164365f987e421c4373d4cd88ba",
+      "preflight_sha256": "053e43251718ded3ad78d6e51092ec99dc048528776d53e390514cdd95003c9f",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/catalog/store.ts",
+      "sha256": "b510854061cbaaee95c5e2302afb4ebf2315bbc8a7afed61ae9aeca5a3d2bd9e",
+      "preflight_sha256": "f4c62353cd8474d6b94880e96771e972850cc1f2ba32a1bb24533c16e0de4d62",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/evaluations/run-worker.ts",
+      "sha256": "3c879253aaf286f7791009548cccd1b7bbb37b07420ace3fbe0e0a9466b789bb",
+      "preflight_sha256": "8bbc099b1d38254017ed66935150a44a51b010c739d4a0ccd08fed1d540547fc",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/evaluations/snapshot-store.ts",
+      "sha256": "3c3a20a86680880fdc33656c822d42d79405b919f601f2892b7217e4585b1a1d",
+      "preflight_sha256": "9142d7c19ee774a340c8f4e8bfe3552b1f6934b4400294e8d442693c98bf14ac",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/relationships/durable.ts",
+      "sha256": "e047d68828392eb94ee9b5c87ca782b6565dd4435cf555819b920eb4c7e053b1",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/relationships/reference-sources.ts",
+      "sha256": "57c0656b8b03f52416bd87ae79b65cb96a79c76e1103a89de8680a3f6d09472d",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/relationships/resolve.ts",
+      "sha256": "a132dd2677066d6dd6310b5b0eaf94ffee004cd1a0a7858b1f7d9742acd277ab",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/sources/reader.ts",
+      "sha256": "011fe03de4a52a36ae1476b22c15503c2f8d0faa6891ad16075072e827f06a2c",
+      "preflight_sha256": "23e0c66ae96dbe28bbf21b20cc4a51c22ef1009183f8ddae794f393a846989c7",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/lib/server/sources/relationship-content.ts",
+      "sha256": "7a73c2a5239dbeeeda39b787bcffd2c1564d6ad2a55f068ed12717e4e4bcefad",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/package.json",
+      "sha256": "2f67c7942e9737e12174be3b435c88325e112f94da8b63c8276e031e1a3e1956",
+      "preflight_sha256": "3e73eb3080196065217ec1d1f38df828f8b12e82e95bb050834318bf49f8d3ac",
+      "existed_at_preflight": true,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/scripts/verify-background-reopen.ts",
+      "sha256": "8cf53890cc906063a167c12cb7e55ec417dd63ea5212e8861f2bbe73e25e7ba0",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/tests/connectors/relationships.test.ts",
+      "sha256": "981362ee788dd4a28c9f50bebd5ed584046375170e98e434099a0397e0573fc5",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/tests/integration/relationships.test.ts",
+      "sha256": "b4c99c2331bdf1b40f7b473c0e519b8cd52c77dddfab2adbba8024cbb6783f30",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/tests/fixtures/relationships.ts",
+      "sha256": "1adf04854f391f68d58b6fc54b2465b6b806bb67a21f6434fd35a4dcf2c58a9f",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "frontend/tests/e2e/relationships.spec.ts",
+      "sha256": "b0771a96fb4569f1ca4cf40939381449d634c7680a5918ce890ac0cbdf405a35",
+      "preflight_sha256": null,
+      "existed_at_preflight": false,
+      "production_copy_matches": true
+    },
+    {
+      "file": "DemoPuentes/issues/06-organizador-sponsors-y-proyectos.md",
+      "sha256": "13fc3634c3d1f65780b1855b58351271385ac823a692db0e83956e9a0b537492",
+      "preflight_sha256": "399cad017d7b5e931fdd1ce343e0575c5a57e911a7b94319ad6cda3563fc38ae",
+      "existed_at_preflight": true
+    },
+    {
+      "file": "DemoPuentes/evidence/DP-06/README.md",
+      "sha256": "2904381390e9b03226181da75da6a7bc554b7527def3f2934a9b2769aa279d83",
+      "preflight_sha256": null,
+      "existed_at_preflight": false
+    },
+    {
+      "file": "DemoPuentes/evidence/DP-06/run-check.py",
+      "sha256": "7b0e67eeb2fe7907a1277d258f7ae9cf2560606ffae6e4e08a44f680c0fa14e7",
+      "preflight_sha256": null,
+      "existed_at_preflight": false
+    },
+    {
+      "file": "DemoPuentes/evidence/DP-06/run-regressions.py",
+      "sha256": "0f61df246c84f42e39b194e044b8d8f82f2b73b413c7f1885fe0ac5ddb897173",
+      "preflight_sha256": null,
+      "existed_at_preflight": false
+    }
+  ],
+  "results": {
+    "regression-verified": {
+      "command": [
+        "python3",
+        "../DemoPuentes/evidence/DP-06/run-regressions.py"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 17.23,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "e2e-regression": {
+      "command": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 176.38,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "browser-release": {
+      "command": [
+        "node",
+        "--test",
+        "tests/e2e/relationships.spec.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 8.51,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "organizer-release": {
+      "command": [
+        "node",
+        "--test",
+        "tests/e2e/sf-organizer-research.spec.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 39.18,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "real-browser-verified": {
+      "command": [
+        "node",
+        "--test",
+        "tests/e2e/relationships.spec.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 15.1,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "reopen-dossier": {
+      "command": [
+        "node",
+        "scripts/verify-background-reopen.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 7.91,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "build-dossier": {
+      "command": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "cwd": "/tmp/growthx-dp06-production",
+      "exit_code": 0,
+      "duration_seconds": 6.89,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "typecheck-release": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 1.62,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "lint-verified": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "lib/server/relationships",
+        "lib/server/sources/relationship-content.ts",
+        "lib/server/sources/reader.ts",
+        "lib/contracts/background.ts",
+        "lib/contracts/evaluation.ts",
+        "lib/contracts/evaluation-validation.ts",
+        "lib/server/catalog/read.ts",
+        "lib/server/catalog/store.ts",
+        "lib/server/evaluations/run-worker.ts",
+        "lib/server/evaluations/snapshot-store.ts",
+        "lib/api/opportunity-adapter.ts",
+        "components/research-dashboard/background-panel.tsx",
+        "components/research-dashboard/research-dashboard.tsx",
+        "components/research-dashboard/discovery-panel.tsx",
+        "components/research-dashboard/research-dossier.tsx",
+        "app/api/events/background/route.ts",
+        "tests/connectors/relationships.test.ts",
+        "tests/integration/relationships.test.ts",
+        "tests/fixtures/relationships.ts",
+        "tests/e2e/relationships.spec.ts",
+        "scripts/verify-background-reopen.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 2.89,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "lint-release": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "components/research-dashboard/research-dossier.tsx",
+        "scripts/verify-background-reopen.ts"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 1.94,
+      "database": "isolated PostgreSQL port 55446"
+    },
+    "diff-check": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+      "exit_code": 0,
+      "duration_seconds": 0.04,
+      "database": "isolated PostgreSQL port 55446"
+    }
+  },
+  "protectedFiles": [
+    {
+      "file": "DemoPuentes/PuentesHandoff.md",
+      "unchangedFromPreflight": true
+    },
+    {
+      "file": "DemoPuentes/implementation-plan.md",
+      "unchangedFromPreflight": true
+    },
+    {
+      "file": "DemoPuentes/README.md",
+      "unchangedFromPreflight": true
+    }
+  ],
+  "evidenceFiles": [
+    "DemoPuentes/evidence/DP-06/README.md",
+    "DemoPuentes/evidence/DP-06/browser-release.json",
+    "DemoPuentes/evidence/DP-06/browser-release.log",
+    "DemoPuentes/evidence/DP-06/build-complete.json",
+    "DemoPuentes/evidence/DP-06/build-complete.log",
+    "DemoPuentes/evidence/DP-06/build-dossier.json",
+    "DemoPuentes/evidence/DP-06/build-dossier.log",
+    "DemoPuentes/evidence/DP-06/build-final.json",
+    "DemoPuentes/evidence/DP-06/build-final.log",
+    "DemoPuentes/evidence/DP-06/build-release.json",
+    "DemoPuentes/evidence/DP-06/build-release.log",
+    "DemoPuentes/evidence/DP-06/build-verified.json",
+    "DemoPuentes/evidence/DP-06/build-verified.log",
+    "DemoPuentes/evidence/DP-06/build.json",
+    "DemoPuentes/evidence/DP-06/build.log",
+    "DemoPuentes/evidence/DP-06/connectors.json",
+    "DemoPuentes/evidence/DP-06/connectors.log",
+    "DemoPuentes/evidence/DP-06/contracts-final.json",
+    "DemoPuentes/evidence/DP-06/contracts-final.log",
+    "DemoPuentes/evidence/DP-06/controlled-browser.json",
+    "DemoPuentes/evidence/DP-06/diff-check.json",
+    "DemoPuentes/evidence/DP-06/diff-check.log",
+    "DemoPuentes/evidence/DP-06/e2e-controlled.json",
+    "DemoPuentes/evidence/DP-06/e2e-controlled.log",
+    "DemoPuentes/evidence/DP-06/e2e-controlled2.json",
+    "DemoPuentes/evidence/DP-06/e2e-controlled2.log",
+    "DemoPuentes/evidence/DP-06/e2e-real-final.json",
+    "DemoPuentes/evidence/DP-06/e2e-real-final.log",
+    "DemoPuentes/evidence/DP-06/e2e-real.json",
+    "DemoPuentes/evidence/DP-06/e2e-real.log",
+    "DemoPuentes/evidence/DP-06/e2e-regression.json",
+    "DemoPuentes/evidence/DP-06/e2e-regression.log",
+    "DemoPuentes/evidence/DP-06/environment-final.json",
+    "DemoPuentes/evidence/DP-06/inspect-real.json",
+    "DemoPuentes/evidence/DP-06/inspect-real.log",
+    "DemoPuentes/evidence/DP-06/integration-final.json",
+    "DemoPuentes/evidence/DP-06/integration-final.log",
+    "DemoPuentes/evidence/DP-06/integration-verified.json",
+    "DemoPuentes/evidence/DP-06/integration-verified.log",
+    "DemoPuentes/evidence/DP-06/integration.json",
+    "DemoPuentes/evidence/DP-06/integration.log",
+    "DemoPuentes/evidence/DP-06/lint-final.json",
+    "DemoPuentes/evidence/DP-06/lint-final.log",
+    "DemoPuentes/evidence/DP-06/lint-release.json",
+    "DemoPuentes/evidence/DP-06/lint-release.log",
+    "DemoPuentes/evidence/DP-06/lint-verified.json",
+    "DemoPuentes/evidence/DP-06/lint-verified.log",
+    "DemoPuentes/evidence/DP-06/lint.json",
+    "DemoPuentes/evidence/DP-06/lint.log",
+    "DemoPuentes/evidence/DP-06/migrate-relationships.json",
+    "DemoPuentes/evidence/DP-06/migrate-relationships.log",
+    "DemoPuentes/evidence/DP-06/migrate.json",
+    "DemoPuentes/evidence/DP-06/migrate.log",
+    "DemoPuentes/evidence/DP-06/organizer-release.json",
+    "DemoPuentes/evidence/DP-06/organizer-release.log",
+    "DemoPuentes/evidence/DP-06/preflight.json",
+    "DemoPuentes/evidence/DP-06/real-browser-verified.json",
+    "DemoPuentes/evidence/DP-06/real-browser-verified.log",
+    "DemoPuentes/evidence/DP-06/real-browser.json",
+    "DemoPuentes/evidence/DP-06/real-project-reading.json",
+    "DemoPuentes/evidence/DP-06/regression-final.json",
+    "DemoPuentes/evidence/DP-06/regression-final.log",
+    "DemoPuentes/evidence/DP-06/regression-verified.json",
+    "DemoPuentes/evidence/DP-06/regression-verified.log",
+    "DemoPuentes/evidence/DP-06/regression.json",
+    "DemoPuentes/evidence/DP-06/regression.log",
+    "DemoPuentes/evidence/DP-06/reopen-dossier.json",
+    "DemoPuentes/evidence/DP-06/reopen-dossier.log",
+    "DemoPuentes/evidence/DP-06/reopen-release.json",
+    "DemoPuentes/evidence/DP-06/reopen-release.log",
+    "DemoPuentes/evidence/DP-06/reopened-real.json",
+    "DemoPuentes/evidence/DP-06/run-check.py",
+    "DemoPuentes/evidence/DP-06/run-regressions.py",
+    "DemoPuentes/evidence/DP-06/screenshots/brief-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/brief-review-v1.png",
+    "DemoPuentes/evidence/DP-06/screenshots/brief-review-v2.png",
+    "DemoPuentes/evidence/DP-06/screenshots/brief-selection.png",
+    "DemoPuentes/evidence/DP-06/screenshots/controlled-event.png",
+    "DemoPuentes/evidence/DP-06/screenshots/controlled-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/controlled-organizer.png",
+    "DemoPuentes/evidence/DP-06/screenshots/controlled-project.png",
+    "DemoPuentes/evidence/DP-06/screenshots/discovery-desktop.png",
+    "DemoPuentes/evidence/DP-06/screenshots/discovery-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/dossier.png",
+    "DemoPuentes/evidence/DP-06/screenshots/map.png",
+    "DemoPuentes/evidence/DP-06/screenshots/organizers.png",
+    "DemoPuentes/evidence/DP-06/screenshots/persisted-decision.png",
+    "DemoPuentes/evidence/DP-06/screenshots/persisted-import.png",
+    "DemoPuentes/evidence/DP-06/screenshots/persisted-organizers.png",
+    "DemoPuentes/evidence/DP-06/screenshots/persisted-reopen.png",
+    "DemoPuentes/evidence/DP-06/screenshots/profile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reading-desktop.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reading-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reading-sponsors.png",
+    "DemoPuentes/evidence/DP-06/screenshots/real-company.png",
+    "DemoPuentes/evidence/DP-06/screenshots/real-event.png",
+    "DemoPuentes/evidence/DP-06/screenshots/real-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/real-organizer.png",
+    "DemoPuentes/evidence/DP-06/screenshots/real-vultr-paris.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopen-campaign.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopen-decision.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopen-list.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopen-validity.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-ait-company.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-ait-event.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-ait-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-ait-organizer.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-vultr-company.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-vultr-event.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-vultr-mobile.png",
+    "DemoPuentes/evidence/DP-06/screenshots/reopened-vultr-organizer.png",
+    "DemoPuentes/evidence/DP-06/typecheck-complete.json",
+    "DemoPuentes/evidence/DP-06/typecheck-complete.log",
+    "DemoPuentes/evidence/DP-06/typecheck-core.json",
+    "DemoPuentes/evidence/DP-06/typecheck-core.log",
+    "DemoPuentes/evidence/DP-06/typecheck-core2.json",
+    "DemoPuentes/evidence/DP-06/typecheck-core2.log",
+    "DemoPuentes/evidence/DP-06/typecheck-final.json",
+    "DemoPuentes/evidence/DP-06/typecheck-final.log",
+    "DemoPuentes/evidence/DP-06/typecheck-initial.json",
+    "DemoPuentes/evidence/DP-06/typecheck-initial.log",
+    "DemoPuentes/evidence/DP-06/typecheck-release.json",
+    "DemoPuentes/evidence/DP-06/typecheck-release.log",
+    "DemoPuentes/evidence/DP-06/typecheck-verified.json",
+    "DemoPuentes/evidence/DP-06/typecheck-verified.log",
+    "DemoPuentes/evidence/DP-06/typecheck3.json",
+    "DemoPuentes/evidence/DP-06/typecheck3.log"
+  ],
+  "excluded": [
+    "tests/integration/location-resolution.test.ts: DP-08 test demands its own session DB; not redirected"
+  ],
+  "sharedServicesModified": false,
+  "paidProvidersInDP06": {
+    "exa": 0,
+    "apify": 0
+  }
+}

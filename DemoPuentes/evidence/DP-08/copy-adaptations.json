@@ -1,0 +1,6 @@
+[
+  {
+    "path": "tests/e2e/relationships.spec.ts",
+    "change": "Only copied test: equivalent regex without dotAll; shared DP06 correction pending"
+  }
+]

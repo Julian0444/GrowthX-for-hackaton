@@ -1,0 +1,24 @@
+$ node --test tests/e2e/sf-street-map.spec.ts
+(node:10272) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-p9yxxq3r/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp09-p9yxxq3r/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ✔ same filtered set, published location, source link, selection and dossier by keyboard (4978.918833ms)
+  ✔ new result updates markers without replacing map or recentering; same venue identities remain distinct (4984.785291ms)
+  ✔ mobile switches list/map without losing selection or map, with filters and zero points (606.997166ms)
+  ✔ run change and unmount remove old markers/listeners; no catalog leakage (2533.500542ms)
+  ✔ snapshot geography and dossier remain old; current data requires a separate view (3480.301041ms)
+  ✔ style failure preserves mobile list and can recover (752.756416ms)
+  ✔ tiles failure preserves mobile list and can recover (1245.67775ms)
+  ✔ WebGL context loss exposes the list and retry creates one new map (206.521709ms)
+  ✔ WebGL initialization failure leaves usable list (377.961208ms)
+✔ DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures (66959.905ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67430.927209

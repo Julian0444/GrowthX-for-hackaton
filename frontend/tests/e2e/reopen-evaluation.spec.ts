@@ -1,3 +1,4 @@
+import { revealComparisonAudit, revealSavedEvaluations } from '../support/research-ui.ts';
 // Ticket 14: reabrir la decisión exacta desde el dashboard — navegador, Next,
 // PostgreSQL y worker en procesos REALES. Se ejecuta con `pnpm test` y
 // `pnpm test:e2e`. Requiere PostgreSQL local (pnpm db:up && pnpm db:migrate) y
@@ -114,7 +115,7 @@ function controlledCatalog(futureYear: number): CurationManifest {
   return fixture;
 }
 const researchBody = (overrides: Partial<EvaluationStartInput['profile']> = {}, extra: Partial<EvaluationStartInput> = {}): EvaluationStartInput => ({ idempotencyKey: randomUUID(), mode: 'catalog_research', researchScope: 'sf_organizers', ...extra, profile: { product: 'Herramienta de agentes', audienceDescription: 'Equipos backend', audienceProfiles: [], stack: ['python'], budget: { status: 'unknown' }, window: { from: null, to: null }, objective: { kind: 'feedback' }, comparableCompanies: [], ...overrides } });
-const href = (runId: string, decisionId?: string, view?: 'campaign') => `/?run=${encodeURIComponent(runId)}${decisionId ? `&decision=${encodeURIComponent(decisionId)}` : ''}${view ? `&view=${view}` : ''}`;
+const href = (runId: string, decisionId?: string, view?: 'campaign', revision?: number) => `/?run=${encodeURIComponent(runId)}${decisionId ? `&decision=${encodeURIComponent(decisionId)}` : ''}${revision ? `&revision=${revision}` : ''}${view ? `&view=${view}` : ''}`;
 
 test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)', { timeout: 540000 }, async t => {
   const admin = new pg.Client({ connectionString: process.env.GROWTHX_ADMIN_DATABASE_URL, connectionTimeoutMillis: 3000 });
@@ -148,7 +149,7 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     await closePools();
     await admin.query("update pgboss.job set state = 'cancelled' where state in ('created','retry') and data->>'tenantId' = any($1)", [[tenant.tenantId, decoy.tenantId]]);
     for (const seeded of [tenant, decoy]) {
-      for (const table of ['campaign_drafts','decisions','snapshot_narratives','snapshots','organizer_research','run_logs','run_steps','runs','profiles','claim_revision_sources','claim_revisions','claims','participation_revisions','participations','edition_revisions','event_editions','organizer_revisions','organizers','sources','companies','catalog_loads','sessions','memberships'])
+      for (const table of ['campaign_drafts','decisions','snapshot_narratives','snapshots','organizer_research','discovery_operations','discovery_runs','run_logs','run_steps','runs','profiles','claim_revision_sources','claim_revisions','claims','participation_revisions','participations','edition_revisions','event_editions','organizer_revisions','organizers','sources','companies','catalog_loads','sessions','memberships'])
         await admin.query(`delete from growthx.${table} where tenant_id=$1`, [seeded.tenantId]);
       await admin.query('delete from growthx.tenants where id=$1', [seeded.tenantId]);
       await admin.query('delete from growthx.app_users where id=$1', [seeded.userId]);
@@ -218,25 +219,25 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     await armContext(context);
     const page = await newPage(context);
     await page.goto(`${base}${href(cmpId)}`);
-    await panel(page).waitFor();
-    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId);
+    await panel(page).waitFor(); await revealComparisonAudit(page);
+    assert.equal(await page.getByTestId('comparison-snapshot-id').textContent(), cmp.snapshotId);
     // La lectura de decisiones termina antes de ofrecer «Registrar decisión»:
     // «leyendo» ≠ «no hay decisión».
     await candidate(page, SUMMIT).getByTestId('decision-open').waitFor();
     assert.equal(await page.getByTestId('decision-loading').count(), 0);
     summitStateLabel = await candidate(page, SUMMIT).getByTestId('candidate-state').innerText();
-    assert.equal(summitStateLabel, 'Condicionado');
+    assert.equal(summitStateLabel, 'Conditional');
     const summit = candidate(page, SUMMIT);
     await summit.getByTestId('decision-open').click();
-    await summit.getByLabel('Motivos de la decisión').fill('Audiencia backend declarada\nCosto por confirmar con el organizador');
-    await summit.getByText('Agregar condición (pregunta al organizador').click();
-    await summit.getByLabel('Dato pendiente').fill('Tarifa de patrocinio');
-    await summit.getByLabel('Pregunta al organizador').fill('¿Cuál es la tarifa del tier principal?');
-    await summit.getByLabel('Respuesta esperada').fill('Un tarifario con monto y moneda');
-    await summit.getByLabel('Efecto sobre la decisión').selectOption('discarded');
-    await summit.getByLabel('Responsable').fill('Julian');
-    await summit.getByLabel('Plazo').fill(`${futureYear}-01-31`);
-    await summit.getByRole('button', { name: 'Agregar condición', exact: true }).click();
+    await summit.getByLabel('Decision reasons').fill('Audiencia backend declarada\nCosto por confirmar con el organizador');
+    await summit.getByText('Add a condition: question').click();
+    await summit.getByLabel('Pending item').fill('Tarifa de patrocinio');
+    await summit.getByLabel('Question to organizer').fill('¿Cuál es la tarifa del tier principal?');
+    await summit.getByLabel('Expected answer').fill('Un tarifario con monto y moneda');
+    await summit.getByLabel('Effect on the decision').selectOption('discarded');
+    await summit.getByLabel('Owner', {exact:true}).fill('Julian');
+    await summit.getByLabel('Due date').fill(`${futureYear}-01-31`);
+    await summit.getByRole('button', { name: 'Add condition', exact: true }).click();
     const saving = page.waitForResponse(r => r.url().endsWith('/api/decisions') && r.request().method() === 'POST');
     await summit.getByTestId('decision-save').click();
     assert.equal((await saving).status(), 201);
@@ -248,7 +249,7 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     assert.equal(await page.getByTestId('campaign-draft-snapshot-id').innerText(), cmp.snapshotId);
     assert.equal(await page.getByTestId('campaign-draft-revision').innerText(), '1');
     internalLink = (await page.getByTestId('campaign-link').getAttribute('href'))!;
-    assert.equal(internalLink, href(cmpId, decisionId, 'campaign'));
+    assert.equal(internalLink, href(cmpId, decisionId, 'campaign', 1));
     assert.equal(new URL(page.url()).search, internalLink.slice(1));
     await capture(page, 'reopen-campaign');
     // Lo leído por la API es exactamente lo guardado.
@@ -258,15 +259,15 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     assert.equal(decision.decision.verdict, 'chosen'); assert.equal(decision.decision.revision, 1); assert.equal(decision.campaign?.id, campaignId);
     assert.ok(decision.decision.conditions.some(c => c.description.includes('Tarifa de patrocinio') && c.owner === 'Julian'));
     // Descarte de otra alternativa con su propio motivo (no es outcome).
-    await page.getByRole('button', { name: 'Volver a la comparación' }).click();
+    await page.getByRole('button', { name: 'Back to comparison' }).click();
     const night = candidate(page, ML_NIGHT);
     await night.getByTestId('decision-open').click();
-    await night.getByLabel('Descartar').check();
-    await night.getByLabel('Motivos de la decisión').fill('Sin fuente urbana ni acceso confirmado');
+    await night.getByLabel('Discard').check();
+    await night.getByLabel('Decision reasons').fill('Sin fuente urbana ni acceso confirmado');
     await night.getByTestId('decision-save').click();
     await night.getByTestId('decision-state').waitFor();
-    assert.equal(await night.getByTestId('decision-state').innerText(), 'Descartada');
-    discard = await (await api(`/api/decisions/${await night.getByTestId('decision-id').innerText()}`)).json();
+    assert.equal(await night.getByTestId('decision-state').innerText(), 'Discarded');
+    discard = await (await api(`/api/decisions/${await night.getByTestId('decision-id').textContent()}`)).json();
     assert.equal(discard.campaign, null);
     baseline = await counts();
     assert.equal(baseline.decisions, 2); assert.equal(baseline.campaigns, 1); assert.equal(baseline.snapshots, 1);
@@ -287,35 +288,35 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     const campaign = page.getByTestId('campaign-draft-panel');
     await campaign.waitFor();
     assert.equal(await page.getByTestId('campaign-draft-id').innerText(), campaignId);
-    assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Decisiones', 'el enlace de campaña abre la sección correspondiente');
+    assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Decisions', 'el enlace de campaña abre la sección correspondiente');
     assert.equal(await page.getByTestId('campaign-draft-decision-id').innerText(), decision.decisionId);
     assert.equal(await page.getByTestId('campaign-draft-snapshot-id').innerText(), cmp.snapshotId);
     assert.equal(await page.getByTestId('campaign-draft-revision').innerText(), '1');
     assert.match(await page.getByTestId('campaign-draft-meta').innerText(), new RegExp(`Run ${cmpId}`));
     assert.match(await campaign.innerText(), /partida desconocida queda pendiente/);
-    await page.getByRole('button', { name: 'Volver a la comparación' }).click();
-    await panel(page).waitFor();
-    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId).slice(1));
-    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId);
+    await page.getByRole('button', { name: 'Back to comparison' }).click();
+    await panel(page).waitFor(); await revealComparisonAudit(page);
+    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId, undefined, 1).slice(1));
+    assert.equal(await page.getByTestId('comparison-snapshot-id').textContent(), cmp.snapshotId);
     const summit = candidate(page, SUMMIT);
     const block = summit.getByTestId('candidate-decision');
     await block.waitFor();
     assert.equal(await block.getAttribute('data-decision-id'), decision.decisionId);
-    assert.equal(await summit.getByTestId('decision-state').innerText(), 'Elegida · elección condicional');
+    assert.equal(await summit.getByTestId('decision-state').innerText(), 'Chosen · conditional choice');
     assert.equal(await summit.getByTestId('decision-revision').innerText(), '1');
     assert.equal(await summit.getByTestId('decision-decided-at').innerText(), decision.decision.decidedAt, 'fecha original de la revisión');
     const blockText = await block.innerText();
     for (const reason of decision.decision.reasons) assert.ok(blockText.includes(reason), `motivo «${reason}» visible`);
-    assert.match(blockText, /Tarifa de patrocinio.*Responsable: Julian/);
-    assert.equal(await summit.getByTestId('decision-link').getAttribute('href'), href(cmpId, decision.decisionId));
+    assert.match(blockText, /Tarifa de patrocinio.*Owner: Julian/);
+    assert.equal(await summit.getByTestId('decision-link').getAttribute('href'), href(cmpId, decision.decisionId, undefined, 1));
     // Evidencia con su revisión/fecha original: claims fijados por el snapshot
     // y fuentes con su fecha de obtención (no «hoy»).
     const fixed = await summit.getByTestId('candidate-fixed-revisions').innerText();
     for (const id of ['clm-summit-access-r1', 'clm-summit-cost-r1']) assert.ok(fixed.includes(id), `claim ${id} fijado`);
-    assert.match(fixed, /edición ed-sf-dev-summit-2027-r1/);
-    assert.match(await summit.innerText(), /obtained 2026-09-08/);
+    assert.match(fixed, /edition revision: ed-sf-dev-summit-2027-r1/);
+    assert.match(await summit.innerText(), /Obtained Sep 8, 2026/);
     assert.equal(await summit.getByTestId('candidate-state').innerText(), summitStateLabel);
-    assert.equal(await candidate(page, ML_NIGHT).getByTestId('decision-state').innerText(), 'Descartada');
+    assert.equal(await candidate(page, ML_NIGHT).getByTestId('decision-state').innerText(), 'Discarded');
     assert.equal(await candidate(page, QUOTED).getByTestId('decision-open').count(), 1, 'sin decisión ≠ error');
     assert.equal(await page.getByTestId('current-validity-notice').count(), 0, 'todavía vigente: sin aviso');
     await capture(page, 'reopen-decision');
@@ -342,22 +343,22 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
   });
 
   await t.test('navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión', async () => {
-    for (const section of ['Perfil', 'Eventos', 'Organizadores', 'Resumen']) {
+    for (const section of ['Brief', 'Events', 'Organizers', 'Research']) {
       await nav(page, section);
       assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), section);
       assert.equal(await panel(page).count(), 0, `la comparación no ocupa la sección ${section}`);
       assert.equal(await page.getByTestId('campaign-draft-panel').count(), 0, `la campaña no ocupa la sección ${section}`);
     }
-    await nav(page, 'Decisiones');
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
     const savedChosen = page.getByTestId('evaluation-list').locator(`[data-decision-id="${decision.decisionId}"]`);
-    await savedChosen.getByRole('button', { name: `Abrir campaña ${campaignId}`, exact: true }).click();
+    await savedChosen.getByRole('button', { name: `Open campaign ${campaignId}`, exact: true }).click();
     await page.getByTestId('campaign-draft-panel').waitFor();
     assert.equal(await page.getByTestId('campaign-draft-id').innerText(), campaignId);
-    assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Decisiones');
-    await nav(page, 'Perfil');
+    assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Decisions');
+    await nav(page, 'Brief');
     assert.equal(await page.getByTestId('campaign-draft-panel').count(), 0, 'editar el perfil oculta la campaña abierta');
     assert.equal(await panel(page).count(), 0);
-    await nav(page, 'Decisiones');
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
     // Si la lectura del run llega después de navegar, no recupera el panel
     // por encima de la sección que el usuario acaba de elegir.
     let releaseRead!: () => void, readStarted!: () => void;
@@ -366,25 +367,25 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     const runUrl = `${base}/api/evaluations/${cmpId}`;
     await page.route(runUrl, async route => { readStarted(); await heldRead; await route.continue(); });
     try {
-      await savedChosen.getByRole('button', { name: 'Abrir decisión', exact: true }).click();
+      await savedChosen.getByRole('button', { name: 'Open decision', exact: true }).click();
       await requestedRead;
-      await nav(page, 'Perfil');
+      await nav(page, 'Brief');
       const completedRead = page.waitForResponse(runUrl);
       releaseRead();
       await completedRead;
-      await eventually(async () => (await page.getByTestId('run-progress').innerText()).includes('Completado') ? true : null, 'lectura demorada completada');
-      assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Perfil');
+      await eventually(async () => (await page.getByLabel('Product', {exact:true}).inputValue()) === cmpRun.profile.product ? true : null, 'lectura demorada completada');
+      assert.equal(await page.getByRole('heading', { level: 1 }).innerText(), 'Brief');
       assert.equal(await panel(page).count(), 0, 'la lectura demorada respeta la navegación posterior');
     } finally {
       releaseRead();
       await page.unroute(runUrl);
     }
-    await nav(page, 'Decisiones');
-    await savedChosen.getByRole('button', { name: 'Abrir decisión', exact: true }).click();
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
+    await savedChosen.getByRole('button', { name: 'Open decision', exact: true }).click();
     await candidate(page, SUMMIT).getByTestId('candidate-decision').waitFor();
-    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId);
+    assert.equal(await page.getByTestId('comparison-snapshot-id').textContent(), cmp.snapshotId);
     assert.equal(await candidate(page, SUMMIT).getByTestId('decision-revision').innerText(), '1');
-    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId).slice(1));
+    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId, undefined, 1).slice(1));
 
     // La restauración del enlace tampoco puede esperar al historial y
     // apropiarse de una navegación hecha mientras esa primera lectura tarda.
@@ -397,16 +398,16 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     try {
       await opening.goto(`${base}${href(cmpId, decision.decisionId)}`);
       await requestedHome;
-      await nav(opening, 'Perfil');
+      await nav(opening, 'Brief');
       const completedHome = opening.waitForResponse(homeUrl);
       releaseHome();
       await completedHome;
-      await eventually(async () => (await opening.getByTestId('run-progress').innerText()).includes('Completado') ? true : null, 'run restaurado con historial demorado');
-      assert.equal(await opening.getByRole('heading', { level: 1 }).innerText(), 'Perfil', 'restaurar el enlace respeta la navegación durante la lectura inicial del historial');
+      await eventually(async () => (await opening.getByLabel('Product', {exact:true}).inputValue()) === cmpRun.profile.product ? true : null, 'run restaurado con historial demorado');
+      assert.equal(await opening.getByRole('heading', { level: 1 }).innerText(), 'Brief', 'restaurar el enlace respeta la navegación durante la lectura inicial del historial');
       assert.equal(await panel(opening).count(), 0);
-      await nav(opening, 'Decisiones');
-      await panel(opening).waitFor();
-      assert.equal(await opening.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId, 'el run se carga aunque haya cambiado la sección');
+      await nav(opening, 'Decisions');
+      await panel(opening).waitFor(); await revealComparisonAudit(opening);
+      assert.equal(await opening.getByTestId('comparison-snapshot-id').textContent(), cmp.snapshotId, 'el run se carga aunque haya cambiado la sección');
     } finally {
       releaseHome();
       await opening.close();
@@ -416,43 +417,44 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
   });
 
   await t.test('lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña', async () => {
-    await nav(page, 'Decisiones');
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
     const list = page.getByTestId('evaluation-list');
     await list.waitFor();
     const rows = list.locator('[data-testid="saved-evaluation"]');
     assert.equal(await rows.count(), 1);
     assert.equal(await rows.first().getAttribute('data-run-id'), cmpId);
     assert.equal(await rows.first().getAttribute('data-snapshot-id'), cmp.snapshotId);
-    assert.match(await rows.first().getByTestId('saved-evaluation-profile').innerText(), /Herramienta de agentes · perfil v1 · presupuesto no declarado · objetivo feedback/);
+    assert.match(await rows.first().getByTestId('saved-evaluation-profile').innerText(), /Herramienta de agentes · brief v1 · budget Not declared · goal feedback/);
     assert.match(await rows.first().innerText(), /SF Dev Summit 2027 \(synthetic\)/);
     const savedDecisions = rows.first().locator('[data-testid="saved-decision"]');
     assert.equal(await savedDecisions.count(), 2);
     const savedChosen = rows.first().locator(`[data-decision-id="${decision.decisionId}"]`);
     assert.equal(await savedChosen.getAttribute('data-revision'), '1');
     assert.equal(await savedChosen.getAttribute('data-campaign-id'), campaignId);
-    assert.match(await savedChosen.innerText(), /Elegida · elección condicional · revisión 1/);
-    assert.equal(await savedChosen.getByTestId('decision-link').getAttribute('href'), href(cmpId, decision.decisionId));
-    await savedChosen.getByRole('button', { name: 'Abrir decisión', exact: true }).click();
+    assert.match(await savedChosen.innerText(), /Chosen · conditional choice · revision 1/);
+    assert.equal(await savedChosen.getByTestId('decision-link').getAttribute('href'), href(cmpId, decision.decisionId, undefined, 1));
+    await savedChosen.getByRole('button', { name: 'Open decision', exact: true }).click();
     await candidate(page, SUMMIT).getByTestId('candidate-decision').waitFor();
-    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId).slice(1));
+    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId, undefined, 1).slice(1));
     // Organizador → evento → volver: la selección persiste y el mapa no se abre.
-    await candidate(page, SUMMIT).getByRole('button', { name: 'Abrir expediente del organizador' }).click();
+    await revealComparisonAudit(page);
+    await candidate(page, SUMMIT).getByRole('button', { name: 'Open organizer dossier' }).click();
     const dossier = page.getByTestId('organizer-dossier');
     await dossier.waitFor();
-    assert.match(await dossier.innerText(), /org-bay-builders/);
+    assert.match(await dossier.textContent() ?? '', /org-bay-builders/);
     await dossier.getByRole('button', { name: 'SF Dev Summit 2027 (synthetic)', exact: true }).first().click();
     await page.getByTestId('edition-dossier').waitFor();
-    assert.match(await page.getByTestId('edition-dossier').innerText(), /ed-sf-dev-summit-2027/);
+    assert.equal(await page.getByTestId('edition-dossier').getAttribute('data-edition-id'), 'ed-sf-dev-summit-2027');
     assert.equal(await page.getByTestId('sf-map').count(), 0);
-    await page.getByRole('button', { name: 'Volver a decisiones' }).click();
+    await page.getByRole('button', { name: 'Close evidence' }).click();
     await candidate(page, SUMMIT).getByTestId('candidate-decision').waitFor();
     assert.equal(await candidate(page, SUMMIT).getByTestId('decision-revision').innerText(), '1');
     await candidate(page, SUMMIT).getByTestId('open-campaign').click();
     await page.getByTestId('campaign-draft-panel').waitFor();
     assert.equal(await page.getByTestId('campaign-draft-id').innerText(), campaignId);
     assert.equal(new URL(page.url()).search, internalLink.slice(1));
-    await page.getByRole('button', { name: 'Volver a la comparación' }).click();
-    await panel(page).waitFor();
+    await page.getByRole('button', { name: 'Back to comparison' }).click();
+    await panel(page).waitFor(); await revealComparisonAudit(page);
     assert.equal(await page.getByTestId('sf-map').count(), 0);
     assert.deepEqual(await counts(), baseline);
     assert.deepEqual(forbidden, []);
@@ -466,17 +468,17 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     await laterContext.clock.setFixedTime(new Date(Date.UTC(futureYear + 2, 0, 15, 12, 0, 0)));
     const later = await newPage(laterContext);
     await later.goto(`${base}${href(cmpId, decision.decisionId)}`);
-    await panel(later).waitFor();
+    await panel(later).waitFor(); await revealComparisonAudit(later);
     const summit = candidate(later, SUMMIT);
     await summit.getByTestId('candidate-decision').waitFor();
-    assert.match(await later.getByTestId('comparison-read-at').innerText(), new RegExp(`^${futureYear + 2}-01-15`));
+    assert.match(await later.getByTestId('comparison-read-at').innerText(), new RegExp(`^Jan 15, ${futureYear + 2}`));
     const notice = summit.getByTestId('current-validity-notice');
     assert.equal(await notice.count(), 1);
     assert.match(await notice.innerText(), /ya pasó respecto de la lectura/);
     assert.match(await notice.innerText(), /no se altera/);
     assert.equal(await summit.getByTestId('candidate-state').innerText(), summitStateLabel, 'el estado histórico no cambia');
     assert.equal(await summit.getByTestId('decision-revision').innerText(), '1');
-    assert.equal(await later.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId);
+    assert.equal(await later.getByTestId('comparison-snapshot-id').textContent(), cmp.snapshotId);
     await capture(later, 'reopen-validity');
     await laterContext.close();
     assert.deepEqual(await counts(), baseline);
@@ -499,13 +501,14 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     assertProcessedWithoutProviders(reeval);
     assert.notEqual(reeval.snapshotId, cmp.snapshotId);
     assert.equal(reeval.bundle.profile.id, cmpRun.profile.id, 'mismo perfil');
+    await page.getByTestId('comparison-panel').waitFor(); await revealComparisonAudit(page);
     await page.getByTestId('reevaluation-note').waitFor();
     assert.match(await page.getByTestId('reevaluation-note').innerText(), new RegExp(cmpId));
-    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), reeval.snapshotId);
+    assert.equal(await page.getByTestId('comparison-snapshot-id').textContent(), reeval.snapshotId);
     const summit = candidate(page, SUMMIT);
     await summit.getByTestId('previous-decision').waitFor();
     assert.equal(await summit.getByTestId('previous-decision').getAttribute('data-decision-id'), decision.decisionId);
-    assert.match(await summit.getByTestId('previous-decision').innerText(), /Elegida · elección condicional · revisión 1/);
+    assert.match(await summit.getByTestId('previous-decision').innerText(), /Chosen · conditional choice · revision 1/);
     assert.equal(await summit.getByTestId('decision-open').count(), 1, 'el nuevo snapshot no tiene decisión propia');
     // La decisión y el snapshot anteriores quedaron intactos.
     const previousRead: DecisionRead = await (await api(`/api/decisions/${decision.decisionId}`)).json();
@@ -514,19 +517,20 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     const after = await counts();
     assert.equal(after.decisions, baseline.decisions); assert.equal(after.snapshots, baseline.snapshots + 1); assert.equal(after.runs, baseline.runs + 1);
     // Navegar a ambas versiones.
-    await summit.getByRole('button', { name: 'Abrir la decisión previa' }).click();
+    await summit.getByRole('button', { name: 'Open previous decision' }).click();
     await candidate(page, SUMMIT).getByTestId('candidate-decision').waitFor();
-    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId).slice(1));
-    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), cmp.snapshotId);
+    assert.equal(new URL(page.url()).search, href(cmpId, decision.decisionId, undefined, 1).slice(1));
+    assert.equal(await page.getByTestId('comparison-snapshot-id').textContent(), cmp.snapshotId);
     assert.equal(await candidate(page, SUMMIT).getByTestId('decision-revision').innerText(), '1');
-    await nav(page, 'Decisiones');
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
     const rows = page.getByTestId('evaluation-list').locator('[data-testid="saved-evaluation"]');
     await eventually(async () => (await rows.count()) === 2 ? true : null, 'lista con las dos evaluaciones');
     const reevalRow = page.getByTestId('evaluation-list').locator(`[data-run-id="${reevalId}"]`);
     assert.match(await reevalRow.getByTestId('saved-evaluation-previous').innerText(), new RegExp(cmpId.slice(0, 8)));
-    await reevalRow.getByRole('button', { name: `Evaluación ${reevalId.slice(0, 8)}`, exact: true }).click();
+    await reevalRow.getByRole('button', { name: `Evaluation ${reevalId.slice(0, 8)}`, exact: true }).click();
+    await page.getByTestId('comparison-panel').waitFor(); await revealComparisonAudit(page);
     await page.getByTestId('reevaluation-note').waitFor();
-    assert.equal(await page.getByTestId('comparison-snapshot-id').innerText(), reeval.snapshotId);
+    assert.equal(await page.getByTestId('comparison-snapshot-id').textContent(), reeval.snapshotId);
   });
 
   await t.test('un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior', async () => {
@@ -540,17 +544,17 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     assert.equal(statusOf(cmp, QUOTED), 'conditional', 'el snapshot anterior no cambia');
     assert.deepEqual((await readRun(cmpId)).result, cmpRun.result);
     // Lista: tres evaluaciones; el filtro es por identidad de perfil.
-    await nav(page, 'Decisiones');
+    await nav(page, 'Decisions'); await revealSavedEvaluations(page); await revealComparisonAudit(page);
     const list = page.getByTestId('evaluation-list');
     const rows = list.locator('[data-testid="saved-evaluation"]');
     await eventually(async () => (await rows.count()) === 3 ? true : null, 'tres evaluaciones');
-    await page.getByLabel('Filtrar evaluaciones por perfil').selectOption(cmpRun.profileId);
+    await page.getByLabel('Filter evaluations by brief').selectOption(cmpRun.profileId);
     await eventually(async () => (await rows.count()) === 2 ? true : null, 'filtro perfil v1');
     assert.deepEqual(await rows.evaluateAll(elements => [...new Set(elements.map(e => e.getAttribute('data-profile-id')))]), [cmpRun.profileId]);
-    await page.getByLabel('Filtrar evaluaciones por perfil').selectOption(research2Run.profileId);
+    await page.getByLabel('Filter evaluations by brief').selectOption(research2Run.profileId);
     await eventually(async () => (await rows.count()) === 1 ? true : null, 'filtro perfil v2');
     assert.equal(await rows.first().getAttribute('data-run-id'), cmp2Id);
-    assert.match(await rows.first().getByTestId('saved-evaluation-profile').innerText(), /perfil v2 · presupuesto USD 500/);
+    assert.match(await rows.first().getByTestId('saved-evaluation-profile').innerText(), /brief v2 · budget USD 500/);
     assert.equal(await rows.first().locator('[data-testid="saved-decision"]').count(), 0);
     const filtered: ResearchHome = await (await api(`/api/evaluations?profileId=${cmpRun.profileId}`)).json();
     assert.deepEqual(filtered.evaluations.map(e => e.runId).sort(), [cmpId, reevalId].sort());
@@ -576,8 +580,10 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
     const conditionRow = (tab: Page, description: string) => candidate(tab, SUMMIT).getByTestId('decision-conditions').getByRole('listitem').filter({ hasText: description });
     const beginResolution = async (tab: Page, description: string, note: string) => {
       const row = conditionRow(tab, description);
-      await row.getByRole('button', { name: 'Marcar resuelta', exact: true }).click();
-      await row.getByLabel('Respuesta que resuelve la condición').fill(note);
+      await row.getByRole('button', { name: 'Mark resolved', exact: true }).click();
+      await row.getByLabel('Answer resolving the condition').fill(note);
+      await row.getByLabel('Response attributed to').fill('Buyer test');
+      await row.getByLabel('Response support').fill('Controlled test planning note');
       return row;
     };
     try {
@@ -585,7 +591,7 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
       await Promise.all([revision(firstTab, current.decision.revision), revision(secondTab, current.decision.revision)]);
       const firstRow = await beginResolution(firstTab, firstCondition.description, firstNote);
       let response = firstTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
-      await firstRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      await firstRow.getByRole('button', { name: 'Confirm resolution', exact: true }).click();
       assert.equal((await response).status(), 200);
       await revision(firstTab, current.decision.revision + 1);
 
@@ -597,18 +603,20 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
       });
       const secondRow = await beginResolution(secondTab, secondCondition.description, secondNote);
       response = secondTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
-      await secondRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      await secondRow.getByRole('button', { name: 'Confirm resolution', exact: true }).click();
       assert.equal((await response).status(), 409);
       await candidate(secondTab, SUMMIT).getByRole('alert').waitFor();
+      await candidate(secondTab, SUMMIT).getByRole('button', { name: 'Load latest revision · keep my draft', exact: true }).click();
+      await eventually(async()=>failedReads===1?true:null,'failed refresh attempted');
       assert.equal(failedReads, 1, 'el conflicto relee la decisión en vez de repetir indefinidamente la revisión obsoleta');
-      assert.equal(await secondRow.getByLabel('Respuesta que resuelve la condición').inputValue(), secondNote, 'la respuesta escrita no se pierde si falla la lectura');
-      assert.equal(await secondRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).isDisabled(), true, 'no se reenvía una revisión conocida como obsoleta');
+      assert.equal(await secondRow.getByLabel('Answer resolving the condition').inputValue(), secondNote, 'la respuesta escrita no se pierde si falla la lectura');
+      assert.equal(await secondRow.getByRole('button', { name: 'Confirm resolution', exact: true }).isDisabled(), true, 'no se reenvía una revisión conocida como obsoleta');
       await secondTab.unroute(decisionUrl);
-      await candidate(secondTab, SUMMIT).getByRole('button', { name: 'Reintentar lectura de la decisión', exact: true }).click();
+      await candidate(secondTab, SUMMIT).getByRole('button', { name: 'Load latest revision · keep my draft', exact: true }).click();
       await revision(secondTab, current.decision.revision + 1);
-      assert.equal(await secondRow.getByLabel('Respuesta que resuelve la condición').inputValue(), secondNote);
+      assert.equal(await secondRow.getByLabel('Answer resolving the condition').inputValue(), secondNote);
       response = secondTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
-      await secondRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      await secondRow.getByRole('button', { name: 'Confirm resolution', exact: true }).click();
       assert.equal((await response).status(), 200);
       await revision(secondTab, current.decision.revision + 2);
 
@@ -616,8 +624,9 @@ test('SF: reabrir la decisión exacta desde el dashboard (navegador, Next reinic
       // éxito tampoco sobrescribe la respuesta ya guardada por la segunda.
       const staleRow = await beginResolution(firstTab, secondCondition.description, 'Una respuesta escrita sobre la revisión anterior');
       response = firstTab.waitForResponse(r => r.url() === decisionUrl && r.request().method() === 'PATCH');
-      await staleRow.getByRole('button', { name: 'Confirmar resolución', exact: true }).click();
+      await staleRow.getByRole('button', { name: 'Confirm resolution', exact: true }).click();
       assert.equal((await response).status(), 409);
+      await candidate(firstTab, SUMMIT).getByRole('button', { name: 'Load latest revision · keep my draft', exact: true }).click();
       await revision(firstTab, current.decision.revision + 2);
       assert.match(await staleRow.innerText(), new RegExp(secondNote));
       const latest: DecisionRead = await (await api(`/api/decisions/${decision.decisionId}`)).json();

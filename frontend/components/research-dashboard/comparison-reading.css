@@ -1,0 +1,21 @@
+.research-dashboard .comparison-reason {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-ui);
+  min-width: 0;
+}
+.research-dashboard .comparison-reason > p {
+  display: block;
+  font-size: 14px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.research-dashboard .comparison-reason details { margin: 10px 0 0; }
+.research-dashboard .comparison-reason details > div { padding-top: 14px; }
+.research-dashboard .comparison-reason blockquote { border-left: 2px solid #bac6b7; padding-left: 12px; margin: 12px 0; }
+.research-dashboard .comparison-reason .source-record { overflow-wrap: anywhere; }
+.research-dashboard [data-testid="research-priority"] { border-left: 3px solid #47725e; padding: 2px 20px; margin: 24px 0; }
+.research-dashboard [data-testid="comparison-brief-editor"] form > p { grid-column: 1 / -1; }
+.research-dashboard [data-testid="comparison-brief-editor"] textarea,
+.research-dashboard [data-testid="comparison-brief-editor"] select { width: 100%; margin-top: 7px; font: inherit; }
+.research-dashboard [data-testid="comparison-brief-editor"] input[type="checkbox"] { width: auto; }
+.research-dashboard [data-testid="comparison-differences"] { overflow-wrap: anywhere; }

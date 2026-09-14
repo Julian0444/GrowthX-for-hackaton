@@ -1,0 +1,12 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "test:e2e"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-local-integration-348x3i0m/frontend",
+  "databasePort": 55449,
+  "providerKeysLoaded": false,
+  "exitCode": 0,
+  "durationSeconds": 184.36
+}

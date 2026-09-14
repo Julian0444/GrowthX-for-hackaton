@@ -1,0 +1,8 @@
+{
+  "file": "frontend/.env.local (git ignored)",
+  "changedVariables": {
+    "GROWTHX_GEOCODER": "us-census"
+  },
+  "existingEntriesPreserved": true,
+  "paidProviderConfigurationChanged": false
+}

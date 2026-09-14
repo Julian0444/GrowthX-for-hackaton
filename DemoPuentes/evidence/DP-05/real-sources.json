@@ -1,0 +1,1520 @@
+{
+  "observedAt": "2026-09-10T21:03:44.008Z",
+  "material": "real HTTP sources",
+  "providerUse": {
+    "exaCalls": 0,
+    "apifyStarts": 0
+  },
+  "samples": [
+    {
+      "reference": "F1",
+      "sourceId": "dp05-real-f1",
+      "read": {
+        "requestedUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+        "finalUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+        "canonicalUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+        "fetchedAt": "2026-09-10T21:03:42.913Z",
+        "htmlSha256": "20f7d9d68b6c063ce2e03d5c8d3c8a3ebf31227f6a0524f0f3afbf321826aca7",
+        "htmlBytes": 315041,
+        "fullContent": {
+          "version": 1,
+          "title": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon",
+          "eventIdentified": true,
+          "fragments": [
+            {
+              "id": "fragment-7d38db4042fad1dd",
+              "text": "name: Agents, Everywhere: Bots, Channels, & More — Global Hackathon",
+              "locator": "JSON-LD Event.name"
+            },
+            {
+              "id": "fragment-da30335728b006dc",
+              "text": "startDate: 2026-09-12T10:00:00-07:00",
+              "locator": "JSON-LD Event.startDate"
+            },
+            {
+              "id": "fragment-ccf270b578995686",
+              "text": "endDate: 2026-09-12T17:00:00-07:00",
+              "locator": "JSON-LD Event.endDate"
+            },
+            {
+              "id": "fragment-013c86031e120ac3",
+              "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+              "locator": "JSON-LD Event.eventAttendanceMode"
+            },
+            {
+              "id": "fragment-63570ff0e6d5bac8",
+              "text": "organizer.name: AI Tinkerers - San Francisco",
+              "locator": "JSON-LD Event.organizer.name"
+            },
+            {
+              "id": "fragment-d5d908fee1b88208",
+              "text": "offers.price: 0; offers.priceCurrency: USD",
+              "locator": "JSON-LD Event.offers"
+            },
+            {
+              "id": "fragment-3d53174a6b2b4a2a",
+              "text": "location.name: Private venue",
+              "locator": "JSON-LD Event.location.name"
+            },
+            {
+              "id": "fragment-cda03ebf173264e4",
+              "text": "location.address.addressLocality: San Francisco",
+              "locator": "JSON-LD Event.location.address.addressLocality"
+            },
+            {
+              "id": "fragment-fb515e0d692a7f67",
+              "text": "Sponsors and partners: OpenAI Marquee sponsor CopilotKit Sponsor OpenRouter Sponsor Exa Sponsor Auth0 Sponsor Ambiguous AI Sponsor Trigger.dev Sponsor Mozilla Sponsor Google Cloud Run Sponsor Sign in to apply People A global hackathon with OpenAI On Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day. Build an agent for a place people already work, talk, and live, then make it meaningfully more useful because of that context.",
+              "locator": "HTML line 2513; HTML line 2584; HTML line 2592; HTML line 2600; HTML line 2602; HTML line 2604"
+            },
+            {
+              "id": "fragment-c2c7b73d458f0ce1",
+              "text": "Event details: Location: Shared upon acceptance Developer Infrastructure Partners: Available after application approval",
+              "locator": "HTML line 2618; HTML line 3368"
+            },
+            {
+              "id": "fragment-83d51f5c23ae12a4",
+              "text": "The day: Time What happens 10:00–10:30 Doors, food, check-in, and meeting potential teammates 10:30–11:00 Shared global opening and starter-kit walkthrough 11:00–11:15 Team formation 11:15–15:30 Build session 15:30–16:00 Complete project submissions in the portal 16:00–16:45 Optional local show-and-tell (after submitting) 16:45–17:00 Wrap and group photo Local demos are for sharing work and learning from the room. There is no formal local judging. What every team submits: Before the event ends, every team submits: Title — a clear name for the project Written description — what you built, who it is for, and why the context matters Public GitHub repository — working code that can be reviewed and learned from Two-minute video — a concise demo of the project in action Social post — a public post about the project that tags the event sponsors Build something that can be shown. A sharp, working demo beats a broad concept.",
+              "locator": "HTML line 2662; HTML line 2668; HTML line 2672; HTML line 2676; HTML line 2680; HTML line 2684; HTML line 2688; HTML line 2692; HTML line 2698; HTML line 2714; HTML line 2718; HTML line 2721; HTML line 2724; HTML line 2727; HTML line 2730; HTML line 2734"
+            },
+            {
+              "id": "fragment-c01cd7af7a3b76ec",
+              "text": "Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.",
+              "locator": "HTML line 2746"
+            },
+            {
+              "id": "fragment-8f961cbe876e98c0",
+              "text": "Global Sponsors: OpenAI OpenAI is an AI research and deployment company whose mission is to ensure that artificial general intelligence benefits all of humanity. Its work spans frontier research and products that turn advanced AI capabilities into tools people and organizations can use. OpenAI is focused on making advanced intelligence safe, useful, accessible, and broadly beneficial—supporting greater productivity, creativity, scientific progress, and economic opportunity. CopilotKit CopilotKit is the Agentic Application Platform, an open-source framework and cloud platform for building and operating production-grade agentic applications. Its stack connects AI agents to user-facing products through in-app actions, generative UI, real-time context awareness, and support for protocols including AG-UI, MCP, and A2A. OpenRouter OpenRouter is an AI gateway and model marketplace offering a unified interface for hundreds of models across multiple providers. It is designed to reduce vendor lock-in while improving availability, pricing flexibility, and control over model routing. Many more global partners will be joining the event and added to this page soon.",
+              "locator": "HTML line 2754; HTML line 2756; HTML line 2760; HTML line 2762; HTML line 2766; HTML line 2768; HTML line 2772"
+            },
+            {
+              "id": "fragment-c6f7cfe1f5da3859",
+              "text": "Developer Infrastructure Partners: Exa Exa builds search infrastructure for AI applications. Its search engine and APIs help developers and agents find, retrieve, and synthesize high-quality web content through natural-language queries. Trigger.dev Trigger.dev is an open-source background jobs framework for building reliable workflows in plain async code. It provides infrastructure for long-running tasks and AI workloads, including queuing, retries, elastic scaling, and real-time monitoring. Auth0 Auth0 is an identity platform for developers, providing authentication and authorization infrastructure for web, mobile, and AI applications. Its SDKs and APIs help teams add secure login, access control, and identity workflows without building them from scratch. Mozilla Mozilla.ai builds open-source AI tools and infrastructure designed to make it easier for developers to create trustworthy, transparent, and controllable AI applications. Ambiguous AI Ambiguous is the workspace for human-AI collaboration. 17 productivity apps rebuilt from scratch to make work flow across Docs, Mail, Chat, Sheets, CRM, Calendar, and more. Each AI coworker has its own identity and works in the same apps and on the same data like the rest of the team. You can send it an email, message it in chat, assign it a task, or @mention it in a comment. Teams of up to five can use all 17 apps for free, and agents can get started through CLI or MCP in under a minute. Sep 12 Saturday Saturday, September 12th, 2026 • 10AM to 5PM (PDT) San Francisco Available after application approval",
+              "locator": "HTML line 2778; HTML line 2780; HTML line 2784; HTML line 2786; HTML line 2790; HTML line 2792; HTML line 2796; HTML line 2798; HTML line 2802; HTML line 2804; HTML line 3339; HTML line 3342; HTML line 3347; HTML line 3351; HTML line 3365; HTML line 3368"
+            },
+            {
+              "id": "fragment-ebd8a301d914dd23",
+              "text": "Agents, Everywhere: Beyond The Chatbox — Global Hackathon (Sept 12, 2026)",
+              "locator": "HTML line 2450"
+            },
+            {
+              "id": "fragment-e55f09848fe11525",
+              "text": "Date: Saturday, September 12, 2026",
+              "locator": "HTML line 2612"
+            },
+            {
+              "id": "fragment-5df29efefbcb8a93",
+              "text": "Saturday, September 12th, 2026 • 10AM to 5PM (PDT)",
+              "locator": "HTML line 3351"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": "name",
+              "value": {
+                "kind": "text",
+                "text": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-7d38db4042fad1dd"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:structured",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-12T10:00:00-07:00"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-da30335728b006dc"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "end_date",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-12T17:00:00-07:00"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-ccf270b578995686"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "https://schema.org/OfflineEventAttendanceMode"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-013c86031e120ac3"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "organizer",
+              "value": {
+                "kind": "text",
+                "text": "AI Tinkerers - San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-63570ff0e6d5bac8"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "cost:attendance",
+              "value": {
+                "kind": "money",
+                "amount": 0,
+                "currency": "USD"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-d5d908fee1b88208"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "venue",
+              "value": {
+                "kind": "text",
+                "text": "Private venue"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-3d53174a6b2b4a2a"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "location",
+              "value": {
+                "kind": "location",
+                "scope": "city",
+                "name": "San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-cda03ebf173264e4"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "companies:listed",
+              "value": {
+                "kind": "text",
+                "text": "Sponsors and partners:\nOpenAI Marquee sponsor CopilotKit Sponsor OpenRouter Sponsor Exa Sponsor Auth0 Sponsor Ambiguous AI Sponsor Trigger.dev Sponsor Mozilla Sponsor Google Cloud Run Sponsor\nSign in to apply\nPeople\nA global hackathon with OpenAI\nOn Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day.\nBuild an agent for a place people already work, talk, and live, then make it meaningfully more useful because of that context."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-fb515e0d692a7f67"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "location:restriction",
+              "value": {
+                "kind": "text",
+                "text": "Event details:\nLocation: Shared upon acceptance\nDeveloper Infrastructure Partners:\nAvailable after application approval"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-c2c7b73d458f0ce1"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "program",
+              "value": {
+                "kind": "text",
+                "text": "The day:\nTime What happens\n10:00–10:30 Doors, food, check-in, and meeting potential teammates\n10:30–11:00 Shared global opening and starter-kit walkthrough\n11:00–11:15 Team formation\n11:15–15:30 Build session\n15:30–16:00 Complete project submissions in the portal\n16:00–16:45 Optional local show-and-tell (after submitting)\n16:45–17:00 Wrap and group photo\nLocal demos are for sharing work and learning from the room. There is no formal local judging.\nWhat every team submits:\nBefore the event ends, every team submits:\nTitle — a clear name for the project\nWritten description — what you built, who it is for, and why the context matters\nPublic GitHub repository — working code that can be reviewed and learned from\nTwo-minute video — a concise demo of the project in action\nSocial post — a public post about the project that tags the event sponsors\nBuild something that can be shown. A sharp, working demo beats a broad concept."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-83d51f5c23ae12a4"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "audience",
+              "value": {
+                "kind": "text",
+                "text": "Who should come:\nThis is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-c01cd7af7a3b76ec"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "access",
+              "value": {
+                "kind": "text",
+                "text": "Who should come:\nThis is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-c01cd7af7a3b76ec"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "sponsors:global",
+              "value": {
+                "kind": "text",
+                "text": "OpenAI · CopilotKit · OpenRouter"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-8f961cbe876e98c0"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "companies:infrastructure_partner",
+              "value": {
+                "kind": "text",
+                "text": "Exa · Trigger.dev · Auth0 · Mozilla · Ambiguous AI · Sep · Saturday · San Francisco · Available after application approval"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-c6f7cfe1f5da3859"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "Agents, Everywhere: Beyond The Chatbox — Global Hackathon (Sept 12, 2026)"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-ebd8a301d914dd23"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "Date: Saturday, September 12, 2026"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-e55f09848fe11525"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "Saturday, September 12th, 2026 • 10AM to 5PM (PDT)"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-5df29efefbcb8a93"
+              ],
+              "note": null
+            }
+          ],
+          "location": {
+            "originalAddress": null,
+            "address": null,
+            "venue": null,
+            "city": "San Francisco",
+            "precision": "city",
+            "method": "unknown",
+            "provider": null,
+            "status": "announced",
+            "limitation": "Address withheld until acceptance; no location reconstructed."
+          },
+          "coordinates": null,
+          "warnings": [],
+          "visibleCharacters": 7266
+        },
+        "reading": {
+          "version": 1,
+          "strategy": "http_get",
+          "status": "obtained",
+          "limitation": null,
+          "freshness": "current",
+          "checkedAt": "2026-09-10T21:03:42.913Z",
+          "cache": "miss",
+          "failures": []
+        }
+      }
+    },
+    {
+      "reference": "F2",
+      "sourceId": "dp05-real-f2",
+      "read": {
+        "requestedUrl": "https://lu.ma/7a4iutvp",
+        "finalUrl": "https://luma.com/7a4iutvp",
+        "canonicalUrl": "https://lu.ma/7a4iutvp",
+        "fetchedAt": "2026-09-10T21:03:43.453Z",
+        "htmlSha256": "bebe7d5fb9984cba2d947c2fd1027fedf06896814be1f329b53513f18479ddef",
+        "htmlBytes": 220188,
+        "fullContent": {
+          "version": 1,
+          "title": "AI Security Hackathon - By Hackathons.team",
+          "eventIdentified": true,
+          "fragments": [
+            {
+              "id": "fragment-dbdedbe53731e65f",
+              "text": "name: AI Security Hackathon - By Hackathons.team",
+              "locator": "JSON-LD Event.name"
+            },
+            {
+              "id": "fragment-f140d4e6a83d29a6",
+              "text": "startDate: 2026-09-13T09:30:00.000-07:00",
+              "locator": "JSON-LD Event.startDate"
+            },
+            {
+              "id": "fragment-85bcd09c9993eeed",
+              "text": "endDate: 2026-09-13T19:30:00.000-07:00",
+              "locator": "JSON-LD Event.endDate"
+            },
+            {
+              "id": "fragment-013c86031e120ac3",
+              "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+              "locator": "JSON-LD Event.eventAttendanceMode"
+            },
+            {
+              "id": "fragment-00492147af26691d",
+              "text": "organizer.name: Wasmer",
+              "locator": "JSON-LD Event.organizer.name"
+            },
+            {
+              "id": "fragment-a65ce471e0b00c2c",
+              "text": "location.geo.latitude: 37.786980299999996; location.geo.longitude: -122.39447709999999",
+              "locator": "JSON-LD Event.location.geo"
+            },
+            {
+              "id": "fragment-458ad6f2d983d0fc",
+              "text": "location.name: 501 Folsom St",
+              "locator": "JSON-LD Event.location.name"
+            },
+            {
+              "id": "fragment-cda03ebf173264e4",
+              "text": "location.address.addressLocality: San Francisco",
+              "locator": "JSON-LD Event.location.address.addressLocality"
+            },
+            {
+              "id": "fragment-e52b755eeafc8476",
+              "text": "location.address: 501 Folsom St, San Francisco, California, US",
+              "locator": "JSON-LD Event.location.address"
+            },
+            {
+              "id": "fragment-8269cb919e9dd48b",
+              "text": "501 Folsom St",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-37e976424388becc",
+              "text": "501 Folsom St; San Francisco, CA",
+              "locator": "HTML line 2733; preceding street address"
+            },
+            {
+              "id": "fragment-e6cb42402985d3ab",
+              "text": "📍 EF, 501 Folsom St, San Francisco",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-e3d99f30436b3de1",
+              "text": "501 Folsom St; San Francisco, CA 94105, USA",
+              "locator": "HTML line 2733; preceding street address"
+            },
+            {
+              "id": "fragment-4e4c87379bb873a2",
+              "text": "Presented by: Wasmer",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-65e41e182cbdd788",
+              "text": "Hosted By: Julius Olsson Sahar Mor (Bond AI) BuilderBase Ayush Ojha Sean Chiu Tenki Cloud AI Featured in Bond AI - San Francisco and Bay Area AI Security Hackathon - By Hackathons.team 501 Folsom St San Francisco, CA",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-5d878ea2f05b5385",
+              "text": "🔒 AI SECURITY HACKATHON — San Francisco: A one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing. 👋 WHO SHOULD COME: Security researchers, agent builders, red-teamers, and anyone who ships. Come solo or in teams of 1–5. All experience levels welcome.",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-770a0da5ea62a64d",
+              "text": "🔒 AI SECURITY HACKATHON — San Francisco: A one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing.",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-bd71539743fc0831",
+              "text": "🤝 SPONSORS & SPONSOR PRIZES: 🚀 WASMER Wasmer lets you run apps and code anywhere—from your laptop to the cloud to the browser—in a secure sandbox. The new Wasmer SDK gives AI agents a local sandbox for executing code, making it a natural fit for agentic security projects. Wasmer track — best projects built with the Wasmer SDK: 🥇 1st: $5,000 in Wasmer credits 🥈 2nd: $2,500 in Wasmer credits 🥉 3rd: $1,500 in Wasmer credits Hackathon offer: 3 months of Wasmer Pro free—a $1,500 value. Learn more · SDK documentation ☁️ TENKI CLOUD Winner’s prize: $10,000 in Tenki Cloud credits. Startup program: Eligible startups can access up to $50,000 in credits through Tenki Cloud’s startup program.",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-aa67e0f9e62ec9fd",
+              "text": "🏢 VENUE PARTNER — ENTREPRENEURS FIRST Entrepreneurs First (EF) turns exceptional individuals into funded founders. Some might have an early idea, others may need a cofounder. What matters is their potential. We back these founders first, then give them a bridge to Silicon Valley. To date, their companies are worth > $16B.",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-29a55433ff500582",
+              "text": "🗓 WHEN & WHERE: ⏱ Doors: 9:30 AM 🛠 Build: 10:00 AM–6:00 PM 🎤 Demos & judging: From 6:00 PM ⚖️ JUDGING: Working demo on a real, authorized target · technical depth · originality · shock factor · progress made on the day.",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-1a99927ea12de51b",
+              "text": "🗓 WHEN & WHERE: All times Pacific. In-person participation is preferred, but great remote teams are welcome. 👋 WHO SHOULD COME: Spots are limited. Register below.",
+              "locator": "HTML line 2733"
+            },
+            {
+              "id": "fragment-2d170e6503a8a33d",
+              "text": "Public location link: https://www.google.com/maps/search/?query=37.786980299999996%2C-122.39447709999999",
+              "locator": "HTML line 2733 a[href]"
+            },
+            {
+              "id": "fragment-b80e7d75958200a3",
+              "text": "Sunday, September 13, 2026",
+              "locator": "HTML line 2733"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": "name",
+              "value": {
+                "kind": "text",
+                "text": "AI Security Hackathon - By Hackathons.team"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-dbdedbe53731e65f"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:structured",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-13T09:30:00.000-07:00"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-f140d4e6a83d29a6"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "end_date",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-13T19:30:00.000-07:00"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-85bcd09c9993eeed"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "https://schema.org/OfflineEventAttendanceMode"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-013c86031e120ac3"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "organizer",
+              "value": {
+                "kind": "text",
+                "text": "Wasmer"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-00492147af26691d"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "coordinates",
+              "value": {
+                "kind": "text",
+                "text": "37.786980299999996, -122.39447709999999"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-a65ce471e0b00c2c",
+                "fragment-2d170e6503a8a33d"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "venue",
+              "value": {
+                "kind": "text",
+                "text": "501 Folsom St"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-458ad6f2d983d0fc"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "location",
+              "value": {
+                "kind": "location",
+                "scope": "city",
+                "name": "San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-cda03ebf173264e4"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "501 Folsom St, San Francisco, California, US"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-e52b755eeafc8476"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "501 Folsom St"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-8269cb919e9dd48b"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "501 Folsom St, San Francisco, CA, US"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-37e976424388becc"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "📍 EF, 501 Folsom St, San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-e6cb42402985d3ab"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "501 Folsom St, San Francisco, CA, 94105, USA"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-e3d99f30436b3de1"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "companies:presenter",
+              "value": {
+                "kind": "text",
+                "text": "Presented by:\nWasmer"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-4e4c87379bb873a2"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "hosts:listed",
+              "value": {
+                "kind": "text",
+                "text": "Hosted By:\nJulius Olsson\nSahar Mor (Bond AI)\nBuilderBase\nAyush Ojha\nSean Chiu\nTenki Cloud\nAI\nFeatured in\nBond AI - San Francisco and Bay Area\nAI Security Hackathon - By Hackathons.team\n501 Folsom St\nSan Francisco, CA"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-65e41e182cbdd788"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "audience",
+              "value": {
+                "kind": "text",
+                "text": "🔒 AI SECURITY HACKATHON — San Francisco:\nA one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing.\n👋 WHO SHOULD COME:\nSecurity researchers, agent builders, red-teamers, and anyone who ships. Come solo or in teams of 1–5. All experience levels welcome."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-5d878ea2f05b5385"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "🔒 AI SECURITY HACKATHON — San Francisco:\nA one-day, in-person hackathon for builders exploring AI and security. Build an agent, break something responsibly, or create a tool that makes AI safer. Ideas are wide open—bring something worth showing."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-770a0da5ea62a64d"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "sponsors:announced",
+              "value": {
+                "kind": "text",
+                "text": "WASMER · TENKI CLOUD"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-bd71539743fc0831"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "companies:venue_partner",
+              "value": {
+                "kind": "text",
+                "text": "🏢 VENUE PARTNER — ENTREPRENEURS FIRST\nEntrepreneurs First (EF) turns exceptional individuals into funded founders. Some might have an early idea, others may need a cofounder. What matters is their potential. We back these founders first, then give them a bridge to Silicon Valley. To date, their companies are worth > $16B."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-aa67e0f9e62ec9fd"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "program",
+              "value": {
+                "kind": "text",
+                "text": "🗓 WHEN & WHERE:\n⏱ Doors: 9:30 AM\n🛠 Build: 10:00 AM–6:00 PM\n🎤 Demos & judging: From 6:00 PM\n⚖️ JUDGING:\nWorking demo on a real, authorized target · technical depth · originality · shock factor · progress made on the day."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-29a55433ff500582"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "access",
+              "value": {
+                "kind": "text",
+                "text": "🗓 WHEN & WHERE:\nAll times Pacific. In-person participation is preferred, but great remote teams are welcome.\n👋 WHO SHOULD COME:\nSpots are limited. Register below."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-1a99927ea12de51b"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "Sunday, September 13, 2026"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-b80e7d75958200a3"
+              ],
+              "note": null
+            }
+          ],
+          "location": {
+            "originalAddress": "501 Folsom St, San Francisco, CA, 94105, USA",
+            "address": {
+              "streetAddress": "501 Folsom St",
+              "locality": "San Francisco",
+              "region": "CA",
+              "postalCode": "94105",
+              "country": "USA"
+            },
+            "venue": "501 Folsom St",
+            "city": "San Francisco",
+            "precision": "address",
+            "method": "published_coordinates",
+            "provider": "Google Maps link published by event",
+            "status": "announced",
+            "limitation": "Published point associated with the place; metric accuracy and entrance not verified."
+          },
+          "coordinates": {
+            "lat": 37.786980299999996,
+            "lng": -122.39447709999999
+          },
+          "warnings": [],
+          "visibleCharacters": 2330
+        },
+        "reading": {
+          "version": 1,
+          "strategy": "http_get",
+          "status": "obtained",
+          "limitation": null,
+          "freshness": "current",
+          "checkedAt": "2026-09-10T21:03:43.453Z",
+          "cache": "miss",
+          "failures": []
+        }
+      }
+    },
+    {
+      "reference": "F3",
+      "sourceId": "dp05-real-f3",
+      "read": {
+        "requestedUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+        "finalUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+        "canonicalUrl": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+        "fetchedAt": "2026-09-10T21:03:43.709Z",
+        "htmlSha256": "91048922f902295ecea4d08ccba90b0a5bbf72094684d0468593eb9cadebcb9b",
+        "htmlBytes": 10505,
+        "fullContent": {
+          "version": 1,
+          "title": "AI Security Hackathon",
+          "eventIdentified": true,
+          "fragments": [
+            {
+              "id": "fragment-c5310f5f6239d89f",
+              "text": "name: AI Security Hackathon",
+              "locator": "JSON-LD Event.name"
+            },
+            {
+              "id": "fragment-dace63aba5decea6",
+              "text": "startDate: 2026-09-13T09:30:00-07:00",
+              "locator": "JSON-LD Event.startDate"
+            },
+            {
+              "id": "fragment-e43ee46206c7c600",
+              "text": "endDate: 2026-09-13T19:30:00-07:00",
+              "locator": "JSON-LD Event.endDate"
+            },
+            {
+              "id": "fragment-013c86031e120ac3",
+              "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+              "locator": "JSON-LD Event.eventAttendanceMode"
+            },
+            {
+              "id": "fragment-7d39c986d72abed4",
+              "text": "organizer.name: Julius Olsson",
+              "locator": "JSON-LD Event.organizer.name"
+            },
+            {
+              "id": "fragment-d5d908fee1b88208",
+              "text": "offers.price: 0; offers.priceCurrency: USD",
+              "locator": "JSON-LD Event.offers"
+            },
+            {
+              "id": "fragment-e78f0d1a4719740f",
+              "text": "location.name: EF (Entrepreneur First), floors 1 and 2",
+              "locator": "JSON-LD Event.location.name"
+            },
+            {
+              "id": "fragment-cda03ebf173264e4",
+              "text": "location.address.addressLocality: San Francisco",
+              "locator": "JSON-LD Event.location.address.addressLocality"
+            },
+            {
+              "id": "fragment-9463db0d72399c35",
+              "text": "location.address: 501 Folsom St, San Francisco, CA, 94105, US",
+              "locator": "JSON-LD Event.location.address"
+            },
+            {
+              "id": "fragment-0ae88c23a6751bc8",
+              "text": "EF, 501 Folsom St · San Francisco",
+              "locator": "HTML line 128"
+            },
+            {
+              "id": "fragment-102144d0c49e02fa",
+              "text": "WhereEF, 501 Folsom St, SF",
+              "locator": "HTML line 134"
+            },
+            {
+              "id": "fragment-b8d75d894614d247",
+              "text": "The brief: This is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here. Who should come: Security researchers, agent builders, red-teamers, and anyone who ships. Solo or teams of 1 to 5, all levels. Remote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day.",
+              "locator": "HTML line 150; HTML line 193; HTML line 194"
+            },
+            {
+              "id": "fragment-c21839405c42e51e",
+              "text": "The brief: This is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here.",
+              "locator": "HTML line 150"
+            },
+            {
+              "id": "fragment-ab7c9f1a81e3cc8c",
+              "text": "The day: 9:30 Doors Coffee, team forming, pick your target. 10:00 Build Eight hours. Ship something that runs. 18:00 Demos Live demos, judging, prizes. Judging: Working demo on a real target Technical depth Originality Shock factor Progress on the day",
+              "locator": "HTML line 170; HTML line 171; HTML line 172; HTML line 183; HTML line 184; HTML line 185; HTML line 186; HTML line 187"
+            },
+            {
+              "id": "fragment-2c8beccd6ad6c487",
+              "text": "Who should come: Remote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day. Spots are limited.",
+              "locator": "HTML line 194; HTML line 201"
+            },
+            {
+              "id": "fragment-a17d1567f690c351",
+              "text": "DateSun, Sep 13 2026",
+              "locator": "HTML line 132"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": "name",
+              "value": {
+                "kind": "text",
+                "text": "AI Security Hackathon"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-c5310f5f6239d89f"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:structured",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-13T09:30:00-07:00"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-dace63aba5decea6"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "end_date",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-13T19:30:00-07:00"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-e43ee46206c7c600"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "https://schema.org/OfflineEventAttendanceMode"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-013c86031e120ac3"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "organizer",
+              "value": {
+                "kind": "text",
+                "text": "Julius Olsson"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-7d39c986d72abed4"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "cost:attendance",
+              "value": {
+                "kind": "money",
+                "amount": 0,
+                "currency": "USD"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-d5d908fee1b88208"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "venue",
+              "value": {
+                "kind": "text",
+                "text": "EF (Entrepreneur First), floors 1 and 2"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-e78f0d1a4719740f"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "location",
+              "value": {
+                "kind": "location",
+                "scope": "city",
+                "name": "San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-cda03ebf173264e4"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "501 Folsom St, San Francisco, CA, 94105, US"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-9463db0d72399c35"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "EF, 501 Folsom St · San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-0ae88c23a6751bc8"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "address",
+              "value": {
+                "kind": "text",
+                "text": "WhereEF, 501 Folsom St, SF"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-102144d0c49e02fa"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "audience",
+              "value": {
+                "kind": "text",
+                "text": "The brief:\nThis is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here.\nWho should come:\nSecurity researchers, agent builders, red-teamers, and anyone who ships. Solo or teams of 1 to 5, all levels.\nRemote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-b8d75d894614d247"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "The brief:\nThis is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-c21839405c42e51e"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "program",
+              "value": {
+                "kind": "text",
+                "text": "The day:\n9:30\nDoors\nCoffee, team forming, pick your target.\n10:00\nBuild\nEight hours. Ship something that runs.\n18:00\nDemos\nLive demos, judging, prizes.\nJudging:\nWorking demo on a real target\nTechnical depth\nOriginality\nShock factor\nProgress on the day"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-ab7c9f1a81e3cc8c"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "access",
+              "value": {
+                "kind": "text",
+                "text": "Who should come:\nRemote: in person is preferred, but we make a few exceptions for teams who have built cool things before. Same rules, you build during the day.\nSpots are limited."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-2c8beccd6ad6c487"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "DateSun, Sep 13 2026"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-a17d1567f690c351"
+              ],
+              "note": null
+            }
+          ],
+          "location": {
+            "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US",
+            "address": {
+              "streetAddress": "501 Folsom St",
+              "locality": "San Francisco",
+              "region": "CA",
+              "postalCode": "94105",
+              "country": "US"
+            },
+            "venue": "EF (Entrepreneur First), floors 1 and 2",
+            "city": "San Francisco",
+            "precision": "city",
+            "method": "unknown",
+            "provider": null,
+            "status": "announced",
+            "limitation": "No published coordinates; geocoding has not been performed."
+          },
+          "coordinates": null,
+          "warnings": [],
+          "visibleCharacters": 1368
+        },
+        "reading": {
+          "version": 1,
+          "strategy": "http_get",
+          "status": "obtained",
+          "limitation": null,
+          "freshness": "current",
+          "checkedAt": "2026-09-10T21:03:43.709Z",
+          "cache": "miss",
+          "failures": []
+        }
+      }
+    },
+    {
+      "reference": "F4",
+      "sourceId": "dp05-real-f4",
+      "read": {
+        "requestedUrl": "https://www.hackathons.team/",
+        "finalUrl": "https://www.hackathons.team/",
+        "canonicalUrl": "https://www.hackathons.team/",
+        "fetchedAt": "2026-09-10T21:03:43.758Z",
+        "htmlSha256": "0646c9702c08679b4afb074511a136dc1f179783af1b72601f5f60d0d8f06f08",
+        "htmlBytes": 11410,
+        "fullContent": {
+          "version": 1,
+          "title": "hackathons.team · Events",
+          "eventIdentified": false,
+          "fragments": [
+            {
+              "id": "fragment-055a95f9aebaa273",
+              "text": "Next event · Sunday 13 September 2026: Free, by application",
+              "locator": "HTML line 104"
+            },
+            {
+              "id": "fragment-8719b663704c7d8f",
+              "text": "Upcoming events: One day building anything agentic where security is the point, for security researchers, agent builders and red-teamers. Free to enter, $1,750 in prizes.",
+              "locator": "HTML line 130"
+            },
+            {
+              "id": "fragment-39839adf1892629f",
+              "text": "Past events: None yet. hackathons.team started in 2026 and its first event is listed above. After each event concludes, its card moves here with links to the published results and the judging panel.",
+              "locator": "HTML line 150"
+            },
+            {
+              "id": "fragment-653619b2168512c9",
+              "text": "Sun, Sep 13 2026",
+              "locator": "HTML line 100"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": "access",
+              "value": {
+                "kind": "text",
+                "text": "Next event · Sunday 13 September 2026:\nFree, by application"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-055a95f9aebaa273"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "audience",
+              "value": {
+                "kind": "text",
+                "text": "Upcoming events:\nOne day building anything agentic where security is the point, for security researchers, agent builders and red-teamers. Free to enter, $1,750 in prizes."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-8719b663704c7d8f"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "history:published",
+              "value": {
+                "kind": "text",
+                "text": "Past events:\nNone yet. hackathons.team started in 2026 and its first event is listed above. After each event concludes, its card moves here with links to the published results and the judging panel."
+              },
+              "status": "reported",
+              "fragmentIds": [
+                "fragment-39839adf1892629f"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "Sun, Sep 13 2026"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-653619b2168512c9"
+              ],
+              "note": null
+            }
+          ],
+          "location": null,
+          "coordinates": null,
+          "warnings": [],
+          "visibleCharacters": 1916
+        },
+        "reading": {
+          "version": 1,
+          "strategy": "http_get",
+          "status": "obtained",
+          "limitation": null,
+          "freshness": "current",
+          "checkedAt": "2026-09-10T21:03:43.758Z",
+          "cache": "miss",
+          "failures": []
+        }
+      }
+    },
+    {
+      "reference": "F5",
+      "sourceId": "dp05-real-f5",
+      "read": {
+        "requestedUrl": "https://www.hackathons.team/sponsor/enquire",
+        "finalUrl": "https://www.hackathons.team/sponsor/enquire",
+        "canonicalUrl": "https://www.hackathons.team/sponsor/enquire",
+        "fetchedAt": "2026-09-10T21:03:43.792Z",
+        "htmlSha256": "3b405dd3f4bd63bf1a5da104c7f4c29e7685657f27a903b2b57f3b39d64265ff",
+        "htmlBytes": 7095,
+        "fullContent": {
+          "version": 1,
+          "title": "Sponsor an event · hackathons.team",
+          "eventIdentified": false,
+          "fragments": [
+            {
+              "id": "fragment-79c03de4bf4cdef1",
+              "text": "What sponsors get: Your name and logo on the event page, on the day, and in the published results. A sponsor-defined challenge track with a prize in your name. Your product, API or credits as one of the tools people build with. A workshop or office-hours slot during the build. Opt-in introductions to participants who want to hear from you, and recruiting on the day. A short report afterwards: who took part, what was built on your product, and the results. What sponsorship does not include: Any say in who judges. Any access to judge applications, to submissions before the demos, to scorecards, or to who wins. Sponsor-defined tracks are judged by the same panel against the same published rubric: the sponsor sets the challenge, not the outcome. Your employees are welcome to apply to judge. They are assessed on exactly the same standard as everyone else, their affiliation is shown on the panel, and they recuse from any project built on your product or by anyone they work with. We do not publish packages. What a sponsorship looks like depends on the event and on what you bring; the enquiry is where that conversation starts.",
+              "locator": "HTML line 76; HTML line 77; HTML line 78; HTML line 79; HTML line 80; HTML line 81; HTML line 86; HTML line 87; HTML line 89"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": "sponsorship:terms",
+              "value": {
+                "kind": "text",
+                "text": "What sponsors get:\nYour name and logo on the event page, on the day, and in the published results.\nA sponsor-defined challenge track with a prize in your name.\nYour product, API or credits as one of the tools people build with.\nA workshop or office-hours slot during the build.\nOpt-in introductions to participants who want to hear from you, and recruiting on the day.\nA short report afterwards: who took part, what was built on your product, and the results.\nWhat sponsorship does not include:\nAny say in who judges. Any access to judge applications, to submissions before the demos, to scorecards, or to who wins. Sponsor-defined tracks are judged by the same panel against the same published rubric: the sponsor sets the challenge, not the outcome.\nYour employees are welcome to apply to judge. They are assessed on exactly the same standard as everyone else, their affiliation is shown on the panel, and they recuse from any project built on your product or by anyone they work with.\nWe do not publish packages. What a sponsorship looks like depends on the event and on what you bring; the enquiry is where that conversation starts."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-79c03de4bf4cdef1"
+              ],
+              "note": null
+            }
+          ],
+          "location": null,
+          "coordinates": null,
+          "warnings": [],
+          "visibleCharacters": 1559
+        },
+        "reading": {
+          "version": 1,
+          "strategy": "http_get",
+          "status": "obtained",
+          "limitation": null,
+          "freshness": "current",
+          "checkedAt": "2026-09-10T21:03:43.792Z",
+          "cache": "miss",
+          "failures": []
+        }
+      }
+    },
+    {
+      "reference": "F6",
+      "sourceId": "dp05-real-f6",
+      "read": {
+        "requestedUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+        "finalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+        "canonicalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+        "fetchedAt": "2026-09-10T21:03:44.000Z",
+        "htmlSha256": "6db315b3a6414b5c6c41a506ded1052f198ce8531aeecf88ad8fb7bcc9688050",
+        "htmlBytes": 141932,
+        "fullContent": {
+          "version": 1,
+          "title": "The Agent Arena Hackathon",
+          "eventIdentified": true,
+          "fragments": [
+            {
+              "id": "fragment-35a7e50e67ff9023",
+              "text": "name: The Agent Arena Hackathon",
+              "locator": "JSON-LD Event.name"
+            },
+            {
+              "id": "fragment-5cbe35e7fc108e04",
+              "text": "startDate: 2026-09-26T16:00:00.000Z",
+              "locator": "JSON-LD Event.startDate"
+            },
+            {
+              "id": "fragment-b992b86234c73801",
+              "text": "endDate: 2026-09-28T00:00:00.000Z",
+              "locator": "JSON-LD Event.endDate"
+            },
+            {
+              "id": "fragment-013c86031e120ac3",
+              "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+              "locator": "JSON-LD Event.eventAttendanceMode"
+            },
+            {
+              "id": "fragment-fd84b11cfb8296aa",
+              "text": "organizer.name: Vultr",
+              "locator": "JSON-LD Event.organizer.name"
+            },
+            {
+              "id": "fragment-d5d908fee1b88208",
+              "text": "offers.price: 0; offers.priceCurrency: USD",
+              "locator": "JSON-LD Event.offers"
+            },
+            {
+              "id": "fragment-9a13c107e22c7dec",
+              "text": "location.name: San Francisco, CA",
+              "locator": "JSON-LD Event.location.name"
+            },
+            {
+              "id": "fragment-cda03ebf173264e4",
+              "text": "location.address.addressLocality: San Francisco",
+              "locator": "JSON-LD Event.location.address.addressLocality"
+            },
+            {
+              "id": "fragment-33756ad62521fcb9",
+              "text": "The Agent Arena Hackathon: Note: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance.",
+              "locator": "HTML line 50"
+            },
+            {
+              "id": "fragment-0c473c896a3ce1dd",
+              "text": "San Francisco, CASep 26 at 9:00 AM – Sep 27 at 5:00 PM (PDT)",
+              "locator": "HTML line 50"
+            }
+          ],
+          "attributes": [
+            {
+              "attribute": "name",
+              "value": {
+                "kind": "text",
+                "text": "The Agent Arena Hackathon"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-35a7e50e67ff9023"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:structured",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-26T16:00:00.000Z"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-5cbe35e7fc108e04"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "end_date",
+              "value": {
+                "kind": "text",
+                "text": "2026-09-28T00:00:00.000Z"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-b992b86234c73801"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "https://schema.org/OfflineEventAttendanceMode"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-013c86031e120ac3"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "organizer",
+              "value": {
+                "kind": "text",
+                "text": "Vultr"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-fd84b11cfb8296aa"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "cost:attendance",
+              "value": {
+                "kind": "money",
+                "amount": 0,
+                "currency": "USD"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-d5d908fee1b88208"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "venue",
+              "value": {
+                "kind": "text",
+                "text": "San Francisco, CA"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-9a13c107e22c7dec"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "location",
+              "value": {
+                "kind": "location",
+                "scope": "city",
+                "name": "San Francisco"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-cda03ebf173264e4"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "audience",
+              "value": {
+                "kind": "text",
+                "text": "The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-33756ad62521fcb9"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "access",
+              "value": {
+                "kind": "text",
+                "text": "The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-33756ad62521fcb9"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "format",
+              "value": {
+                "kind": "text",
+                "text": "The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance."
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-33756ad62521fcb9"
+              ],
+              "note": null
+            },
+            {
+              "attribute": "date:visible",
+              "value": {
+                "kind": "text",
+                "text": "San Francisco, CASep 26 at 9:00 AM – Sep 27 at 5:00 PM (PDT)"
+              },
+              "status": "announced",
+              "fragmentIds": [
+                "fragment-0c473c896a3ce1dd"
+              ],
+              "note": null
+            }
+          ],
+          "location": {
+            "originalAddress": null,
+            "address": {
+              "streetAddress": null,
+              "locality": "San Francisco",
+              "region": "CA",
+              "postalCode": null,
+              "country": "US"
+            },
+            "venue": "San Francisco, CA",
+            "city": "San Francisco",
+            "precision": "city",
+            "method": "unknown",
+            "provider": null,
+            "status": "announced",
+            "limitation": "No published coordinates; geocoding has not been performed."
+          },
+          "coordinates": null,
+          "warnings": [],
+          "visibleCharacters": 939
+        },
+        "reading": {
+          "version": 1,
+          "strategy": "http_get",
+          "status": "obtained",
+          "limitation": null,
+          "freshness": "current",
+          "checkedAt": "2026-09-10T21:03:44.000Z",
+          "cache": "miss",
+          "failures": []
+        }
+      }
+    }
+  ]
+}

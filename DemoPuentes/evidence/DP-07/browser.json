@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tests/e2e/explicable-comparison.spec.ts"
+  ],
+  "cwd": "/tmp/growthx-dp07-production",
+  "exit_code": 0,
+  "duration_seconds": 15.2,
+  "database": "isolated PostgreSQL port 55447"
+}

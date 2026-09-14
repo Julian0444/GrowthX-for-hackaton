@@ -1,0 +1,43 @@
+Decision brief
+Event: Agents, Everywhere
+Official event: https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon
+Date: Sep 12, 2026, 5:00 PM UTC
+Buyer context: Observabilidad para agentes · audience: Equipos que construyen agentes
+Research objective: adoption (confirmed, declared by buyer)
+Budget: USD 5000 · window: 2026-09-10 to 2026-10-22
+Decision: Explore first · participation pending
+Reasons:
+- Explore an agent debugging workshop before committing budget.
+Research context: Para «Observabilidad para agentes», dirigido a «Equipos que construyen agentes» y con objetivo de adopción, hay afinidad temática en agentes, observabilidad. El antecedente documentado permite preguntar por una actividad similar en la edición actual. Es una hipótesis de pertinencia; falta validar audiencia efectiva y disponibilidad.
+Activity objective: Collect practical feedback from agent builders
+Owner: Alex
+Success definition (buyer): Instrumentar un proyecto voluntario
+Modality: workshop: Hands-on debugging lab; proposed only · team proposal; availability unconfirmed · Buyer reports Buyer: Buyer statement only; no external support supplied (recorded by 33efbe8e-75be-4cff-a5e1-3e94a540489a, 2026-09-11T01:14:23.146Z)
+Cost items (no complete campaign total established):
+- sponsorship: Pending — Edition-specific sponsorship quote and total participation cost remain unknown.
+- Travel: USD 500 · estimated — Buyer estimate · Buyer reports Buyer: Buyer input; amount pending (recorded by 33efbe8e-75be-4cff-a5e1-3e94a540489a, 2026-09-11T01:14:23.146Z)
+Conditions and answers:
+- [open] Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. — Qué respuesta la resolvería: ¿Cuál es el costo completo, la moneda y el paquete a contratar?
+- [open] Restricción del comprador por verificar: No comprar solo logo — Qué respuesta la resolvería: ¿Cómo se cumple «No comprar solo logo» en la modalidad de esta edición?
+- [open] Restricción del comprador por verificar: Introducciones con opt-in — Qué respuesta la resolvería: ¿Cómo se cumple «Introducciones con opt-in» en la modalidad de esta edición?
+- [open] Formato solicitado sin confirmar: workshop, hackathon. — Qué respuesta la resolvería: ¿Está disponible el formato solicitado y bajo qué condiciones?
+Next questions:
+- Can we run a workshop?
+- What is the full quote and access policy?
+- Costo incompleto: partida «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; no cuenta como cero. — Qué respuesta la resolvería: ¿Cuál es el costo completo, la moneda y el paquete a contratar?
+- Restricción del comprador por verificar: No comprar solo logo — Qué respuesta la resolvería: ¿Cómo se cumple «No comprar solo logo» en la modalidad de esta edición?
+- Restricción del comprador por verificar: Introducciones con opt-in — Qué respuesta la resolvería: ¿Cómo se cumple «Introducciones con opt-in» en la modalidad de esta edición?
+- Formato solicitado sin confirmar: workshop, hackathon. — Qué respuesta la resolvería: ¿Está disponible el formato solicitado y bajo qué condiciones?
+- ¿Cuál es el costo completo, la moneda y el paquete a contratar? ¿Permiten una integración voluntaria para «Observabilidad para agentes» con «Equipos que construyen agentes»?
+Saved sources:
+- https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk · obtained 2026-09-10T22:00:00.000Z
+- https://blogs.vultr.com/vultr-at-RAISE-2025 · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon · obtained 2026-09-10T22:00:00.000Z
+- https://cerebralvalley.ai/e/vultr-the-agent-arena · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/organizers · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase · obtained 2026-09-10T22:00:00.000Z
+Saved revision: 1 · 2026-09-11T01:14:23.142Z
+Reopen this brief: http://127.0.0.1:53611/?run=4bf1998f-db5b-4f10-9b1f-ce01f1ff624d&decision=1591e51b-6071-453f-be46-b4c030d5f8e1&revision=1&view=campaign
+Manual draft only. Saving or copying sends no message, books no activity and commits no money.

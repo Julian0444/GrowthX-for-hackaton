@@ -1,0 +1,76 @@
+{
+  "finishedAt": "2026-09-10T23:26:30.326837+00:00",
+  "execution": "verified",
+  "acceptanceCriteria": 9,
+  "reports": {
+    "regression": {
+      "exitCode": 0,
+      "durationSeconds": 72.14
+    },
+    "e2e": {
+      "exitCode": 0,
+      "durationSeconds": 250.05
+    },
+    "map-e2e": {
+      "exitCode": 0,
+      "durationSeconds": 21.05
+    },
+    "map-webpack-e2e": {
+      "exitCode": 0,
+      "durationSeconds": 34.55
+    },
+    "build": {
+      "exitCode": 0,
+      "durationSeconds": 12.32
+    },
+    "webpack-build": {
+      "exitCode": 0,
+      "durationSeconds": 19.68
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "durationSeconds": 9.57
+    },
+    "webpack-typecheck": {
+      "exitCode": 0,
+      "durationSeconds": 5.02
+    },
+    "lint": {
+      "exitCode": 0,
+      "durationSeconds": 6.65
+    },
+    "webpack-lint": {
+      "exitCode": 0,
+      "durationSeconds": 7.6
+    },
+    "real-production-final": {
+      "exitCode": 0,
+      "durationSeconds": 22.68
+    },
+    "real-webpack-reopen": {
+      "exitCode": 0,
+      "durationSeconds": 20.83
+    }
+  },
+  "tests": {
+    "regression": 334,
+    "priorE2E": 30,
+    "mapTurbopack": 10,
+    "mapWebpack": 10
+  },
+  "local": {
+    "http": 200,
+    "databaseRunning": true,
+    "migrationsByDP09": 0,
+    "databaseWritesByDP09": 0
+  },
+  "isolatedContainer": {
+    "name": "growthx-dp09-verification",
+    "running": false,
+    "dataRetained": true
+  },
+  "sharedDocumentsUnchanged": true,
+  "commit": false,
+  "push": false,
+  "deployment": false
+}

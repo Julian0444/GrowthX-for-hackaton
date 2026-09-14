@@ -1,0 +1,314 @@
+{
+  "material": "Real public HTTP observations obtained at the start of DP-06; not fixture responses or a database seed",
+  "note": "The later production browser run received 403 for project/gallery pages. This separate extraction check reuses the earlier actual HTTP download, with its original fetchedAt. It does not claim a new fetch or project availability in that browser run. No repository was opened or executed.",
+  "observations": [
+    {
+      "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "fetchedAt": "2026-09-10T21:16:43.042Z",
+      "sha256": "4f3af7601ab77aef6e325ad2d5467737ddd9886529daa3576f1748cb440f698e",
+      "bytes": 315041,
+      "method": "http_get"
+    },
+    {
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "fetchedAt": "2026-09-10T21:16:46.579Z",
+      "sha256": "1ec1211e141fbe123fe9790c35c2d40d6403c16b177637f56b23f276a3986dd3",
+      "bytes": 284640,
+      "method": "http_get"
+    },
+    {
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fetchedAt": "2026-09-10T21:16:46.905Z",
+      "sha256": "00b66e3aeff3b87ee2b15888b2bf1b1c0186b6d9f0b31ff07197000e09160a32",
+      "bytes": 39200,
+      "method": "http_get"
+    }
+  ],
+  "project": {
+    "id": "relationship-8db7c8cb40442222a37381b7",
+    "editionId": "edition-e798e9bdbefdc361ed052d63",
+    "entity": {
+      "type": "project",
+      "projectId": "project-2ef421f26b54e3afd72619a5",
+      "name": "The Citadel: Neuro-Symbolic Security Gateway",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo"
+    },
+    "role": "published_project",
+    "status": "reported",
+    "scope": "edition",
+    "sourceIds": [
+      "background-source-b96e6ace2c6c4cd367f7e6e8",
+      "background-source-440616873ee37e094260c3bd"
+    ],
+    "evidence": [
+      {
+        "sourceId": "background-source-b96e6ace2c6c4cd367f7e6e8",
+        "fragmentId": "fragment-54c12e0e1ede71a1207f5552",
+        "locator": null
+      },
+      {
+        "sourceId": "background-source-440616873ee37e094260c3bd",
+        "fragmentId": "fragment-d34a725857e79beb363c3e0c",
+        "locator": null
+      },
+      {
+        "sourceId": "background-source-440616873ee37e094260c3bd",
+        "fragmentId": "fragment-cb10a855c4ccd090d1cfa3da",
+        "locator": null
+      }
+    ],
+    "claimRevisionIds": [
+      "background-claim-rev-114b0f45a754fd4c6327b70a",
+      "background-claim-rev-ef715d2f62fea0da66cf53e9",
+      "background-claim-rev-30c2601ddbb4d12162343c1e",
+      "background-claim-rev-7e6885a05ee21843b7dc0158",
+      "background-claim-rev-317b2e8530735b090f3f0674"
+    ],
+    "limitation": "Linked project report only. Implementation, security efficacy and commercial adoption have not been verified."
+  },
+  "claims": [
+    {
+      "contractVersion": "1",
+      "id": "background-claim-rev-114b0f45a754fd4c6327b70a",
+      "claimId": "background-claim-a14853b978a34fe19a9e1d96",
+      "subject": {
+        "type": "edition",
+        "editionId": "edition-e798e9bdbefdc361ed052d63"
+      },
+      "attribute": "relationship:relationship-8db7c8cb40442222a37381b7",
+      "value": {
+        "kind": "text",
+        "text": "published_project: project-2ef421f26b54e3afd72619a5"
+      },
+      "status": "reported",
+      "sourceIds": [
+        "background-source-b96e6ace2c6c4cd367f7e6e8",
+        "background-source-440616873ee37e094260c3bd"
+      ],
+      "evidence": [
+        {
+          "sourceId": "background-source-b96e6ace2c6c4cd367f7e6e8",
+          "fragmentId": "fragment-54c12e0e1ede71a1207f5552",
+          "locator": null
+        },
+        {
+          "sourceId": "background-source-440616873ee37e094260c3bd",
+          "fragmentId": "fragment-d34a725857e79beb363c3e0c",
+          "locator": null
+        },
+        {
+          "sourceId": "background-source-440616873ee37e094260c3bd",
+          "fragmentId": "fragment-cb10a855c4ccd090d1cfa3da",
+          "locator": null
+        }
+      ],
+      "method": "bounded_public_source_extraction",
+      "note": "Linked project report only. Implementation, security efficacy and commercial adoption have not been verified.",
+      "reviewer": null,
+      "reviewedAt": "2026-09-10T21:16:43.042Z",
+      "previousRevisionId": null
+    },
+    {
+      "contractVersion": "1",
+      "id": "background-claim-rev-ef715d2f62fea0da66cf53e9",
+      "claimId": "background-claim-0109f22640eaa67cc5f38851",
+      "subject": {
+        "type": "edition",
+        "editionId": "edition-e798e9bdbefdc361ed052d63"
+      },
+      "attribute": "project:project-2ef421f26b54e3afd72619a5:award",
+      "value": {
+        "kind": "text",
+        "text": "Hackathon Showcase 1st Place Winner"
+      },
+      "status": "reported",
+      "sourceIds": [
+        "background-source-440616873ee37e094260c3bd"
+      ],
+      "evidence": [
+        {
+          "sourceId": "background-source-440616873ee37e094260c3bd",
+          "fragmentId": "fragment-904e4b6b2163143753812acf",
+          "locator": null
+        }
+      ],
+      "method": "bounded_public_source_extraction",
+      "note": "Declared in the linked project material; not executed or independently tested.",
+      "reviewer": null,
+      "reviewedAt": "2026-09-10T21:16:43.042Z",
+      "previousRevisionId": null
+    },
+    {
+      "contractVersion": "1",
+      "id": "background-claim-rev-30c2601ddbb4d12162343c1e",
+      "claimId": "background-claim-8aea00893b845040bcccf46b",
+      "subject": {
+        "type": "edition",
+        "editionId": "edition-e798e9bdbefdc361ed052d63"
+      },
+      "attribute": "project:project-2ef421f26b54e3afd72619a5:technology",
+      "value": {
+        "kind": "text",
+        "text": "Google Cloud (declared in Products & Tools)"
+      },
+      "status": "reported",
+      "sourceIds": [
+        "background-source-440616873ee37e094260c3bd"
+      ],
+      "evidence": [
+        {
+          "sourceId": "background-source-440616873ee37e094260c3bd",
+          "fragmentId": "fragment-f3b083bb34e448b52955d331",
+          "locator": null
+        }
+      ],
+      "method": "bounded_public_source_extraction",
+      "note": "Declared in the linked project material; not executed or independently tested.",
+      "reviewer": null,
+      "reviewedAt": "2026-09-10T21:16:43.042Z",
+      "previousRevisionId": null
+    },
+    {
+      "contractVersion": "1",
+      "id": "background-claim-rev-7e6885a05ee21843b7dc0158",
+      "claimId": "background-claim-e9fda3dbc6792bf322685b22",
+      "subject": {
+        "type": "edition",
+        "editionId": "edition-e798e9bdbefdc361ed052d63"
+      },
+      "attribute": "project:project-2ef421f26b54e3afd72619a5:description",
+      "value": {
+        "kind": "text",
+        "text": "The Citadel is the first Defense-in-Depth solution for MCP, operating as a “One-Pass” Security Kernel at the transport layer (Stdio). It implements a Tier 2 Detection Strategy (Inference-time) without the latency of heavy LLM-based guardrails:"
+      },
+      "status": "reported",
+      "sourceIds": [
+        "background-source-440616873ee37e094260c3bd"
+      ],
+      "evidence": [
+        {
+          "sourceId": "background-source-440616873ee37e094260c3bd",
+          "fragmentId": "fragment-db6dbae3abd320b2617db481",
+          "locator": null
+        }
+      ],
+      "method": "bounded_public_source_extraction",
+      "note": "Declared in the linked project material; not executed or independently tested.",
+      "reviewer": null,
+      "reviewedAt": "2026-09-10T21:16:43.042Z",
+      "previousRevisionId": null
+    },
+    {
+      "contractVersion": "1",
+      "id": "background-claim-rev-317b2e8530735b090f3f0674",
+      "claimId": "background-claim-adb7fc0486a21fdadef49f09",
+      "subject": {
+        "type": "edition",
+        "editionId": "edition-e798e9bdbefdc361ed052d63"
+      },
+      "attribute": "project:project-2ef421f26b54e3afd72619a5:repository",
+      "value": {
+        "kind": "text",
+        "text": "https://github.com/NineSunsInc/fast-mcp-scanner"
+      },
+      "status": "reported",
+      "sourceIds": [
+        "background-source-440616873ee37e094260c3bd"
+      ],
+      "evidence": [
+        {
+          "sourceId": "background-source-440616873ee37e094260c3bd",
+          "fragmentId": "fragment-2825cb099129b1c71806582c",
+          "locator": null
+        }
+      ],
+      "method": "bounded_public_source_extraction",
+      "note": "Declared in the linked project material; not executed or independently tested.",
+      "reviewer": null,
+      "reviewedAt": "2026-09-10T21:16:43.042Z",
+      "previousRevisionId": null
+    }
+  ],
+  "fragments": [
+    {
+      "sourceId": "background-source-b96e6ace2c6c4cd367f7e6e8",
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "fragmentId": "fragment-54c12e0e1ede71a1207f5552",
+      "locator": "HTML line 3208 a[href]",
+      "excerpt": "Winners & Projects: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-d34a725857e79beb363c3e0c",
+      "locator": "HTML line 518 a[href]",
+      "excerpt": "Back to Showcase: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-cb10a855c4ccd090d1cfa3da",
+      "locator": "HTML line 538",
+      "excerpt": "The Citadel: Neuro-Symbolic Security Gateway",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-b96e6ace2c6c4cd367f7e6e8",
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "fragmentId": "fragment-54c12e0e1ede71a1207f5552",
+      "locator": "HTML line 3208 a[href]",
+      "excerpt": "Winners & Projects: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-d34a725857e79beb363c3e0c",
+      "locator": "HTML line 518 a[href]",
+      "excerpt": "Back to Showcase: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-cb10a855c4ccd090d1cfa3da",
+      "locator": "HTML line 538",
+      "excerpt": "The Citadel: Neuro-Symbolic Security Gateway",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-904e4b6b2163143753812acf",
+      "locator": "HTML line 532",
+      "excerpt": "Hackathon Showcase 1st Place Winner",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-f3b083bb34e448b52955d331",
+      "locator": "HTML line 602",
+      "excerpt": "<50ms inference) AI Tinkerers DLP: Microsoft Presidio (Contextual PII) + Regex Heuristics Google Cloud Kernel: Go 1.22 (High-throughput Stdio Proxy & Rule Engine) Protocol: MCP JSON-RPC Deep Inspection Vision: Python Sidecar + PaddleOCR (Lightweight",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-db6dbae3abd320b2617db481",
+      "locator": "HTML line 574",
+      "excerpt": "The Citadel is the first Defense-in-Depth solution for MCP, operating as a “One-Pass” Security Kernel at the transport layer (Stdio). It implements a Tier 2 Detection Strategy (Inference-time) without the latency of heavy LLM-based guardrails:",
+      "truncated": false
+    },
+    {
+      "sourceId": "background-source-440616873ee37e094260c3bd",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "fragmentId": "fragment-2825cb099129b1c71806582c",
+      "locator": "HTML line 616 a[href]",
+      "excerpt": "Public repository linked by project: https://github.com/NineSunsInc/fast-mcp-scanner",
+      "truncated": false
+    }
+  ]
+}

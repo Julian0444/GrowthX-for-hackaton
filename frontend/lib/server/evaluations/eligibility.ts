@@ -36,7 +36,7 @@ export interface CandidateEligibility {
 }
 
 export const ELIGIBLE_IS_NOT_RECOMMENDED =
-  'Elegible no significa recomendado: recomendar gasto exige una edición futura y una modalidad concretas, y una decisión registrada.';
+  'Eligibility does not imply a recommendation: committing budget requires a specific future edition, participation format, and recorded decision.';
 
 
 const normalize = (text: string): string => text.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -81,25 +81,25 @@ export function evaluateEligibility(input: {
   const contradictedDate = dateClaims.some(c => c.status === 'contradicted');
   if (contradictedDate || !dateClaims.some(c => supported(c) && c.value.kind === 'date')) {
     conditions.push(condition(editionId, 'fecha-soporte',
-      contradictedDate ? `Fecha contradicha: ${dateClaims.filter(c => c.status === 'contradicted').map(c => c.note).join('; ')}` : 'Fecha sin soporte suficiente.',
-      '¿Qué fuente resuelve la fecha y su zona horaria?', true));
+      contradictedDate ? `Conflicting date: ${dateClaims.filter(c => c.status === 'contradicted').map(c => c.note).join('; ')}` : 'Date lacks sufficient supporting evidence.',
+      'Which source confirms the date and its time zone?', true));
   }
   if (!contradictedDate && dossier.validity.validity === 'past') {
-    exclusionReasons.push(`Fecha vencida: ${dossier.validity.reason}`);
+    exclusionReasons.push(`Past event: ${dossier.validity.reason}`);
   } else if (dossier.validity.validity === 'date_pending' || dossier.validity.validity === 'date_ambiguous') {
     conditions.push(
       condition(
         editionId,
         'fecha',
-        `Fecha ${dossier.validity.validity === 'date_pending' ? 'pendiente' : 'ambigua'}: ${dossier.validity.reason}`,
-        '¿Cuál es la fecha exacta (con zona horaria) de la edición?',
+        `Date ${dossier.validity.validity === 'date_pending' ? 'pending' : 'ambiguous'}: ${dossier.validity.reason}`,
+        'What is the exact date and time zone of this edition?',
         true,
       ),
     );
   }
 
   if (edition.startDate.precision === 'date_only') {
-    conditions.push(condition(editionId, 'fecha-hora', 'Fecha sin hora exacta; conservar el día declarado y confirmar hora y zona.', '¿A qué hora y en qué zona comienza la edición?', true));
+    conditions.push(condition(editionId, 'fecha-hora', 'Date has no exact time; retain the declared day and confirm the time and time zone.', 'At what time and in which time zone does this edition begin?', true));
   }
 
   // ---- Ventana del perfil: un día declarado fuera de la ventana es un
@@ -107,15 +107,15 @@ export function evaluateEligibility(input: {
   const day = declaredCalendarDay(edition.startDate);
   if (!contradictedDate && day !== null) {
     if (profile.window.from !== null && day < profile.window.from)
-      exclusionReasons.push(`La fecha declarada (${day}) es anterior a la ventana del perfil (${profile.window.from}).`);
+      exclusionReasons.push(`The declared date (${day}) is before the brief window (${profile.window.from}).`);
     if (profile.window.to !== null && day > profile.window.to)
-      exclusionReasons.push(`La fecha declarada (${day}) es posterior a la ventana del perfil (${profile.window.to}).`);
+      exclusionReasons.push(`The declared date (${day}) is after the brief window (${profile.window.to}).`);
   } else if (day === null && edition.startDate.precision === 'instant') {
     conditions.push(condition(
       editionId,
       'zona-horaria',
-      'La zona horaria declarada no permite verificar el día del evento contra la ventana del perfil.',
-      '¿Cuál es la zona horaria verificable de la edición?',
+      'The declared time zone cannot establish the event day against the brief window.',
+      'What verifiable time zone applies to this edition?',
       true,
     ));
   }
@@ -141,7 +141,7 @@ export function evaluateEligibility(input: {
         ? urbanElsewhere.value.name
         : edition.location.name;
     exclusionReasons.push(
-      `Edición en otra ciudad (${name ?? 'desconocida'}): no es una inversión elegible en SF. Un antecedente de otra ciudad no satisface la regla; sigue consultable como antecedente.`,
+      `Edition in another city (${name ?? 'unknown'}): ineligible for investment in SF. Evidence from another city remains available as historical background.`,
     );
   } else {
     const sfSupported = urbanSupported.some(
@@ -153,9 +153,9 @@ export function evaluateEligibility(input: {
           editionId,
           'ciudad',
           contradictedLocation
-            ? 'La ubicación está contradicha entre fuentes: sin ciudad respaldada no hay elegibilidad en SF.'
-            : 'Sin fuente urbana que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis.',
-          '¿Qué fuente urbana verificable respalda que la edición ocurre en San Francisco?',
+            ? 'Sources disagree on location: SF eligibility requires a supported city.'
+            : 'No source supports the city: location remains pending and the event is not assumed to be in SF.',
+          'Which verifiable source establishes that this edition takes place in San Francisco?',
           true,
         ),
       );
@@ -177,15 +177,15 @@ export function evaluateEligibility(input: {
   const uncertainAccess = accessClaims.some(c => !supported(c));
   if (!uncertainAccess && restrictionHit && restrictionHit.claim.value.kind === 'text') {
     exclusionReasons.push(
-      `Acceso incompatible confirmado: la restricción del perfil «${restrictionHit.restriction}» coincide con el acceso documentado («${restrictionHit.claim.value.text}»).`,
+      `Confirmed access conflict: the brief restriction «${restrictionHit.restriction}» matches the documented access («${restrictionHit.claim.value.text}»).`,
     );
   } else if (supportedAccess.length === 0 || uncertainAccess) {
     conditions.push(
       condition(
         editionId,
         'acceso',
-        'Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago.',
-        '¿El registro es abierto, por invitación o de pago? ¿Con qué fuente se confirma?',
+        'Access is unsupported: open registration, invitation requirements, and fees are unknown.',
+        'Is registration open, invitation-only, or paid? Which source confirms this?',
         true,
       ),
     );
@@ -195,15 +195,15 @@ export function evaluateEligibility(input: {
   const costs = assessCosts(claims, profile.budget);
   exclusionReasons.push(...costs.conflicts);
   for (const note of costs.pending) conditions.push(condition(
-    editionId, 'costo', note, '¿Cuál es el costo completo, la moneda y el paquete a contratar?', true,
+    editionId, 'costo', note, 'What is the complete cost, currency, and participation package?', true,
   ));
   if (profile.budget.status !== 'declared') {
     conditions.push(
       condition(
         editionId,
         'presupuesto',
-        'El perfil no declara presupuesto: un conflicto de costo no puede confirmarse ni descartarse.',
-        '¿Cuál es el presupuesto declarado (monto y moneda) para esta evaluación?',
+        'The brief does not declare a budget: a cost conflict cannot be confirmed or ruled out.',
+        'What is the declared budget amount and currency for this evaluation?',
         false,
       ),
     );
@@ -213,25 +213,38 @@ export function evaluateEligibility(input: {
   const contradictedAudience = claims.find((c) => c.attribute === 'audience' && c.status === 'contradicted');
   const audienceClaims = claims.filter(c => c.attribute === 'audience');
   if (!audienceClaims.some(c => supported(c) && (c.value.kind === 'text' || c.value.kind === 'number')) || audienceClaims.some(c => !supported(c))) {
-    conditions.push(condition(editionId, 'audiencia-pendiente', 'Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil.', '¿Qué audiencia documentada participa en esta edición?', false));
+    conditions.push(condition(editionId, 'audiencia-pendiente', 'Audience evidence is pending or insufficient to assess fit with the brief.', 'What documented audience participates in this edition?', false));
   }
   if (contradictedAudience) {
     conditions.push(
       condition(
         editionId,
         'audiencia',
-        `Audiencia contradicha entre fuentes: ${contradictedAudience.note ?? 'discrepancia sin resolver'}.`,
-        '¿Qué fuente resuelve la discrepancia de audiencia (registro real, lista de asistentes)?',
+        `Conflicting audience evidence: ${contradictedAudience.note ?? 'unresolved discrepancy'}.`,
+        'Which source resolves the audience discrepancy (actual registrations or attendee list)?',
         false,
       ),
     );
+  }
+
+  // Restricciones libres son instrucciones del comprador; sin una regla
+  // que las resuelva no se declaran satisfechas por afinidad temática.
+  for (const restriction of profile.restrictions) {
+    conditions.push(condition(editionId, 'restriccion', `Buyer restriction to verify: ${restriction}`,
+      `How is «${restriction}» satisfied by the participation format of this edition?`, true));
+  }
+  if (profile.formats?.length) {
+    const formats = claims.filter(c => ['format','modality'].includes(c.attribute));
+    const matched = formats.some(c => supported(c) && c.value.kind === 'text' && profile.formats!.some(f => normalize(c.value.kind === 'text' ? c.value.text : '').includes(normalize(f))));
+    if (!matched || formats.some(c => !supported(c))) conditions.push(condition(editionId, 'formato',
+      `Requested format remains unconfirmed: ${profile.formats.join(', ')}.`, 'Is the requested format available, and under which conditions?', true));
   }
 
   const eligibility: EligibilityResult =
     exclusionReasons.length > 0
       ? { status: 'excluded', reasons: exclusionReasons }
       : conditions.length > 0
-        ? { status: 'conditional', note: 'Condicionado por información faltante; ninguna condición se resuelve por puntaje.' }
+        ? { status: 'conditional', note: 'Conditional on missing information; a score cannot resolve an open condition.' }
         : { status: 'eligible' };
 
   return {

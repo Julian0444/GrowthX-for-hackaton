@@ -21,7 +21,7 @@ export interface ResearchHomeFilter {
 
 function profileSummary(row: { profile_id: string; lineage_id: string; version: number; profile: unknown }): SavedEvaluationProfile {
   const parsed = parseEvaluationProfile(row.profile);
-  if (!parsed.ok) throw new Error('Perfil persistido inválido');
+  if (!parsed.ok) throw new Error('Invalid persisted brief');
   const profile: EvaluationProfile = parsed.value;
   return {
     profileId: row.profile_id,
@@ -43,7 +43,7 @@ export async function readSavedEvaluations(client: pg.ClientBase, profileId: str
   const { rows } = await client.query(
     `select r.id, r.state, r.created_at, r.updated_at, r.error, r.input,
             p.id as profile_id, p.lineage_id, p.version, p.payload as profile,
-            s.id as snapshot_id, s.evaluated_at
+            s.id as snapshot_id, s.evaluated_at, s.payload as snapshot
        from growthx.runs r
        join growthx.profiles p on p.id = r.profile_id
        left join growthx.snapshots s on s.run_id = r.id
@@ -52,22 +52,17 @@ export async function readSavedEvaluations(client: pg.ClientBase, profileId: str
     [profileId],
   );
   if (rows.length === 0) return [];
-  const editionIds = [...new Set(rows.flatMap((row) => (Array.isArray(row.input?.editionIds) ? (row.input.editionIds as string[]) : [])))];
-  const names = new Map<string, string>();
-  if (editionIds.length > 0) {
-    const { rows: editionRows } = await client.query(
-      `select distinct on (edition_id) edition_id, payload->>'name' as name
-         from growthx.edition_revisions where edition_id = any($1::text[])
-        order by edition_id, revised_at desc, id desc`,
-      [editionIds],
-    );
-    for (const row of editionRows) names.set(row.edition_id as string, row.name as string);
+  const revisionIds = [...new Set(rows.flatMap(row => row.snapshot?.editionRevisionIds ?? []))];
+  const names = new Map<string, {editionId:string; name:string}>();
+  if (revisionIds.length > 0) {
+    const {rows: editionRows} = await client.query("select id, edition_id, payload->>'name' as name from growthx.edition_revisions where id = any($1::text[])", [revisionIds]);
+    for (const row of editionRows) names.set(row.id, {editionId:row.edition_id,name:row.name});
   }
   const snapshotIds = rows.flatMap((row) => (row.snapshot_id ? [row.snapshot_id as string] : []));
   const decisionsBySnapshot = new Map<string, SavedEvaluationDecision[]>();
   if (snapshotIds.length > 0) {
     const { rows: decisionRows } = await client.query(
-      `select d.decision_id, d.snapshot_id, d.edition_id, d.verdict, d.revision, d.decided_at,
+      `select d.decision_id, d.snapshot_id, d.edition_id, d.verdict, d.payload->>'intent' as intent, d.revision, d.decided_at,
               (select count(*)::int from jsonb_array_elements(d.payload->'conditions') c where c->>'status' = 'open') as open_conditions,
               cd.id as campaign_id
          from growthx.decisions d
@@ -83,6 +78,7 @@ export async function readSavedEvaluations(client: pg.ClientBase, profileId: str
         decisionId: row.decision_id,
         editionId: row.edition_id,
         verdict: row.verdict,
+        ...(row.intent ? {intent:row.intent} : {}),
         revision: Number(row.revision),
         decidedAt: row.decided_at.toISOString(),
         openConditions: Number(row.open_conditions),
@@ -99,7 +95,7 @@ export async function readSavedEvaluations(client: pg.ClientBase, profileId: str
     error: row.error?.message ?? null,
     previousRunId: typeof row.input?.previousRunId === 'string' ? row.input.previousRunId : null,
     profile: profileSummary(row),
-    editions: (Array.isArray(row.input?.editionIds) ? (row.input.editionIds as string[]) : []).map((editionId) => ({ editionId, name: names.get(editionId) ?? null })),
+    editions: (Array.isArray(row.input?.editionIds) ? (row.input.editionIds as string[]) : []).map((editionId) => ({ editionId, name: (row.snapshot?.editionRevisionIds ?? []).map((id:string)=>names.get(id)).find((e:{editionId:string;name:string}|undefined)=>e?.editionId===editionId)?.name ?? null })),
     snapshotId: row.snapshot_id ?? null,
     evaluatedAt: row.evaluated_at ? row.evaluated_at.toISOString() : null,
     decisions: row.snapshot_id ? (decisionsBySnapshot.get(row.snapshot_id as string) ?? []) : [],
@@ -125,13 +121,13 @@ export async function readResearchHome(tenantId: string, filter: ResearchHomeFil
   return withTenantTransaction(getAppPool(), tenantId, async client => {
     const runs = await client.query(`select r.id, r.state, r.created_at, p.version, p.payload->>'product' as product
       from growthx.runs r join growthx.profiles p on p.id = r.profile_id
-      where r.workflow_version = 'sf-organizers/1' order by r.created_at desc, r.id`);
+      where r.workflow_version in ('sf-organizers/1', 'sf-discovery/1') order by r.created_at desc, r.id`);
     const companies = await client.query('select payload from growthx.companies order by id');
     const counts = await client.query(`select (select count(*)::int from growthx.organizers) as organizers, (select count(*)::int from growthx.event_editions) as editions`);
     const loads = await client.query('select verified_at, material from growthx.catalog_loads order by verified_at');
     return {
       runs: runs.rows.map(r => ({ runId: r.id, state: r.state, product: r.product, profileVersion: r.version, createdAt: r.created_at.toISOString() })),
-      companies: companies.rows.map(r => { const p = parseCompanyRecord(r.payload); if (!p.ok) throw new Error('Empresa inválida'); return p.value; }),
+      companies: companies.rows.map(r => { const p = parseCompanyRecord(r.payload); if (!p.ok) throw new Error('Invalid company'); return p.value; }),
       saved: await readSavedOrganizers(client),
       coverage: { ...counts.rows[0], verifiedAt: [...new Set(loads.rows.map(r => r.verified_at.toISOString() as string))], material: [...new Set(loads.rows.map(r => String(r.material)))] },
       evaluations: await readSavedEvaluations(client, profileId),

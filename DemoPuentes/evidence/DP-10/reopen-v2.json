@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-force-exit",
+    "--test-reporter=tap",
+    "tests/e2e/reopen-evaluation.spec.ts"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend",
+  "databasePort": 55460,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 1,
+  "durationSeconds": 115.11
+}

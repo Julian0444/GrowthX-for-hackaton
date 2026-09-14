@@ -1,0 +1,389 @@
+TAP version 13
+# (node:58966) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/exa-discovery.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP04 main brief → durable Exa proposals → worker restart → closed tab reopened
+ok 1 - DP04 main brief → durable Exa proposals → worker restart → closed tab reopened
+  ---
+  duration_ms: 9482.437917
+  type: 'test'
+  ...
+# Unmodified primary request, Exa fixture explicitly synthetic, 3 attempts persisted, worker process stopped/restarted, same source IDs after tab closure, no fixture organizer fallback, 404 cross tenant, desktop/mobile.
+# (node:59111) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/explicable-comparison.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP07 production browser: select two -> inspect pinned antecedent -> edit brief -> differences -> reopen unchanged
+ok 2 - DP07 production browser: select two -> inspect pinned antecedent -> edit brief -> differences -> reopen unchanged
+  ---
+  duration_ms: 11099.675416
+  type: 'test'
+  ...
+# (node:59287) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+    # Subtest: perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes
+    ok 1 - perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes
+      ---
+      duration_ms: 12290.554417
+      type: 'test'
+      ...
+    # Subtest: elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next
+    ok 2 - elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next
+      ---
+      duration_ms: 5205.010334
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar
+    ok 3 - reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar
+      ---
+      duration_ms: 8769.6425
+      type: 'test'
+      ...
+    # Subtest: perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido
+    ok 4 - perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido
+      ---
+      duration_ms: 2042.21475
+      type: 'test'
+      ...
+    1..4
+ok 3 - SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ---
+  duration_ms: 33658.530042
+  type: 'test'
+  ...
+# Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+# (node:59783) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP06 browser: controlled sources -> organizer -> previous edition -> company/project -> evidence
+not ok 4 - DP06 browser: controlled sources -> organizer -> previous edition -> company/project -> evidence
+  ---
+  duration_ms: 32053.813
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/relationships.spec.ts:19:68'
+  failureType: 'testCodeFailure'
+  error: |-
+    locator.waitFor: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('research-coverage') to be visible
+    
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/relationships.spec.ts:34:96)
+  ...
+# (node:60201) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+    # Subtest: guardar una elección condicional, ver su campaña y copiar el enlace interno
+    ok 1 - guardar una elección condicional, ver su campaña y copiar el enlace interno
+      ---
+      duration_ms: 7042.438375
+      type: 'test'
+      ...
+    # Subtest: reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+    ok 2 - reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+      ---
+      duration_ms: 8950.981625
+      type: 'test'
+      ...
+    # Subtest: navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+    not ok 3 - navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+      ---
+      duration_ms: 39828.814208
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.innerText: Timeout 20000ms exceeded.
+        Call log:
+          - waiting for getByTestId('run-progress')
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:376:76
+        eventually (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:56:25)
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:376:13)
+        async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:3)
+      ...
+    # Subtest: lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+    ok 4 - lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+      ---
+      duration_ms: 23378.940084
+      type: 'test'
+      ...
+    # Subtest: vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+    ok 5 - vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+      ---
+      duration_ms: 2978.627042
+      type: 'test'
+      ...
+    # Subtest: reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+    not ok 6 - reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+      ---
+      duration_ms: 2528.99525
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:489:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly equal:
+        + actual - expected
+        
+        + ''
+        - '59d3eee5-281a-464f-8a25-4f9ede05d476'
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: '59d3eee5-281a-464f-8a25-4f9ede05d476'
+      actual: ''
+      operator: 'strictEqual'
+      stack: |-
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:523:12)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:489:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+    ok 7 - un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+      ---
+      duration_ms: 1857.365125
+      type: 'test'
+      ...
+    # Subtest: dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+    ok 8 - dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+      ---
+      duration_ms: 2447.919458
+      type: 'test'
+      ...
+    1..8
+not ok 5 - SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ---
+  duration_ms: 98073.634125
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:120:1'
+  failureType: 'subtestsFailed'
+  error: '2 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+# (node:61532) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+not ok 6 - DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+  ---
+  duration_ms: 47385.407125
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts:74:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    locator.fill: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Definición de éxito')
+    
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts:109:48)
+  ...
+# (node:62190) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+    # Subtest: desktop response, source action and technical disclosure
+    ok 1 - desktop response, source action and technical disclosure
+      ---
+      duration_ms: 740.985708
+      type: 'test'
+      ...
+    # Subtest: evidence panel preserves map, selection, scroll and keyboard focus
+    ok 2 - evidence panel preserves map, selection, scroll and keyboard focus
+      ---
+      duration_ms: 166.063167
+      type: 'test'
+      ...
+    # Subtest: out-of-order polling appends findings without moving cards or selection
+    ok 3 - out-of-order polling appends findings without moving cards or selection
+      ---
+      duration_ms: 794.518708
+      type: 'test'
+      ...
+    # Subtest: mobile retains every action, traps evidence focus and restores selection
+    ok 4 - mobile retains every action, traps evidence focus and restores selection
+      ---
+      duration_ms: 262.269666
+      type: 'test'
+      ...
+    # Subtest: empty filters are recoverable; unknown location and contradiction stay explicit
+    ok 5 - empty filters are recoverable; unknown location and contradiction stay explicit
+      ---
+      duration_ms: 478.716125
+      type: 'test'
+      ...
+    # Subtest: provider, map and server failures keep saved findings and allow explicit recovery
+    ok 6 - provider, map and server failures keep saved findings and allow explicit recovery
+      ---
+      duration_ms: 1169.617
+      type: 'test'
+      ...
+    1..6
+ok 7 - DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ---
+  duration_ms: 5087.225167
+  type: 'test'
+  ...
+# (node:62282) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+    # Subtest: same filtered set, published location, source link, selection and dossier by keyboard
+    ok 1 - same filtered set, published location, source link, selection and dossier by keyboard
+      ---
+      duration_ms: 1710.424833
+      type: 'test'
+      ...
+    # Subtest: new result updates markers without replacing map or recentering; same venue identities remain distinct
+    not ok 2 - new result updates markers without replacing map or recentering; same venue identities remain distinct
+      ---
+      duration_ms: 30007.309917
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:59:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.click: Timeout 30000ms exceeded.
+        Call log:
+          - waiting for getByTestId('map-event-popup').getByRole('button', { name: 'Close map popup' })
+            - locator resolved to <button type="button" class="sf-popup-close" aria-label="Close map popup">×</button>
+          - attempting click action
+            2 × waiting for element to be visible, enabled and stable
+              - element is visible, enabled and stable
+              - scrolling into view if needed
+              - done scrolling
+              - <section data-testid="sf-map" data-map-state="ready" data-map-point-count="1" class="research-map sf-street-map">…</section> intercepts pointer events
+            - retrying click action
+            - waiting 20ms
+            2 × waiting for element to be visible, enabled and stable
+              - element is not stable
+            - retrying click action
+              - waiting 100ms
+            57 × waiting for element to be visible, enabled and stable
+               - element is visible, enabled and stable
+               - scrolling into view if needed
+               - done scrolling
+               - <section data-testid="sf-map" data-map-state="ready" data-map-point-count="1" class="research-map sf-street-map">…</section> intercepts pointer events
+             - retrying click action
+               - waiting 500ms
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:60:96)
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:59:11)
+      ...
+    # Subtest: mobile switches list/map without losing selection or map, with filters and zero points
+    not ok 3 - mobile switches list/map without losing selection or map, with filters and zero points
+      ---
+      duration_ms: 30093.051042
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:75:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        locator.getAttribute: Timeout 30000ms exceeded.
+        Call log:
+          - waiting for getByTestId('sf-edition-list').locator('[data-edition-id="b"]')
+        
+      code: 'ERR_TEST_FAILURE'
+      name: 'TimeoutError'
+      stack: |-
+        TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:79:64)
+        async TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:75:3)
+      ...
+    # Subtest: run change and unmount remove old markers/listeners; no catalog leakage
+    ok 4 - run change and unmount remove old markers/listeners; no catalog leakage
+      ---
+      duration_ms: 2619.068125
+      type: 'test'
+      ...
+    # Subtest: snapshot geography and dossier remain old; current data requires a separate view
+    ok 5 - snapshot geography and dossier remain old; current data requires a separate view
+      ---
+      duration_ms: 1548.827875
+      type: 'test'
+      ...
+    # Subtest: style failure preserves mobile list and can recover
+    ok 6 - style failure preserves mobile list and can recover
+      ---
+      duration_ms: 1248.998916
+      type: 'test'
+      ...
+    # Subtest: tiles failure preserves mobile list and can recover
+    ok 7 - tiles failure preserves mobile list and can recover
+      ---
+      duration_ms: 1231.780625
+      type: 'test'
+      ...
+    # Subtest: WebGL context loss exposes the list and retry creates one new map
+    ok 8 - WebGL context loss exposes the list and retry creates one new map
+      ---
+      duration_ms: 150.915583
+      type: 'test'
+      ...
+    # Subtest: WebGL initialization failure leaves usable list
+    ok 9 - WebGL initialization failure leaves usable list
+      ---
+      duration_ms: 390.891375
+      type: 'test'
+      ...
+    1..9
+not ok 8 - DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ---
+  duration_ms: 70404.462291
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts:11:1'
+  failureType: 'subtestsFailed'
+  error: '2 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Owned Next and Chrome closed.
+# (node:63223) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/source-reading.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile
+not ok 9 - DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile
+  ---
+  duration_ms: 32452.252958
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/source-reading.spec.ts:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    locator.waitFor: Timeout 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('research-coverage') to be visible
+    
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    TestContext.<anonymous> (/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/source-reading.spec.ts:32:93)
+  ...
+1..9
+# tests 36
+# suites 0
+# pass 27
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 344357.542584

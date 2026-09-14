@@ -1,0 +1,39 @@
+(node:37735) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/english-system.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP12 legacy excluded dates render in English without changing persisted text (3.541709ms)
+✖ DP12 known historical conditions preserve amounts, identifiers and unresolved status (2.459334ms)
+✔ DP12 reviewed legacy templates preserve each dynamic value and English display is stable (25.819916ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 171.341625
+
+✖ failing tests:
+
+test at tests/ui/english-system.test.ts:13:1
+✖ DP12 known historical conditions preserve amounts, identifiers and unresolved status (2.459334ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Answer needed/. Input:
+  
+  'Incomplete cost: item «sponsorship» pending; Edition-specific quote unknown.; it does not count as zero. — Qué respuesta la resolvería: What is the complete cost, currency, and participation package?'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp12-ulcq6o2q/frontend/tests/ui/english-system.test.ts:16:144)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:786:18)
+      at Test.postRun (node:internal/test_runner/test:1238:19)
+      at Test.run (node:internal/test_runner/test:1166:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Incomplete cost: item «sponsorship» pending; Edition-specific quote unknown.; it does not count as zero. — Qué respuesta la resolvería: What is the complete cost, currency, and participation package?',
+    expected: /Answer needed/,
+    operator: 'match',
+    diff: 'simple'
+  }

@@ -91,19 +91,19 @@ test('DP-02: comparación → guardado → lectura con incertidumbre y confirmed
    const campaign=projectCampaignDraft(stored.campaign,result.bundle.sources);
    if(expected!=='observed') {
     assert.equal(campaign.costCompleteness,'has_unknown_items');
-    assert.ok(stored.decision.conditions.some(c=>/costo/i.test(c.description)));
+    assert.ok(stored.decision.conditions.some(c=>/cost/i.test(c.description)));
     if(item.amount.status==='inferred'||item.amount.status==='contradicted') {
      assert.equal(item.amount.basis,item.evidence?.method);
      assert.equal(item.amount.note,item.evidence?.note);
      assert.deepEqual(item.amount.sourceIds,['s']);
-     assert.match(JSON.stringify(campaign.costItems),/no es cotización/);
+     assert.match(JSON.stringify(campaign.costItems),/not a quote/);
     }
    }
    if(expected==='pending') {
     assert.equal(candidate.dossier.costs[0].value.state,'pending');
     assert.equal(campaign.costItems[0].value.state,'pending');
-    for(const topic of ['audiencia','acceso','costo']) assert.ok(stored.decision.conditions.some(c=>c.description.toLowerCase().includes(topic)));
-    assert.ok(campaign.openQuestions.some(q=>/audiencia/i.test(q)));
+    for(const topic of ['audience','access','cost']) assert.ok(stored.decision.conditions.some(c=>c.description.toLowerCase().includes(topic)));
+    assert.ok(campaign.openQuestions.some(q=>/audience/i.test(q)));
    }
    const retry=await saveDecision(app,{tenantId,userId},body);
    assert.equal(retry.status,'saved'); if(retry.status==='saved') assert.equal(retry.deduplicated,true);
@@ -118,7 +118,7 @@ test('DP-02: comparación → guardado → lectura con incertidumbre y confirmed
  assert.equal(pendingDecision.status,'saved');
  if(pendingDecision.status==='saved') {
   assert.equal(pendingDecision.read.campaign,null);
-  for(const topic of ['audiencia','acceso','costo']) assert.ok(pendingDecision.read.decision.conditions.some(c=>c.description.toLowerCase().includes(topic)));
+  for(const topic of ['audience','access','cost']) assert.ok(pendingDecision.read.decision.conditions.some(c=>c.description.toLowerCase().includes(topic)));
  }
  const before=await researchSfOrganizers(app,tenantId,profile,now);
  assert.equal(before.candidates.length,1);

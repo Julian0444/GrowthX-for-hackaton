@@ -1,0 +1,147 @@
+- main:
+  - complementary:
+    - button "Growth Atlas Investigación · SF":
+      - generic: Growth Atlas
+      - generic: Investigación · SF
+    - navigation "Navegación principal":
+      - button "Resumen":
+        - generic: Resumen
+      - button "Organizadores":
+        - generic: Organizadores
+      - button "Eventos":
+        - generic: Eventos
+      - button "Decisiones":
+        - generic: Decisiones
+      - button "Perfil":
+        - generic: Perfil
+    - paragraph:
+      - text: Investigación acotada.
+      - text: Fuentes antes de decidir.
+  - generic: San Francisco
+  - heading "Eventos" [level=1]
+  - paragraph: Cada edición, con sus fuentes y condiciones.
+  - button "Editar perfil · v1"
+  - generic: 8 organizadores · 14 ediciones en el catálogo
+  - generic: "Carga / obtención: 2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z · 2026-09-10T03:52:48.856Z · 2026-09-10T22:41:28.548Z · 2026-09-10T22:41:56.008Z · 2026-09-10T22:42:19.954Z · 2026-09-10T22:42:44.239Z"
+  - generic: "Material sintético: prueba el mecanismo; no acredita cobertura real de SF."
+  - region "Estado persistido":
+    - paragraph: Investigación 422c3de4-20c0-47a5-8e64-d23e0a8cac58 · Completado
+    - list:
+      - generic: "Validar perfil:"
+      - text: Completado · intentos 1
+      - generic: "Leer antecedentes y proyectos:"
+      - text: Completado · intentos 1
+      - generic: "Guardar relaciones y evidencia:"
+      - text: Completado · intentos 1
+      - generic: "Publicar resultado:"
+      - text: Completado · intentos 1
+  - button "Volver a eventos"
+  - paragraph: Lectura actual del catálogo persistido
+  - generic: Expediente del organizador
+  - heading "AI Tinkerers San Francisco" [level=2]
+  - paragraph: "ID: organizer-c65ea5ee11a9e13d7a13bd36 · 1 revisión(es)"
+  - heading "Identity, experience and open questions" [level=3]
+  - strong: Organization and experience
+  - paragraph: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype. | This is not a theory day. No slide decks. No hand-wavy security talk. You’ll spend the day building production-minded agents with other vetted AI Tinkerers who care about robustness, safe execution, permissioning, data boundaries, and real-world failure modes.
+  - generic: reported · alcance pendiente
+  - generic "Evidence · 2 fragment(s)"
+  - strong: Identity and public attribution
+  - paragraph: AI Tinkerers San Francisco · https://sf.aitinkerers.org/
+  - generic: reported · alcance pendiente
+  - generic "Evidence · 4 fragment(s)"
+  - paragraph: Published community descriptions are not attendance records. The operational contact, actual audience and commercial outcomes remain unverified unless explicitly documented below.
+  - heading "Ediciones y antecedentes" [level=3]
+  - article:
+    - 'button "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+    - paragraph: San Francisco · 2026-09-12T10:00:00-07:00 · -07:00
+    - paragraph: "Documented role: organizer (announced)"
+    - paragraph: Edición de SF; revisar condiciones
+    - strong: Audience
+    - paragraph: "Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype."
+    - generic: announced · alcance pendiente
+    - generic "Evidence · 1 fragment(s)"
+    - strong: Format
+    - paragraph: https://schema.org/OfflineEventAttendanceMode
+    - generic: announced · alcance pendiente
+    - generic "Evidence · 1 fragment(s)"
+    - paragraph
+  - article:
+    - button "AI Tinkerers SF - Secure Agents Buildathon"
+    - paragraph: San Francisco · 2025-12-06T09:00:00-08:00 · -08:00
+    - paragraph: "Documented role: organizer (announced)"
+    - paragraph: Antecedente histórico
+    - strong: Audience
+    - paragraph: sin dato de audiencia; no se estima uno
+    - generic "Source details"
+    - paragraph: What audience size and profile can the organizer evidence for this edition?
+    - strong: Format
+    - paragraph: https://schema.org/OfflineEventAttendanceMode
+    - generic: announced · alcance pendiente
+    - generic "Evidence · 1 fragment(s)"
+    - strong: Reviewed project coverage
+    - paragraph: 0 linked project detail page(s) reviewed. Gallery total not obtained in this reading. This is a partial sample of published projects, never a count or percentage of attendees.
+    - generic: reported · alcance pendiente
+    - generic "Evidence · 1 fragment(s)"
+    - paragraph
+  - heading "Empresas → edición → rol → fuente" [level=3]
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: OpenAI
+    - paragraph: sponsor · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: CopilotKit
+    - paragraph: sponsor · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: OpenRouter
+    - paragraph: sponsor · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: Exa
+    - paragraph: infrastructure_partner · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: Trigger.dev
+    - paragraph: infrastructure_partner · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: Auth0
+    - paragraph: infrastructure_partner · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: Mozilla
+    - paragraph: infrastructure_partner · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: Agents, Everywhere: Bots, Channels, & More — Global Hackathon"'
+  - article:
+    - strong: Ambiguous AI
+    - paragraph: infrastructure_partner · announced · global_program
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: AI Tinkerers SF - Secure Agents Buildathon"'
+  - article:
+    - strong: Google Cloud
+    - paragraph: sponsor · announced · edition
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - 'button "Ver edición: AI Tinkerers SF - Secure Agents Buildathon"'
+  - article:
+    - strong: Wordware
+    - paragraph: venue · announced · edition
+    - generic "Evidence for this edition and role"
+    - paragraph: Published role only; payment, attendance and commercial return are not established.
+- alert

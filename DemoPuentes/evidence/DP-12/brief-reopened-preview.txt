@@ -1,0 +1,45 @@
+Decision brief
+Event: Agents, Everywhere: Bots, Channels, & More — Global Hackathon
+Official event: https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon
+Date: Sep 12, 2026, 10:00 AM GMT-7
+Buyer context: RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript. · audience: AI engineers and backend developers building AI agents for businesses.
+Research objective: feedback (confirmed, declared by buyer)
+Budget: USD 20000 · window: 2026-09-11 to 2026-12-18
+Decision: Explore first · participation pending
+Reasons:
+- Explore AIT first because its previous SF edition announced monitoring, auditing, and recovery patterns for agents. Confirm audience, permission for a practical feedback activity, and the full quote before spending.
+Research context: For «RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.», targeting «AI engineers and backend developers building AI agents for businesses.» with a goal of feedback, there is topical fit in agents, observability. The documented background supports asking about a similar activity in the current edition. This is a relevance hypothesis; actual audience and availability still need validation.
+Activity objective: Explore a voluntary technical feedback session for the RastroAI SDK.
+Owner: Julian — demo buyer
+Success definition (buyer): Have 10 developers try our SDK and conduct 3 technical feedback interviews about tracing and evaluations.
+Modality: workshop: A voluntary hands-on SDK feedback workshop, subject to organizer permission and a full quote. · team proposal; availability unconfirmed · Buyer reports Buyer: Buyer statement only; no external support supplied (recorded by b247ee72-b41b-4309-90ba-615d84687a02, 2026-09-11T01:54:36.911Z)
+Cost items (no complete campaign total established):
+- attendance: USD 0 · quoted
+- sponsorship: Pending — Edition-specific sponsorship quote and total participation cost remain unknown.
+Conditions and answers:
+- [open] Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. — Answer needed to resolve this: What is the complete cost, currency, and participation package?
+- [open] Buyer restriction to verify: Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget. — Answer needed to resolve this: How is «Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget.» satisfied by the participation format of this edition?
+- [open] Requested format remains unconfirmed: technical workshop, hackathon, office hours. — Answer needed to resolve this: Is the requested format available, and under which conditions?
+Next questions:
+- Can we propose a hands-on SDK feedback session?
+- What audience profile and attendance can you document?
+- What is the complete participation quote, currency, and included package?
+- Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. — Answer needed to resolve this: What is the complete cost, currency, and participation package?
+- Buyer restriction to verify: Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget. — Answer needed to resolve this: How is «Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget.» satisfied by the participation format of this edition?
+- Requested format remains unconfirmed: technical workshop, hackathon, office hours. — Answer needed to resolve this: Is the requested format available, and under which conditions?
+- What is the complete cost, currency, and participation package? Does the event allow an activity for feedback for «RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.» with «AI engineers and backend developers building AI agents for businesses.»?
+Saved sources:
+- https://www.hackathons.team/events/ai-security-hackathon-2026 · obtained 2026-09-10T22:41:28.548Z
+- https://www.hackathons.team/about · obtained 2026-09-11T01:03:46.418Z
+- https://www.hackathons.team/about · obtained 2026-09-10T22:41:28.617Z
+- https://www.hackathons.team/events/ai-security-hackathon-2026 · obtained 2026-09-11T01:03:46.346Z
+- https://cerebralvalley.ai/e/vultr-the-agent-arena · obtained 2026-09-10T22:41:56.008Z
+- https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon · obtained 2026-09-10T22:42:44.239Z
+- https://blogs.vultr.com/vultr-at-RAISE-2025 · obtained 2026-09-10T22:41:57.276Z
+- https://www.hackathons.team/ · obtained 2026-09-10T22:41:28.683Z
+- https://www.hackathons.team/ · obtained 2026-09-11T01:03:46.458Z
+- https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon · obtained 2026-09-10T22:42:44.454Z
+- https://geocoding.geo.census.gov/geocoder/ · obtained 2026-09-10T22:41:29.354Z
+Saved revision: 1 · 2026-09-11T01:54:36.905Z
+Reopen this brief: http://localhost:3000/?run=fe244e95-4e5c-4f34-9c0c-a974e6667029&decision=6f9478ed-0306-45c4-92d2-3dbe0928a749&revision=1&view=campaign
+Manual draft only. Saving or copying sends no message, books no activity and commits no money.

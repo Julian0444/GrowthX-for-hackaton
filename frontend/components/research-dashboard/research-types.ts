@@ -38,6 +38,7 @@ export interface SavedOrganizerResearch {
 export interface SavedEvaluationDecision {
   decisionId: string;
   editionId: string;
+  intent?: 'explore_first' | null;
   verdict: 'chosen' | 'discarded' | 'pending';
   revision: number; // última revisión registrada
   decidedAt: string; // fecha original de esa revisión

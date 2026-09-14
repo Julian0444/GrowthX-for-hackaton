@@ -1,0 +1,18 @@
+(node:92762) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/acceptance/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP07 historical technical evidence favors research; sponsor remains its actual role and source (36.245667ms)
+✔ DP07 new payments/hiring brief changes reason, proposed activity and useful question without borrowing previous buyer inference (4.741375ms)
+✔ DP07 contradicted/missing references, wrong identity and award-only evidence cannot support priority (8.185042ms)
+✔ DP07 city pending remains conditional without point; free restrictions and unknown audience reach result (0.436958ms)
+✔ DP07 cost gates run before priority: additive costs exclude, mixed/incomplete/contradicted stay conditional (2.21175ms)
+✔ DP07 affirmed claim strengthening preserves support, equal evidence remains unordered (1.804083ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 333.760667

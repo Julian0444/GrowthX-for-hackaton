@@ -1,0 +1,393 @@
+{
+  "DP-05": [
+    {
+      "path": "frontend/lib/api/luma.ts",
+      "matchesTicketClose": true,
+      "sha256": "9bb567324741b96ab6b1b6e7aae0a1fcaf7a4086dacdec8a0fb36b4784d0f720"
+    },
+    {
+      "path": "frontend/lib/api/opportunity-adapter.ts",
+      "matchesTicketClose": false,
+      "sha256": "36f6657b26df6b15940724df23ecc0f29f90efe6e1852e82e4e38fa1b788a1fe"
+    },
+    {
+      "path": "frontend/lib/server/catalog/luma-adapter.ts",
+      "matchesTicketClose": false,
+      "sha256": "5005e0e291a15ff62ad9ae265116963c2dc71e050a7a8fc153b0f253ec61fb82"
+    },
+    {
+      "path": "frontend/lib/server/evaluations/luma-step.ts",
+      "matchesTicketClose": true,
+      "sha256": "433408e69b29b9316b6ade0ad016fa3fd1d214a921243f28a33ab46afc58d45e"
+    },
+    {
+      "path": "frontend/lib/server/evaluations/run-worker.ts",
+      "matchesTicketClose": false,
+      "sha256": "3c879253aaf286f7791009548cccd1b7bbb37b07420ace3fbe0e0a9466b789bb"
+    },
+    {
+      "path": "frontend/lib/server/sources/extract.ts",
+      "matchesTicketClose": false,
+      "sha256": "1a36a53c6052cf323a4d7ac2a367adfdc0970ef8810eb7f8bbd1b6b2e58ff63b"
+    },
+    {
+      "path": "frontend/lib/server/sources/reader.ts",
+      "matchesTicketClose": false,
+      "sha256": "011fe03de4a52a36ae1476b22c15503c2f8d0faa6891ad16075072e827f06a2c"
+    },
+    {
+      "path": "frontend/lib/server/sources/cache.ts",
+      "matchesTicketClose": true,
+      "sha256": "3a1b3be716304148e98b11284d490163c4177626d5f4ea73caaf8ece22274dd1"
+    },
+    {
+      "path": "frontend/lib/server/sources/website-crawler.ts",
+      "matchesTicketClose": true,
+      "sha256": "307e7203a3f1afa67a3ba950056af53cfc5e3a260b1a89df2887c060aa00c44f"
+    },
+    {
+      "path": "frontend/lib/server/sources/proposed-source.ts",
+      "matchesTicketClose": true,
+      "sha256": "2e81884f289f3a5601581dc5f1fb3317eee589ad1dc8a02f77f41a7c168004a9"
+    },
+    {
+      "path": "frontend/db/migrations/008-source-reading.sql",
+      "matchesTicketClose": true,
+      "sha256": "0295ecd614e2c42daa47ca74c21be21c1bdacfad97e9aa809b17bcb5d36f1af0"
+    },
+    {
+      "path": "frontend/components/atlas/event-import.tsx",
+      "matchesTicketClose": true,
+      "sha256": "c39855294355063988796f2686a4f2a1f668bacbe8ecac1872b297242b2264ed"
+    },
+    {
+      "path": "frontend/components/atlas/evidence-links.tsx",
+      "matchesTicketClose": true,
+      "sha256": "5a270dcddaae0df81462d99bc36c6a3ee13d2c64cd8a0d16b86e75ee7a2a8f66"
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dossier.tsx",
+      "matchesTicketClose": false,
+      "sha256": "268081529ca6fcabaae0e799581e4cec0f7ca9f3d50631bdcc7a9698f693ba63"
+    },
+    {
+      "path": "frontend/package.json",
+      "matchesTicketClose": false,
+      "sha256": "2f67c7942e9737e12174be3b435c88325e112f94da8b63c8276e031e1a3e1956"
+    },
+    {
+      "path": "frontend/pnpm-lock.yaml",
+      "matchesTicketClose": true,
+      "sha256": "2afbeca8b9a43be3325047aa0765f64d3decfb7c161b951d54f941534116e9a3"
+    },
+    {
+      "path": "frontend/tests/connectors/source-reading.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "2234dfcd78ba610487e79de260b31fbdd73863d189bf02528c501f45c2d66784"
+    },
+    {
+      "path": "frontend/tests/integration/source-reading.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "7cff183394ee42bc56560e155c9fb0b8ffc669922588af104915108187892aee"
+    },
+    {
+      "path": "frontend/tests/integration/luma-dossier.test.ts",
+      "matchesTicketClose": false,
+      "sha256": "d3a9b5351949ee77de882e8f43e3ed6456a3661c593b87f8f25deca3d56548e7"
+    },
+    {
+      "path": "frontend/tests/integration/worker-recovery.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "842379853f50fe325aa5343dbc586340116919e838fe5e1b43239fa2519878c7"
+    },
+    {
+      "path": "frontend/tests/e2e/source-reading.spec.ts",
+      "matchesTicketClose": true,
+      "sha256": "b020c77b262906ee13ebfd0ecc2f27205c566f5f929033a07d0c4961ee0de158"
+    },
+    {
+      "path": "frontend/tests/e2e/persisted-evaluation.spec.ts",
+      "matchesTicketClose": true,
+      "sha256": "a09206632c27f1a905015e428653ba87b6e82991cb4c9b7882cc9a6aa38fc296"
+    },
+    {
+      "path": "frontend/tests/fixtures/source-reading.ts",
+      "matchesTicketClose": true,
+      "sha256": "22edf89e657b4fb8ce8edf5f1e9b4c4a250de21ec0c1c95cde94c8edc9384591"
+    },
+    {
+      "path": "frontend/tests/support/source-browser.ts",
+      "matchesTicketClose": true,
+      "sha256": "5d602bb7691c970f8bdf2aa3e57c051232fab3fe6140a8c3f1f86f7ed6c0d9fb"
+    },
+    {
+      "path": "frontend/scripts/smoke-source-reading.ts",
+      "matchesTicketClose": true,
+      "sha256": "d674260281e3a2a9844b2f79703dbf721a9c321748a9250981539d9d83aaa842"
+    }
+  ],
+  "DP-06": [
+    {
+      "path": "frontend/app/api/events/background/route.ts",
+      "matchesTicketClose": true,
+      "sha256": "baed5b5b00d4dab91344c909c37fe01a0d8f150e53d79c8e8e967a1e87a69c6a"
+    },
+    {
+      "path": "frontend/components/research-dashboard/background-panel.tsx",
+      "matchesTicketClose": true,
+      "sha256": "d026ded3aa76deb1a391a70ff0e62ec4465dcda9fda9159a523e8419452b80b3"
+    },
+    {
+      "path": "frontend/components/research-dashboard/discovery-panel.tsx",
+      "matchesTicketClose": true,
+      "sha256": "2c03a7289aca8a1d57f377480a47f69b66f0c9a96c5fa86a7797ac5bacc42f23"
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dashboard.tsx",
+      "matchesTicketClose": true,
+      "sha256": "bbb2b7955a960c461f4b2e60eeae504ab098f416d7ebe77a39c0e65b4d75ec5c"
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dossier.tsx",
+      "matchesTicketClose": true,
+      "sha256": "268081529ca6fcabaae0e799581e4cec0f7ca9f3d50631bdcc7a9698f693ba63"
+    },
+    {
+      "path": "frontend/db/migrations/009-dp06-relationships.sql",
+      "matchesTicketClose": true,
+      "sha256": "f1fab5c4d35193b078805364b9ec96823b11541d61985b6b196b1a6c4591b59c"
+    },
+    {
+      "path": "frontend/lib/api/opportunity-adapter.ts",
+      "matchesTicketClose": true,
+      "sha256": "36f6657b26df6b15940724df23ecc0f29f90efe6e1852e82e4e38fa1b788a1fe"
+    },
+    {
+      "path": "frontend/lib/contracts/background.ts",
+      "matchesTicketClose": true,
+      "sha256": "447dd5041ee0dfcf5f938b0efdf77c45c9b8c5e8a79f85d7897d1f67aedea58c"
+    },
+    {
+      "path": "frontend/lib/contracts/evaluation.ts",
+      "matchesTicketClose": true,
+      "sha256": "b4199887430595ecf241c785c6d298264b9a058c0a013047dc1c9bb094733ff3"
+    },
+    {
+      "path": "frontend/lib/contracts/evaluation-validation.ts",
+      "matchesTicketClose": true,
+      "sha256": "0460f80386453d04187ce8d2f52cc146668088182fee84a964d1a73d0ccf9b64"
+    },
+    {
+      "path": "frontend/lib/server/catalog/read.ts",
+      "matchesTicketClose": true,
+      "sha256": "663d1c8d889f692c8cd2a6e7e18afeb88d104164365f987e421c4373d4cd88ba"
+    },
+    {
+      "path": "frontend/lib/server/catalog/store.ts",
+      "matchesTicketClose": true,
+      "sha256": "b510854061cbaaee95c5e2302afb4ebf2315bbc8a7afed61ae9aeca5a3d2bd9e"
+    },
+    {
+      "path": "frontend/lib/server/evaluations/run-worker.ts",
+      "matchesTicketClose": true,
+      "sha256": "3c879253aaf286f7791009548cccd1b7bbb37b07420ace3fbe0e0a9466b789bb"
+    },
+    {
+      "path": "frontend/lib/server/evaluations/snapshot-store.ts",
+      "matchesTicketClose": true,
+      "sha256": "3c3a20a86680880fdc33656c822d42d79405b919f601f2892b7217e4585b1a1d"
+    },
+    {
+      "path": "frontend/lib/server/relationships/durable.ts",
+      "matchesTicketClose": true,
+      "sha256": "e047d68828392eb94ee9b5c87ca782b6565dd4435cf555819b920eb4c7e053b1"
+    },
+    {
+      "path": "frontend/lib/server/relationships/reference-sources.ts",
+      "matchesTicketClose": true,
+      "sha256": "57c0656b8b03f52416bd87ae79b65cb96a79c76e1103a89de8680a3f6d09472d"
+    },
+    {
+      "path": "frontend/lib/server/relationships/resolve.ts",
+      "matchesTicketClose": true,
+      "sha256": "a132dd2677066d6dd6310b5b0eaf94ffee004cd1a0a7858b1f7d9742acd277ab"
+    },
+    {
+      "path": "frontend/lib/server/sources/reader.ts",
+      "matchesTicketClose": true,
+      "sha256": "011fe03de4a52a36ae1476b22c15503c2f8d0faa6891ad16075072e827f06a2c"
+    },
+    {
+      "path": "frontend/lib/server/sources/relationship-content.ts",
+      "matchesTicketClose": true,
+      "sha256": "7a73c2a5239dbeeeda39b787bcffd2c1564d6ad2a55f068ed12717e4e4bcefad"
+    },
+    {
+      "path": "frontend/package.json",
+      "matchesTicketClose": true,
+      "sha256": "2f67c7942e9737e12174be3b435c88325e112f94da8b63c8276e031e1a3e1956"
+    },
+    {
+      "path": "frontend/scripts/verify-background-reopen.ts",
+      "matchesTicketClose": true,
+      "sha256": "8cf53890cc906063a167c12cb7e55ec417dd63ea5212e8861f2bbe73e25e7ba0"
+    },
+    {
+      "path": "frontend/tests/connectors/relationships.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "981362ee788dd4a28c9f50bebd5ed584046375170e98e434099a0397e0573fc5"
+    },
+    {
+      "path": "frontend/tests/integration/relationships.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "b4c99c2331bdf1b40f7b473c0e519b8cd52c77dddfab2adbba8024cbb6783f30"
+    },
+    {
+      "path": "frontend/tests/fixtures/relationships.ts",
+      "matchesTicketClose": true,
+      "sha256": "1adf04854f391f68d58b6fc54b2465b6b806bb67a21f6434fd35a4dcf2c58a9f"
+    },
+    {
+      "path": "frontend/tests/e2e/relationships.spec.ts",
+      "matchesTicketClose": true,
+      "sha256": "b0771a96fb4569f1ca4cf40939381449d634c7680a5918ce890ac0cbdf405a35"
+    },
+    {
+      "path": "DemoPuentes/issues/06-organizador-sponsors-y-proyectos.md",
+      "matchesTicketClose": true,
+      "sha256": "13fc3634c3d1f65780b1855b58351271385ac823a692db0e83956e9a0b537492"
+    },
+    {
+      "path": "DemoPuentes/evidence/DP-06/README.md",
+      "matchesTicketClose": true,
+      "sha256": "2904381390e9b03226181da75da6a7bc554b7527def3f2934a9b2769aa279d83"
+    },
+    {
+      "path": "DemoPuentes/evidence/DP-06/run-check.py",
+      "matchesTicketClose": true,
+      "sha256": "7b0e67eeb2fe7907a1277d258f7ae9cf2560606ffae6e4e08a44f680c0fa14e7"
+    },
+    {
+      "path": "DemoPuentes/evidence/DP-06/run-regressions.py",
+      "matchesTicketClose": true,
+      "sha256": "0f61df246c84f42e39b194e044b8d8f82f2b73b413c7f1885fe0ac5ddb897173"
+    }
+  ],
+  "DP-08": [
+    {
+      "path": "frontend/lib/contracts/evaluation.ts",
+      "matchesTicketClose": true,
+      "sha256": "b4199887430595ecf241c785c6d298264b9a058c0a013047dc1c9bb094733ff3"
+    },
+    {
+      "path": "frontend/lib/contracts/evaluation-validation.ts",
+      "matchesTicketClose": true,
+      "sha256": "0460f80386453d04187ce8d2f52cc146668088182fee84a964d1a73d0ccf9b64"
+    },
+    {
+      "path": "frontend/lib/research/location-policy.ts",
+      "matchesTicketClose": true,
+      "sha256": "4d177c39838d4e747b907c19eb2fb43c4f2a6149539dacc51ce9a1e8d8097c99"
+    },
+    {
+      "path": "frontend/lib/research/edition-location.ts",
+      "matchesTicketClose": true,
+      "sha256": "3ed3c1770a9a819fbe72c22e860e5e97a72053d050815777725ecfca0c99b324"
+    },
+    {
+      "path": "frontend/lib/server/geocoding/census.ts",
+      "matchesTicketClose": true,
+      "sha256": "4241d6951eda4c8877300dbe2264a9eeea0e731159dcab5852c6ebc57dc362bd"
+    },
+    {
+      "path": "frontend/lib/server/geocoding/cache.ts",
+      "matchesTicketClose": true,
+      "sha256": "94d049d2b8587a28b0e58ad72442480990c98e0ea29b3fc120a4f0adf34c968c"
+    },
+    {
+      "path": "frontend/lib/server/geocoding/resolve.ts",
+      "matchesTicketClose": true,
+      "sha256": "894a48604fe04d88c9cff8a3db6febacbdf1ee3a83a1e3b560f200a55e243eb7"
+    },
+    {
+      "path": "frontend/lib/server/geocoding/run.ts",
+      "matchesTicketClose": true,
+      "sha256": "622b0fb38ea8eea4664bb2ead5d6d4fd8be18848f867e9e1005280feff179e68"
+    },
+    {
+      "path": "frontend/lib/server/catalog/luma-adapter.ts",
+      "matchesTicketClose": true,
+      "sha256": "5005e0e291a15ff62ad9ae265116963c2dc71e050a7a8fc153b0f253ec61fb82"
+    },
+    {
+      "path": "frontend/lib/server/sources/extract.ts",
+      "matchesTicketClose": true,
+      "sha256": "1a36a53c6052cf323a4d7ac2a367adfdc0970ef8810eb7f8bbd1b6b2e58ff63b"
+    },
+    {
+      "path": "frontend/lib/server/evaluations/run-worker.ts",
+      "matchesTicketClose": true,
+      "sha256": "3c879253aaf286f7791009548cccd1b7bbb37b07420ace3fbe0e0a9466b789bb"
+    },
+    {
+      "path": "frontend/lib/api/opportunity-adapter.ts",
+      "matchesTicketClose": true,
+      "sha256": "36f6657b26df6b15940724df23ecc0f29f90efe6e1852e82e4e38fa1b788a1fe"
+    },
+    {
+      "path": "frontend/components/research-dashboard/location-evidence.tsx",
+      "matchesTicketClose": true,
+      "sha256": "e4cc00f7bebfac759034b41330e6168edec1741d60aeeb99b7339d28c0cf1bc7"
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dossier.tsx",
+      "matchesTicketClose": false,
+      "sha256": "268081529ca6fcabaae0e799581e4cec0f7ca9f3d50631bdcc7a9698f693ba63"
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dashboard.tsx",
+      "matchesTicketClose": false,
+      "sha256": "bbb2b7955a960c461f4b2e60eeae504ab098f416d7ebe77a39c0e65b4d75ec5c"
+    },
+    {
+      "path": "frontend/components/research-dashboard/sf-event-map.tsx",
+      "matchesTicketClose": true,
+      "sha256": "9918f0b5236f5ef54948da7629ed211e33bb9759038e02f4c21ed6fd2361010b"
+    },
+    {
+      "path": "frontend/db/migrations/010-location-resolution.sql",
+      "matchesTicketClose": true,
+      "sha256": "50d0b5fea22a24f9e657bea0b88df98184adac42b7dffa743c245c04492f0e4a"
+    },
+    {
+      "path": "frontend/tests/connectors/location-resolution.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "f26639870c026d353cf3baab66623662be02917779023ad89c8605d28d6c9a4d"
+    },
+    {
+      "path": "frontend/tests/fixtures/location-resolution.ts",
+      "matchesTicketClose": true,
+      "sha256": "04432925328948e4471773b53dc5562932f1df67de517a32f255d668a7fa7ea4"
+    },
+    {
+      "path": "frontend/tests/integration/location-resolution.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "9d1c82e555ae2561835532573f387717c429269c7b660bee49d44574c9aecfc4"
+    },
+    {
+      "path": "frontend/tests/integration/luma-dossier.test.ts",
+      "matchesTicketClose": true,
+      "sha256": "d3a9b5351949ee77de882e8f43e3ed6456a3661c593b87f8f25deca3d56548e7"
+    },
+    {
+      "path": "frontend/scripts/smoke-location-resolution.ts",
+      "matchesTicketClose": true,
+      "sha256": "6ddaa68ca1f48ee7e86fde9a5aa95001d2b7d005a6bef8fed9f35e066501ea64"
+    },
+    {
+      "path": "frontend/scripts/verify-location-reopen.ts",
+      "matchesTicketClose": true,
+      "sha256": "ee72c0fc4c1e11c5219bafb0bf7f595ebffd7850f60da03aa01e70407604c742"
+    }
+  ]
+}

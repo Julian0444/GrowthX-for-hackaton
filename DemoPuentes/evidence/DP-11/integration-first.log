@@ -1,0 +1,85 @@
+(node:86625) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/conditional-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404 (10.715083ms)
+  ✔ motivos obligatorios; la alternativa debe pertenecer al snapshot (4.404584ms)
+  ✔ elegir con costo pendiente → elección condicional guardada con su campaña (una transacción) (10.018625ms)
+  ✔ idempotencia: misma clave+payload → misma decisión; otra clave/payload → conflicto (9.24275ms)
+  ✔ excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente (6.030667ms)
+  ✔ dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan (12.237792ms)
+  ✔ razones distintas por alternativa; decidir no fabrica claims ni evidencia (3.977875ms)
+  ✔ guardar un organizador conserva una investigación: no crea inversión ni campaña (33.15775ms)
+  ✔ rollback conjunto: una caída al confirmar la campaña no deja decisión suelta (57.515167ms)
+  ✔ tenant señuelo: la decisión real no existe para él, ni por ruta ni por SQL de aplicación (4.142916ms)
+✔ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real) (523.428875ms)
+(node:86626) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/decision-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP11 durable actionable decision, exact revision and concurrency
+  ✔ explore-first is pending participation with complete buyer brief; original costs and all conditions retained (4.747333ms)
+  ✔ empty reasons, false intent, unsupported offer and foreign sources rejected atomically (3.334417ms)
+  ✔ simultaneous edits have one winner, immutable original and retry-safe idempotency (8.929458ms)
+  ✖ resolving a condition records attribution and support, preserves snapshot and removes resolved question (9.396875ms)
+  ✖ revising modality/owner/costs is another transaction; attributed offer does not rewrite earlier brief (4.471667ms)
+  ✔ chosen/discarded/pending retain reasons and inherited conditions; excluded is still blocked (155.558583ms)
+  ✔ tenant isolation and unknown historical revision never expose a decision or campaign (3.745334ms)
+✖ DP11 durable actionable decision, exact revision and concurrency (633.67275ms)
+(node:86627) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/trust-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-02: comparación → guardado → lectura con incertidumbre y confirmed (PostgreSQL real) (533.141625ms)
+ℹ e-observed: comparación eligible; campaña quoted; revisión y fuentes conservadas; lectura idéntica
+ℹ e-inferred: comparación conditional; campaña inferred; revisión y fuentes conservadas; lectura idéntica
+ℹ e-contradicted: comparación conditional; campaña contradicted; revisión y fuentes conservadas; lectura idéntica
+ℹ e-pending: comparación conditional; campaña unknown; revisión y fuentes conservadas; lectura idéntica
+ℹ Fortalecer a confirmed: mismo organizador y mismas ediciones futuras; razones usan las revisiones confirmadas
+ℹ tests 20
+ℹ suites 0
+ℹ pass 17
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 864.220125
+
+✖ failing tests:
+
+test at tests/integration/decision-brief.test.ts:55:10
+✖ resolving a condition records attribution and support, preserves snapshot and removes resolved question (9.396875ms)
+  Error: publish_result sin snapshot confirmado para el run undefined
+      at buildComparisonResult (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/lib/server/evaluations/compare.ts:479:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/decision-brief.test.ts:61:22)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/decision-brief.test.ts:55:2)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/integration/decision-brief.test.ts:63:10
+✖ revising modality/owner/costs is another transaction; attributed offer does not rewrite earlier brief (4.471667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'invalid'
+  - 'revised'
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/decision-brief.test.ts:65:130)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/integration/decision-brief.test.ts:63:2)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'invalid',
+    expected: 'revised',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

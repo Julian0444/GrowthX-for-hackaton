@@ -1,0 +1,72 @@
+(node:99469) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/decision-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP11 Chrome production: actionable brief, actual clipboard, revisions, tab conflict and historical evidence/map (13550.481125ms)
+(node:99704) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/explicable-comparison.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP07 production browser: select two -> inspect pinned antecedent -> edit brief -> differences -> reopen unchanged (10512.918875ms)
+(node:99859) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ✔ perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes (12428.199125ms)
+  ✔ elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next (13230.145083ms)
+  ✔ reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar (7203.246208ms)
+  ✔ perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido (1701.240708ms)
+✔ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL) (39337.6095ms)
+ℹ Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+(node:881) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ✔ guardar una elección condicional, ver su campaña y copiar el enlace interno (9170.031875ms)
+  ✔ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (7847.519125ms)
+  ✔ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (14985.076ms)
+  ✔ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (4518.751333ms)
+  ✔ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (2613.660667ms)
+  ✔ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (7033.034ms)
+  ✔ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (1364.725958ms)
+  ✔ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (2352.91025ms)
+✔ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales) (56763.264083ms)
+ℹ Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+(node:1919) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ✔ desktop response, source action and technical disclosure (686.247458ms)
+  ✔ evidence panel preserves map, selection, scroll and keyboard focus (153.9665ms)
+  ✔ out-of-order polling appends findings without moving cards or selection (790.270625ms)
+  ✔ mobile retains every action, traps evidence focus and restores selection (231.346042ms)
+  ✔ empty filters are recoverable; unknown location and contradiction stay explicit (498.4075ms)
+  ✔ provider, map and server failures keep saved findings and allow explicit recovery (1971.639292ms)
+✔ DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors (5558.239042ms)
+(node:2031) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ✔ same filtered set, published location, source link, selection and dossier by keyboard (1293.342125ms)
+  ✔ new result updates markers without replacing map or recentering; same venue identities remain distinct (3664.056375ms)
+  ✔ mobile switches list/map without losing selection or map, with filters and zero points (593.628333ms)
+  ✔ run change and unmount remove old markers/listeners; no catalog leakage (2510.380791ms)
+  ✔ snapshot geography and dossier remain old; current data requires a separate view (1175.905083ms)
+  ✔ style failure preserves mobile list and can recover (1254.594208ms)
+  ✔ tiles failure preserves mobile list and can recover (1215.73125ms)
+  ✔ WebGL context loss exposes the list and retry creates one new map (110.63075ms)
+  ✔ WebGL initialization failure leaves usable list (390.216125ms)
+✔ DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures (13326.584ms)
+ℹ Owned Next and Chrome closed.
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141247.676167

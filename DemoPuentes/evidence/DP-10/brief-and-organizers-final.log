@@ -1,0 +1,93 @@
+TAP version 13
+# (node:72995) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+ok 1 - DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier
+  ---
+  duration_ms: 48774.457834
+  type: 'test'
+  ...
+# Dos briefs, dos revisiones reabiertas, objetivos/éxito/moneda conservados; identidad de lista/pin/dossier; 1366×900 y 390×844 sin overflow; HTTP tenant ajeno 404.
+# (node:73755) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+    # Subtest: entrada dashboard, sesión y perfil corregible antes de investigar
+    ok 1 - entrada dashboard, sesión y perfil corregible antes de investigar
+      ---
+      duration_ms: 13213.73775
+      type: 'test'
+      ...
+    # Subtest: homónimos independientes y guardado durable sin edición elegible
+    ok 2 - homónimos independientes y guardado durable sin edición elegible
+      ---
+      duration_ms: 2963.920125
+      type: 'test'
+      ...
+    # Subtest: razones → expediente → empresa → edición → rol → fuente; resultado desconocido
+    ok 3 - razones → expediente → empresa → edición → rol → fuente; resultado desconocido
+      ---
+      duration_ms: 342.719833
+      type: 'test'
+      ...
+    # Subtest: logo ambiguo y edición futura fuera de SF no se recomiendan
+    ok 4 - logo ambiguo y edición futura fuera de SF no se recomiendan
+      ---
+      duration_ms: 110.347583
+      type: 'test'
+      ...
+    # Subtest: Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida
+    ok 5 - Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida
+      ---
+      duration_ms: 1088.571541
+      type: 'test'
+      ...
+    # Subtest: revisión del perfil, ausencia de coincidencia e importador disponible
+    ok 6 - revisión del perfil, ausencia de coincidencia e importador disponible
+      ---
+      duration_ms: 2999.15675
+      type: 'test'
+      ...
+    # Subtest: sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones
+    ok 7 - sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones
+      ---
+      duration_ms: 618.84825
+      type: 'test'
+      ...
+    # Subtest: matching usa la última revisión y la identidad confirmada, no nombres parecidos
+    ok 8 - matching usa la última revisión y la identidad confirmada, no nombres parecidos
+      ---
+      duration_ms: 1049.852292
+      type: 'test'
+      ...
+    # Subtest: error del worker se persiste y aparece en el dashboard
+    ok 9 - error del worker se persiste y aparece en el dashboard
+      ---
+      duration_ms: 9040.7765
+      type: 'test'
+      ...
+    # Subtest: sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global
+    ok 10 - sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global
+      ---
+      duration_ms: 437.581583
+      type: 'test'
+      ...
+    1..10
+ok 2 - SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ---
+  duration_ms: 47179.560416
+  type: 'test'
+  ...
+# Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+1..2
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 96937.332334

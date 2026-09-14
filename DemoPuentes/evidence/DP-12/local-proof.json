@@ -1,0 +1,620 @@
+{
+  "observedAt": "2026-09-11T02:04:36.682309+00:00",
+  "runId": "fe244e95-4e5c-4f34-9c0c-a974e6667029",
+  "createdAt": "2026-09-11T01:52:40.409408+00:00",
+  "state": "completed",
+  "snapshotId": "76e446f2-61ef-4053-afe9-5ff68248acae",
+  "profile": {
+    "id": "cafc8347-8980-4a10-9a6a-fb25fe721995",
+    "stack": [
+      "Python",
+      "TypeScript",
+      "AI agents",
+      "observability",
+      "evaluations",
+      "debugging"
+    ],
+    "budget": {
+      "amount": 20000,
+      "status": "declared",
+      "currency": "USD"
+    },
+    "window": {
+      "to": "2026-12-18",
+      "from": "2026-09-11"
+    },
+    "formats": [
+      "technical workshop",
+      "hackathon",
+      "office hours"
+    ],
+    "product": "RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.",
+    "audience": {
+      "profiles": [
+        "AI engineers",
+        "backend developers",
+        "developer tools founders"
+      ],
+      "description": "AI engineers and backend developers building AI agents for businesses."
+    },
+    "createdAt": "2026-09-11T01:39:03.001Z",
+    "geography": {
+      "city": "San Francisco",
+      "timezone": "America/Los_Angeles"
+    },
+    "objective": {
+      "kind": "feedback",
+      "confirmation": "confirmed",
+      "successDefinition": {
+        "text": "Have 10 developers try our SDK and conduct 3 technical feedback interviews about tracing and evaluations.",
+        "status": "defined"
+      }
+    },
+    "restrictions": [
+      "Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget."
+    ],
+    "profileVersion": 2,
+    "contractVersion": "1",
+    "comparableCompanies": []
+  },
+  "bundleSha256": "4cef9cbd7045f597a9cf0acc563ca4dc405beb6377427323b902bd4a768bf065",
+  "editionRevisionIds": [
+    "edition-rev-000d0e76fda7ae4810b06423-geo",
+    "edition-rev-015ab2848e136549a8ea2ab3",
+    "edition-rev-5623a76ed1495827bf29a63c-geo",
+    "edition-rev-d0fe09ead5da74717d30449b-geo",
+    "edition-rev-f40b0c34ccfe68347d66bdc9"
+  ],
+  "editions": [
+    {
+      "id": "edition-rev-000d0e76fda7ae4810b06423-geo",
+      "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+      "name": "The Agent Arena Hackathon",
+      "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "location": {
+        "city": "San Francisco",
+        "venue": "San Francisco, CA",
+        "method": "unknown",
+        "status": "announced",
+        "address": {
+          "region": "CA",
+          "country": "US",
+          "locality": "San Francisco",
+          "postalCode": null,
+          "streetAddress": null
+        },
+        "provider": null,
+        "precision": "city",
+        "sourceIds": [
+          "background-source-47aa031920df734b87c388a9"
+        ],
+        "limitation": "Solo ciudad o sede sin dirección pública; sin punto de venue.",
+        "resolution": {
+          "cache": "not_applicable",
+          "query": null,
+          "outcome": "pending",
+          "accuracy": "unknown",
+          "checkedAt": "2026-09-10T22:41:57.437Z",
+          "countyGeoid": null,
+          "failureCode": null,
+          "sourceVersion": "07583049ac28944575e7942580c67d53c763501d51a91f727bc8bb2c13134e54",
+          "matchedAddress": null,
+          "normalizedQuery": null,
+          "providerVersion": null,
+          "claimRevisionIds": [
+            "background-claim-rev-1a4d72809217adc00c55721a",
+            "background-claim-rev-407f745514438472dfd7a203"
+          ]
+        },
+        "resolvedAt": null,
+        "originalAddress": null
+      },
+      "coordinates": null
+    },
+    {
+      "id": "edition-rev-015ab2848e136549a8ea2ab3",
+      "editionId": "edition-4322ef61414369d9f52fb3a5",
+      "name": "AI Security Hackathon",
+      "url": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+      "location": {
+        "city": "San Francisco",
+        "venue": "EF (Entrepreneur First), floors 1 and 2",
+        "method": "geocoded",
+        "status": "announced",
+        "address": {
+          "region": "CA",
+          "country": "US",
+          "locality": "San Francisco",
+          "postalCode": "94105",
+          "streetAddress": "501 Folsom St"
+        },
+        "provider": "us-census",
+        "precision": "address",
+        "sourceIds": [
+          "background-source-04f52245a1ff64ca7378c010",
+          "edition-rev-72f2a9cce09525f99c185f1e-geo-source"
+        ],
+        "limitation": "Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso.",
+        "resolution": {
+          "cache": "miss",
+          "query": "501 Folsom St, San Francisco, CA, 94105, US",
+          "outcome": "resolved",
+          "accuracy": "interpolated",
+          "checkedAt": "2026-09-10T22:41:29.354Z",
+          "countyGeoid": "06075",
+          "failureCode": null,
+          "sourceVersion": "03c53487bab9073409db3ae0d665663947382418ab541b50f57113a0fd96a107",
+          "matchedAddress": "501 FOLSOM ST, SAN FRANCISCO, CA, 94105",
+          "normalizedQuery": "501 FOLSOM ST SAN FRANCISCO CA 94105 US",
+          "providerVersion": "Public_AR_Current/Current_Current;dp08-v1",
+          "claimRevisionIds": [
+            "background-claim-rev-edd025c33a765d9a05a89a6e",
+            "background-claim-rev-f289e0c7537dc55b8d47c708",
+            "background-claim-rev-f6c9d03137e02f2ed44c6ae8"
+          ]
+        },
+        "resolvedAt": "2026-09-10T22:41:29.354Z",
+        "originalAddress": "501 Folsom St, San Francisco, CA, 94105, US"
+      },
+      "coordinates": {
+        "lat": 37.787215024828,
+        "lng": -122.394478898761
+      }
+    },
+    {
+      "id": "edition-rev-5623a76ed1495827bf29a63c-geo",
+      "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+      "name": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon",
+      "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "location": {
+        "city": "San Francisco",
+        "venue": null,
+        "method": "unknown",
+        "status": "announced",
+        "address": null,
+        "provider": null,
+        "precision": "city",
+        "sourceIds": [
+          "background-source-505eef0cd878fae2b7f5dcce"
+        ],
+        "limitation": "Dirección oculta; no se reconstruye la sede.",
+        "resolution": {
+          "cache": "not_applicable",
+          "query": null,
+          "outcome": "pending",
+          "accuracy": "unknown",
+          "checkedAt": "2026-09-10T22:42:45.012Z",
+          "countyGeoid": null,
+          "failureCode": null,
+          "sourceVersion": "fad54903d27f1b67b2c40eef12118153800fe61f7726301e446f11efc3831050",
+          "matchedAddress": null,
+          "normalizedQuery": null,
+          "providerVersion": null,
+          "claimRevisionIds": [
+            "background-claim-rev-14001c023c548b3b24bc414d",
+            "background-claim-rev-152ef2bac226ec677af30922"
+          ]
+        },
+        "resolvedAt": null,
+        "originalAddress": null
+      },
+      "coordinates": null
+    },
+    {
+      "id": "edition-rev-d0fe09ead5da74717d30449b-geo",
+      "editionId": "edition-e798e9bdbefdc361ed052d63",
+      "name": "AI Tinkerers SF - Secure Agents Buildathon",
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "location": {
+        "city": "San Francisco",
+        "venue": null,
+        "method": "unknown",
+        "status": "announced",
+        "address": null,
+        "provider": null,
+        "precision": "city",
+        "sourceIds": [
+          "background-source-fbd51fe609f1db84e0862f03"
+        ],
+        "limitation": "Dirección oculta; no se reconstruye la sede.",
+        "resolution": {
+          "cache": "not_applicable",
+          "query": null,
+          "outcome": "pending",
+          "accuracy": "unknown",
+          "checkedAt": "2026-09-10T22:42:45.023Z",
+          "countyGeoid": null,
+          "failureCode": null,
+          "sourceVersion": "853b31d4299fe387e2b136fcd3fd282d40ba8fe796f5ebafa0bfdb2e5f5a8068",
+          "matchedAddress": null,
+          "normalizedQuery": null,
+          "providerVersion": null,
+          "claimRevisionIds": [
+            "background-claim-rev-1df9523c02b732b704c96a76",
+            "background-claim-rev-54a709ef6e9cbee00aa9e594",
+            "background-claim-rev-8a241ffa18cabc9a555e5daf"
+          ]
+        },
+        "resolvedAt": null,
+        "originalAddress": null
+      },
+      "coordinates": null
+    },
+    {
+      "id": "edition-rev-f40b0c34ccfe68347d66bdc9",
+      "editionId": "edition-725d68dbc9a97e89ac367bc7",
+      "name": "RAISE 2025 · agentic AI hackathon",
+      "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "location": null,
+      "coordinates": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "background-source-04f52245a1ff64ca7378c010",
+      "url": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+      "fetchedAt": "2026-09-10T22:41:28.548Z"
+    },
+    {
+      "id": "background-source-09c7a40bbb9c2e553a81abcb",
+      "url": "https://www.hackathons.team/about",
+      "fetchedAt": "2026-09-11T01:03:46.418Z"
+    },
+    {
+      "id": "background-source-0c9f71b03dca6464a4b72a33",
+      "url": "https://www.hackathons.team/about",
+      "fetchedAt": "2026-09-10T22:41:28.617Z"
+    },
+    {
+      "id": "background-source-21cb99ed01ea6e2dcccc5031",
+      "url": "https://www.hackathons.team/events/ai-security-hackathon-2026",
+      "fetchedAt": "2026-09-11T01:03:46.346Z"
+    },
+    {
+      "id": "background-source-47aa031920df734b87c388a9",
+      "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "fetchedAt": "2026-09-10T22:41:56.008Z"
+    },
+    {
+      "id": "background-source-505eef0cd878fae2b7f5dcce",
+      "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "fetchedAt": "2026-09-10T22:42:44.239Z"
+    },
+    {
+      "id": "background-source-c7d10b468ee0442a6884c677",
+      "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "fetchedAt": "2026-09-10T22:41:57.276Z"
+    },
+    {
+      "id": "background-source-db5c4924886ffec73b2dfec1",
+      "url": "https://www.hackathons.team/",
+      "fetchedAt": "2026-09-10T22:41:28.683Z"
+    },
+    {
+      "id": "background-source-f4a02f0ca47823ea88f44dfa",
+      "url": "https://www.hackathons.team/",
+      "fetchedAt": "2026-09-11T01:03:46.458Z"
+    },
+    {
+      "id": "background-source-fbd51fe609f1db84e0862f03",
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "fetchedAt": "2026-09-10T22:42:44.454Z"
+    },
+    {
+      "id": "edition-rev-72f2a9cce09525f99c185f1e-geo-source",
+      "url": "https://geocoding.geo.census.gov/geocoder/",
+      "fetchedAt": "2026-09-10T22:41:29.354Z"
+    }
+  ],
+  "reading": {
+    "version": "research-comparison/1",
+    "priority": {
+      "kind": "investigate_first",
+      "criteria": [
+        "Check date, city, access, audience, and costs first; excluded options cannot compete.",
+        "Look for explicit topical fit between the brief and a documented program or project; prizes, brands, and figures do not establish fit.",
+        "Use historical evidence with the same identity and an edition-specific role; sponsorship experience does not establish organizing experience.",
+        "Prioritize only a factual difference: relevant background versus missing support. Ties preserve presentation order without an investment ranking."
+      ],
+      "editionIds": [
+        "edition-d54a42d3ba8672ab20f9aeec"
+      ],
+      "explanation": "Investigate first Agents, Everywhere: Bots, Channels, & More — Global Hackathon: it is the only non-excluded candidate with relevant topical background and a documented identity link. The other options lack that support in the reviewed coverage. Resolve its conditions before committing budget."
+    },
+    "differences": null,
+    "alternatives": [
+      {
+        "cost": "attendance [announced]: USD 0 sponsorship [pending]: amount pending Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.",
+        "modality": {
+          "text": "Published format: in person | The brief:\nThis is a one-day, in-person hackathon for builders who love working with AI and want to build anything in agentic security. We're really open with the ideas, as long as you're building something awesome, you're welcome to build it here. [announced]. Confirm a relevant program and audience before proposing an activity. Commercial participation requires its own permission and price.",
+          "basis": [
+            {
+              "editionId": "edition-4322ef61414369d9f52fb3a5",
+              "sourceIds": [
+                "background-source-21cb99ed01ea6e2dcccc5031"
+              ],
+              "relationshipIds": [],
+              "claimRevisionIds": [
+                "background-claim-rev-741c502baf83dc58d849722a"
+              ],
+              "editionRevisionId": "edition-rev-015ab2848e136549a8ea2ab3"
+            }
+          ],
+          "status": "published"
+        },
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "relevance": {
+          "text": "For «RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.», targeting «AI engineers and backend developers building AI agents for businesses.» with a goal of feedback, no documented program or project establishes specific fit. Ask for relevant use cases and audience before proposing investment.",
+          "basis": []
+        },
+        "antecedents": [],
+        "nextQuestion": "What is the complete cost, currency, and participation package? Which previous program or project demonstrates fit with this product and its audience?",
+        "evidenceQuality": {
+          "note": "0 current topical claim(s) and 0 relevant historical example(s) reviewed. Source coverage does not extrapolate projects to attendees. 2 open material condition(s).",
+          "status": "insufficient"
+        },
+        "matchedCriteria": []
+      },
+      {
+        "cost": "sponsorship [pending]: amount pending attendance [announced]: USD 0 Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.",
+        "modality": {
+          "text": "Published format: in person | The Agent Arena Hackathon:\nNote: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance. [announced]. Confirm a relevant program and audience before proposing an activity. Commercial participation requires its own permission and price.",
+          "basis": [
+            {
+              "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+              "sourceIds": [
+                "background-source-47aa031920df734b87c388a9"
+              ],
+              "relationshipIds": [],
+              "claimRevisionIds": [
+                "background-claim-rev-fa3cc0e8733d89217bbe6537"
+              ],
+              "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+            }
+          ],
+          "status": "published"
+        },
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "relevance": {
+          "text": "For «RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.», targeting «AI engineers and backend developers building AI agents for businesses.» with a goal of feedback, no documented program or project establishes specific fit. Ask for relevant use cases and audience before proposing investment.",
+          "basis": []
+        },
+        "antecedents": [
+          {
+            "text": "RAISE 2025 · agentic AI hackathon · Paris: previous role sponsor [reported]. No program or project establishes topical fit in this reading. Vultr: sponsor [reported]. The publication retains its evidence status; it does not establish payment, delivery, attendance, or commercial return.",
+            "basis": [
+              {
+                "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+                "sourceIds": [
+                  "background-source-47aa031920df734b87c388a9"
+                ],
+                "relationshipIds": [
+                  "relationship-37a8dd5d93aaebdd47b120a5"
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-443f1a35f64859e937e3f3e9"
+                ],
+                "editionRevisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+              },
+              {
+                "editionId": "edition-725d68dbc9a97e89ac367bc7",
+                "sourceIds": [
+                  "background-source-c7d10b468ee0442a6884c677"
+                ],
+                "relationshipIds": [
+                  "relationship-b4fcfd7ac7a4ce2ec5193a2a"
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-17f7a8833f7417fc8e8d92dc"
+                ],
+                "editionRevisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+              }
+            ]
+          }
+        ],
+        "nextQuestion": "What is the complete cost, currency, and participation package? Which previous program or project demonstrates fit with this product and its audience?",
+        "evidenceQuality": {
+          "note": "0 current topical claim(s) and 0 relevant historical example(s) reviewed. Source coverage does not extrapolate projects to attendees. 2 open material condition(s).",
+          "status": "insufficient"
+        },
+        "matchedCriteria": []
+      },
+      {
+        "cost": "attendance [announced]: USD 0 sponsorship [pending]: amount pending Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. Confirm what the complete participation price includes; tickets, prizes, and credits are not sponsorship fees.",
+        "modality": {
+          "text": "Published format: in person [announced]. Buyer-proposed activity: Explore a voluntary product feedback session with relevant participants. Commercial participation requires its own permission and price.",
+          "basis": [
+            {
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+              "sourceIds": [
+                "background-source-505eef0cd878fae2b7f5dcce"
+              ],
+              "relationshipIds": [],
+              "claimRevisionIds": [
+                "background-claim-rev-d338fb706df2ac9b9812f813"
+              ],
+              "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+            },
+            {
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+              "sourceIds": [
+                "background-source-505eef0cd878fae2b7f5dcce"
+              ],
+              "relationshipIds": [
+                "relationship-263b9267e5ff86c316ba43e5"
+              ],
+              "claimRevisionIds": [
+                "background-claim-rev-85e8d9b611a28cfe7cd00733"
+              ],
+              "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+            },
+            {
+              "editionId": "edition-e798e9bdbefdc361ed052d63",
+              "sourceIds": [
+                "background-source-fbd51fe609f1db84e0862f03"
+              ],
+              "relationshipIds": [
+                "relationship-088e366e1f2585f5c2398064",
+                "relationship-0fabe03f3d046d27645c6a92",
+                "relationship-af9ad988b7846086fb150694"
+              ],
+              "claimRevisionIds": [
+                "background-claim-rev-64de455ace26ed0014e99637",
+                "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+              ],
+              "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+            }
+          ],
+          "status": "published"
+        },
+        "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+        "relevance": {
+          "text": "For «RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.», targeting «AI engineers and backend developers building AI agents for businesses.» with a goal of feedback, there is topical fit in agents, observability. The documented background supports asking about a similar activity in the current edition. This is a relevance hypothesis; actual audience and availability still need validation.",
+          "basis": [
+            {
+              "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+              "sourceIds": [
+                "background-source-505eef0cd878fae2b7f5dcce"
+              ],
+              "relationshipIds": [
+                "relationship-263b9267e5ff86c316ba43e5"
+              ],
+              "claimRevisionIds": [
+                "background-claim-rev-85e8d9b611a28cfe7cd00733"
+              ],
+              "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+            },
+            {
+              "editionId": "edition-e798e9bdbefdc361ed052d63",
+              "sourceIds": [
+                "background-source-fbd51fe609f1db84e0862f03"
+              ],
+              "relationshipIds": [
+                "relationship-088e366e1f2585f5c2398064",
+                "relationship-0fabe03f3d046d27645c6a92",
+                "relationship-af9ad988b7846086fb150694"
+              ],
+              "claimRevisionIds": [
+                "background-claim-rev-64de455ace26ed0014e99637",
+                "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+              ],
+              "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+            }
+          ]
+        },
+        "antecedents": [
+          {
+            "text": "AI Tinkerers SF - Secure Agents Buildathon · San Francisco: previous role organizer [announced]. Program [announced]: Monitoring, auditing, and recovery patterns for long-running agents Google Cloud: sponsor [announced]. Wordware: venue [announced]. The publication retains its evidence status; it does not establish payment, delivery, attendance, or commercial return.",
+            "basis": [
+              {
+                "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+                "sourceIds": [
+                  "background-source-505eef0cd878fae2b7f5dcce"
+                ],
+                "relationshipIds": [
+                  "relationship-263b9267e5ff86c316ba43e5"
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-85e8d9b611a28cfe7cd00733"
+                ],
+                "editionRevisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+              },
+              {
+                "editionId": "edition-e798e9bdbefdc361ed052d63",
+                "sourceIds": [
+                  "background-source-fbd51fe609f1db84e0862f03"
+                ],
+                "relationshipIds": [
+                  "relationship-088e366e1f2585f5c2398064",
+                  "relationship-0fabe03f3d046d27645c6a92",
+                  "relationship-af9ad988b7846086fb150694"
+                ],
+                "claimRevisionIds": [
+                  "background-claim-rev-64de455ace26ed0014e99637",
+                  "background-claim-rev-7fcce123e6a07bd885ccde8d",
+                  "background-claim-rev-8ca9e50520af8b9e01a4cafa",
+                  "background-claim-rev-b7e6bf8ac2f7adc73bae65ba"
+                ],
+                "editionRevisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+              }
+            ]
+          }
+        ],
+        "nextQuestion": "What is the complete cost, currency, and participation package? Does the event allow an activity for feedback for «RastroAI is an observability platform for AI agents. Our SDK captures traces, detects failures, and compares evaluations in applications built with Python and TypeScript.» with «AI engineers and backend developers building AI agents for businesses.»?",
+        "evidenceQuality": {
+          "note": "0 current topical claim(s) and 1 relevant historical example(s) reviewed. Source coverage does not extrapolate projects to attendees. 3 open material condition(s).",
+          "status": "supported"
+        },
+        "matchedCriteria": [
+          "antecedente_pertinente"
+        ]
+      }
+    ]
+  },
+  "narrative": {
+    "model": "gemini-2.5-flash",
+    "usage": null,
+    "motive": "GEMINI_API_KEY missing: model narrative unavailable; the deterministic explanation remains available.",
+    "status": "deterministic_only",
+    "version": 1,
+    "warnings": [],
+    "discarded": null,
+    "proposals": [],
+    "durationMs": 0,
+    "snapshotId": "76e446f2-61ef-4053-afe9-5ff68248acae",
+    "promptVersion": "comparison-narrative/3"
+  },
+  "decisions": [
+    {
+      "id": "cbb66928-17be-44d2-a153-666e19c16ead",
+      "intent": "explore_first",
+      "reasons": [
+        "Explore AIT first because its previous SF edition announced monitoring, auditing, and recovery patterns for agents. Confirm audience, permission for a practical feedback activity, and the full quote before spending."
+      ],
+      "verdict": "pending",
+      "revision": 1,
+      "decidedAt": "2026-09-11T01:54:36.905Z",
+      "decidedBy": {
+        "userId": "b247ee72-b41b-4309-90ba-615d84687a02",
+        "resolvedBy": "server_session"
+      },
+      "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+      "conditions": [
+        {
+          "id": "cond-edition-d54a42d3ba8672ab20f9aeec-costo-1",
+          "dueBy": null,
+          "owner": null,
+          "status": "open",
+          "description": "Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. — Answer needed to resolve this: What is the complete cost, currency, and participation package?",
+          "resolvedNote": null,
+          "answerWouldChangeTo": null
+        },
+        {
+          "id": "cond-edition-d54a42d3ba8672ab20f9aeec-restriccion-2",
+          "dueBy": null,
+          "owner": null,
+          "status": "open",
+          "description": "Buyer restriction to verify: Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget. — Answer needed to resolve this: How is «Confirm the technical audience, permission to propose a workshop, and the complete participation cost before committing budget.» satisfied by the participation format of this edition?",
+          "resolvedNote": null,
+          "answerWouldChangeTo": null
+        },
+        {
+          "id": "cond-edition-d54a42d3ba8672ab20f9aeec-formato-3",
+          "dueBy": null,
+          "owner": null,
+          "status": "open",
+          "description": "Requested format remains unconfirmed: technical workshop, hackathon, office hours. — Answer needed to resolve this: Is the requested format available, and under which conditions?",
+          "resolvedNote": null,
+          "answerWouldChangeTo": null
+        }
+      ],
+      "snapshotId": "76e446f2-61ef-4053-afe9-5ff68248acae",
+      "contractVersion": "1",
+      "previousRevisionId": null
+    }
+  ]
+}

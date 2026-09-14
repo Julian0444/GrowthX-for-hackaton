@@ -1,0 +1,58 @@
+[
+  {
+    "file": "frontend/lib/server/evaluations/model-adapter.ts",
+    "before": [
+      {
+        "kind": "template",
+        "parts": [
+          "",
+          " (alcance ",
+          ")"
+        ]
+      },
+      {
+        "kind": "literal",
+        "parts": [
+          "pendiente"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "kind": "template",
+        "parts": [
+          "",
+          " (scope ",
+          ")"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "frontend/lib/server/evaluations/model-adapter.ts",
+    "before": [
+      {
+        "kind": "template",
+        "parts": [
+          "pendiente",
+          ""
+        ]
+      }
+    ],
+    "after": [
+      {
+        "kind": "literal",
+        "parts": [
+          "pending"
+        ]
+      },
+      {
+        "kind": "template",
+        "parts": [
+          "pending",
+          ""
+        ]
+      }
+    ]
+  }
+]

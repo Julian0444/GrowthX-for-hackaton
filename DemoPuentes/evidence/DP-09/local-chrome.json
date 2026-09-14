@@ -1,0 +1,131 @@
+{
+  "observedAt": "2026-09-10T23:23:18.253Z",
+  "browser": "Google Chrome · sesión interactiva del usuario",
+  "desktop": {
+    "canvases": 1,
+    "height": 900,
+    "listCount": 1,
+    "overflow": false,
+    "points": "1",
+    "revisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+    "state": "ready",
+    "url": "http://localhost:3000/?run=fda043a0-ae92-4809-b150-d0d71c62b1d8",
+    "width": 1366
+  },
+  "mobile": {
+    "attribution": "OpenFreeMap © OpenMapTiles Data from OpenStreetMap",
+    "canvases": 1,
+    "editionId": "edition-4322ef61414369d9f52fb3a5",
+    "height": 844,
+    "overflow": false,
+    "points": "1",
+    "revisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo",
+    "state": "ready",
+    "url": "http://localhost:3000/?run=fda043a0-ae92-4809-b150-d0d71c62b1d8",
+    "width": 390
+  },
+  "dossier": {
+    "editionId": "edition-4322ef61414369d9f52fb3a5",
+    "revisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo"
+  },
+  "provenance": "Ubicación pública\n\n501 Folsom St, San Francisco, CA, 94105, US · announced\n\naddress · geocoded · aproximada (interpolada)\n\nDirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso.\n\nProcedencia de ubicación\n\nus-census · 2026-09-10T22:41:29.354Z\n\nConsulta: 501 Folsom St, San Francisco, CA, 94105, US\n\nCoincidencia: 501 FOLSOM ST, SAN FRANCISCO, CA, 94105\n\nCaché: miss · Public_AR_Current/Current_Current;dp08-v1 · Condado 06075\n\nwww.hackathons.team\nobtained 2026-09-10\npublication date unknown\nhttp_get+relationship_extraction\nobtained · freshness: current\nSCOPE: UNKNOWN\nus-census\n(Consulta de dirección pública de esta edición)\nobtained 2026-09-10\npublication date unknown\naddress_geocoding\nobtained · freshness: unknown · Dirección interpolada sobre rango de calle; entrada y precisión métrica no verificadas. Geocodificar no confirma celebración ni acceso.\nSCOPE: CITY",
+  "mobileSelectionAfterReturn": "edition-4322ef61414369d9f52fb3a5",
+  "city": {
+    "canvases": 1,
+    "list": "The Agent Arena Hackathon2026-09-26T16:00:00.000Z · UTC · San Francisco · Revisar condicionesSan Francisco, CA · Solo ciudad o sede sin dirección pública; sin punto de venue.For Revisión QA 10/09 — Plataforma de observabilidad para agentes de IA con SDK Python y TypeScript. Buscamos que equipos usen nuestras trazas y evaluaciones en producción. (adoption), RAISE 2025 · agentic AI hackathon in Paris documents a prior sponsor role. Sponsorship there does not establish experience organizing in SF. Ask for the local operator, technical support and edition-specific conditions.Seleccionar evento sin puntoAbrir evento ↗Automatically read from public sources: claims keep their announced or reported status, without human verification. Seleccionar para compararcerebralvalley.aiobtained 2026-09-10publication date unknownhttp_get+relationship_extractionobtained · freshness: currentscope: unknownRAISE 2025 · agentic AI hackathonRAISE 2025 · exact hackathon dates not obtained · fecha ambigua · Paris · Antecedente históricoParis · Registro anterior sin precisión ni procedencia documentada de coordenadas.Pertinencia para el brief pendiente de evaluación; abrí las fuentes y condiciones.Seleccionar evento sin puntoAbrir evento ↗Automatically read from public sources: claims keep their announced or reported status, without human verification. Seleccionar para compararblogs.vultr.comobtained 2026-09-10publication date unknownhttp_get+relationship_extractionobtained · freshness: currentscope: unknown",
+    "points": "0",
+    "state": "ready",
+    "url": "http://localhost:3000/?run=7d43b762-b599-4759-b657-0848612a94c2"
+  },
+  "historical": {
+    "context": "Comparación histórica: ubicaciones y evidencia del snapshot guardado. Ver catálogo actual (otra vista)",
+    "count": "2 de 2 eventos · 0 con punto en SF · 2 sin punto. La ciudad pendiente o una dirección oculta no eliminan el evento.",
+    "editions": [
+      {
+        "editionId": "luma-14fq1fa2",
+        "revisionId": "luma-eb44644f-1038-4a83-9670-d8f336c84248-edition"
+      },
+      {
+        "editionId": "luma-7a4iutvp",
+        "revisionId": "luma-70e00629-8a56-452e-a84c-f5944913c144-edition"
+      }
+    ],
+    "url": "http://localhost:3000/?run=21279a0a-9fe0-4968-b900-29af59463fe6",
+    "map": {
+      "canvases": 1,
+      "points": "0",
+      "state": "ready"
+    }
+  },
+  "currentCatalog": {
+    "context": "Catálogo actual: vista independiente de las investigaciones guardadas. ",
+    "count": "14 de 14 eventos · 2 con punto en SF · 12 sin punto. La ciudad pendiente o una dirección oculta no eliminan el evento.",
+    "editions": [
+      {
+        "editionId": "ed-builders-berlin-2025",
+        "revisionId": "ed-builders-berlin-2025-r1"
+      },
+      {
+        "editionId": "ed-gg-ml-2025",
+        "revisionId": "ed-gg-ml-2025-r1"
+      },
+      {
+        "editionId": "ed-ml-night-2026",
+        "revisionId": "ed-ml-night-2026-r1"
+      },
+      {
+        "editionId": "ed-sf-dev-summit-2027",
+        "revisionId": "ed-sf-dev-summit-2027-r1"
+      },
+      {
+        "editionId": "ed-us-roadshow-2027",
+        "revisionId": "ed-us-roadshow-2027-r1"
+      },
+      {
+        "editionId": "edition-4322ef61414369d9f52fb3a5",
+        "revisionId": "edition-rev-72f2a9cce09525f99c185f1e-geo"
+      },
+      {
+        "editionId": "edition-725d68dbc9a97e89ac367bc7",
+        "revisionId": "edition-rev-f40b0c34ccfe68347d66bdc9"
+      },
+      {
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "revisionId": "edition-rev-000d0e76fda7ae4810b06423-geo"
+      },
+      {
+        "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+        "revisionId": "edition-rev-5623a76ed1495827bf29a63c-geo"
+      },
+      {
+        "editionId": "edition-e798e9bdbefdc361ed052d63",
+        "revisionId": "edition-rev-d0fe09ead5da74717d30449b-geo"
+      },
+      {
+        "editionId": "luma-14fq1fa2",
+        "revisionId": "luma-eb44644f-1038-4a83-9670-d8f336c84248-edition"
+      },
+      {
+        "editionId": "luma-7a4iutvp",
+        "revisionId": "luma-4ea79f69-9aa0-45c4-a7b9-31fb3be59455-edition"
+      },
+      {
+        "editionId": "luma-87no10np",
+        "revisionId": "luma-a1291303-dc6f-499e-9378-c9b9b1ecc40a-edition"
+      },
+      {
+        "editionId": "luma-growthx-visual-qa",
+        "revisionId": "luma-066de569-697e-412a-b9ab-7b464d729041-edition"
+      }
+    ],
+    "url": "http://localhost:3000/"
+  },
+  "checks": {
+    "sameEdition": true,
+    "sameRevision": true,
+    "mobileSelectionPreserved": true,
+    "desktopNoOverflow": true,
+    "mobileNoOverflow": true,
+    "readOnlyLocalVerification": true
+  }
+}

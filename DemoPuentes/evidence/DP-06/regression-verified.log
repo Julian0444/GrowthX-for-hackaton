@@ -1,0 +1,529 @@
+DP-06 regression scope: 39 files. Excluded concurrent DP-08 owned-DB test: ['tests/integration/location-resolution.test.ts']
+(node:58147) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/baseline-v0.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness (4.385333ms)
+✔ seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado (42.615417ms)
+✔ fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración (3.537334ms)
+✔ repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida (232.9575ms)
+✔ repetición: una petición no grabada falla en lugar de salir a la red (2.017541ms)
+✔ caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto (45.365167ms)
+ℹ fuentes distintas del manifiesto v0: lib/contracts/growxth.ts, lib/server/pipeline/resolve.ts, lib/server/pipeline/global-market-search.ts, lib/server/pipeline/search-opportunities.ts, lib/server/reasoning/gemini.ts, lib/server/discovery/exa-events.ts, lib/server/graph/derive-signals.ts, lib/server/markets/city-catalog.ts, lib/server/scoring/score-utils.ts, lib/server/audit/labels.ts, lib/server/env.ts, lib/api/opportunity-adapter.ts, lib/api/types.ts, app/api/opportunities/search/route.ts. La igualdad con la caracterización solo se exige sobre v0; la corrección la prueban 02–06.
+✔ oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada (18.2225ms)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición secuencial (USD 20.000)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición concurrente (USD 20.000)
+ℹ O1 (ticket 02) invariante: una petición equivalente (mismo presupuesto) sí reutiliza la respuesta
+ℹ O2 (ticket 03) corregido: mercado con señal de Trends exclusivamente nacional (India) presentado con market.city como ubicación (basis country)
+ℹ O2 (ticket 03) corregido: resultado de Exa sin lugar en el texto recibe como location la ciudad de la consulta
+ℹ O3 (ticket 04) corregido: oportunidades locales cuyo evento ya venció en el reloj congelado y aun así se citan como «upcoming»
+ℹ O3 (ticket 04) corregido: evento sin fecha: startsAt que el adaptador entrega a la UI
+ℹ O3 (ticket 04) corregido: recap de un evento del 12 Ago 2026 publicado el 5 Sep se cita como listing vivo (observed) en la razón de Exa
+ℹ O4 (ticket 05) corregido: narrativa que solo cita un id inexistente: se publica como razón y con qué citas
+ℹ O4 (ticket 05) corregido: narrativa de San Francisco que cita evidencia de Bengaluru (ajena): publicada como razón factual
+ℹ O4 (ticket 05) corregido: cifra («40+ meetups por trimestre») respaldada solo por un listing de un evento: publicada como razón factual
+ℹ O5 (ticket 06) corregido: orden de opportunities con modelo (rank invertido) frente al orden determinístico
+ℹ O5 (ticket 06) corregido: rank que el adaptador entrega a la UI sigue al orden del array recibido
+ℹ O5 (ticket 06) invariante: scores por oportunidad con y sin modelo
+✔ matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos (0.718625ms)
+(node:58148) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/cache-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza (228.249625ms)
+✔ concurrente: presupuestos distintos no comparten la promesa en curso (3.188375ms)
+✔ proveedor controlado: se observa qué evaluación produjo cada respuesta (8.94275ms)
+✔ fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto (5.227083ms)
+✔ frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo (63.836208ms)
+✔ normalización única: caracterización del sentinel de presupuesto desconocido (0.15625ms)
+(node:58149) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente (122.866959ms)
+✔ el día UTC dentro de la ventana no admite un evento cuyo día local es anterior (0.570125ms)
+✔ los offsets declarados negativos y positivos conservan ambos bordes inclusivos (2.200916ms)
+✔ la zona IANA respeta el horario de invierno y no asume un offset fijo para SF (0.243667ms)
+✔ una fecha sin hora se compara tal como fue declarada (0.228625ms)
+✔ una zona no reconocida mantiene pendiente la ventana en vez de inventar el día (0.288625ms)
+(node:58150) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/event-validity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha (7.604583ms)
+✔ demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca (61.299583ms)
+✔ seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan (42.244625ms)
+✔ adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento (1.98125ms)
+✔ Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece (102.689666ms)
+✔ predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05 (2.989042ms)
+✔ fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente (0.755042ms)
+✔ fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente (1.436708ms)
+(node:58151) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/geographic-scope.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ fixture país: un dato de Trends sobre India sigue siendo observación de país (24.197959ms)
+✔ fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado (2.291833ms)
+✔ fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado (135.76825ms)
+(node:58152) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/llm-rank-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+✔ el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual (149.458834ms)
+✔ grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5) (16.177292ms)
+✔ candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco (0.854917ms)
+✔ desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable) (0.868417ms)
+✔ desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden (9.041417ms)
+✔ ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números (4.074458ms)
+(node:58153) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/reasoning-support.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1) (162.66725ms)
+✔ cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2) (0.271541ms)
+✔ cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida) (17.209042ms)
+✔ afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica (0.718042ms)
+✔ propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza (0.642709ms)
+✔ fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad (2.053791ms)
+✔ JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos (0.702ms)
+✔ descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia (0.509042ms)
+✔ auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta (0.37325ms)
+(node:58154) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/session-unavailable.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401
+  ✔ GET evaluaciones (5.86ms)
+  ✔ POST evaluación (1.709334ms)
+  ✔ GET run (1.067166ms)
+  ✔ POST importación (0.666667ms)
+  ✔ GET catálogo (0.5305ms)
+  ✔ GET edición (0.446083ms)
+  ✔ GET organizador (0.376292ms)
+  ✔ GET decisiones (0.461084ms)
+  ✔ POST decisión (0.522375ms)
+  ✔ GET decisión (0.486208ms)
+  ✔ PATCH decisión (0.463083ms)
+  ✔ POST guardar organizador (0.415583ms)
+  ✔ una sesión válida conserva el usuario y tenant resueltos por el servidor (1.652541ms)
+✔ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401 (117.53475ms)
+(node:58155) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/acceptance/trust-regressions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ control con soporte (25.715542ms)
+✔ USD 3000 + USD 3000 > USD 5000 (0.612083ms)
+✔ partida pendiente (0.34675ms)
+✔ moneda incomparable (0.267583ms)
+✔ audiencia pendiente (0.554834ms)
+✔ audiencia ausente (0.459291ms)
+✔ fecha contradicha (0.430666ms)
+✔ contratos del caso reproducido (0.567625ms)
+✔ investigación conserva confirmed (1.76475ms)
+✔ investigación usa el día local de SF (0.52925ms)
+✔ El patrocinio cuesta 10 USD y la audiencia está confirmada. (78.655916ms)
+✔ El evento garantiza contrataciones y el acceso exclusivo ya está confirmado. (1.57275ms)
+✔ paquetes alternativos no se suman; partidas de la misma opción sí (1.195417ms)
+✔ un costo conocido + moneda extranjera o estimación no acreditan presupuesto completo (0.503ms)
+✔ acceso pendiente y contradicho conserva condición, no incompatibilidad (0.386625ms)
+✔ fecha contradicha no excluye por el valor disputado aun fuera de ventana (0.473959ms)
+✔ fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambos caminos (0.3605ms)
+✔ narrativa positiva publica exactamente fecha, atributo y estado seleccionados (0.464125ms)
+✔ un atributo de costo con valor fecha no es un claim admitido (0.598083ms)
+✔ la composición de costos es explícita y los contratos v1 anteriores siguen legibles (0.577416ms)
+✔ una narrativa de costo conserva su atributo, importe y estado inferido (0.774208ms)
+(node:58156) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/atlas/arcs.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ origen: ubicación del usuario si existe, si no San Francisco (3.081084ms)
+✔ path = bézier cuadrática "M x0 y0Q cx cy x1 y1", redondeada a 1 decimal (0.516416ms)
+✔ el arco siempre se comba hacia el norte, independientemente del sentido (0.256709ms)
+✔ bulge clampeado a [12, 60] (0.130875ms)
+✔ origen == destino → sin arco (0.330291ms)
+✔ determinista: mismo input → mismo output, sin depender del reloj (6.007084ms)
+✔ escalonado por rank: 950ms + 240ms por posición; el cometa arranca al terminar el arco (0.301917ms)
+✔ todos los arcos parten del origen (0.162375ms)
+(node:58157) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/apify.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ runs an Actor with server-side auth and reads its dataset (151.333709ms)
+✔ degrades without exposing or requiring a token (0.183ms)
+✔ keeps partial dataset items when an Actor exceeds its wait budget (1.16725ms)
+(node:58158) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls (4.337917ms)
+✔ DP04 URL identity only merges proven aliases; same names and different query editions remain separate (12.278167ms)
+✔ DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors (97.518542ms)
+(node:58159) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (3.48575ms)
+✔ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.303ms)
+✔ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.290417ms)
+✔ DP-08 Census uses address interpolation and county 06075, not bbox or first match (1.981083ms)
+✔ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (108.029916ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (1.137667ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (13.566042ms)
+✔ DP-08 same street/number in a different visible city contradicts the source point (1.002959ms)
+(node:58172) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes (5.172625ms)
+✔ Luma: un título OG de página vacía o calendario no crea un dossier de evento (58.991375ms)
+✔ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.852875ms)
+✔ Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes (2.255208ms)
+✔ Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación (3.708875ms)
+✔ Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos (1.112875ms)
+✔ Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos (0.713791ms)
+✔ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (2.715209ms)
+(node:58173) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06: real contract shapes, explicit roles, identity and buyer-specific antecedent (33.400541ms)
+✔ DP06: homonyms, corporate location and editions with different years never merge by name (1.732375ms)
+✔ DP06: calendar and JSON-LD name are not silently organizers; host and coorganizer separate (1.057208ms)
+✔ DP06: logo and presenter without sponsor block never become sponsorship or ROI (2.375042ms)
+✔ DP06: wrong edition backlink and unlinked repository never create project relationship (8.440292ms)
+✔ DP06: an award does not establish technology; partial reviewed coverage not extrapolated (6.234792ms)
+✔ DP06: Vultr sponsor in Paris is a separate role from present host in SF (6.710042ms)
+✔ DP06: source without Event metadata is retained without inventing an edition (0.272791ms)
+✔ DP06: date contradiction stays contradicted and instructions do not enter facts (0.91825ms)
+✔ DP06: input rejects mixed provenance, foreign fields and unsafe destination (0.610125ms)
+✔ DP06: AIT explicit structured chapter attribution + visible event role works without subscription chrome (2.820917ms)
+(node:58174) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (123.657042ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (2.190625ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (2.655417ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (1.397875ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (0.990834ms)
+✔ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (4.826875ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (63.069292ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (4.178125ms)
+(node:58177) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/contracts/evaluation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ payload válido: el bundle incompleto pero bien formado pasa entero y sin mutaciones (12.459292ms)
+✔ payload inválido se rechaza con ruta y motivo; las claves desconocidas no se ignoran (0.798083ms)
+✔ una versión de contrato desconocida se rechaza; no se interpreta como la actual (0.404875ms)
+✔ fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy (2.016917ms)
+✔ costo incompleto: la partida pendiente viaja como pendiente y no existe un total (0.422334ms)
+✔ una localización nacional no coloca el evento en una ciudad ni en el mapa (0.646667ms)
+✔ una contradicción viaja como contradicción, con su motivo visible (0.519167ms)
+✔ score ausente se distingue de cero; «sin evento elegible» se distingue de error técnico (0.768209ms)
+✔ un compromiso acordado sin soporte se rechaza; una estimación no se disfraza de acuerdo (0.59125ms)
+✔ identidades separadas: aliases exigen confirmación con soporte y un logo no crea patrocinio ni resultados (0.751209ms)
+✔ la decisión exige autor del servidor, motivos y relación de revisión coherente (0.480708ms)
+✔ las reglas de objeto no comprueban integridad relacional (eso es 08/09) (1.276292ms)
+✔ round-trip por JSON: serializar, releer y validar conserva el agregado idéntico (1.458541ms)
+✔ la proyección conserva pendientes sin los defaults engañosos del contrato legado (1.909416ms)
+(node:58178) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/contracts/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: brief completo y legado; preguntas ligadas a producto, audiencia y objetivo; dinero separado (8.429625ms)
+✔ DP03: rechaza datos inválidos y campos operativos/tenant en el brief (1.109084ms)
+✔ DP03: contratos de fuentes y relaciones preservan premio, herramienta y edición sin atribuir eficacia (1.880542ms)
+✔ DP03: ubicación anterior, ciudad, fallo y contradicción no fabrican un punto (1.030959ms)
+✔ DP03: parcial/error/insuficiente y consumo desconocido son estados distintos de éxito/cero (0.511042ms)
+✔ DP03: comparación, dossier y mapa conservan la revisión seleccionada aunque exista una nueva (12.964583ms)
+(node:58179) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/graph/derive-signals.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ derives query-specific capabilities instead of requiring a static topics file (3.302791ms)
+✔ distance is context in miles and can be computed independently from score (0.22175ms)
+(node:58184) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/conditional-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; autor/tenant/consenso en el cuerpo → 400; snapshot ajeno → 404 (23.002083ms)
+  ✔ motivos obligatorios; la alternativa debe pertenecer al snapshot (6.084083ms)
+  ✔ elegir con costo pendiente → elección condicional guardada con su campaña (una transacción) (19.086042ms)
+  ✔ idempotencia: misma clave+payload → misma decisión; otra clave/payload → conflicto (20.137042ms)
+  ✔ excluido por restricción confirmada: no se elige con un click; sí se registra descarte o pendiente (14.400417ms)
+  ✔ dos pestañas no se sobrescriben: la revisión esperada obsoleta devuelve conflicto y las revisiones se conservan (29.404042ms)
+  ✔ razones distintas por alternativa; decidir no fabrica claims ni evidencia (11.740917ms)
+  ✔ guardar un organizador conserva una investigación: no crea inversión ni campaña (89.557708ms)
+  ✔ rollback conjunto: una caída al confirmar la campaña no deja decisión suelta (285.945167ms)
+  ✔ tenant señuelo: la decisión real no existe para él, ni por ruta ni por SQL de aplicación (35.51275ms)
+✔ conditional-decision: decisión condicional persistida y campaña en borrador (PostgreSQL real) (1099.062292ms)
+(node:58196) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/curated-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ curated-manifest: parseo estricto del manifiesto de curación
+  ✔ el manifiesto fixture valida completo (4.346292ms)
+  ✔ clave desconocida y responsable ausente se rechazan (80.221ms)
+  ✔ extracto sobredimensionado y claim de perfil se rechazan (1.297375ms)
+  ✔ la versión desconocida no se interpreta como la actual (0.453ms)
+✔ curated-manifest: parseo estricto del manifiesto de curación (89.525291ms)
+▶ curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real)
+  ✔ carga autorizada: el manifiesto fixture entra completo bajo el tenant real (101.234541ms)
+  ✔ idempotencia: repetir la carga no duplica eventos ni revisiones (6.157792ms)
+  ✔ fuente replicada e inmutabilidad: mismo id sin cambios pasa; con cambios se rechaza entero (42.295208ms)
+  ✔ una corrección es una revisión NUEVA que conserva la anterior (23.568208ms)
+  ✔ rutas: sin sesión 401; id inválido 400 (5.420208ms)
+  ✔ la lista del catálogo separa vigencia de promesas pendientes (9.316667ms)
+  ✔ dossier de edición: contradicción con ambas revisiones, costo pendiente y fuentes abribles (8.225375ms)
+  ✔ homónimos e independencia: identidades separadas, coorganizador sin herencia (50.657917ms)
+  ✔ participaciones: rol recorrible empresa → edición → fuente; ausencia de resultado ≠ fracaso (13.866083ms)
+  ✔ research persistido: sin catálogo → null (cobertura insuficiente); con catálogo → candidatos vigentes (36.977333ms)
+  ✔ tenant señuelo: catálogo vacío por RLS y referencias cruzadas rechazadas (20.9795ms)
+  ✔ reloj controlado: la vigencia cambia al evaluar y el catálogo vencido se declara (20.070167ms)
+✔ curated-dossier: catálogo curado y dossiers persistidos (PostgreSQL real) (559.993542ms)
+(node:58197) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/evaluation-run.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401 (la sesión se valida en el servidor) (3.137541ms)
+  ✔ un tenantId en el cuerpo se rechaza (no se confía en el navegador) (11.340625ms)
+  ✔ aceptación: 202 con run y job durable en el MISMO commit (37.3105ms)
+  ✔ atomicidad: si el encolado falla, NO queda run (ni 202 con trabajo perdido) (8.147208ms)
+  ✔ idempotencia: misma clave y mismo payload → el MISMO run (5.000709ms)
+  ✔ idempotencia: misma clave con OTRO payload → 409 (3.606875ms)
+  ✔ GET devuelve estado y pasos persistidos; el señuelo no ve el run (10.6715ms)
+  ✔ RLS en SQL de aplicación: contexto señuelo o sin contexto no obtiene la fila (5.367583ms)
+  ✔ el rol que administra la cola no accede a datos de negocio (8.293375ms)
+  ✔ reanudación básica: corte del worker tras un paso, reinicio, el MISMO run termina (3069.814375ms)
+  ✔ lectura tras cerrar la conexión: el run sobrevive al pool que lo escribió (27.148375ms)
+  ✔ GET con id inválido → 400; run inexistente → 404 (20.163459ms)
+✔ evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales) (3524.654709ms)
+(node:58198) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; >3 o ediciones ajenas → 400; tenantId en el cuerpo → 400 (12.407375ms)
+  ✔ aceptación HTTP: 202 con los 4 steps del workflow y job durable; idempotencia por conjunto (18.153417ms)
+  ✔ exclusión antes del score, condiciones con respuesta, elegible ≠ recomendado (193.979834ms)
+  ✔ scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes (0.291583ms)
+  ✔ desempate determinístico: empate exacto se resuelve por id estable, no por orden de llegada (0.246167ms)
+  ✔ modelo sin autoridad: el snapshot persistido conserva el resultado oficial y la advertencia (7.669333ms)
+  ✔ snapshot inmutable: sin UPDATE/DELETE por grants y sin duplicados por reentrega (42.955458ms)
+  ✔ catálogo disponible ≠ conjunto comparado; sombra v0 registrada sin reutilizar scores (2.42825ms)
+  ✔ sin política: comparación factual persistida, sin ranking numérico y con «política pendiente» (368.187041ms)
+  ✔ abstención: todas las dimensiones ausentes → insufficient_data, jamás un 0; fallo del proveedor → degradación (285.177958ms)
+  ✔ guardar y releer: mismas entradas, versiones y resultado desde una conexión nueva (91.37325ms)
+  ✔ invariantes 03–06 sobre la nueva proyección (25.5815ms)
+  ✔ conflicto de acceso confirmado excluye antes del score (regla pura de eligibility) (22.070417ms)
+  ✔ tenant señuelo: ni el perfil ni el snapshot existen para otra sesión (35.591292ms)
+✔ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real) (1612.23125ms)
+(node:58199) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance
+  ✔ new workflow acceptance is idempotent and atomic with its queued job (35.758959ms)
+  ✔ acceptance idempotency and real persisted sources; aliases deduplicate without claims (227.641875ms)
+  ✔ missing key performs no calls and no reservations, never fixture fallback (61.849ms)
+  ✔ partial first response survives 429, no repeat of the charged attempt (115.664292ms)
+  ✔ timeouts and missing response are explicit, bounded and retain reservations (447.284166ms)
+  ✔ crash after dispatch: restart preserves uncertain attempt, no additional provider call (82.601792ms)
+  ✔ SIGKILL of a separate worker releases lease and preserves the dispatched attempt (508.35625ms)
+  ✔ crash after provider response before commit cannot silently spend again (48.306416ms)
+  ✔ crash after source commit reuses same source IDs and continues remaining queries (150.211833ms)
+  ✔ deadline survives restart and excludes new calls (119.212292ms)
+  ✔ concurrent delivery cannot duplicate the live provider request (42.640416ms)
+  ✔ aggregate cap is shared across runs and tenants, even in parallel (134.944416ms)
+  ✔ unexpected reported charge suspends new calls rather than trusting an obsolete tariff (148.517166ms)
+✔ DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance (2334.612333ms)
+(node:58200) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada (21.746334ms)
+  ✔ profileRunId de otro tenant → 400 (RLS: no existe para esta sesión) (8.059042ms)
+  ✔ HTML completo: 202 → obtención en el worker → dossier durable con claims (541.34925ms)
+  ✔ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (633.012458ms)
+  ✔ duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo (30.674792ms)
+  ✔ HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed (179.981083ms)
+  ✔ redirección dentro de la allowlist: se valida y se sigue (145.788583ms)
+  ✔ redirección fuera de la allowlist: fallo con URL solicitada, intento y causa (140.073ms)
+  ✔ límite de tamaño: la descarga se corta y el run falla con causa visible (56.983542ms)
+  ✔ timeout: la obtención vence y el run falla con causa visible (267.180209ms)
+  ✔ prompt injection en la descripción: texto de la fuente = dato, jamás instrucción (151.911875ms)
+  ✔ identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad (295.690042ms)
+  ✔ reanudación idempotente: repetir persist_dossier no duplica material (10.87975ms)
+✔ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales) (3212.322083ms)
+(node:58201) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/migration-concurrency.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ migraciones en bases distintas toleran un ALTER ROLE concurrente del mismo cluster (762.68225ms)
+(node:58235) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP06 durable relationships under real PostgreSQL roles
+  ✔ acceptance atomic, replay key and tenant mismatch (62.423083ms)
+  ✔ worker reads six sources, stops after read commit and resumes without consuming again (915.11025ms)
+  ✔ RLS hides all new relations and queue has no business grants (10.544875ms)
+  ✔ expired deadline recovers committed pages without additional requests (54.631375ms)
+  ✔ explicit refresh chains revisions; partial failures retain linked project support and original revision (487.562666ms)
+  ✔ Vultr current host links to Paris sponsorship without creating organizing history (273.059583ms)
+  ✔ DP04 discovery proposal -> DP05 full reading -> persisted relations; snippet remains unmodified (798.280708ms)
+  ✔ failed proposal reads are recovered from the discovery run without repeated requests (102.7135ms)
+  ✔ foreign evidence and wrong-edition claim references roll back all relationship writes (253.783625ms)
+  ✔ existing Luma identity and claim chains are reused; different year is a new edition (284.922ms)
+✔ DP06 durable relationships under real PostgreSQL roles (3426.428958ms)
+(node:58236) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: revisiones, referencias por fragmento, lecturas antiguas y aislamiento en PostgreSQL (567.590125ms)
+ℹ Dos revisiones y preguntas diferentes; v1 original intacta; costo comercial separado; fragmentos/roles correctos; fuentes, empresas y run ajenos rechazados; sin fallback sintético.
+(node:58237) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery
+  ✔ DP-04 proposed source is read in its tenant/run; new full evidence does not rewrite the search source or invent entities (528.029042ms)
+  ✔ rich source persists exact fragments, contradicted dates and public location; fresh DB connection reads identical evidence (226.408083ms)
+  ✔ a sparse new page keeps prior supported attributes, public address and revision IDs (101.27325ms)
+  ✔ published venue coordinates without city remain usable under the DP-03 venue scope (134.390583ms)
+  ✔ cache reuse retains fetchedAt, failure retains stale evidence, and caches cannot cross tenants (57.776417ms)
+  ✔ Actor run ID survives actual SIGKILL; restarted client polls exactly that Actor and retains a partial failed dataset (300.408959ms)
+  ✔ unknown Actor start response is never repeated; reservation survives and provider secrets are not logged (21.884958ms)
+  ✔ global budget caps concurrent runs across tenants; no per-session reset; missing key consumes nothing (47.020291ms)
+✔ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery (1593.619ms)
+(node:58250) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/tenant-isolation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15)
+  ✔ API y listados: los IDs conocidos del otro tenant no existen para el señuelo (57.276917ms)
+  ✔ claims referenciados: comparación, importación y decisión con IDs ajenos se rechazan (14.760209ms)
+  ✔ idempotencia: la clave del otro tenant no deduplica hacia su run (16.132666ms)
+  ✔ sesiones: expirada o sin pertenencia → 401; nunca un tenant por defecto (4.861125ms)
+  ✔ pool de conexiones: el contexto de una conexión reutilizada no se filtra al siguiente tenant (22.858291ms)
+  ✔ acceso directo de aplicación a una fila ajena queda bloqueado por RLS (roles sin bypass) (27.987041ms)
+  ✔ el worker real rechaza jobs con tenant/payload discordante sin tocar el run (962.724209ms)
+  ✔ ningún error de cruce revela el contenido del otro tenant (1.205041ms)
+✔ tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 15) (2259.353834ms)
+(node:58251) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/trust-decision.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-02: comparación → guardado → lectura con incertidumbre y confirmed (PostgreSQL real) (877.90625ms)
+ℹ e-observed: comparación eligible; campaña quoted; revisión y fuentes conservadas; lectura idéntica
+ℹ e-inferred: comparación conditional; campaña inferred; revisión y fuentes conservadas; lectura idéntica
+ℹ e-contradicted: comparación conditional; campaña contradicted; revisión y fuentes conservadas; lectura idéntica
+ℹ e-pending: comparación conditional; campaña unknown; revisión y fuentes conservadas; lectura idéntica
+ℹ Fortalecer a confirmed: mismo organizador y mismas ediciones futuras; razones usan las revisiones confirmadas
+(node:58252) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/worker-recovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ worker-recovery: matriz de caídas con procesos reales (ticket 15)
+  ✔ SIGKILL con la obtención EN VUELO: nada confirmado se pierde; la llamada no confirmada se repite y queda trazada (1378.896083ms)
+  ✔ SIGKILL tras guardar claims (paso sin confirmar): la reanudación no duplica efectos (1347.369708ms)
+  ✔ SIGKILL entre el commit de un paso y el siguiente: el avance confirmado no se re-ejecuta (1320.751166ms)
+  ✔ SIGKILL tras confirmar el snapshot (paso sin confirmar): un solo snapshot oficial (1305.198166ms)
+  ✔ SIGKILL con el run terminal pero el job sin confirmar: la re-entrega no repite efectos (2279.232417ms)
+  ✔ carrera determinística: el perdedor no publica un segundo snapshot NI degrada el run completado (154.951916ms)
+  ✔ cola caída en la aceptación: nada persistido; el reintento del cliente repite la llamada y queda trazado (11.362667ms)
+  ✔ timeout y salida inválida del modelo: dossier completo con explicación determinística y degradación declarada (460.902542ms)
+  ✔ fuente caída que agota reintentos: fallido y visible, sin recomendación preparada que lo oculte (2448.751209ms)
+  ✔ los registros reconstruyen run→steps→claims→snapshot→decisión, sin secretos ni texto privado (24.459666ms)
+✔ worker-recovery: matriz de caídas con procesos reales (ticket 15) (12655.325791ms)
+(node:58264) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/markets/global-market-search.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normalizes worldwide Trends rows and explicit X locations (2.327291ms)
+✔ builds focused signal queries from natural product descriptions (1.301208ms)
+✔ ranks three countries from query-specific geographic evidence (3.508625ms)
+✔ keeps a labeled worldwide fallback when every live source is unavailable (0.542167ms)
+(node:58265) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/scoring/community-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ comunidad completa con evidencia: score alto y reasons respaldadas (1.432458ms)
+✔ evidencia vacía: sin reasons y confidence null (pero score se computa) (0.144ms)
+✔ stack vacío → stackOverlap null (no 0) (0.136459ms)
+✔ sin cadencia conocida → cadenceReliability null (0.110125ms)
+✔ sin evidencia de sponsors → exclusivityGap null (no inferir ausencia) (0.1105ms)
+(node:58266) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/scoring/roi.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ inputs completos: costo por dev calificado + banda (2.171042ms)
+✔ falta el precio del tier → null + "No disponible" (nunca se estima el precio) (0.106375ms)
+✔ falta icpFitRate → null + "No disponible" (0.095375ms)
+✔ attendance 0 → null (no dividir por cero) (0.0865ms)
+(node:58267) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/scoring/score-utils.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ renormaliza sobre las dimensiones activas: una sola dim activa = 100 (1.342459ms)
+✔ null NUNCA es 0: null y 0 dan scores distintos (0.159666ms)
+✔ todas las dimensiones null → score 0 (0.10625ms)
+✔ coverageRatio: fracción del target cubierta, null si falta un conjunto (0.136084ms)
+✔ clamp01 acota a [0,1] (0.105709ms)
+(node:58269) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/scoring/theme-score.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ momentum: ratio 2.0 (+100%) → 1.0 (1.568791ms)
+✔ sin githubMomentum cae a newsSalience (0.175209ms)
+✔ sin requiredCapabilities → criticalPath null (0.121916ms)
+✔ reasons del tema citan evidencia no vacía (0.172541ms)
+(node:58281) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/ui/evidence-links.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes (6.76425ms)
+✔ el dossier sintético no ofrece abrir un listado inexistente (2.809709ms)
+✔ un enlace público real se conserva y un esquema ejecutable nunca se publica (0.936958ms)
+✔ el transporte de demo y su captura histórica no se presentan como obtención real de Luma (0.545458ms)
+✔ el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico (5.105666ms)
+(node:58282) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/ui/trust-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ campaña y texto copiable conservan incertidumbre, base y advertencia (91.586542ms)
+✔ ubicación announced y confirmed comparten soporte pero no confirmación humana (16.087917ms)
+ℹ tests 309
+ℹ suites 0
+ℹ pass 309
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16999.952084

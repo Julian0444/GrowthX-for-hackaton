@@ -1,0 +1,103 @@
+TAP version 13
+# (node:38417) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls
+ok 1 - DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls
+  ---
+  duration_ms: 1.596875
+  type: 'test'
+  ...
+# Subtest: DP04 URL identity only merges proven aliases; same names and different query editions remain separate
+ok 2 - DP04 URL identity only merges proven aliases; same names and different query editions remain separate
+  ---
+  duration_ms: 1.944
+  type: 'test'
+  ...
+# Subtest: DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors
+ok 3 - DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors
+  ---
+  duration_ms: 33.102958
+  type: 'test'
+  ...
+# (node:38418) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance
+    # Subtest: acceptance idempotency and real persisted sources; aliases deduplicate without claims
+    ok 1 - acceptance idempotency and real persisted sources; aliases deduplicate without claims
+      ---
+      duration_ms: 129.389417
+      type: 'test'
+      ...
+    # Subtest: missing key performs no calls and no reservations, never fixture fallback
+    ok 2 - missing key performs no calls and no reservations, never fixture fallback
+      ---
+      duration_ms: 32.039334
+      type: 'test'
+      ...
+    # Subtest: partial first response survives 429, no repeat of the charged attempt
+    ok 3 - partial first response survives 429, no repeat of the charged attempt
+      ---
+      duration_ms: 45.315459
+      type: 'test'
+      ...
+    # Subtest: timeouts and missing response are explicit, bounded and retain reservations
+    ok 4 - timeouts and missing response are explicit, bounded and retain reservations
+      ---
+      duration_ms: 103.6785
+      type: 'test'
+      ...
+    # Subtest: crash after dispatch: restart preserves uncertain attempt, no additional provider call
+    ok 5 - crash after dispatch: restart preserves uncertain attempt, no additional provider call
+      ---
+      duration_ms: 19.471
+      type: 'test'
+      ...
+    # Subtest: crash after provider response before commit cannot silently spend again
+    ok 6 - crash after provider response before commit cannot silently spend again
+      ---
+      duration_ms: 21.489875
+      type: 'test'
+      ...
+    # Subtest: crash after source commit reuses same source IDs and continues remaining queries
+    ok 7 - crash after source commit reuses same source IDs and continues remaining queries
+      ---
+      duration_ms: 55.606291
+      type: 'test'
+      ...
+    # Subtest: deadline survives restart and excludes new calls
+    ok 8 - deadline survives restart and excludes new calls
+      ---
+      duration_ms: 42.03125
+      type: 'test'
+      ...
+    # Subtest: concurrent delivery cannot duplicate the live provider request
+    ok 9 - concurrent delivery cannot duplicate the live provider request
+      ---
+      duration_ms: 15.234875
+      type: 'test'
+      ...
+    # Subtest: aggregate cap is shared across runs and tenants, even in parallel
+    ok 10 - aggregate cap is shared across runs and tenants, even in parallel
+      ---
+      duration_ms: 59.179916
+      type: 'test'
+      ...
+    1..10
+ok 4 - DP04 durable Exa discovery: tenant source store, recovery and aggregate allowance
+  ---
+  duration_ms: 739.448042
+  type: 'test'
+  ...
+1..4
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 906.845083

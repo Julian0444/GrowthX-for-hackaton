@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "scripts/smoke-source-reading.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 14.63,
+  "database": "isolated PostgreSQL port 55445"
+}

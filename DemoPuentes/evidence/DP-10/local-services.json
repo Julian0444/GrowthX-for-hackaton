@@ -1,0 +1,34 @@
+{
+  "/": {
+    "status": 200,
+    "bytes": 13709
+  },
+  "migrations": [
+    "001-evaluacion-persistida.sql",
+    "002-catalogo-curado.sql",
+    "003-dashboard-sf.sql",
+    "004-importacion-luma.sql",
+    "005-comparacion-y-snapshot.sql",
+    "006-decision-condicional.sql",
+    "007-discovery-exa.sql",
+    "008-source-reading.sql",
+    "009-dp06-relationships.sql",
+    "010-location-resolution.sql"
+  ],
+  "port3000": "COMMAND   PID         USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    70986 jirustaroure   13u  IPv6 0xe41862ed03b7cabd      0t0  TCP *:3000 (LISTEN)\n",
+  "checkedAt": "2026-09-11T00:39:48.642998+00:00",
+  "newMigrationsRequired": false,
+  "reseeded": false,
+  "restartedSharedServices": false,
+  "/maplibre/6.9.0/maplibre-gl-worker.mjs": {
+    "status": 200,
+    "bytes": 19011
+  },
+  "/maplibre/6.9.0/maplibre-gl-shared.mjs": {
+    "status": 200,
+    "bytes": 513245
+  },
+  "workerProcesses": [
+    "70979     1 /opt/homebrew/opt/node@25/bin/node --env-file=.env.local --watch worker/index.ts"
+  ]
+}

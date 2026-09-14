@@ -1,0 +1,9 @@
+{
+  "browser": "152.0.7977.83",
+  "assets": [
+    "200 /maplibre/6.9.0/maplibre-gl-worker.mjs",
+    "200 /maplibre/6.9.0/maplibre-gl-shared.mjs"
+  ],
+  "errors": [],
+  "externalProviders": false
+}

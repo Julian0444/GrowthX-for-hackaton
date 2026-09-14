@@ -1,0 +1,14 @@
+{
+  "url": "http://localhost:3000/?run=4a4ecf39-ffe5-4112-af4a-ffa6f5a916b0",
+  "snapshotId": "6e3e1c38-70cd-4c87-9adc-182bcd36698b",
+  "priority": "Qué investigar primero\n\nInvestigar primero Agents, Everywhere: Bots, Channels, & More — Global Hackathon: es la única candidata sin exclusión con antecedente temático pertinente y vínculo de identidad documentado. Las demás no tienen ese soporte en la cobertura revisada. Resolver sus condiciones antes de comprometer presupuesto.\n\nCriterios de investigación · research-comparison/1",
+  "errors": [],
+  "checks": {
+    "selectedTwoRealEditions": true,
+    "openedAntecedentFragment": true,
+    "editedProductObjectiveBudgetRestrictions": true,
+    "editedDatesWithNativeKeys": true,
+    "reopenedOriginal": true,
+    "restoredOriginalBriefAsNewRevision": true
+  }
+}

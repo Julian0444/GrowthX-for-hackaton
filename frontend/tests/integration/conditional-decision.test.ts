@@ -355,13 +355,13 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
 
     const conTenant = await postDecisions(jsonRequest(decisionsUrl, 'POST', { ...body, tenantId: decoy.tenantId }, real.token));
     assert.equal(conTenant.status, 400);
-    assert.match(String((await conTenant.json()).message), /resuelve el servidor/i);
+    assert.match(String((await conTenant.json()).message), /the server resolves author and tenant from the session/i);
 
     const conConsenso = await postDecisions(
       jsonRequest(decisionsUrl, 'POST', { ...body, consensus: 0.9, confidenceDelta: 8 }, real.token),
     );
     assert.equal(conConsenso.status, 400);
-    assert.match(String((await conConsenso.json()).message), /consenso y confianza no existen/i);
+    assert.match(String((await conConsenso.json()).message), /consensus and confidence are not fields of a persisted decision/i);
 
     // El snapshot del tenant real no existe para el señuelo: 404 sin confirmar
     // existencia ajena (RLS).
@@ -382,13 +382,13 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
     };
     const sinMotivos = await postDecisions(jsonRequest(decisionsUrl, 'POST', { ...base, reasons: [] }, real.token));
     assert.equal(sinMotivos.status, 400);
-    assert.match(String((await sinMotivos.json()).message), /motivos/i);
+    assert.match(String((await sinMotivos.json()).message), /requires reasons/i);
 
     const fueraDelSnapshot = await postDecisions(
       jsonRequest(decisionsUrl, 'POST', { ...base, reasons: ['motivo'], editionId: 'ed-dcn-inexistente' }, real.token),
     );
     assert.equal(fueraDelSnapshot.status, 400);
-    assert.match(String((await fueraDelSnapshot.json()).message), /no es una alternativa/i);
+    assert.match(String((await fueraDelSnapshot.json()).message), /is not an alternative in this snapshot/i);
   });
 
   await t.test('elegir con costo pendiente → elección condicional guardada con su campaña (una transacción)', async () => {
@@ -429,7 +429,7 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
     // y plazo quedan guardados (y no se envía ningún mensaje).
     const propia = read.decision.conditions.find((c) => c.owner === 'growth');
     assert.ok(propia);
-    assert.match(propia!.description, /Costo del tier community — Pregunta al organizador: ¿Cuál es la tarifa del tier community y qué incluye\? — Respuesta esperada: Una tarifa total ≤ USD 2000/);
+    assert.match(propia!.description, /Costo del tier community — Organizer question: ¿Cuál es la tarifa del tier community y qué incluye\? — Expected answer: Una tarifa total ≤ USD 2000/);
     assert.equal(propia!.answerWouldChangeTo, 'discarded');
     assert.equal(propia!.dueBy, '2026-10-01');
     assert.equal(propia!.status, 'open');
@@ -452,7 +452,7 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
     const partida = read.campaign!.costItems.find((item) => item.label === 'sponsorship');
     assert.ok(partida);
     assert.equal(partida!.amount.status, 'unknown');
-    assert.match(read.campaign!.objective, /por confirmar/);
+    assert.match(read.campaign!.objective, /buyer confirmation pending/);
     assert.equal(read.campaign!.successDefinition, null);
     assert.deepEqual(read.campaign!.modality, { status: 'pending' });
     assert.ok(!('totalCostUsd' in read.campaign!) && !('roi' in read.campaign!));
@@ -532,7 +532,7 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
     };
     const rejected = await postDecisions(jsonRequest(decisionsUrl, 'POST', chosenBody, real.token));
     assert.equal(rejected.status, 409);
-    assert.match(String((await rejected.json()).message), /nueva evidencia y una reevaluación/i);
+    assert.match(String((await rejected.json()).message), /new evidence and reevaluation/i);
     const { rows: none } = await admin.query('select count(*) from growthx.decisions where snapshot_id = $1 and edition_id = $2', [snapshotId, 'ed-dcn-ccc-sobre-presupuesto']);
     assert.equal(Number(none[0].count), 0, 'el rechazo no persiste nada');
 
@@ -636,7 +636,7 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
       idParams(chosenRead.decisionId),
     );
     assert.equal(again.status, 400);
-    assert.match(String((await again.json()).message), /ya está resuelta/i);
+    assert.match(String((await again.json()).message), /is already resolved/i);
 
     // La campaña de la elección sigue viva tras la revisión, con la MISMA
     // identidad (no se re-crea una campaña por revisión de motivos).
@@ -748,7 +748,7 @@ test('conditional-decision: decisión condicional persistida y campaña en borra
       idParams(okRead.decisionId),
     );
     assert.equal(sinConfirmacion.status, 400);
-    assert.match(String((await sinConfirmacion.json()).message), /acordado/i);
+    assert.match(String((await sinConfirmacion.json()).message), /AGREED/i);
 
     const sinQuien = await patchDecision(
       jsonRequest(

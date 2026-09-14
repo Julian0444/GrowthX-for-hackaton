@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tests/integration/location-resolution.test.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 1.25,
+  "database": "isolated PostgreSQL port 55448"
+}

@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-09-10T22:31:30.549545+00:00",
+  "container": "growthx-dp06-verification",
+  "state": {
+    "running": false,
+    "ports": {
+      "5432/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "55446"
+        }
+      ]
+    }
+  },
+  "dataRetained": true,
+  "productionDirectory": "/tmp/growthx-dp06-production",
+  "testAppsAndWorkers": "stopped by test cleanup hooks",
+  "sharedLocalhost3000And54329": "not modified by DP-06"
+}

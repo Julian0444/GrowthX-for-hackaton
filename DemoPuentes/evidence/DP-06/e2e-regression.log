@@ -1,0 +1,124 @@
+$ node --test tests/e2e/sf-organizer-research.spec.ts && node --test tests/e2e/reopen-evaluation.spec.ts && node --test tests/e2e/persisted-evaluation.spec.ts && node --test tests/e2e/research-brief.spec.ts && node --test tests/e2e/exa-discovery.spec.ts && node --test tests/e2e/source-reading.spec.ts && node --test tests/e2e/relationships.spec.ts
+(node:54392) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ✔ entrada dashboard, sesión y perfil corregible antes de investigar (6605.202917ms)
+  ✔ homónimos independientes y guardado durable sin edición elegible (3161.663417ms)
+  ✔ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (4685.026166ms)
+  ✔ logo ambiguo y edición futura fuera de SF no se recomiendan (1013.17725ms)
+  ✔ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (960.688083ms)
+  ✔ revisión del perfil, ausencia de coincidencia e importador disponible (2784.931083ms)
+  ✔ sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones (593.634417ms)
+  ✔ matching usa la última revisión y la identidad confirmada, no nombres parecidos (1027.186083ms)
+  ✔ error del worker se persiste y aparece en el dashboard (8622.587958ms)
+  ✔ sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global (367.710958ms)
+✔ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales (33746.373459ms)
+ℹ Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34139.787542
+(node:54978) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ✔ guardar una elección condicional, ver su campaña y copiar el enlace interno (5458.081542ms)
+  ✔ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (4894.110042ms)
+  ✔ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (8129.269ms)
+  ✔ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (8861.557125ms)
+  ✔ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (762.849834ms)
+  ✔ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (6774.424083ms)
+  ✔ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (1752.631417ms)
+  ✔ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (2756.796541ms)
+✔ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales) (44699.040709ms)
+ℹ Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45052.99025
+(node:55620) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ✔ perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes (10684.177083ms)
+  ✔ elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next (7087.479125ms)
+  ✔ reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar (4437.658791ms)
+  ✔ perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido (4785.431875ms)
+✔ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL) (30523.114375ms)
+ℹ Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30876.705625
+(node:56103) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier (15317.983875ms)
+ℹ Dos briefs, dos revisiones reabiertas, objetivos/éxito/moneda conservados; identidad de lista/pin/dossier; 1366×900 y 390×844 sin overflow; HTTP tenant ajeno 404.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15667.133042
+(node:56373) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/exa-discovery.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 main brief → durable Exa proposals → worker restart → closed tab reopened (16887.63625ms)
+ℹ Unmodified primary request, Exa fixture explicitly synthetic, 3 attempts persisted, worker process stopped/restarted, same source IDs after tab closure, no fixture organizer fallback, 404 cross tenant, desktop/mobile.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17394.841417
+(node:56853) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/source-reading.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile (23398.794958ms)
+ℹ Controlled HTML; real PostgreSQL, queue, worker, Next and Chromium. Audience/sponsor/address fragments, both dates, same revision after reload, tenant 404 and no mobile overflow. No paid providers.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24607.986042
+(node:57460) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06 browser: controlled sources -> organizer -> previous edition -> company/project -> evidence (7309.351208ms)
+ℹ controlled: event -> organizer -> previous edition -> company/project -> exact relationship fragments; reload and mobile; no paid providers.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7820.6495

@@ -1,0 +1,27 @@
+{
+  "browser": "Google Chrome",
+  "production": true,
+  "databasePort": 55472,
+  "material": "Controlled sources and changed catalog; real DB, worker and UI",
+  "runId": "132bab63-fafa-4b14-988d-e2bca555a286",
+  "decisionId": "f25ced47-6ee8-43c7-8c79-4c13c1f1c95a",
+  "clipboardSha256": "0d585c18a66110235e16aadf49ff462fbbe705cfff1c7b74b96fb0f4cafbc8c8",
+  "checks": {
+    "fullBrief": true,
+    "fourHumanChoices": true,
+    "actualClipboard": true,
+    "inquiryClipboard": true,
+    "closeReopen": true,
+    "twoTabConflict": true,
+    "localTextRetained": true,
+    "resolutionAttributed": true,
+    "revisionOneUnchanged": true,
+    "historicalIndexName": true,
+    "reimportHistoricalDossier": true,
+    "reimportHistoricalCoordinates": true,
+    "mobile": true,
+    "clipboardDenied": true,
+    "foreignTenant": true
+  },
+  "errors": []
+}

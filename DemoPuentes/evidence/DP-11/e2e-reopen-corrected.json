@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-force-exit",
+    "tests/e2e/reopen-evaluation.spec.ts",
+    "tests/e2e/persisted-evaluation.spec.ts",
+    "tests/e2e/research-experience.spec.ts"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend",
+  "databasePort": 55461,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 1,
+  "durationSeconds": 94.8
+}

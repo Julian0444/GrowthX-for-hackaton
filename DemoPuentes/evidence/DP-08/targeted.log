@@ -1,0 +1,45 @@
+(node:41392) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (2.092042ms)
+✔ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.2965ms)
+✔ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.190916ms)
+✔ DP-08 Census uses address interpolation and county 06075, not bbox or first match (1.231291ms)
+✔ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (37.385041ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (0.761458ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (8.510958ms)
+(node:41393) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (58.978166ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (1.368ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (1.586666ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (0.787125ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (0.535ms)
+✔ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (2.651375ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (63.742167ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (5.091791ms)
+(node:41394) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-08 durable location evidence and current consumers
+  ✔ complete address persists query, provider, interpolated accuracy, date, original claims and UI point (0.48325ms)
+  ✔ replay after commit and new DB connection keep ids and avoid another call (18.942416ms)
+  ✔ same normalized query/source version cache survives independent run, while new source version makes a request (28.880542ms)
+  ✔ new address creates a revision; saved snapshot consumers retain original position and source (123.395875ms)
+  ✔ published source coordinates make zero geocoder calls; city, hidden, street and invalid coordinates stay in list (236.360959ms)
+  ✔ provider failure is persisted and replayed; the existing worker still completes the research run (75.765666ms)
+  ✔ street-capable adapter represents one match only as approximate; multiple matches stay pending (83.460125ms)
+  ✔ tenant isolation, aggregate allowance and crash reservation prevent leaks or duplicate starts (21.152041ms)
+✔ DP-08 durable location evidence and current consumers (860.037458ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1158.992084

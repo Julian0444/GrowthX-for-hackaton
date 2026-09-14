@@ -37,7 +37,7 @@ test('la ventana usa el día de SF aunque el instante UTC ya esté en el día si
 test('el día UTC dentro de la ventana no admite un evento cuyo día local es anterior', () => {
   const result = evaluate({ precision: 'instant', iso: '2026-10-01T01:00:00Z', timezone: 'America/Los_Angeles' });
   assert.equal(result.eligibility.status, 'excluded');
-  if (result.eligibility.status === 'excluded') assert.match(result.eligibility.reasons.join(' '), /2026-09-30.*anterior/);
+  if (result.eligibility.status === 'excluded') assert.match(result.eligibility.reasons.join(' '), /2026-09-30.*before/);
 });
 
 test('los offsets declarados negativos y positivos conservan ambos bordes inclusivos', () => {
@@ -66,5 +66,5 @@ test('una fecha sin hora se compara tal como fue declarada', () => {
 test('una zona no reconocida mantiene pendiente la ventana en vez de inventar el día', () => {
   const result = evaluate({ precision: 'instant', iso: '2026-10-02T01:00:00Z', timezone: 'Zona no disponible' });
   assert.notEqual(result.eligibility.status, 'excluded');
-  assert.ok(result.conditions.some(condition => /zona horaria/i.test(condition.description)));
+  assert.ok(result.conditions.some(condition => /time zone/i.test(condition.description)));
 });

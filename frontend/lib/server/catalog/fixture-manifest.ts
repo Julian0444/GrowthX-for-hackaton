@@ -227,6 +227,7 @@ export const FIXTURE_CURATION_MANIFEST: CurationManifest = {
       startDate: { precision: 'instant', iso: '2027-03-10T18:00:00-08:00', timezone: 'America/Los_Angeles' },
       location: { scope: 'city', name: 'San Francisco' },
       coordinates: { lat: 37.7599, lng: -122.4148 },
+      publicLocation: { originalAddress: null, address: null, venue: 'Sede sintética SF', city: 'San Francisco', precision: 'venue', method: 'manual', provider: 'fixture', resolvedAt: '2026-09-07T00:00:00Z', sourceIds: ['src-luma-dev-summit'], status: 'announced', limitation: 'Coordenadas de prueba, no sede real.' },
       claimRevisionIds: [
         'clm-summit-date-r1',
         'clm-summit-loc-r1',

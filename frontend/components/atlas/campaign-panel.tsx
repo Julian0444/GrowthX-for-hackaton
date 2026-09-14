@@ -1,6 +1,9 @@
 "use client"
 
-import type { RefObject } from "react"
+import {useState, type RefObject} from "react"
+import type {DecisionRead} from "../../lib/api/atlas-client"
+import type {EvaluationReadBundle} from "../../lib/contracts/evaluation"
+import {composeDecisionBrief, copyText, decisionLabel} from "../../lib/research/decision-brief"
 import { ArrowLeft } from "lucide-react"
 import type { CampaignRecommendation } from "@/lib/api/types"
 import type { CampaignView, ProjectedField } from "@/lib/contracts/evaluation"
@@ -26,10 +29,7 @@ export function CampaignPanel({
   onBack: () => void
   onToast: (message: string) => void
 }) {
-  const copyOutreach = () => {
-    navigator.clipboard?.writeText(campaign.organizerMessage)
-    onToast("Message copied")
-  }
+  const copyOutreach = async () => onToast(await copyText(campaign.organizerMessage))
 
   return (
     <>
@@ -75,37 +75,37 @@ export function CampaignPanel({
   )
 }
 
-// ---- Borrador de campaña persistido (ticket 13) ----
+// ---- Saved campaign draft (ticket 13) ----
 // Renderiza la CampaignView proyectada del borrador guardado con la decisión:
 // objetivo, modalidad, partidas conocidas/desconocidas (jamás 0), preguntas y
 // compromisos donde estimación ≠ meta ≠ acordado (solo lo acordado con
 // quién/cuándo/evidencia se marca soportado). Permite copiar un borrador
 // manual; no ofrece ejecutar, medir ni exportar nada.
 
-const COMMITMENT_KIND_LABEL = { estimate: "Estimación", goal: "Meta", agreed: "Acordado" } as const
+const COMMITMENT_KIND_LABEL = { estimate: "Estimate", goal: "Goal", agreed: "Agreed" } as const
 
 function fieldText(field: ProjectedField): string {
   if (field.state === "known") return field.pendingNote ? `${field.display} · ${field.pendingNote}` : field.display
   if (field.state === "ambiguous") return `${field.display} · ${field.note}`
-  return `Pendiente${field.note ? ` · ${field.note}` : ""}`
+  return `Pending${field.note ? ` · ${field.note}` : ""}`
 }
 
 export function composeManualCampaignDraft(view: CampaignView): string {
   return [
-    `Borrador de campaña (manual) — objetivo: ${view.objective}`,
-    `Definición de éxito: ${fieldText(view.successDefinition)}`,
-    `Modalidad: ${fieldText(view.modality)}`,
-    "Partidas de costo:",
+    `Manual campaign draft — objective: ${view.objective}`,
+    `Success definition: ${fieldText(view.successDefinition)}`,
+    `Format: ${fieldText(view.modality)}`,
+    "Cost items:",
     ...view.costItems.map((item) => `- ${item.label}: ${fieldText(item.value)}`),
     view.costCompleteness === "has_unknown_items"
-      ? "Hay partidas pendientes de confirmar: no existe un total."
-      : "Todas las partidas listadas tienen valor.",
-    "Preguntas abiertas:",
+      ? "Some cost items are still pending confirmation; no total is available."
+      : "All listed cost items have values.",
+    "Open questions:",
     ...view.openQuestions.map((question) => `- ${question}`),
-    "Compromisos:",
+    "Commitments:",
     ...view.commitments.map(
       (commitment) =>
-        `- [${COMMITMENT_KIND_LABEL[commitment.kind]}${commitment.kind === "agreed" && !commitment.supported ? " SIN SOPORTE" : ""}] ${commitment.description}`,
+        `- [${COMMITMENT_KIND_LABEL[commitment.kind]}${commitment.kind === "agreed" && !commitment.supported ? " UNSUPPORTED" : ""}] ${commitment.description}`,
     ),
   ].join("\n")
 }
@@ -123,48 +123,50 @@ export interface CampaignDraftMeta {
 
 export function CampaignDraftPanel({
   view,
+  brief,
   meta,
   onBack,
   onToast,
 }: {
   view: CampaignView
+  brief?: {read: DecisionRead; bundle: EvaluationReadBundle; runId: string}
   meta?: CampaignDraftMeta
   onBack: () => void
   onToast: (message: string) => void
 }) {
-  const copyDraft = () => {
-    navigator.clipboard?.writeText(composeManualCampaignDraft(view))
-    onToast("Borrador copiado")
+  const [preview,setPreview] = useState<string|null>(null)
+  const copyDraft = async (message=false) => {
+    const text=brief && meta?.href ? composeDecisionBrief(brief.read,brief.bundle,`${window.location.origin}${meta.href}`,message) : composeManualCampaignDraft(view)
+    setPreview(text)
+    onToast(await copyText(text))
   }
-  const copyLink = () => {
-    if (!meta?.href) return
-    navigator.clipboard?.writeText(`${window.location.origin}${meta.href}`)
-    onToast("Enlace interno copiado")
+  const copyLink = async () => {
+    if (meta?.href) onToast(await copyText(`${window.location.origin}${meta.href}`))
   }
   return (
-    <section className="research-campaign-draft" aria-label="Borrador de campaña persistido" data-testid="campaign-draft-panel">
+    <section className="research-campaign-draft" aria-label="Saved campaign draft" data-testid="campaign-draft-panel">
       <button className="research-button" type="button" onClick={onBack}>
-        Volver a la comparación
+        Back to comparison
       </button>
-      <h3>Borrador de campaña persistido</h3>
+      <h3>Saved campaign draft</h3>
+      {brief && <div data-testid="saved-brief-context"><h2>{brief.bundle.editions.find(e=>e.editionId===brief.read.editionId)?.name}</h2><p>{brief.bundle.profile.product} · {brief.bundle.profile.audience.description}</p><p><b>{decisionLabel(brief.read.decision)}</b></p><p>Owner: {brief.read.campaign?.owner ?? 'Pending'}</p><p>Reasons: {brief.read.decision.reasons.join(' / ')}</p><p>Original conditions remain attached to this decision; use Back to review or resolve them.</p></div>}
       <p className="research-meta">
-        Campaña <span data-testid="campaign-draft-id">{view.campaignId}</span> · decisión{" "}
-        <span data-testid="campaign-draft-decision-id">{view.decisionId}</span>. Guardar no envía mensajes ni contrata
-        nada; este borrador se copia a mano.
+        Campaign <span data-testid="campaign-draft-id">{view.campaignId}</span> · decision{" "}
+        <span data-testid="campaign-draft-decision-id">{view.decisionId}</span>. Saving does not send messages or book anything; copy this draft manually.
       </p>
       {meta && (
         <p className="research-meta" data-testid="campaign-draft-meta">
-          Run {meta.runId} · snapshot <span data-testid="campaign-draft-snapshot-id">{meta.snapshotId}</span> · decisión
-          revisión <span data-testid="campaign-draft-revision">{meta.decisionRevision}</span> · registrada el{" "}
-          {meta.decidedAt}. Leído desde PostgreSQL con su revisión original.
+          Run {meta.runId} · snapshot <span data-testid="campaign-draft-snapshot-id">{meta.snapshotId}</span> · decision
+          revision <span data-testid="campaign-draft-revision">{meta.decisionRevision}</span> · recorded on{" "}
+          {meta.decidedAt}. Loaded with its original saved revision.
           {meta.href && (
             <>
               {" "}
               <a className="research-link" href={meta.href} data-testid="campaign-link">
-                Enlace interno
+                Internal link
               </a>{" "}
               <button className="research-link" type="button" onClick={copyLink}>
-                Copiar enlace
+                Copy link
               </button>
             </>
           )}
@@ -172,35 +174,35 @@ export function CampaignDraftPanel({
       )}
       <div className="campaign-overview">
         <p>
-          <b>Objetivo:</b> {view.objective}
+          <b>Objective:</b> {view.objective}
         </p>
         <p>
-          <b>Definición de éxito:</b> {fieldText(view.successDefinition)}
+          <b>Success definition:</b> {fieldText(view.successDefinition)}
         </p>
         <p>
-          <b>Modalidad:</b> {fieldText(view.modality)}
+          <b>Format:</b> {fieldText(view.modality)}
         </p>
       </div>
       <div className="campaign-grid">
         <div className="campaign-block" data-testid="campaign-draft-costs">
           <p>
-            <b>Partidas de costo</b> (una partida desconocida queda pendiente; no se suma como 0):
+            <b>Cost items</b> (unknown items remain pending; they are not counted as zero):
           </p>
           <ul>
-            {view.costItems.map((item) => (
-              <li key={item.label}>
+            {view.costItems.map((item,index) => (
+              <li key={`${item.label}-${index}`}>
                 {item.label}: {fieldText(item.value)}
               </li>
             ))}
           </ul>
           {view.costCompleteness === "has_unknown_items" && (
-            <p className="research-meta">Hay partidas pendientes de confirmar: no existe un total de campaña.</p>
+            <p className="research-meta">Some cost items are still pending confirmation; no campaign total is available.</p>
           )}
         </div>
         {view.openQuestions.length > 0 && (
           <div className="campaign-block campaign-questions">
             <p>
-              <b>Preguntas abiertas</b> (registradas; no se envía ninguna):
+              <b>Open questions</b> (recorded; none are sent):
             </p>
             <ul>
               {view.openQuestions.map((question, index) => (
@@ -211,17 +213,16 @@ export function CampaignDraftPanel({
         )}
         <div className="campaign-block campaign-commitments" data-testid="campaign-draft-commitments">
           <p>
-            <b>Compromisos</b> — estimación y meta no se presentan como acuerdo; «acordado» exige quién confirmó, cuándo y
-            evidencia:
+            <b>Commitments</b> — estimates and goals remain separate from agreements; agreed commitments require who confirmed, when and supporting evidence:
           </p>
           {view.commitments.length === 0 ? (
-            <p className="research-meta">Sin compromisos registrados.</p>
+            <p className="research-meta">No commitments recorded.</p>
           ) : (
             <ul>
               {view.commitments.map((commitment, index) => (
                 <li key={index}>
                   <b>{COMMITMENT_KIND_LABEL[commitment.kind]}</b>
-                  {commitment.kind === "agreed" && (commitment.supported ? " · con soporte" : " · SIN soporte")} —{" "}
+                  {commitment.kind === "agreed" && (commitment.supported ? " · supported" : " · UNSUPPORTED")} —{" "}
                   {commitment.description}
                 </li>
               ))}
@@ -229,9 +230,13 @@ export function CampaignDraftPanel({
           )}
         </div>
       </div>
-      <button className="research-button research-primary" type="button" onClick={copyDraft}>
-        Copiar borrador manual
+      <div className="research-actions">
+      <button className="research-button research-primary" type="button" onClick={()=>void copyDraft()}>
+        Copy manual draft
       </button>
+      {brief && <button className="research-link" onClick={()=>void copyDraft(true)}>Copy inquiry message</button>}
+      </div>
+      {preview && <details open><summary>Copied text preview</summary><textarea readOnly aria-label="Decision brief preview" value={preview} rows={15}/></details>}
     </section>
   )
 }

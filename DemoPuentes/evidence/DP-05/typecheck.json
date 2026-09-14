@@ -1,0 +1,12 @@
+{
+  "command": [
+    "pnpm",
+    "exec",
+    "tsc",
+    "--noEmit"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 1.98,
+  "database": "isolated PostgreSQL port 55445"
+}

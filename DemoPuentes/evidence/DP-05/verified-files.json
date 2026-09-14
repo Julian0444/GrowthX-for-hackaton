@@ -1,0 +1,207 @@
+{
+  "recordedAt": "2026-09-10T21:03:14.151689+00:00",
+  "scope": "Files touched by DP-05; shared files also contain preserved changes from other tickets. Hashes identify the complete file, not sole authorship.",
+  "files": [
+    {
+      "path": "frontend/lib/api/luma.ts",
+      "sha256": "9bb567324741b96ab6b1b6e7aae0a1fcaf7a4086dacdec8a0fb36b4784d0f720",
+      "existedAtStart": true,
+      "buildCopySha256": "9bb567324741b96ab6b1b6e7aae0a1fcaf7a4086dacdec8a0fb36b4784d0f720",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/api/opportunity-adapter.ts",
+      "sha256": "4e65c59de37220e7fef607e3dfb85b21a86614808ae0c3b2531486d303915dfc",
+      "existedAtStart": true,
+      "buildCopySha256": "4e65c59de37220e7fef607e3dfb85b21a86614808ae0c3b2531486d303915dfc",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/catalog/luma-adapter.ts",
+      "sha256": "d322e2681438855cfd8213d9a3714c82e1f958c8a28cbf902c3d5038f5b8b927",
+      "existedAtStart": true,
+      "buildCopySha256": "d322e2681438855cfd8213d9a3714c82e1f958c8a28cbf902c3d5038f5b8b927",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/evaluations/luma-step.ts",
+      "sha256": "433408e69b29b9316b6ade0ad016fa3fd1d214a921243f28a33ab46afc58d45e",
+      "existedAtStart": true,
+      "buildCopySha256": "433408e69b29b9316b6ade0ad016fa3fd1d214a921243f28a33ab46afc58d45e",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/evaluations/run-worker.ts",
+      "sha256": "8bbc099b1d38254017ed66935150a44a51b010c739d4a0ccd08fed1d540547fc",
+      "existedAtStart": true,
+      "buildCopySha256": "8bbc099b1d38254017ed66935150a44a51b010c739d4a0ccd08fed1d540547fc",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/sources/extract.ts",
+      "sha256": "13b06f7d578407bdc2bb1ac85cfdd3fee272ea966da362ebb41c628e9aa06405",
+      "existedAtStart": false,
+      "buildCopySha256": "13b06f7d578407bdc2bb1ac85cfdd3fee272ea966da362ebb41c628e9aa06405",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/sources/reader.ts",
+      "sha256": "23e0c66ae96dbe28bbf21b20cc4a51c22ef1009183f8ddae794f393a846989c7",
+      "existedAtStart": false,
+      "buildCopySha256": "23e0c66ae96dbe28bbf21b20cc4a51c22ef1009183f8ddae794f393a846989c7",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/sources/cache.ts",
+      "sha256": "3a1b3be716304148e98b11284d490163c4177626d5f4ea73caaf8ece22274dd1",
+      "existedAtStart": false,
+      "buildCopySha256": "3a1b3be716304148e98b11284d490163c4177626d5f4ea73caaf8ece22274dd1",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/sources/website-crawler.ts",
+      "sha256": "307e7203a3f1afa67a3ba950056af53cfc5e3a260b1a89df2887c060aa00c44f",
+      "existedAtStart": false,
+      "buildCopySha256": "307e7203a3f1afa67a3ba950056af53cfc5e3a260b1a89df2887c060aa00c44f",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/lib/server/sources/proposed-source.ts",
+      "sha256": "2e81884f289f3a5601581dc5f1fb3317eee589ad1dc8a02f77f41a7c168004a9",
+      "existedAtStart": false,
+      "buildCopySha256": "2e81884f289f3a5601581dc5f1fb3317eee589ad1dc8a02f77f41a7c168004a9",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/db/migrations/008-source-reading.sql",
+      "sha256": "0295ecd614e2c42daa47ca74c21be21c1bdacfad97e9aa809b17bcb5d36f1af0",
+      "existedAtStart": false,
+      "buildCopySha256": "0295ecd614e2c42daa47ca74c21be21c1bdacfad97e9aa809b17bcb5d36f1af0",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/components/atlas/event-import.tsx",
+      "sha256": "c39855294355063988796f2686a4f2a1f668bacbe8ecac1872b297242b2264ed",
+      "existedAtStart": true,
+      "buildCopySha256": "c39855294355063988796f2686a4f2a1f668bacbe8ecac1872b297242b2264ed",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/components/atlas/evidence-links.tsx",
+      "sha256": "5a270dcddaae0df81462d99bc36c6a3ee13d2c64cd8a0d16b86e75ee7a2a8f66",
+      "existedAtStart": true,
+      "buildCopySha256": "5a270dcddaae0df81462d99bc36c6a3ee13d2c64cd8a0d16b86e75ee7a2a8f66",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/components/research-dashboard/research-dossier.tsx",
+      "sha256": "213156e6c9149f24e3c7406ef7640f5735c946be2b60d7f14be1ff6c0bf74422",
+      "existedAtStart": true,
+      "buildCopySha256": "213156e6c9149f24e3c7406ef7640f5735c946be2b60d7f14be1ff6c0bf74422",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "3e73eb3080196065217ec1d1f38df828f8b12e82e95bb050834318bf49f8d3ac",
+      "existedAtStart": true,
+      "buildCopySha256": "3e73eb3080196065217ec1d1f38df828f8b12e82e95bb050834318bf49f8d3ac",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/pnpm-lock.yaml",
+      "sha256": "2afbeca8b9a43be3325047aa0765f64d3decfb7c161b951d54f941534116e9a3",
+      "existedAtStart": true,
+      "buildCopySha256": "2afbeca8b9a43be3325047aa0765f64d3decfb7c161b951d54f941534116e9a3",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/connectors/source-reading.test.ts",
+      "sha256": "2234dfcd78ba610487e79de260b31fbdd73863d189bf02528c501f45c2d66784",
+      "existedAtStart": false,
+      "buildCopySha256": "2234dfcd78ba610487e79de260b31fbdd73863d189bf02528c501f45c2d66784",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/integration/source-reading.test.ts",
+      "sha256": "7cff183394ee42bc56560e155c9fb0b8ffc669922588af104915108187892aee",
+      "existedAtStart": false,
+      "buildCopySha256": "7cff183394ee42bc56560e155c9fb0b8ffc669922588af104915108187892aee",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/integration/luma-dossier.test.ts",
+      "sha256": "50d401dba8941804b7ec41f03074d60134d95c35049b35f88dd89aaeb71d5611",
+      "existedAtStart": true,
+      "buildCopySha256": "50d401dba8941804b7ec41f03074d60134d95c35049b35f88dd89aaeb71d5611",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/integration/worker-recovery.test.ts",
+      "sha256": "842379853f50fe325aa5343dbc586340116919e838fe5e1b43239fa2519878c7",
+      "existedAtStart": true,
+      "buildCopySha256": "842379853f50fe325aa5343dbc586340116919e838fe5e1b43239fa2519878c7",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/e2e/source-reading.spec.ts",
+      "sha256": "b020c77b262906ee13ebfd0ecc2f27205c566f5f929033a07d0c4961ee0de158",
+      "existedAtStart": false,
+      "buildCopySha256": "b020c77b262906ee13ebfd0ecc2f27205c566f5f929033a07d0c4961ee0de158",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/e2e/persisted-evaluation.spec.ts",
+      "sha256": "a09206632c27f1a905015e428653ba87b6e82991cb4c9b7882cc9a6aa38fc296",
+      "existedAtStart": true,
+      "buildCopySha256": "a09206632c27f1a905015e428653ba87b6e82991cb4c9b7882cc9a6aa38fc296",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/fixtures/source-reading.ts",
+      "sha256": "22edf89e657b4fb8ce8edf5f1e9b4c4a250de21ec0c1c95cde94c8edc9384591",
+      "existedAtStart": false,
+      "buildCopySha256": "22edf89e657b4fb8ce8edf5f1e9b4c4a250de21ec0c1c95cde94c8edc9384591",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/tests/support/source-browser.ts",
+      "sha256": "5d602bb7691c970f8bdf2aa3e57c051232fab3fe6140a8c3f1f86f7ed6c0d9fb",
+      "existedAtStart": false,
+      "buildCopySha256": "5d602bb7691c970f8bdf2aa3e57c051232fab3fe6140a8c3f1f86f7ed6c0d9fb",
+      "buildCopyMatches": true
+    },
+    {
+      "path": "frontend/scripts/smoke-source-reading.ts",
+      "sha256": "d674260281e3a2a9844b2f79703dbf721a9c321748a9250981539d9d83aaa842",
+      "existedAtStart": false,
+      "buildCopySha256": "d674260281e3a2a9844b2f79703dbf721a9c321748a9250981539d9d83aaa842",
+      "buildCopyMatches": true
+    }
+  ],
+  "buildDirectory": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp05-build-vbmwm4xf",
+  "allBuildCopiesMatch": true,
+  "initialFilesMissing": [],
+  "trackingFiles": [
+    "DemoPuentes/issues/05-lectura-completa-y-apify.md"
+  ],
+  "evidenceDirectory": "DemoPuentes/evidence/DP-05/",
+  "sharedDatabaseReadOnlyCheck": {
+    "migrationsObserved": [
+      "001",
+      "002",
+      "003",
+      "004",
+      "005",
+      "006",
+      "007"
+    ],
+    "migration008AppliedByThisSession": false
+  },
+  "testEnvironment": {
+    "container": "growthx-dp05-verification",
+    "postgresPort": 55445,
+    "sharedServicesRestartedByThisSession": false,
+    "containerStoppedAt": "2026-09-10T21:05:40.362255+00:00",
+    "containerDataPreserved": true
+  }
+}

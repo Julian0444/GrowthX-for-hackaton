@@ -1,0 +1,31 @@
+(node:10077) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier (126998.519334ms)
+ℹ Dos briefs, dos revisiones reabiertas, objetivos/éxito/moneda conservados; identidad de lista/pin/dossier; 1366×900 y 390×844 sin overflow; HTTP tenant ajeno 404.
+(node:12156) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ✔ entrada dashboard, sesión y perfil corregible antes de investigar (11218.898208ms)
+  ✔ homónimos independientes y guardado durable sin edición elegible (3479.828ms)
+  ✔ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (5323.907791ms)
+  ✔ logo ambiguo y edición futura fuera de SF no se recomiendan (982.978083ms)
+  ✔ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (1360.510917ms)
+  ✔ revisión del perfil, ausencia de coincidencia e importador disponible (3135.42625ms)
+  ✔ sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones (721.822875ms)
+  ✔ matching usa la última revisión y la identidad confirmada, no nombres parecidos (1207.158792ms)
+  ✔ error del worker se persiste y aparece en el dashboard (8417.512959ms)
+  ✔ sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global (540.832042ms)
+✔ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales (47324.343125ms)
+ℹ Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 175300.603833

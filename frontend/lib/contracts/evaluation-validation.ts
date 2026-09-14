@@ -1,3 +1,4 @@
+import type { ComparisonReading, AlternativeReading, ComparisonReason } from './comparison.ts';
 // Validación de runtime de los contratos de evaluación persistida (ticket 07).
 //
 // Un payload inválido se RECHAZA con ruta y motivo; jamás se corrige en
@@ -49,8 +50,10 @@ import type {
   SnapshotOrdering,
   SnapshotOutcome,
   SourceRecord,
+  EvidenceReference, PublicEventLocation, EditionRelationship, ResearchPlan, ResearchProgress, ProviderConsumption,
 } from './evaluation';
 import type { NarrativeState } from './growxth';
+import { DISCOVERY_LIMITS, type DiscoveryPlan, type DiscoveryResponse, type DiscoveryQuery } from './discovery.ts';
 
 // La única versión que este lector entiende. Agregar la «2» exige decidir la
 // migración explícitamente, no reinterpretar payloads.
@@ -97,8 +100,8 @@ const hasOwn = (obj: object, key: string): boolean => Object.prototype.hasOwnPro
 function nonEmptyString(): Schema<string> {
   return {
     read: (input, path, issues) => {
-      if (typeof input !== 'string') return fail(issues, path, `se esperaba string, llegó ${typeName(input)}`);
-      if (input.trim().length === 0) return fail(issues, path, 'string vacío: el contrato exige contenido, no un hueco disfrazado');
+      if (typeof input !== 'string') return fail(issues, path, `expected string, received ${typeName(input)}`);
+      if (input.trim().length === 0) return fail(issues, path, 'empty string: the contract requires content, not a disguised gap');
       return input;
     },
   };
@@ -110,7 +113,7 @@ function finiteNumber(): Schema<number> {
     read: (input, path, issues) =>
       typeof input === 'number' && Number.isFinite(input)
         ? input
-        : fail(issues, path, `se esperaba número finito, llegó ${typeName(input) === 'number' ? String(input) : typeName(input)}`),
+        : fail(issues, path, `expected finite number, received ${typeName(input) === 'number' ? String(input) : typeName(input)}`),
   };
 }
 
@@ -135,10 +138,16 @@ function positiveInt(): Schema<number> {
   };
 }
 
+function nonNegativeInt(): Schema<number> {
+  return refine(numberBetween(0, Number.MAX_SAFE_INTEGER), (value, issue) => {
+    if (!Number.isInteger(value)) issue('', 'se esperaba entero ≥ 0');
+  });
+}
+
 function boolean(): Schema<boolean> {
   return {
     read: (input, path, issues) =>
-      typeof input === 'boolean' ? input : fail(issues, path, `se esperaba boolean, llegó ${typeName(input)}`),
+      typeof input === 'boolean' ? input : fail(issues, path, `expected boolean, received ${typeName(input)}`),
   };
 }
 
@@ -165,7 +174,7 @@ function optional<T>(schema: Schema<T>): Schema<T | undefined> {
 function array<T>(schema: Schema<T>): Schema<T[]> {
   return {
     read: (input, path, issues) => {
-      if (!Array.isArray(input)) return fail(issues, path, `se esperaba array, llegó ${typeName(input)}`);
+      if (!Array.isArray(input)) return fail(issues, path, `expected array, received ${typeName(input)}`);
       const out: T[] = [];
       let bad = false;
       input.forEach((item, index) => {
@@ -182,7 +191,7 @@ function object<S extends { [key: string]: Schema<unknown> }>(shape: S): Schema<
   const keys = Object.keys(shape);
   return {
     read: (input, path, issues) => {
-      if (!isPlainRecord(input)) return fail(issues, path, `se esperaba objeto, llegó ${typeName(input)}`);
+      if (!isPlainRecord(input)) return fail(issues, path, `expected object, received ${typeName(input)}`);
       const out: Record<string, unknown> = {};
       let bad = false;
       for (const key of keys) {
@@ -200,7 +209,7 @@ function object<S extends { [key: string]: Schema<unknown> }>(shape: S): Schema<
         if (!hasOwn(shape, key)) {
           issues.push({
             path: `${path}.${key}`,
-            message: 'campo desconocido para el contrato v1: se rechaza, no se ignora en silencio',
+            message: 'unknown field for contract v1: rejected rather than silently ignored',
           });
           bad = true;
         }
@@ -217,7 +226,7 @@ function discriminated<S extends { [tag: string]: Schema<unknown> }>(
 ): Schema<Infer<S[keyof S]>> {
   return {
     read: (input, path, issues) => {
-      if (!isPlainRecord(input)) return fail(issues, path, `se esperaba objeto, llegó ${typeName(input)}`);
+      if (!isPlainRecord(input)) return fail(issues, path, `expected object, received ${typeName(input)}`);
       const tag = input[key];
       if (typeof tag !== 'string' || !hasOwn(cases, tag)) {
         return fail(
@@ -258,9 +267,9 @@ const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
 function isoInstant(): Schema<string> {
   return {
     read: (input, path, issues) => {
-      if (typeof input !== 'string') return fail(issues, path, `se esperaba string ISO 8601, llegó ${typeName(input)}`);
+      if (typeof input !== 'string') return fail(issues, path, `expected ISO 8601 string, received ${typeName(input)}`);
       if (!ISO_INSTANT.test(input) || Number.isNaN(Date.parse(input)))
-        return fail(issues, path, `«${input}» no es un instante ISO 8601 con zona explícita`);
+        return fail(issues, path, `«${input}» is not an ISO 8601 instant with an explicit time zone`);
       return input;
     },
   };
@@ -269,9 +278,9 @@ function isoInstant(): Schema<string> {
 function isoDay(): Schema<string> {
   return {
     read: (input, path, issues) => {
-      if (typeof input !== 'string') return fail(issues, path, `se esperaba string YYYY-MM-DD, llegó ${typeName(input)}`);
-      if (!ISO_DAY.test(input) || Number.isNaN(Date.parse(`${input}T00:00:00Z`)))
-        return fail(issues, path, `«${input}» no es un día calendario ISO válido`);
+      if (typeof input !== 'string') return fail(issues, path, `expected YYYY-MM-DD string, received ${typeName(input)}`);
+      if (!ISO_DAY.test(input) || Number.isNaN(Date.parse(`${input}T00:00:00Z`)) || new Date(`${input}T00:00:00Z`).toISOString().slice(0, 10) !== input)
+        return fail(issues, path, `«${input}» is not a valid ISO calendar day`);
       return input;
     },
   };
@@ -293,7 +302,7 @@ function currencyCode(): Schema<string> {
   return {
     read: (input, path, issues) => {
       if (typeof input !== 'string' || !/^[A-Z]{3}$/.test(input))
-        return fail(issues, path, `moneda «${String(input)}» inválida; se espera código ISO 4217 (p. ej. "USD")`);
+        return fail(issues, path, `moneda «${String(input)}» is invalid; expected an ISO 4217 code (for example, "USD")`);
       return input;
     },
   };
@@ -424,11 +433,23 @@ const evaluationProfileSchema: Schema<EvaluationProfile> = object({
   restrictions: array(nonEmptyString()),
   objective: objectiveSchema,
   comparableCompanies: array(comparableCompanySchema),
+  geography: optional(object({ city: literal('San Francisco'), timezone: literal('America/Los_Angeles') })),
+  formats: optional(array(nonEmptyString())),
 });
 
 // ============ Fuente, claim y revisión ============
 
-const sourceRecordSchema: Schema<SourceRecord> = object({
+const evidenceReferenceSchema: Schema<EvidenceReference> = refine(object({
+  sourceId: idSchema, fragmentId: nullable(idSchema), locator: nullable(nonEmptyString()),
+}), (ref, issue) => {
+  if (!ref.fragmentId && !ref.locator) issue('', 'support requires a fragment or specific locator');
+});
+
+function verifyEvidenceRefs(refs: EvidenceReference[], sourceIds: string[], issue: (path: string, message: string) => void) {
+  if (refs.some(ref => !sourceIds.includes(ref.sourceId))) issue('evidence', 'each fragment must belong to a linked source');
+}
+
+const sourceRecordSchema: Schema<SourceRecord> = refine(object({
   contractVersion: contractVersionSchema,
   id: idSchema,
   url: nullable(nonEmptyString()),
@@ -445,6 +466,14 @@ const sourceRecordSchema: Schema<SourceRecord> = object({
     none: object({ kind: literal('none') }),
   }),
   usageRestrictions: array(nonEmptyString()),
+  requestedUrl: optional(nullable(nonEmptyString())),
+  canonicalUrl: optional(nullable(nonEmptyString())),
+  title: optional(nullable(nonEmptyString())),
+  fragments: optional(array(object({ id: idSchema, text: nonEmptyString(), locator: nonEmptyString() }))),
+  retrieval: optional(object({ status: literal('obtained', 'partial', 'error', 'insufficient'), limitation: nullable(nonEmptyString()), freshness: literal('current', 'stale', 'unknown') })),
+}), (source, issue) => {
+  if (new Set(source.fragments?.map(f => f.id)).size !== (source.fragments?.length ?? 0)) issue('fragments', 'IDs de fragmento duplicados');
+  if (source.retrieval && source.retrieval.status !== 'obtained' && !source.retrieval.limitation) issue('retrieval.limitation', 'partial, insufficient, or failed coverage requires an explanation');
 });
 
 const claimSubjectSchema: Schema<ClaimSubject> = discriminated('type', {
@@ -481,6 +510,7 @@ const claimRevisionSchema: Schema<ClaimRevision> = refine(
     value: claimValueSchema,
     status: claimStatusSchema,
     sourceIds: idArraySchema,
+    evidence: optional(array(evidenceReferenceSchema)),
     method: nullable(nonEmptyString()),
     note: nullable(nonEmptyString()),
     reviewer: nullable(nonEmptyString()),
@@ -488,18 +518,19 @@ const claimRevisionSchema: Schema<ClaimRevision> = refine(
     previousRevisionId: nullable(idSchema),
   }),
   (claim, addIssue) => {
+    verifyEvidenceRefs(claim.evidence ?? [], claim.sourceIds, addIssue);
     if (claim.costComposition && !claim.attribute.startsWith('cost:'))
-      addIssue('costComposition', 'solo una partida de costo admite composición');
+      addIssue('costComposition', 'only a cost item supports composition');
     if (claim.attribute.startsWith('cost:') && claim.value.kind === 'money' && claim.value.amount < 0)
       addIssue('value.amount', 'un costo no puede ser negativo');
     if (STATUSES_REQUIRING_SOURCES.includes(claim.status) && claim.sourceIds.length === 0)
       addIssue('sourceIds', `un claim «${claim.status}» exige evidencia vinculada`);
     if (claim.status === 'contradicted' && claim.note === null)
-      addIssue('note', 'una contradicción exige un motivo visible: qué contradice a qué');
+      addIssue('note', 'a contradiction requires a visible reason stating the conflicting evidence');
     if (claim.status === 'inferred' && claim.method === null)
-      addIssue('method', 'una inferencia exige declarar su método');
+      addIssue('method', 'an inference requires a declared method');
     if (claim.value.kind === 'pending' && claim.status !== 'pending')
-      addIssue('status', 'un valor pendiente no puede llevar un estado que afirme un valor');
+      addIssue('status', 'a pending value cannot have a status affirming a value');
   },
 );
 
@@ -522,6 +553,7 @@ const organizerRevisionSchema: Schema<OrganizerRevision> = object({
   id: idSchema,
   organizerId: idSchema,
   displayName: nonEmptyString(),
+  companyId: optional(idSchema),
   aliases: array(organizerAliasSchema),
   claimRevisionIds: idArraySchema,
   revisedAt: isoInstant(),
@@ -536,6 +568,50 @@ const editionLocationSchema: Schema<EditionLocation> = refine(
   },
 );
 
+const publicLocationSchema: Schema<PublicEventLocation> = refine(object({
+  resolution: optional(object({
+    outcome: literal('published', 'resolved', 'pending', 'failed'),
+    query: nullable(nonEmptyString()), normalizedQuery: nullable(nonEmptyString()),
+    sourceVersion: nonEmptyString(), claimRevisionIds: idArraySchema, checkedAt: isoInstant(),
+    cache: literal('hit', 'miss', 'not_applicable'), accuracy: literal('published', 'interpolated', 'unknown'),
+    providerVersion: nullable(nonEmptyString()), matchedAddress: nullable(nonEmptyString()),
+    countyGeoid: nullable(nonEmptyString()), failureCode: nullable(nonEmptyString()),
+  })),
+  originalAddress: nullable(nonEmptyString()),
+  address: nullable(object({ streetAddress: nullable(nonEmptyString()), locality: nullable(nonEmptyString()), region: nullable(nonEmptyString()), postalCode: nullable(nonEmptyString()), country: nullable(nonEmptyString()) })),
+  venue: nullable(nonEmptyString()), city: nullable(nonEmptyString()),
+  precision: literal('venue', 'address', 'street', 'city', 'unknown'),
+  method: literal('published_coordinates', 'geocoded', 'manual', 'unknown'),
+  provider: nullable(nonEmptyString()), resolvedAt: nullable(isoInstant()),
+  sourceIds: idArraySchema, status: claimStatusSchema, limitation: nullable(nonEmptyString()),
+}), (location, issue) => {
+  if (['venue', 'address', 'street'].includes(location.precision) && (!location.sourceIds.length || location.method === 'unknown')) issue('precision', 'specific precision requires a source and method');
+  if (['address', 'street'].includes(location.precision) && !location.originalAddress && !location.address?.streetAddress) issue('address', 'address or street precision requires the public address');
+  if (location.precision === 'city' && !location.city) issue('city', 'city precision requires a declared city');
+  if (location.method === 'geocoded' && (!location.provider || !location.resolvedAt)) issue('method', 'geocoding requires provider and date');
+  if (location.resolution?.outcome === 'resolved' && (location.method !== 'geocoded' || !location.resolution.query || !location.resolution.claimRevisionIds.length)) issue('resolution', 'resolution requires a query, method, and original claims');
+  if (location.status === 'contradicted' && !location.limitation) issue('limitation', 'conflicting location requires an explanation');
+});
+
+const relationshipSchema: Schema<EditionRelationship> = refine(object({
+  id: idSchema, editionId: idSchema,
+  entity: discriminated('type', {
+    organizer: object({ type: literal('organizer'), organizerId: idSchema }),
+    company: object({ type: literal('company'), companyId: idSchema }),
+    project: object({ type: literal('project'), projectId: idSchema, name: nonEmptyString(), url: nonEmptyString() }),
+  }),
+  role: literal('organizer', 'co_organizer', 'host', 'calendar', 'sponsor', 'presenter', 'venue', 'venue_partner', 'infrastructure_partner', 'logo_present', 'published_project'),
+  status: claimStatusSchema, scope: literal('edition', 'global_program'),
+  sourceIds: idArraySchema, evidence: array(evidenceReferenceSchema), claimRevisionIds: idArraySchema, limitation: nullable(nonEmptyString()),
+}), (relation, issue) => {
+  verifyEvidenceRefs(relation.evidence, relation.sourceIds, issue);
+  if (STATUSES_REQUIRING_SOURCES.includes(relation.status) && (!relation.sourceIds.length || !relation.evidence.length)) issue('evidence', 'documented relationship requires source and fragment or locator');
+  if ((relation.role === 'published_project') !== (relation.entity.type === 'project')) issue('entity', 'proyecto y rol deben corresponder');
+  if (['organizer', 'co_organizer', 'calendar'].includes(relation.role) && relation.entity.type !== 'organizer') issue('entity', 'organizer or calendar role requires organizer identity');
+  if (['sponsor', 'presenter', 'venue', 'venue_partner', 'infrastructure_partner', 'logo_present'].includes(relation.role) && relation.entity.type !== 'company') issue('entity', 'este rol exige identidad de empresa');
+  if (['inferred', 'contradicted', 'pending'].includes(relation.status) && !relation.limitation) issue('limitation', 'preserve the relationship limitation');
+});
+
 const eventEditionRevisionSchema: Schema<EventEditionRevision> = refine(
   object({
     contractVersion: contractVersionSchema,
@@ -548,17 +624,79 @@ const eventEditionRevisionSchema: Schema<EventEditionRevision> = refine(
     startDate: declaredDateSchema,
     location: editionLocationSchema,
     coordinates: nullable(object({ lat: numberBetween(-90, 90), lng: numberBetween(-180, 180) })),
+    publicLocation: optional(publicLocationSchema),
+    relationships: optional(array(relationshipSchema)),
     claimRevisionIds: idArraySchema,
     revisedAt: isoInstant(),
     previousRevisionId: nullable(idSchema),
   }),
   (edition, addIssue) => {
+    const relations = edition.relationships ?? [];
+    if (relations.some(r => r.editionId !== edition.editionId)) addIssue('relationships', 'the relationship belongs to another edition');
+    if (new Set(relations.map(r => r.id)).size !== relations.length) addIssue('relationships', 'relaciones duplicadas');
+    if (relations.some(r => r.claimRevisionIds.some(id => !edition.claimRevisionIds.includes(id)))) addIssue('relationships', 'claims must be fixed by the edition revision');
     // Un punto en el mapa exige respaldo urbano: una localización nacional o
     // regional no coloca el evento en una ciudad.
     if (edition.coordinates !== null && edition.location.scope !== 'venue' && edition.location.scope !== 'city')
-      addIssue('coordinates', `coordenadas con alcance «${edition.location.scope}»: sin respaldo urbano no hay punto`);
+      addIssue('coordinates', `coordinates with scope «${edition.location.scope}»: no urban evidence means no marker`);
   },
 );
+
+const researchPlanSchema: Schema<ResearchPlan> = refine(object({
+  contractVersion: contractVersionSchema, profileId: idSchema, profileVersion: positiveInt(),
+  questions: array(object({ id: idSchema, topic: literal('fit', 'objective', 'success', 'eligibility', 'history', 'restriction'), text: nonEmptyString() })),
+  providerLimits: array(object({ provider: nonEmptyString(), enabled: boolean(), maxRequests: nonNegativeInt(), maxCost: nullable(object({ amount: numberBetween(0, Number.MAX_SAFE_INTEGER), currency: currencyCode() })), scope: literal('run') })),
+}), (plan, issue) => {
+  if (new Set(plan.providerLimits.map(l => l.provider)).size !== plan.providerLimits.length) issue('providerLimits', 'proveedores duplicados');
+  if (new Set(plan.questions.map(q => q.id)).size !== plan.questions.length) issue('questions', 'preguntas duplicadas');
+});
+
+const researchProgressSchema: Schema<ResearchProgress> = refine(object({
+  contractVersion: contractVersionSchema, runId: idSchema,
+  status: literal('queued', 'running', 'partial', 'completed', 'insufficient', 'failed'), stage: nonEmptyString(), terminal: boolean(), attempts: nonNegativeInt(),
+  findings: array(refine(object({ id: idSchema, editionId: idSchema, editionRevisionId: idSchema, status: literal('partial', 'supported', 'insufficient', 'error'), claimRevisionIds: idArraySchema, sourceIds: idArraySchema, limitation: nullable(nonEmptyString()) }), (finding, issue) => {
+    if (finding.status === 'supported' && (!finding.sourceIds.length || !finding.claimRevisionIds.length)) issue('status', 'hallazgo sustentado exige claims y fuentes persistidos');
+    if (finding.status !== 'supported' && !finding.limitation) issue('limitation', 'an incomplete finding must explain its limitation');
+  })),
+  limitations: array(nonEmptyString()), material: literal('real', 'synthetic'), updatedAt: isoInstant(),
+}), (progress, issue) => {
+  if (['completed', 'failed', 'insufficient'].includes(progress.status) && !progress.terminal) issue('terminal', 'this state ends the research run');
+  if (['queued', 'running'].includes(progress.status) && progress.terminal) issue('terminal', 'trabajo en cola o en curso no es terminal');
+  if (new Set(progress.findings.map(f => f.id)).size !== progress.findings.length) issue('findings', 'hallazgos duplicados');
+  if (['partial', 'failed', 'insufficient'].includes(progress.status) && !progress.limitations.length) issue('limitations', 'incomplete state requires an explanation');
+  if (progress.status === 'completed' && (!progress.findings.length || progress.findings.some(f => f.status !== 'supported'))) issue('status', 'completed requires supported findings; use insufficient when coverage is missing');
+});
+
+const providerConsumptionSchema: Schema<ProviderConsumption> = object({
+  provider: nonEmptyString(), runId: idSchema, operationId: idSchema,
+  requests: discriminated('status', { known: object({ status: literal('known'), count: nonNegativeInt() }), unknown: object({ status: literal('unknown'), reason: nonEmptyString() }) }),
+  cost: discriminated('status', { known: object({ status: literal('known'), amount: numberBetween(0, Number.MAX_SAFE_INTEGER), currency: currencyCode() }), unknown: object({ status: literal('unknown'), reason: nonEmptyString() }) }),
+  recordedAt: isoInstant(),
+});
+
+const discoveryQuerySchema: Schema<DiscoveryQuery> = object({ id: idSchema, purpose: literal('opportunities', 'background', 'conditions'), text: nonEmptyString(), questionIds: idArraySchema });
+const discoveryPlanSchema: Schema<DiscoveryPlan> = refine(object({
+  version: literal(1), profileId: idSchema, profileVersion: numberBetween(1, Number.MAX_SAFE_INTEGER),
+  criteria: object({ product: nonEmptyString(), audience: nonEmptyString(), objective: literal('adoption','feedback','hiring','awareness'), window: object({ from: nullable(nonEmptyString()), to: nullable(nonEmptyString()) }), city: nonEmptyString(), timezone: nonEmptyString(), formats: array(nonEmptyString()), restrictions: array(nonEmptyString()) }),
+  queries: array(discoveryQuerySchema),
+  limits: object({ maxQueries: numberBetween(1, DISCOVERY_LIMITS.maxQueries), resultsPerQuery: numberBetween(1, DISCOVERY_LIMITS.resultsPerQuery), requestTimeoutMs: numberBetween(1, DISCOVERY_LIMITS.requestTimeoutMs), durationMs: numberBetween(1, DISCOVERY_LIMITS.durationMs) }),
+}), (plan, issue) => {
+  if (Object.values(plan.limits).some(n => !Number.isInteger(n))) issue('limits', 'integer limits required');
+  if (plan.queries.length !== plan.limits.maxQueries || new Set(plan.queries.map(q => q.id)).size !== plan.queries.length) issue('queries', 'unique bounded queries required');
+});
+const discoveryResponseSchema: Schema<DiscoveryResponse> = object({
+  requestId: nullable(nonEmptyString()), costUsd: nullable(numberBetween(0, Number.MAX_SAFE_INTEGER)), discardedResults: nonNegativeInt(),
+  pages: array(object({ url: nonEmptyString(), canonicalUrl: nonEmptyString(), title: nonEmptyString(), publishedAt: nullable(isoInstant()), author: nullable(nonEmptyString()), excerpt: nullable(nonEmptyString()), sourceId: idSchema })),
+});
+
+export function parseDiscoveryPlan(input: unknown): ValidationResult<DiscoveryPlan> { return parseWith(discoveryPlanSchema, input); }
+export function parseDiscoveryResponse(input: unknown): ValidationResult<DiscoveryResponse> { return parseWith(discoveryResponseSchema, input); }
+
+function parseWith<T>(schema: Schema<T>, input: unknown): ValidationResult<T> {
+  const issues: ValidationIssue[] = [];
+  const value = schema.read(input, '$', issues);
+  return value === INVALID ? { ok: false, issues } : { ok: true, value };
+}
 
 const companyRecordSchema: Schema<CompanyRecord> = object({
   contractVersion: contractVersionSchema,
@@ -592,9 +730,9 @@ const participationRevisionSchema: Schema<ParticipationRevision> = refine(
     if (participation.role === 'paid_sponsor' && participation.roleStatus === 'inferred')
       addIssue('roleStatus', 'un patrocinio pagado no se infiere: un logo ambiguo o la similitud no lo documentan');
     if (participation.role === 'logo_present' && participation.commercialOutcome.status !== 'unknown')
-      addIssue('commercialOutcome', 'un logo ambiguo no crea resultados: documentá el rol real antes de atribuirle un resultado');
+      addIssue('commercialOutcome', 'an ambiguous logo does not establish outcomes: document the actual role before attributing an outcome');
     if (participation.commercialOutcome.status === 'reported' && participation.commercialOutcome.sourceIds.length === 0)
-      addIssue('commercialOutcome.sourceIds', 'un resultado reportado exige quién lo reporta (fuente)');
+      addIssue('commercialOutcome.sourceIds', 'a reported outcome requires the reporting source');
   },
 );
 
@@ -613,7 +751,7 @@ const eligibilitySchema: Schema<EligibilityResult> = refine(
   }),
   (value, addIssue) => {
     if (value.status === 'excluded' && value.reasons.length === 0)
-      addIssue('reasons', 'una exclusión exige sus motivos');
+      addIssue('reasons', 'an exclusion requires reasons');
   },
 );
 
@@ -641,7 +779,7 @@ const snapshotAlternativeSchema: Schema<SnapshotAlternative> = refine(
   }),
   (alternative, addIssue) => {
     if (alternative.eligibility.status === 'conditional' && alternative.conditions.length === 0)
-      addIssue('conditions', 'una alternativa condicionada exige al menos una condición pendiente');
+      addIssue('conditions', 'a conditional alternative requires at least one pending condition');
   },
 );
 
@@ -673,9 +811,29 @@ const narrativeStateSchema: Schema<NarrativeState> = refine(
   }),
   (narrative, addIssue) => {
     if (narrative.status !== 'validated' && narrative.selectedEvidenceIds.length > 0)
-      addIssue('selectedEvidenceIds', 'solo una redacción validada conserva selección de evidencia');
+      addIssue('selectedEvidenceIds', 'only validated narration retains an evidence selection');
   },
 );
+
+const comparisonEvidenceSchema = object({
+  editionId: idSchema, editionRevisionId: idSchema, claimRevisionIds: idArraySchema,
+  relationshipIds: idArraySchema, sourceIds: idArraySchema,
+});
+const comparisonReasonSchema: Schema<ComparisonReason> = object({ text: nonEmptyString(), basis: array(comparisonEvidenceSchema) });
+const alternativeReadingSchema: Schema<AlternativeReading> = object({
+  editionId: idSchema, relevance: comparisonReasonSchema, antecedents: array(comparisonReasonSchema),
+  modality: object({ status: literal('published', 'proposed', 'pending'), text: nonEmptyString(), basis: array(comparisonEvidenceSchema) }),
+  evidenceQuality: object({ status: literal('supported', 'limited', 'insufficient'), note: nonEmptyString() }),
+  cost: nonEmptyString(), nextQuestion: nonEmptyString(), matchedCriteria: array(nonEmptyString()),
+});
+const comparisonReadingSchema: Schema<ComparisonReading> = object({
+  version: literal('research-comparison/1'), alternatives: array(alternativeReadingSchema),
+  priority: object({ kind: literal('investigate_first', 'unordered', 'insufficient'), editionIds: idArraySchema,
+    explanation: nonEmptyString(), criteria: array(nonEmptyString()) }),
+  differences: nullable(object({ previousSnapshotId: idSchema,
+    briefChanges: array(object({ field: nonEmptyString(), before: nonEmptyString(), after: nonEmptyString() })),
+    alternatives: array(object({ editionId: idSchema, changes: array(nonEmptyString()) })), note: nonEmptyString() })),
+});
 
 const evaluationSnapshotSchema: Schema<EvaluationSnapshot> = refine(
   object({
@@ -694,33 +852,49 @@ const evaluationSnapshotSchema: Schema<EvaluationSnapshot> = refine(
     ordering: orderingSchema,
     outcome: outcomeSchema,
     narrative: nullable(narrativeStateSchema),
+    decisionReading: optional(comparisonReadingSchema),
+    sourceIds: optional(idArraySchema),
   }),
   (snapshot, addIssue) => {
     // Coherencia INTERNA del agregado (no es integridad relacional): el orden
     // oficial ordena exactamente las alternativas del propio snapshot.
     const alternativeIds = snapshot.alternatives.map((a) => a.editionId);
     if (new Set(alternativeIds).size !== alternativeIds.length)
-      addIssue('alternatives', 'alternativas con editionId duplicado');
+      addIssue('alternatives', 'alternatives have duplicate editionId');
     const orderedIds = snapshot.ordering.editionIds;
-    if (new Set(orderedIds).size !== orderedIds.length) addIssue('ordering.editionIds', 'orden con ids duplicados');
+    if (new Set(orderedIds).size !== orderedIds.length) addIssue('ordering.editionIds', 'ordering has duplicate IDs');
     const sameSet =
       orderedIds.length === alternativeIds.length && orderedIds.every((id) => alternativeIds.includes(id));
     if (!sameSet)
-      addIssue('ordering.editionIds', 'el orden oficial debe ordenar exactamente las alternativas del snapshot');
+      addIssue('ordering.editionIds', 'the official ordering must include exactly the snapshot alternatives');
     if (snapshot.ordering.kind === 'ranked') {
       if (snapshot.policy.status !== 'applied')
-        addIssue('ordering', 'sin política aplicada no hay ranking: solo orden de presentación');
+        addIssue('ordering', 'without an applied policy there is only presentation order, not ranking');
       else if (
         snapshot.ordering.policyId !== snapshot.policy.policyId ||
         snapshot.ordering.policyVersion !== snapshot.policy.policyVersion
       )
-        addIssue('ordering', 'el ranking cita una política distinta de la aplicada por el snapshot');
+        addIssue('ordering', 'the ranking cites a different policy from the one applied by the snapshot');
+    }
+    if (snapshot.decisionReading) {
+      const reading = snapshot.decisionReading;
+      const ids = reading.alternatives.map(a => a.editionId);
+      if (ids.length !== alternativeIds.length || new Set(ids).size !== ids.length || ids.some(id => !alternativeIds.includes(id)))
+        addIssue('decisionReading.alternatives', 'the reading must cover exactly the alternatives');
+      if (reading.priority.editionIds.some(id => !alternativeIds.includes(id) || snapshot.alternatives.find(a => a.editionId === id)?.eligibility.status === 'excluded'))
+        addIssue('decisionReading.priority', 'no se priorizan candidatos ajenos o excluidos');
+      if ((reading.priority.kind === 'investigate_first') !== (reading.priority.editionIds.length > 0))
+        addIssue('decisionReading.priority', 'priority without candidates or candidates without priority');
+      for (const alt of reading.alternatives) for (const reason of [alt.relevance, alt.modality, ...alt.antecedents]) for (const ref of reason.basis) {
+        if (!snapshot.editionRevisionIds.includes(ref.editionRevisionId) || ref.claimRevisionIds.some(id => !snapshot.claimRevisionIds.includes(id)) || ref.sourceIds.some(id => !snapshot.sourceIds?.includes(id)))
+          addIssue('decisionReading', 'evidencia fuera de las revisiones y fuentes fijadas');
+      }
     }
     if (snapshot.policy.status !== 'applied') {
       for (const [index, alternative] of snapshot.alternatives.entries()) {
         // Sin política no hay score: «sin política» es un estado, no un cero.
         if (alternative.scoring.status === 'scored')
-          addIssue(`alternatives[${index}].scoring`, 'score sin política aplicada: sin política no se puntúa');
+          addIssue(`alternatives[${index}].scoring`, 'score without an applied policy: no policy means no scoring');
       }
     }
   },
@@ -730,12 +904,17 @@ const evaluationSnapshotSchema: Schema<EvaluationSnapshot> = refine(
 
 // Responsable y plazo «si se conocen» (ticket 13): nullable de verdad — un
 // string vacío no es un responsable y no se admite como hueco disfrazado.
+const buyerResponseSchema = object({
+  attributedTo: nonEmptyString(), support: nonEmptyString(), sourceIds: idArraySchema,
+  recordedBy: idSchema, recordedAt: isoInstant(),
+});
 const decisionConditionSchema: Schema<DecisionCondition> = object({
   id: idSchema,
   description: nonEmptyString(),
   answerWouldChangeTo: nullable(literal('chosen', 'discarded')),
   status: literal('open', 'resolved'),
   resolvedNote: nullable(nonEmptyString()),
+  response: optional(buyerResponseSchema),
   owner: nullable(nonEmptyString()),
   dueBy: nullable(isoDayOrInstant()),
 });
@@ -747,6 +926,7 @@ const evaluationDecisionSchema: Schema<EvaluationDecision> = refine(
     snapshotId: idSchema,
     editionId: idSchema,
     verdict: literal('chosen', 'discarded', 'pending'),
+    intent: optional(nullable(literal('explore_first'))),
     reasons: array(nonEmptyString()),
     conditions: array(decisionConditionSchema),
     decidedBy: object({ userId: idSchema, resolvedBy: literal('server_session') }),
@@ -755,11 +935,13 @@ const evaluationDecisionSchema: Schema<EvaluationDecision> = refine(
     previousRevisionId: nullable(idSchema),
   }),
   (decision, addIssue) => {
-    if (decision.reasons.length === 0) addIssue('reasons', 'una decisión exige sus motivos');
+    if (decision.intent === 'explore_first' && decision.verdict !== 'pending') addIssue('intent', 'explore_first is pending participation, not an investment choice');
+    if (new Set(decision.conditions.map(c => c.id)).size !== decision.conditions.length) addIssue('conditions', 'duplicate condition identities');
+    if (decision.reasons.length === 0) addIssue('reasons', 'a decision requires reasons');
     if (decision.revision === 1 && decision.previousRevisionId !== null)
-      addIssue('previousRevisionId', 'la primera revisión no tiene anterior');
+      addIssue('previousRevisionId', 'the first revision has no predecessor');
     if (decision.revision > 1 && decision.previousRevisionId === null)
-      addIssue('previousRevisionId', 'una revisión posterior conserva la relación con la anterior');
+      addIssue('previousRevisionId', 'a later revision preserves its link to the preceding revision');
   },
 );
 
@@ -784,11 +966,11 @@ const campaignCommitmentSchema: Schema<CampaignCommitment> = refine(
   (commitment, addIssue) => {
     if (commitment.kind === 'agreed') {
       if (commitment.confirmation === null)
-        addIssue('confirmation', 'un compromiso ACORDADO exige soporte: quién confirmó, cuándo, método y evidencia de confirmación');
+        addIssue('confirmation', 'an AGREED commitment requires support: who confirmed, when, method, and confirmation evidence');
       else if (commitment.confirmation.sourceIds.length === 0)
-        addIssue('confirmation.sourceIds', 'un compromiso acordado exige evidencia de confirmación verificable');
+        addIssue('confirmation.sourceIds', 'an agreed commitment requires verifiable confirmation evidence');
     } else if (commitment.confirmation !== null) {
-      addIssue('confirmation', `una ${commitment.kind === 'estimate' ? 'estimación' : 'meta'} no lleva confirmación: confirmarla la disfrazaría de acuerdo`);
+      addIssue('confirmation', `una ${commitment.kind === 'estimate' ? 'estimate' : 'meta'} has no confirmation: confirming it would misrepresent it as an agreement`);
     }
   },
 );
@@ -798,17 +980,18 @@ const campaignCostItemSchema: Schema<CampaignCostItem> = refine(object({
   label: nonEmptyString(),
   amount: moneyClaimSchema,
   evidence: optional(claimRevisionSchema),
+  declaration: optional(buyerResponseSchema),
 }), (item, addIssue) => {
   const evidence = item.evidence;
   if (!evidence) return; // registros v1 anteriores: no inventar procedencia
-  if (!evidence.attribute.startsWith('cost:')) addIssue('evidence', 'la evidencia debe ser una partida de costo');
+  if (!evidence.attribute.startsWith('cost:')) addIssue('evidence', 'the evidence must be a cost item');
   if ((evidence.status === 'inferred' || evidence.status === 'contradicted') && item.amount.status !== evidence.status)
-    addIssue('amount.status', 'la campaña debe conservar el estado inferido o contradicho de su evidencia');
+    addIssue('amount.status', 'the campaign must preserve the inferred or contradicted status of its evidence');
   if (evidence.status === 'pending' && item.amount.status !== 'unknown')
-    addIssue('amount.status', 'un costo pendiente no se convierte en importe conocido');
+    addIssue('amount.status', 'a pending cost does not become a known amount');
   if (evidence.value.kind === 'money' && item.amount.status !== 'unknown' &&
       (evidence.value.amount !== item.amount.amount || evidence.value.currency !== item.amount.currency))
-    addIssue('amount', 'el importe y moneda deben coincidir con la revisión conservada');
+    addIssue('amount', 'the amount and currency must match the saved revision');
 });
 
 const campaignDraftSchema: Schema<CampaignDraftRecord> = object({
@@ -816,12 +999,15 @@ const campaignDraftSchema: Schema<CampaignDraftRecord> = object({
   id: idSchema,
   decisionId: idSchema,
   objective: nonEmptyString(),
+  owner: optional(nullable(nonEmptyString())),
   successDefinition: nullable(nonEmptyString()),
   modality: discriminated('status', {
     defined: object({
       status: literal('defined'),
       kind: literal('sponsorship', 'workshop', 'co_hosted', 'booth', 'other'),
       detail: nullable(nonEmptyString()),
+      basis: optional(literal('proposed', 'offered')),
+      declaration: optional(buyerResponseSchema),
     }),
     pending: object({ status: literal('pending') }),
   }),
@@ -841,7 +1027,7 @@ function describeVersion(value: unknown): string {
 function versionedParser<T>(name: string, schema: Schema<T>): (input: unknown) => ValidationResult<T> {
   return (input) => {
     if (!isPlainRecord(input)) {
-      return { ok: false, issues: [{ path: '$', message: `se esperaba objeto ${name}, llegó ${typeName(input)}` }] };
+      return { ok: false, issues: [{ path: '$', message: `expected object ${name}, received ${typeName(input)}` }] };
     }
     if (input.contractVersion !== SUPPORTED_CONTRACT_VERSION) {
       return {
@@ -849,7 +1035,7 @@ function versionedParser<T>(name: string, schema: Schema<T>): (input: unknown) =
         issues: [
           {
             path: '$.contractVersion',
-            message: `versión de contrato ${describeVersion(input.contractVersion)} desconocida para ${name}: este lector entiende «${SUPPORTED_CONTRACT_VERSION}» y no interpreta otra versión como la actual`,
+            message: `contract version ${describeVersion(input.contractVersion)} is unknown for ${name}: this reader supports «${SUPPORTED_CONTRACT_VERSION}» and does not interpret another version as current`,
           },
         ],
       };
@@ -870,13 +1056,20 @@ export const parseParticipationRevision = versionedParser('ParticipationRevision
 export const parseEvaluationSnapshot = versionedParser('EvaluationSnapshot', evaluationSnapshotSchema);
 export const parseEvaluationDecision = versionedParser('EvaluationDecision', evaluationDecisionSchema);
 export const parseCampaignDraft = versionedParser('CampaignDraftRecord', campaignDraftSchema);
+export const parseResearchPlan = versionedParser('ResearchPlan', researchPlanSchema);
+export const parseResearchProgress = versionedParser('ResearchProgress', researchProgressSchema);
+export function parseProviderConsumption(input: unknown): ValidationResult<ProviderConsumption> {
+  const issues: ValidationIssue[] = [];
+  const value = providerConsumptionSchema.read(input, '$', issues);
+  return value === INVALID ? { ok: false, issues } : { ok: true, value };
+}
 
 // Valida el agregado completo que una lectura entrega a la proyección. Cada
 // miembro se valida con su parser versionado; los ids ENTRE miembros no se
 // resuelven acá (integridad relacional: tickets 08 y 09).
 export function parseEvaluationReadBundle(input: unknown): ValidationResult<EvaluationReadBundle> {
   if (!isPlainRecord(input)) {
-    return { ok: false, issues: [{ path: '$', message: `se esperaba objeto EvaluationReadBundle, llegó ${typeName(input)}` }] };
+    return { ok: false, issues: [{ path: '$', message: `se esperaba objeto EvaluationReadBundle, received ${typeName(input)}` }] };
   }
   const issues: ValidationIssue[] = [];
   const prefixed = (prefix: string, result: ValidationResult<unknown>): boolean => {
@@ -888,7 +1081,7 @@ export function parseEvaluationReadBundle(input: unknown): ValidationResult<Eval
   const listMember = (key: string, parse: (item: unknown) => ValidationResult<unknown>): boolean => {
     const value = member(key);
     if (!Array.isArray(value)) {
-      issues.push({ path: `$.${key}`, message: `se esperaba array, llegó ${typeName(value)}` });
+      issues.push({ path: `$.${key}`, message: `expected array, received ${typeName(value)}` });
       return false;
     }
     let ok = true;
@@ -916,13 +1109,13 @@ export function parseEvaluationReadBundle(input: unknown): ValidationResult<Eval
   ok = nullableMember('campaign', parseCampaignDraft) && ok;
   for (const key of Object.keys(input)) {
     if (!['profile', 'snapshot', 'claims', 'sources', 'organizers', 'editions', 'companies', 'participations', 'decision', 'campaign'].includes(key)) {
-      issues.push({ path: `$.${key}`, message: 'miembro desconocido para EvaluationReadBundle v1' });
+      issues.push({ path: `$.${key}`, message: 'unknown member for EvaluationReadBundle v1' });
       ok = false;
     }
   }
   for (const key of ['decision', 'campaign']) {
     if (!hasOwn(input, key)) {
-      issues.push({ path: `$.${key}`, message: 'miembro requerido ausente (usá null si no hay)' });
+      issues.push({ path: `$.${key}`, message: 'missing required member (use null if absent)' });
       ok = false;
     }
   }

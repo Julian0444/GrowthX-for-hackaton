@@ -30,3 +30,13 @@ Vocabulario para investigar organizadores y decidir patrocinios de eventos de de
 
 **Evidencia:** material que respalda una afirmación específica, con origen, fecha y alcance. La existencia de una fuente no respalda cualquier afirmación sobre su sujeto.
 
+
+**Brief de investigación:** descripción revisable de producto, audiencia, objetivo declarado o provisional, éxito esperado, presupuesto comercial, fechas, ciudad, formatos, restricciones y empresas aportadas. Declarar un objetivo no valida su viabilidad.
+
+**Hallazgo:** información nueva respaldada para una entidad y edición concretas. Una pregunta o página descargada todavía no es un hallazgo; una cobertura insuficiente conserva sus vacíos.
+
+**Proyecto publicado:** artefacto identificado y vinculado a una edición mediante evidencia. Premio, herramienta declarada y eficacia son afirmaciones distintas; el vínculo no acredita adopción comercial.
+
+**Ubicación pública:** lugar publicado para una edición, con dirección, procedencia y precisión conocidas o pendientes. Ciudad sola o coordenadas sin precisión documentada no identifican una sede.
+
+**Cupo de investigación:** límite operativo de consultas, lecturas o gasto en proveedores. Es independiente del presupuesto comercial destinado a participar en una actividad.

@@ -1,0 +1,470 @@
+{
+  "material": "real public HTTP sources; illustrative buyer",
+  "runId": "07f0cba9-121a-4c8f-a60d-59ecc083da25",
+  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+  "editionRevisionId": "edition-rev-e689ce017f8bff3fb00b1351-geo",
+  "projectUrl": null,
+  "result": {
+    "kind": "background_research",
+    "status": "partial",
+    "version": 1,
+    "material": "imported",
+    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+    "limitations": [
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase: La página respondió 403",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo: La página respondió 403",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk: La página respondió 403",
+      "https://sf.aitinkerers.org/organizers: La página respondió 403"
+    ],
+    "sourceCount": 2,
+    "organizerIds": [
+      "organizer-c65ea5ee11a9e13d7a13bd36"
+    ],
+    "attemptedUrls": [
+      "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "https://sf.aitinkerers.org/organizers"
+    ],
+    "editionRevisionIds": [
+      "edition-rev-e689ce017f8bff3fb00b1351-geo",
+      "edition-rev-861637e30276e9a91ecc9d88-geo"
+    ]
+  },
+  "additional": [
+    {
+      "case": "Vultr current host -> historical sponsor in Paris; lablab.ai organizer",
+      "runId": "ad9791d8-59a0-4d75-8ce0-ca0b2272eb52",
+      "result": {
+        "kind": "background_research",
+        "status": "completed",
+        "version": 1,
+        "material": "imported",
+        "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+        "limitations": [],
+        "sourceCount": 2,
+        "organizerIds": [
+          "organizer-d0350d3075591b98188bfa06",
+          "organizer-17a4d73021fb1f28da17cd13"
+        ],
+        "attemptedUrls": [
+          "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+          "https://blogs.vultr.com/vultr-at-RAISE-2025"
+        ],
+        "editionRevisionIds": [
+          "edition-rev-746631fd60c8055861842ac2-geo",
+          "edition-rev-0416456117b39f576a1c3191"
+        ]
+      },
+      "verified": true
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "id": "background-source-2032bb43ad473feed13120c0",
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "title": "AI Tinkerers SF - Secure Agents Buildathon",
+      "method": "http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "4c4594127503ee9db4025a31506b1446b84adbe304d5af19cbb69cc44e067254"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:21:08.102Z",
+      "fragments": [
+        {
+          "id": "fragment-d0ca18ee13274345",
+          "text": "name: AI Tinkerers SF - Secure Agents Buildathon",
+          "locator": "JSON-LD Event.name"
+        },
+        {
+          "id": "fragment-4734568ad8420fed",
+          "text": "startDate: 2025-12-06T09:00:00-08:00",
+          "locator": "JSON-LD Event.startDate"
+        },
+        {
+          "id": "fragment-f03d3a7f258c9c24",
+          "text": "endDate: 2025-12-06T20:00:00-08:00",
+          "locator": "JSON-LD Event.endDate"
+        },
+        {
+          "id": "fragment-013c86031e120ac3",
+          "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+          "locator": "JSON-LD Event.eventAttendanceMode"
+        },
+        {
+          "id": "fragment-63570ff0e6d5bac8",
+          "text": "organizer.name: AI Tinkerers - San Francisco",
+          "locator": "JSON-LD Event.organizer.name"
+        },
+        {
+          "id": "fragment-d5d908fee1b88208",
+          "text": "offers.price: 0; offers.priceCurrency: USD",
+          "locator": "JSON-LD Event.offers"
+        },
+        {
+          "id": "fragment-924c3b2779cb4aa1",
+          "text": "offers.availability: sold_out",
+          "locator": "JSON-LD Event.offers.availability"
+        },
+        {
+          "id": "fragment-3d53174a6b2b4a2a",
+          "text": "location.name: Private venue",
+          "locator": "JSON-LD Event.location.name"
+        },
+        {
+          "id": "fragment-cda03ebf173264e4",
+          "text": "location.address.addressLocality: San Francisco",
+          "locator": "JSON-LD Event.location.address.addressLocality"
+        },
+        {
+          "id": "fragment-c32e9f3f7b0df3d1",
+          "text": "location.address: 1185 Old Mason St, San Francisco, CA, 94123, US",
+          "locator": "JSON-LD Event.location.address"
+        },
+        {
+          "id": "fragment-2ec2103da0c65a4d",
+          "text": "AI Tinkerers SF - Secure Agents Buildathon: Available after application approval",
+          "locator": "HTML line 3188"
+        },
+        {
+          "id": "fragment-3c2bdc806c17fb61",
+          "text": "December 6, 2025, from 9am to 8pm.",
+          "locator": "HTML line 2510"
+        },
+        {
+          "id": "fragment-aa034d9d89954fbc",
+          "text": "Saturday, December 6th, 2025 • 9AM to 8PM (PDT)",
+          "locator": "HTML line 3171"
+        },
+        {
+          "id": "fragment-028a938ce75e3b8a24a9ef90",
+          "text": "Subscribe to AI Tinkerers - San Francisco",
+          "locator": "HTML line 3677"
+        },
+        {
+          "id": "fragment-90f003c3faf067c8a3fcb9a3",
+          "text": "AI Tinkerers SF - Secure Agents Buildathon",
+          "locator": "HTML line 2465"
+        },
+        {
+          "id": "fragment-1526c2b366c9613f160e9798",
+          "text": "This is not a theory day. No slide decks. No hand-wavy security talk. You’ll spend the day building production-minded agents with other vetted AI Tinkerers who care about robustness, safe execution, permissioning, data boundaries, and real-world failure modes.",
+          "locator": "HTML line 2520"
+        },
+        {
+          "id": "fragment-a4859be370752256e4008eee",
+          "text": "Thank you to Google Cloud!",
+          "locator": "HTML line 2589"
+        },
+        {
+          "id": "fragment-fe9e303dc9944dbdb4247b9a",
+          "text": "Monitoring, auditing, and recovery patterns for long-running agents",
+          "locator": "HTML line 2536"
+        },
+        {
+          "id": "fragment-26473f0e9aea3e1475f298e1",
+          "text": "Venue Host",
+          "locator": "HTML line 2615"
+        },
+        {
+          "id": "fragment-1d316fc0f1fd8997cd7edeb6",
+          "text": "Wordware",
+          "locator": "HTML line 2616"
+        },
+        {
+          "id": "fragment-54c12e0e1ede71a1207f5552",
+          "text": "Winners & Projects: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+          "locator": "HTML line 3208 a[href]"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "requestedUrl": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-401e289236d65537a6bffa65",
+      "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "title": "Agents, Everywhere: Bots, Channels, & More — Global Hackathon",
+      "method": "http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "40c5a659f9bde38544b4f1f336f64cc55258e1914d096e52204697b6bcb3cfc4"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:21:07.885Z",
+      "fragments": [
+        {
+          "id": "fragment-7d38db4042fad1dd",
+          "text": "name: Agents, Everywhere: Bots, Channels, & More — Global Hackathon",
+          "locator": "JSON-LD Event.name"
+        },
+        {
+          "id": "fragment-da30335728b006dc",
+          "text": "startDate: 2026-09-12T10:00:00-07:00",
+          "locator": "JSON-LD Event.startDate"
+        },
+        {
+          "id": "fragment-ccf270b578995686",
+          "text": "endDate: 2026-09-12T17:00:00-07:00",
+          "locator": "JSON-LD Event.endDate"
+        },
+        {
+          "id": "fragment-013c86031e120ac3",
+          "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+          "locator": "JSON-LD Event.eventAttendanceMode"
+        },
+        {
+          "id": "fragment-63570ff0e6d5bac8",
+          "text": "organizer.name: AI Tinkerers - San Francisco",
+          "locator": "JSON-LD Event.organizer.name"
+        },
+        {
+          "id": "fragment-d5d908fee1b88208",
+          "text": "offers.price: 0; offers.priceCurrency: USD",
+          "locator": "JSON-LD Event.offers"
+        },
+        {
+          "id": "fragment-3d53174a6b2b4a2a",
+          "text": "location.name: Private venue",
+          "locator": "JSON-LD Event.location.name"
+        },
+        {
+          "id": "fragment-cda03ebf173264e4",
+          "text": "location.address.addressLocality: San Francisco",
+          "locator": "JSON-LD Event.location.address.addressLocality"
+        },
+        {
+          "id": "fragment-fb515e0d692a7f67",
+          "text": "Sponsors and partners: OpenAI Marquee sponsor CopilotKit Sponsor OpenRouter Sponsor Exa Sponsor Auth0 Sponsor Ambiguous AI Sponsor Trigger.dev Sponsor Mozilla Sponsor Google Cloud Run Sponsor Sign in to apply People A global hackathon with OpenAI On Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day. Build an agent for a place people already work, talk, and live, then make it meaningfully more useful because of that context.",
+          "locator": "HTML line 2513; HTML line 2584; HTML line 2592; HTML line 2600; HTML line 2602; HTML line 2604"
+        },
+        {
+          "id": "fragment-c2c7b73d458f0ce1",
+          "text": "Event details: Location: Shared upon acceptance Developer Infrastructure Partners: Available after application approval",
+          "locator": "HTML line 2618; HTML line 3368"
+        },
+        {
+          "id": "fragment-83d51f5c23ae12a4",
+          "text": "The day: Time What happens 10:00–10:30 Doors, food, check-in, and meeting potential teammates 10:30–11:00 Shared global opening and starter-kit walkthrough 11:00–11:15 Team formation 11:15–15:30 Build session 15:30–16:00 Complete project submissions in the portal 16:00–16:45 Optional local show-and-tell (after submitting) 16:45–17:00 Wrap and group photo Local demos are for sharing work and learning from the room. There is no formal local judging. What every team submits: Before the event ends, every team submits: Title — a clear name for the project Written description — what you built, who it is for, and why the context matters Public GitHub repository — working code that can be reviewed and learned from Two-minute video — a concise demo of the project in action Social post — a public post about the project that tags the event sponsors Build something that can be shown. A sharp, working demo beats a broad concept.",
+          "locator": "HTML line 2662; HTML line 2668; HTML line 2672; HTML line 2676; HTML line 2680; HTML line 2684; HTML line 2688; HTML line 2692; HTML line 2698; HTML line 2714; HTML line 2718; HTML line 2721; HTML line 2724; HTML line 2727; HTML line 2730; HTML line 2734"
+        },
+        {
+          "id": "fragment-c01cd7af7a3b76ec",
+          "text": "Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.",
+          "locator": "HTML line 2746"
+        },
+        {
+          "id": "fragment-8f961cbe876e98c0",
+          "text": "Global Sponsors: OpenAI OpenAI is an AI research and deployment company whose mission is to ensure that artificial general intelligence benefits all of humanity. Its work spans frontier research and products that turn advanced AI capabilities into tools people and organizations can use. OpenAI is focused on making advanced intelligence safe, useful, accessible, and broadly beneficial—supporting greater productivity, creativity, scientific progress, and economic opportunity. CopilotKit CopilotKit is the Agentic Application Platform, an open-source framework and cloud platform for building and operating production-grade agentic applications. Its stack connects AI agents to user-facing products through in-app actions, generative UI, real-time context awareness, and support for protocols including AG-UI, MCP, and A2A. OpenRouter OpenRouter is an AI gateway and model marketplace offering a unified interface for hundreds of models across multiple providers. It is designed to reduce vendor lock-in while improving availability, pricing flexibility, and control over model routing. Many more global partners will be joining the event and added to this page soon.",
+          "locator": "HTML line 2754; HTML line 2756; HTML line 2760; HTML line 2762; HTML line 2766; HTML line 2768; HTML line 2772"
+        },
+        {
+          "id": "fragment-c6f7cfe1f5da3859",
+          "text": "Developer Infrastructure Partners: Exa Exa builds search infrastructure for AI applications. Its search engine and APIs help developers and agents find, retrieve, and synthesize high-quality web content through natural-language queries. Trigger.dev Trigger.dev is an open-source background jobs framework for building reliable workflows in plain async code. It provides infrastructure for long-running tasks and AI workloads, including queuing, retries, elastic scaling, and real-time monitoring. Auth0 Auth0 is an identity platform for developers, providing authentication and authorization infrastructure for web, mobile, and AI applications. Its SDKs and APIs help teams add secure login, access control, and identity workflows without building them from scratch. Mozilla Mozilla.ai builds open-source AI tools and infrastructure designed to make it easier for developers to create trustworthy, transparent, and controllable AI applications. Ambiguous AI Ambiguous is the workspace for human-AI collaboration. 17 productivity apps rebuilt from scratch to make work flow across Docs, Mail, Chat, Sheets, CRM, Calendar, and more. Each AI coworker has its own identity and works in the same apps and on the same data like the rest of the team. You can send it an email, message it in chat, assign it a task, or @mention it in a comment. Teams of up to five can use all 17 apps for free, and agents can get started through CLI or MCP in under a minute. Sep 12 Saturday Saturday, September 12th, 2026 • 10AM to 5PM (PDT) San Francisco Available after application approval",
+          "locator": "HTML line 2778; HTML line 2780; HTML line 2784; HTML line 2786; HTML line 2790; HTML line 2792; HTML line 2796; HTML line 2798; HTML line 2802; HTML line 2804; HTML line 3339; HTML line 3342; HTML line 3347; HTML line 3351; HTML line 3365; HTML line 3368"
+        },
+        {
+          "id": "fragment-ebd8a301d914dd23",
+          "text": "Agents, Everywhere: Beyond The Chatbox — Global Hackathon (Sept 12, 2026)",
+          "locator": "HTML line 2450"
+        },
+        {
+          "id": "fragment-e55f09848fe11525",
+          "text": "Date: Saturday, September 12, 2026",
+          "locator": "HTML line 2612"
+        },
+        {
+          "id": "fragment-5df29efefbcb8a93",
+          "text": "Saturday, September 12th, 2026 • 10AM to 5PM (PDT)",
+          "locator": "HTML line 3351"
+        },
+        {
+          "id": "fragment-63570ff0e6d5bac82e59102a",
+          "text": "organizer.name: AI Tinkerers - San Francisco",
+          "locator": "JSON-LD Event.organizer.name"
+        },
+        {
+          "id": "fragment-8626b2a2f478a40fbbda9939",
+          "text": "Part of a global AI Tinkerers hackathon",
+          "locator": "HTML line 2449"
+        },
+        {
+          "id": "fragment-111f1373de8526b1160f037b",
+          "text": "This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.",
+          "locator": "HTML line 2746"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "requestedUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-b7127246d23b05258171c6ef",
+      "url": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "title": "Inside RAISE Summit 2025: Bringing AI Infrastructure to Center Stage | Vultr Blogs",
+      "method": "http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "ec17afef33c3467b8942c7d2d575d7c0c6c493e5c1452eeaa5381fd6e22c3994"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "blogs.vultr.com",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:21:15.746Z",
+      "fragments": [
+        {
+          "id": "fragment-67267acaae99cf247b16026b",
+          "text": "Last week, Vultr participated in the 2025 RAISE Summit, an extraordinary gathering of global AI leaders hosted in the heart of Paris. Set beneath the glass pyramid of the Carrousel du Louvre, the summit was a celebration of innovation, policy, and real-world AI impact. For Vultr, the location was especially meaningful: Paris is not only home to one of our 32 cloud data center regions, but also a key market where data sovereignty, compliance, and cloud independence matter deeply.",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-a9fbe85d7aab750e37cec324",
+          "text": "One of the most exciting parts of the week was sponsoring the agentic AI hackathon, organized by our partner lablab.ai. With over 100 participating teams and more than 50 Vultr-powered submissions, our track was the most popular of the summit. The engagement, creativity, and engineering talent on display were exceptional.",
+          "locator": "HTML line 1"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "requestedUrl": "https://blogs.vultr.com/vultr-at-RAISE-2025",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-f192d841b9a45e40058c898f",
+      "url": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "title": "The Agent Arena Hackathon",
+      "method": "http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "75c3fc4c70ecfdfca6598e8b6bf99fe472e547503f5c6830c534c45eb6d70629"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "cerebralvalley.ai",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:21:14.879Z",
+      "fragments": [
+        {
+          "id": "fragment-35a7e50e67ff9023",
+          "text": "name: The Agent Arena Hackathon",
+          "locator": "JSON-LD Event.name"
+        },
+        {
+          "id": "fragment-5cbe35e7fc108e04",
+          "text": "startDate: 2026-09-26T16:00:00.000Z",
+          "locator": "JSON-LD Event.startDate"
+        },
+        {
+          "id": "fragment-b992b86234c73801",
+          "text": "endDate: 2026-09-28T00:00:00.000Z",
+          "locator": "JSON-LD Event.endDate"
+        },
+        {
+          "id": "fragment-013c86031e120ac3",
+          "text": "eventAttendanceMode: https://schema.org/OfflineEventAttendanceMode",
+          "locator": "JSON-LD Event.eventAttendanceMode"
+        },
+        {
+          "id": "fragment-fd84b11cfb8296aa",
+          "text": "organizer.name: Vultr",
+          "locator": "JSON-LD Event.organizer.name"
+        },
+        {
+          "id": "fragment-d5d908fee1b88208",
+          "text": "offers.price: 0; offers.priceCurrency: USD",
+          "locator": "JSON-LD Event.offers"
+        },
+        {
+          "id": "fragment-9a13c107e22c7dec",
+          "text": "location.name: San Francisco, CA",
+          "locator": "JSON-LD Event.location.name"
+        },
+        {
+          "id": "fragment-cda03ebf173264e4",
+          "text": "location.address.addressLocality: San Francisco",
+          "locator": "JSON-LD Event.location.address.addressLocality"
+        },
+        {
+          "id": "fragment-33756ad62521fcb9",
+          "text": "The Agent Arena Hackathon: Note: This event is fully in-person in San Francisco. Teams may have up to four members. All attendees must apply and be approved. Submitting an application does not guarantee a seat; approved applicants must confirm their attendance.",
+          "locator": "HTML line 50"
+        },
+        {
+          "id": "fragment-0c473c896a3ce1dd",
+          "text": "San Francisco, CASep 26 at 9:00 AM – Sep 27 at 5:00 PM (PDT)",
+          "locator": "HTML line 50"
+        },
+        {
+          "id": "fragment-cec986ee0eb72274cc7ba2b9",
+          "text": "Join us at The Agent Arena Hackathon hosted by Vultr to build what the next generation of agent infrastructure actually looks like in production.",
+          "locator": "HTML line 50"
+        },
+        {
+          "id": "fragment-fc2c0cbd302ac2f58d5b3904",
+          "text": "Vultr: https://cerebralvalley.ai/u/vultr",
+          "locator": "HTML line 50 a[href]"
+        },
+        {
+          "id": "fragment-9914119e25e6cb9d7bb32102",
+          "text": "Vultr is bringing the tools for you to build infrastructure powering the next generation of autonomous execution: VM backends, serverless inference, and the compute layer agents run on when they stop talking and start acting.",
+          "locator": "HTML line 50"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "requestedUrl": "https://cerebralvalley.ai/e/vultr-the-agent-arena",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    }
+  ],
+  "checks": {
+    "eventToOrganizer": true,
+    "organizerToPreviousEdition": true,
+    "projectLink": false,
+    "technologyFragment": false,
+    "companyRoleFragment": true,
+    "partialCoverage": true,
+    "reloadSameRevision": true,
+    "mobileNoOverflow": true,
+    "foreignTenant404": true
+  },
+  "paidProviders": {
+    "exa": 0,
+    "apify": 0
+  },
+  "errors": []
+}

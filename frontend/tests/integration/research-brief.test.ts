@@ -1,0 +1,74 @@
+import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
+import { test } from 'node:test';
+import pg from 'pg';
+import { runMigrations } from '../../lib/server/db/migrate.ts';
+import { closePools, getAppPool, withTenantTransaction } from '../../lib/server/db/pool.ts';
+import { createEvaluationService } from '../../lib/server/evaluations/service.ts';
+import { loadCuratedCatalog } from '../../lib/server/catalog/store.ts';
+import { readEditionDossier } from '../../lib/server/catalog/read.ts';
+import { projectEditionDossierView } from '../../lib/api/opportunity-adapter.ts';
+import { parseCurationManifest } from '../../lib/server/catalog/manifest.ts';
+import { processEvaluationRun } from '../../lib/server/evaluations/run-worker.ts';
+import { briefBody, referenceManifest } from '../fixtures/research-brief.ts';
+
+test('DP03: revisiones, referencias por fragmento, lecturas antiguas y aislamiento en PostgreSQL', async t => {
+  assert.ok(process.env.GROWTHX_ADMIN_DATABASE_URL, 'usar cluster aislado explícito');
+  const admin = new pg.Client({ connectionString: process.env.GROWTHX_ADMIN_DATABASE_URL }); await admin.connect();
+  const app = getAppPool();
+  t.after(async () => { await closePools(); await admin.end(); });
+  await runMigrations();
+  const tenantId = randomUUID(), decoy = randomUUID(), userId = randomUUID();
+  await admin.query('insert into growthx.tenants(id,slug,display_name) values($1::uuid,$1::text,$1::text),($2::uuid,$2::text,$2::text)', [tenantId, decoy]);
+  await admin.query('insert into growthx.app_users(id,email,display_name) values($1::uuid,$1::text,$1::text)', [userId]);
+  await admin.query('insert into growthx.memberships(tenant_id,user_id) values($1,$3),($2,$3)', [tenantId,decoy,userId]);
+  // El job se prueba con el worker real en E2E; acá aislamos aceptación/DB.
+  const service = createEvaluationService({ pool: app, queue: { async sendRunJob() {} } });
+  const body = briefBody(); body.idempotencyKey = randomUUID();
+  const first = await service.accept({ tenantId, userId, body }); assert.equal(first.status,'accepted'); if (first.status !== 'accepted') throw Error('accept');
+  const r1 = await service.getRun({ tenantId, runId: first.runId }); assert.ok(r1);
+  assert.equal(r1.profile.profileVersion, 1); assert.equal(r1.profile.objective.confirmation, 'confirmed');
+  assert.equal(r1.profile.objective.successDefinition.status, 'defined'); assert.equal(r1.profile.restrictions.length, 2);
+  assert.equal(r1.researchPlan?.profileId, r1.profile.id);
+  assert.ok(r1.researchPlan?.questions.some(q => q.text.includes('adop') || q.text.includes('instrumentar')));
+  const changed = briefBody(); changed.idempotencyKey = randomUUID(); changed.previousRunId = first.runId;
+  changed.profile.audienceDescription = 'Ingenieros de pagos'; changed.profile.product = 'Infraestructura fintech'; changed.profile.objective.kind = 'hiring'; changed.profile.budget = { status: 'declared', amount: 4200, currency: 'EUR' };
+  const second = await service.accept({ tenantId, userId, body: changed }); assert.equal(second.status,'accepted'); if (second.status !== 'accepted') throw Error('accept2');
+  const fresh = new pg.Pool({ connectionString: process.env.GROWTHX_DATABASE_URL });
+  const reader = createEvaluationService({ pool: fresh });
+  try {
+    const r2 = await reader.getRun({ tenantId, runId: second.runId }); assert.ok(r2);
+    assert.equal(r2.profile.profileVersion, 2); assert.equal(r2.researchPlan?.profileVersion, 2);
+    assert.notDeepEqual(r2.researchPlan?.questions, r1.researchPlan?.questions);
+    assert.deepEqual(r2.researchPlan?.providerLimits, r1.researchPlan?.providerLimits);
+    assert.deepEqual(await reader.getRun({ tenantId, runId: first.runId }), r1);
+    assert.equal(await reader.getRun({ tenantId: decoy, runId: first.runId }), null);
+    const denied = await service.accept({ tenantId: decoy, userId, body: { ...changed, idempotencyKey: randomUUID() } }); assert.equal(denied.status,'invalid_profile');
+  } finally { await fresh.end(); }
+  const manifest = referenceManifest(); const validated = parseCurationManifest(manifest); assert.ok(validated.ok, JSON.stringify(validated));
+  await loadCuratedCatalog(app, tenantId, manifest);
+  const read = await readEditionDossier(app, tenantId, 'ait-2025', '2026-09-10T18:00:00Z'); assert.ok(read);
+  const view = projectEditionDossierView(read);
+  assert.deepEqual(view.relationships, manifest.editions[0].relationships);
+  assert.equal(view.editionRevisionId, 'ait-2025-r1'); assert.equal(view.publicLocation.precision, 'unknown');
+  assert.ok(read.sources.find(s => s.id === 'citadel')?.fragments?.some(f => f.id === 'award'));
+  assert.ok(read.companies.some(c => c.id === 'google-cloud'));
+  assert.equal(await readEditionDossier(app, decoy, 'ait-2025', '2026-09-10T18:00:00Z'), null);
+  await withTenantTransaction(app, decoy, async client => { assert.equal((await client.query("select id from growthx.sources where id='citadel'")).rowCount, 0); });
+  const bad = referenceManifest(); bad.name = 'Missing fragment'; bad.editions[0].id = 'ait-2025-r2'; bad.editions[0].previousRevisionId = 'ait-2025-r1'; bad.editions[0].relationships![2].evidence[0].fragmentId = 'missing';
+  await assert.rejects(loadCuratedCatalog(app, tenantId, bad), /fragmento no disponible/);
+  const cross = referenceManifest(); cross.name = 'Cross tenant source'; cross.sources = [];
+  await assert.rejects(loadCuratedCatalog(app, decoy, cross), /no disponibles bajo este tenant/);
+  const company = referenceManifest(); company.name = 'Cross tenant company'; company.companies = [];
+  await assert.rejects(loadCuratedCatalog(app, decoy, company), /Entidad de relación no disponible/);
+  // V1 sin extensiones se lee sin reescritura ni atribución nueva.
+  await admin.query("update growthx.runs set input=input-'researchPlan' where id=$1", [first.runId]);
+  await admin.query("update growthx.profiles set payload=payload-'geography'-'formats' where id=$1", [r1.profileId]);
+  const legacy = await service.getRun({ tenantId, runId: first.runId }); assert.equal(legacy?.researchPlan, null); assert.equal(legacy?.profile.formats, undefined);
+  const emptyBody = briefBody(); delete emptyBody.researchScope; emptyBody.idempotencyKey = randomUUID();
+  const empty = await service.accept({ tenantId: decoy, userId, body: emptyBody }); if (empty.status !== 'accepted') throw Error('empty run');
+  await processEvaluationRun({ tenantId: decoy, runId: empty.runId }, { pool: app });
+  const result = await service.getRun({ tenantId: decoy, runId: empty.runId });
+  assert.equal(result?.state, 'completed'); assert.deepEqual((result?.result as { candidates: unknown[] }).candidates, []);
+  t.diagnostic('Dos revisiones y preguntas diferentes; v1 original intacta; costo comercial separado; fragmentos/roles correctos; fuentes, empresas y run ajenos rechazados; sin fallback sintético.');
+});

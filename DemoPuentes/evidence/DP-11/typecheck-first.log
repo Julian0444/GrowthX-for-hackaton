@@ -1,0 +1,2 @@
+lib/api/atlas-client.ts(611,85): error TS2304: Cannot find name 'revision'.
+lib/api/atlas-client.ts(611,128): error TS2304: Cannot find name 'revision'.

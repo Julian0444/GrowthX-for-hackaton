@@ -1,3 +1,5 @@
+import type { DeclaredDate } from '../../contracts/evaluation.ts';
+import { classifyDeclaredDate } from '../../temporal/declared-date.ts';
 // Lectura del catálogo curado y de los expedientes (ticket 09). Server-only.
 //
 // Todo sale de PostgreSQL bajo el tenant (RLS); abrir un expediente NO consulta
@@ -15,7 +17,6 @@ import type pg from 'pg';
 import type {
   ClaimRevision,
   CompanyRecord,
-  DeclaredDate,
   EditionLocation,
   EventEditionRevision,
   OrganizerRevision,
@@ -31,7 +32,7 @@ import {
   parseSourceRecord,
   type ValidationResult,
 } from '../../contracts/evaluation-validation.ts';
-import { classifyEventValidity, type EventValidity } from '../../temporal/event-validity.ts';
+import type { EventValidity } from '../../temporal/event-validity.ts';
 import { withTenantTransaction } from '../db/pool.ts';
 import {
   orderRevisionChain,
@@ -130,51 +131,14 @@ export interface OrganizerDossierRead {
 // Adapta DeclaredDate (contrato 07) a la política temporal del ticket 04.
 // Con zona IANA declarada en date_only se evalúa igual de forma conservadora
 // (rango completo de offsets): refinarlo por zona es parte de D2.
-export function classifyDeclaredDate(date: DeclaredDate, evaluationInstant: string): EditionValidityView {
-  switch (date.precision) {
-    case 'instant': {
-      const result = classifyEventValidity(date.iso, evaluationInstant);
-      return { validity: result.validity, reason: result.reason };
-    }
-    case 'date_only': {
-      const result = classifyEventValidity(date.date, evaluationInstant);
-      return { validity: result.validity, reason: result.reason };
-    }
-    case 'ambiguous': {
-      const evaluation = Date.parse(evaluationInstant);
-      const earliest = date.earliest !== null ? Date.parse(date.earliest) : Number.NaN;
-      const latest = date.latest !== null ? Date.parse(date.latest) : Number.NaN;
-      if (Number.isFinite(latest) && latest < evaluation) {
-        return {
-          validity: 'past',
-          reason: `Declared range ends (${date.latest}) before the evaluation instant; expired as an opportunity, kept as antecedent.`,
-        };
-      }
-      if (Number.isFinite(earliest) && earliest >= evaluation) {
-        return {
-          validity: 'upcoming',
-          reason: `Declared range starts (${date.earliest}) at or after the evaluation instant.`,
-        };
-      }
-      return {
-        validity: 'date_ambiguous',
-        reason: `Declared date "${date.text}" is ambiguous around the evaluation instant; it stays pending instead of guessing.`,
-      };
-    }
-    case 'unknown':
-      return {
-        validity: 'date_pending',
-        reason: 'No declared start date; the date stays pending and is never replaced by the current time.',
-      };
-  }
-}
+export { classifyDeclaredDate } from '../../temporal/declared-date.ts';
 
 // ============ Helpers de parseo (revalidación al leer) ============
 
 function mustParse<T>(kind: string, id: string, result: ValidationResult<T>): T {
   if (!result.ok) {
     const detail = result.issues.map((issue) => `${issue.path}: ${issue.message}`).join('; ');
-    throw new Error(`${kind} «${id}» inválido según contrato al leer: ${detail}`);
+    throw new Error(`${kind} «${id}» violates the contract when read: ${detail}`);
   }
   return result.value;
 }
@@ -315,8 +279,9 @@ function collectSourceIds(
   claims: RevisionedClaimRead[],
   organizers: RevisionedOrganizerRead[],
   participations: RevisionedParticipationRead[],
+  editions: EventEditionRevision[] = [],
 ): string[] {
-  const ids = new Set<string>();
+  const ids = new Set<string>(editions.flatMap(e => [...(e.publicLocation?.sourceIds ?? []), ...(e.relationships ?? []).flatMap(r => r.sourceIds)]));
   for (const claim of claims)
     for (const revision of claim.revisions) for (const id of revision.sourceIds) ids.add(id);
   for (const organizer of organizers)
@@ -426,15 +391,15 @@ export async function listCatalogEditions(
     const notes: string[] = [];
     if (editions.length === 0) {
       notes.push(
-        'No hay catálogo curado bajo este tenant. La carga es interna y explícita (scripts/load-curated-catalog.ts); no se rellena con seeds históricos.',
+        'No curated catalog for this tenant. Import is internal and explicit (scripts/load-curated-catalog.ts); historical seeds do not fill gaps.',
       );
     } else if (upcomingCount === 0) {
       notes.push(
-        `El catálogo curado no tiene ediciones vigentes al ${evaluationInstant}: se declara el límite del catálogo; no se rellena con seeds históricos.`,
+        `The curated catalog has no current editions as of ${evaluationInstant}: catalog coverage is declared; historical seeds do not fill gaps.`,
       );
     }
     if (hasSynthetic)
-      notes.push('Material sintético etiquetado (D4 pendiente): no acredita la revisión de eventos reales.');
+      notes.push('Labeled synthetic material (D4 pending): does not establish review of real events.');
 
     return {
       contractVersion: '1',
@@ -465,8 +430,9 @@ export async function readEditionDossier(
     const latest = latestOf(chain.revisions);
     const validity = classifyDeclaredDate(latest.startDate, evaluationInstant);
 
-    const organizerChains = await loadOrganizerChains(client, latest.organizerIds);
-    const organizers: RevisionedOrganizerRead[] = latest.organizerIds
+    const relatedOrganizerIds = [...new Set([...latest.organizerIds, ...(latest.relationships ?? []).flatMap(r => r.entity.type === 'organizer' ? [r.entity.organizerId] : [])])];
+    const organizerChains = await loadOrganizerChains(client, relatedOrganizerIds);
+    const organizers: RevisionedOrganizerRead[] = relatedOrganizerIds
       .filter((organizerId) => organizerChains.has(organizerId))
       .map((organizerId) => ({
         organizerId,
@@ -484,9 +450,9 @@ export async function readEditionDossier(
     const participations = await loadParticipationsForEditions(client, [editionId]);
     const companies = await loadCompanies(
       client,
-      participations.map((participation) => latestOf(participation.revisions).companyId),
+      [...participations.map((participation) => latestOf(participation.revisions).companyId), ...organizers.flatMap(o => latestOf(o.revisions).companyId ? [latestOf(o.revisions).companyId!] : []), ...latest.relationships?.flatMap(r => r.entity.type === 'company' ? [r.entity.companyId] : []) ?? []],
     );
-    const sources = await readValidatedSources(client, collectSourceIds(claims, organizers, participations));
+    const sources = await readValidatedSources(client, collectSourceIds(claims, organizers, participations, chain.revisions));
     const curationByLoad = await loadCurationInfo(client, [chain.latestLoadId]);
 
     return {
@@ -517,25 +483,30 @@ export async function readOrganizerDossier(
     if (!chain) return null;
 
     const editionChains = await loadEditionChains(client);
+    const companyId = latestOf(chain.revisions).companyId;
     const editions: OrganizerDossierEdition[] = [...editionChains.entries()]
-      .filter(([, { revisions }]) => latestOf(revisions).organizerIds.includes(organizerId))
+      .filter(([, { revisions }]) => {
+        const edition = latestOf(revisions);
+        return edition.organizerIds.includes(organizerId) || (edition.relationships ?? []).some(r =>
+          r.entity.type === 'organizer' ? r.entity.organizerId === organizerId : r.entity.type === 'company' && companyId !== undefined && r.entity.companyId === companyId);
+      })
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([, { revisions }]) => {
         const latest = latestOf(revisions);
         return { edition: latest, validity: classifyDeclaredDate(latest.startDate, evaluationInstant) };
       });
 
-    const claims = await readClaimsForSubjects(client, [{ type: 'organizer', id: organizerId }], parseClaimOrThrow);
+    const claims = await readClaimsForSubjects(client, [{ type: 'organizer', id: organizerId }, ...editions.map(({edition}) => ({type:'edition',id:edition.editionId}))], parseClaimOrThrow);
     const participations = await loadParticipationsForEditions(
       client,
       editions.map(({ edition }) => edition.editionId),
     );
     const companies = await loadCompanies(
       client,
-      participations.map((participation) => latestOf(participation.revisions).companyId),
+      [...participations.map((participation) => latestOf(participation.revisions).companyId), ...editions.flatMap(({edition}) => (edition.relationships ?? []).flatMap(r => r.entity.type === 'company' ? [r.entity.companyId] : []))],
     );
     const organizers: RevisionedOrganizerRead[] = [{ organizerId, revisions: chain.revisions }];
-    const sources = await readValidatedSources(client, collectSourceIds(claims, organizers, participations));
+    const sources = await readValidatedSources(client, collectSourceIds(claims, organizers, participations, editions.map(e => e.edition)));
 
     const antecedentsDocumented = editions.filter(({ validity }) => validity.validity === 'past').length;
     return {
@@ -552,7 +523,7 @@ export async function readOrganizerDossier(
         antecedentsDocumented,
         note:
           antecedentsDocumented === 0
-            ? 'Sin antecedente histórico documentado para este organizador: se declara la insuficiencia de cobertura; no se fabrica trayectoria.'
+            ? 'No documented historical background for this organizer: insufficient coverage is declared; a track record is not fabricated.'
             : null,
       },
     };

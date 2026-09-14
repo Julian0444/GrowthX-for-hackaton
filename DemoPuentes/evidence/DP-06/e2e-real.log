@@ -1,0 +1,261 @@
+(node:49060) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP06 browser: real public sources -> organizer -> previous edition -> project -> evidence (13101.08625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13537.792584
+
+✖ failing tests:
+
+test at tests/e2e/relationships.spec.ts:19:68
+✖ DP06 browser: real public sources -> organizer -> previous edition -> project -> evidence (13101.08625ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Citadel/. Input:
+  
+  'DOSSIER DE EDICIÓN\n' +
+    'Agents, Everywhere: Bots, Channels, & More — Global Hackathon\n' +
+    '\n' +
+    'ID: edition-d54a42d3ba8672ab20f9aeec · upcoming · 2 revisión(es)\n' +
+    '\n' +
+    'Abrir listado de la edición\n' +
+    '\n' +
+    "Automatically imported from a user-provided Luma URL: fields are the page's announcements, not curated review.\n" +
+    '\n' +
+    'Fuente obtenida 2026-09-10T22:17:28.066Z · extracción automática, sin revisión humana\n' +
+    '\n' +
+    'WHY THIS MATTERS FOR YOUR BRIEF\n' +
+    '\n' +
+    "For Observabilidad para agentes (adoption), reviewed material does not yet establish this organizer's delivery history. Request relevant previous editions, voluntary project references, an operational contact and full costs before choosing a format.\n" +
+    '\n' +
+    'inferred · alcance pendiente inferencia (bounded_public_source_extraction) · Buyer-specific research hypothesis; no performance ranking or commercial return inferred.; pendiente de confirmar\n' +
+    'Evidence · 8 fragment(s)\n' +
+    'WHAT TO VERIFY NEXT\n' +
+    '\n' +
+    'Confirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “buyer:next_step” for this edition?\n' +
+    '\n' +
+    'Organizers / listed hosts:\n' +
+    '\n' +
+    'DATE\n' +
+    '\n' +
+    '2026-09-12T10:00:00-07:00 (-07:00)\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'LOCATION\n' +
+    '\n' +
+    'San Francisco\n' +
+    '\n' +
+    'announced · city\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'AUDIENCE\n' +
+    '\n' +
+    'Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'ACCESS\n' +
+    '\n' +
+    'Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'COST — ATTENDANCE\n' +
+    '\n' +
+    'USD 0\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'COST — SPONSORSHIP\n' +
+    '\n' +
+    'Edition-specific sponsorship quote and total participation cost remain unknown.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'Which sponsorship items does the organizer offer, and at what price?\n' +
+    '\n' +
+    'PROGRAM\n' +
+    '\n' +
+    'The day: Time What happens 10:00–10:30 Doors, food, check-in, and meeting potential teammates 10:30–11:00 Shared global opening and starter-kit walkthrough 11:00–11:15 Team formation 11:15–15:30 Build session 15:30–16:00 Complete project submissions in the portal 16:00–16:45 Optional local show-and-tell (after submitting) 16:45–17:00 Wrap and group photo Local demos are for sharing work and learning from the room. There is no formal local judging. What every team submits: Before the event ends, every team submits: Title — a clear name for the project Written description — what you built, who it is for, and why the context matters Public GitHub repository — working code that can be reviewed and learned from Two-minute video — a concise demo of the project in action Social post — a public post about the project that tags the event sponsors Build something that can be shown. A sharp, working demo beats a broad concept.\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'STRUCTURED ATTRIBUTION (ROLE UNRESOLVED)\n' +
+    '\n' +
+    'AI Tinkerers - San Francisco\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'COMPANIES LISTED (ROLE UNRESOLVED)\n' +
+    '\n' +
+    'Sponsors and partners: OpenAI Marquee sponsor CopilotKit Sponsor OpenRouter Sponsor Exa Sponsor Auth0 Sponsor Ambiguous AI Sponsor Trigger.dev Sponsor Mozilla Sponsor Google Cloud Run Sponsor Sign in to apply People A global hackathon with OpenAI On Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day. Build an agent for a place people already work, talk, and live, then make it meaningfully more useful because of that context.\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'DATE IN VISIBLE TEXT\n' +
+    '\n' +
+    'Agents, Everywhere: Beyond The Chatbox — Global Hackathon (Sept 12, 2026) | Date: Saturday, September 12, 2026 | Saturday, September 12th, 2026 • 10AM to 5PM (PDT)\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 3 fragment(s)\n' +
+    'GLOBAL PROGRAM SPONSORS\n' +
+    '\n' +
+    'OpenAI · CopilotKit · OpenRouter\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'LOCATION ACCESS\n' +
+    '\n' +
+    'Event details: Location: Shared upon acceptance Developer Infrastructure Partners: Available after application approval\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'VENUE\n' +
+    '\n' +
+    'Private venue\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'COMMERCIAL OUTCOMES\n' +
+    '\n' +
+    'No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “commercial:outcome” for this edition?\n' +
+    '\n' +
+    'OPERATIONAL RESPONSIBILITY\n' +
+    '\n' +
+    'Operational contact for this edition has not been verified.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “organizer:responsible” for this edition?\n' +
+    '\n' +
+    'FORMAT\n' +
+    '\n' +
+    'https://schema.org/OfflineEventAttendanceMode\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'ACTUAL AUDIENCE\n' +
+    '\n' +
+    'Actual attendance and its composition were not documented in the reviewed material.\n' +
+    '\n' +
+    'Source details\n' +
+    '\n' +
+    'What confirms “audience:observed” for this edition?\n' +
+    '\n' +
+    'NAME\n' +
+    '\n' +
+    'Agents, Everywhere: Bots, Channels, & More — Global Hackathon\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'PUBLISHED END DATE\n' +
+    '\n' +
+    '2026-09-12T17:00:00-07:00\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'INFRASTRUCTURE PARTNERS\n' +
+    '\n' +
+    'Exa · Trigger.dev · Auth0 · Mozilla · Ambiguous AI · Sep · Saturday · San Francisco · Available after application approval\n' +
+    '\n' +
+    'announced · alcance pendiente\n' +
+    'Evidence · 1 fragment(s)\n' +
+    'Ubicación pública\n' +
+    '\n' +
+    'San Francisco · announced\n' +
+    '\n' +
+    'city · unknown\n' +
+    '\n' +
+    'Dirección oculta; no se reconstruye la sede.\n' +
+    '\n' +
+    'Procedencia de ubicación\n' +
+    'Relaciones con soporte específico\n' +
+    'OPENAI\n' +
+    '\n' +
+    'sponsor · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'COPILOTKIT\n' +
+    '\n' +
+    'sponsor · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'OPENROUTER\n' +
+    '\n' +
+    'sponsor · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'EXA\n' +
+    '\n' +
+    'infrastructure_partner · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'TRIGGER.DEV\n' +
+    '\n' +
+    'infrastructure_partner · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'AUTH0\n' +
+    '\n' +
+    'infrastructure_partner · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'MOZILLA\n' +
+    '\n' +
+    'infrastructure_partner · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'AMBIGUOUS AI\n' +
+    '\n' +
+    'infrastructure_partner · announced · global_program\n' +
+    '\n' +
+    'Evidence for this edition and role\n' +
+    '\n' +
+    'Published role only; payment, attendance and commercial return are not established.\n' +
+    '\n' +
+    'Participaciones documentadas'
+  
+      at TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/relationships.spec.ts:43:84)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "DOSSIER DE EDICIÓN\nAgents, Everywhere: Bots, Channels, & More — Global Hackathon\n\nID: edition-d54a42d3ba8672ab20f9aeec · upcoming · 2 revisión(es)\n\nAbrir listado de la edición\n\nAutomatically imported from a user-provided Luma URL: fields are the page's announcements, not curated review.\n\nFuente obtenida 2026-09-10T22:17:28.066Z · extracción automática, sin revisión humana\n\nWHY THIS MATTERS FOR YOUR BRIEF\n\nFor Observabilidad para agentes (adoption), reviewed material does not yet establish this organizer's delivery history. Request relevant previous editions, voluntary project references, an operational contact and full costs before choosing a format.\n\ninferred · alcance pendiente inferencia (bounded_public_source_extraction) · Buyer-specific research hypothesis; no performance ranking or commercial return inferred.; pendiente de confirmar\nEvidence · 8 fragment(s)\nWHAT TO VERIFY NEXT\n\nConfirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote.\n\nSource details\n\nWhat confirms “buyer:next_step” for this edition?\n\nOrganizers / listed hosts:\n\nDATE\n\n2026-09-12T10:00:00-07:00 (-07:00)\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nLOCATION\n\nSan Francisco\n\nannounced · city\nEvidence · 1 fragment(s)\nAUDIENCE\n\nWho should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nACCESS\n\nWho should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype.\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nCOST — ATTENDANCE\n\nUSD 0\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nCOST — SPONSORSHIP\n\nEdition-specific sponsorship quote and total participation cost remain unknown.\n\nSource details\n\nWhich sponsorship items does the organizer offer, and at what price?\n\nPROGRAM\n\nThe day: Time What happens 10:00–10:30 Doors, food, check-in, and meeting potential teammates 10:30–11:00 Shared global opening and starter-kit walkthrough 11:00–11:15 Team formation 11:15–15:30 Build session 15:30–16:00 Complete project submissions in the portal 16:00–16:45 Optional local show-and-tell (after submitting) 16:45–17:00 Wrap and group photo Local demos are for sharing work and learning from the room. There is no formal local judging. What every team submits: Before the event ends, every team submits: Title — a clear name for the project Written description — what you built, who it is for, and why the context matters Public GitHub repository — working code that can be reviewed and learned from Two-minute video — a concise demo of the project in action Social post — a public post about the project that tags the event sponsors Build something that can be shown. A sharp, working demo beats a broad concept.\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nSTRUCTURED ATTRIBUTION (ROLE UNRESOLVED)\n\nAI Tinkerers - San Francisco\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nCOMPANIES LISTED (ROLE UNRESOLVED)\n\nSponsors and partners: OpenAI Marquee sponsor CopilotKit Sponsor OpenRouter Sponsor Exa Sponsor Auth0 Sponsor Ambiguous AI Sponsor Trigger.dev Sponsor Mozilla Sponsor Google Cloud Run Sponsor Sign in to apply People A global hackathon with OpenAI On Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day. Build an agent for a place people already work, talk, and live, then make it meaningfully more useful because of that context.\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nDATE IN VISIBLE TEXT\n\nAgents, Everywhere: Beyond The Chatbox — Global Hackathon (Sept 12, 2026) | Date: Saturday, September 12, 2026 | Saturday, September 12th, 2026 • 10AM to 5PM (PDT)\n\nannounced · alcance pendiente\nEvidence · 3 fragment(s)\nGLOBAL PROGRAM SPONSORS\n\nOpenAI · CopilotKit · OpenRouter\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nLOCATION ACCESS\n\nEvent details: Location: Shared upon acceptance Developer Infrastructure Partners: Available after application approval\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nVENUE\n\nPrivate venue\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nCOMMERCIAL OUTCOMES\n\nNo documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.\n\nSource details\n\nWhat confirms “commercial:outcome” for this edition?\n\nOPERATIONAL RESPONSIBILITY\n\nOperational contact for this edition has not been verified.\n\nSource details\n\nWhat confirms “organizer:responsible” for this edition?\n\nFORMAT\n\nhttps://schema.org/OfflineEventAttendanceMode\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nACTUAL AUDIENCE\n\nActual attendance and its composition were not documented in the reviewed material.\n\nSource details\n\nWhat confirms “audience:observed” for this edition?\n\nNAME\n\nAgents, Everywhere: Bots, Channels, & More — Global Hackathon\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nPUBLISHED END DATE\n\n2026-09-12T17:00:00-07:00\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nINFRASTRUCTURE PARTNERS\n\nExa · Trigger.dev · Auth0 · Mozilla · Ambiguous AI · Sep · Saturday · San Francisco · Available after application approval\n\nannounced · alcance pendiente\nEvidence · 1 fragment(s)\nUbicación pública\n\nSan Francisco · announced\n\ncity · unknown\n\nDirección oculta; no se reconstruye la sede.\n\nProcedencia de ubicación\nRelaciones con soporte específico\nOPENAI\n\nsponsor · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nCOPILOTKIT\n\nsponsor · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nOPENROUTER\n\nsponsor · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nEXA\n\ninfrastructure_partner · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nTRIGGER.DEV\n\ninfrastructure_partner · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nAUTH0\n\ninfrastructure_partner · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nMOZILLA\n\ninfrastructure_partner · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nAMBIGUOUS AI\n\ninfrastructure_partner · announced · global_program\n\nEvidence for this edition and role\n\nPublished role only; payment, attendance and commercial return are not established.\n\nParticipaciones documentadas",
+    expected: /Citadel/,
+    operator: 'match',
+    diff: 'simple'
+  }

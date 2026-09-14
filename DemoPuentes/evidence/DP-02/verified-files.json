@@ -1,0 +1,21 @@
+{
+  "frontend/lib/evidence/calendar.ts": "ac494eb1c3a0ca992461e4a7039b7ec32f6bacbc2ac06edfc1d9619eb39c8928",
+  "frontend/lib/evidence/claim-support.ts": "84ae137be58bc4a1e38b124c64219162f63b1ac2d01dd98285f8919113efc5ea",
+  "frontend/lib/evidence/costs.ts": "dfa95edc723133e802b8c7dde4344eb63098cc6a5696b4bdc12ed61a3caacff6",
+  "frontend/lib/contracts/evaluation.ts": "57dd3a01a840829f6c9bb5ec9e101e2ba7e41be5d154876e4cfc79bf5c0fc19a",
+  "frontend/lib/contracts/evaluation-validation.ts": "6cd9eb2fc1926e2fbe6055bd73880e6804d818d767ee174f239e26c270ed9816",
+  "frontend/lib/server/evaluations/eligibility.ts": "6898cbebd337684776e51dbba0727159bc8955fd2aeb72d98a1b563500a35097",
+  "frontend/lib/server/evaluations/research.ts": "753fe9a9af11e97df5c364ee702cb1f1942104211adda838543c664a8406f34b",
+  "frontend/lib/server/evaluations/scoring-policy.ts": "8658e291b5c7b709d0fa9ba7bd436aab90e4d4ae2699d7a8a0243d7512783142",
+  "frontend/lib/server/evaluations/model-adapter.ts": "4558cfca7dd76ce93c09e73d2e8a335166ccb9554f2cb8ebb446a3c9e2ca1692",
+  "frontend/lib/server/decisions/store.ts": "e47b41bc0278430974eb9dc857f4bf919222fb340cf7bc8d41f3ca3e501b83c7",
+  "frontend/lib/api/opportunity-adapter.ts": "5766f87a24d0a6de394907df36deb37a6e901e23a57f1a59048d140ab6de864a",
+  "frontend/components/research-dashboard/sf-event-map.tsx": "d9ec3ba01c989906fa3eccbe6fbb30371050009c5bf8c0214b2f03065ba6a667",
+  "frontend/components/atlas/campaign-panel.tsx": "da64aba04279245349e59113fb2715fd44c30361650101983f911794412505d2",
+  "frontend/tests/acceptance/trust-regressions.test.ts": "1b2e8e343622d6caf85aed2ae0f24e51b749019fb18f5f12507791ba0b86292c",
+  "frontend/tests/fixtures/trust.ts": "180ade681a01be02a97fb1a84006375e461863ed8b1450bbf1c96651fda7af06",
+  "frontend/tests/integration/trust-decision.test.ts": "409689c51654af89f7d1901487369e3a7b68d935df4a782fefe2278ec458b07a",
+  "frontend/tests/ui/trust-evidence.test.ts": "96be7e4699663f523961c615b224a06da18d5d2bf575e73672feeeeb1b88c3ab",
+  "frontend/tests/integration/conditional-decision.test.ts": "609b6cfe551967fd99dafe9ade96342a62f550e4512b23cc3ef5f9243f6d5876",
+  "frontend/tests/integration/evaluation-snapshot.test.ts": "add0b085e9fd89f4bf5fc8c35b71ee2c526ab89c54412d547aee5b666d05120d"
+}

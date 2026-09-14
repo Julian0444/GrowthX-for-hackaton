@@ -11,16 +11,20 @@
 // - HTTPS, hostname en la allowlist de Luma, sin credenciales ni puertos no
 //   estándar; cada redirección se valida con las mismas reglas ANTES de
 //   seguirla. Tamaño acotado y timeout por petición.
-// - El HTML es DATO no confiable: solo se leen los campos JSON-LD/OG que el
-//   parser existente extrae, cada valor se sanea y se trunca, y NUNCA se sigue
+// - El HTML es DATO no confiable: se leen JSON-LD y texto visible relevante.
+//   Cada valor conserva fragmentos acotados; NUNCA se sigue
 //   una URL sugerida por el contenido de la página. Ningún texto de la fuente
 //   se interpreta como instrucción.
 // - No se conserva el HTML completo: la fuente guarda su sha256 (regla de
 //   extractos del manifiesto: público no es licencia de republicación).
 
+import type { Geocoder } from '../geocoding/census.ts';
+import { resolveEditionLocation } from '../geocoding/resolve.ts';
 import { createHash } from 'node:crypto';
 import type pg from 'pg';
 import { parseLumaEvent } from '../../api/luma.ts';
+import { fetchKnownHtml, readingFromHtml, SourceReadError, type SourceReadOptions, type KnownSourceRead, type ReadingMetadata } from '../sources/reader.ts';
+import { unsafeText, type SourceExtraction, type ExtractedAttribute } from '../sources/extract.ts';
 import type {
   ClaimRevision,
   ClaimValue,
@@ -69,30 +73,30 @@ export type CanonicalizeResult =
 // https://lu.ma/<ruta> sin query ni fragmento.
 export function canonicalizeLumaUrl(raw: string): CanonicalizeResult {
   const trimmed = raw.trim();
-  if (!trimmed) return { ok: false, reason: 'URL vacía' };
+  if (!trimmed) return { ok: false, reason: 'Empty URL' };
   const withScheme = /^[a-z][a-z0-9+.-]*:/i.test(trimmed) ? trimmed : `https://${trimmed}`;
   let url: URL;
   try {
     url = new URL(withScheme);
   } catch {
-    return { ok: false, reason: 'URL inválida' };
+    return { ok: false, reason: 'Invalid URL' };
   }
   if (url.protocol === 'http:') url.protocol = 'https:';
   if (url.protocol !== 'https:')
-    return { ok: false, reason: `esquema «${url.protocol}» no admitido: solo https` };
+    return { ok: false, reason: `scheme «${url.protocol}» rejected: HTTPS only` };
   if (url.username || url.password)
-    return { ok: false, reason: 'la URL contiene credenciales embebidas; se rechaza' };
+    return { ok: false, reason: 'URL contains embedded credentials; rejected' };
   if (url.port !== '' && url.port !== '443')
-    return { ok: false, reason: `puerto «${url.port}» no admitido: solo el puerto estándar` };
+    return { ok: false, reason: `port «${url.port}» rejected: standard port only` };
   const host = url.hostname.toLowerCase();
   if (!ALLOWED_HOSTS.has(host))
     return {
       ok: false,
-      reason: `host «${host}» fuera de la allowlist: solo páginas de evento de Luma (lu.ma / luma.com)`,
+      reason: `host «${host}» outside the allowlist: only Luma event pages (lu.ma / luma.com)`,
     };
   const path = url.pathname.replace(/\/+$/, '');
   if (!path || path === '/')
-    return { ok: false, reason: 'la URL debe apuntar a la página de un evento (falta la ruta)' };
+    return { ok: false, reason: 'the URL must point to an event page (path missing)' };
   return { ok: true, canonical: `https://lu.ma${path}` };
 }
 
@@ -105,70 +109,8 @@ export function lumaIdentityUrl(url: string | null): string | null {
   return result.ok ? result.canonical : null;
 }
 
-// Un destino de redirección se valida con las mismas reglas, sin elevación de
-// esquema: una redirección a http o fuera de la allowlist se rechaza.
-function validateRedirectTarget(target: URL): string | null {
-  if (target.protocol !== 'https:') return `redirección a esquema «${target.protocol}» rechazada`;
-  if (target.username || target.password) return 'redirección con credenciales embebidas rechazada';
-  if (target.port !== '' && target.port !== '443')
-    return `redirección al puerto «${target.port}» rechazada`;
-  const host = target.hostname.toLowerCase();
-  if (!ALLOWED_HOSTS.has(host)) return `redirección al host «${host}» fuera de la allowlist rechazada`;
-  return null;
-}
-
-// ============ Obtención acotada ============
-
-export interface LumaFetchOptions {
-  fetchImpl?: typeof fetch;
-  // Solo el worker que activa un transporte de prueba aporta esta marca;
-  // nunca se infiere de la URL ni del HTML no confiable.
-  isFixture?: true;
-  timeoutMs?: number;
-  maxBytes?: number;
-  maxRedirects?: number;
-  now?: () => Date;
-}
-
-const DEFAULT_TIMEOUT_MS = 10_000;
-const DEFAULT_MAX_BYTES = 2_000_000;
-const DEFAULT_MAX_REDIRECTS = 3;
-
-const BROWSER_UA =
-  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
-
-async function readBodyCapped(response: Response, maxBytes: number): Promise<string> {
-  const declared = Number(response.headers.get('content-length'));
-  if (Number.isFinite(declared) && declared > maxBytes)
-    throw new LumaIngestError(
-      `la página declara ${declared} bytes y supera el límite de ${maxBytes}; se rechaza antes de descargarla`,
-    );
-  const body = response.body;
-  if (body && typeof body.getReader === 'function') {
-    const reader = body.getReader();
-    const chunks: Uint8Array[] = [];
-    let received = 0;
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      if (value) {
-        received += value.byteLength;
-        if (received > maxBytes) {
-          await reader.cancel().catch(() => undefined);
-          throw new LumaIngestError(
-            `la página supera el límite de ${maxBytes} bytes; la descarga se cortó y se rechaza`,
-          );
-        }
-        chunks.push(value);
-      }
-    }
-    return Buffer.concat(chunks).toString('utf8');
-  }
-  const text = await response.text();
-  if (Buffer.byteLength(text, 'utf8') > maxBytes)
-    throw new LumaIngestError(`la página supera el límite de ${maxBytes} bytes; se rechaza`);
-  return text;
-}
+// Transport and limits are shared with other known DP-01 sources.
+export type LumaFetchOptions = SourceReadOptions;
 
 // ============ Salida del step de obtención (sin HTML completo) ============
 
@@ -196,6 +138,8 @@ export interface LumaFetchOutput {
   fetchedAt: string;
   htmlSha256: string;
   htmlBytes: number;
+  fullContent?: SourceExtraction;
+  reading?: ReadingMetadata;
   extraction: LumaExtractionSummary;
   fields: LumaEventFields;
   // Opcional para conservar la relectura de steps anteriores a esta marca.
@@ -217,101 +161,38 @@ function clean(value: string | undefined | null, max: number): string | null {
 export async function fetchLumaEvent(
   requestedUrl: string,
   options: LumaFetchOptions = {},
-): Promise<LumaFetchOutput> {
-  const {
-    fetchImpl = fetch,
-    timeoutMs = DEFAULT_TIMEOUT_MS,
-    maxBytes = DEFAULT_MAX_BYTES,
-    maxRedirects = DEFAULT_MAX_REDIRECTS,
-    now = () => new Date(),
-  } = options;
-
+): Promise<LumaFetchOutput & KnownSourceRead> {
   const validated = canonicalizeLumaUrl(requestedUrl);
-  if (!validated.ok) throw new LumaIngestError(`URL rechazada: ${validated.reason}`);
-
-  let current = new URL(validated.canonical);
-  let response: Response | null = null;
-  for (let hop = 0; hop <= maxRedirects; hop += 1) {
-    let candidate: Response;
-    try {
-      candidate = await fetchImpl(current.toString(), {
-        headers: { 'user-agent': BROWSER_UA, accept: 'text/html' },
-        redirect: 'manual',
-        cache: 'no-store',
-        signal: AbortSignal.timeout(timeoutMs),
-      });
-    } catch (error) {
-      const cause = error instanceof Error ? error.name : String(error);
-      throw new LumaIngestError(
-        cause === 'TimeoutError' || cause === 'AbortError'
-          ? `timeout de ${timeoutMs} ms obteniendo la página del evento`
-          : 'no se pudo alcanzar la página del evento (error de red)',
-      );
-    }
-    if (candidate.status >= 301 && candidate.status <= 308) {
-      const location = candidate.headers.get('location');
-      if (!location)
-        throw new LumaIngestError(`la página respondió ${candidate.status} sin destino de redirección`);
-      let target: URL;
-      try {
-        target = new URL(location, current);
-      } catch {
-        throw new LumaIngestError('destino de redirección inválido');
-      }
-      const rejected = validateRedirectTarget(target);
-      if (rejected) throw new LumaIngestError(rejected);
-      current = target;
-      response = null;
-      continue;
-    }
-    response = candidate;
-    break;
-  }
-  if (response === null)
-    throw new LumaIngestError(`más de ${maxRedirects} redirecciones; se rechaza`);
-  if (!response.ok) throw new LumaIngestError(`la página del evento respondió ${response.status}`);
-
-  const html = await readBodyCapped(response, maxBytes);
-  const fetchedAt = now().toISOString();
-  // JSON-LD identifica un evento; OG solo completa su nombre. Metadatos de
-  // páginas genéricas nunca se convierten en un dossier de evento.
-  const parsed = parseLumaEvent(html, current.toString(), fetchedAt);
+  if (!validated.ok) throw new LumaIngestError(`URL rejected: ${validated.reason}`);
+  let page;
+  try { page = await fetchKnownHtml(validated.canonical, options); }
+  catch (error) { throw new SourceReadError(error instanceof SourceReadError ? error.message : 'No se pudo leer la fuente'); }
+  const { html, fetchedAt } = page;
+  const reading = readingFromHtml(page, options);
+  const parsed = parseLumaEvent(html, page.finalUrl, fetchedAt);
   if (parsed.extraction.status === 'failed' || parsed.event === null)
-    throw new LumaIngestError(
-      `extracción fallida: ${parsed.extraction.warnings.join(' · ') || 'sin datos estructurados'}`,
-    );
-
+    throw new SourceReadError('extraction failed: the page does not identify an event through JSON-LD');
   const event = parsed.event;
   const name = clean(event.name, 300);
-  if (!name) throw new LumaIngestError('extracción fallida: nombre del evento vacío tras sanear');
-  const coordinates =
-    event.coordinates &&
-    Number.isFinite(event.coordinates[0]) &&
-    Number.isFinite(event.coordinates[1]) &&
-    Math.abs(event.coordinates[1]) <= 90 &&
-    Math.abs(event.coordinates[0]) <= 180
-      ? { lat: event.coordinates[1], lng: event.coordinates[0] }
-      : null;
-
+  if (!name || unsafeText(name)) throw new SourceReadError('extraction failed: event name empty or unsupported');
+  if(!reading.fullContent.attributes.some(a=>a.attribute==='name')){
+    reading.fullContent.fragments.push({id:'event-name',text:`Event name metadata: ${name}`,locator:'Event JSON-LD name / OpenGraph title fallback'});
+    reading.fullContent.attributes.push({attribute:'name',value:{kind:'text',text:name},status:'announced',fragmentIds:['event-name'],note:null});
+  }
+  const coordinates = reading.fullContent.coordinates;
   return {
-    ...(options.isFixture === true ? { isFixture: true as const } : {}),
-    requestedUrl: validated.canonical,
-    finalUrl: current.toString(),
-    canonicalUrl: lumaIdentityUrl(current.toString()) ?? validated.canonical,
-    fetchedAt,
-    htmlSha256: createHash('sha256').update(html).digest('hex'),
-    htmlBytes: Buffer.byteLength(html, 'utf8'),
+    ...reading,
     extraction: {
       status: parsed.extraction.status,
-      warnings: parsed.extraction.warnings.map((warning) => clean(warning, 300) ?? '').filter(Boolean),
-      fieldsExtracted: [...parsed.extraction.fieldsExtracted],
+      warnings: [...parsed.extraction.warnings.filter(w => !w.startsWith('sponsors not') || !reading.fullContent.attributes.some(a => a.attribute.startsWith('sponsors:'))), ...reading.fullContent.warnings].map(w => clean(w, 300) ?? '').filter(Boolean),
+      fieldsExtracted: [...new Set([...parsed.extraction.fieldsExtracted, ...reading.fullContent.attributes.map(a => a.attribute)])],
     },
     fields: {
       name,
       startsAt: clean(event.startsAt || null, 64),
       endsAt: clean(event.endsAt ?? null, 64),
-      venue: clean(event.venue ?? null, 200),
-      city: clean(event.city || null, 120),
+      venue: reading.fullContent.location?.venue ?? clean(event.venue ?? null, 200),
+      city: reading.fullContent.location?.city ?? clean(event.city || null, 120),
       coordinates,
       organizerName: clean(event.organizer ?? null, 200),
       registrationStatus: clean(event.registrationStatus ?? null, 60),
@@ -374,7 +255,7 @@ export interface LumaPersistOutcome {
 function mustParse<T>(kind: string, result: ValidationResult<T>): T {
   if (!result.ok) {
     const detail = result.issues.map((issue) => `${issue.path}: ${issue.message}`).join('; ');
-    throw new LumaIngestError(`${kind} producido por la importación no cumple el contrato: ${detail}`);
+    throw new LumaIngestError(`${kind} produced by the import violates the contract: ${detail}`);
   }
   return result.value;
 }
@@ -428,7 +309,7 @@ interface ClaimChainHead {
 // inmutable, la revisión de edición encadenada y los claims por atributo.
 // Idempotente ante re-entrega: los ids derivan del runId y el contenido del
 // paso de obtención ya confirmado, así repetir el paso no duplica material.
-export async function persistLumaDossier(
+async function persistLumaDossierBase(
   pool: pg.Pool,
   tenantId: string,
   runId: string,
@@ -439,6 +320,8 @@ export async function persistLumaDossier(
   const loadHash = createHash('sha256').update(`luma-ingest:${runId}`).digest('hex');
 
   return withTenantTransaction(pool, tenantId, async (client) => {
+    // Alias imports from different jobs serialize their revision chains.
+    await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[`luma-edition:${tenantId}:${output.canonicalUrl}`]);
     // Re-entrega tras un commit previo: el material de ESTE run ya está; se
     // recompone el resultado sin encadenar una segunda revisión.
     const { rows: already } = await client.query(
@@ -481,8 +364,8 @@ export async function persistLumaDossier(
         requestedBy,
         output.fetchedAt,
         output.isFixture
-          ? `Importación durable de ${output.canonicalUrl} (run ${runId}); transporte fixture de prueba, sin consulta a Luma real. No acredita un evento real ni cobertura comercial.`
-          : `Importación durable de ${output.canonicalUrl} (run ${runId}); material extraído automáticamente, sin revisión humana.`,
+          ? `Durable import from ${output.canonicalUrl} (run ${runId}); test fixture transport, without querying real Luma. Does not establish a real event or commercial coverage.`
+          : `Durable import from ${output.canonicalUrl} (run ${runId}); automatically extracted material, without human review.`,
       ],
     );
     const { rows: loadRows } = await client.query(
@@ -503,6 +386,12 @@ export async function persistLumaDossier(
         fetchedAt: output.fetchedAt,
         publishedAt: null,
         method: output.isFixture ? 'test_fixture+jsonld_extraction' : 'http_get+jsonld_extraction',
+        ...(output.fullContent ? {
+          method: `${output.isFixture ? 'test_fixture' : output.reading?.strategy ?? 'http_get'}+visible_text+jsonld_extraction${output.reading?.cache === 'hit' ? '+cache_hit' : output.reading?.cache === 'stale_fallback' ? '+stale_cache' : ''}`,
+          requestedUrl: output.requestedUrl, canonicalUrl: output.canonicalUrl, title: output.fields.name,
+          fragments: output.fullContent.fragments,
+          retrieval: { status: output.reading?.status ?? 'partial', freshness: output.reading?.freshness ?? 'unknown', limitation: output.reading?.limitation ?? null },
+        } : {}),
         geoScope: output.fields.city ? 'city' : 'unknown',
         content: { kind: 'hash', sha256: output.htmlSha256 },
         usageRestrictions: [],
@@ -543,7 +432,7 @@ export async function persistLumaDossier(
     }
 
     const claims: ClaimRevision[] = [];
-    const addClaim = (attribute: string, value: ClaimValue, status: ClaimRevision['status']): void => {
+    const addClaim = (attribute: string, value: ClaimValue, status: ClaimRevision['status'], observations: ExtractedAttribute[] = []): void => {
       const key = catalogIdFragment(attribute, 40);
       const chain = chainByAttribute.get(attribute) ?? null;
       claims.push(
@@ -558,8 +447,9 @@ export async function persistLumaDossier(
             value,
             status,
             sourceIds: [sourceId],
-            method: output.isFixture ? 'test_fixture+jsonld_extraction' : 'jsonld_extraction',
-            note: null,
+            ...(observations.length ? { evidence: [...new Set(observations.flatMap(o => o.fragmentIds))].map(fragmentId => ({sourceId,fragmentId,locator:null})) } : {}),
+            method: output.fullContent ? `${output.isFixture ? 'test_fixture+' : ''}visible_text+jsonld_extraction` : output.isFixture ? 'test_fixture+jsonld_extraction' : 'jsonld_extraction',
+            note: observations.find(o => o.note)?.note ?? null,
             reviewer: null,
             reviewedAt: output.fetchedAt,
             previousRevisionId: chain?.latestRevisionId ?? null,
@@ -568,7 +458,7 @@ export async function persistLumaDossier(
       );
     };
     const addPendingIfNew = (attribute: string, note: string): void => {
-      if (chainByAttribute.has(attribute)) return;
+      if (chainByAttribute.has(attribute) || claims.some(c => c.attribute === attribute)) return;
       addClaim(attribute, { kind: 'pending', note }, 'pending');
     };
 
@@ -581,7 +471,32 @@ export async function persistLumaDossier(
     const effectiveLocation =
       fields.city !== null
         ? ({ scope: 'city', name: fields.city } as const)
-        : base?.location ?? ({ scope: 'unknown', name: null } as const);
+        : base?.location.scope === 'city' || base?.location.scope === 'venue'
+          ? base.location
+          : fields.venue !== null && fields.coordinates !== null
+            ? ({ scope: 'venue', name: fields.venue } as const)
+            : base?.location ?? ({ scope: 'unknown', name: null } as const);
+    if (output.fullContent) {
+      const groups = new Map<string, ExtractedAttribute[]>();
+      for (const observation of output.fullContent.attributes) {
+        const attribute = observation.attribute === 'date:structured' ? 'date' : observation.attribute;
+        const list = groups.get(attribute) ?? []; list.push(observation); groups.set(attribute,list);
+      }
+      for (const [attribute, observations] of groups) {
+        const evidence = attribute === 'date' ? [...observations,...(groups.get('date:visible') ?? [])] : observations;
+        const value: ClaimValue = attribute === 'date' ? {kind:'date',date:startDate}
+          : attribute === 'address' && output.fullContent.location?.originalAddress && !evidence.some(o=>o.status==='contradicted')
+            ? {kind:'text',text:output.fullContent.location.originalAddress}
+            : observations.length === 1 ? observations[0].value : {kind:'text',text:observations.map(o => o.value.kind === 'text' ? o.value.text : JSON.stringify(o.value)).join('\n')};
+        addClaim(attribute,value,evidence.some(o => o.status === 'contradicted') ? 'contradicted' : observations[0].status,evidence);
+      }
+      for (const [attribute,note] of [
+        ['date','Start date not published in recognized event data.'],['location','Public city not obtained.'],
+        ['access','Access and approval requirements not obtained.'],['audience','Target audience not obtained; actual attendance is not established.'],
+        ['cost:attendance','Attendance cost not published. Sponsorship and total participation cost remain separate.'],['organizer','Organizer not obtained.'],
+      ]) addPendingIfNew(attribute,note);
+    } else {
+    // Compatibility for durable steps created before DP-05.
     // Toda importación identifica al evento por su nombre. Incluso una
     // reimportación que no publique ningún otro campo debe conservar una
     // referencia a SU fuente, sin heredar la procedencia de otra revisión.
@@ -602,6 +517,29 @@ export async function persistLumaDossier(
       addClaim('organizer', { kind: 'text', text: fields.organizerName }, 'announced');
     else addPendingIfNew('organizer', 'Organizer not published as structured data on the event page.');
     if (fields.venue !== null) addClaim('venue', { kind: 'text', text: fields.venue }, 'announced');
+    }
+
+    // A sparse refresh does not erase a supported field or its revision ID.
+    const retainedIds = existingClaims.map(c => c.revisions.at(-1)!).filter(c => !claims.some(n => n.attribute === c.attribute)).map(c => c.id);
+    const claimRevisionIds = [...new Set([...retainedIds,...claims.map(c=>c.id)])];
+    const observedLocation = output.fullContent?.location;
+    const samePlace = base?.publicLocation && observedLocation &&
+      (!observedLocation.city || observedLocation.city === base.publicLocation.city) &&
+      (!observedLocation.address?.streetAddress || observedLocation.address.streetAddress === base.publicLocation.address?.streetAddress) &&
+      (!observedLocation.venue || observedLocation.venue === base.publicLocation.venue) &&
+      !/withheld|conflict|invalid/i.test(observedLocation.limitation ?? '');
+    const preservePosition = samePlace && !output.fullContent?.coordinates;
+    const publicLocation = observedLocation ? {
+      ...observedLocation,
+      ...(samePlace ? {
+        originalAddress: observedLocation.originalAddress ?? base!.publicLocation!.originalAddress,
+        address: observedLocation.address?.streetAddress ? observedLocation.address : base!.publicLocation!.address,
+        venue: observedLocation.venue ?? base!.publicLocation!.venue,
+        ...(preservePosition ? {precision:base!.publicLocation!.precision,method:base!.publicLocation!.method,provider:base!.publicLocation!.provider,resolvedAt:base!.publicLocation!.resolvedAt,limitation:base!.publicLocation!.limitation,...(base!.publicLocation!.resolution ? {resolution:base!.publicLocation!.resolution} : {})} : {}),
+      } : {}),
+      sourceIds: [...new Set([sourceId,...(samePlace ? base!.publicLocation!.sourceIds : [])])],
+      resolvedAt: preservePosition ? base!.publicLocation!.resolvedAt : output.fullContent?.coordinates ? output.fetchedAt : null,
+    } : base?.publicLocation;
 
     // Revisión de edición: para una identidad existente se parte de su última
     // revisión y solo se sobreescribe lo que ESTA página afirma — un campo que
@@ -618,10 +556,11 @@ export async function persistLumaDossier(
         provider: 'luma',
         startDate: effectiveStartDate,
         location: effectiveLocation,
-        coordinates:
-          fields.city !== null ? fields.coordinates : base?.coordinates ?? null,
-        claimRevisionIds: claims.map((claim) => claim.id),
-        revisedAt: output.fetchedAt,
+        coordinates: output.fullContent ? (observedLocation ? preservePosition ? base?.coordinates ?? null : output.fullContent.coordinates : base?.coordinates ?? null) : fields.city !== null ? fields.coordinates : base?.coordinates ?? null,
+        ...(publicLocation ? {publicLocation} : {}),
+        ...(base?.relationships ? {relationships:base.relationships} : {}),
+        claimRevisionIds,
+        revisedAt: output.reading?.checkedAt ?? output.fetchedAt,
         previousRevisionId: base?.id ?? null,
       } satisfies EventEditionRevision),
     );
@@ -643,7 +582,13 @@ export async function persistLumaDossier(
       sourceId,
       loadId,
       linkedToExistingEdition: existing !== null,
-      claimRevisionIds: claims.map((claim) => claim.id),
+      claimRevisionIds,
     };
   });
+}
+
+// DP-08 adds an immutable geographic revision after the existing import.
+export async function persistLumaDossier(pool: pg.Pool, tenantId: string, runId: string, output: LumaFetchOutput, geocoder?: Geocoder | null): Promise<LumaPersistOutcome> {
+  const persisted = await persistLumaDossierBase(pool, tenantId, runId, output);
+  return resolveEditionLocation(pool, tenantId, runId, persisted, output.isFixture && geocoder === undefined ? null : geocoder);
 }

@@ -1,0 +1,23 @@
+$ eslint .
+
+/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-events.tsx
+  26:77  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/components/research-dashboard/research-events.tsx:26:77
+  24 |   const nextOrder = stableIds(order, ids)
+  25 |   if (nextOrder.join('|') !== order.join('|')) setOrder(nextOrder)
+> 26 |   useEffect(() => { if (window.matchMedia('(min-width: 1051px)').matches) { setMapVisited(true); setMapOpen(true) } }, [])
+     |                                                                             ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  27 |   const opportunities = useMemo(() => editions.map(read => mapOpportunity(read, relevanceByEdition[read.editionId])), [editions, relevanceByEdition])
+  28 |   const filtered = opportunities.filter(e => `${e.view.name} ${e.view.publicLocation.originalAddress ?? ''} ${e.view.publicLocation.venue ?? ''}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()) && (position === 'all' || (position === 'located' ? e.point !== null : e.point === null))).sort((a, b) => nextOrder.indexOf(a.read.editionId) - nextOrder.indexOf(b.read.editionId))
+  29 |   const reads = filtered.map(e => e.read)  react-hooks/set-state-in-effect
+
+✖ 1 problem (1 error, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

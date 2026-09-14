@@ -1,0 +1,20 @@
+(node:64979) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes (7.712458ms)
+✔ Luma: un título OG de página vacía o calendario no crea un dossier de evento (42.707458ms)
+✔ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.533791ms)
+✔ Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes (1.636625ms)
+✔ Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación (2.090041ms)
+✔ Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos (0.748ms)
+✔ Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos (0.4625ms)
+✔ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (2.544834ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 287.091458

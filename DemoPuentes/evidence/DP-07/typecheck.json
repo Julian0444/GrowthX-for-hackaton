@@ -1,0 +1,12 @@
+{
+  "command": [
+    "pnpm",
+    "exec",
+    "tsc",
+    "--noEmit"
+  ],
+  "cwd": "/tmp/growthx-dp07-production",
+  "exit_code": 0,
+  "duration_seconds": 2.16,
+  "database": "isolated PostgreSQL port 55447"
+}

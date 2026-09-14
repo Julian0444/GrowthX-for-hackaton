@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "scripts/verify-background-reopen.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 7.91,
+  "database": "isolated PostgreSQL port 55446"
+}

@@ -1,0 +1,19 @@
+(node:94681) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/integration/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP07 persisted comparison, revised brief, immutable antecedents and model authority
+  ✔ snapshot fixes selected and historical edition, relationship, claim and source revisions (3.117667ms)
+  ✔ new brief is validated, versioned and changes explanation, constraints, objective and question (137.868292ms)
+  ✔ new catalog revision does not change the original dossier, historical organizer, sources or decisions (24.0225ms)
+  ✔ foreign tenant cannot read snapshot or select editions/profiles; invalid references roll back (11.411208ms)
+  ✔ model cannot create prices or success from historical years, change priority, or cite another edition (33.713958ms)
+✔ DP07 persisted comparison, revised brief, immutable antecedents and model authority (1735.646541ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2391.573917

@@ -1,3 +1,8 @@
+import { randomUUID } from 'node:crypto';
+import { buildResearchPlan } from '../../research/brief-plan.ts';
+import { buildDiscoveryPlan } from '../../research/discovery-plan.ts';
+import { DISCOVERY_WORKFLOW, DISCOVERY_STEPS, DISCOVERY_RESERVATION_USD, type DiscoveryPlan } from '../../contracts/discovery.ts';
+import { readDiscovery } from '../discovery/durable.ts';
 // Servicio de evaluaciones persistidas (ticket 08). Server-only.
 //
 // startEvaluation (aceptación) y getEvaluation (lectura) sobre PostgreSQL con
@@ -10,7 +15,7 @@
 // mismo payload devuelven el mismo run; misma clave con otro payload → conflicto.
 
 import type pg from 'pg';
-import { parseEvaluationProfile } from '../../contracts/evaluation-validation.ts';
+import { parseEvaluationProfile, parseResearchPlan } from '../../contracts/evaluation-validation.ts';
 import { getAppPool, withTenantTransaction } from '../db/pool.ts';
 import { SF_WORKFLOW } from './research.ts';
 import { readSavedOrganizers } from './dashboard-store.ts';
@@ -45,6 +50,7 @@ export interface EvaluationServiceDeps {
   pool?: pg.Pool;
   queue?: EvaluationQueue;
   now?: () => Date;
+  discoveryLimits?: Partial<DiscoveryPlan['limits']>;
 }
 
 export interface EvaluationService {
@@ -118,13 +124,13 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
           if (!company.companyId) continue;
           const { rows } = await client.query('select payload from growthx.companies where id = $1', [company.companyId]);
           if (!rows.length || rows[0].payload.name !== company.name)
-            return { status: 'invalid_profile', issues: ['Identidad comparable inexistente o distinta en el catálogo de esta sesión.'] };
+            return { status: 'invalid_profile', issues: ['Comparable identity missing or different in the catalog for this session.'] };
         }
         let lineageId = profileId;
         if (body.previousRunId) {
           const { rows } = await client.query(`select p.id, p.lineage_id from growthx.profiles p
-            join growthx.runs r on r.profile_id = p.id where r.id = $1 and r.workflow_version = $2`, [body.previousRunId, SF_WORKFLOW]);
-          if (!rows.length) return { status: 'invalid_profile', issues: ['Investigación anterior no disponible para esta sesión.'] };
+            join growthx.runs r on r.profile_id = p.id where r.id = $1 and r.workflow_version = any($2::text[])`, [body.previousRunId, [SF_WORKFLOW, DISCOVERY_WORKFLOW]]);
+          if (!rows.length) return { status: 'invalid_profile', issues: ['Previous research unavailable for this session.'] };
           lineageId = rows[0].lineage_id as string;
           await client.query('select pg_advisory_xact_lock(hashtext($1))', [tenantId + ':' + lineageId]);
           const versions = await client.query('select max(version)::int as version from growthx.profiles where lineage_id = $1', [lineageId]);
@@ -136,6 +142,9 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
            values ($1, $2, $3, $7, $4, $5, $6)`,
           [profileId, tenantId, lineageId, profile.contractVersion, JSON.stringify(parsed.value), userId, profile.profileVersion],
         );
+        const discoveryPlan = body.researchScope === 'sf_discovery' ? buildDiscoveryPlan(parsed.value, deps.discoveryLimits) : null;
+        const researchPlan = buildResearchPlan(parsed.value);
+        if (discoveryPlan) researchPlan.providerLimits = researchPlan.providerLimits.map(limit => limit.provider === 'exa' ? { ...limit, enabled: true, maxRequests: discoveryPlan.limits.maxQueries, maxCost: { amount: discoveryPlan.limits.maxQueries * DISCOVERY_RESERVATION_USD, currency: 'USD' } } : limit);
         await client.query(
           `insert into growthx.runs
              (id, tenant_id, profile_id, requested_by, mode, input, state,
@@ -147,14 +156,15 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
             profileId,
             userId,
             body.mode,
-            JSON.stringify({ mode: body.mode, profile: body.profile, previousRunId: body.previousRunId ?? null }),
-            body.researchScope === 'sf_organizers' ? SF_WORKFLOW : EVALUATION_WORKFLOW_VERSION,
+            JSON.stringify({ mode: body.mode, profile: body.profile, previousRunId: body.previousRunId ?? null, researchPlan }),
+            discoveryPlan ? DISCOVERY_WORKFLOW : body.researchScope === 'sf_organizers' ? SF_WORKFLOW : EVALUATION_WORKFLOW_VERSION,
             profile.contractVersion,
             body.idempotencyKey,
             payloadHash,
           ],
         );
-        for (const [index, name] of EVALUATION_STEPS.entries()) {
+        if (discoveryPlan) await client.query('insert into growthx.discovery_runs(tenant_id,run_id,plan) values($1,$2,$3)', [tenantId,runId,JSON.stringify(discoveryPlan)]);
+        for (const [index, name] of (discoveryPlan ? DISCOVERY_STEPS : EVALUATION_STEPS).entries()) {
           await client.query(
             `insert into growthx.run_steps (run_id, tenant_id, seq, name) values ($1, $2, $3, $4)`,
             [runId, tenantId, index + 1, name],
@@ -163,7 +173,7 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
         await client.query(
           `insert into growthx.run_logs (tenant_id, run_id, level, message, context)
            values ($1, $2, 'info', 'run aceptado', $3)`,
-          [tenantId, runId, JSON.stringify({ mode: body.mode, workflow: EVALUATION_WORKFLOW_VERSION })],
+          [tenantId, runId, JSON.stringify({ mode: body.mode, workflow: discoveryPlan ? DISCOVERY_WORKFLOW : body.researchScope === 'sf_organizers' ? SF_WORKFLOW : EVALUATION_WORKFLOW_VERSION })],
         );
         // Trabajo durable DENTRO de la misma transacción: si esto falla, no
         // queda run; si el commit falla, no queda job. Nunca un 202 sin job.
@@ -221,18 +231,18 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
             : { status: 'conflict' };
         }
         const { rows: profileRows } = await client.query(
-          'select profile_id from growthx.runs where id = $1',
+          'select p.id as profile_id, p.lineage_id from growthx.runs r join growthx.profiles p on p.id = r.profile_id where r.id = $1',
           [body.profileRunId],
         );
         if (profileRows.length === 0) {
           return {
             status: 'invalid_profile',
             issues: [
-              'La comparación requiere una investigación previa de esta sesión (perfil no disponible).',
+              'Comparison requires previous research for this session (brief unavailable).',
             ],
           };
         }
-        const profileId = profileRows[0].profile_id as string;
+        let profileId = profileRows[0].profile_id as string;
         // Candidatos del catálogo del tenant, no ids arbitrarios: se seleccionan
         // desde el dashboard con expedientes (arista 10 → 12).
         const { rows: editionRows } = await client.query(
@@ -245,7 +255,7 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
           return {
             status: 'invalid_profile',
             issues: [
-              `Ediciones fuera del catálogo de esta sesión: ${missing.join(', ')}. La comparación no inventa candidatos.`,
+              `Editions outside the catalog for this session: ${missing.join(', ')}. The comparison does not fabricate candidates.`,
             ],
           };
         }
@@ -261,10 +271,28 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
             return {
               status: 'invalid_profile',
               issues: [
-                'La reevaluación vincula una evaluación (comparación) anterior de esta sesión; la indicada no está disponible.',
+                'Reevaluation links to a previous comparison for this session; the specified comparison is unavailable.',
               ],
             };
           }
+        }
+        if (body.profile) {
+          const profile = buildEvaluationProfile({idempotencyKey:body.idempotencyKey,mode:'catalog_research',profile:body.profile},
+            {profileId:randomUUID(),createdAt:new Date().toISOString()});
+          for (const company of profile.comparableCompanies) {
+            if (!company.companyId) continue;
+            const {rows} = await client.query('select payload from growthx.companies where id = $1', [company.companyId]);
+            if (!rows.length || rows[0].payload.name !== company.name) return {status:'invalid_profile',issues:['Comparable identity missing or different in this session.']};
+          }
+          const lineageId = profileRows[0].lineage_id as string;
+          await client.query('select pg_advisory_xact_lock(hashtext($1))', [tenantId+':'+lineageId]);
+          const {rows} = await client.query('select max(version)::int as version from growthx.profiles where lineage_id = $1', [lineageId]);
+          profile.profileVersion = Number(rows[0].version) + 1;
+          const parsed = parseEvaluationProfile(profile);
+          if (!parsed.ok) return {status:'invalid_profile',issues:parsed.issues.map(i=>i.message)};
+          profileId = profile.id;
+          await client.query(`insert into growthx.profiles (id,tenant_id,lineage_id,version,contract_version,payload,created_by)
+            values ($1,$2,$3,$4,'1',$5,$6)`, [profileId,tenantId,lineageId,profile.profileVersion,JSON.stringify(parsed.value),userId]);
         }
         await client.query(
           `insert into growthx.runs
@@ -295,7 +323,7 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
         }
         await client.query(
           `insert into growthx.run_logs (tenant_id, run_id, level, message, context)
-           values ($1, $2, 'info', 'comparación de inversión aceptada', $3)`,
+           values ($1, $2, 'info', 'investment comparison accepted', $3)`,
           [
             tenantId,
             runId,
@@ -336,14 +364,14 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
         }
         // La RLS hace que un run de otro tenant no exista para esta consulta.
         const { rows: profileRows } = await client.query(
-          'select profile_id from growthx.runs where id = $1',
+          'select p.id as profile_id, p.lineage_id from growthx.runs r join growthx.profiles p on p.id = r.profile_id where r.id = $1',
           [body.profileRunId],
         );
         if (profileRows.length === 0) {
           return {
             status: 'invalid_profile',
             issues: [
-              'La importación durable requiere una investigación previa de esta sesión (perfil no disponible).',
+              'Durable import requires previous research for this session (brief unavailable).',
             ],
           };
         }
@@ -376,7 +404,7 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
         }
         await client.query(
           `insert into growthx.run_logs (tenant_id, run_id, level, message, context)
-           values ($1, $2, 'info', 'importación de evento aceptada', $3)`,
+           values ($1, $2, 'info', 'event import accepted', $3)`,
           [tenantId, runId, JSON.stringify({ url: body.url, workflow: LUMA_INGEST_WORKFLOW })],
         );
         await queue.sendRunJob(client, { runId, tenantId });
@@ -404,7 +432,7 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
         mode: string;
         workflow_version: string;
         profile_id: string;
-        input: { previousRunId?: string | null; url?: string };
+        input: { previousRunId?: string | null; url?: string; researchPlan?: unknown };
         error: { message?: string } | null;
         result: unknown;
         created_at: Date;
@@ -434,11 +462,15 @@ export function createEvaluationService(deps: EvaluationServiceDeps = {}): Evalu
       }));
       const profileRows = await client.query('select payload from growthx.profiles where id = $1', [run.profile_id]);
       const parsed = parseEvaluationProfile(profileRows.rows[0]?.payload);
-      if (!parsed.ok) throw new Error('Perfil persistido inválido');
+      if (!parsed.ok) throw new Error('Invalid persisted brief');
+      const plan = run.input.researchPlan === undefined ? null : parseResearchPlan(run.input.researchPlan);
+      if (plan && (!plan.ok || plan.value.profileId !== parsed.value.id || plan.value.profileVersion !== parsed.value.profileVersion)) throw new Error('Invalid persisted plan');
       const savedOrganizers = await readSavedOrganizers(client, run.id);
       return {
         runId: run.id,
         profile: parsed.value,
+        researchPlan: plan?.ok ? plan.value : null,
+        discovery: run.workflow_version === DISCOVERY_WORKFLOW ? await readDiscovery(client, run.id) : null,
         previousRunId: run.input.previousRunId ?? null,
         requestedUrl: typeof run.input.url === 'string' ? run.input.url : null,
         savedOrganizers,

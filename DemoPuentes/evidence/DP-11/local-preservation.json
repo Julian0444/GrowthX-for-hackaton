@@ -1,0 +1,70 @@
+{
+  "at": "2026-09-11T01:13:28.332009+00:00",
+  "tables": {
+    "profiles": {
+      "before": 155,
+      "after": 155,
+      "previousRowsMissingOrChanged": 0
+    },
+    "runs": {
+      "before": 650,
+      "after": 652,
+      "previousRowsMissingOrChanged": 0
+    },
+    "snapshots": {
+      "before": 139,
+      "after": 140,
+      "previousRowsMissingOrChanged": 0
+    },
+    "snapshot_narratives": {
+      "before": 139,
+      "after": 140,
+      "previousRowsMissingOrChanged": 0
+    },
+    "decisions": {
+      "before": 152,
+      "after": 156,
+      "previousRowsMissingOrChanged": 0
+    },
+    "campaign_drafts": {
+      "before": 100,
+      "after": 103,
+      "previousRowsMissingOrChanged": 0
+    },
+    "sources": {
+      "before": 796,
+      "after": 800,
+      "previousRowsMissingOrChanged": 0
+    },
+    "claims": {
+      "before": 2282,
+      "after": 2282,
+      "previousRowsMissingOrChanged": 0
+    },
+    "claim_revisions": {
+      "before": 2489,
+      "after": 2512,
+      "previousRowsMissingOrChanged": 0
+    },
+    "edition_revisions": {
+      "before": 694,
+      "after": 695,
+      "previousRowsMissingOrChanged": 0
+    },
+    "organizer_revisions": {
+      "before": 299,
+      "after": 300,
+      "previousRowsMissingOrChanged": 0
+    },
+    "participation_revisions": {
+      "before": 86,
+      "after": 86,
+      "previousRowsMissingOrChanged": 0
+    },
+    "catalog_loads": {
+      "before": 422,
+      "after": 423,
+      "previousRowsMissingOrChanged": 0
+    }
+  }
+}

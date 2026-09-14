@@ -1,0 +1,46 @@
+(node:88354) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/decision-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP11 Chrome production: actionable brief, actual clipboard, revisions, tab conflict and historical evidence/map (9135.525458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9530.04075
+
+✖ failing tests:
+
+test at tests/e2e/decision-brief.spec.ts:20:1
+✖ DP11 Chrome production: actionable brief, actual clipboard, revisions, tab conflict and historical evidence/map (9135.525458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      campaign: {
+        commitments: [],
+        contractVersion: '1',
+        costItems: [
+  ...
+      decisionId: '7c35bec3-3bae-435e-a6d9-9fa20806e4ad',
+  -   deduplicated: false,
+      editionId: 'edition-d54a42d3ba8672ab20f9aeec',
+      revisions: [
+        {
+          conditions: [
+            {
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend/tests/e2e/decision-brief.spec.ts:60:107)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { decision: { contractVersion: '1', id: '4e6a6c04-ed42-45ca-861e-0a9877f17d46', snapshotId: '08801166-a755-4ded-8035-8c14753da840', editionId: 'edition-d54a42d3ba8672ab20f9aeec', verdict: 'pending', intent: 'explore_first', reasons: [Array], conditions: [Array], decidedBy: [Object], decidedAt: '2026-09-11T00:59:12.920Z', revision: 1, previousRevisionId: null }, revisions: [ [Object] ], campaign: { contractVersion: '1', id: 'camp-919c44db-b5d1-47d7-a60a-0bc6b1b39bc0', decisionId: '7c35bec3-3bae-435e-a6d9-9fa20806e4ad', objective: 'Collect practical feedback from agent builders', owner: 'Alex', successDefinition: 'Instrumentar un proyecto voluntario', modality: [Object], costItems: [Array], openQuestions: [Array], commitments: [] }, decisionId: '7c35bec3-3bae-435e-a6d9-9fa20806e4ad', snapshotId: '08801166-a755-4ded-8035-8c14753da840', editionId: 'edition-d54a42d3ba8672ab20f9aeec' },
+    expected: { decision: { contractVersion: '1', id: '4e6a6c04-ed42-45ca-861e-0a9877f17d46', snapshotId: '08801166-a755-4ded-8035-8c14753da840', editionId: 'edition-d54a42d3ba8672ab20f9aeec', verdict: 'pending', intent: 'explore_first', reasons: [Array], conditions: [Array], decidedBy: [Object], decidedAt: '2026-09-11T00:59:12.920Z', revision: 1, previousRevisionId: null }, revisions: [ [Object] ], campaign: { contractVersion: '1', id: 'camp-919c44db-b5d1-47d7-a60a-0bc6b1b39bc0', decisionId: '7c35bec3-3bae-435e-a6d9-9fa20806e4ad', objective: 'Collect practical feedback from agent builders', owner: 'Alex', successDefinition: 'Instrumentar un proyecto voluntario', modality: [Object], costItems: [Array], openQuestions: [Array], commitments: [] }, decisionId: '7c35bec3-3bae-435e-a6d9-9fa20806e4ad', snapshotId: '08801166-a755-4ded-8035-8c14753da840', editionId: 'edition-d54a42d3ba8672ab20f9aeec', deduplicated: false },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

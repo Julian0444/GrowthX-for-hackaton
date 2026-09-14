@@ -1,0 +1,84 @@
+{
+  "at": "2026-09-11T01:18:23.014154+00:00",
+  "counts": {
+    "regression-release": {
+      "tests": 349,
+      "pass": 349,
+      "fail": 0,
+      "skipped": 0
+    },
+    "browser-release": {
+      "tests": 33,
+      "pass": 33,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "browserLeafCases": 29,
+  "browserIncludingParentResults": 33,
+  "checks": {
+    "build-release": {
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend",
+      "databasePort": 55461,
+      "databaseName": "growthx",
+      "providerKeysLoaded": false,
+      "exitCode": 0,
+      "durationSeconds": 8.1
+    },
+    "lint-release": {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend",
+      "databasePort": 55461,
+      "databaseName": "growthx",
+      "providerKeysLoaded": false,
+      "exitCode": 0,
+      "durationSeconds": 6.28
+    },
+    "regression-release": {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-force-exit",
+        "tests/**/*.test.ts"
+      ],
+      "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend",
+      "databasePort": 55461,
+      "databaseName": "growthx",
+      "providerKeysLoaded": false,
+      "exitCode": 0,
+      "durationSeconds": 34.01
+    },
+    "browser-release": {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-force-exit",
+        "tests/e2e/decision-brief.spec.ts",
+        "tests/e2e/reopen-evaluation.spec.ts",
+        "tests/e2e/persisted-evaluation.spec.ts",
+        "tests/e2e/research-experience.spec.ts",
+        "tests/e2e/explicable-comparison.spec.ts",
+        "tests/e2e/sf-street-map.spec.ts"
+      ],
+      "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend",
+      "databasePort": 55461,
+      "databaseName": "growthx",
+      "providerKeysLoaded": false,
+      "exitCode": 0,
+      "durationSeconds": 164.27
+    }
+  },
+  "appSourceMatchesBuiltCopy": true,
+  "databasePort": 55461,
+  "realBrowser": "Chrome/CUA on localhost:3000; no API responses replaced",
+  "acceptanceCriteriaVerified": 8
+}

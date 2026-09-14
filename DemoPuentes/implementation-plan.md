@@ -1,6 +1,6 @@
 # DemoPuentes — plan de implementación
 
-10 de septiembre de 2026 · Plan y doce tickets creados a pedido de Julian. Define cómo ejecutar la redefinición y conservar el mapa de SF. **Avance: DP-01 verificado con evidencia documental real.** Los demás tickets conservan su estado propio; esta revisión de fuentes no implementa discovery ni modifica la app.
+10 de septiembre de 2026 · Plan y doce tickets creados a pedido de Julian. **Avance consolidado: DP-01 a DP-11 verificados; DP-12 pendiente.** DP-10 integra brief, oportunidades, lista/mapa y evidencia; DP-11 completa decisiones, campaña, copia y reapertura por revisión. Ambos tienen pruebas aisladas y revisión en Chrome sobre localhost. Los cierres individuales son la fuente de verdad; este avance no acredita todavía la aceptación global de la demo.
 
 ## Resultado que vamos a entregar
 
@@ -21,26 +21,38 @@ Para esta iniciativa se concentra el material en la carpeta DemoPuentes solicita
 
 La infraestructura de PostgreSQL, worker, cola, contratos, catálogo y decisiones se reutiliza. No se reactiva el pipeline mundial como sustituto de investigación real. El árbol de trabajo ya tiene cambios del usuario: registrar el estado inicial y conservarlos; no asumir que HEAD contiene todo lo revisado.
 
-El mapa actual en `sf-event-map.tsx` es una cuadrícula SVG, sin calles. Además filtra ubicaciones a observed/reported: las announced de importaciones y las confirmed pueden quedar fuera. El parser Luma conserva ciudad y algunas coordenadas, pero pierde streetAddress. Por eso el mapa requiere dos entregas distintas: datos geográficos completos y presentación cartográfica integrada.
+La revisión inicial encontró una cuadrícula SVG y pérdida de streetAddress. Los cierres DP-08/09 ya incorporaron ubicación pública con procedencia y un mapa de calles de SF con MapLibre/OpenFreeMap. DP-10 reutiliza esa política, las revisiones del run y la comparación de DP-07 para presentar lista/mapa, evidencia y acciones. No reconstruir esas fuentes de verdad ni volver a tratar ciudad sola como coordenada de venue.
 
 ## Orden de implementación
 
 | Ticket | Trabajo | Blocked by | Execution |
 | --- | --- | --- | --- |
 | [DP-01](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/01-caso-real-y-fuentes.md>) | Encontrar un caso real que justifique la demo | Ninguna | verified |
-| [DP-02](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/02-confianza-costos-y-evidencia.md>) | Corregir los defectos que pueden distorsionar una decisión | Ninguna | in-progress |
-| [DP-03](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/03-brief-y-contratos-de-investigacion.md>) | Definir un brief operativo y contratos compartidos | DP-01 | pending |
-| [DP-04](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/04-discovery-exa-durable.md>) | Descubrir oportunidades y fuentes con Exa | DP-03 | pending |
-| [DP-05](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/05-lectura-completa-y-apify.md>) | Leer contenido completo e incorporar Apify donde aporta | DP-03 | pending |
-| [DP-06](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/06-organizador-sponsors-y-proyectos.md>) | Relacionar organizadores, sponsors y proyectos con la edición correcta | DP-04, DP-05 | pending |
-| [DP-07](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/07-comparacion-y-recomendacion-explicable.md>) | Comparar opciones y explicar qué investigar primero | DP-02, DP-03, DP-06 | pending |
-| [DP-08](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/08-direccion-a-coordenadas.md>) | Conservar ubicación y resolver direcciones a coordenadas | DP-03, DP-05 | pending |
-| [DP-09](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/09-mapa-sf-integrado.md>) | Construir el mapa de calles de SF conectado a resultados | DP-08 | pending |
-| [DP-10](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/10-experiencia-investigacion-y-evidencia.md>) | Renovar la experiencia principal de investigación | DP-03, DP-07, DP-09 | pending |
-| [DP-11](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/11-brief-decision-y-reapertura.md>) | Guardar un brief accionable y reabrir la evidencia original | DP-07, DP-10 | pending |
+| [DP-02](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/02-confianza-costos-y-evidencia.md>) | Corregir los defectos que pueden distorsionar una decisión | Ninguna | verified |
+| [DP-03](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/03-brief-y-contratos-de-investigacion.md>) | Definir un brief operativo y contratos compartidos | DP-01 | verified |
+| [DP-04](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/04-discovery-exa-durable.md>) | Descubrir oportunidades y fuentes con Exa | DP-03 | verified |
+| [DP-05](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/05-lectura-completa-y-apify.md>) | Leer contenido completo e incorporar Apify donde aporta | DP-03 | verified |
+| [DP-06](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/06-organizador-sponsors-y-proyectos.md>) | Relacionar organizadores, sponsors y proyectos con la edición correcta | DP-04, DP-05 | verified |
+| [DP-07](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/07-comparacion-y-recomendacion-explicable.md>) | Comparar opciones y explicar qué investigar primero | DP-02, DP-03, DP-06 | verified |
+| [DP-08](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/08-direccion-a-coordenadas.md>) | Conservar ubicación y resolver direcciones a coordenadas | DP-03, DP-05 | verified |
+| [DP-09](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/09-mapa-sf-integrado.md>) | Construir el mapa de calles de SF conectado a resultados | DP-08 | verified |
+| [DP-10](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/10-experiencia-investigacion-y-evidencia.md>) | Renovar la experiencia principal de investigación | DP-03, DP-07, DP-09 | verified |
+| [DP-11](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/11-brief-decision-y-reapertura.md>) | Guardar un brief accionable y reabrir la evidencia original | DP-07, DP-10 | verified |
 | [DP-12](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/12-aceptacion-real-y-demo-puentes.md>) | Cerrar la aceptación con datos reales y preparar la demo | DP-01, DP-02, DP-03, DP-04, DP-05, DP-06, DP-07, DP-08, DP-09, DP-10, DP-11 | pending |
 
-DP-01: [caso y fuentes](evidence/dp-01-caso-y-fuentes.md) · [antecedentes](evidence/dp-01-antecedentes.md) · [matriz de verificación y handoff](evidence/dp-01-verificacion.md). Tres futuras SF; historial de AIT y de Vultr en su rol pasado; una ubicación pública. La validación comercial sigue pendiente. Estado de los demás tickets: consultar sus Execution como fuente de verdad.
+DP-01: [caso y fuentes](evidence/dp-01-caso-y-fuentes.md) · [antecedentes](evidence/dp-01-antecedentes.md) · [matriz de verificación y handoff](evidence/dp-01-verificacion.md). Tres futuras SF; [fichas de organizadores](evidence/dp-01-organizadores.md), **dos organizadores con antecedentes, uno con historial como organizador**, y una ubicación pública. AIT organizó en SF; Vultr patrocinó en París. La ciudad no invalida el antecedente ni el patrocinio acredita organización; [soporte por afirmación](evidence/dp-01-afirmaciones.md). La validación comercial sigue pendiente. Estado de los demás tickets: consultar sus Execution como fuente de verdad.
+
+DP-02: [matriz de aceptación, evidencia y handoff](evidence/DP-02/README.md). 238 pruebas de funciones/integración y 25 comprobaciones E2E aprobadas, sin omisiones. Costos, condiciones, fecha local, confirmed y resúmenes factuales corregidos; no introduce política comercial.
+
+DP-03: [matriz de aceptación, contratos y evidencia](evidence/DP-03/README.md). Brief editable/versionado, preguntas derivadas, fuentes con fragmentos, relaciones y ubicación con precisión; identidad/revisión compartida y cupos separados del presupuesto comercial. 245 pruebas y 26 comprobaciones E2E aprobadas, sin omisiones, más TypeScript, ESLint y build. DP-03 no requirió migración SQL; las integraciones siguen en sus tickets.
+
+DP-04: [matriz de aceptación, smoke real y recuperación](evidence/DP-04/README.md). Consultas trazables al brief, propuestas de fuentes del tenant, progreso persistido y reserva agregada antes de cada intento. 262 pruebas y 27 comprobaciones E2E aprobadas, más TypeScript, ESLint y build. Una consulta real con la clave propia: cinco páginas y USD 0,007 informados por Exa; reserva USD 0,02. Reapertura y reinicio sin repetir consumo. Migración `007` aplicada al entorno local. DP-05 recibe URLs, candidatos y sourceIds; DP-06 todavía requiere su lectura e identidad de edición.
+
+DP-05–09: cierres individuales consolidados desde [lectura de fuentes](evidence/DP-05/README.md), [relaciones](evidence/DP-06/README.md), [comparación explicable](evidence/DP-07/README.md), [ubicación](evidence/DP-08/README.md) y [mapa](evidence/DP-09/README.md). Sus tickets ya estaban verified al comenzar DP-10; esta actualización corrige el índice anterior.
+
+DP-10: [matriz, recorridos y conservación](evidence/DP-10/README.md). Brief compacto editable, respuestas/acciones visibles, progreso persistido, lista/mapa y evidencia lateral o móvil, auditoría desplegable, fechas y etiquetas en inglés. 339 pruebas de funciones/integración y 42 casos de navegador aprobados (47 resultados incluyendo contenedores), build/TypeScript y lint correctos; Chrome real en 1366×900 y 390×844, fuentes reales en localhost. Cero filas previas modificadas o faltantes en 13 tablas; DB/worker/E2E y builds propios. DP-11 completado a continuación; DP-12 y las confirmaciones comerciales conservan su alcance.
+
+DP-11: [matriz, clipboard y conservación](evidence/DP-11/README.md). Cuatro decisiones con motivos, brief editable y atribuido, costos originales conservados, revisión exacta en enlaces e índice, resolución de condiciones y conflicto sin perder texto. 349 comprobaciones de funciones/integración y 29 casos de navegador (33 resultados con contenedores), sin skips; build/TypeScript y lint correctos. Chrome real guardó, copió el clipboard completo, cerró/reabrió y confrontó dos pestañas; reimportación real y catálogo controlado conservaron dossier y mapa históricos. Ocho criterios verified, cero filas previas alteradas en 13 tablas. **Siguiente entrega: DP-12**, sin anticipar su aceptación global.
 
 ### A. Comprobar el valor y reparar la confianza
 
@@ -137,4 +149,4 @@ No incluir por defecto extracción social masiva, nuevos canales de growth, ROI 
 
 ## Qué sigue después de esta entrega
 
-Validar con compradores reales, ampliar investigación por entidades, probar fuentes sociales dirigidas, incorporar refresh con diferencias y escenarios de presupuesto. Eso no bloquea el primer recorrido completo. Con **DP-01 verificado**, DP-03 puede comenzar con la referencia real. DP-02 conserva su ejecución independiente; sus correcciones deben verificarse antes de cerrar la comparación.
+Validar con compradores reales, ampliar investigación por entidades, probar fuentes sociales dirigidas, incorporar refresh con diferencias y escenarios de presupuesto. Eso no bloquea el primer recorrido completo. Con **DP-01/02/03/04 verificados**, sigue DP-05 (en curso), que recibe las páginas y fuentes persistidas de discovery. DP-06 requiere también su cierre; DP-07 reutiliza las reglas de confianza cuando esté verificado DP-06. Los demás tickets conservan sus dependencias y no se consideran ejecutados por este cierre.

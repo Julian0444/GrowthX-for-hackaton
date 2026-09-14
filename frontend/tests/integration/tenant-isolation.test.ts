@@ -432,7 +432,7 @@ test('tenant-isolation: cruces rechazados entre tenant real y señuelo (ticket 1
       ),
     );
     assert.equal(crossComparison.status, 400);
-    assert.match(crossComparison.text, /fuera del catálogo/);
+    assert.match(crossComparison.text, /outside the catalog/);
 
     // profileRunId del tenant real en una importación del señuelo.
     const crossIngest = await audited(

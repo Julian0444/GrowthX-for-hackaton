@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/e2e/reopen-evaluation.spec.ts",
+    "tests/e2e/persisted-evaluation.spec.ts",
+    "tests/e2e/research-brief.spec.ts",
+    "tests/e2e/exa-discovery.spec.ts",
+    "tests/e2e/source-reading.spec.ts",
+    "tests/e2e/relationships.spec.ts"
+  ],
+  "cwd": "/tmp/growthx-dp07-production",
+  "exit_code": 1,
+  "duration_seconds": 191.91,
+  "database": "isolated PostgreSQL port 55447"
+}

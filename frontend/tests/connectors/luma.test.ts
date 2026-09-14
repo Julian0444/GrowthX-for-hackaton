@@ -27,7 +27,7 @@ test('Luma: un título OG de página vacía o calendario no crea un dossier de e
       fetchLumaEvent(EVENT_URL, {
         fetchImpl: htmlTransport(`<meta property="og:title" content="${title}">`),
       }),
-      /extracción fallida/,
+      /extraction failed/,
     );
   }
 });
@@ -43,7 +43,7 @@ test('Luma: una redirección a la portada con metadatos genéricos no crea un ev
           : new Response('<meta property="og:title" content="Luma · Delightful Events">');
       },
     }),
-    /extracción fallida/,
+    /extraction failed/,
   );
   assert.deepEqual(calls, [EVENT_URL, 'https://lu.ma/']);
 });
@@ -101,7 +101,7 @@ test('Luma: el transporte fixture conserva su procedencia tras guardar y reanuda
   });
   assert.equal(fixture.isFixture, true);
   assert.equal(parseLumaFetchOutput(JSON.parse(JSON.stringify(fixture))).isFixture, true);
-  assert.throws(() => parseLumaFetchOutput({ ...fixture, isFixture: 'true' }), /forma desconocida/);
+  assert.throws(() => parseLumaFetchOutput({ ...fixture, isFixture: 'true' }), /unknown structure/);
 
   const normal = await fetchLumaEvent(EVENT_URL, { fetchImpl: htmlTransport(html) });
   assert.equal(normal.isFixture, undefined, 'el HTML y la URL no deciden la procedencia del transporte');

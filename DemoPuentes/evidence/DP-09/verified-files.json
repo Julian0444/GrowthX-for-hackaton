@@ -1,0 +1,170 @@
+{
+  "frontend/components/research-dashboard/sf-event-map.tsx": {
+    "sha256": "90526a2da79ebcdaff979068579c0f75ce9f9b74364b6cf0325b9b443eb010da",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/components/research-dashboard/sf-event-map.css": {
+    "sha256": "4a4afc940a707314987b8b29c73518a429c6b1550854fed93512197a69300706",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/components/research-dashboard/research-events.tsx": {
+    "sha256": "c81d09303113a767e8ead7dbf5ed10d8c7bda17607a56380397a4ae0c8b7ddcf",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/components/research-dashboard/research-dashboard.tsx": {
+    "sha256": "7080f146a3f6a059f05b9fb07e47be7f0898e766a9b8b97892c3bfbb43c17bfb",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/lib/research/run-editions.ts": {
+    "sha256": "cc0355e64a398c38be2bd86f69aaf80d92e128ab8b8aeb3381ebf533c8fdc1e0",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/lib/research/map-opportunities.ts": {
+    "sha256": "21ccef380f0ba77722013f041f3dcba925c28fd5711970c40f5435e2aa56c1b8",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/lib/research/edition-location.ts": {
+    "sha256": "3ed3c1770a9a819fbe72c22e860e5e97a72053d050815777725ecfca0c99b324",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/lib/research/location-policy.ts": {
+    "sha256": "4d177c39838d4e747b907c19eb2fb43c4f2a6149539dacc51ce9a1e8d8097c99",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/lib/api/opportunity-adapter.ts": {
+    "sha256": "417bde7b44bc3cd2b36f3301dd986ea508ff375b7d2dde52be1e84170e6e2156",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/lib/contracts/evaluation.ts": {
+    "sha256": "7d8675f0eb0be24472ce5b9987fdd6b8d6aff082104be896c31b6808553567de",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/app/layout.tsx": {
+    "sha256": "9c36bcf2567b211d89e16e1cb915b666e79e204db7f91238d25426dc75ca6ced",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/package.json": {
+    "sha256": "050e08a61d81f935fb57c452afffbc350278ae6b5409663ee78345b9a1d8eb3a",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/pnpm-lock.yaml": {
+    "sha256": "93fbd2a613fba8228447ec4ea7ed373a4a7e733b832db6f5acf2349a09cee09e",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/.gitignore": {
+    "sha256": "feb81e4a5cff24d960e0d933becdba76f02be968f8f00b833f2723687519ef48",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/eslint.config.mjs": {
+    "sha256": "0d3235b2b05c23eeaa091de72bd92db034dc62ec85e69ee884d3a20fb50e6aa3",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/scripts/copy-maplibre-worker.mjs": {
+    "sha256": "22cebbca0bd96d656443d8b04956b84924876d29f63b5436cdfcc3fab3dd007d",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/scripts/smoke-street-map.ts": {
+    "sha256": "60994c8ee28397374f9adb57c834333c470fc0120340ac67eff119e08579274b",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/fixtures/sf-map.ts": {
+    "sha256": "2907378f038606e36aa4d57502930faa66f94ab7be8090eb719da869d6155be2",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/ui/sf-map.test.ts": {
+    "sha256": "311cc8858866b6cc510b86df83f73f30ef27d5d0b5154adf1cc1649b5ca686aa",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/ui/trust-evidence.test.ts": {
+    "sha256": "74e70f7c7e79e5623ecaee76c89000cbef11ae52c028165de9b3bce1aa75ab6f",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/e2e/sf-street-map.spec.ts": {
+    "sha256": "d8cffd33de45726ba385aa3dde8456cadcd2dbb55b0d42443d5a713799c3408f",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/e2e/sf-organizer-research.spec.ts": {
+    "sha256": "59b7f31caa473f09d6d300fd88432480d217abad6ed7f08770df3fe3c09a8107",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/e2e/research-brief.spec.ts": {
+    "sha256": "4e4b4b3c67c5e23895bc50ce12afa1f14b419baa33ec41919e9fef215661a015",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  },
+  "frontend/tests/e2e/persisted-evaluation.spec.ts": {
+    "sha256": "8284af3ef5de88509a329f8e8fc23edad4ad087fb89c2b7dd6518b07ffa0f17e",
+    "copies": {
+      "turbopack": true,
+      "webpack": true
+    }
+  }
+}

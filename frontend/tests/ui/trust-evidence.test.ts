@@ -44,12 +44,12 @@ test('campaña y texto copiable conservan incertidumbre, base y advertencia', as
   ],openQuestions:['Confirmar audiencia y costo completo'],commitments:[]};
   const view=projectCampaignDraft(record,dossier().sources);
   const text=composeManualCampaignDraft(view);
-  assert.match(text,new RegExp(status==='inferred'?'Inferido':'Contradicho'));
+  assert.match(text,new RegExp(status==='inferred'?'Inferred':'Contradicted'));
   assert.match(text,/historical_estimate/);
-  assert.match(text,/no es cotización/);
-  assert.match(text,/Travel: Pendiente/);
+  assert.match(text,/not a quote/);
+  assert.match(text,/Travel: Pending/);
   const html=renderToStaticMarkup(createElement(CampaignDraftPanel,{view,onBack(){},onToast(){}}));
-  assert.match(html,/no es cotización/);
+  assert.match(html,/not a quote/);
   assert.match(html,/Precio pendiente/);
  }
 });
@@ -59,11 +59,12 @@ test('ubicación announced y confirmed comparten soporte pero no confirmación h
  for(const status of ['announced','confirmed','contradicted'] as const) {
   const claims=baseClaims.map(c=>c.attribute==='location'?{...c,status,reviewer:status==='confirmed'?'Persona':null,note:status==='contradicted'?'Otra ciudad':null}:c);
   const read=dossier(claims); read.editionRevisions[0].coordinates={lat:37.77,lng:-122.42};
+  read.editionRevisions[0].publicLocation={originalAddress:null,address:null,venue:'Sede sintética',city:'San Francisco',precision:'venue',method:'manual',provider:'test',resolvedAt:read.evaluatedAt,sourceIds:['s'],status,limitation:status==='contradicted'?'Otra ciudad':null};
   const policy=locationSupport(claims.find(c=>c.attribute==='location')!);
   assert.equal(policy.usable,status!=='contradicted');
   assert.equal(policy.humanConfirmed,status==='confirmed');
   const html=renderToStaticMarkup(createElement(SfEventMap,{editions:[read],onEdition(){}}));
-  assert.equal(html.includes('data-point-edition-id="e"'),status!=='contradicted');
-  if(status!=='contradicted') assert.ok(html.includes(`ubicación ${status}`));
+  assert.ok(html.includes(`data-map-point-count="${status==='contradicted'?0:1}"`));
+  if(status!=='contradicted') assert.ok(html.includes('Location does not imply a recommendation')); // markers are mounted by the real browser test
  }
 });

@@ -1,0 +1,387 @@
+{
+  "material": "controlled fixture transport",
+  "runId": "766c5bb0-c684-4914-ba46-033b89ec2eaf",
+  "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+  "editionRevisionId": "edition-rev-69c555b377d63e8dbc9b7507-geo",
+  "projectUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+  "result": {
+    "kind": "background_research",
+    "status": "completed",
+    "version": 1,
+    "material": "synthetic",
+    "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+    "limitations": [],
+    "sourceCount": 6,
+    "organizerIds": [
+      "organizer-c65ea5ee11a9e13d7a13bd36"
+    ],
+    "attemptedUrls": [
+      "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "https://sf.aitinkerers.org/organizers"
+    ],
+    "editionRevisionIds": [
+      "edition-rev-69c555b377d63e8dbc9b7507-geo",
+      "edition-rev-52edaf0bdbaaf2a848815e99-geo"
+    ]
+  },
+  "additional": [],
+  "sourceEvidence": [
+    {
+      "id": "background-source-2ca1b06e71efbba6e0a1fb10",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "title": null,
+      "method": "test_fixture+http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "42c38b8da212ec04b2b4b24b1bb37a6f50cace4f91708e450b5115f1508b6ac9"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:29:36.925Z",
+      "fragments": [
+        {
+          "id": "fragment-d5ed9c3aac4f56db",
+          "text": "San Francisco · December 6, 2025",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-a3e83baa3b8fd1298227e159",
+          "text": "6 projects",
+          "locator": "HTML line 1"
+        }
+      ],
+      "retrieval": {
+        "status": "partial",
+        "freshness": "current",
+        "limitation": "No material visible text obtained; structured fields alone do not establish full coverage."
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "requestedUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-3a00ac27d87ed23dfc22ccca",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "title": null,
+      "method": "test_fixture+http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "698c2c8c279777eb2651e641b190e1474294e2b68533ee2139b316fcff321fa5"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:29:36.935Z",
+      "fragments": [
+        {
+          "id": "fragment-d00d7a621175d4bcdfd68c4b",
+          "text": "Back to Showcase: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+          "locator": "HTML line 1 a[href]"
+        },
+        {
+          "id": "fragment-70dfcc276e5e9f530af6dd73",
+          "text": "The Citadel: Neuro-Symbolic Security Gateway",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-bf24eebc2be713180ccb2eba",
+          "text": "1st Place Winner",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-dd5f39deda1781eee68ad09a",
+          "text": "Google Cloud",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-a0b91c172285c8da3d3b4927",
+          "text": "The Citadel is a security gateway for MCP, tracking agent behavior.",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-d385c066f590e78be7c6a93b",
+          "text": "Public repository linked by project: https://github.com/NineSunsInc/fast-mcp-scanner",
+          "locator": "HTML line 1 a[href]"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "requestedUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-aa6f8976d10da9b6156ee3e1",
+      "url": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "title": "Agents, Everywhere",
+      "method": "test_fixture+http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "8ffc0e18cbafd081b6e247ef6255c615c59fb1f2c0e7f3800b84668cd4ed6227"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:29:36.886Z",
+      "fragments": [
+        {
+          "id": "fragment-5722d2467bacdd20",
+          "text": "name: Agents, Everywhere",
+          "locator": "JSON-LD Event.name"
+        },
+        {
+          "id": "fragment-170e1f381957490b",
+          "text": "startDate: 2026-09-12T17:00:00Z",
+          "locator": "JSON-LD Event.startDate"
+        },
+        {
+          "id": "fragment-cda03ebf173264e4",
+          "text": "location.address.addressLocality: San Francisco",
+          "locator": "JSON-LD Event.location.address.addressLocality"
+        },
+        {
+          "id": "fragment-98eae08dacc02e40",
+          "text": "Agents, Everywhere: This is a builders-only AI Tinkerers event, and attendance is by application only. Who should come: Engineers and agent builders.",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-09fb898c8ebded13",
+          "text": "Agents, Everywhere: This is a builders-only AI Tinkerers event, and attendance is by application only.",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-43cae837506a62ce",
+          "text": "Global Sponsors: OpenAI",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-0d75234f5eb7c6a7",
+          "text": "Developer Infrastructure Partners: Exa",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-6d38ad5a558519b8",
+          "text": "Event details: Location: Shared upon acceptance",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-300d5928f7379e11a2bbbf81",
+          "text": "Subscribe to AI Tinkerers - San Francisco",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-04aa31ca5c78975aea93cc0e",
+          "text": "Part of a global AI Tinkerers hackathon",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-22d40c21757bd9a755e67041",
+          "text": "This is a builders-only AI Tinkerers event, and attendance is by application only.",
+          "locator": "HTML line 1"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "requestedUrl": "https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-b382c3c0f782b5a3d4fa3e7a",
+      "url": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "title": null,
+      "method": "test_fixture+http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "ddf1da033671fe029d76686fbd59afa9077ca561a3fbba93e464ed90610332eb"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:29:36.944Z",
+      "fragments": [
+        {
+          "id": "fragment-d00d7a621175d4bcdfd68c4b",
+          "text": "Back to Showcase: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+          "locator": "HTML line 1 a[href]"
+        },
+        {
+          "id": "fragment-ea951cf1274fe103c977b64a",
+          "text": "MyCodeDontJiggleJiggle",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-0a83dca985a5eada6e329e71",
+          "text": "2nd Place Winner",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-dd5f39deda1781eee68ad09a",
+          "text": "Google Cloud",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-8c4cea06332412bd29ba8b61",
+          "text": "Cleo generates collateral with a human in the loop.",
+          "locator": "HTML line 1"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "requestedUrl": "https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-b589021e7ba39e9df620c4b9",
+      "url": "https://sf.aitinkerers.org/organizers",
+      "title": null,
+      "method": "test_fixture+http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "6d8473194f99cd82978ead724480818cc099d27145c8cae2e5fb6fbd25f28b69"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:29:36.952Z",
+      "fragments": [
+        {
+          "id": "fragment-f3c7be2f2e2f4f1800ecfdc0",
+          "text": "Ian Butler — Chapter Lead",
+          "locator": "HTML line 1; HTML line 1"
+        }
+      ],
+      "retrieval": {
+        "status": "partial",
+        "freshness": "current",
+        "limitation": "No material visible text obtained; structured fields alone do not establish full coverage."
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/organizers",
+      "requestedUrl": "https://sf.aitinkerers.org/organizers",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    },
+    {
+      "id": "background-source-d73c7894b29e0739a0a7381d",
+      "url": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "title": "AI Tinkerers SF - Secure Agents Buildathon",
+      "method": "test_fixture+http_get+relationship_extraction",
+      "content": {
+        "kind": "hash",
+        "sha256": "74d1c55a28afb01061ed073bfd186ed561f04687d8e29a5c13ecca3ceb9047ae"
+      },
+      "locator": null,
+      "geoScope": "unknown",
+      "provider": "sf.aitinkerers.org",
+      "collector": "growthx-worker",
+      "fetchedAt": "2026-09-10T22:29:36.911Z",
+      "fragments": [
+        {
+          "id": "fragment-d0ca18ee13274345",
+          "text": "name: AI Tinkerers SF - Secure Agents Buildathon",
+          "locator": "JSON-LD Event.name"
+        },
+        {
+          "id": "fragment-b4cb0c55f44f8cb4",
+          "text": "startDate: 2025-12-06T17:00:00Z",
+          "locator": "JSON-LD Event.startDate"
+        },
+        {
+          "id": "fragment-cda03ebf173264e4",
+          "text": "location.address.addressLocality: San Francisco",
+          "locator": "JSON-LD Event.location.address.addressLocality"
+        },
+        {
+          "id": "fragment-300d5928f7379e11a2bbbf81",
+          "text": "Subscribe to AI Tinkerers - San Francisco",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-2a7998e4a209c139e2738bce",
+          "text": "AI Tinkerers SF - Secure Agents Buildathon",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-96dca4974b4bb0dc23ce0bd6",
+          "text": "Thank you to Google Cloud!",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-e236cb7b73624395e701b9e7",
+          "text": "Monitoring, auditing, and recovery patterns for long-running agents",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-2e6489a2bbea0b4130fd511b",
+          "text": "Venue Host",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-584616cde375cb1d00c61c1e",
+          "text": "Wordware",
+          "locator": "HTML line 1"
+        },
+        {
+          "id": "fragment-9b9604e49dc8b30f099607fd",
+          "text": "Winners & Projects: https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase",
+          "locator": "HTML line 1 a[href]"
+        }
+      ],
+      "retrieval": {
+        "status": "obtained",
+        "freshness": "current",
+        "limitation": null
+      },
+      "publishedAt": null,
+      "canonicalUrl": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "requestedUrl": "https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon",
+      "contractVersion": "1",
+      "usageRestrictions": []
+    }
+  ],
+  "checks": {
+    "eventToOrganizer": true,
+    "organizerToPreviousEdition": true,
+    "projectLink": true,
+    "technologyFragment": true,
+    "companyRoleFragment": false,
+    "partialCoverage": true,
+    "reloadSameRevision": true,
+    "mobileNoOverflow": true,
+    "foreignTenant404": true
+  },
+  "paidProviders": {
+    "exa": 0,
+    "apify": 0
+  },
+  "errors": []
+}

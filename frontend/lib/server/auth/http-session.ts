@@ -14,7 +14,7 @@ export async function resolveHttpSession(request: Request): Promise<HttpSession>
     return {
       ok: false,
       response: NextResponse.json(
-        { error: 'unauthorized', message: 'Sesión requerida (cookie growthx_session o Bearer).' },
+        { error: 'unauthorized', message: 'Session required (growthx_session cookie or Bearer token).' },
         { status: 401 },
       ),
     };
@@ -22,7 +22,7 @@ export async function resolveHttpSession(request: Request): Promise<HttpSession>
     return {
       ok: false,
       response: NextResponse.json(
-        { error: 'session_unavailable', message: 'No se pudo verificar la sesión. Reintentá cuando el servidor esté disponible.' },
+        { error: 'session_unavailable', message: 'The session could not be verified. Retry when the server is available.' },
         { status: 503 },
       ),
     };

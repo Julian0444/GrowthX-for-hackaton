@@ -1,0 +1,69 @@
+(node:4291) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/exa-discovery.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 main brief → durable Exa proposals → worker restart → closed tab reopened (16979.88375ms)
+ℹ Unmodified primary request, Exa fixture explicitly synthetic, 3 attempts persisted, worker process stopped/restarted, same source IDs after tab closure, no fixture organizer fallback, 404 cross tenant, desktop/mobile.
+(node:4559) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/persisted-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL)
+  ✔ perfil → investigación; pegar URL de Luma y cerrar la pestaña; el worker cae con SIGKILL y al reiniciar el dossier queda durable con pendientes (15055.01625ms)
+  ✔ elegir condicionalmente sobre la comparación y guardar; luego cerrar navegador, worker y Next (7382.50125ms)
+  ✔ reiniciar Next y recuperar por el enlace interno: identidad, evidencia y condiciones intactas; el señuelo no puede leer ni modificar (10598.216ms)
+  ✔ perfil → organizadores de SF → antecedente con empresa/rol → evento → decisión, sin abrir el mapa; resultado comercial ausente = desconocido (5968.513458ms)
+✔ SF: demo persistida bajo caídas y aislamiento (navegador, Next reiniciado, worker con SIGKILL) (44928.757458ms)
+ℹ Worker con SIGKILL real + Next reiniciado; 0 llamadas prohibidas; catálogo sintético y transporte de fixture explícitos.
+(node:5351) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/relationships.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06 browser: controlled sources -> organizer -> previous edition -> company/project -> evidence (8124.547542ms)
+ℹ controlled: event -> organizer -> previous edition -> company/project -> exact relationship fragments; reload and mobile; no paid providers.
+(node:5517) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ✔ guardar una elección condicional, ver su campaña y copiar el enlace interno (5879.771625ms)
+  ✔ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (6691.878042ms)
+  ✔ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (10793.602292ms)
+  ✔ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (9339.471542ms)
+  ✔ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (849.108667ms)
+  ✔ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (5947.212875ms)
+  ✔ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (1635.834084ms)
+  ✔ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (3366.505ms)
+✔ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales) (54250.496458ms)
+ℹ Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+(node:6433) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/research-brief.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier (42113.985333ms)
+(node:7275) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-dp07-production/tests/e2e/source-reading.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-dp07-production/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile (21827.918833ms)
+ℹ Controlled HTML; real PostgreSQL, queue, worker, Next and Chromium. Audience/sponsor/address fragments, both dates, same revision after reload, tenant 404 and no mobile overflow. No paid providers.
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191828.970375
+
+✖ failing tests:
+
+test at tests/e2e/research-brief.spec.ts:74:1
+✖ DP03: editar brief, cambiar preguntas, guardar dos revisiones y reabrir; lista/pin/dossier (42113.985333ms)
+  locator.waitFor: Timeout 20000ms exceeded.
+  Call log:
+    - waiting for locator('[data-map-state="ready"]') to be visible
+  
+      at TestContext.<anonymous> (/private/tmp/growthx-dp07-production/tests/e2e/research-brief.spec.ts:146:50) {
+    name: 'TimeoutError'
+  }

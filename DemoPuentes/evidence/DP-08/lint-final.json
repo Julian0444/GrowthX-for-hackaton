@@ -1,0 +1,29 @@
+{
+  "command": [
+    "node",
+    "node_modules/eslint/bin/eslint.js",
+    "lib/server/geocoding",
+    "lib/research/location-policy.ts",
+    "lib/research/edition-location.ts",
+    "lib/server/sources/extract.ts",
+    "lib/server/catalog/luma-adapter.ts",
+    "lib/server/evaluations/run-worker.ts",
+    "lib/contracts/evaluation.ts",
+    "lib/contracts/evaluation-validation.ts",
+    "lib/api/opportunity-adapter.ts",
+    "components/research-dashboard/location-evidence.tsx",
+    "components/research-dashboard/research-dossier.tsx",
+    "components/research-dashboard/sf-event-map.tsx",
+    "components/research-dashboard/research-dashboard.tsx",
+    "tests/connectors/location-resolution.test.ts",
+    "tests/integration/location-resolution.test.ts",
+    "tests/fixtures/location-resolution.ts",
+    "tests/integration/luma-dossier.test.ts",
+    "scripts/smoke-location-resolution.ts",
+    "scripts/verify-location-reopen.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 2.24,
+  "database": "isolated PostgreSQL port 55448"
+}

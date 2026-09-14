@@ -6,23 +6,14 @@
 // resuelve el servidor desde la sesión, nunca el navegador.
 
 import { randomUUID, createHash } from 'node:crypto';
-import type { EvaluationProfile, ObjectiveKind, ComparableCompanyRef } from '../../contracts/evaluation.ts';
+import type { EvaluationProfile, ObjectiveKind, ComparableCompanyRef, ResearchBriefInput, ResearchPlan } from '../../contracts/evaluation.ts';
 
 export interface EvaluationStartBody {
   idempotencyKey: string;
   mode: 'catalog_research';
-  researchScope?: 'sf_organizers';
+  researchScope?: 'sf_organizers' | 'sf_discovery';
   previousRunId?: string;
-  profile: {
-    product: string;
-    comparableCompanies?: ComparableCompanyRef[];
-    audienceDescription: string;
-    audienceProfiles: string[];
-    stack: string[];
-    budget: { status: 'declared'; amount: number; currency: string } | { status: 'unknown' };
-    window: { from: string | null; to: string | null };
-    objective: { kind: ObjectiveKind };
-  };
+  profile: ResearchBriefInput;
 }
 
 // Cuerpo de la comparación de inversión (ticket 12): hasta 3 ediciones del
@@ -32,6 +23,7 @@ export interface ComparisonStartBody {
   idempotencyKey: string;
   mode: 'investment_comparison';
   profileRunId: string;
+  profile?: ResearchBriefInput; // nueva revisión, nunca modifica el perfil usado
   // Normalizadas al parsear: sin duplicados y en orden estable (la comparación
   // es sobre un conjunto; el orden de selección no cambia la evaluación).
   editionIds: string[];
@@ -66,11 +58,11 @@ function unknownKeys(record: Record<string, unknown>, allowed: string[]): string
 }
 
 function parseStringArray(value: unknown, label: string): string[] | BodyParseFailure {
-  if (!Array.isArray(value)) return fail(`${label} debe ser una lista de strings`);
+  if (!Array.isArray(value)) return fail(`${label} must be a list of strings`);
   const items: string[] = [];
   for (const item of value) {
     if (typeof item !== 'string' || item.trim().length === 0)
-      return fail(`${label} contiene un valor vacío o no-string`);
+      return fail(`${label} contains an empty or non-string value`);
     items.push(item.trim());
   }
   return items;
@@ -79,29 +71,29 @@ function parseStringArray(value: unknown, label: string): string[] | BodyParseFa
 function parseDayOrNull(value: unknown, label: string): string | null | BodyParseFailure {
   if (value === null) return null;
   if (typeof value !== 'string' || !ISO_DAY.test(value) || Number.isNaN(Date.parse(`${value}T00:00:00Z`)) || new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) !== value)
-    return fail(`${label} debe ser null o un día ISO (YYYY-MM-DD)`);
+    return fail(`${label} must be null or an ISO day (YYYY-MM-DD)`);
   return value;
 }
 
 export function parseEvaluationStartBody(input: unknown): BodyParseResult {
-  if (!isRecord(input)) return fail('cuerpo inválido: se esperaba un objeto JSON');
+  if (!isRecord(input)) return fail('invalid body: expected a JSON object');
   // Ticket 12: la MISMA frontera acepta la comparación de inversión; el resto
   // de esta función conserva intacto el parseo de catalog_research.
   if (input.mode === 'investment_comparison') return parseComparisonStartBody(input);
   const extra = unknownKeys(input, ['idempotencyKey', 'mode', 'profile', 'researchScope', 'previousRunId']);
   if (extra.length > 0)
-    return fail(`claves no admitidas en el cuerpo: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
+    return fail(`unsupported body keys: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
 
   const { idempotencyKey, mode, profile } = input;
-  if (input.researchScope !== undefined && input.researchScope !== 'sf_organizers')
+  if (input.researchScope !== undefined && !['sf_organizers', 'sf_discovery'].includes(String(input.researchScope)))
     return fail('researchScope no admitido');
-  if (input.previousRunId !== undefined && (input.researchScope !== 'sf_organizers' ||
+  if (input.previousRunId !== undefined && (!['sf_organizers', 'sf_discovery'].includes(String(input.researchScope)) ||
       typeof input.previousRunId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.previousRunId)))
-    return fail('previousRunId debe identificar una investigación SF');
+    return fail('previousRunId must identify an SF research run');
   if (typeof idempotencyKey !== 'string' || idempotencyKey.length < 8 || idempotencyKey.length > 128)
-    return fail('idempotencyKey debe ser un string de 8 a 128 caracteres');
-  if (mode !== 'catalog_research') return fail('mode debe ser "catalog_research"');
-  if (!isRecord(profile)) return fail('profile debe ser un objeto');
+    return fail('idempotencyKey must be a string of 8 to 128 characters');
+  if (mode !== 'catalog_research') return fail('mode must be "catalog_research"');
+  if (!isRecord(profile)) return fail('profile must be an object');
 
   const profileExtra = unknownKeys(profile, [
     'product',
@@ -111,14 +103,14 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
     'budget',
     'window',
     'objective',
-    'comparableCompanies',
+    'comparableCompanies', 'restrictions', 'formats', 'geography',
   ]);
   if (profileExtra.length > 0) return fail(`claves no admitidas en profile: ${profileExtra.join(', ')}`);
 
   const comparableCompanies: ComparableCompanyRef[] = [];
   if (profile.comparableCompanies !== undefined) {
     if (!Array.isArray(profile.comparableCompanies) || profile.comparableCompanies.length > 30)
-      return fail('comparableCompanies debe ser una lista de hasta 30 empresas');
+      return fail('comparableCompanies must be a list of up to 30 companies');
     for (const item of profile.comparableCompanies) {
       if (!isRecord(item) || unknownKeys(item, ['companyId', 'name', 'relation', 'confirmation']).length ||
           typeof item.name !== 'string' || !item.name.trim() ||
@@ -126,7 +118,7 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
           !['comparable', 'competitor'].includes(String(item.relation)) ||
           !['indicated', 'confirmed'].includes(String(item.confirmation)) ||
           (item.companyId !== null && item.confirmation !== 'confirmed'))
-        return fail('Empresa comparable inválida: un vínculo al catálogo requiere identidad confirmada');
+        return fail('Invalid comparable company: a catalog link requires confirmed identity');
       comparableCompanies.push({ companyId: item.companyId as string | null, name: item.name.trim(),
         relation: item.relation as ComparableCompanyRef['relation'], confirmation: item.confirmation as ComparableCompanyRef['confirmation'] });
     }
@@ -142,7 +134,7 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
   const stack = parseStringArray(profile.stack, 'profile.stack');
   if (!Array.isArray(stack)) return stack;
 
-  if (!isRecord(profile.budget)) return fail('profile.budget debe ser un objeto');
+  if (!isRecord(profile.budget)) return fail('profile.budget must be an object');
   const budgetRecord = profile.budget;
   let budget: EvaluationStartBody['profile']['budget'];
   if (budgetRecord.status === 'declared') {
@@ -150,19 +142,19 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
     if (budgetExtra.length > 0) return fail(`claves no admitidas en budget: ${budgetExtra.join(', ')}`);
     const { amount, currency } = budgetRecord;
     if (typeof amount !== 'number' || !Number.isFinite(amount) || amount < 0)
-      return fail('budget.amount debe ser un número finito ≥ 0');
+      return fail('budget.amount must be a finite number ≥ 0');
     if (typeof currency !== 'string' || !/^[A-Z]{3}$/.test(currency))
-      return fail('budget.currency debe ser un código ISO 4217 (p. ej. "USD")');
+      return fail('budget.currency must be an ISO 4217 code (for example, "USD")');
     budget = { status: 'declared', amount, currency };
   } else if (budgetRecord.status === 'unknown') {
     const budgetExtra = unknownKeys(budgetRecord, ['status']);
     if (budgetExtra.length > 0) return fail(`claves no admitidas en budget: ${budgetExtra.join(', ')}`);
     budget = { status: 'unknown' };
   } else {
-    return fail('budget.status debe ser "declared" o "unknown" (desconocido nunca se asume 0)');
+    return fail('budget.status must be "declared" or "unknown" (unknown is never assumed to be zero)');
   }
 
-  if (!isRecord(profile.window)) return fail('profile.window debe ser un objeto');
+  if (!isRecord(profile.window)) return fail('profile.window must be an object');
   const windowExtra = unknownKeys(profile.window, ['from', 'to']);
   if (windowExtra.length > 0) return fail(`claves no admitidas en window: ${windowExtra.join(', ')}`);
   const from = parseDayOrNull(profile.window.from, 'window.from');
@@ -172,20 +164,33 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
   if (from !== null && to !== null && Date.parse(from) > Date.parse(to))
     return fail('window invertida: from es posterior a to');
 
-  if (!isRecord(profile.objective)) return fail('profile.objective debe ser un objeto');
-  const objectiveExtra = unknownKeys(profile.objective, ['kind']);
+  if (!isRecord(profile.objective)) return fail('profile.objective must be an object');
+  const objectiveExtra = unknownKeys(profile.objective, ['kind', 'confirmation', 'successDefinition']);
   if (objectiveExtra.length > 0)
     return fail(`claves no admitidas en objective: ${objectiveExtra.join(', ')}`);
   const kind = profile.objective.kind;
   if (typeof kind !== 'string' || !OBJECTIVE_KINDS.includes(kind as ObjectiveKind))
-    return fail(`objective.kind debe ser uno de ${OBJECTIVE_KINDS.join(', ')}`);
+    return fail(`objective.kind must be one of ${OBJECTIVE_KINDS.join(', ')}`);
+
+  const confirmation = profile.objective.confirmation === undefined ? 'provisional' : profile.objective.confirmation;
+  if (!['provisional', 'confirmed'].includes(String(confirmation))) return fail('invalid objective.confirmation');
+  const successDefinition = profile.objective.successDefinition === undefined ? { status: 'pending' } : profile.objective.successDefinition;
+  if (!isRecord(successDefinition) ||
+      (successDefinition.status === 'pending' ? unknownKeys(successDefinition, ['status']).length > 0 :
+       successDefinition.status !== 'defined' || unknownKeys(successDefinition, ['status', 'text']).length > 0 || typeof successDefinition.text !== 'string' || !successDefinition.text.trim()))
+    return fail('objective.successDefinition must be pending or defined with text');
+  const restrictions = parseStringArray(profile.restrictions === undefined ? [] : profile.restrictions, 'profile.restrictions');
+  if (!Array.isArray(restrictions)) return restrictions;
+  const formats = parseStringArray(profile.formats === undefined ? [] : profile.formats, 'profile.formats');
+  if (!Array.isArray(formats)) return formats;
+  if (profile.geography !== undefined && (!isRecord(profile.geography) || unknownKeys(profile.geography, ['city', 'timezone']).length || profile.geography.city !== 'San Francisco' || profile.geography.timezone !== 'America/Los_Angeles')) return fail('geography must be San Francisco, America/Los_Angeles');
 
   return {
     ok: true,
     body: {
       idempotencyKey,
       mode,
-      ...(input.researchScope === 'sf_organizers' ? { researchScope: 'sf_organizers' as const } : {}),
+      ...(input.researchScope === 'sf_organizers' || input.researchScope === 'sf_discovery' ? { researchScope: input.researchScope } : {}),
       ...(typeof input.previousRunId === 'string' ? { previousRunId: input.previousRunId } : {}),
       profile: {
         product: product.trim(),
@@ -195,7 +200,8 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
         stack,
         budget,
         window: { from, to },
-        objective: { kind: kind as ObjectiveKind },
+        objective: { kind: kind as ObjectiveKind, confirmation: confirmation as 'provisional' | 'confirmed', successDefinition: successDefinition.status === 'defined' ? { status: 'defined', text: (successDefinition.text as string).trim() } : { status: 'pending' } },
+        restrictions, formats, geography: { city: 'San Francisco', timezone: 'America/Los_Angeles' },
       },
     },
   };
@@ -208,22 +214,28 @@ export function parseEvaluationStartBody(input: unknown): BodyParseResult {
 const MAX_COMPARED_EDITIONS = 3;
 
 function parseComparisonStartBody(input: Record<string, unknown>): BodyParseResult {
-  const extra = unknownKeys(input, ['idempotencyKey', 'mode', 'profileRunId', 'editionIds', 'previousRunId']);
+  const extra = unknownKeys(input, ['idempotencyKey', 'mode', 'profileRunId', 'editionIds', 'previousRunId', 'profile']);
   if (extra.length > 0)
-    return fail(`claves no admitidas en el cuerpo: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
+    return fail(`unsupported body keys: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
   const { idempotencyKey, profileRunId, editionIds, previousRunId } = input;
+  let revisedProfile: ResearchBriefInput | undefined;
+  if (input.profile !== undefined) {
+    const parsed = parseEvaluationStartBody({idempotencyKey,mode:'catalog_research',profile:input.profile});
+    if (!parsed.ok) return parsed;
+    if (parsed.body.mode === 'catalog_research') revisedProfile = parsed.body.profile;
+  }
   if (typeof idempotencyKey !== 'string' || idempotencyKey.length < 8 || idempotencyKey.length > 128)
-    return fail('idempotencyKey debe ser un string de 8 a 128 caracteres');
+    return fail('idempotencyKey must be a string of 8 to 128 characters');
   if (typeof profileRunId !== 'string' || !UUID_RE.test(profileRunId))
-    return fail('profileRunId debe identificar una investigación existente de esta sesión');
+    return fail('profileRunId must identify an existing research run for this session');
   if (previousRunId !== undefined && (typeof previousRunId !== 'string' || !UUID_RE.test(previousRunId)))
-    return fail('previousRunId debe identificar una evaluación (comparación) anterior de esta sesión');
+    return fail('previousRunId must identify a previous evaluation (comparison) for this session');
   if (!Array.isArray(editionIds) || editionIds.length === 0)
-    return fail('editionIds debe ser una lista de 1 a 3 ediciones del catálogo');
+    return fail('editionIds must be a list of 1 to 3 catalog editions');
   const ids: string[] = [];
   for (const id of editionIds) {
     if (typeof id !== 'string' || id.trim().length === 0)
-      return fail('editionIds contiene un id vacío o no-string');
+      return fail('editionIds contains an empty or non-string ID');
     ids.push(id.trim());
   }
   // Conjunto normalizado (sin duplicados, orden estable): dos selecciones del
@@ -231,7 +243,7 @@ function parseComparisonStartBody(input: Record<string, unknown>): BodyParseResu
   const unique = [...new Set(ids)].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
   if (unique.length > MAX_COMPARED_EDITIONS)
     return fail(
-      `la comparación admite hasta ${MAX_COMPARED_EDITIONS} ediciones; con menos opciones elegibles no se completa un top 3`,
+      `the comparison supports up to ${MAX_COMPARED_EDITIONS} editions; fewer eligible options do not fill a top three`,
     );
   return {
     ok: true,
@@ -240,6 +252,7 @@ function parseComparisonStartBody(input: Record<string, unknown>): BodyParseResu
       mode: 'investment_comparison',
       profileRunId,
       editionIds: unique,
+      ...(revisedProfile ? { profile: revisedProfile } : {}),
       ...(typeof previousRunId === 'string' ? { previousRunId } : {}),
     },
   };
@@ -254,6 +267,7 @@ export function comparisonPayloadHash(body: ComparisonStartBody): string {
       mode: body.mode,
       profileRunId: body.profileRunId,
       editionIds: body.editionIds,
+      ...(body.profile ? { profile: body.profile } : {}),
       ...(body.previousRunId ? { previousRunId: body.previousRunId } : {}),
     }),
   );
@@ -282,18 +296,18 @@ export function parseEventIngestStartBody(
   input: unknown,
   canonicalize: (raw: string) => { ok: true; canonical: string } | { ok: false; reason: string },
 ): EventIngestParseResult {
-  if (!isRecord(input)) return fail('cuerpo inválido: se esperaba un objeto JSON');
+  if (!isRecord(input)) return fail('invalid body: expected a JSON object');
   const extra = unknownKeys(input, ['idempotencyKey', 'url', 'profileRunId']);
   if (extra.length > 0)
-    return fail(`claves no admitidas en el cuerpo: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
+    return fail(`unsupported body keys: ${extra.join(', ')} (el tenant lo resuelve el servidor)`);
   const { idempotencyKey, url, profileRunId } = input;
   if (typeof idempotencyKey !== 'string' || idempotencyKey.length < 8 || idempotencyKey.length > 128)
-    return fail('idempotencyKey debe ser un string de 8 a 128 caracteres');
+    return fail('idempotencyKey must be a string of 8 to 128 characters');
   if (typeof url !== 'string') return fail('url es obligatoria');
   const canonical = canonicalize(url);
-  if (!canonical.ok) return fail(`URL rechazada: ${canonical.reason}`);
+  if (!canonical.ok) return fail(`URL rejected: ${canonical.reason}`);
   if (typeof profileRunId !== 'string' || !UUID_RE.test(profileRunId))
-    return fail('profileRunId debe identificar una investigación existente de esta sesión');
+    return fail('profileRunId must identify an existing research run for this session');
   return { ok: true, body: { idempotencyKey, url: canonical.canonical, profileRunId } };
 }
 
@@ -308,8 +322,7 @@ export function eventIngestPayloadHash(body: EventIngestStartBody): string {
 }
 
 // Perfil completo del contrato 07 a partir del intake. El objetivo queda
-// PROVISIONAL con definición de éxito PENDIENTE (decisión abierta D1): el
-// intake no confirma al comprador ni inventa una métrica.
+// declarado se conserva; solo los datos omitidos usan defaults históricos.
 export function buildEvaluationProfile(
   body: EvaluationStartBody,
   ids: { profileId: string; createdAt: string },
@@ -331,11 +344,13 @@ export function buildEvaluationProfile(
         ? { status: 'declared', amount: profile.budget.amount, currency: profile.budget.currency }
         : { status: 'unknown', note: null },
     window: { from: profile.window.from, to: profile.window.to },
-    restrictions: [],
+    restrictions: profile.restrictions ?? [],
+    formats: profile.formats ?? [],
+    geography: profile.geography ?? { city: 'San Francisco', timezone: 'America/Los_Angeles' },
     objective: {
       kind: profile.objective.kind,
-      confirmation: 'provisional',
-      successDefinition: { status: 'pending' },
+      confirmation: profile.objective.confirmation ?? 'provisional',
+      successDefinition: profile.objective.successDefinition ?? { status: 'pending' },
     },
     comparableCompanies: profile.comparableCompanies ?? [],
   };
@@ -382,6 +397,8 @@ export interface EvaluationRunView {
   workflowVersion: string;
   profileId: string;
   profile: EvaluationProfile;
+  researchPlan?: ResearchPlan | null;
+  discovery?: import('../../contracts/discovery.ts').DiscoveryView | null;
   previousRunId: string | null;
   // URL solicitada de un run de importación (null en investigaciones): un
   // fallo debe conservarla visible junto al intento y la causa.

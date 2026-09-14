@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "/tmp/dp06-inspect.mjs"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 0.09,
+  "database": "isolated PostgreSQL port 55446"
+}

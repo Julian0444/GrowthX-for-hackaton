@@ -1,0 +1,6 @@
+{
+  "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exitCode": 0,
+  "log": "typecheck-local.log"
+}

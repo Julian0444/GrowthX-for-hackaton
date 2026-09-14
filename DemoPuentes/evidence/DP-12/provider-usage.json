@@ -1,0 +1,447 @@
+{
+  "observedAt": "2026-09-11T01:48:53.423066+00:00",
+  "method": "Read-only local SQL, existing DP-01\u201311 evidence, no provider calls. Never reads credentials or source bodies.",
+  "scope": "Application ledger plus uniquely identifiable retained real smoke evidence; not account-wide billing.",
+  "dp12NewResearchProviderOperations": 0,
+  "exa": {
+    "localLedgerRequests": 12,
+    "localLedgerReportedCostUsd": 0.084,
+    "localLedgerUnknownCostOperations": 0,
+    "localLedgerOperations": [
+      {
+        "runId": "7f210089-3bd3-46b2-9be7-4143ce958ee9",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "2107b5292e35467d5095b0bfe32d553b",
+        "startedAt": "2026-09-11T00:15:10.807328+00:00",
+        "finishedAt": "2026-09-11T00:15:12.228+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "7f210089-3bd3-46b2-9be7-4143ce958ee9",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T00:15:12.228Z",
+          "operationId": "exa-operation-9ba97bc4da058e547e17743dfeb899c4c37efc9a7e9f2d564f948f082e4a0858"
+        },
+        "operationId": "exa-operation-9ba97bc4da058e547e17743dfeb899c4c37efc9a7e9f2d564f948f082e4a0858"
+      },
+      {
+        "runId": "7f210089-3bd3-46b2-9be7-4143ce958ee9",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "f89b516bc4e819e30476cc7083c2a686",
+        "startedAt": "2026-09-11T00:15:12.249144+00:00",
+        "finishedAt": "2026-09-11T00:15:15.319+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "7f210089-3bd3-46b2-9be7-4143ce958ee9",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T00:15:15.319Z",
+          "operationId": "exa-operation-4743681ce99f75d6784716fb6a43560f25b83d530d51638dd007874cf88cc21e"
+        },
+        "operationId": "exa-operation-4743681ce99f75d6784716fb6a43560f25b83d530d51638dd007874cf88cc21e"
+      },
+      {
+        "runId": "7f210089-3bd3-46b2-9be7-4143ce958ee9",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "ef0589f2b0ed08d8269b306b07627550",
+        "startedAt": "2026-09-11T00:15:15.330729+00:00",
+        "finishedAt": "2026-09-11T00:15:17.043+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "7f210089-3bd3-46b2-9be7-4143ce958ee9",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T00:15:17.043Z",
+          "operationId": "exa-operation-10c0ff5cfb66b469dbe29f2b68872e50eab4bbdb89a63a2dca7a4006482f62b2"
+        },
+        "operationId": "exa-operation-10c0ff5cfb66b469dbe29f2b68872e50eab4bbdb89a63a2dca7a4006482f62b2"
+      },
+      {
+        "runId": "9b42ef2f-342a-4525-8a56-4c2c8c63e174",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "3044c0c2692303f844cd223b28e6980a",
+        "startedAt": "2026-09-11T01:34:54.367045+00:00",
+        "finishedAt": "2026-09-11T01:34:56.179+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "9b42ef2f-342a-4525-8a56-4c2c8c63e174",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:34:56.179Z",
+          "operationId": "exa-operation-dbe758de01ccea1eca23fc7b092515ff4801911104c11937771465fdbb966519"
+        },
+        "operationId": "exa-operation-dbe758de01ccea1eca23fc7b092515ff4801911104c11937771465fdbb966519"
+      },
+      {
+        "runId": "9b42ef2f-342a-4525-8a56-4c2c8c63e174",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "f289f8b90a7a0ceb5b00ab47e07cdb62",
+        "startedAt": "2026-09-11T01:34:56.195077+00:00",
+        "finishedAt": "2026-09-11T01:34:57.574+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "9b42ef2f-342a-4525-8a56-4c2c8c63e174",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:34:57.574Z",
+          "operationId": "exa-operation-6ed812a5548ec3e8a09e5c119e1198e109fc3d38524038769955ac1c9fbc0aad"
+        },
+        "operationId": "exa-operation-6ed812a5548ec3e8a09e5c119e1198e109fc3d38524038769955ac1c9fbc0aad"
+      },
+      {
+        "runId": "9b42ef2f-342a-4525-8a56-4c2c8c63e174",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "403f77f3484208d12b6d0c46cb7c0b50",
+        "startedAt": "2026-09-11T01:34:57.583315+00:00",
+        "finishedAt": "2026-09-11T01:34:59.755+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "9b42ef2f-342a-4525-8a56-4c2c8c63e174",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:34:59.755Z",
+          "operationId": "exa-operation-4e3dfd89f3b477793ca7c1895bd1a7990f487002342074b52f96e8f0de6c0a9a"
+        },
+        "operationId": "exa-operation-4e3dfd89f3b477793ca7c1895bd1a7990f487002342074b52f96e8f0de6c0a9a"
+      },
+      {
+        "runId": "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "e0e1042fa96b640eac0da1cb44680082",
+        "startedAt": "2026-09-11T01:38:09.939215+00:00",
+        "finishedAt": "2026-09-11T01:38:10.08+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:38:10.080Z",
+          "operationId": "exa-operation-de67b87367c54ccb530473bfe7656ca0d2fa7e44f3005272acbd16857b2c30c3"
+        },
+        "operationId": "exa-operation-de67b87367c54ccb530473bfe7656ca0d2fa7e44f3005272acbd16857b2c30c3"
+      },
+      {
+        "runId": "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "de8b68fabf403f95aa656797466eb4a6",
+        "startedAt": "2026-09-11T01:38:10.091719+00:00",
+        "finishedAt": "2026-09-11T01:38:10.157+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:38:10.157Z",
+          "operationId": "exa-operation-02ceb0a2c0fad5ba4a6e89da8a68b2e0288da31bdb645ebdebdf931ac422c666"
+        },
+        "operationId": "exa-operation-02ceb0a2c0fad5ba4a6e89da8a68b2e0288da31bdb645ebdebdf931ac422c666"
+      },
+      {
+        "runId": "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "d61201ea549aa3d7aa666051a121d8bf",
+        "startedAt": "2026-09-11T01:38:10.16863+00:00",
+        "finishedAt": "2026-09-11T01:38:10.235+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:38:10.235Z",
+          "operationId": "exa-operation-536ecbbfe4d2043b323fef55f67006c2d0ee468352da7980c79f82a2cdbb7e6b"
+        },
+        "operationId": "exa-operation-536ecbbfe4d2043b323fef55f67006c2d0ee468352da7980c79f82a2cdbb7e6b"
+      },
+      {
+        "runId": "bdab116c-50e0-43ff-9458-54c01ed87904",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "55160f21d06aaa33b099ce6b1992e4f2",
+        "startedAt": "2026-09-11T01:39:03.972051+00:00",
+        "finishedAt": "2026-09-11T01:39:04.114+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "bdab116c-50e0-43ff-9458-54c01ed87904",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:39:04.114Z",
+          "operationId": "exa-operation-c3003a042c42658d91e17762951ff06e016ec28109b148c0db2b8d9cda50566e"
+        },
+        "operationId": "exa-operation-c3003a042c42658d91e17762951ff06e016ec28109b148c0db2b8d9cda50566e"
+      },
+      {
+        "runId": "bdab116c-50e0-43ff-9458-54c01ed87904",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "3fe8adf6da98d2e514d89de33538abf6",
+        "startedAt": "2026-09-11T01:39:04.130933+00:00",
+        "finishedAt": "2026-09-11T01:39:04.215+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "bdab116c-50e0-43ff-9458-54c01ed87904",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:39:04.215Z",
+          "operationId": "exa-operation-21c183cace04eaf415045d0186dddda134552954b1e9ed4079398c4e8d8d557c"
+        },
+        "operationId": "exa-operation-21c183cace04eaf415045d0186dddda134552954b1e9ed4079398c4e8d8d557c"
+      },
+      {
+        "runId": "bdab116c-50e0-43ff-9458-54c01ed87904",
+        "state": "succeeded",
+        "material": "real",
+        "requestId": "f5331d58c2894c16d7c39fc0d8e5b99b",
+        "startedAt": "2026-09-11T01:39:04.229075+00:00",
+        "finishedAt": "2026-09-11T01:39:04.321+00:00",
+        "consumption": {
+          "cost": {
+            "amount": 0.007,
+            "status": "known",
+            "currency": "USD"
+          },
+          "runId": "bdab116c-50e0-43ff-9458-54c01ed87904",
+          "provider": "exa",
+          "requests": {
+            "count": 1,
+            "status": "known"
+          },
+          "recordedAt": "2026-09-11T01:39:04.321Z",
+          "operationId": "exa-operation-193392c3c6f314a711412d324d80a39182ccd1d6b66b333867fa9f6560aab06e"
+        },
+        "operationId": "exa-operation-193392c3c6f314a711412d324d80a39182ccd1d6b66b333867fa9f6560aab06e"
+      }
+    ],
+    "independentDp04SmokeOperations": [
+      {
+        "evidence": "../DP-04/real-smoke.json",
+        "material": "real",
+        "runId": "d90a63c5-9dd6-4486-ab8b-e29e45be31f9",
+        "operationId": "exa-operation-54c306246cd1d653f1cba7fc215a9299715744d261573d31fe54f65416d5d6bd",
+        "consumption": {
+          "provider": "exa",
+          "runId": "d90a63c5-9dd6-4486-ab8b-e29e45be31f9",
+          "operationId": "exa-operation-54c306246cd1d653f1cba7fc215a9299715744d261573d31fe54f65416d5d6bd",
+          "requests": {
+            "status": "known",
+            "count": 1
+          },
+          "cost": {
+            "status": "known",
+            "amount": 0.007,
+            "currency": "USD"
+          },
+          "recordedAt": "2026-09-10T19:39:38.206Z"
+        }
+      }
+    ],
+    "deduplicatedRetainedRequests": 13,
+    "deduplicatedRetainedReportedCostUsd": 0.091,
+    "billingStatus": "unknown",
+    "confidence": "12 local operations are labelled real and have distinct provider request IDs; DP04 separately documents 1 real request. Source-server/billing logs were not consulted. Two local runs took about 0.3 seconds for 3 queries; their origin was not independently witnessed. Timing alone is not proof of a replay or actual billing. Treat totals as ledger-reported, not a fresh provider verification.",
+    "unattributedFastLocalRuns": [
+      "8c8e2be1-35d5-47cd-9523-302a3fcf47ec",
+      "bdab116c-50e0-43ff-9458-54c01ed87904"
+    ]
+  },
+  "apify": {
+    "localLedger": {
+      "states": [],
+      "operations": 0
+    },
+    "retainedDpEvidenceRealActorStarts": 0,
+    "dp12ActorStarts": 0,
+    "accountWideUsageAndCost": "unknown",
+    "limitation": "Directed fallback tested with controlled transport; no real Actor smoke was needed or performed."
+  },
+  "census": {
+    "retainedDocumentedRealRequests": 5,
+    "serviceChargeUsd": 0,
+    "sources": [
+      {
+        "evidence": "../DP-08/README.md",
+        "requests": 2,
+        "scope": "probe plus isolated worker"
+      },
+      {
+        "evidence": "../DP-09/README.md",
+        "requests": 2,
+        "scope": "first isolated attempt plus final isolated smoke"
+      },
+      {
+        "evidence": "../local-integration-DP05-DP06-DP08/real-local-results.json",
+        "requests": 1,
+        "scope": "local integration; identical to current local lookup, counted once"
+      }
+    ],
+    "localLedgerLookups": [
+      {
+        "cache": "miss",
+        "runId": "fda043a0-ae92-4809-b150-d0d71c62b1d8",
+        "state": "completed",
+        "checkedAt": "2026-09-10T22:41:29.354Z",
+        "createdAt": "2026-09-10T22:41:28.883937+00:00"
+      }
+    ],
+    "billingStatus": "Free Census service documented in DP08; network/compute cost unmeasured."
+  },
+  "publicHttp": {
+    "globalTotalRequests": "unknown",
+    "globalTotalCost": "unknown",
+    "localSourceReadGroups": [
+      {
+        "rows": 4,
+        "cache": null,
+        "state": "failed",
+        "last_at": "2026-09-10T22:42:44.706+00:00",
+        "first_at": "2026-09-10T22:42:44.49+00:00",
+        "material": "real"
+      },
+      {
+        "rows": 2,
+        "cache": "hit",
+        "state": "succeeded",
+        "last_at": "2026-09-11T01:39:37.991+00:00",
+        "first_at": "2026-09-11T01:39:37.983+00:00",
+        "material": "real"
+      },
+      {
+        "rows": 17,
+        "cache": "miss",
+        "state": "succeeded",
+        "last_at": "2026-09-11T01:36:32.855+00:00",
+        "first_at": "2026-09-10T22:41:28.366+00:00",
+        "material": "real"
+      }
+    ],
+    "localLedgerRows": 23,
+    "localCacheHits": 2,
+    "localRecordedNonHitReadAttempts": 21,
+    "limitation": "Reads, redirects, manual browser navigation, older ingestion before this ledger, and isolated retries are not one globally instrumented request counter. Existing local integration 13 reads and DP11 4 reads overlap this local ledger; never add them again."
+  },
+  "openFreeMap": {
+    "requests": "unknown",
+    "cost": "unknown",
+    "note": "Real map styles/tiles were verified in DP09; total network requests were not metered. Tiles are not Census geocoding calls."
+  },
+  "geminiAndOtherModels": {
+    "newDp12AppCalls": 0,
+    "dp07RealGeminiSmoke": false,
+    "wholeProjectAndAccountUsage": "unknown",
+    "cost": "unknown",
+    "note": "Deterministic comparison works without Gemini. Controlled model responses and Codex platform usage are not application-provider calls."
+  },
+  "localAllowances": {
+    "exa": [
+      {
+        "halted": false,
+        "provider": "exa",
+        "limit_usd": 10,
+        "reserved_usd": 0.24
+      }
+    ],
+    "apify": [
+      {
+        "halted": false,
+        "provider": "apify",
+        "limit_usd": 15,
+        "reserved_usd": 0
+      }
+    ],
+    "census": [
+      {
+        "day": "2026-09-10",
+        "starts": 1,
+        "singleton": true,
+        "last_start": "2026-09-10T22:41:28.890264+00:00"
+      }
+    ]
+  },
+  "deduplication": "Operation ID for discovery and run ID for local geocoding; repeated README/JSON/reopen copies not additional usage. Local 1 Census lookup already includes the integration smoke. Reserved USD 0.24 Exa / USD 0 Apify are operational reservations, not billed costs.",
+  "budget": "Existing local operational caps USD 10 Exa / USD 15 Apify retained. Buyer participation budgets are separate. No balances inferred from old credit screenshots."
+}

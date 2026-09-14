@@ -1,0 +1,71 @@
+- main:
+  - complementary:
+    - button "Growth Atlas Investigación · SF":
+      - generic: Growth Atlas
+      - generic: Investigación · SF
+    - navigation "Navegación principal":
+      - button "Resumen":
+        - generic: Resumen
+      - button "Organizadores":
+        - generic: Organizadores
+      - button "Eventos":
+        - generic: Eventos
+      - button "Decisiones":
+        - generic: Decisiones
+      - button "Perfil":
+        - generic: Perfil
+    - paragraph:
+      - text: Investigación acotada.
+      - text: Fuentes antes de decidir.
+  - generic: San Francisco
+  - heading "Organizadores" [level=1]
+  - paragraph: Personas, comunidades y antecedentes.
+  - button "Editar perfil · v1"
+  - generic: 4 organizadores · 9 ediciones en el catálogo
+  - generic: "Carga / obtención: 2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z · 2026-09-10T03:52:48.856Z"
+  - generic: "Material sintético: prueba el mecanismo; no acredita cobertura real de SF."
+  - generic: Investigación guardada al 2026-09-10T17:28:05.638Z
+  - region "Estado persistido":
+    - paragraph: Investigación aeb693df-d82f-41a0-9d5b-ff7489dcaf7a · Completado
+    - list:
+      - generic: "Validar perfil:"
+      - text: Completado · intentos 1
+      - generic: "Investigar catálogo SF:"
+      - text: Completado · intentos 1
+      - generic: "Publicar resultado:"
+      - text: Completado · intentos 1
+  - heading "Coincidencias con antecedentes" [level=2]
+  - paragraph: "Material sintético etiquetado (D4 pendiente): no acredita la revisión de eventos reales. Orden por ID estable, sin ranking ni política comercial aprobada."
+  - paragraph: "Factores: Python, agentes de IA, APIs, observabilidad · audiencia: Desarrolladores backend, ingenieros de IA y equipos que construyen agentes para empresas.. Orden de presentación por ID; sin score de reputación o inversión."
+  - article:
+    - heading "Bay Builders Collective (synthetic)" [level=3]
+    - generic: org-bay-builders
+    - button "Abrir expediente"
+    - text: focus
+    - paragraph: python · ai, agents, python, devtools · announced
+    - generic: "Revisiones: clm-bay-focus-r1"
+    - generic: sitio del organizador (synthetic)
+    - generic: Fuente de prueba · no abre una página real.
+    - generic: (landing del evento)
+    - generic: obtained 2026-09-08
+    - generic: published 2026-08-20
+    - generic: manual_curation
+    - generic: "scope: city"
+    - paragraph: "1 antecedente(s) documentados. Afinidad por factores explícitos; no mide reputación, popularidad ni probabilidad de ROI. Acceso, audiencia y costo total requieren revisión antes de una decisión de inversión. Builders Night Berlin 2025 (synthetic): Fecha sin soporte suficiente. Builders Night Berlin 2025 (synthetic): Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago. Builders Night Berlin 2025 (synthetic): Costo total desconocido: ninguna partida con soporte. No se interpreta como cero. Builders Night Berlin 2025 (synthetic): Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil. SF Dev Summit 2027 (synthetic): Costo incompleto: partida «sponsorship» pending; partidas de patrocinio no publicadas; no cuenta como cero. SF Dev Summit 2027 (synthetic): Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil. SF Dev Summit 2027 (synthetic): Audiencia contradicha entre fuentes: El sitio del organizador anuncia 150 asistentes; el reporte comunitario estima ~60. Discrepancia sin resolver.. Sin edición futura de SF con fecha, lugar y restricciones respaldados. Se puede guardar como investigación pendiente."
+    - button "Guardado · investigación pendiente" [disabled]
+  - article:
+    - heading "Golden Gate ML Circle (synthetic)" [level=3]
+    - generic: org-gg-ml
+    - button "Abrir expediente"
+    - text: focus
+    - paragraph: python · ml, data, python · announced
+    - generic: "Revisiones: clm-gg-focus-r1"
+    - generic: sitio del organizador (synthetic)
+    - generic: Fuente de prueba · no abre una página real.
+    - generic: obtained 2026-09-08
+    - generic: publication date unknown
+    - generic: manual_curation
+    - generic: "scope: city"
+    - paragraph: "1 antecedente(s) documentados. Afinidad por factores explícitos; no mide reputación, popularidad ni probabilidad de ROI. Acceso, audiencia y costo total requieren revisión antes de una decisión de inversión. GG ML Night junio 2025 (synthetic): Fecha sin soporte suficiente. GG ML Night junio 2025 (synthetic): Sin fuente urbana que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis. GG ML Night junio 2025 (synthetic): Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago. GG ML Night junio 2025 (synthetic): Costo total desconocido: ninguna partida con soporte. No se interpreta como cero. GG ML Night junio 2025 (synthetic): Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil. GG ML Night (synthetic): Fecha sin soporte suficiente. GG ML Night (synthetic): Fecha sin hora exacta; conservar el día declarado y confirmar hora y zona. GG ML Night (synthetic): Sin fuente urbana que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis. GG ML Night (synthetic): Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago. GG ML Night (synthetic): Costo total desconocido: ninguna partida con soporte. No se interpreta como cero. GG ML Night (synthetic): Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil. US Builders Roadshow 2027 (synthetic): Fecha sin soporte suficiente. US Builders Roadshow 2027 (synthetic): Fecha sin hora exacta; conservar el día declarado y confirmar hora y zona. US Builders Roadshow 2027 (synthetic): Sin fuente urbana que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis. US Builders Roadshow 2027 (synthetic): Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago. US Builders Roadshow 2027 (synthetic): Costo total desconocido: ninguna partida con soporte. No se interpreta como cero. US Builders Roadshow 2027 (synthetic): Audiencia pendiente o sin soporte suficiente para evaluar el ajuste al perfil. Sin edición futura de SF con fecha, lugar y restricciones respaldados. Se puede guardar como investigación pendiente."
+    - button "Guardar para investigar"
+- alert

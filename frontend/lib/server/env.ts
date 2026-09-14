@@ -1,5 +1,6 @@
 // Guard de variables de entorno (T7). NUNCA crashea: si falta una key, emite
-// un warning y el sistema sigue en modo degradado (mock/seed). Las keys solo se
+// un warning. Discovery termina con cobertura insuficiente explícita, sin
+// sustituir fuentes por mock/seed. Las keys solo se
 // usan en app/api/** y lib/server/**.
 
 interface EnvSpec {

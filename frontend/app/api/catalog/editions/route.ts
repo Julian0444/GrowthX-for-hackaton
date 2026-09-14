@@ -24,9 +24,9 @@ export async function GET(request: Request): Promise<NextResponse> {
     const list = await listCatalogEditions(getAppPool(), session.tenantId, new Date().toISOString());
     return NextResponse.json(list);
   } catch (error) {
-    console.error(`[catalog] lectura del catálogo falló: ${(error as Error).message}`);
+    console.error(`[catalog] catalog read failed: ${(error as Error).message}`);
     return NextResponse.json(
-      { error: 'read_failed', message: 'No se pudo leer el catálogo.' },
+      { error: 'read_failed', message: 'Could not read the catalog.' },
       { status: 503 },
     );
   }

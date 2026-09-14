@@ -1,0 +1,21 @@
+TAP version 13
+# (node:46910) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/exa-discovery.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP04 main brief → durable Exa proposals → worker restart → closed tab reopened
+ok 1 - DP04 main brief → durable Exa proposals → worker restart → closed tab reopened
+  ---
+  duration_ms: 16734.722208
+  type: 'test'
+  ...
+# Unmodified primary request, Exa fixture explicitly synthetic, 3 attempts persisted, worker process stopped/restarted, same source IDs after tab closure, no fixture organizer fallback, 404 cross tenant, desktop/mobile.
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17172.372833

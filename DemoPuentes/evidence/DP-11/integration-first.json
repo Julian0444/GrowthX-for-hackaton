@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-force-exit",
+    "tests/integration/decision-brief.test.ts",
+    "tests/integration/conditional-decision.test.ts",
+    "tests/integration/trust-decision.test.ts"
+  ],
+  "cwd": "/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp11-pca7hznf/frontend",
+  "databasePort": 55461,
+  "databaseName": "growthx",
+  "providerKeysLoaded": false,
+  "exitCode": 1,
+  "durationSeconds": 0.92
+}

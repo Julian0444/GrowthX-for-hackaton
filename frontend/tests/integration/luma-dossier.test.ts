@@ -273,10 +273,10 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
 
     const rejected: [string, string][] = [
       ['https://example.com/evento', 'allowlist'],
-      ['ftp://lu.ma/evento', 'esquema'],
-      ['https://user:secret@lu.ma/evento', 'credenciales'],
-      ['https://lu.ma:8443/evento', 'puerto'],
-      ['https://lu.ma/', 'ruta'],
+      ['ftp://lu.ma/evento', 'scheme'],
+      ['https://user:secret@lu.ma/evento', 'credentials'],
+      ['https://lu.ma:8443/evento', 'port'],
+      ['https://lu.ma/', 'path missing'],
     ];
     for (const [url, cause] of rejected) {
       const { status, body } = await acceptIngest(url, real.token, `k-${randomUUID()}`);
@@ -300,7 +300,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
       baseRunId,
     );
     assert.equal(status, 400);
-    assert.match(String(body.message), /investigación previa/);
+    assert.match(String(body.message), /previous research/);
   });
 
   let completeRunId = '';
@@ -379,7 +379,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
       const revision = byAttribute.get(attribute);
       assert.ok(revision, `claim «${attribute}» presente`);
       assert.equal(revision.status, 'announced', `«${attribute}» es lo anunciado por la página`);
-      assert.equal(revision.method, 'jsonld_extraction');
+      assert.equal(revision.method, 'visible_text+jsonld_extraction');
       assert.deepEqual(revision.sourceIds, [`luma-${completeRunId}-src`]);
     }
     // Lo que la página no publica queda PENDIENTE explícito, nunca inventado.
@@ -391,7 +391,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
     assert.ok(source);
     assert.equal(source.content.kind, 'hash');
     assert.equal(source.provider, 'luma');
-    assert.equal(source.method, 'http_get+jsonld_extraction');
+    assert.equal(source.method, 'http_get+visible_text+jsonld_extraction');
   });
 
   await t.test('transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos', async () => {
@@ -408,9 +408,9 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
       getAppPool(), real.tenantId, String(view.body.result?.editionId), '2026-09-09T12:00:00.000Z',
     );
     assert.ok(dossier);
-    assert.equal(dossier.sources.find((source) => source.id === `luma-${runId}-src`)?.method, 'test_fixture+jsonld_extraction');
-    assert.ok(dossier.claims.every((claim) => claim.revisions.at(-1)?.method === 'test_fixture+jsonld_extraction'));
-    assert.match(dossier.curation?.note ?? '', /transporte fixture de prueba, sin consulta a Luma real/);
+    assert.equal(dossier.sources.find((source) => source.id === `luma-${runId}-src`)?.method, 'test_fixture+visible_text+jsonld_extraction');
+    assert.ok(dossier.claims.every((claim) => claim.revisions.at(-1)?.method === 'test_fixture+visible_text+jsonld_extraction'));
+    assert.match(dossier.curation?.note ?? '', /test fixture transport, without querying real Luma/);
 
     // Una página que solo publica un nombre nuevo también necesita fuente
     // propia. Si no hay cambios de fecha/lugar ni pendientes nuevos, esa
@@ -437,7 +437,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
         .find((claim) => latest.claimRevisionIds.includes(claim.id) && claim.attribute === 'name');
       assert.ok(nameRevision);
       assert.deepEqual(nameRevision.sourceIds, [`luma-${nextRunId}-src`]);
-      assert.equal(nameRevision.method, isFixture ? 'test_fixture+jsonld_extraction' : 'jsonld_extraction');
+      assert.equal(nameRevision.method, isFixture ? 'test_fixture+visible_text+jsonld_extraction' : 'visible_text+jsonld_extraction');
       assert.deepEqual(nameRevision.value, { kind: 'text', text: name });
     }
   });
@@ -550,9 +550,9 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
     );
     const { body } = await acceptIngest('https://lu.ma/huge-event', real.token, `k-${randomUUID()}`);
     const runId = body.runId as string;
-    await assert.rejects(processRun(runId, { fetchImpl: transport, maxBytes: 5_000 }), /límite de 5000 bytes/);
+    await assert.rejects(processRun(runId, { fetchImpl: transport, maxBytes: 5_000 }), /limit of 5000 bytes/);
     const view = await getRunView(runId, real.token);
-    assert.match(String(view.body.error), /límite de 5000 bytes/);
+    assert.match(String(view.body.error), /limit of 5000 bytes/);
   });
 
   await t.test('timeout: la obtención vence y el run falla con causa visible', async () => {
@@ -566,7 +566,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
       })) as typeof fetch;
     const { body } = await acceptIngest('https://lu.ma/slow-event', real.token, `k-${randomUUID()}`);
     const runId = body.runId as string;
-    await assert.rejects(processRun(runId, { fetchImpl: hanging, timeoutMs: 200 }), /timeout de 200 ms/);
+    await assert.rejects(processRun(runId, { fetchImpl: hanging, timeoutMs: 200 }), /timeout after 200 ms/);
     const view = await getRunView(runId, real.token);
     assert.match(String(view.body.error), /timeout/);
   });
@@ -670,7 +670,7 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
 
     const afterFirst = await readEditionDossier(getAppPool(), real.tenantId, 'ed-luma-known', '2026-09-08T12:00:00.000Z');
     assert.ok(afterFirst);
-    assert.equal(afterFirst.editionRevisions.length, 2, 'una revisión NUEVA encadenada, no otra identidad');
+    assert.equal(afterFirst.editionRevisions.length, 3, 'importación y revisión geográfica pendiente encadenadas; no otra identidad');
     const revised = afterFirst.editionRevisions[1];
     assert.equal(revised.previousRevisionId, 'ed-known-rev-1');
     assert.equal(revised.name, 'Known Summit (updated)');
@@ -692,8 +692,9 @@ test('luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-bos
     await processRun(secondRunId, { fetchImpl: transport });
     const afterSecond = await readEditionDossier(getAppPool(), real.tenantId, 'ed-luma-known', '2026-09-08T12:00:00.000Z');
     assert.ok(afterSecond);
-    assert.equal(afterSecond.editionRevisions.length, 3);
-    assert.equal(afterSecond.editionRevisions[2].previousRevisionId, afterSecond.editionRevisions[1].id);
+    assert.equal(afterSecond.editionRevisions.length, 5);
+    assert.equal(afterSecond.editionRevisions[3].previousRevisionId, afterSecond.editionRevisions[2].id);
+    assert.equal(afterSecond.editionRevisions[4].previousRevisionId, afterSecond.editionRevisions[3].id);
     // Los claims del segundo import encadenan a los del primero (mismo claimId).
     const dateClaim = afterSecond.claims.find(
       (claim) => claim.revisions[claim.revisions.length - 1].attribute === 'date',

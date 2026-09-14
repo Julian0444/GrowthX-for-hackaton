@@ -43,7 +43,7 @@ test('las fuentes sintéticas visibles conservan procedencia pero no envían a p
   const html = renderToStaticMarkup(createElement(SourceRecordLinks, { sources: catalog.sources }));
   assert.doesNotMatch(html, /<a\b/, 'el catálogo sintético no publica enlaces externos navegables');
   assert.match(html, /luma \(synthetic\)/);
-  assert.match(html, /Fuente de prueba/);
+  assert.match(html, /Test source/);
 });
 
 test('el dossier sintético no ofrece abrir un listado inexistente', async () => {
@@ -56,7 +56,7 @@ test('el dossier sintético no ofrece abrir un listado inexistente', async () =>
   };
   const html = renderToStaticMarkup(createElement(EditionDossier, { read, onEdition() {}, onOrganizer() {} }));
   assert.doesNotMatch(html, /<a[^>]+href="https:\/\/luma\.example/);
-  assert.match(html, /Listado de prueba/);
+  assert.match(html, /Test listing/);
 });
 
 test('un enlace público real se conserva y un esquema ejecutable nunca se publica', async () => {
@@ -73,7 +73,7 @@ test('el transporte de demo y su captura histórica no se presentan como obtenci
   const source = { ...catalog.sources[0], provider: 'luma', url: 'https://lu.ma/demo', method: 'test_fixture+jsonld_extraction' };
   const html = renderToStaticMarkup(createElement(SourceRecordLinks, { sources: [source] }));
   assert.doesNotMatch(html, /<a\b/);
-  assert.match(html, /Fuente de prueba/);
+  assert.match(html, /Test source/);
   const historical = { ...source, method: 'http_get+jsonld_extraction', content: {
     kind: 'hash' as const, sha256: '5a5fa514b5e86b8f3f0a85950cd994309b39e7685045b6b5e749a1e1ad6871d2',
   } };
@@ -96,7 +96,7 @@ test('el listado reconoce aliases Luma y una revisión real posterior no hereda 
   };
   const render = () => renderToStaticMarkup(createElement(EditionDossier, { read, onEdition() {}, onOrganizer() {} }));
   assert.doesNotMatch(render(), /<a[^>]+href="https:\/\/lu.ma\/listing"/);
-  assert.match(render(), /Listado de prueba/);
+  assert.match(render(), /Test listing/);
   read.sources.push(realSource);
   read.claims[0].revisions.push(realClaim);
   read.editionRevisions.push({ ...read.editionRevisions[0], id: 'real-edition-revision', previousRevisionId: read.editionRevisions[0].id, claimRevisionIds: [realClaim.id] });

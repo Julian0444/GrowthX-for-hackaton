@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "node_modules/eslint/bin/eslint.js",
+    "lib/server/relationships",
+    "lib/server/sources/relationship-content.ts",
+    "lib/contracts/background.ts",
+    "components/research-dashboard/background-panel.tsx",
+    "tests/connectors/relationships.test.ts",
+    "tests/integration/relationships.test.ts",
+    "tests/fixtures/relationships.ts",
+    "app/api/events/background/route.ts"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 1.58,
+  "database": "isolated PostgreSQL port 55446"
+}

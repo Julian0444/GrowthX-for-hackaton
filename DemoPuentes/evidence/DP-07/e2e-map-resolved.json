@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/e2e/sf-organizer-research.spec.ts",
+    "tests/e2e/research-brief.spec.ts"
+  ],
+  "cwd": "/tmp/growthx-dp07-production",
+  "exit_code": 0,
+  "duration_seconds": 175.38,
+  "database": "isolated PostgreSQL port 55447"
+}

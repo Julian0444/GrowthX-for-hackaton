@@ -28,7 +28,7 @@ export async function GET(
   const session = auth.session;
   const { id } = await params;
   if (!CATALOG_ID.test(id)) {
-    return NextResponse.json({ error: 'invalid_id', message: 'organizerId inválido.' }, { status: 400 });
+    return NextResponse.json({ error: 'invalid_id', message: 'Invalid organizerId.' }, { status: 400 });
   }
   try {
     const dossier = await readOrganizerDossier(getAppPool(), session.tenantId, id, new Date().toISOString());
@@ -37,9 +37,9 @@ export async function GET(
     }
     return NextResponse.json(dossier);
   } catch (error) {
-    console.error(`[organizers] lectura del expediente falló: ${(error as Error).message}`);
+    console.error(`[organizers] dossier read failed: ${(error as Error).message}`);
     return NextResponse.json(
-      { error: 'read_failed', message: 'No se pudo leer el expediente.' },
+      { error: 'read_failed', message: 'Could not read the dossier.' },
       { status: 503 },
     );
   }

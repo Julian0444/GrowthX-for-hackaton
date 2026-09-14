@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python3",
+    "../DemoPuentes/evidence/DP-06/run-regressions.py"
+  ],
+  "cwd": "/Users/jirustaroure/Desktop/GrowthX for hackaton/frontend",
+  "exit_code": 0,
+  "duration_seconds": 17.23,
+  "database": "isolated PostgreSQL port 55446"
+}

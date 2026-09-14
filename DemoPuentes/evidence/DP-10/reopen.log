@@ -1,0 +1,224 @@
+TAP version 13
+# (node:55887) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+    # Subtest: guardar una elección condicional, ver su campaña y copiar el enlace interno
+    not ok 1 - guardar una elección condicional, ver su campaña y copiar el enlace interno
+      ---
+      duration_ms: 6837.138333
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:217:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly equal:
+        + actual - expected
+        
+        + undefined
+        - null
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: ~
+      operator: 'strictEqual'
+      stack: |-
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:271:12)
+        process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:217:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+    not ok 2 - reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas
+      ---
+      duration_ms: 1782.522666
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:281:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        ▲ Next.js 16.2.6 (webpack)
+        - Local:         http://127.0.0.1:50910
+        - Network:       http://127.0.0.1:50910
+        ✓ Ready in 341ms
+        ⨯ Another next dev server is already running.
+        
+        - Local:        http://localhost:56902
+        - PID:          55911
+        - Dir:          /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-reopen-e2e-znEFVu
+        - Log:          .next/dev/logs/next-development.log
+        
+        Run kill 55911 to stop it.
+        [?25h
+        
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:136:49
+        eventually (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:56:25)
+        async startNext (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:135:5)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:282:12)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:281:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+    not ok 3 - navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión
+      ---
+      duration_ms: 0.472208
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:11'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'getByRole')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:347:13)
+        Test.runInAsyncScope (node:async_hooks:212:14)
+        Test.run (node:internal/test_runner/test:1109:25)
+        Test.start (node:internal/test_runner/test:1006:17)
+        TestContext.test (node:internal/test_runner/test:367:20)
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:11)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+    not ok 4 - lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña
+      ---
+      duration_ms: 0.19825
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:419:11'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'getByRole')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:420:11)
+        Test.runInAsyncScope (node:async_hooks:212:14)
+        Test.run (node:internal/test_runner/test:1109:25)
+        Test.start (node:internal/test_runner/test:1006:17)
+        TestContext.test (node:internal/test_runner/test:367:20)
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:419:11)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+    not ok 5 - vigencia actual con reloj controlado: aviso sin alterar el resultado histórico
+      ---
+      duration_ms: 2867.194208
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:462:11'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly deep-equal:
+        + actual - expected
+        
+        + {
+        +   campaigns: 1,
+        +   claims: 12,
+        +   decisions: 2,
+        +   jobs: 2,
+        +   profiles: 1,
+        +   runs: 2,
+        +   snapshots: 1
+        + }
+        - undefined
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      actual:
+        runs: 2
+        snapshots: 1
+        decisions: 2
+        campaigns: 1
+        claims: 12
+        profiles: 1
+        jobs: 2
+      operator: 'deepStrictEqual'
+      stack: |-
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:483:12)
+        process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:462:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+    not ok 6 - reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas
+      ---
+      duration_ms: 11.563584
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:488:11'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'waitForResponse')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:493:28)
+        process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:488:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+    not ok 7 - un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior
+      ---
+      duration_ms: 1047.235833
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:533:11'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'getByRole')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:544:11)
+        process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:533:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    # Subtest: dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+    not ok 8 - dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento
+      ---
+      duration_ms: 9.952333
+      type: 'test'
+      location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:567:11'
+      failureType: 'testCodeFailure'
+      error: "Cannot read properties of undefined (reading 'newPage')"
+      code: 'ERR_TEST_FAILURE'
+      name: 'TypeError'
+      stack: |-
+        newPage (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:187:83)
+        TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:575:28)
+        process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:567:3)
+        async Test.run (node:internal/test_runner/test:1116:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+      ...
+    1..8
+not ok 1 - SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ---
+  duration_ms: 21727.016875
+  type: 'test'
+  location: '/private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:120:1'
+  failureType: 'subtestsFailed'
+  error: '8 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+1..1
+# tests 9
+# suites 0
+# pass 0
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 22233.806625

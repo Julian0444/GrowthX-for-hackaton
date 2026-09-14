@@ -1,0 +1,123 @@
+TAP version 13
+# (node:70832) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/research-experience.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+    # Subtest: desktop response, source action and technical disclosure
+    ok 1 - desktop response, source action and technical disclosure
+      ---
+      duration_ms: 785.918875
+      type: 'test'
+      ...
+    # Subtest: evidence panel preserves map, selection, scroll and keyboard focus
+    ok 2 - evidence panel preserves map, selection, scroll and keyboard focus
+      ---
+      duration_ms: 164.345708
+      type: 'test'
+      ...
+    # Subtest: out-of-order polling appends findings without moving cards or selection
+    ok 3 - out-of-order polling appends findings without moving cards or selection
+      ---
+      duration_ms: 790.682417
+      type: 'test'
+      ...
+    # Subtest: mobile retains every action, traps evidence focus and restores selection
+    ok 4 - mobile retains every action, traps evidence focus and restores selection
+      ---
+      duration_ms: 250.547542
+      type: 'test'
+      ...
+    # Subtest: empty filters are recoverable; unknown location and contradiction stay explicit
+    ok 5 - empty filters are recoverable; unknown location and contradiction stay explicit
+      ---
+      duration_ms: 495.1035
+      type: 'test'
+      ...
+    # Subtest: provider, map and server failures keep saved findings and allow explicit recovery
+    ok 6 - provider, map and server failures keep saved findings and allow explicit recovery
+      ---
+      duration_ms: 1987.843542
+      type: 'test'
+      ...
+    1..6
+ok 1 - DP10 research experience: meaningful results, stable polls, evidence, keyboard, mobile and errors
+  ---
+  duration_ms: 6194.204625
+  type: 'test'
+  ...
+# (node:71084) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-street-map.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+    # Subtest: same filtered set, published location, source link, selection and dossier by keyboard
+    ok 1 - same filtered set, published location, source link, selection and dossier by keyboard
+      ---
+      duration_ms: 1348.0425
+      type: 'test'
+      ...
+    # Subtest: new result updates markers without replacing map or recentering; same venue identities remain distinct
+    ok 2 - new result updates markers without replacing map or recentering; same venue identities remain distinct
+      ---
+      duration_ms: 3648.43
+      type: 'test'
+      ...
+    # Subtest: mobile switches list/map without losing selection or map, with filters and zero points
+    ok 3 - mobile switches list/map without losing selection or map, with filters and zero points
+      ---
+      duration_ms: 589.178125
+      type: 'test'
+      ...
+    # Subtest: run change and unmount remove old markers/listeners; no catalog leakage
+    ok 4 - run change and unmount remove old markers/listeners; no catalog leakage
+      ---
+      duration_ms: 2498.85575
+      type: 'test'
+      ...
+    # Subtest: snapshot geography and dossier remain old; current data requires a separate view
+    ok 5 - snapshot geography and dossier remain old; current data requires a separate view
+      ---
+      duration_ms: 1203.742708
+      type: 'test'
+      ...
+    # Subtest: style failure preserves mobile list and can recover
+    ok 6 - style failure preserves mobile list and can recover
+      ---
+      duration_ms: 1294.938625
+      type: 'test'
+      ...
+    # Subtest: tiles failure preserves mobile list and can recover
+    ok 7 - tiles failure preserves mobile list and can recover
+      ---
+      duration_ms: 1229.803125
+      type: 'test'
+      ...
+    # Subtest: WebGL context loss exposes the list and retry creates one new map
+    ok 8 - WebGL context loss exposes the list and retry creates one new map
+      ---
+      duration_ms: 133.77525
+      type: 'test'
+      ...
+    # Subtest: WebGL initialization failure leaves usable list
+    ok 9 - WebGL initialization failure leaves usable list
+      ---
+      duration_ms: 1267.842833
+      type: 'test'
+      ...
+    1..9
+ok 2 - DP-09 production street map: run, revisions, grouping, camera, keyboard, mobile and failures
+  ---
+  duration_ms: 14631.691084
+  type: 'test'
+  ...
+# Owned Next and Chrome closed.
+1..2
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21801.985084

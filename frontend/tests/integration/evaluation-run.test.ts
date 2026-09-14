@@ -387,7 +387,8 @@ test('evaluation-run: run durable con tenant (PostgreSQL + pg-boss reales)', asy
       assert.ok(result, 'el resultado persistido está presente');
       assert.equal(result.kind, 'catalog_research');
       assert.ok(Array.isArray(result.candidates));
-      assert.match(String(result.catalogNote), /material preparado/);
+      assert.match(String(result.catalogNote), /Insufficient coverage/);
+      assert.deepEqual(result.candidates, [], 'no reemplazar catálogo ausente por fixtures');
       // El paso completado en el primer proceso NO se repitió en el segundo.
       const { rows: attempts } = await admin.query(
         "select name, attempts from growthx.run_steps where run_id = $1 order by seq",

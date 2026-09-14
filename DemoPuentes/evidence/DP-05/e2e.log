@@ -1,0 +1,21 @@
+TAP version 13
+# (node:81391) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/e2e/source-reading.spec.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile
+ok 1 - DP-05 browser: import rich source, inspect fragments and conflict, reload and read on mobile
+  ---
+  duration_ms: 13254.232958
+  type: 'test'
+  ...
+# Controlled HTML; real PostgreSQL, queue, worker, Next and Chromium. Audience/sponsor/address fragments, both dates, same revision after reload, tenant 404 and no mobile overflow. No paid providers.
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13984.345459

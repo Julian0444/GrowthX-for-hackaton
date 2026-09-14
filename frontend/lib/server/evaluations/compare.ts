@@ -1,3 +1,4 @@
+import { buildComparisonReading, explainDifferences } from './decision-reading.ts';
 // Orquestador de la comparación de inversión (ticket 12). Server-only; los
 // steps corren en el worker (run-worker.ts).
 //
@@ -28,7 +29,7 @@ import type {
   SnapshotAlternative,
   SnapshotOrdering,
 } from '../../contracts/evaluation.ts';
-import { listCatalogEditions, readEditionDossier, type EditionDossierRead } from '../catalog/read.ts';
+import { listCatalogEditions, readEditionDossier, readOrganizerDossier, type EditionDossierRead } from '../catalog/read.ts';
 import { withTenantTransaction } from '../db/pool.ts';
 import { evaluateEligibility, ELIGIBLE_IS_NOT_RECOMMENDED } from './eligibility.ts';
 import {
@@ -131,13 +132,13 @@ export function shadowCompareWithV0(
       return {
         editionId,
         status: 'not_comparable' as const,
-        reason: 'v0 no evaluó este evento (no está en la referencia congelada): no comparable; nada se rellena con scores v0.',
+        reason: 'v0 did not evaluate this event (absent from the frozen reference): not comparable; no v0 score fills missing values.',
       };
     }
     return {
       editionId,
       status: 'reference_found_not_comparable' as const,
-      reason: `v0 evaluó una unidad ${reference.unit} con objetivo «${reference.objective}», no una edición como inversión: unidad y objetivo distintos — no comparable; su score no se reutiliza.`,
+      reason: `v0 evaluated a unit ${reference.unit} with objective «${reference.objective}», rather than an edition as an investment: different unit and objective; not comparable, and its score is not reused.`,
       v0Id: match.id,
       v0Unit: reference.unit,
       v0Objective: reference.objective,
@@ -148,7 +149,7 @@ export function shadowCompareWithV0(
     mode: 'offline_shadow',
     referenceLabel: reference?.label ?? null,
     entries,
-    note: 'Comparación en modo sombra, offline y sin nuevas consultas externas. Ningún score v0 llena campos de v1.',
+    note: 'Offline shadow comparison with no new external queries. No v0 score fills v1 fields.',
   };
 }
 
@@ -196,7 +197,7 @@ export async function runEvaluateCandidatesStep(
   }
 
   if (editionIds.length === 0 || editionIds.length > MAX_COMPARED)
-    throw new Error(`la comparación admite de 1 a ${MAX_COMPARED} ediciones seleccionadas`);
+    throw new Error(`the comparison supports 1 to ${MAX_COMPARED} ediciones seleccionadas`);
 
   // MISMO instante para todos los candidatos (criterio del ticket).
   const evaluatedAt = options.evaluationInstant ?? new Date().toISOString();
@@ -214,16 +215,29 @@ export async function runEvaluateCandidatesStep(
     upcomingEditionIds: upcomingIds,
     comparedEditionIds: [...editionIds].sort(byCodePoints),
     note:
-      `Catálogo disponible: ${availableIds.length} edición(es) (${upcomingIds.length} vigentes; cobertura esperada 2-5). ` +
-      `Conjunto comparado: ${editionIds.length} de hasta ${MAX_COMPARED}; no se completa un top 3 con candidatos inventados.` +
+      `Available catalog: ${availableIds.length} edition(s) (${upcomingIds.length} current; expected coverage 2-5). ` +
+      `Compared set: ${editionIds.length} of up to ${MAX_COMPARED}; invented candidates do not fill a top three.` +
       (catalog.note ? ` ${catalog.note}` : ''),
   };
 
   const dossiers: EditionDossierRead[] = [];
   for (const editionId of [...editionIds].sort(byCodePoints)) {
     const dossier = await readEditionDossier(pool, tenantId, editionId, evaluatedAt);
-    if (!dossier) throw new Error(`edición seleccionada «${editionId}» inexistente en el catálogo del tenant`);
+    if (!dossier) throw new Error(`selected edition «${editionId}» does not exist in the tenant catalog`);
     dossiers.push(dossier);
+  }
+
+  // Antecedentes de identidades existentes, bajo el mismo tenant. Se fijan
+  // únicamente las revisiones usadas por la lectura; reabrir no los refresca.
+  const historyIds = new Set<string>();
+  for (const organizerId of new Set(dossiers.flatMap(d => d.organizers.map(o => o.organizerId)))) {
+    const organizer = await readOrganizerDossier(pool, tenantId, organizerId, evaluatedAt);
+    for (const entry of organizer?.editions ?? []) if (entry.validity.validity === 'past') historyIds.add(entry.edition.editionId);
+  }
+  const histories: EditionDossierRead[] = [];
+  for (const id of [...historyIds].sort(byCodePoints)) {
+    const history = dossiers.find(d => d.editionId === id) ?? await readEditionDossier(pool, tenantId, id, evaluatedAt);
+    if (history) histories.push(history);
   }
 
   // Elegibilidad ANTES del score + features con razón de cada ausencia.
@@ -252,7 +266,7 @@ export async function runEvaluateCandidatesStep(
     ? { status: 'applied', policyId: policy.policyId, policyVersion: policy.policyVersion }
     : {
         status: 'none',
-        note: 'Política pendiente (decisión abierta D2): comparación factual sin ranking numérico; ningún faltante se puntúa como 0.',
+        note: 'Policy pending (open decision D2): factual comparison without numerical ranking; missing values are never scored as zero.',
       };
 
   const alternatives: SnapshotAlternative[] = evaluations.map(({ eligibility }) => {
@@ -265,7 +279,7 @@ export async function runEvaluateCandidatesStep(
         note: 'Excluido por conflicto confirmado antes del score: un puntaje alto no habilita un evento excluido.',
       };
     } else if (!policy || !application) {
-      scoring = { status: 'not_scored', reason: 'no_policy', note: 'Sin política aplicable (D2): sin score.' };
+      scoring = { status: 'not_scored', reason: 'no_policy', note: 'No applicable policy (D2): no score.' };
     } else {
       const scored = application.scored.find((candidate) => candidate.editionId === eligibility.editionId);
       if (scored) {
@@ -280,7 +294,7 @@ export async function runEvaluateCandidatesStep(
         scoring = {
           status: 'not_scored',
           reason: 'insufficient_data',
-          note: abstention?.note ?? 'sin datos suficientes para puntuar; abstención explícita',
+          note: abstention?.note ?? 'insufficient data for scoring; explicit abstention',
         };
       }
     }
@@ -313,9 +327,11 @@ export async function runEvaluateCandidatesStep(
     ordering = {
       kind: 'presentation_only',
       editionIds: evaluations.map((evaluation) => evaluation.eligibility.editionId).sort(byCodePoints),
-      note: 'Orden de presentación por id estable, NO un ranking: la política del objetivo sigue pendiente (D2).',
+      note: 'Presentation order by stable ID; no ranking. The policy for this objective remains pending (D2).',
     };
   }
+
+  const decisionReading = buildComparisonReading(profile, dossiers, histories, alternatives);
 
   const allExcluded = alternatives.every((alternative) => alternative.eligibility.status === 'excluded');
 
@@ -327,7 +343,11 @@ export async function runEvaluateCandidatesStep(
   const organizerRevisionIds = new Set<string>();
   const editionRevisionIds = new Set<string>();
   const participationRevisionIds = new Set<string>();
-  for (const { dossier } of evaluations) {
+  const usedHistoryIds = new Set(decisionReading.alternatives.flatMap(a => [a.relevance, a.modality, ...a.antecedents].flatMap(r => r.basis.map(b => b.editionId))));
+  const pinnedDossiers = [...new Map([...dossiers, ...histories.filter(d => usedHistoryIds.has(d.editionId))].map(d => [d.editionId,d])).values()];
+  const sourceIds = new Set<string>();
+  for (const dossier of pinnedDossiers) {
+    for (const source of dossier.sources) sourceIds.add(source.id);
     editionRevisionIds.add(latestOf(dossier).id);
     for (const chain of dossier.claims) claimRevisionIds.add(chain.revisions[chain.revisions.length - 1].id);
     for (const organizer of dossier.organizers)
@@ -356,6 +376,8 @@ export async function runEvaluateCandidatesStep(
     organizerRevisionIds: [...organizerRevisionIds].sort(byCodePoints),
     editionRevisionIds: [...editionRevisionIds].sort(byCodePoints),
     participationRevisionIds: [...participationRevisionIds].sort(byCodePoints),
+    sourceIds: [...sourceIds].sort(byCodePoints),
+    decisionReading,
     policy: policyRef,
     alternatives,
     ordering,
@@ -370,6 +392,17 @@ export async function runEvaluateCandidatesStep(
     // La redacción llega DESPUÉS de confirmar el snapshot y vive aparte.
     narrative: null,
   };
+
+  const previousRunId = await withTenantTransaction(pool, tenantId, async client => {
+    const { rows } = await client.query('select input from growthx.runs where id = $1', [runId]);
+    return rows[0]?.input?.previousRunId as string | undefined;
+  });
+  if (previousRunId) {
+    const previous = await readSnapshotByRun(pool, tenantId, previousRunId);
+    if (!previous) throw new Error('The previous evaluation has no snapshot yet; differences are not fabricated.');
+    const bundle = await buildReadBundle(pool, tenantId, previous);
+    decisionReading.differences = explainDifferences({snapshot:previous.snapshot,profile:bundle.profile}, snapshot, profile);
+  }
 
   const companions: SnapshotCompanions = {
     featureSetVersion: FEATURE_SET_VERSION,
@@ -394,7 +427,7 @@ export async function runComposeNarrativeStep(
   options: ComparisonStepOptions = {},
 ): Promise<ComposeNarrativeOutput> {
   const persisted = await readSnapshotByRun(pool, tenantId, runId);
-  if (!persisted) throw new Error(`compose_narrative sin snapshot confirmado para el run ${runId}`);
+  if (!persisted) throw new Error(`compose_narrative has no confirmed snapshot for run ${runId}`);
 
   // Reentrega idempotente: si el registro de redacción ya existe, se reutiliza.
   const existing = await readNarrativeBySnapshot(pool, tenantId, persisted.snapshot.id);
@@ -443,7 +476,7 @@ export async function buildComparisonResult(
   runId: string,
 ): Promise<ComparisonRunResult> {
   const persisted = await readSnapshotByRun(pool, tenantId, runId);
-  if (!persisted) throw new Error(`publish_result sin snapshot confirmado para el run ${runId}`);
+  if (!persisted) throw new Error(`publish_result has no confirmed snapshot for run ${runId}`);
   const narrative = await readNarrativeBySnapshot(pool, tenantId, persisted.snapshot.id);
   const bundle = await buildReadBundle(pool, tenantId, persisted);
   const warnings: string[] = [...(narrative?.warnings ?? [])];

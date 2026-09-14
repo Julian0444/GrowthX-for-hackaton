@@ -482,7 +482,7 @@ test('una versión de contrato desconocida se rechaza; no se interpreta como la 
     // Un solo error, el de versión: no se siguió validando como si fuera v1.
     assert.equal(result.issues.length, 1);
     assert.equal(result.issues[0].path, '$.contractVersion');
-    assert.match(result.issues[0].message, /no interpreta otra versión como la actual/);
+    assert.match(result.issues[0].message, /does not interpret another version as current/);
   }
 
   const sinVersion = loose(bundle.snapshot);
@@ -500,7 +500,7 @@ test('fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy', (
   assert.equal(devfest.date.state, 'ambiguous'); // día sin zona: ambiguo explícito
   if (devfest.date.state === 'ambiguous') {
     assert.equal(devfest.date.display, '2026-11-20');
-    assert.match(devfest.date.note, /sin zona horaria/);
+    assert.match(devfest.date.note, /no declared timezone/);
   }
 
   const hack = projection.dossiers.find((d) => d.editionId === 'ed-hack-tbd');
@@ -543,13 +543,13 @@ test('una localización nacional no coloca el evento en una ciudad ni en el mapa
   if (devfest.location.state === 'known') {
     assert.equal(devfest.location.display, 'United States'); // el país, no una ciudad
     assert.equal(devfest.location.scope, 'country');
-    assert.match(devfest.location.pendingNote ?? '', /ciudad pendiente/);
+    assert.match(devfest.location.pendingNote ?? '', /City pending/);
   }
 
   // Mapa local secundario: solo la edición con respaldo urbano y coordenadas.
-  assert.deepEqual(projection.map.points.map((p) => p.editionId), ['ed-sf-ai-night']);
+  assert.deepEqual(projection.map.points, [], 'coordenadas anteriores sin precisión no ganan un pin');
   const sinPunto = projection.map.listedWithoutPoint.map((p) => p.editionId).sort();
-  assert.deepEqual(sinPunto, ['ed-devfest-usa', 'ed-hack-tbd']); // accesibles en la lista, sin punto inventado
+  assert.deepEqual(sinPunto, ['ed-devfest-usa', 'ed-hack-tbd', 'ed-sf-ai-night']); // accesibles en la lista, sin punto inventado
 
   // Validación: coordenadas con alcance país se rechazan.
   const conPunto = loose(bundle.editions[1]);
@@ -593,7 +593,7 @@ test('score ausente se distingue de cero; «sin evento elegible» se distingue d
     coverage: 0.7,
     sensitivityNote: null,
   };
-  assertRejected(parseEvaluationSnapshot(puntuadoSinPolitica), 'sin política no se puntúa');
+  assertRejected(parseEvaluationSnapshot(puntuadoSinPolitica), 'no policy means no scoring');
 
   // Outcomes: ambos válidos y distintos; la proyección los conserva tal cual.
   const sinElegibles = loose(bundle.snapshot);
@@ -658,7 +658,7 @@ test('identidades separadas: aliases exigen confirmación con soporte y un logo 
 
   const logoConResultado = loose(bundle.participations[0]);
   logoConResultado.commercialOutcome = { status: 'reported', summary: 'sumó 3 clientes', sourceIds: ['src-recap-blog'] };
-  assertRejected(parseParticipationRevision(logoConResultado), 'un logo ambiguo no crea resultados');
+  assertRejected(parseParticipationRevision(logoConResultado), 'an ambiguous logo does not establish outcomes');
 
   const patrocinioInferido = loose(bundle.participations[0]);
   patrocinioInferido.role = 'paid_sponsor';
@@ -683,7 +683,7 @@ test('la decisión exige autor del servidor, motivos y relación de revisión co
 
   const sinMotivos = loose(bundle.decision);
   sinMotivos.reasons = [];
-  assertRejected(parseEvaluationDecision(sinMotivos), 'motivos');
+  assertRejected(parseEvaluationDecision(sinMotivos), 'requires reasons');
 
   const revisionRota = loose(bundle.decision);
   revisionRota.revision = 2;

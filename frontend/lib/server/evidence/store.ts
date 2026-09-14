@@ -16,7 +16,8 @@
 //   revisiones y el conflicto queda visible.
 
 import type pg from 'pg';
-import type { ClaimRevision, SourceRecord } from '../../contracts/evaluation.ts';
+import type { ClaimRevision, SourceRecord, EvidenceReference } from '../../contracts/evaluation.ts';
+import { parseClaimRevision, parseSourceRecord } from '../../contracts/evaluation-validation.ts';
 
 // Error de integridad de la carga: referencias irresolubles bajo el tenant,
 // conflictos con material inmutable o cadenas de revisión rotas.
@@ -77,6 +78,8 @@ export async function upsertSources(
   const counts: UpsertCounts = { inserted: 0, unchanged: 0 };
   const issues: string[] = [];
   for (const source of sources) {
+    const parsed = parseSourceRecord(source);
+    if (!parsed.ok) throw new CatalogIntegrityError(parsed.issues.map(i => `${i.path}: ${i.message}`));
     const { rows } = await client.query(
       // La igualdad jsonb es estructural: el orden de claves del manifiesto no
       // fabrica conflictos.
@@ -123,6 +126,20 @@ export async function missingSourceIds(
   const { rows } = await client.query('select id from growthx.sources where id = any($1)', [unique]);
   const found = new Set(rows.map((row) => row.id as string));
   return unique.filter((id) => !found.has(id));
+}
+
+// La referencia de fragmento se resuelve dentro del tenant, no por parecido
+// de URL. El localizador es una referencia específica aportada por el lector.
+export async function verifyEvidenceReferences(client: pg.ClientBase, refs: EvidenceReference[]): Promise<void> {
+  for (const ref of refs) {
+    const { rows } = await client.query('select payload from growthx.sources where id = $1', [ref.sourceId]);
+    const parsed = parseSourceRecord(rows[0]?.payload);
+    if (!parsed.ok || (ref.fragmentId !== null && !parsed.value.fragments?.some(f => f.id === ref.fragmentId)))
+      throw new CatalogIntegrityError(['Fuente o fragmento no disponible bajo este tenant.']);
+    if (parsed.value.retrieval?.status === 'error') throw new CatalogIntegrityError(['Una obtención fallida no respalda una afirmación.']);
+    if (parsed.value.method === 'exa_search' || parsed.value.method === 'test_fixture+exa_search')
+      throw new CatalogIntegrityError(['Un resultado de búsqueda propone una fuente; requiere lectura antes de respaldar afirmaciones o relaciones.']);
+  }
 }
 
 export async function readSourcesByIds(
@@ -172,6 +189,13 @@ export async function upsertClaimRevisions(
   const counts: UpsertCounts = { inserted: 0, unchanged: 0 };
   const issues: string[] = [];
   for (const revision of revisions) {
+    const parsed = parseClaimRevision(revision);
+    if (!parsed.ok) throw new CatalogIntegrityError(parsed.issues.map(i => `${i.path}: ${i.message}`));
+    await verifyEvidenceReferences(client, revision.evidence ?? []);
+    // Legacy callers may provide only sourceIds, without fragment references.
+    // Search proposals are not a shortcut around the reading boundary.
+    const proposedSources = await client.query("select id from growthx.sources where id=any($1::text[]) and payload->>'method' in ('exa_search','test_fixture+exa_search')", [revision.sourceIds]);
+    if (proposedSources.rows.length) throw new CatalogIntegrityError(['Un resultado de búsqueda no respalda un claim: primero debe leerse la fuente.']);
     const subject = claimSubjectId(revision);
     const subjectTable = CLAIM_SUBJECT_TABLE[subject.type];
     if (!subjectTable) {

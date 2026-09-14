@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/acceptance/explicable-comparison.test.ts",
+    "tests/integration/explicable-comparison.test.ts"
+  ],
+  "cwd": "/tmp/growthx-dp07-production",
+  "exit_code": 0,
+  "duration_seconds": 1.2,
+  "database": "isolated PostgreSQL port 55447"
+}

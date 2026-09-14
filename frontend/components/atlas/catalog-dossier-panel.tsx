@@ -349,8 +349,8 @@ export function CatalogDossierPanel() {
                 listing
               </a>
             )}
-            {edition.listingLink.kind === 'synthetic' && <span>Listado de prueba · no corresponde a una página real.</span>}
-            {edition.listingLink.kind === 'invalid' && <span>Enlace del listado no disponible.</span>}
+            {edition.listingLink.kind === 'synthetic' && <span>Test listing · not a real page.</span>}
+            {edition.listingLink.kind === 'invalid' && <span>Listing link unavailable.</span>}
           </div>
           {edition.curation && (
             <div style={{ fontSize: 11, opacity: 0.7 }}>

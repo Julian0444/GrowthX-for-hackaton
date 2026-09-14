@@ -1,0 +1,43 @@
+(node:42684) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP06 durable relationships under real PostgreSQL roles
+  ✔ acceptance atomic, replay key and tenant mismatch (12.347ms)
+  ✔ worker reads six sources, stops after read commit and resumes without consuming again (340.488167ms)
+  ✔ RLS hides all new relations and queue has no business grants (5.501208ms)
+  ✖ explicit refresh chains revisions; partial failures retain linked project support and original revision (268.402167ms)
+  ✔ Vultr current host links to Paris sponsorship without creating organizing history (141.240208ms)
+  ✔ DP04 discovery proposal -> DP05 full reading -> persisted relations; snippet remains unmodified (323.531667ms)
+  ✔ foreign evidence and wrong-edition claim references roll back all relationship writes (17.659959ms)
+✖ DP06 durable relationships under real PostgreSQL roles (1205.231125ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1457.554667
+
+✖ failing tests:
+
+test at tests/integration/relationships.test.ts:54:10
+✖ explicit refresh chains revisions; partial failures retain linked project support and original revision (268.402167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 2
+  
+      at TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/relationships.test.ts:59:73)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/relationships.test.ts:54:2)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

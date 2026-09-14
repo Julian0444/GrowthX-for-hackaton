@@ -1,0 +1,71 @@
+{
+  "observedAt": "2026-09-10T21:03:55.947Z",
+  "runId": "965fe4b1-9717-41dc-854a-d4676cc571d4",
+  "editionId": "luma-7a4iutvp",
+  "revisionId": "luma-965fe4b1-9717-41dc-854a-d4676cc571d4-edition",
+  "state": "completed",
+  "material": "real source, isolated DB and worker",
+  "verified": [
+    "source imported through browser",
+    "audience fragment",
+    "announced sponsors fragment",
+    "full public address fragment",
+    "published coordinates",
+    "cost pending",
+    "same revision after reload",
+    "mobile no horizontal overflow"
+  ],
+  "result": {
+    "kind": "luma_event_ingest",
+    "reading": {
+      "cache": "miss",
+      "status": "obtained",
+      "version": 1,
+      "failures": [],
+      "strategy": "http_get",
+      "checkedAt": "2026-09-10T21:03:47.106Z",
+      "freshness": "current",
+      "limitation": null
+    },
+    "version": 1,
+    "sourceId": "luma-965fe4b1-9717-41dc-854a-d4676cc571d4-src",
+    "editionId": "luma-7a4iutvp",
+    "extraction": {
+      "status": "complete",
+      "warnings": [
+        "La disponibilidad de entradas no confirma acceso abierto; aprobación, invitación y condiciones de inscripción quedan pendientes.",
+        "prize pool not present in structured data"
+      ],
+      "fieldsExtracted": [
+        "name",
+        "startsAt",
+        "endsAt",
+        "venue",
+        "city",
+        "coordinates",
+        "organizer",
+        "date:structured",
+        "end_date",
+        "format",
+        "location",
+        "address",
+        "companies:presenter",
+        "hosts:listed",
+        "audience",
+        "sponsors:announced",
+        "companies:venue_partner",
+        "program",
+        "access",
+        "date:visible"
+      ]
+    },
+    "canonicalUrl": "https://lu.ma/7a4iutvp",
+    "requestedUrl": "https://lu.ma/7a4iutvp",
+    "editionRevisionId": "luma-965fe4b1-9717-41dc-854a-d4676cc571d4-edition",
+    "linkedToExistingEdition": false
+  },
+  "providerUse": {
+    "exaCalls": 0,
+    "apifyStarts": 0
+  }
+}

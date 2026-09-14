@@ -59,7 +59,7 @@ test('acceso pendiente y contradicho conserva condición, no incompatibilidad', 
   const cs = baseClaims.map(c => c.attribute === 'access' ? {...c, status, note:'Sin resolver'} : c);
   const result = evaluateEligibility({profile:{...profile,restrictions:['Open registration']}, dossier:dossier(cs)});
   assert.equal(result.eligibility.status,'conditional');
-  assert.ok(result.conditions.some(c=>/acceso/i.test(c.description)));
+  assert.ok(result.conditions.some(c=>/access/i.test(c.description)));
  }
 });
 
@@ -83,7 +83,7 @@ test('fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambo
   read.validity={validity:'date_ambiguous',reason:'Fecha por resolver'};
   const p={...profile,window:{from:'2026-10-01',to:'2026-10-01'}};
   assert.equal(evaluateEligibility({profile:p,dossier:read}).eligibility.status,'conditional');
-  assert.ok(futureSfConditions(read,p).some(c=>/fecha|zona/i.test(c)));
+  assert.ok(futureSfConditions(read,p).some(c=>/date|zone/i.test(c)));
  }
 });
 

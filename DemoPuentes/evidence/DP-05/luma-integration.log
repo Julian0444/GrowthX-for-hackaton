@@ -1,0 +1,77 @@
+(node:70545) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales)
+  ✔ POST sin sesión → 401; la validación de URL ocurre antes de aceptar nada (10.354083ms)
+  ✔ profileRunId de otro tenant → 400 (RLS: no existe para esta sesión) (3.221083ms)
+  ✖ HTML completo: 202 → obtención en el worker → dossier durable con claims (162.299333ms)
+  ✖ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (161.567167ms)
+  ✔ duplicado: misma clave y misma URL (alias) → el MISMO run, sin un segundo (20.699458ms)
+  ✔ HTML parcial: dossier parcial explícito, jamás un fallback a un evento seed (132.722625ms)
+  ✔ redirección dentro de la allowlist: se valida y se sigue (125.048625ms)
+  ✔ redirección fuera de la allowlist: fallo con URL solicitada, intento y causa (93.656042ms)
+  ✔ límite de tamaño: la descarga se corta y el run falla con causa visible (36.521792ms)
+  ✔ timeout: la obtención vence y el run falla con causa visible (238.043792ms)
+  ✔ prompt injection en la descripción: texto de la fuente = dato, jamás instrucción (95.943208ms)
+  ✔ identidad existente: URL canónica y aliases se relacionan; reimportar crea revisión, no identidad (150.91825ms)
+  ✔ reanudación idempotente: repetir persist_dossier no duplica material (10.490083ms)
+✖ luma-dossier: de una URL de Luma a un dossier durable (PostgreSQL + pg-boss reales) (1427.30075ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 11
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1766.816958
+
+✖ failing tests:
+
+test at tests/integration/luma-dossier.test.ts:308:11
+✖ HTML completo: 202 → obtención en el worker → dossier durable con claims (162.299333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'visible_text+jsonld_extraction'
+  - 'jsonld_extraction'
+  
+      at TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts:382:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts:308:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'visible_text+jsonld_extraction',
+    expected: 'jsonld_extraction',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/luma-dossier.test.ts:397:11
+✖ transporte fixture: la procedencia de prueba llega a fuentes, claims y dossier persistidos (161.567167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'test_fixture+visible_text+jsonld_extraction'
+  - 'test_fixture+jsonld_extraction'
+                  ^
+  
+      at TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts:411:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/luma-dossier.test.ts:397:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'test_fixture+visible_text+jsonld_extraction',
+    expected: 'test_fixture+jsonld_extraction',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

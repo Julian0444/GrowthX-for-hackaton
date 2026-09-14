@@ -1,0 +1,158 @@
+- main:
+  - complementary:
+    - button "Growth Atlas Investigación · SF":
+      - generic: Growth Atlas
+      - generic: Investigación · SF
+    - navigation "Navegación principal":
+      - button "Resumen":
+        - generic: Resumen
+      - button "Organizadores":
+        - generic: Organizadores
+      - button "Eventos":
+        - generic: Eventos
+      - button "Decisiones":
+        - generic: Decisiones
+      - button "Perfil":
+        - generic: Perfil
+    - paragraph:
+      - text: Investigación acotada.
+      - text: Fuentes antes de decidir.
+  - generic: San Francisco
+  - heading "Eventos" [level=1]
+  - paragraph: Cada edición, con sus fuentes y condiciones.
+  - button "Editar perfil · v1"
+  - generic: 8 organizadores · 14 ediciones en el catálogo
+  - generic: "Carga / obtención: 2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z · 2026-09-10T03:52:48.856Z · 2026-09-10T22:41:28.548Z · 2026-09-10T22:41:56.008Z · 2026-09-10T22:42:19.954Z · 2026-09-10T22:42:44.239Z"
+  - generic: "Material sintético: prueba el mecanismo; no acredita cobertura real de SF."
+  - region "Estado persistido":
+    - paragraph: Investigación 422c3de4-20c0-47a5-8e64-d23e0a8cac58 · Completado
+    - list:
+      - generic: "Validar perfil:"
+      - text: Completado · intentos 1
+      - generic: "Leer antecedentes y proyectos:"
+      - text: Completado · intentos 1
+      - generic: "Guardar relaciones y evidencia:"
+      - text: Completado · intentos 1
+      - generic: "Publicar resultado:"
+      - text: Completado · intentos 1
+  - button "Volver a eventos"
+  - paragraph: Lectura actual del catálogo persistido
+  - generic: Dossier de edición
+  - heading "AI Tinkerers SF - Secure Agents Buildathon" [level=2]
+  - paragraph: "ID: edition-e798e9bdbefdc361ed052d63 · past · 2 revisión(es)"
+  - link "Abrir listado de la edición":
+    - /url: https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon
+  - paragraph: "Automatically read from public sources: claims keep their announced or reported status, without human verification."
+  - paragraph: Fuente obtenida 2026-09-10T22:42:44.239Z · extracción automática, sin revisión humana
+  - paragraph:
+    - text: "Organizers / listed hosts:"
+    - button "AI Tinkerers San Francisco"
+  - strong: Date
+  - paragraph: 2025-12-06T09:00:00-08:00 (-08:00)
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Location
+  - paragraph: San Francisco
+  - generic: announced · city
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Audience
+  - paragraph: sin dato de audiencia; no se estima uno
+  - generic "Source details"
+  - paragraph: What audience size and profile can the organizer evidence for this edition?
+  - strong: Access
+  - paragraph: sold_out
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Cost — attendance
+  - paragraph: USD 0
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Cost — sponsorship
+  - paragraph: Edition-specific sponsorship quote and total participation cost remain unknown.
+  - generic "Source details"
+  - paragraph: Which sponsorship items does the organizer offer, and at what price?
+  - strong: Location access
+  - paragraph: "AI Tinkerers SF - Secure Agents Buildathon: Available after application approval"
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Structured attribution (role unresolved)
+  - paragraph: AI Tinkerers - San Francisco
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Announced technical program (previous edition)
+  - paragraph: Monitoring, auditing, and recovery patterns for long-running agents
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Commercial outcomes
+  - paragraph: No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.
+  - generic "Source details"
+  - paragraph: What confirms “commercial:outcome” for this edition?
+  - strong: Operational responsibility
+  - paragraph: Operational contact for this edition has not been verified.
+  - generic "Source details"
+  - paragraph: What confirms “organizer:responsible” for this edition?
+  - strong: Format
+  - paragraph: https://schema.org/OfflineEventAttendanceMode
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Name
+  - paragraph: AI Tinkerers SF - Secure Agents Buildathon
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Reviewed project coverage
+  - paragraph: 0 linked project detail page(s) reviewed. Gallery total not obtained in this reading. This is a partial sample of published projects, never a count or percentage of attendees.
+  - generic: reported · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Venue
+  - paragraph: Private venue
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Actual audience
+  - paragraph: Actual attendance and its composition were not documented in the reviewed material.
+  - generic "Source details"
+  - paragraph: What confirms “audience:observed” for this edition?
+  - strong: Published end date
+  - paragraph: 2025-12-06T20:00:00-08:00
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Public address
+  - paragraph: 1185 Old Mason St, San Francisco, CA, 94123, US
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Date in visible text
+  - paragraph: December 6, 2025, from 9am to 8pm. | Saturday, December 6th, 2025 • 9AM to 8PM (PDT)
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 2 fragment(s)"
+  - region "Ubicación y precisión":
+    - heading "Ubicación pública" [level=3]
+    - paragraph: San Francisco · announced
+    - paragraph: city · unknown
+    - paragraph: Dirección oculta; no se reconstruye la sede.
+    - generic "Procedencia de ubicación"
+  - region "Relaciones de esta edición":
+    - heading "Relaciones con soporte específico" [level=3]
+    - article:
+      - strong: AI Tinkerers San Francisco
+      - paragraph: organizer · announced · edition
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Google Cloud
+      - paragraph: sponsor · announced · edition
+      - generic "Evidence for this edition and role" [active]
+      - paragraph: Thank you to Google Cloud! · HTML line 2589
+      - link "sf.aitinkerers.org":
+        - /url: https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon
+      - generic: obtained 2026-09-10
+      - generic: publication date unknown
+      - generic: http_get+relationship_extraction
+      - generic: "obtained · freshness: current"
+      - generic: "scope: unknown"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Wordware
+      - paragraph: venue · announced · edition
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - heading "Participaciones documentadas" [level=3]
+- alert

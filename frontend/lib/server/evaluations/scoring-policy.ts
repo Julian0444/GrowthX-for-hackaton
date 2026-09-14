@@ -67,8 +67,8 @@ export function extractFeatures(profile: EvaluationProfile, dossier: EditionDoss
       value: null,
       missingReason:
         audienceClaim?.status === 'contradicted'
-          ? 'audiencia contradicha entre fuentes: sin valor admitido para el fit'
-          : 'sin claim de audiencia con soporte',
+          ? 'conflicting audience sources: no admitted value for fit'
+          : 'no supported audience claim',
       claimRevisionIds: audienceClaim ? [audienceClaim.id] : [],
       note: null,
     });
@@ -85,9 +85,9 @@ export function extractFeatures(profile: EvaluationProfile, dossier: EditionDoss
       key: 'audience_fit',
       value: wanted.size === 0 || declared.length === 0 ? null : clamp01(hits / Math.min(wanted.size, new Set(declared).size)),
       missingReason:
-        wanted.size === 0 || declared.length === 0 ? 'la audiencia declarada no permite comparar tokens' : null,
+        wanted.size === 0 || declared.length === 0 ? 'the declared audience does not support a term comparison' : null,
       claimRevisionIds: [audienceClaim.id],
-      note: `estado del claim: ${audienceClaim.status}`,
+      note: `claim status: ${audienceClaim.status}`,
     });
   }
 
@@ -102,13 +102,13 @@ export function extractFeatures(profile: EvaluationProfile, dossier: EditionDoss
       value: 1,
       missingReason: null,
       claimRevisionIds: [accessClaim.id],
-      note: `estado del claim: ${accessClaim.status}`,
+      note: `claim status: ${accessClaim.status}`,
     });
   } else {
     features.push({
       key: 'access_documented',
       value: null,
-      missingReason: 'modalidad de acceso sin soporte: queda pendiente, no se asume abierta ni cerrada',
+      missingReason: 'unsupported access format: pending; neither open nor closed access is assumed',
       claimRevisionIds: accessClaim ? [accessClaim.id] : [],
       note: null,
     });
@@ -120,7 +120,7 @@ export function extractFeatures(profile: EvaluationProfile, dossier: EditionDoss
   // desconocido JAMÁS cuenta como cero.
   const costClaims = claims.filter(c => c.attribute.startsWith('cost:'));
   const costs = assessCosts(claims, profile.budget);
-  const missingReason = profile.budget.status !== 'declared' ? 'presupuesto no declarado'
+  const missingReason = profile.budget.status !== 'declared' ? 'budget not declared'
     : costs.pending.length ? costs.pending.join(' ') : null;
   features.push({
     key: 'cost_fit',
@@ -129,7 +129,7 @@ export function extractFeatures(profile: EvaluationProfile, dossier: EditionDoss
     missingReason,
     claimRevisionIds: costClaims.map(c => c.id),
     note: missingReason === null && profile.budget.status === 'declared'
-      ? `partidas acumulables conocidas: ${profile.budget.currency} ${costs.knownLowerBound} (límite inferior; puede haber partidas sin publicar)` : null,
+      ? `known cumulative items: ${profile.budget.currency} ${costs.knownLowerBound} (lower bound; unpublished items may exist)` : null,
   });
 
   return features;
@@ -210,7 +210,7 @@ export function applyScoringPolicy(
       abstained.push({
         editionId: candidate.editionId,
         reason: 'insufficient_data',
-        note: 'sin ninguna dimensión con dato: el scorer se abstiene en vez de puntuar 0',
+        note: 'no dimension has data: the scorer abstains instead of assigning zero',
       });
       continue;
     }
@@ -245,9 +245,9 @@ export function applyScoringPolicy(
     if (above && candidate.bestCase > above.worstCase) flips.push(above.editionId);
     const below = scored[index + 1];
     if (below && candidate.worstCase < below.bestCase) flips.push(below.editionId);
-    const range = `S_known podría moverse entre ${candidate.worstCase} y ${candidate.bestCase} al resolver ${candidate.missingKeys.join(', ')}`;
+    const range = `S_known could range from ${candidate.worstCase} and ${candidate.bestCase} after resolving ${candidate.missingKeys.join(', ')}`;
     candidate.sensitivityNote =
-      flips.length > 0 ? `${range}; el orden con ${flips.join(' y ')} podría invertirse` : range;
+      flips.length > 0 ? `${range}; the ordering with ${flips.join(' and ')} could reverse` : range;
   }
 
   return {

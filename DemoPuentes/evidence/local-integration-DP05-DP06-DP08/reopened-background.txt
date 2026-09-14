@@ -1,0 +1,192 @@
+- main:
+  - complementary:
+    - button "Growth Atlas Investigación · SF":
+      - generic: Growth Atlas
+      - generic: Investigación · SF
+    - navigation "Navegación principal":
+      - button "Resumen":
+        - generic: Resumen
+      - button "Organizadores":
+        - generic: Organizadores
+      - button "Eventos":
+        - generic: Eventos
+      - button "Decisiones":
+        - generic: Decisiones
+      - button "Perfil":
+        - generic: Perfil
+    - paragraph:
+      - text: Investigación acotada.
+      - text: Fuentes antes de decidir.
+  - generic: San Francisco
+  - heading "Eventos" [level=1]
+  - paragraph: Cada edición, con sus fuentes y condiciones.
+  - button "Editar perfil · v1"
+  - generic: 8 organizadores · 14 ediciones en el catálogo
+  - generic: "Carga / obtención: 2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z · 2026-09-10T03:52:48.856Z · 2026-09-10T22:41:28.548Z · 2026-09-10T22:41:56.008Z · 2026-09-10T22:42:19.954Z · 2026-09-10T22:42:44.239Z"
+  - generic: "Material sintético: prueba el mecanismo; no acredita cobertura real de SF."
+  - region "Estado persistido":
+    - paragraph: Investigación 422c3de4-20c0-47a5-8e64-d23e0a8cac58 · Completado
+    - list:
+      - generic: "Validar perfil:"
+      - text: Completado · intentos 1
+      - generic: "Leer antecedentes y proyectos:"
+      - text: Completado · intentos 1
+      - generic: "Guardar relaciones y evidencia:"
+      - text: Completado · intentos 1
+      - generic: "Publicar resultado:"
+      - text: Completado · intentos 1
+  - button "Volver a eventos"
+  - paragraph: Lectura actual del catálogo persistido
+  - generic: Dossier de edición
+  - 'heading "Agents, Everywhere: Bots, Channels, & More — Global Hackathon" [level=2]'
+  - paragraph: "ID: edition-d54a42d3ba8672ab20f9aeec · upcoming · 2 revisión(es)"
+  - link "Abrir listado de la edición":
+    - /url: https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon
+  - paragraph: "Automatically read from public sources: claims keep their announced or reported status, without human verification."
+  - paragraph: Fuente obtenida 2026-09-10T22:42:44.239Z · extracción automática, sin revisión humana
+  - strong: Why this matters for your brief
+  - paragraph: For Revisión QA 10/09 — Plataforma de observabilidad para agentes de IA con SDK Python y TypeScript. Buscamos que equipos usen nuestras trazas y evaluaciones en producción. (adoption), AI Tinkerers SF - Secure Agents Buildathon in San Francisco documents a prior organizer role. Its announced technical program covered monitoring, auditing, and recovery patterns for long-running agents. This supports exploring a technical integration or feedback session, subject to fit and permission for the current edition. A published organizing role does not establish actual attendance or delivery of every announced activity. Ask for the local operator, technical support and edition-specific conditions.
+  - generic: inferred · alcance pendiente inferencia (bounded_public_source_extraction) · Buyer-specific research hypothesis; no performance ranking or commercial return inferred.; pendiente de confirmar
+  - generic "Evidence · 3 fragment(s)"
+  - strong: What to verify next
+  - paragraph: Confirm access, who is responsible, audience composition, permission for the proposed technical activity and a complete edition-specific quote.
+  - generic "Source details"
+  - paragraph: What confirms “buyer:next_step” for this edition?
+  - paragraph:
+    - text: "Organizers / listed hosts:"
+    - button "AI Tinkerers San Francisco"
+  - strong: Date
+  - paragraph: 2026-09-12T10:00:00-07:00 (-07:00)
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Location
+  - paragraph: San Francisco
+  - generic: announced · city
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Audience
+  - paragraph: "Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Access
+  - paragraph: "Who should come: This is a builders-only AI Tinkerers event, and attendance is by application only. It is for engineers, technical founders, researchers, and designers who build and are ready to spend the day shipping a working prototype."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Cost — attendance
+  - paragraph: USD 0
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Cost — sponsorship
+  - paragraph: Edition-specific sponsorship quote and total participation cost remain unknown.
+  - generic "Source details"
+  - paragraph: Which sponsorship items does the organizer offer, and at what price?
+  - strong: Program
+  - paragraph: "The day: Time What happens 10:00–10:30 Doors, food, check-in, and meeting potential teammates 10:30–11:00 Shared global opening and starter-kit walkthrough 11:00–11:15 Team formation 11:15–15:30 Build session 15:30–16:00 Complete project submissions in the portal 16:00–16:45 Optional local show-and-tell (after submitting) 16:45–17:00 Wrap and group photo Local demos are for sharing work and learning from the room. There is no formal local judging. What every team submits: Before the event ends, every team submits: Title — a clear name for the project Written description — what you built, who it is for, and why the context matters Public GitHub repository — working code that can be reviewed and learned from Two-minute video — a concise demo of the project in action Social post — a public post about the project that tags the event sponsors Build something that can be shown. A sharp, working demo beats a broad concept."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Structured attribution (role unresolved)
+  - paragraph: AI Tinkerers - San Francisco
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Companies listed (role unresolved)
+  - paragraph: "Sponsors and partners: OpenAI Marquee sponsor CopilotKit Sponsor OpenRouter Sponsor Exa Sponsor Auth0 Sponsor Ambiguous AI Sponsor Trigger.dev Sponsor Mozilla Sponsor Google Cloud Run Sponsor Sign in to apply People A global hackathon with OpenAI On Saturday, September 12, AI Tinkerers cities around the world are joining one shared build day. Build an agent for a place people already work, talk, and live, then make it meaningfully more useful because of that context."
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Date in visible text
+  - paragraph: "Agents, Everywhere: Beyond The Chatbox — Global Hackathon (Sept 12, 2026) | Date: Saturday, September 12, 2026 | Saturday, September 12th, 2026 • 10AM to 5PM (PDT)"
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 3 fragment(s)"
+  - strong: Global program sponsors
+  - paragraph: OpenAI · CopilotKit · OpenRouter
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Location access
+  - paragraph: "Event details: Location: Shared upon acceptance Developer Infrastructure Partners: Available after application approval"
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Venue
+  - paragraph: Private venue
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Commercial outcomes
+  - paragraph: No documented commercial outcomes. Repeat brands, awards and projects do not establish ROI.
+  - generic "Source details"
+  - paragraph: What confirms “commercial:outcome” for this edition?
+  - strong: Operational responsibility
+  - paragraph: Operational contact for this edition has not been verified.
+  - generic "Source details"
+  - paragraph: What confirms “organizer:responsible” for this edition?
+  - strong: Format
+  - paragraph: https://schema.org/OfflineEventAttendanceMode
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Actual audience
+  - paragraph: Actual attendance and its composition were not documented in the reviewed material.
+  - generic "Source details"
+  - paragraph: What confirms “audience:observed” for this edition?
+  - strong: Name
+  - paragraph: "Agents, Everywhere: Bots, Channels, & More — Global Hackathon"
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Published end date
+  - paragraph: 2026-09-12T17:00:00-07:00
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - strong: Infrastructure partners
+  - paragraph: Exa · Trigger.dev · Auth0 · Mozilla · Ambiguous AI · Sep · Saturday · San Francisco · Available after application approval
+  - generic: announced · alcance pendiente
+  - generic "Evidence · 1 fragment(s)"
+  - region "Ubicación y precisión":
+    - heading "Ubicación pública" [level=3]
+    - paragraph: San Francisco · announced
+    - paragraph: city · unknown
+    - paragraph: Dirección oculta; no se reconstruye la sede.
+    - generic "Procedencia de ubicación"
+  - region "Relaciones de esta edición":
+    - heading "Relaciones con soporte específico" [level=3]
+    - article:
+      - strong: AI Tinkerers San Francisco
+      - paragraph: organizer · announced · edition
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: OpenAI
+      - paragraph: sponsor · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: CopilotKit
+      - paragraph: sponsor · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: OpenRouter
+      - paragraph: sponsor · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Exa
+      - paragraph: infrastructure_partner · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Trigger.dev
+      - paragraph: infrastructure_partner · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Auth0
+      - paragraph: infrastructure_partner · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Mozilla
+      - paragraph: infrastructure_partner · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+    - article:
+      - strong: Ambiguous AI
+      - paragraph: infrastructure_partner · announced · global_program
+      - generic "Evidence for this edition and role"
+      - paragraph: Published role only; payment, attendance and commercial return are not established.
+  - heading "Participaciones documentadas" [level=3]
+- alert

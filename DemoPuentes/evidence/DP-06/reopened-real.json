@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "name": "ait",
+      "runId": "07f0cba9-121a-4c8f-a60d-59ecc083da25",
+      "editionId": "edition-d54a42d3ba8672ab20f9aeec",
+      "revision": "edition-rev-e689ce017f8bff3fb00b1351-geo",
+      "samePersistedEvidence": true,
+      "mobileNoOverflow": true
+    },
+    {
+      "name": "vultr",
+      "runId": "ad9791d8-59a0-4d75-8ce0-ca0b2272eb52",
+      "editionId": "edition-d0281a2afe1eb40ed6d8bae9",
+      "revision": "edition-rev-746631fd60c8055861842ac2-geo",
+      "samePersistedEvidence": true,
+      "mobileNoOverflow": true
+    }
+  ],
+  "noWorker": true,
+  "publicFetches": 0
+}

@@ -1,0 +1,200 @@
+- main:
+  - complementary:
+    - button "Growth Atlas Investigación · SF":
+      - generic: Growth Atlas
+      - generic: Investigación · SF
+    - navigation "Navegación principal":
+      - button "Resumen":
+        - generic: Resumen
+      - button "Organizadores":
+        - generic: Organizadores
+      - button "Eventos":
+        - generic: Eventos
+      - button "Decisiones":
+        - generic: Decisiones
+      - button "Perfil":
+        - generic: Perfil
+    - paragraph:
+      - text: Investigación acotada.
+      - text: Fuentes antes de decidir.
+  - generic: San Francisco
+  - heading "Decisiones" [level=1]
+  - paragraph: Tu criterio, conservado en cada revisión.
+  - button "Editar perfil · v1"
+  - generic: 8 organizadores · 14 ediciones en el catálogo
+  - generic: "Carga / obtención: 2026-09-08T00:00:00.000Z · 2026-09-09T06:41:15.244Z · 2026-09-09T07:04:35.409Z · 2026-09-09T22:37:42.037Z · 2026-09-10T03:51:32.943Z · 2026-09-10T03:52:48.856Z · 2026-09-10T22:41:28.548Z · 2026-09-10T22:41:56.008Z · 2026-09-10T22:42:19.954Z · 2026-09-10T22:42:44.239Z"
+  - generic: "Material sintético: prueba el mecanismo; no acredita cobertura real de SF."
+  - region "Estado persistido":
+    - paragraph: Evaluación 21279a0a-9fe0-4968-b900-29af59463fe6 · Completado
+    - list:
+      - generic: "Validar perfil:"
+      - text: Completado · intentos 1
+      - generic: "Evaluar candidatos y confirmar snapshot:"
+      - text: Completado · intentos 1
+      - generic: "Redacción opcional del modelo:"
+      - text: Completado · intentos 1
+      - generic: "Publicar resultado:"
+      - text: Completado · intentos 1
+  - region "Comparación persistida":
+    - heading "Comparación de candidatos" [level=2]
+    - button "Reevaluar (nuevo run vinculado)"
+    - paragraph: "Snapshot oficial e70759ce-e7d4-4b34-9cb7-e1867d3db945 · evaluado al 2026-09-10T03:54:02.576Z · leído al 2026-09-10T22:44:46.469Z. Inmutable: reevaluar crea otro run con otro snapshot; esta evaluación y sus decisiones siguen disponibles por su enlace interno."
+    - paragraph: "Orden de presentación por id estable, NO un ranking: la política del objetivo sigue pendiente (D2)."
+    - paragraph: "Catálogo disponible: 9 edición(es) (5 vigentes; cobertura esperada 2-5). Conjunto comparado: 2 de hasta 3; no se completa un top 3 con candidatos inventados. Material sintético etiquetado (D4 pendiente): no acredita la revisión de eventos reales."
+    - paragraph: "Elegible no significa recomendado: recomendar gasto exige una edición futura y una modalidad concretas, y una decisión registrada."
+    - alert: "⚠ GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística."
+    - article:
+      - heading "The Integration Layer for AI Agents during SF a16z TechWeek" [level=3]
+      - paragraph: Condicionado
+      - paragraph:
+        - generic: "Fecha:"
+        - generic: 2026-10-06T09:30:00.000-07:00 (-07:00)
+      - paragraph:
+        - generic: "Lugar:"
+        - generic: San Francisco
+      - paragraph:
+        - generic: "Acceso:"
+        - generic: Pendiente · Registration/access status not published as structured data.
+      - paragraph:
+        - generic: "Audiencia:"
+        - generic: Pendiente · Audience not published as structured data on the event page.
+      - paragraph:
+        - generic: "Costo · attendance:"
+        - generic: Pendiente · Attendance cost not published as structured data on the event page.
+      - paragraph: "Revisiones fijadas por el snapshot: edición luma-eb44644f-1038-4a83-9670-d8f336c84248-edition (2026-09-10T03:52:48.856Z) · 8 claim(s): luma-eb44644f-1038-4a83-9670-d8f336c84248-access, luma-eb44644f-1038-4a83-9670-d8f336c84248-audience, luma-eb44644f-1038-4a83-9670-d8f336c84248-cost-attendance, luma-eb44644f-1038-4a83-9670-d8f336c84248-date, luma-eb44644f-1038-4a83-9670-d8f336c84248-location, luma-eb44644f-1038-4a83-9670-d8f336c84248-name, luma-eb44644f-1038-4a83-9670-d8f336c84248-organizer, luma-eb44644f-1038-4a83-9670-d8f336c84248-venue"
+      - button "Abrir dossier de la edición"
+      - paragraph: "Condiciones pendientes (ninguna se resuelve por puntaje):"
+      - list:
+        - text: "Sin fuente urbana (no solo anunciada) que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis."
+        - generic: "Qué respuesta la resolvería: ¿Qué fuente urbana verificable respalda que la edición ocurre en San Francisco?"
+        - text: "Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago."
+        - generic: "Qué respuesta la resolvería: ¿El registro es abierto, por invitación o de pago? ¿Con qué fuente se confirma?"
+        - text: "Costo total desconocido: ninguna partida con soporte. No se suma como cero ni habilita por puntaje."
+        - generic: "Qué respuesta la resolvería: ¿Cuáles son las partidas de patrocinio y su costo? (tarifario o propuesta del organizador)"
+      - paragraph:
+        - generic: Sin score — política pendiente.
+        - text: "Política pendiente (decisión abierta D2): comparación factual sin ranking numérico; ningún faltante se puntúa como 0."
+      - generic "Features usadas por el scorer"
+      - paragraph: "Sombra v0: v0 no evaluó este evento (no está en la referencia congelada): no comparable; nada se rellena con scores v0."
+      - link "luma":
+        - /url: https://luma.com/14fq1fa2
+      - generic: obtained 2026-09-10
+      - generic: publication date unknown
+      - generic: http_get+jsonld_extraction
+      - generic: "scope: city"
+      - button "Registrar decisión"
+    - article:
+      - heading "AI Security Hackathon - By Hackathons.team" [level=3]
+      - paragraph: Condicionado
+      - paragraph:
+        - generic: "Fecha:"
+        - generic: 2026-09-13T09:30:00.000-07:00 (-07:00)
+      - paragraph:
+        - generic: "Lugar:"
+        - generic: San Francisco
+      - paragraph:
+        - generic: "Acceso:"
+        - generic: Pendiente · Registration/access status not published as structured data.
+      - paragraph:
+        - generic: "Audiencia:"
+        - generic: Pendiente · Audience not published as structured data on the event page.
+      - paragraph:
+        - generic: "Costo · attendance:"
+        - generic: Pendiente · Attendance cost not published as structured data on the event page.
+      - paragraph: "Revisiones fijadas por el snapshot: edición luma-70e00629-8a56-452e-a84c-f5944913c144-edition (2026-09-10T03:51:32.943Z) · 8 claim(s): luma-70e00629-8a56-452e-a84c-f5944913c144-access, luma-70e00629-8a56-452e-a84c-f5944913c144-audience, luma-70e00629-8a56-452e-a84c-f5944913c144-cost-attendance, luma-70e00629-8a56-452e-a84c-f5944913c144-date, luma-70e00629-8a56-452e-a84c-f5944913c144-location, luma-70e00629-8a56-452e-a84c-f5944913c144-name, luma-70e00629-8a56-452e-a84c-f5944913c144-organizer, luma-70e00629-8a56-452e-a84c-f5944913c144-venue"
+      - button "Abrir dossier de la edición"
+      - paragraph: "Condiciones pendientes (ninguna se resuelve por puntaje):"
+      - list:
+        - text: "Sin fuente urbana (no solo anunciada) que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis."
+        - generic: "Qué respuesta la resolvería: ¿Qué fuente urbana verificable respalda que la edición ocurre en San Francisco?"
+        - text: "Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago."
+        - generic: "Qué respuesta la resolvería: ¿El registro es abierto, por invitación o de pago? ¿Con qué fuente se confirma?"
+        - text: "Costo total desconocido: ninguna partida con soporte. No se suma como cero ni habilita por puntaje."
+        - generic: "Qué respuesta la resolvería: ¿Cuáles son las partidas de patrocinio y su costo? (tarifario o propuesta del organizador)"
+      - paragraph:
+        - generic: Sin score — política pendiente.
+        - text: "Política pendiente (decisión abierta D2): comparación factual sin ranking numérico; ningún faltante se puntúa como 0."
+      - generic "Features usadas por el scorer"
+      - paragraph: "Sombra v0: v0 no evaluó este evento (no está en la referencia congelada): no comparable; nada se rellena con scores v0."
+      - link "luma":
+        - /url: https://luma.com/7a4iutvp
+      - generic: obtained 2026-09-10
+      - generic: publication date unknown
+      - generic: http_get+jsonld_extraction
+      - generic: "scope: city"
+      - paragraph:
+        - generic: Elegida · elección condicional
+        - text: · revisión 1 · registrada el 2026-09-10T03:55:28.268Z
+      - paragraph:
+        - text: Decisión 5b4c495c-9957-419e-ba63-06d7ddf2ed15 · snapshot e70759ce-e7d4-4b34-9cb7-e1867d3db945 · leída desde PostgreSQL con su revisión original.
+        - link "Enlace interno":
+          - /url: /?run=21279a0a-9fe0-4968-b900-29af59463fe6&decision=5b4c495c-9957-419e-ba63-06d7ddf2ed15
+        - button "Copiar enlace"
+      - paragraph: "Motivos registrados de la decisión:"
+      - list:
+        - listitem: "PRUEBA QA: evaluar un workshop de observabilidad para agentes. La elección solo sirve para verificar el flujo y no autoriza gasto ni contacto."
+      - paragraph: "Condiciones (registrarlas no envía ningún mensaje):"
+      - list:
+        - text: "○ Disponibilidad y precio de workshop — Pregunta al organizador: ¿Se puede impartir un workshop y cuál es el costo total? — Respuesta esperada: Workshop disponible y costo total hasta USD 5000 · Efecto: pasaría a elegida · Responsable: Revisión QA · Plazo: 2026-09-11T18:00:00Z"
+        - button "Marcar resuelta"
+        - text: "○ Sin fuente urbana (no solo anunciada) que respalde la ciudad: la ubicación queda pendiente y el evento no se sitúa en SF por hipótesis. — Qué respuesta la resolvería: ¿Qué fuente urbana verificable respalda que la edición ocurre en San Francisco?"
+        - button "Marcar resuelta"
+        - text: "○ Modalidad de acceso sin soporte: no se sabe si el registro es abierto, por invitación o pago. — Qué respuesta la resolvería: ¿El registro es abierto, por invitación o de pago? ¿Con qué fuente se confirma?"
+        - button "Marcar resuelta"
+        - text: "○ Costo total desconocido: ninguna partida con soporte. No se suma como cero ni habilita por puntaje. — Qué respuesta la resolvería: ¿Cuáles son las partidas de patrocinio y su costo? (tarifario o propuesta del organizador)"
+        - button "Marcar resuelta"
+      - button "Abrir borrador de campaña persistido"
+    - paragraph: "Redacción: deterministic_only · gemini-2.5-flash · comparison-narrative/1 · 0 ms · GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística."
+    - paragraph: Comparación en modo sombra, offline y sin nuevas consultas externas. Ningún score v0 llena campos de v1.
+  - heading "Decisiones de inversión" [level=2]
+  - paragraph: "Las decisiones se registran sobre el panel de una comparación (snapshot oficial): abrí un run de comparación y usá «Registrar decisión» para elegir, descartar o dejar pendiente con motivos y condiciones. Una elección con acceso, audiencia o costo pendientes se guarda como condicional y abre el borrador de campaña persistido. Los organizadores guardados conservan una investigación pendiente; guardarlos no crea una inversión ni una campaña."
+  - heading "Evaluaciones guardadas" [level=3]
+  - paragraph: "Lectura por identidad desde PostgreSQL: abrir una evaluación recupera su run, su snapshot, la revisión de cada decisión y su campaña sin recalcular ni consultar fuentes. Reevaluar es una acción explícita del panel."
+  - text: "Filtrar por perfil (identidad, no texto):"
+  - combobox "Filtrar evaluaciones por perfil":
+    - option "Todos los perfiles" [selected]
+    - option "Revisión QA 10/09 — Plataforma de observabilidad para agentes de IA con SDK Python y TypeScript. Buscamos que equipos usen nuestras trazas y evaluaciones en producción. · perfil v1 · presupuesto USD 5000 · objetivo adoption"
+    - option "Prueba visual · plataforma de observabilidad para agentes de IA · perfil v1 · presupuesto USD 5000 · objetivo feedback"
+    - option "AI observability for production agents · perfil v1 · presupuesto USD 2000 · objetivo adoption"
+  - article:
+    - button "Evaluación 21279a0a"
+    - generic: Completado · creada 2026-09-10T03:54:01.940Z · evaluada al 2026-09-10T03:54:02.576Z
+    - generic: Revisión QA 10/09 — Plataforma de observabilidad para agentes de IA con SDK Python y TypeScript. Buscamos que equipos usen nuestras trazas y evaluaciones en producción. · perfil v1 · presupuesto USD 5000 · objetivo adoption
+    - generic: "Eventos: The Integration Layer for AI Agents during SF a16z TechWeek · AI Security Hackathon - By Hackathons.team"
+    - generic: "Snapshot: e70759ce-e7d4-4b34-9cb7-e1867d3db945 · run 21279a0a-9fe0-4968-b900-29af59463fe6"
+    - list:
+      - text: "AI Security Hackathon - By Hackathons.team:"
+      - generic: Elegida · elección condicional
+      - text: · revisión 1 · registrada el 2026-09-10T03:55:28.268Z
+      - button "Abrir decisión"
+      - text: ·
+      - button "Abrir campaña camp-674ac21a-6e02-4a33-bfe5-295231e45e9d"
+      - text: ·
+      - link "Enlace interno":
+        - /url: /?run=21279a0a-9fe0-4968-b900-29af59463fe6&decision=5b4c495c-9957-419e-ba63-06d7ddf2ed15
+      - button "Copiar enlace"
+  - article:
+    - button "Evaluación 9ec97e75"
+    - generic: Completado · creada 2026-09-09T06:39:27.713Z · evaluada al 2026-09-09T06:39:28.119Z
+    - generic: Prueba visual · plataforma de observabilidad para agentes de IA · perfil v1 · presupuesto USD 5000 · objetivo feedback
+    - generic: "Eventos: GG ML Night (synthetic) · SF Dev Summit 2027 (synthetic)"
+    - generic: "Snapshot: 7dbba27f-5c7e-4801-8d54-2ad2a3f0e002 · run 9ec97e75-3875-48d9-931c-6cc0e37c1248"
+    - list:
+      - text: "SF Dev Summit 2027 (synthetic):"
+      - generic: Elegida · elección condicional
+      - text: · revisión 1 · registrada el 2026-09-09T06:39:52.178Z
+      - button "Abrir decisión"
+      - text: ·
+      - button "Abrir campaña camp-4a1ac754-5cce-44e4-9410-5151f0f3b38d"
+      - text: ·
+      - link "Enlace interno":
+        - /url: /?run=9ec97e75-3875-48d9-931c-6cc0e37c1248&decision=9d790b90-71be-4e19-9587-c90a58775333
+      - button "Copiar enlace"
+  - article:
+    - button "Evaluación 06967c92"
+    - generic: Completado · creada 2026-09-09T02:21:44.688Z · evaluada al 2026-09-09T02:21:45.232Z
+    - generic: AI observability for production agents · perfil v1 · presupuesto USD 2000 · objetivo adoption
+    - generic: "Eventos: GG ML Night junio 2025 (synthetic) · GG ML Night (synthetic) · SF Dev Summit 2027 (synthetic)"
+    - generic: "Snapshot: 896c9dd3-39cf-47c5-bc2a-6e0a8c2ff1a9 · run 06967c92-6114-47fd-ada5-94309a574431"
+    - generic: Sin decisiones registradas sobre este snapshot.
+- alert

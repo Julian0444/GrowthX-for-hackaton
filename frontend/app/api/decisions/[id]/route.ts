@@ -19,14 +19,14 @@ function unavailable(): NextResponse {
   return NextResponse.json(
     {
       error: 'decisions_unavailable',
-      message: 'La base de evaluaciones no está configurada; la decisión persistida no está disponible (modo degradado).',
+      message: 'The evaluations database is not configured; saved decisions are unavailable (degraded mode).',
     },
     { status: 503 },
   );
 }
 
 function notFound(): NextResponse {
-  return NextResponse.json({ error: 'not_found', message: 'Decisión inexistente para esta sesión.' }, { status: 404 });
+  return NextResponse.json({ error: 'not_found', message: 'Decision not found for this session.' }, { status: 404 });
 }
 
 // Ticket 14: un id malformado es 400, distinguible de «no hay decisión» (404)
@@ -34,7 +34,7 @@ function notFound(): NextResponse {
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function invalidId(): NextResponse {
-  return NextResponse.json({ error: 'invalid_id', message: 'decisionId inválido: se espera la identidad (uuid) de la decisión.' }, { status: 400 });
+  return NextResponse.json({ error: 'invalid_id', message: 'Invalid decisionId: a decision UUID is required.' }, { status: 400 });
 }
 
 export async function GET(
@@ -49,12 +49,14 @@ export async function GET(
   const { id } = await params;
   if (!UUID_RE.test(id)) return invalidId();
   try {
-    const read = await readDecision(getAppPool(), session.tenantId, id);
+    const value = new URL(request.url).searchParams.get('revision');
+    if (value !== null && !/^[1-9]\d*$/.test(value)) return NextResponse.json({error:'invalid_revision'}, {status:400});
+    const read = await readDecision(getAppPool(), session.tenantId, id, value === null ? undefined : Number(value));
     if (!read) return notFound();
     return NextResponse.json(read);
   } catch (error) {
-    console.error('[decisions] fallo leyendo la decisión', error);
-    return NextResponse.json({ error: 'internal', message: 'No se pudo leer la decisión.' }, { status: 500 });
+    console.error('[decisions] decision read failed', error);
+    return NextResponse.json({ error: 'internal', message: 'Could not read the decision.' }, { status: 500 });
   }
 }
 
@@ -74,7 +76,7 @@ export async function PATCH(
   try {
     payload = await request.json();
   } catch {
-    return NextResponse.json({ error: 'invalid_body', message: 'El cuerpo debe ser JSON.' }, { status: 400 });
+    return NextResponse.json({ error: 'invalid_body', message: 'The request body must be JSON.' }, { status: 400 });
   }
   const parsed = parseDecisionReviseBody(payload);
   if (!parsed.ok) return NextResponse.json({ error: 'invalid_body', message: parsed.error }, { status: 400 });
@@ -104,9 +106,9 @@ export async function PATCH(
         return NextResponse.json({ error: 'conflict', message: outcome.message }, { status: 409 });
     }
   } catch (error) {
-    console.error('[decisions] fallo revisando la decisión', error);
+    console.error('[decisions] decision revision failed', error);
     return NextResponse.json(
-      { error: 'internal', message: 'No se pudo revisar la decisión; nada quedó a medias (transacción única).' },
+      { error: 'internal', message: 'Could not revise the decision; the transaction was rolled back.' },
       { status: 500 },
     );
   }

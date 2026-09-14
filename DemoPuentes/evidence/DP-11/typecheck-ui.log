@@ -1,0 +1,1 @@
+components/research-dashboard/evaluation-list.tsx(150,33): error TS2339: Property 'intent' does not exist on type 'SavedEvaluationDecision'.

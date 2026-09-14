@@ -82,7 +82,7 @@ Prioridad de casos de uso acordada: núcleo = dossier, expediente del organizado
 
 Correcciones de lenguaje adoptadas: "cada evento medido aporta evidencia para evaluar y mejorar las próximas decisiones" (la mejora se comprueba, no se asume); el perfil del organizador muestra afirmaciones verificadas con su alcance, no un puntaje único; "validado" en discovery significa dolor reportado en entrevista — falta probar uso y disposición a pagar.
 
-## Enmienda v1.2 — investigación de organizadores en San Francisco (2026-09-07)
+## Enmienda v1.2 (histórica; dirección reemplazada por v1.3) — investigación de organizadores en San Francisco (2026-09-07)
 
 **Origen:** dirección de producto solicitada por Julian después de nuevas conversaciones con equipos de growth. El foco está solicitado; el producto detallado y los tickets siguen pendientes de revisión humana y cruzada. Esta enmienda no autoriza implementación. El relato adicional de conversaciones no se agrega a la entrevista de Terac como si perteneciera a esa fuente.
 
@@ -101,3 +101,15 @@ Se mantienen TypeScript modular, Next.js + worker Node, PostgreSQL, pg-boss, API
 **Criterio del slice actualizado:** ambos caminos —perfil → organizadores y URL Luma → dossier— llegan a una decisión guardada y reabrible; el recorrido principal funciona sin abrir el mapa. Reiniciar el worker no pierde el run, una segunda consulta conserva la trazabilidad y los dos tenants no se cruzan. La calidad comercial se prueba haciendo que un comprador evalúe una decisión real; ni el nuevo foco ni una demo acreditan todavía disposición a pagar.
 
 El [producto de destino](../../plan/finalProduct.md) y el [plan consolidado](../../plan/implementation-plan.md) desarrollan esta dirección. El resultado principal del slice es evidencia utilizable **antes de comprometer presupuesto**. Medición y aprendizaje posterior permanecen como horizonte separado, fuera de estos tickets.
+
+## Enmienda v1.3 — investigación web central y mapa integrado (2026-09-10, DP-03)
+
+La dirección vigente es [DemoPuentes](../../DemoPuentes/spec.md), solicitada y autorizada para implementación. Reemplaza la restricción de v1.2 de investigación exclusivamente manual sobre un catálogo pequeño y su mapa secundario. El brief versionado guía descubrimiento web acotado y lectura de fuentes; el catálogo conserva la memoria revisada. Lista y mapa de calles de SF son accesos equivalentes a la misma edición y revisión. Una oportunidad sin posición suficientemente precisa sigue en la lista.
+
+Se conserva Next.js, worker Node, PostgreSQL, pg-boss, sesiones y aislamiento por tenant. No se reabre la infraestructura durable ni el pipeline mundial. El mapa de calles, Exa y Apify se integran en DP-04/05/08/09; DP-03 acuerda sus fronteras sin presentar el catálogo actual como investigación web nueva. Sin política comercial aprobada se compara factual y no se puntúa inversión.
+
+El objetivo declarado por el comprador no demuestra su viabilidad. Éxito, restricciones, formatos, moneda y ventana se guardan en cada revisión del brief. Las preguntas son un plan de investigación, no hallazgos. Fuentes obtenidas, hallazgos persistidos, cobertura parcial/insuficiente y fallos tienen estados distintos; nunca se rellena una investigación real con fixtures.
+
+Las extensiones v1 son opcionales para leer registros anteriores. Una ubicación antigua conserva coordenadas pero se decodifica con precisión y método desconocidos, sin asumir venue. Las relaciones documentadas viven en la revisión de la edición (organizador, empresa o proyecto identificado), con rol, alcance y soporte por afirmación; no se introduce un grafo genérico. Fuente y fragmento se verifican dentro del tenant al persistir. Las revisiones históricas permanecen inmutables.
+
+El presupuesto comercial pertenece al brief. Los cupos de investigación y consumo por proveedor pertenecen al run; uso/costo desconocido no se interpreta como cero. Los topes propuestos de la iniciativa (Exa USD 10, Apify USD 15) no se multiplican por run: la habilitación y reserva agregada pertenecen a DP-04/05. DP-03 deja proveedores sin habilitar y persiste límites por run independientes del presupuesto comercial.

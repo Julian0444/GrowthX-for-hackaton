@@ -1,0 +1,196 @@
+$ node --test tests/e2e/sf-organizer-research.spec.ts && node --test tests/e2e/reopen-evaluation.spec.ts && node --test tests/e2e/persisted-evaluation.spec.ts && node --test tests/e2e/research-brief.spec.ts && node --test tests/e2e/exa-discovery.spec.ts && node --test tests/e2e/source-reading.spec.ts && node --test tests/e2e/relationships.spec.ts && node --test tests/e2e/explicable-comparison.spec.ts
+(node:53592) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/sf-organizer-research.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales
+  ✔ entrada dashboard, sesión y perfil corregible antes de investigar (12216.979833ms)
+  ✔ homónimos independientes y guardado durable sin edición elegible (3444.535583ms)
+  ✔ razones → expediente → empresa → edición → rol → fuente; resultado desconocido (325.35925ms)
+  ✔ logo ambiguo y edición futura fuera de SF no se recomiendan (77.652959ms)
+  ✔ Lista/Mapa conservan exactamente los mismos IDs y fuentes; sin sede inferida (1091.269791ms)
+  ✔ revisión del perfil, ausencia de coincidencia e importador disponible (2967.267917ms)
+  ✔ sesión señuelo, RLS, identidad comparable e idempotencia de nuevas revisiones (292.407541ms)
+  ✔ matching usa la última revisión y la identidad confirmada, no nombres parecidos (1051.552333ms)
+  ✔ error del worker se persiste y aparece en el dashboard (9046.86775ms)
+  ✔ sin catálogo no hay fixtures de relleno; cero llamadas al pipeline global (403.488166ms)
+✔ SF: dashboard y organizadores con navegador, PostgreSQL y worker reales (47223.7ms)
+ℹ Next real y worker real; 0 llamadas al pipeline global. Catálogo sintético explícito.
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47738.960625
+(node:54306) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales)
+  ✖ guardar una elección condicional, ver su campaña y copiar el enlace interno (7551.934125ms)
+  ✖ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (1837.124042ms)
+  ✖ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (0.571667ms)
+  ✖ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (0.2395ms)
+  ✖ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (2932.273459ms)
+  ✖ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (12.559833ms)
+  ✖ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (554.431958ms)
+  ✖ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (9.796875ms)
+✖ SF: reabrir la decisión exacta desde el dashboard (navegador, Next reiniciado, PostgreSQL y worker reales) (23308.301917ms)
+ℹ Next reiniciado una vez; 0 llamadas prohibidas durante la lectura; catálogo sintético explícito.
+✖ tests/e2e/reopen-evaluation.spec.ts (117190.043917ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117195.376417
+
+✖ failing tests:
+
+test at tests/e2e/reopen-evaluation.spec.ts:217:11
+✖ guardar una elección condicional, ver su campaña y copiar el enlace interno (7551.934125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - null
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:271:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:217:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/e2e/reopen-evaluation.spec.ts:281:11
+✖ reiniciar Next y reabrir por el enlace interno: mismos IDs, motivos, claims y campaña; cero llamadas externas (1837.124042ms)
+  Error: ▲ Next.js 16.2.6 (webpack)
+  - Local:         http://127.0.0.1:53128
+  - Network:       http://127.0.0.1:53128
+  ✓ Ready in 385ms
+  ⨯ Another next dev server is already running.
+  
+  - Local:        http://localhost:58268
+  - PID:          54308
+  - Dir:          /private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-reopen-e2e-ydA6Wb
+  - Log:          .next/dev/logs/next-development.log
+  
+  Run kill 54308 to stop it.
+  [?25h
+  
+      at file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:136:49
+      at eventually (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:56:25)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processTimers (node:internal/timers:538:9)
+      at async startNext (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:135:5)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:282:12)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:281:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:345:11
+✖ navegar fuera de una comparación o campaña muestra solo la sección elegida; la lista recupera la misma decisión (0.571667ms)
+  TypeError: Cannot read properties of undefined (reading 'getByRole')
+      at nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:347:13)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at TestContext.test (node:internal/test_runner/test:367:20)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:345:11)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processTimers (node:internal/timers:538:9)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+
+test at tests/e2e/reopen-evaluation.spec.ts:419:11
+✖ lista de evaluaciones por identidad y regreso dashboard → organizador → evento → campaña (0.2395ms)
+  TypeError: Cannot read properties of undefined (reading 'getByRole')
+      at nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:420:11)
+      at Test.runInAsyncScope (node:async_hooks:212:14)
+      at Test.run (node:internal/test_runner/test:1109:25)
+      at Test.start (node:internal/test_runner/test:1006:17)
+      at TestContext.test (node:internal/test_runner/test:367:20)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:419:11)
+      at runNextTicks (node:internal/process/task_queues:65:5)
+      at process.processTimers (node:internal/timers:538:9)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+
+test at tests/e2e/reopen-evaluation.spec.ts:462:11
+✖ vigencia actual con reloj controlado: aviso sin alterar el resultado histórico (2932.273459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + {
+  +   campaigns: 1,
+  +   claims: 12,
+  +   decisions: 2,
+  +   jobs: 2,
+  +   profiles: 1,
+  +   runs: 2,
+  +   snapshots: 1
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:483:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:462:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { runs: 2, snapshots: 1, decisions: 2, campaigns: 1, claims: 12, profiles: 1, jobs: 2 },
+    expected: undefined,
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/e2e/reopen-evaluation.spec.ts:488:11
+✖ reevaluar crea otro run vinculado; la decisión previa sigue disponible sin ediciones encubiertas (12.559833ms)
+  TypeError: Cannot read properties of undefined (reading 'waitForResponse')
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:493:28)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:488:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:533:11
+✖ un segundo presupuesto crea otro perfil y otro run; nunca sustituye el anterior (554.431958ms)
+  TypeError: Cannot read properties of undefined (reading 'getByRole')
+      at nav (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:190:50)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:544:11)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:533:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:567:11
+✖ dos pestañas recuperan una revisión nueva tras conflicto; una lectura fallida conserva la respuesta y ofrece reintento (9.796875ms)
+  TypeError: Cannot read properties of undefined (reading 'newPage')
+      at newPage (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:187:83)
+      at TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:575:28)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async TestContext.<anonymous> (file:///private/var/folders/sn/h7vh5zv940nbqdg9vwd2qtgm0000gn/T/growthx-dp10-b17xhisn/frontend/tests/e2e/reopen-evaluation.spec.ts:567:3)
+      at async Test.run (node:internal/test_runner/test:1116:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/e2e/reopen-evaluation.spec.ts:1:1
+✖ tests/e2e/reopen-evaluation.spec.ts (117190.043917ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+[ELIFECYCLE] Command failed with exit code 1.

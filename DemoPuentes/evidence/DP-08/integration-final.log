@@ -1,0 +1,36 @@
+(node:53128) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-08 durable location evidence and current consumers
+  ✔ complete address persists query, provider, interpolated accuracy, date, original claims and UI point (0.462167ms)
+  ✔ replay after commit and new DB connection keep ids and avoid another call (20.028791ms)
+  ✔ same normalized query/source version cache survives independent run, while new source version makes a request (38.161958ms)
+  ✔ new address creates a revision; saved snapshot consumers retain original position and source (132.281042ms)
+  ✔ published source coordinates make zero geocoder calls; city, hidden, street and invalid coordinates stay in list (278.877417ms)
+  ✔ provider failure is persisted and replayed; the existing worker still completes the research run (83.282917ms)
+  ✔ street-capable adapter represents one match only as approximate; multiple matches stay pending (96.491209ms)
+  ✔ tenant isolation, aggregate allowance and crash reservation prevent leaks or duplicate starts (26.58075ms)
+✔ DP-08 durable location evidence and current consumers (894.585583ms)
+(node:53129) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jirustaroure/Desktop/GrowthX%20for%20hackaton/frontend/tests/integration/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jirustaroure/Desktop/GrowthX for hackaton/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery
+  ✔ DP-04 proposed source is read in its tenant/run; new full evidence does not rewrite the search source or invent entities (293.847542ms)
+  ✔ rich source persists exact fragments, contradicted dates and public location; fresh DB connection reads identical evidence (149.137ms)
+  ✔ a sparse new page keeps prior supported attributes, public address and revision IDs (60.621417ms)
+  ✔ published venue coordinates without city remain usable under the DP-03 venue scope (76.841792ms)
+  ✔ cache reuse retains fetchedAt, failure retains stale evidence, and caches cannot cross tenants (33.214208ms)
+  ✔ Actor run ID survives actual SIGKILL; restarted client polls exactly that Actor and retains a partial failed dataset (191.044291ms)
+  ✔ unknown Actor start response is never repeated; reservation survives and provider secrets are not logged (10.450833ms)
+  ✔ global budget caps concurrent runs across tenants; no per-session reset; missing key consumes nothing (21.813458ms)
+✔ DP-05 durable source reading: PostgreSQL, replay, partial evidence, tenant boundaries and Actor recovery (962.737042ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1199.38075

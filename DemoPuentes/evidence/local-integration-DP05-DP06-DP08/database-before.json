@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-09-10T22:40:16.574798+00:00",
+  "databasePort": 54329,
+  "counts": {
+    "app_users": 350,
+    "campaign_drafts": 100,
+    "catalog_loads": 413,
+    "claim_revision_sources": 2216,
+    "claim_revisions": 2340,
+    "claims": 2140,
+    "companies": 86,
+    "decisions": 152,
+    "discovery_allowance": 1,
+    "discovery_operations": 0,
+    "discovery_runs": 0,
+    "edition_revisions": 682,
+    "event_editions": 615,
+    "memberships": 350,
+    "organizer_research": 29,
+    "organizer_revisions": 292,
+    "organizers": 250,
+    "participation_revisions": 86,
+    "participations": 86,
+    "profiles": 150,
+    "run_logs": 5616,
+    "run_steps": 2402,
+    "runs": 638,
+    "schema_migrations": 7,
+    "sessions": 354,
+    "snapshot_narratives": 133,
+    "snapshots": 133,
+    "sources": 769,
+    "tenants": 351
+  },
+  "migrations": [
+    "001-evaluacion-persistida.sql",
+    "002-catalogo-curado.sql",
+    "003-dashboard-sf.sql",
+    "004-importacion-luma.sql",
+    "005-comparacion-y-snapshot.sql",
+    "006-decision-condicional.sql",
+    "007-discovery-exa.sql"
+  ],
+  "exaAllowance": [
+    {
+      "provider": "exa",
+      "limit_usd": 10,
+      "reserved_usd": 0,
+      "halted": false
+    }
+  ]
+}

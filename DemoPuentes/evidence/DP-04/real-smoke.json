@@ -1,0 +1,460 @@
+{
+  "at": "2026-09-10T19:39:38.275Z",
+  "runId": "d90a63c5-9dd6-4486-ab8b-e29e45be31f9",
+  "tenantId": "6adc1b12-2d4d-4033-a0db-f3b76a390857",
+  "profile": {
+    "contractVersion": "1",
+    "id": "c04da7b0-573a-44d2-8437-d0c5684ae591",
+    "profileVersion": 1,
+    "createdAt": "2026-09-10T19:39:35.834Z",
+    "product": "Developer platform for AI agent observability and evaluation",
+    "audience": {
+      "description": "Developers building production AI agents",
+      "profiles": [
+        "Backend engineers",
+        "AI engineers"
+      ]
+    },
+    "stack": [
+      "Python",
+      "AI agents"
+    ],
+    "budget": {
+      "status": "declared",
+      "amount": 5000,
+      "currency": "USD"
+    },
+    "window": {
+      "from": "2026-09-10",
+      "to": "2026-10-22"
+    },
+    "restrictions": [
+      "Hands-on projects rather than logo placement"
+    ],
+    "objective": {
+      "kind": "adoption",
+      "confirmation": "confirmed",
+      "successDefinition": {
+        "status": "pending"
+      }
+    },
+    "comparableCompanies": [],
+    "geography": {
+      "city": "San Francisco",
+      "timezone": "America/Los_Angeles"
+    },
+    "formats": [
+      "hackathon",
+      "workshop"
+    ]
+  },
+  "discovery": {
+    "kind": "source_discovery",
+    "plan": {
+      "version": 1,
+      "profileId": "c04da7b0-573a-44d2-8437-d0c5684ae591",
+      "profileVersion": 1,
+      "criteria": {
+        "product": "Developer platform for AI agent observability and evaluation",
+        "audience": "Developers building production AI agents; Backend engineers; AI engineers",
+        "objective": "adoption",
+        "window": {
+          "from": "2026-09-10",
+          "to": "2026-10-22"
+        },
+        "city": "San Francisco",
+        "timezone": "America/Los_Angeles",
+        "formats": [
+          "hackathon",
+          "workshop"
+        ],
+        "restrictions": [
+          "Hands-on projects rather than logo placement"
+        ]
+      },
+      "queries": [
+        {
+          "id": "opportunities",
+          "purpose": "opportunities",
+          "text": "San Francisco hackathon or workshop 2026-09-10 through 2026-10-22 (America/Los_Angeles). Developer platform for AI agent observability and evaluation; audience Developers building production AI agents; Backend engineers; AI engineers; Python AI agents. Goal: hands-on API adoption and developer projects. Find official event pages and programs.",
+          "questionIds": [
+            "fit",
+            "objective",
+            "eligibility"
+          ]
+        }
+      ],
+      "limits": {
+        "maxQueries": 1,
+        "resultsPerQuery": 5,
+        "requestTimeoutMs": 12000,
+        "durationMs": 45000
+      }
+    },
+    "progress": {
+      "contractVersion": "1",
+      "runId": "d90a63c5-9dd6-4486-ab8b-e29e45be31f9",
+      "status": "partial",
+      "stage": "discovery_finished",
+      "terminal": true,
+      "attempts": 1,
+      "findings": [],
+      "limitations": [
+        "Las páginas encontradas son propuestas de fuentes. Falta leerlas y vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito."
+      ],
+      "material": "real",
+      "updatedAt": "2026-09-10T19:39:38.221Z"
+    },
+    "candidates": [
+      {
+        "id": "candidate-ec5989f85b700ff700ef58ab2753b27df0d3d3b6383894cc2a44095c673008cb",
+        "canonicalUrl": "https://cloud.google.com/events/build-with-gemini-san-francisco-2",
+        "requestedUrls": [
+          "https://cloud.google.com/events/build-with-gemini-san-francisco-2"
+        ],
+        "title": "Build with Gemini – San Francisco | Google Cloud",
+        "sourceIds": [
+          "exa-source-13656586db81b64de307957db3059f858c146f2c693ae33a612702219d616f6f"
+        ],
+        "queryIds": [
+          "opportunities"
+        ],
+        "status": "awaiting_reading"
+      },
+      {
+        "id": "candidate-e961a363b858944afca8d15f90686772f1dec15933511aedb3bfee01d4a2a597",
+        "canonicalUrl": "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/",
+        "requestedUrls": [
+          "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/"
+        ],
+        "title": "Datadog Summit San Francisco 2026 | Datadog",
+        "sourceIds": [
+          "exa-source-098f61ec8e49da694b9b24fad9e39c0794dad317d704b17709daaf966febfdfe"
+        ],
+        "queryIds": [
+          "opportunities"
+        ],
+        "status": "awaiting_reading"
+      },
+      {
+        "id": "candidate-07c87e993be885bf13ad440f719b0d6af501b896ded9c88fc30309c081e2e9ac",
+        "canonicalUrl": "https://lu.ma/truefoundry-agent-harness-hackathon-sep19-2026",
+        "requestedUrls": [
+          "https://luma.com/truefoundry-agent-harness-hackathon-sep19-2026"
+        ],
+        "title": "TrueFoundry Agent Harness Hackathon · Luma",
+        "sourceIds": [
+          "exa-source-138d995669bf32ee8fbaabfbbb05384dc0cea66e4da7d6a9bd142b12ed310eb7"
+        ],
+        "queryIds": [
+          "opportunities"
+        ],
+        "status": "awaiting_reading"
+      },
+      {
+        "id": "candidate-793b8d017564949e535cf6c7fd08e80a218d4dc9d7a9782d6b58c0aa2296aad7",
+        "canonicalUrl": "https://lu.ma/agent-harness-workshop",
+        "requestedUrls": [
+          "https://luma.com/agent-harness-workshop"
+        ],
+        "title": "The Agent Harness Workshop · Luma",
+        "sourceIds": [
+          "exa-source-23d534cb89963bca0bfc0ad1e43b08ae9fefcf09dd07319d747174e3b62867c2"
+        ],
+        "queryIds": [
+          "opportunities"
+        ],
+        "status": "awaiting_reading"
+      },
+      {
+        "id": "candidate-9b1e196f0aa45e74c540fe557b2b9ebe451a93b8eaec372349553aa030842e17",
+        "canonicalUrl": "https://lu.ma/weavehacks2",
+        "requestedUrls": [
+          "https://luma.com/weavehacks2"
+        ],
+        "title": "WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud · Luma",
+        "sourceIds": [
+          "exa-source-bce47b54eb41bda91c80602656fb8fba328b4de1cb2f11b93cfa68805dedc03d"
+        ],
+        "queryIds": [
+          "opportunities"
+        ],
+        "status": "awaiting_reading"
+      }
+    ],
+    "sources": [
+      {
+        "contractVersion": "1",
+        "id": "exa-source-098f61ec8e49da694b9b24fad9e39c0794dad317d704b17709daaf966febfdfe",
+        "url": "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/",
+        "locator": null,
+        "provider": "events.datadoghq.com",
+        "collector": "exa",
+        "fetchedAt": "2026-09-10T19:39:38.206Z",
+        "publishedAt": null,
+        "method": "exa_search",
+        "geoScope": "unknown",
+        "content": {
+          "kind": "excerpt",
+          "excerpt": "Datadog Summit San Francisco 2026 | Datadog\n\n## Information\n\n Time: September 23, 2026 | 01:50 PM — 04:20 PM \n\n# Evaluate and Optimize AI Agent Performance\n\nLarge Language Model (LLM) applications are nondeterministic: their outputs are never exactly the same. Traditional testing methods and operational metrics are not sufficient to measure output quality, accuracy, or safety in agentic workflows. When you change a prompt, model, or your application’s architecture, how do you know if the changes actually made things better?\n\nIn this workshop, you'll learn how to use Datadog LLM Observability's Experiments and Evaluations features to systematically measure and improve the quality of your agen"
+        },
+        "usageRestrictions": [
+          "Fragmento de búsqueda para investigación; no acredita permiso de republicación completa."
+        ],
+        "requestedUrl": "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/",
+        "canonicalUrl": "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/",
+        "title": "Datadog Summit San Francisco 2026 | Datadog",
+        "fragments": [
+          {
+            "id": "search-excerpt",
+            "text": "Datadog Summit San Francisco 2026 | Datadog\n\n## Information\n\n Time: September 23, 2026 | 01:50 PM — 04:20 PM \n\n# Evaluate and Optimize AI Agent Performance\n\nLarge Language Model (LLM) applications are nondeterministic: their outputs are never exactly the same. Traditional testing methods and operational metrics are not sufficient to measure output quality, accuracy, or safety in agentic workflows. When you change a prompt, model, or your application’s architecture, how do you know if the changes actually made things better?\n\nIn this workshop, you'll learn how to use Datadog LLM Observability's Experiments and Evaluations features to systematically measure and improve the quality of your agen",
+            "locator": "Exa Search result text; partial indexed content"
+          }
+        ],
+        "retrieval": {
+          "status": "partial",
+          "limitation": "Las páginas encontradas son propuestas de fuentes. Falta leerlas y vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.",
+          "freshness": "unknown"
+        }
+      },
+      {
+        "contractVersion": "1",
+        "id": "exa-source-13656586db81b64de307957db3059f858c146f2c693ae33a612702219d616f6f",
+        "url": "https://cloud.google.com/events/build-with-gemini-san-francisco-2",
+        "locator": null,
+        "provider": "cloud.google.com",
+        "collector": "exa",
+        "fetchedAt": "2026-09-10T19:39:38.206Z",
+        "publishedAt": null,
+        "method": "exa_search",
+        "geoScope": "unknown",
+        "content": {
+          "kind": "excerpt",
+          "excerpt": "Build with Gemini – San Francisco | Google Cloud\n\nBuild with Gemini [San Francisco]\n\nMove beyond basic chatbots. Join Google Cloud experts for a hands-on day building, scaling, and deploying secure, production-ready AI agents.\n\nSeptember 23, 2026\n\n11:30 AM-5:30 PM PDT\n\nlocation_on\n\nConvene 100 Stockton\n\n40 O'Farrell St\n\nSan Francisco, CA 94108\n\nAre you ready to move from AI strategy to tangible business results?\n\nBuild with Gemini is a complimentary, hands-on workshop designed to help you learn to build, implement, and scale autonomous AI agents across your organization. Whether you are a business leader looking to automate complex processes without writing code, or a developer ready to buil"
+        },
+        "usageRestrictions": [
+          "Fragmento de búsqueda para investigación; no acredita permiso de republicación completa."
+        ],
+        "requestedUrl": "https://cloud.google.com/events/build-with-gemini-san-francisco-2",
+        "canonicalUrl": "https://cloud.google.com/events/build-with-gemini-san-francisco-2",
+        "title": "Build with Gemini – San Francisco | Google Cloud",
+        "fragments": [
+          {
+            "id": "search-excerpt",
+            "text": "Build with Gemini – San Francisco | Google Cloud\n\nBuild with Gemini [San Francisco]\n\nMove beyond basic chatbots. Join Google Cloud experts for a hands-on day building, scaling, and deploying secure, production-ready AI agents.\n\nSeptember 23, 2026\n\n11:30 AM-5:30 PM PDT\n\nlocation_on\n\nConvene 100 Stockton\n\n40 O'Farrell St\n\nSan Francisco, CA 94108\n\nAre you ready to move from AI strategy to tangible business results?\n\nBuild with Gemini is a complimentary, hands-on workshop designed to help you learn to build, implement, and scale autonomous AI agents across your organization. Whether you are a business leader looking to automate complex processes without writing code, or a developer ready to buil",
+            "locator": "Exa Search result text; partial indexed content"
+          }
+        ],
+        "retrieval": {
+          "status": "partial",
+          "limitation": "Las páginas encontradas son propuestas de fuentes. Falta leerlas y vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.",
+          "freshness": "unknown"
+        }
+      },
+      {
+        "contractVersion": "1",
+        "id": "exa-source-138d995669bf32ee8fbaabfbbb05384dc0cea66e4da7d6a9bd142b12ed310eb7",
+        "url": "https://luma.com/truefoundry-agent-harness-hackathon-sep19-2026",
+        "locator": null,
+        "provider": "luma.com",
+        "collector": "exa",
+        "fetchedAt": "2026-09-10T19:39:38.206Z",
+        "publishedAt": null,
+        "method": "exa_search",
+        "geoScope": "unknown",
+        "content": {
+          "kind": "excerpt",
+          "excerpt": "TrueFoundry Agent Harness Hackathon · Luma\n\nA builder first community. Hear from great speakers, learn how to implement new tools, and show off what you're building with them!\n\nHosted By\n\nAdam Chan\n\nSai Krishna\n\nTrueFoundry\n\nHackerSquad\n\n58 Going\n\nJessie Cui, Patrick Mitchell and 56 others\n\n# TrueFoundry Agent Harness Hackathon\n\n[SF] HackerSquad\n\n3120 Scott Blvd\n\nSanta Clara, CA\n\nRegistration\n\nApproval Required Your registration is subject to host approval.\n\nWelcome! To join the event, please register below. \n\n# ​TrueFoundry Agent Harness Hackathon\n\n​AI agents are easy to prototype and much harder to run in production. Once an agent touches real users, tools, data, budgets, and internal syst"
+        },
+        "usageRestrictions": [
+          "Fragmento de búsqueda para investigación; no acredita permiso de republicación completa."
+        ],
+        "requestedUrl": "https://luma.com/truefoundry-agent-harness-hackathon-sep19-2026",
+        "canonicalUrl": "https://lu.ma/truefoundry-agent-harness-hackathon-sep19-2026",
+        "title": "TrueFoundry Agent Harness Hackathon · Luma",
+        "fragments": [
+          {
+            "id": "search-excerpt",
+            "text": "TrueFoundry Agent Harness Hackathon · Luma\n\nA builder first community. Hear from great speakers, learn how to implement new tools, and show off what you're building with them!\n\nHosted By\n\nAdam Chan\n\nSai Krishna\n\nTrueFoundry\n\nHackerSquad\n\n58 Going\n\nJessie Cui, Patrick Mitchell and 56 others\n\n# TrueFoundry Agent Harness Hackathon\n\n[SF] HackerSquad\n\n3120 Scott Blvd\n\nSanta Clara, CA\n\nRegistration\n\nApproval Required Your registration is subject to host approval.\n\nWelcome! To join the event, please register below. \n\n# ​TrueFoundry Agent Harness Hackathon\n\n​AI agents are easy to prototype and much harder to run in production. Once an agent touches real users, tools, data, budgets, and internal syst",
+            "locator": "Exa Search result text; partial indexed content"
+          }
+        ],
+        "retrieval": {
+          "status": "partial",
+          "limitation": "Las páginas encontradas son propuestas de fuentes. Falta leerlas y vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.",
+          "freshness": "unknown"
+        }
+      },
+      {
+        "contractVersion": "1",
+        "id": "exa-source-23d534cb89963bca0bfc0ad1e43b08ae9fefcf09dd07319d747174e3b62867c2",
+        "url": "https://luma.com/agent-harness-workshop",
+        "locator": null,
+        "provider": "luma.com",
+        "collector": "exa",
+        "fetchedAt": "2026-09-10T19:39:38.206Z",
+        "publishedAt": null,
+        "method": "exa_search",
+        "geoScope": "unknown",
+        "content": {
+          "kind": "excerpt",
+          "excerpt": "The Agent Harness Workshop · Luma\n\nA builder first community. Hear from great speakers, learn how to implement new tools, and show off what you're building with them!\n\nHosted By\n\nAdam Chan\n\nTrueFoundry\n\nHackerSquad\n\nSai Krishna\n\nAWS Builder Loft\n\n82 Going\n\nHendrik Krack, Nico Gankhuyag and 80 others\n\n# The Agent Harness Workshop\n\n[SF] HackerSquad\n\nAWS Builder Loft\n\nSan Francisco, CA\n\nRegistration\n\nApproval Required Your registration is subject to host approval.\n\nWelcome! To join the event, please register below. \n\n​Invite Only\n\n# ​TrueFoundry Agent Harness: Build Production-Ready AI Agents\n\n​AI agents are easy to demo and hard to operate. Once an agent touches real users, tools, data, budget"
+        },
+        "usageRestrictions": [
+          "Fragmento de búsqueda para investigación; no acredita permiso de republicación completa."
+        ],
+        "requestedUrl": "https://luma.com/agent-harness-workshop",
+        "canonicalUrl": "https://lu.ma/agent-harness-workshop",
+        "title": "The Agent Harness Workshop · Luma",
+        "fragments": [
+          {
+            "id": "search-excerpt",
+            "text": "The Agent Harness Workshop · Luma\n\nA builder first community. Hear from great speakers, learn how to implement new tools, and show off what you're building with them!\n\nHosted By\n\nAdam Chan\n\nTrueFoundry\n\nHackerSquad\n\nSai Krishna\n\nAWS Builder Loft\n\n82 Going\n\nHendrik Krack, Nico Gankhuyag and 80 others\n\n# The Agent Harness Workshop\n\n[SF] HackerSquad\n\nAWS Builder Loft\n\nSan Francisco, CA\n\nRegistration\n\nApproval Required Your registration is subject to host approval.\n\nWelcome! To join the event, please register below. \n\n​Invite Only\n\n# ​TrueFoundry Agent Harness: Build Production-Ready AI Agents\n\n​AI agents are easy to demo and hard to operate. Once an agent touches real users, tools, data, budget",
+            "locator": "Exa Search result text; partial indexed content"
+          }
+        ],
+        "retrieval": {
+          "status": "partial",
+          "limitation": "Las páginas encontradas son propuestas de fuentes. Falta leerlas y vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.",
+          "freshness": "unknown"
+        }
+      },
+      {
+        "contractVersion": "1",
+        "id": "exa-source-bce47b54eb41bda91c80602656fb8fba328b4de1cb2f11b93cfa68805dedc03d",
+        "url": "https://luma.com/weavehacks2",
+        "locator": null,
+        "provider": "luma.com",
+        "collector": "exa",
+        "fetchedAt": "2026-09-10T19:39:38.206Z",
+        "publishedAt": null,
+        "method": "exa_search",
+        "geoScope": "unknown",
+        "content": {
+          "kind": "excerpt",
+          "excerpt": "WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud · Luma\n\nAlex Volkov\n\n# WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud\n\nWeights & Biases\n\nRegister to See Address San Francisco, California\n\nRegistration\n\nPast Event\n\nWelcome! To join the event, please register below. \n\n## ​WeaveHacks is back.\n\n​On October 11-12, come to the Weights & Biases SF office (no online component, sorry) to have the most fun building agents you'll have this year. This time, we're highlighting self-improving agents.\n\n​Agent capabilities have advanced a lot over the last year. The next wave of agents will be different though - they'll be upgrading"
+        },
+        "usageRestrictions": [
+          "Fragmento de búsqueda para investigación; no acredita permiso de republicación completa."
+        ],
+        "requestedUrl": "https://luma.com/weavehacks2",
+        "canonicalUrl": "https://lu.ma/weavehacks2",
+        "title": "WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud · Luma",
+        "fragments": [
+          {
+            "id": "search-excerpt",
+            "text": "WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud · Luma\n\nAlex Volkov\n\n# WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud\n\nWeights & Biases\n\nRegister to See Address San Francisco, California\n\nRegistration\n\nPast Event\n\nWelcome! To join the event, please register below. \n\n## ​WeaveHacks is back.\n\n​On October 11-12, come to the Weights & Biases SF office (no online component, sorry) to have the most fun building agents you'll have this year. This time, we're highlighting self-improving agents.\n\n​Agent capabilities have advanced a lot over the last year. The next wave of agents will be different though - they'll be upgrading",
+            "locator": "Exa Search result text; partial indexed content"
+          }
+        ],
+        "retrieval": {
+          "status": "partial",
+          "limitation": "Las páginas encontradas son propuestas de fuentes. Falta leerlas y vincular sus afirmaciones con una edición; no confirman costo, ciudad, fecha, participación ni éxito.",
+          "freshness": "unknown"
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "exa-operation-54c306246cd1d653f1cba7fc215a9299715744d261573d31fe54f65416d5d6bd",
+        "query": {
+          "id": "opportunities",
+          "purpose": "opportunities",
+          "text": "San Francisco hackathon or workshop 2026-09-10 through 2026-10-22 (America/Los_Angeles). Developer platform for AI agent observability and evaluation; audience Developers building production AI agents; Backend engineers; AI engineers; Python AI agents. Goal: hands-on API adoption and developer projects. Find official event pages and programs.",
+          "questionIds": [
+            "fit",
+            "objective",
+            "eligibility"
+          ]
+        },
+        "state": "succeeded",
+        "startedAt": "2026-09-10T19:39:35.884Z",
+        "finishedAt": "2026-09-10T19:39:38.206Z",
+        "limitation": null,
+        "response": {
+          "requestId": "369de8c1cb571de17f06ff05610469aa",
+          "costUsd": 0.007,
+          "discardedResults": 0,
+          "pages": [
+            {
+              "url": "https://cloud.google.com/events/build-with-gemini-san-francisco-2",
+              "canonicalUrl": "https://cloud.google.com/events/build-with-gemini-san-francisco-2",
+              "title": "Build with Gemini – San Francisco | Google Cloud",
+              "publishedAt": null,
+              "author": null,
+              "excerpt": "Build with Gemini – San Francisco | Google Cloud\n\nBuild with Gemini [San Francisco]\n\nMove beyond basic chatbots. Join Google Cloud experts for a hands-on day building, scaling, and deploying secure, production-ready AI agents.\n\nSeptember 23, 2026\n\n11:30 AM-5:30 PM PDT\n\nlocation_on\n\nConvene 100 Stockton\n\n40 O'Farrell St\n\nSan Francisco, CA 94108\n\nAre you ready to move from AI strategy to tangible business results?\n\nBuild with Gemini is a complimentary, hands-on workshop designed to help you learn to build, implement, and scale autonomous AI agents across your organization. Whether you are a business leader looking to automate complex processes without writing code, or a developer ready to buil",
+              "sourceId": "exa-source-13656586db81b64de307957db3059f858c146f2c693ae33a612702219d616f6f"
+            },
+            {
+              "url": "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/",
+              "canonicalUrl": "https://events.datadoghq.com/summits/datadog-summit-san-francisco/agenda/build-with-agent-observability-from-setup-to-signal/",
+              "title": "Datadog Summit San Francisco 2026 | Datadog",
+              "publishedAt": null,
+              "author": null,
+              "excerpt": "Datadog Summit San Francisco 2026 | Datadog\n\n## Information\n\n Time: September 23, 2026 | 01:50 PM — 04:20 PM \n\n# Evaluate and Optimize AI Agent Performance\n\nLarge Language Model (LLM) applications are nondeterministic: their outputs are never exactly the same. Traditional testing methods and operational metrics are not sufficient to measure output quality, accuracy, or safety in agentic workflows. When you change a prompt, model, or your application’s architecture, how do you know if the changes actually made things better?\n\nIn this workshop, you'll learn how to use Datadog LLM Observability's Experiments and Evaluations features to systematically measure and improve the quality of your agen",
+              "sourceId": "exa-source-098f61ec8e49da694b9b24fad9e39c0794dad317d704b17709daaf966febfdfe"
+            },
+            {
+              "url": "https://luma.com/truefoundry-agent-harness-hackathon-sep19-2026",
+              "canonicalUrl": "https://lu.ma/truefoundry-agent-harness-hackathon-sep19-2026",
+              "title": "TrueFoundry Agent Harness Hackathon · Luma",
+              "publishedAt": null,
+              "author": null,
+              "excerpt": "TrueFoundry Agent Harness Hackathon · Luma\n\nA builder first community. Hear from great speakers, learn how to implement new tools, and show off what you're building with them!\n\nHosted By\n\nAdam Chan\n\nSai Krishna\n\nTrueFoundry\n\nHackerSquad\n\n58 Going\n\nJessie Cui, Patrick Mitchell and 56 others\n\n# TrueFoundry Agent Harness Hackathon\n\n[SF] HackerSquad\n\n3120 Scott Blvd\n\nSanta Clara, CA\n\nRegistration\n\nApproval Required Your registration is subject to host approval.\n\nWelcome! To join the event, please register below. \n\n# ​TrueFoundry Agent Harness Hackathon\n\n​AI agents are easy to prototype and much harder to run in production. Once an agent touches real users, tools, data, budgets, and internal syst",
+              "sourceId": "exa-source-138d995669bf32ee8fbaabfbbb05384dc0cea66e4da7d6a9bd142b12ed310eb7"
+            },
+            {
+              "url": "https://luma.com/agent-harness-workshop",
+              "canonicalUrl": "https://lu.ma/agent-harness-workshop",
+              "title": "The Agent Harness Workshop · Luma",
+              "publishedAt": null,
+              "author": null,
+              "excerpt": "The Agent Harness Workshop · Luma\n\nA builder first community. Hear from great speakers, learn how to implement new tools, and show off what you're building with them!\n\nHosted By\n\nAdam Chan\n\nTrueFoundry\n\nHackerSquad\n\nSai Krishna\n\nAWS Builder Loft\n\n82 Going\n\nHendrik Krack, Nico Gankhuyag and 80 others\n\n# The Agent Harness Workshop\n\n[SF] HackerSquad\n\nAWS Builder Loft\n\nSan Francisco, CA\n\nRegistration\n\nApproval Required Your registration is subject to host approval.\n\nWelcome! To join the event, please register below. \n\n​Invite Only\n\n# ​TrueFoundry Agent Harness: Build Production-Ready AI Agents\n\n​AI agents are easy to demo and hard to operate. Once an agent touches real users, tools, data, budget",
+              "sourceId": "exa-source-23d534cb89963bca0bfc0ad1e43b08ae9fefcf09dd07319d747174e3b62867c2"
+            },
+            {
+              "url": "https://luma.com/weavehacks2",
+              "canonicalUrl": "https://lu.ma/weavehacks2",
+              "title": "WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud · Luma",
+              "publishedAt": null,
+              "author": null,
+              "excerpt": "WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud · Luma\n\nAlex Volkov\n\n# WeaveHacks 2: Self-Improving Agents Hackathon with Weights & Biases and Google Cloud\n\nWeights & Biases\n\nRegister to See Address San Francisco, California\n\nRegistration\n\nPast Event\n\nWelcome! To join the event, please register below. \n\n## ​WeaveHacks is back.\n\n​On October 11-12, come to the Weights & Biases SF office (no online component, sorry) to have the most fun building agents you'll have this year. This time, we're highlighting self-improving agents.\n\n​Agent capabilities have advanced a lot over the last year. The next wave of agents will be different though - they'll be upgrading",
+              "sourceId": "exa-source-bce47b54eb41bda91c80602656fb8fba328b4de1cb2f11b93cfa68805dedc03d"
+            }
+          ]
+        },
+        "consumption": {
+          "provider": "exa",
+          "runId": "d90a63c5-9dd6-4486-ab8b-e29e45be31f9",
+          "operationId": "exa-operation-54c306246cd1d653f1cba7fc215a9299715744d261573d31fe54f65416d5d6bd",
+          "requests": {
+            "status": "known",
+            "count": 1
+          },
+          "cost": {
+            "status": "known",
+            "amount": 0.007,
+            "currency": "USD"
+          },
+          "recordedAt": "2026-09-10T19:39:38.206Z"
+        }
+      }
+    ],
+    "budget": {
+      "currency": "USD",
+      "initiativeLimit": 10,
+      "reservedByRun": 0.02,
+      "remainingAfterLastReservation": 9.98,
+      "reportedCost": 0.007,
+      "unknownCostOperations": 0,
+      "basis": "conservative_reservations"
+    }
+  },
+  "reopened": true,
+  "resumedWithoutAnotherRequest": true,
+  "limitations": [
+    "Exa costDollars is provider-reported estimated cost, not final billing.",
+    "Search proposals await DP-05 reading and DP-06 identity/relationships.",
+    "Isolated PostgreSQL; no user catalog or decision was changed."
+  ]
+}

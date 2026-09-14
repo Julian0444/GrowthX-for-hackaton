@@ -21,7 +21,7 @@ function unavailable(): NextResponse {
   return NextResponse.json(
     {
       error: 'decisions_unavailable',
-      message: 'La base de evaluaciones no está configurada; la decisión persistida no está disponible (modo degradado).',
+      message: 'The evaluations database is not configured; saved decisions are unavailable (degraded mode).',
     },
     { status: 503 },
   );
@@ -40,7 +40,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     payload = await request.json();
   } catch {
-    return NextResponse.json({ error: 'invalid_body', message: 'El cuerpo debe ser JSON.' }, { status: 400 });
+    return NextResponse.json({ error: 'invalid_body', message: 'The request body must be JSON.' }, { status: 400 });
   }
   const parsed = parseDecisionSaveBody(payload);
   if (!parsed.ok) return NextResponse.json({ error: 'invalid_body', message: parsed.error }, { status: 400 });
@@ -54,7 +54,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       case 'snapshot_not_found':
         // 404 sin confirmar existencia ajena: bajo RLS, un snapshot de otro
         // tenant y uno inexistente son indistinguibles.
-        return NextResponse.json({ error: 'not_found', message: 'Snapshot inexistente para esta sesión.' }, { status: 404 });
+        return NextResponse.json({ error: 'not_found', message: 'Snapshot not found for this session.' }, { status: 404 });
       case 'invalid':
         return NextResponse.json({ error: 'invalid_body', message: outcome.message }, { status: 400 });
       case 'excluded_conflict':
@@ -73,9 +73,9 @@ export async function POST(request: Request): Promise<NextResponse> {
         return NextResponse.json({ error: 'conflict', message: outcome.message }, { status: 409 });
     }
   } catch (error) {
-    console.error('[decisions] fallo guardando la decisión', error);
+    console.error('[decisions] decision save failed', error);
     return NextResponse.json(
-      { error: 'internal', message: 'No se pudo guardar la decisión; nada quedó a medias (transacción única).' },
+      { error: 'internal', message: 'Could not save the decision; the transaction was rolled back.' },
       { status: 500 },
     );
   }
@@ -98,7 +98,7 @@ export async function GET(request: Request): Promise<NextResponse> {
   // vacía y de «base no disponible» = 503), no un 500 por el cast de uuid.
   if (!UUID_RE.test(snapshotId.trim())) {
     return NextResponse.json(
-      { error: 'invalid_query', message: 'snapshotId inválido: se espera el id (uuid) del snapshot oficial.' },
+      { error: 'invalid_query', message: 'Invalid snapshotId: an official snapshot UUID is required.' },
       { status: 400 },
     );
   }
@@ -107,6 +107,6 @@ export async function GET(request: Request): Promise<NextResponse> {
     return NextResponse.json({ snapshotId: snapshotId.trim(), decisions });
   } catch (error) {
     console.error('[decisions] fallo leyendo decisiones del snapshot', error);
-    return NextResponse.json({ error: 'internal', message: 'No se pudieron leer las decisiones.' }, { status: 500 });
+    return NextResponse.json({ error: 'internal', message: 'Could not read the decisions.' }, { status: 500 });
   }
 }

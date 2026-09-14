@@ -15,7 +15,7 @@
 import type { ClaimRevision, EvaluationSnapshot } from '../../contracts/evaluation.ts';
 
 export const NARRATIVE_MODEL = 'gemini-2.5-flash';
-export const NARRATIVE_PROMPT_VERSION = 'comparison-narrative/2';
+export const NARRATIVE_PROMPT_VERSION = 'comparison-narrative/3';
 const NARRATIVE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${NARRATIVE_MODEL}:generateContent`;
 const DEFAULT_TIMEOUT_MS = 15_000;
 
@@ -100,11 +100,11 @@ const renderClaimValue = (claim: ClaimRevision): string => {
           ? claim.value.date.date
           : claim.value.date.precision === 'ambiguous'
             ? claim.value.date.text
-            : 'fecha pendiente';
+            : 'date pending';
     case 'location':
-      return `${claim.value.name ?? 'pendiente'} (alcance ${claim.value.scope})`;
+      return `${claim.value.name ?? 'pending'} (scope ${claim.value.scope})`;
     case 'pending':
-      return `pendiente${claim.value.note ? `: ${claim.value.note}` : ''}`;
+      return `pending${claim.value.note ? `: ${claim.value.note}` : ''}`;
   }
 };
 
@@ -116,7 +116,7 @@ function admissibleValue(claim: ClaimRevision): boolean {
     : claim.attribute === 'date' ? ['date', 'pending']
     : claim.attribute === 'location' ? ['location', 'pending']
     : claim.attribute === 'audience' ? ['text', 'number', 'pending']
-    : ['access', 'focus', 'stack', 'theme', 'format', 'modality'].includes(claim.attribute) ? ['text', 'pending']
+    : (['access', 'focus', 'stack', 'theme', 'format', 'modality'].includes(claim.attribute) || /^(program:|relationship:|project:.*:(?:technology|technologies|tool|tools|description)$)/.test(claim.attribute)) ? ['text', 'pending']
     : [];
   return kinds.includes(claim.value.kind);
 }
@@ -141,7 +141,8 @@ export function admittedClaimsByAlternative(
         (claim.subject.type === 'edition' && claim.subject.editionId === alternative.editionId) ||
         (alternative.organizerId !== null &&
           claim.subject.type === 'organizer' &&
-          claim.subject.organizerId === alternative.organizerId),
+          claim.subject.organizerId === alternative.organizerId) ||
+        (snapshot.decisionReading?.alternatives.find(a => a.editionId === alternative.editionId)?.relevance.basis.some(ref => ref.claimRevisionIds.includes(claim.id)) ?? false),
     );
     byAlternative.set(
       alternative.editionId,
@@ -149,7 +150,7 @@ export function admittedClaimsByAlternative(
         revisionId: claim.id,
         attribute: claim.attribute,
         status: claim.status,
-        rendered: renderClaimValue(claim),
+        rendered: `${claim.subject.type === 'edition' && claim.subject.editionId !== alternative.editionId ? `Historical edition ${claim.subject.editionId}: ` : ''}${renderClaimValue(claim)}`,
         note: claim.note,
       })),
     );
@@ -172,6 +173,7 @@ function buildPrompt(snapshot: EvaluationSnapshot, admitted: Map<string, Admitte
     'For each candidate editionId, return a proposal with:',
     '- summary: optional proposed wording for audit only. The server publishes a deterministic composition of selected attributes, values and original statuses; it never publishes your free text.',
     '- selectedClaimRevisionIds: ONLY revision ids listed under that same candidate. Citing anything else (or nothing) voids your whole output server-side.',
+    'Activities marked proposed are buyer hypotheses, not published offers. Historical sponsors, prizes, credits or projects never establish prices, success rates, audience totals or commercial return.',
     'Do not return order, rank, score, eligibility or conditions: they carry no authority and are discarded.',
   ].join('\n');
 }
@@ -284,15 +286,15 @@ export async function composeSnapshotNarrative(
 
   if (!apiKey) {
     return record(snapshot.id, {
-      motive: 'GEMINI_API_KEY ausente: redacción no disponible; queda la explicación determinística.',
+      motive: 'GEMINI_API_KEY missing: model narrative unavailable; the deterministic explanation remains available.',
     });
   }
   if (snapshot.alternatives.length === 0 || maxCalls < 1) {
     return record(snapshot.id, {
       motive:
         maxCalls < 1
-          ? 'presupuesto de llamadas agotado antes de redactar; queda la explicación determinística.'
-          : 'snapshot sin alternativas: nada que redactar.',
+          ? 'Call budget exhausted before drafting; the deterministic explanation remains available.'
+          : 'snapshot contains no alternatives: nothing to draft.',
     });
   }
 
@@ -319,7 +321,7 @@ export async function composeSnapshotNarrative(
   } catch (error) {
     return record(snapshot.id, {
       durationMs: Math.max(0, now() - startedAt),
-      motive: `fallo del proveedor (${(error as Error).message}): degradación determinística sin tocar el snapshot.`,
+      motive: `provider failure (${(error as Error).message}): deterministic fallback; snapshot unchanged.`,
     });
   }
   const durationMs = Math.max(0, now() - startedAt);
@@ -328,7 +330,7 @@ export async function composeSnapshotNarrative(
   if (!parsed) {
     return record(snapshot.id, {
       durationMs,
-      motive: 'salida del modelo inválida (JSON o forma inesperada): degradación determinística.',
+      motive: 'Invalid model output (unexpected JSON or structure): deterministic fallback.',
     });
   }
   const { proposals, discarded, usage } = parsed;
@@ -355,8 +357,8 @@ export async function composeSnapshotNarrative(
         durationMs,
         usage,
         discarded,
-        motive: `la propuesta para ${proposal.editionId} no cita ningún claim del snapshot: salida rechazada entera.`,
-        warnings: ['Redacción del modelo rechazada; el snapshot oficial y su orden quedan intactos.'],
+        motive: `the proposal for ${proposal.editionId} cites no snapshot claim: entire output rejected.`,
+        warnings: ['Model narrative rejected; the official snapshot and its order are unchanged.'],
       });
     }
     const invalid = proposal.selectedClaimRevisionIds.find((id) => !ownIds.has(id));
@@ -368,9 +370,9 @@ export async function composeSnapshotNarrative(
         usage,
         discarded,
         motive: exists
-          ? `la propuesta para ${proposal.editionId} cita una revisión ajena a esa alternativa («${invalid}»): salida rechazada entera.`
-          : `la propuesta para ${proposal.editionId} cita una revisión inexistente en el snapshot («${invalid}»): salida rechazada entera.`,
-        warnings: ['Redacción del modelo rechazada; el snapshot oficial y su orden quedan intactos.'],
+          ? `the proposal for ${proposal.editionId} cites a revision outside this alternative («${invalid}»): entire output rejected.`
+          : `the proposal for ${proposal.editionId} cites a revision absent from the snapshot («${invalid}»): entire output rejected.`,
+        warnings: ['Model narrative rejected; the official snapshot and its order are unchanged.'],
       });
     }
   }
@@ -383,13 +385,13 @@ export async function composeSnapshotNarrative(
     const figure = unbackedFigure(proposal.summary, cited);
     if (figure !== null) {
       warnings.push(
-        `Propuesta para ${proposal.editionId} retenida: la cifra «${figure}» no aparece en ningún claim citado.`,
+        `Proposal for ${proposal.editionId} withheld: the figure «${figure}» does not appear in any cited claim.`,
       );
       return {
         editionId: proposal.editionId,
         summary: '',
         selectedClaimRevisionIds: proposal.selectedClaimRevisionIds,
-        withheldNote: `retenida: la cifra «${figure}» no está respaldada por los claims citados.`,
+        withheldNote: `withheld: the figure «${figure}» is not supported by the cited claims.`,
       };
     }
     return {
@@ -405,12 +407,12 @@ export async function composeSnapshotNarrative(
       durationMs,
       usage,
       discarded,
-      motive: 'el modelo no devolvió ninguna propuesta para alternativas del snapshot: degradación determinística.',
+      motive: 'the model returned no proposal for snapshot alternatives: deterministic fallback.',
     });
   }
   if (discarded.attemptedOrdering || discarded.attemptedScores || discarded.attemptedEligibility) {
     warnings.push(
-      'El modelo intentó devolver orden/score/elegibilidad: descartado sin autoridad; el resultado oficial no cambió.',
+      'The model attempted to return ordering, scores, or eligibility: discarded without authority; the official result is unchanged.',
     );
   }
 

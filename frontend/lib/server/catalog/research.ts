@@ -7,10 +7,8 @@
 // límite del catálogo; sin ediciones vigentes se declara el vencimiento — no se
 // rellena con seeds históricos ni con el fixture.
 //
-// Devuelve null cuando el tenant NUNCA cargó un catálogo: el llamador
-// (run-worker) cae al fixture preparado del ticket 08, etiquetado como tal
-// (D4 pendiente). Esa distinción es deliberada: «sin catálogo» ≠ «catálogo sin
-// opciones vigentes».
+// Devuelve null cuando nunca se cargó catálogo; el llamador informa cobertura
+// insuficiente, sin sustituir la investigación por fixtures.
 
 import type pg from 'pg';
 import { withTenantTransaction } from '../db/pool.ts';
@@ -35,11 +33,11 @@ function tokenize(text: string): string[] {
 }
 
 function pendingLabel(attribute: string): string {
-  if (attribute === 'date') return 'fecha de la edición por confirmar';
-  if (attribute === 'location') return 'lugar de la edición por confirmar';
+  if (attribute === 'date') return 'edition date to confirm';
+  if (attribute === 'location') return 'edition location to confirm';
   if (attribute === 'city') return 'ciudad por confirmar (el soporte no tiene alcance urbano)';
   if (attribute === 'access') return 'acceso por confirmar';
-  if (attribute === 'audience') return 'audiencia sin confirmación de terceros';
+  if (attribute === 'audience') return 'audience has no third-party confirmation';
   if (attribute === 'cost') return 'costos de patrocinio por confirmar';
   if (attribute.startsWith('cost:')) return `costo «${attribute.slice('cost:'.length)}» por confirmar`;
   return `«${attribute}» por confirmar`;
@@ -106,8 +104,8 @@ export async function researchPersistedCatalog(
       matchedTokens.length > 0
         ? [...new Set(matchedTokens)].map((token) => `foco declarado del organizador incluye «${token}»`)
         : focusTokens.length === 0
-          ? ['organizador sin foco declarado en el catálogo; se lista por cobertura']
-          : ['perfil sin stack declarado; se lista la cobertura del catálogo'];
+          ? ['organizer has no declared focus in the catalog; listed for coverage']
+          : ['brief has no declared stack; all catalog coverage is listed'];
     const pending = [
       ...new Set(entry.editions.flatMap((edition) => edition.pendingAttributes.map(pendingLabel))),
     ];
@@ -119,26 +117,26 @@ export async function researchPersistedCatalog(
       editions: entry.editions.map((edition) => ({
         editionId: edition.editionId,
         name: edition.name,
-        note: `vigente al ${input.evaluationInstant} · verificado ${edition.curation ? `${edition.curation.verifiedAt} por ${edition.curation.authorizedBy}` : 'sin registro de carga'}`,
+        note: `vigente al ${input.evaluationInstant} · verificado ${edition.curation ? `${edition.curation.verifiedAt} por ${edition.curation.authorizedBy}` : 'no import record'}`,
       })),
     });
   }
 
   const noteParts = [
     material === 'curated'
-      ? 'Catálogo curado bajo el tenant.'
-      : 'Catálogo curado bajo el tenant (material sintético etiquetado; D4 pendiente — no acredita eventos reales).',
+      ? 'Catalog curated for this tenant.'
+      : 'Catalog curated for this tenant (labeled synthetic material; D4 pending; does not establish real events).',
   ];
   if (expired.length > 0)
     noteParts.push(
-      `${expired.length} edición(es) curadas ya vencieron al evaluar; quedan como antecedentes, no como oportunidades.`,
+      `${expired.length} curated edition(s) were already past at evaluation; retained as historical background, not opportunities.`,
     );
   if (upcoming.length === 0)
     noteParts.push(
-      'Sin ediciones vigentes: se declara el límite del catálogo; no se rellena con seeds históricos.',
+      'No current editions: catalog coverage is declared; historical seeds do not fill gaps.',
     );
   else if (candidates.length === 0)
-    noteParts.push('Ninguna edición vigente coincide con el stack del perfil: límite del catálogo declarado.');
+    noteParts.push('No current edition matches the brief stack: catalog coverage limit declared.');
 
   const organizersInCatalog = new Set(
     list.editions.flatMap((edition) => edition.organizers.map((organizer) => organizer.organizerId)),
