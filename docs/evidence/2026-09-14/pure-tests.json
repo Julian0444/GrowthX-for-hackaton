@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/acceptance/*.test.ts",
+    "tests/contracts/*.test.ts",
+    "tests/connectors/*.test.ts",
+    "tests/ui/*.test.ts"
+  ],
+  "exitCode": 0,
+  "seconds": 31.59,
+  "cwd": "/tmp/growthx-review-20260914/frontend",
+  "providerKeysLoaded": false
+}

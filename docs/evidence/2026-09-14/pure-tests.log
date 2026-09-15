@@ -1,0 +1,307 @@
+(node:5500) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/baseline-v0.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GROWTHX_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+✔ manifiesto: reloj, perfil, política y captura sin secretos coinciden con el harness (1.744375ms)
+✔ seeds: 136 eventos históricos sin alteración, clasificados en el reloj congelado (6.657958ms)
+✔ fixtures: fixture preparado y respuestas grabadas de proveedores sin alteración (1.243875ms)
+✔ repetición: sin red ni claves reales, dos corridas con el mismo reloj dan la misma salida (63.112667ms)
+✔ repetición: una petición no grabada falla en lugar de salir a la red (0.528875ms)
+✔ caracterización: la salida congelada de v0 se repite exactamente mientras las fuentes coincidan con el manifiesto (12.003166ms)
+ℹ fuentes distintas del manifiesto v0: lib/contracts/growxth.ts, lib/server/pipeline/resolve.ts, lib/server/pipeline/global-market-search.ts, lib/server/pipeline/search-opportunities.ts, lib/server/reasoning/gemini.ts, lib/server/discovery/exa-events.ts, lib/server/graph/derive-signals.ts, lib/server/markets/city-catalog.ts, lib/server/scoring/score-utils.ts, lib/server/audit/labels.ts, lib/server/env.ts, lib/api/opportunity-adapter.ts, lib/api/types.ts, app/api/opportunities/search/route.ts. La igualdad con la caracterización solo se exige sobre v0; la corrección la prueban 02–06.
+✔ oráculos: los cinco casos se reproducen y cada observación es el defecto de v0 o la salida deseada (8.586083ms)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición secuencial (USD 20.000)
+ℹ O1 (ticket 02) corregido: query.budgetUsd devuelto a la segunda petición concurrente (USD 20.000)
+ℹ O1 (ticket 02) invariante: una petición equivalente (mismo presupuesto) sí reutiliza la respuesta
+ℹ O2 (ticket 03) corregido: mercado con señal de Trends exclusivamente nacional (India) presentado con market.city como ubicación (basis country)
+ℹ O2 (ticket 03) corregido: resultado de Exa sin lugar en el texto recibe como location la ciudad de la consulta
+ℹ O3 (ticket 04) corregido: oportunidades locales cuyo evento ya venció en el reloj congelado y aun así se citan como «upcoming»
+ℹ O3 (ticket 04) corregido: evento sin fecha: startsAt que el adaptador entrega a la UI
+ℹ O3 (ticket 04) corregido: recap de un evento del 12 Ago 2026 publicado el 5 Sep se cita como listing vivo (observed) en la razón de Exa
+ℹ O4 (ticket 05) corregido: narrativa que solo cita un id inexistente: se publica como razón y con qué citas
+ℹ O4 (ticket 05) corregido: narrativa de San Francisco que cita evidencia de Bengaluru (ajena): publicada como razón factual
+ℹ O4 (ticket 05) corregido: cifra («40+ meetups por trimestre») respaldada solo por un listing de un evento: publicada como razón factual
+ℹ O5 (ticket 06) corregido: orden de opportunities con modelo (rank invertido) frente al orden determinístico
+ℹ O5 (ticket 06) corregido: rank que el adaptador entrega a la UI sigue al orden del array recibido
+ℹ O5 (ticket 06) invariante: scores por oportunidad con y sin modelo
+✔ matriz: oracles.md documenta los cinco oráculos, su ticket y cómo reproducirlos (0.261333ms)
+(node:5634) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/cache-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GROWTHX_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+✔ secuencial: USD 20.000 tras USD 2.000 recibe su propia evaluación; la petición equivalente sí reutiliza (41.751375ms)
+✔ concurrente: presupuestos distintos no comparten la promesa en curso (1.427084ms)
+✔ proveedor controlado: se observa qué evaluación produjo cada respuesta (2.366041ms)
+✔ fallo del proveedor: el fallback conserva degraded/warnings y el query de cada presupuesto (0.571584ms)
+✔ frontera HTTP: el parser y la clave comparten la normalización; el sentinel 0 no es un presupuesto positivo (16.955125ms)
+✔ normalización única: caracterización del sentinel de presupuesto desconocido (0.073125ms)
+(node:5710) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/eligibility-window.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ la ventana usa el día de SF aunque el instante UTC ya esté en el día siguiente (20.645375ms)
+✔ el día UTC dentro de la ventana no admite un evento cuyo día local es anterior (0.237208ms)
+✔ los offsets declarados negativos y positivos conservan ambos bordes inclusivos (0.431917ms)
+✔ la zona IANA respeta el horario de invierno y no asume un offset fijo para SF (0.119666ms)
+✔ una fecha sin hora se compara tal como fue declarada (0.097292ms)
+✔ una zona no reconocida mantiene pendiente la ventana en vez de inventar el día (0.121375ms)
+(node:5711) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/event-validity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GROWTHX_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+✔ política temporal: límites, medianoche y zonas; nunca inventa zona ni fecha (2.333209ms)
+✔ demostración: con el mismo reloj solo el evento futuro supera la regla; los demás tienen motivo visible; mover el reloj lo caduca (14.721834ms)
+✔ seeds: en el reloj congelado ningún evento vencido se cita como «upcoming»; los seeds no se tocan (9.311042ms)
+✔ adaptador: fecha ausente queda pendiente (nunca new Date()) y un evento vencido no se proyecta como próximo evento (0.678375ms)
+✔ Exa: un recap vencido no se cita como listing vivo; su publicación reciente no lo rejuvenece (23.82975ms)
+✔ predicado O4.1: detecta el defecto v0 sobre la captura congelada aunque cambien las citas disponibles, y verifica la corrección de 05 (1.348416ms)
+✔ fallback del servidor sin red: el fixture histórico no vuelve como oportunidad vigente (0.314584ms)
+✔ fallback del cliente sin red: el fixture se identifica como histórico y no se presenta como vigente (0.488ms)
+(node:5768) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/explicable-comparison.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP07 historical technical evidence favors research; sponsor remains its actual role and source (23.196208ms)
+✔ DP07 new payments/hiring brief changes reason, proposed activity and useful question without borrowing previous buyer inference (2.75775ms)
+✔ DP07 contradicted/missing references, wrong identity and award-only evidence cannot support priority (5.748709ms)
+✔ DP07 city pending remains conditional without point; free restrictions and unknown audience reach result (0.260667ms)
+✔ DP07 cost gates run before priority: additive costs exclude, mixed/incomplete/contradicted stay conditional (1.460291ms)
+✔ DP07 affirmed claim strengthening preserves support, equal evidence remains unordered (1.302084ms)
+(node:5769) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/geographic-scope.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GROWTHX_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+✔ fixture país: un dato de Trends sobre India sigue siendo observación de país (13.964916ms)
+✔ fixture ciudad explícita: la ubicación declarada conserva ciudad y alcance de lo declarado (1.137ms)
+✔ fixture ciudad solo en la query: Exa no copia la ciudad de la consulta al resultado (31.590875ms)
+(node:5845) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/llm-rank-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] GROWTHX_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+✔ el contrato de salida útil y las instrucciones de Gemini no piden rank; una decisión sin rank se aplica igual (37.805ms)
+✔ grabación adversarial (rank invertido, candidato desconocido, campo score): el orden visible y el rail siguen al scorer (O5) (6.640208ms)
+✔ candidatos repetidos, omitidos y con campos de score no crean oportunidades, no pierden las válidas y no cambian posiciones; una segunda redacción tampoco (0.357958ms)
+✔ desempate determinístico del ranking mundial: señales empatadas en distinto orden de llegada dan el mismo orden oficial (decide el id estable) (0.386375ms)
+✔ desempate determinístico del pipeline local: candidatos espejo empatados conservan el mismo orden ante grafos en distinto orden (0.999166ms)
+✔ ausencia de modelo: orden idéntico con redacción degradada declarada; la proyección completa del rail coincide, no solo los números (0.958791ms)
+(node:5909) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/reasoning-support.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] GROWTHX_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_app: rutas /api/evaluations y sesiones
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+✔ cita inexistente: la narrativa no se publica ni se «arreglan» sus citas; vuelve la explicación determinística con advertencia (O4.1) (41.410208ms)
+✔ cita ajena: evidencia real de otra oportunidad no respalda la narrativa; se rechaza entera (O4.2) (0.115125ms)
+✔ cita real irrelevante: un id propio existente no publica la cifra; la salida factual son los hechos admitidos y el modelo solo selecciona (O4.3 + salida válida) (6.61275ms)
+✔ afirmación contradictoria: con cita propia válida, el texto libre que contradice el hecho admitido no se publica (0.363833ms)
+✔ propuestas de acción: cifras inventadas (costo/audiencia) se retienen; sin citas la decisión entera se rechaza (0.281333ms)
+✔ fallo de modelo (HTTP 503): degradación explícita sin cambiar ranking ni elegibilidad (0.939917ms)
+✔ JSON inválido y timeout: misma degradación explícita, ranking y elegibilidad intactos (0.298125ms)
+✔ descripción con instrucciones de ignorar evidencias: todo rechazado = degradación explícita; el ranking no cambia (0.221209ms)
+✔ auditoría: una razón con citas irresolubles o sin citas no se publica; una respuesta coherente pasa intacta (0.159875ms)
+(node:5985) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/session-unavailable.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+[env] GROWTHX_WORKER_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_worker: negocio del worker bajo RLS
+[env] GROWTHX_QUEUE_DATABASE_URL falta (modo degradado) — PostgreSQL rol growthx_queue: cola pg-boss del worker
+▶ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401
+  ✔ GET evaluaciones (2.395792ms)
+  ✔ POST evaluación (0.607292ms)
+  ✔ GET run (0.335ms)
+  ✔ POST importación (0.241625ms)
+  ✔ GET catálogo (0.216083ms)
+  ✔ GET edición (0.220958ms)
+  ✔ GET organizador (0.168916ms)
+  ✔ GET decisiones (0.220041ms)
+  ✔ POST decisión (0.230917ms)
+  ✔ GET decisión (0.2325ms)
+  ✔ PATCH decisión (0.183666ms)
+  ✔ POST guardar organizador (0.19375ms)
+  ✔ una sesión válida conserva el usuario y tenant resueltos por el servidor (0.674542ms)
+✔ fallo de la dependencia de sesión es 503; credencial ausente o inválida sigue siendo 401 (37.301709ms)
+(node:5986) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/acceptance/trust-regressions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ control con soporte (10.794625ms)
+✔ USD 3000 + USD 3000 > USD 5000 (0.414167ms)
+✔ partida pendiente (0.212208ms)
+✔ moneda incomparable (0.166417ms)
+✔ audiencia pendiente (0.204125ms)
+✔ audiencia ausente (0.245167ms)
+✔ fecha contradicha (0.180792ms)
+✔ contratos del caso reproducido (0.278917ms)
+✔ investigación conserva confirmed (0.630458ms)
+✔ investigación usa el día local de SF (1.0135ms)
+✔ El patrocinio cuesta 10 USD y la audiencia está confirmada. (19.507834ms)
+✔ El evento garantiza contrataciones y el acceso exclusivo ya está confirmado. (0.184ms)
+✔ paquetes alternativos no se suman; partidas de la misma opción sí (0.412625ms)
+✔ un costo conocido + moneda extranjera o estimación no acreditan presupuesto completo (0.195916ms)
+✔ acceso pendiente y contradicho conserva condición, no incompatibilidad (0.1525ms)
+✔ fecha contradicha no excluye por el valor disputado aun fuera de ventana (0.177958ms)
+✔ fechas ambiguas, desconocidas y zonas inválidas siguen pendientes en ambos caminos (0.136417ms)
+✔ narrativa positiva publica exactamente fecha, atributo y estado seleccionados (0.174125ms)
+✔ un atributo de costo con valor fecha no es un claim admitido (0.116ms)
+✔ la composición de costos es explícita y los contratos v1 anteriores siguen legibles (0.168375ms)
+✔ una narrativa de costo conserva su atributo, importe y estado inferido (0.195333ms)
+(node:5987) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/connectors/apify.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ runs an Actor with server-side auth and reads its dataset (22.702833ms)
+✔ degrades without exposing or requiring a token (0.057917ms)
+✔ keeps partial dataset items when an Actor exceeds its wait budget (0.375208ms)
+(node:5998) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/connectors/exa-discovery.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP04 queries follow product, audience, goal, window, geography; budget cannot buy more calls (1.796375ms)
+✔ DP04 URL identity only merges proven aliases; same names and different query editions remain separate (1.347625ms)
+✔ DP04 transport bounds requests, bodies and timeouts; never echoes provider credentials/errors (41.789125ms)
+(node:5999) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/connectors/location-resolution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-08 source coordinates keep explicit lat/lng and GeoJSON lng/lat; announced and confirmed (1.432875ms)
+✔ DP-08 city-only, hidden, address conflict and unsupported legacy location have no point (0.12225ms)
+✔ DP-08 homonym, detectable swapped axes and out-of-range coordinates are never corrected silently (0.118958ms)
+✔ DP-08 Census uses address interpolation and county 06075, not bbox or first match (0.369458ms)
+✔ DP-08 provider HTTP, redirect, malformed body, oversized body and timeout are bounded and sanitized (23.9885ms)
+✔ DP-08 resolution metadata validates original claims and legacy contract still decodes (0.451125ms)
+✔ DP-08 reader excludes organizer offices and unrelated maps; hidden and invalid published positions remain pending (5.501542ms)
+✔ DP-08 same street/number in a different visible city contradicts the source point (0.442375ms)
+(node:6000) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/connectors/luma.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Luma: un día inexistente permanece desconocido en fechas simples, locales e instantes (1.800583ms)
+✔ Luma: un título OG de página vacía o calendario no crea un dossier de evento (20.427667ms)
+✔ Luma: una redirección a la portada con metadatos genéricos no crea un evento (0.350208ms)
+✔ Luma: JSON-LD parcial identifica el evento y conserva sus campos ausentes (1.027875ms)
+✔ Luma: tickets InStock no confirman acceso abierto ni eliminan el pendiente de aprobación (1.476375ms)
+✔ Luma: encuentra JSON-LD Event en @graph con comillas simples y tipos expandidos (0.468125ms)
+✔ Luma: OG puede completar el nombre de un Event confirmado, independientemente del orden de atributos (0.3445ms)
+✔ Luma: el transporte fixture conserva su procedencia tras guardar y reanudar el step (1.133417ms)
+(node:6001) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/connectors/relationships.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP06: real contract shapes, explicit roles, identity and buyer-specific antecedent (13.271958ms)
+✔ DP06: homonyms, corporate location and editions with different years never merge by name (0.6125ms)
+✔ DP06: calendar and JSON-LD name are not silently organizers; host and coorganizer separate (0.405458ms)
+✔ DP06: logo and presenter without sponsor block never become sponsorship or ROI (0.8275ms)
+✔ DP06: wrong edition backlink and unlinked repository never create project relationship (1.914ms)
+✔ DP06: an award does not establish technology; partial reviewed coverage not extrapolated (1.528334ms)
+✔ DP06: Vultr sponsor in Paris is a separate role from present host in SF (1.977917ms)
+✔ DP06: source without Event metadata is retained without inventing an edition (0.090625ms)
+✔ DP06: date contradiction stays contradicted and instructions do not enter facts (0.262334ms)
+✔ DP06: input rejects mixed provenance, foreign fields and unsafe destination (0.166959ms)
+✔ DP06: AIT explicit structured chapter attribution + visible event role works without subscription chrome (0.9535ms)
+(node:6002) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/connectors/source-reading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-05: visible text complements JSON-LD; each material attribute has an exact fragment (31.193625ms)
+✔ DP-05: UTC midnight and published local day are consistent, not a false contradiction (0.827708ms)
+✔ DP-05: hidden nodes, injected instructions, logos and arbitrary links do not create factual claims or network calls (0.970958ms)
+✔ DP-05: hidden address and conflicting coordinates prevent an exact point (0.509458ms)
+✔ DP-05: complete address without coordinates is kept for DP-08 without geocoding (0.418458ms)
+✔ DP-05: URL aliases, redirects, credentials, canonical hints and size are bounded (1.997625ms)
+✔ DP-05: timeout includes a stalled body and a transport ignoring AbortSignal (61.338916ms)
+✔ DP-05: replay rejects invented fragments, unknown versions and malformed values (1.9225ms)
+(node:6013) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/contracts/evaluation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ payload válido: el bundle incompleto pero bien formado pasa entero y sin mutaciones (3.622667ms)
+✔ payload inválido se rechaza con ruta y motivo; las claves desconocidas no se ignoran (0.297ms)
+✔ una versión de contrato desconocida se rechaza; no se interpreta como la actual (0.170417ms)
+✔ fecha incierta se conserva incierta: ni zona inventada ni fecha de hoy (19.217834ms)
+✔ costo incompleto: la partida pendiente viaja como pendiente y no existe un total (1.993042ms)
+✔ una localización nacional no coloca el evento en una ciudad ni en el mapa (1.807958ms)
+✔ una contradicción viaja como contradicción, con su motivo visible (1.772458ms)
+✔ score ausente se distingue de cero; «sin evento elegible» se distingue de error técnico (3.889583ms)
+✔ un compromiso acordado sin soporte se rechaza; una estimación no se disfraza de acuerdo (1.785417ms)
+✔ identidades separadas: aliases exigen confirmación con soporte y un logo no crea patrocinio ni resultados (1.66675ms)
+✔ la decisión exige autor del servidor, motivos y relación de revisión coherente (0.156583ms)
+✔ las reglas de objeto no comprueban integridad relacional (eso es 08/09) (1.694208ms)
+✔ round-trip por JSON: serializar, releer y validar conserva el agregado idéntico (3.247042ms)
+✔ la proyección conserva pendientes sin los defaults engañosos del contrato legado (1.608709ms)
+(node:6014) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/contracts/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP03: brief completo y legado; preguntas ligadas a producto, audiencia y objetivo; dinero separado (3.169833ms)
+✔ DP03: rechaza datos inválidos y campos operativos/tenant en el brief (0.213ms)
+✔ DP03: contratos de fuentes y relaciones preservan premio, herramienta y edición sin atribuir eficacia (0.660833ms)
+✔ DP03: ubicación anterior, ciudad, fallo y contradicción no fabrican un punto (0.486958ms)
+✔ DP03: parcial/error/insuficiente y consumo desconocido son estados distintos de éxito/cero (0.245625ms)
+✔ DP03: comparación, dossier y mapa conservan la revisión seleccionada aunque exista una nueva (14.728875ms)
+(node:6030) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/ui/english-system.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP12 legacy excluded dates render in English without changing persisted text (4.246209ms)
+✔ DP12 known historical conditions preserve amounts, identifiers and unresolved status (2.24725ms)
+✔ DP12 missing venue display retains uncertainty and does not invent coordinates (0.102458ms)
+(node:6033) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/ui/evidence-links.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ las fuentes sintéticas visibles conservan procedencia pero no envían a páginas inexistentes (14.78175ms)
+✔ el dossier sintético no ofrece abrir un listado inexistente (8.373334ms)
+✔ un enlace público real se conserva y un esquema ejecutable nunca se publica (0.674709ms)
+✔ el transporte de demo y su captura histórica no se presentan como obtención real de Luma (0.502959ms)
+✔ el listado reconoce aliases Luma y una revisión real posterior no hereda el fixture histórico (6.856458ms)
+(node:6044) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/ui/research-experience.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP10 partial results keep their arrival order across polls, deduplicate and remove absent identities (1.006125ms)
+✔ DP10 readable dates preserve the declared local calendar day and ambiguity (9.650542ms)
+✔ DP10 progress derives from persisted stages and published evidence, not elapsed timers (0.196041ms)
+✔ DP10 unknown price remains a visible next action, not a compatible total (4.6135ms)
+✔ DP10 the background name comes from a prior edition, never the current edition in the same evidence basis (0.101709ms)
+(node:6045) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/ui/sf-map.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ DP-09 uses DP-08 policy for announced/confirmed, approximate, city-only and contradicted locations (14.966625ms)
+✔ DP-09 projects only the run, never unrelated catalog editions; discovery and running imports stay empty (1.02375ms)
+✔ DP-09 run revision and comparison snapshot keep original geography after catalog update (0.679042ms)
+✔ DP-09 nearby/coincident venues group without changing identity or coordinate axes (0.888333ms)
+(node:6046) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/ui/trust-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ campaña y texto copiable conservan incertidumbre, base y advertencia (72.832625ms)
+✔ ubicación announced y confirmed comparten soporte pero no confirmación humana (27.5075ms)
+ℹ tests 167
+ℹ suites 0
+ℹ pass 167
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31526.719542

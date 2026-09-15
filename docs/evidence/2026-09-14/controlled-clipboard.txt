@@ -1,0 +1,43 @@
+Decision brief
+Event: Agents, Everywhere
+Official event: https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon
+Date: Sep 12, 2026, 5:00 PM UTC
+Buyer context: Observabilidad para agentes · audience: Equipos que construyen agentes
+Research objective: adoption (confirmed, declared by buyer)
+Budget: USD 5000 · window: 2026-09-10 to 2026-10-22
+Decision: Explore first · participation pending
+Reasons:
+- Explore an agent debugging workshop before committing budget.
+Research context: For «Observabilidad para agentes», targeting «Equipos que construyen agentes» with a goal of adoption, there is topical fit in agents, observability. The documented background supports asking about a similar activity in the current edition. This is a relevance hypothesis; actual audience and availability still need validation.
+Activity objective: Collect practical feedback from agent builders
+Owner: Alex
+Success definition (buyer): Instrumentar un proyecto voluntario
+Modality: workshop: Hands-on debugging lab; proposed only · team proposal; availability unconfirmed · Buyer reports Buyer: Buyer statement only; no external support supplied (recorded by d444c59b-c999-43e9-8c3e-8064550242c8, 2026-09-15T00:13:46.802Z)
+Cost items (no complete campaign total established):
+- sponsorship: Pending — Edition-specific sponsorship quote and total participation cost remain unknown.
+- Travel: USD 500 · estimated — Buyer estimate · Buyer reports Buyer: Buyer input; amount pending (recorded by d444c59b-c999-43e9-8c3e-8064550242c8, 2026-09-15T00:13:46.802Z)
+Conditions and answers:
+- [open] Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. — Answer needed to resolve this: What is the complete cost, currency, and participation package?
+- [open] Buyer restriction to verify: No comprar solo logo — Answer needed to resolve this: How is «No comprar solo logo» satisfied by the participation format of this edition?
+- [open] Buyer restriction to verify: Introducciones con opt-in — Answer needed to resolve this: How is «Introducciones con opt-in» satisfied by the participation format of this edition?
+- [open] Requested format remains unconfirmed: workshop, hackathon. — Answer needed to resolve this: Is the requested format available, and under which conditions?
+Next questions:
+- Can we run a workshop?
+- What is the full quote and access policy?
+- Incomplete cost: item «sponsorship» pending; Edition-specific sponsorship quote and total participation cost remain unknown.; it does not count as zero. — Answer needed to resolve this: What is the complete cost, currency, and participation package?
+- Buyer restriction to verify: No comprar solo logo — Answer needed to resolve this: How is «No comprar solo logo» satisfied by the participation format of this edition?
+- Buyer restriction to verify: Introducciones con opt-in — Answer needed to resolve this: How is «Introducciones con opt-in» satisfied by the participation format of this edition?
+- Requested format remains unconfirmed: workshop, hackathon. — Answer needed to resolve this: Is the requested format available, and under which conditions?
+- Is there another edition or participation format that resolves this conflict: Past event: Declared start (2026-09-12T17:00:00Z) is before the evaluation instant under every possible timezone; expired as an opportunity, kept as a historical antecedent.?
+Saved sources:
+- https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_pL8a-_-lqzk · obtained 2026-09-10T22:00:00.000Z
+- https://blogs.vultr.com/vultr-at-RAISE-2025 · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/entries/ht_-q61ElFncwo · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/p/ai-tinkerers-sf-secure-agents-buildathon · obtained 2026-09-10T22:00:00.000Z
+- https://cerebralvalley.ai/e/vultr-the-agent-arena · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/organizers · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/p/agents-everywhere-bots-channels-more-global-hackathon · obtained 2026-09-10T22:00:00.000Z
+- https://sf.aitinkerers.org/hackathons/h_3D-tFFdFiYo/showcase · obtained 2026-09-10T22:00:00.000Z
+Saved revision: 1 · 2026-09-15T00:13:46.800Z
+Reopen this brief: http://127.0.0.1:49276/?run=08baefb7-6645-4bbc-9b83-2cf2b7af22db&decision=4d01312e-cfd4-469f-aac4-ea1571f01021&revision=1&view=campaign
+Manual draft only. Saving or copying sends no message, books no activity and commits no money.

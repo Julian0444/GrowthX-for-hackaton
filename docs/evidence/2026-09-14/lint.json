@@ -1,0 +1,10 @@
+{
+  "command": [
+    "pnpm",
+    "lint"
+  ],
+  "exitCode": 0,
+  "seconds": 6.2,
+  "cwd": "/tmp/growthx-review-20260914/frontend",
+  "providerKeysLoaded": false
+}

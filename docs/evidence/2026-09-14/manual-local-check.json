@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-14",
+  "timezone": "America/Los_Angeles",
+  "url": "http://localhost:3000/",
+  "surface": "Codex in-app browser, tab 1",
+  "method": "Manual browser interaction and accessibility-tree inspection",
+  "steps": [
+    "Opened Brief on existing localhost server",
+    "Entered fictional DataBridge product, audience, segments, topics, technical-feedback goal, budget and constraints",
+    "Clicked Review brief",
+    "Inspected interpreted brief and generated research questions"
+  ],
+  "observed": [
+    "Brief preview displayed supplied DataBridge inputs",
+    "Sign in to access this research.",
+    "Generated Questions guiding the research still contain Spanish system text",
+    "Dates remained Start pending / End pending in the review; no date-input correctness claim from this check"
+  ],
+  "examples": [
+    "\u00bfQu\u00e9 formato permite obtener feedback t\u00e9cnico sobre casos de uso y limitaciones?",
+    "\u00bfQu\u00e9 fechas, acceso y costo completo est\u00e1n publicados para inicio pendiente a fin pendiente (America/Los_Angeles)?"
+  ],
+  "scope": "Preview only; no Confirm and research SF click, saved research read, new provider operation, or business-data write",
+  "screenshot": null
+}

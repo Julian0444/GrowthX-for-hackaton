@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-14",
+  "reviewerMarkdownFiles": 7,
+  "localLinksChecked": 149,
+  "missingTargets": [],
+  "applicationFilesCompared": 293,
+  "applicationMismatches": [],
+  "credentialPatternScan": "Limited scan of new text evidence for common key/private-key signatures; no matched content printed. Not a security audit.",
+  "potentialCredentialFiles": []
+}

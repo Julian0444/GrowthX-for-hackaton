@@ -1,6 +1,12 @@
 # Puentes — Handoff
 
-## Estado actual: DP-11 verificado — 10/09/2026
+## Estado vigente: documentación para reviewers — 14/09/2026
+
+**DP-01–11 conservan sus cierres históricos `verified`; DP-12 está `in-progress`, según su [ticket](issues/12-aceptacion-real-y-demo-puentes.md).** La entrega pública se describe en el [README principal](../README.md), con [verificación actual](../docs/verification.md) y [limitaciones conocidas](../docs/known-limitations.md). Esta revisión cambia documentación, no código de aplicación; las nuevas pruebas y el build se realizaron en un entorno aislado. Sus resultados, incluida una comprobación de navegador incompleta, se registran en la verificación: no constituyen una nueva aprobación integral de DP-01–11 ni el cierre de DP-12.
+
+La aceptación global y la revisión del video final siguen pendientes. El [guion](demo-script.md) existe, pero sus enlaces precargados requieren sesión y sus fechas describen investigaciones históricas. No asumir que un evento sigue siendo futuro ni que los servicios locales mantienen su estado anterior. **Este corte prevalece sobre todas las menciones históricas a DP-12 `pending`, servicios activos y próximos pasos de las secciones inferiores**, conservadas como registro de las entregas.
+
+## Corte histórico: DP-11 verificado — 10/09/2026
 
 **DP-01 a DP-11 están verified; DP-12 sigue pending.** Este corte sustituye las indicaciones de estado de todos los bloques históricos inferiores. [Ticket DP-11](issues/11-brief-decision-y-reapertura.md), [matriz y recorridos](evidence/DP-11/README.md), [plan/índice](implementation-plan.md). La aceptación global de la demo sigue siendo DP-12.
 

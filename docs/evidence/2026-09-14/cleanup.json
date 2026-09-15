@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-14",
+  "timezone": "America/Los_Angeles",
+  "startedTestContainer": "growthx-dp11-verification",
+  "testDatabasePort": 55461,
+  "testContainerStopped": true,
+  "testContainerStopExitCode": 0,
+  "containersOrVolumesRemoved": false,
+  "existingLocalDatabase": "growthx-postgres",
+  "existingLocalDatabasePort": 54329,
+  "existingLocalDatabaseState": "remained stopped; observed Exited (0) 22 hours ago at cleanup",
+  "localDatabaseMigratedOrSeeded": false,
+  "userNextListener": {
+    "pid": 70986,
+    "port": 3000,
+    "state": "still listening at cleanup"
+  },
+  "testProcesses": "owned Next, worker and Chrome closed by test cleanup",
+  "dockerDesktop": "Started to use the isolated database; left running so unrelated containers are not interrupted",
+  "commitPushDeployOrMessages": false
+}

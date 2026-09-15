@@ -1,0 +1,46 @@
+(node:68583) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/integration/decision-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ DP11 durable actionable decision, exact revision and concurrency
+  ✔ explore-first is pending participation with complete buyer brief; original costs and all conditions retained (4.290917ms)
+  ✔ empty reasons, false intent, unsupported offer and foreign sources rejected atomically (5.405625ms)
+  ✔ simultaneous edits have one winner, immutable original and retry-safe idempotency (9.310125ms)
+  ✔ resolving a condition records attribution and support, preserves snapshot and removes resolved question (14.164042ms)
+  ✔ revising modality/owner/costs is another transaction; attributed offer does not rewrite earlier brief (13.2665ms)
+  ✔ chosen/discarded/pending retain reasons and inherited conditions (161.266292ms)
+  ✔ clearing optional brief fields persists pending instead of silently restoring old values (4.752084ms)
+  ✔ legacy snapshots without explicit sourceIds keep the sources of their pinned revisions (2.063ms)
+  ✔ tenant isolation and unknown historical revision never expose a decision or campaign (4.474958ms)
+✔ DP11 durable actionable decision, exact revision and concurrency (616.228583ms)
+(node:68594) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/growthx-review-20260914/frontend/tests/integration/evaluation-snapshot.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /private/tmp/growthx-review-20260914/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[env] EXA_API_KEY falta (modo degradado) — discovery live de eventos y enriquecimiento de fuentes públicas con Exa
+[env] GEMINI_API_KEY falta (modo degradado) — razonamiento y decisión explicable con Gemini (structured output)
+[env] APIFY_TOKEN falta (modo degradado) — señales mundiales de Google Trends, GitHub y X
+▶ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real)
+  ✔ frontera: 401 sin sesión; >3 o ediciones ajenas → 400; tenantId en el cuerpo → 400 (7.872167ms)
+  ✔ aceptación HTTP: 202 con los 4 steps del workflow y job durable; idempotencia por conjunto (9.104833ms)
+  ✔ exclusión antes del score, condiciones con respuesta, elegible ≠ recomendado (74.06275ms)
+  ✔ scorer con política ficticia: orden oficial, S_known, Q y sensibilidad a faltantes (0.148125ms)
+  ✔ desempate determinístico: empate exacto se resuelve por id estable, no por orden de llegada (0.113709ms)
+  ✔ modelo sin autoridad: el snapshot persistido conserva el resultado oficial y la advertencia (2.578291ms)
+  ✔ snapshot inmutable: sin UPDATE/DELETE por grants y sin duplicados por reentrega (15.935ms)
+  ✔ catálogo disponible ≠ conjunto comparado; sombra v0 registrada sin reutilizar scores (0.987375ms)
+  ✔ sin política: comparación factual persistida, sin ranking numérico y con «política pendiente» (49.344ms)
+  ✔ abstención: todas las dimensiones ausentes → insufficient_data, jamás un 0; fallo del proveedor → degradación (32.216167ms)
+  ✔ guardar y releer: mismas entradas, versiones y resultado desde una conexión nueva (11.1115ms)
+  ✔ invariantes 03–06 sobre la nueva proyección (13.638791ms)
+  ✔ conflicto de acceso confirmado excluye antes del score (regla pura de eligibility) (2.826542ms)
+  ✔ tenant señuelo: ni el perfil ni el snapshot existen para otra sesión (7.194042ms)
+✔ evaluation-snapshot: comparación y snapshot oficial (PostgreSQL real) (397.504625ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1461.759459

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/e2e/research-experience.spec.ts"
+  ],
+  "exitCode": 0,
+  "seconds": 5.92,
+  "cwd": "/tmp/growthx-review-20260914/frontend",
+  "providerKeysLoaded": false
+}

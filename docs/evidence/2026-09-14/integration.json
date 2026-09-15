@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-force-exit",
+    "tests/integration/decision-brief.test.ts",
+    "tests/integration/evaluation-snapshot.test.ts"
+  ],
+  "exitCode": 0,
+  "seconds": 1.52,
+  "cwd": "/tmp/growthx-review-20260914/frontend",
+  "databasePort": 55461,
+  "providerKeysLoaded": false,
+  "material": "controlled fixtures; PostgreSQL and browser real"
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-force-exit",
+    "tests/e2e/decision-brief.spec.ts",
+    "tests/e2e/sf-street-map.spec.ts"
+  ],
+  "exitCode": 1,
+  "seconds": 62.21,
+  "cwd": "/tmp/growthx-review-20260914/frontend",
+  "databasePort": 55461,
+  "providerKeysLoaded": false,
+  "material": "controlled fixtures; PostgreSQL and browser real"
+}

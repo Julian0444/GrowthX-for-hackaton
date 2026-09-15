@@ -1,6 +1,6 @@
 # DemoPuentes — especificación de la primera entrega
 
-10 de septiembre de 2026 · Requisitos transversales de los doce tickets. El [producto de destino](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/finalProduct.md>) explica la experiencia y el [plan](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/implementation-plan.md>) ordena la implementación. Este archivo fija qué debe ser verdad para considerar conseguida la entrega.
+10 de septiembre de 2026 · Requisitos transversales de los doce tickets. El [producto de destino](finalProduct.md) explica la experiencia y el [plan](implementation-plan.md) ordena la implementación. Este archivo fija qué debe ser verdad para considerar conseguida la entrega.
 
 ## Resultado observable
 
@@ -112,4 +112,4 @@ Los tests controlados cubren errores y recuperación. El smoke con proveedores r
 
 ## Fuentes de la especificación
 
-[Auditoría](</Users/jirustaroure/Desktop/GrowthX for hackaton/docs/reviews/2026-09-10-auditoria-producto.md>) · [Standards](</Users/jirustaroure/Desktop/GrowthX for hackaton/docs/reviews/evidence-2026-09-10/standards.md>) · [Spec anterior revisada](</Users/jirustaroure/Desktop/GrowthX for hackaton/docs/reviews/evidence-2026-09-10/spec.md>) · [Definición nueva](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/finalProduct.md>).
+[Auditoría](../docs/reviews/2026-09-10-auditoria-producto.md) · [Standards](../docs/reviews/evidence-2026-09-10/standards.md) · [Spec anterior revisada](../docs/reviews/evidence-2026-09-10/spec.md) · [Definición nueva](finalProduct.md).

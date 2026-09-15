@@ -1,6 +1,8 @@
 # DemoPuentes — plan de implementación
 
-10 de septiembre de 2026 · Plan y doce tickets creados a pedido de Julian. **Avance consolidado: DP-01 a DP-11 verificados; DP-12 pendiente.** DP-10 integra brief, oportunidades, lista/mapa y evidencia; DP-11 completa decisiones, campaña, copia y reapertura por revisión. Ambos tienen pruebas aisladas y revisión en Chrome sobre localhost. Los cierres individuales son la fuente de verdad; este avance no acredita todavía la aceptación global de la demo.
+> **Corte vigente — 14 de septiembre de 2026.** Consultar el [README para reviewers](../README.md), la [verificación actual](../docs/verification.md) y las [limitaciones conocidas](../docs/known-limitations.md). Esta revisión modifica documentación, no código de aplicación; las pruebas nuevas usaron un entorno aislado y sus resultados incluyen una comprobación incompleta. DP-01–11 mantienen sus cierres históricos, sin nueva aprobación integral. DP-12 está `in-progress`: siguen pendientes la aceptación global y la revisión del video final. Este aviso prevalece sobre los próximos pasos y estados históricos conservados en el documento.
+
+10 de septiembre de 2026 · Plan y doce tickets creados a pedido de Julian. **Avance consolidado al 14 de septiembre: DP-01 a DP-11 con cierres históricos verificados; DP-12 en progreso.** DP-10 integra brief, oportunidades, lista/mapa y evidencia; DP-11 completa decisiones, campaña, copia y reapertura por revisión. Ambos tienen pruebas aisladas y revisión histórica en Chrome sobre localhost. Los cierres individuales son la fuente de verdad; este avance no acredita todavía la aceptación global de la demo.
 
 ## Resultado que vamos a entregar
 
@@ -10,8 +12,8 @@ El mapa se conserva como una entrada importante al resultado. Una oportunidad re
 
 ## Documentos y tickets
 
-- [Definición del producto](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/finalProduct.md>): experiencia de destino y alcance.
-- [Especificación de entrega](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/spec.md>): criterios comunes y casos de aceptación.
+- [Definición del producto](finalProduct.md): experiencia de destino y alcance.
+- [Especificación de entrega](spec.md): criterios comunes y casos de aceptación.
 - Este plan: orden, dependencias y decisiones de ejecución.
 - `DemoPuentes/issues/`: un archivo por ticket, con objetivo, criterios, demostración y verificación.
 
@@ -27,18 +29,18 @@ La revisión inicial encontró una cuadrícula SVG y pérdida de streetAddress. 
 
 | Ticket | Trabajo | Blocked by | Execution |
 | --- | --- | --- | --- |
-| [DP-01](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/01-caso-real-y-fuentes.md>) | Encontrar un caso real que justifique la demo | Ninguna | verified |
-| [DP-02](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/02-confianza-costos-y-evidencia.md>) | Corregir los defectos que pueden distorsionar una decisión | Ninguna | verified |
-| [DP-03](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/03-brief-y-contratos-de-investigacion.md>) | Definir un brief operativo y contratos compartidos | DP-01 | verified |
-| [DP-04](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/04-discovery-exa-durable.md>) | Descubrir oportunidades y fuentes con Exa | DP-03 | verified |
-| [DP-05](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/05-lectura-completa-y-apify.md>) | Leer contenido completo e incorporar Apify donde aporta | DP-03 | verified |
-| [DP-06](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/06-organizador-sponsors-y-proyectos.md>) | Relacionar organizadores, sponsors y proyectos con la edición correcta | DP-04, DP-05 | verified |
-| [DP-07](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/07-comparacion-y-recomendacion-explicable.md>) | Comparar opciones y explicar qué investigar primero | DP-02, DP-03, DP-06 | verified |
-| [DP-08](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/08-direccion-a-coordenadas.md>) | Conservar ubicación y resolver direcciones a coordenadas | DP-03, DP-05 | verified |
-| [DP-09](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/09-mapa-sf-integrado.md>) | Construir el mapa de calles de SF conectado a resultados | DP-08 | verified |
-| [DP-10](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/10-experiencia-investigacion-y-evidencia.md>) | Renovar la experiencia principal de investigación | DP-03, DP-07, DP-09 | verified |
-| [DP-11](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/11-brief-decision-y-reapertura.md>) | Guardar un brief accionable y reabrir la evidencia original | DP-07, DP-10 | verified |
-| [DP-12](</Users/jirustaroure/Desktop/GrowthX for hackaton/DemoPuentes/issues/12-aceptacion-real-y-demo-puentes.md>) | Cerrar la aceptación con datos reales y preparar la demo | DP-01, DP-02, DP-03, DP-04, DP-05, DP-06, DP-07, DP-08, DP-09, DP-10, DP-11 | pending |
+| [DP-01](issues/01-caso-real-y-fuentes.md) | Encontrar un caso real que justifique la demo | Ninguna | verified |
+| [DP-02](issues/02-confianza-costos-y-evidencia.md) | Corregir los defectos que pueden distorsionar una decisión | Ninguna | verified |
+| [DP-03](issues/03-brief-y-contratos-de-investigacion.md) | Definir un brief operativo y contratos compartidos | DP-01 | verified |
+| [DP-04](issues/04-discovery-exa-durable.md) | Descubrir oportunidades y fuentes con Exa | DP-03 | verified |
+| [DP-05](issues/05-lectura-completa-y-apify.md) | Leer contenido completo e incorporar Apify donde aporta | DP-03 | verified |
+| [DP-06](issues/06-organizador-sponsors-y-proyectos.md) | Relacionar organizadores, sponsors y proyectos con la edición correcta | DP-04, DP-05 | verified |
+| [DP-07](issues/07-comparacion-y-recomendacion-explicable.md) | Comparar opciones y explicar qué investigar primero | DP-02, DP-03, DP-06 | verified |
+| [DP-08](issues/08-direccion-a-coordenadas.md) | Conservar ubicación y resolver direcciones a coordenadas | DP-03, DP-05 | verified |
+| [DP-09](issues/09-mapa-sf-integrado.md) | Construir el mapa de calles de SF conectado a resultados | DP-08 | verified |
+| [DP-10](issues/10-experiencia-investigacion-y-evidencia.md) | Renovar la experiencia principal de investigación | DP-03, DP-07, DP-09 | verified |
+| [DP-11](issues/11-brief-decision-y-reapertura.md) | Guardar un brief accionable y reabrir la evidencia original | DP-07, DP-10 | verified |
+| [DP-12](issues/12-aceptacion-real-y-demo-puentes.md) | Cerrar la aceptación con datos reales y preparar la demo | DP-01, DP-02, DP-03, DP-04, DP-05, DP-06, DP-07, DP-08, DP-09, DP-10, DP-11 | in-progress |
 
 DP-01: [caso y fuentes](evidence/dp-01-caso-y-fuentes.md) · [antecedentes](evidence/dp-01-antecedentes.md) · [matriz de verificación y handoff](evidence/dp-01-verificacion.md). Tres futuras SF; [fichas de organizadores](evidence/dp-01-organizadores.md), **dos organizadores con antecedentes, uno con historial como organizador**, y una ubicación pública. AIT organizó en SF; Vultr patrocinó en París. La ciudad no invalida el antecedente ni el patrocinio acredita organización; [soporte por afirmación](evidence/dp-01-afirmaciones.md). La validación comercial sigue pendiente. Estado de los demás tickets: consultar sus Execution como fuente de verdad.
 
