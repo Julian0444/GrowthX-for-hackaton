@@ -6,7 +6,7 @@ import { alternativeReason } from "../../lib/research/presentation"
 import type { ResearchBriefInput } from "../../lib/contracts/evaluation"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { LayoutDashboard, Users, CalendarDays, Bookmark, SlidersHorizontal } from "lucide-react"
+import { LayoutDashboard, Users, CalendarDays, Handshake, Bookmark, SlidersHorizontal } from "lucide-react"
 import { OnboardingIntake, type IntakePayload } from "../atlas/onboarding-intake"
 import { EventImport, INGEST_IDLE, type IngestUiState } from "../atlas/event-import"
 import { comparisonResult, eventIngestResult, fetchCatalogEditions, fetchEditionDossier, fetchOrganizerDossier, fetchResearchHome, pollEvaluation, saveResearchOrganizer, startComparison, startEvaluation, startEventIngest, type EditionDossierRead, type EvaluationRunView, type OrganizerDossierRead, type EvaluationStartInput } from "../../lib/api/atlas-client"
@@ -23,6 +23,7 @@ import type { ResearchPresentationState } from "../../lib/contracts/evaluation"
 import { DISCOVERY_WORKFLOW } from "../../lib/contracts/discovery"
 import { DiscoveryPanel } from "./discovery-panel"
 import { BackgroundPanel } from "./background-panel"
+import { SponsorshipMatches } from "./sponsorship-matches"
 import { BACKGROUND_WORKFLOW, backgroundResult } from "../../lib/contracts/background"
 
 import { ResearchBrief } from './research-brief'
@@ -30,8 +31,8 @@ import { ResearchProgress } from './research-progress'
 import { EvidencePanel } from './evidence-panel'
 import { RUN_LABELS as STATES, readableDate } from '../../lib/research/presentation'
 
-type Section = 'Research' | 'Organizers' | 'Events' | 'Decisions' | 'Brief'
-const NAV = [{ label: 'Research', icon: LayoutDashboard }, { label: 'Organizers', icon: Users }, { label: 'Events', icon: CalendarDays }, { label: 'Decisions', icon: Bookmark }, { label: 'Brief', icon: SlidersHorizontal }] as const
+type Section = 'Research' | 'Organizers' | 'Events' | 'Matches' | 'Decisions' | 'Brief'
+const NAV = [{ label: 'Research', icon: LayoutDashboard }, { label: 'Organizers', icon: Users }, { label: 'Events', icon: CalendarDays }, { label: 'Matches', icon: Handshake }, { label: 'Decisions', icon: Bookmark }, { label: 'Brief', icon: SlidersHorizontal }] as const
 // Workflow del run de importación Luma (ticket 11; ver lib/server/evaluations/luma-step.ts).
 const LUMA_WORKFLOW = 'luma-ingest/1'
 const failure = (status: string) => status === 'unauthorized' ? 'Sign in to access this research.' : status === 'missing' ? 'This research is not available to this session.' : 'The server could not be reached. Retry to recover the saved research.'
@@ -293,7 +294,7 @@ export function ResearchDashboard() {
       <p>Focused research.<br/>Evidence before commitment.</p>
     </aside>
     <main className="research-main" id="research-main" tabIndex={-1} ref={content}><div className="research-content">
-      <header className="research-header"><div><span className="eyebrow">San Francisco</span><h1>{section}</h1><p className="section-caption">{{ Research: "Find your next opportunity.", Organizers: "People, communities and their previous work.", Events: "Published events, evidence and open questions.", Decisions: "Compare the evidence and choose your next step.", Brief: "Tell us what you build and who you want to reach." }[section]}</p></div><button className="research-button" onClick={() => { if (comparisonView) { navigate('Decisions'); requestAnimationFrame(() => { const editor = document.querySelector<HTMLDetailsElement>('[data-testid="comparison-brief-editor"]'); if (editor) { editor.open = true; editor.scrollIntoView({block:'start'}); editor.querySelector<HTMLTextAreaElement>('textarea')?.focus() } }) } else navigate('Brief') }}>{run ? `Edit brief · v${run.profile.profileVersion}` : 'Create brief'}</button></header>
+      <header className="research-header"><div><span className="eyebrow">San Francisco</span><h1>{section}</h1><p className="section-caption">{{ Research: "Find your next opportunity.", Organizers: "People, communities and their previous work.", Events: "Published events, evidence and open questions.", Matches: "Connect a sponsor brief with an organizer-declared opportunity.", Decisions: "Compare the evidence and choose your next step.", Brief: "Tell us what you build and who you want to reach." }[section]}</p></div><button className="research-button" onClick={() => { if (comparisonView) { navigate('Decisions'); requestAnimationFrame(() => { const editor = document.querySelector<HTMLDetailsElement>('[data-testid="comparison-brief-editor"]'); if (editor) { editor.open = true; editor.scrollIntoView({block:'start'}); editor.querySelector<HTMLTextAreaElement>('textarea')?.focus() } }) } else navigate('Brief') }}>{run ? `Edit brief · v${run.profile.profileVersion}` : 'Create brief'}</button></header>
       {note && <div className="research-notice" role="alert">{englishSystemText(note)}<button className="research-button" onClick={() => { setNote(null); if (runId) openRun(runId); void refreshHome(); void refreshCatalog() }}>Retry reading</button></div>}
       {run && section !== 'Brief' && <ResearchBrief profile={run.profile} onEdit={() => { if (comparisonView) { navigate('Decisions'); requestAnimationFrame(() => { const editor = document.querySelector<HTMLDetailsElement>('[data-testid="comparison-brief-editor"]'); if (editor) { editor.open = true; editor.scrollIntoView({block:'start'}); editor.querySelector<HTMLTextAreaElement>('textarea')?.focus() } }) } else navigate('Brief') }} />}
       {runId && (run || !note) && section !== 'Brief' && <ResearchProgress run={run} runId={runId} editionCount={editions.length} onOpenRun={openRun} />}
@@ -331,6 +332,7 @@ export function ResearchDashboard() {
           <BackgroundPanel run={run} profileRunId={run?.runId ?? home?.runs[0]?.runId ?? null} onAccepted={id => openRun(id)} onEdition={id => void openEdition(id)} />
           {importPanel}
         </ResearchEvents></section>}
+        {section === 'Matches' && <SponsorshipMatches key={run?.runId ?? home?.runs[0]?.runId ?? 'no-brief'} sponsorRunId={run?.runId ?? home?.runs[0]?.runId ?? null} onCreateBrief={() => navigate('Brief')} />}
         {section === 'Decisions' && <details open={!comparisonView || undefined} className="saved-decisions"><summary>Saved decisions and evaluations</summary><section className="decisions-section"><h2>Investment decisions</h2><p>Open a comparison to record a choice, rejection or pending decision with reasons and conditions. Open questions remain conditions when you save. Saving an organizer only bookmarks it for research.</p>
           <h3>Saved evaluations</h3><p className="research-meta">Opening saved research preserves its original evidence. Re-evaluation is an explicit action that creates a separate comparison.</p>
           {home ? <EvaluationList evaluations={home.evaluations} profiles={home.evaluationProfiles} filterProfileId={evaluationFilter} onFilter={id => void filterEvaluations(id)} onOpen={(id, nextFocus) => { openRun(id, nextFocus); scrollToStart() }} /> : <p>Loading saved research…</p>}
