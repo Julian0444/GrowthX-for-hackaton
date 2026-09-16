@@ -12,7 +12,7 @@ registerHooks({
 });
 
 const handlers = (async () => {
-  const [evaluations, run, ingest, catalog, edition, organizer, decisions, decision, saveOrganizer] = await Promise.all([
+  const [evaluations, run, ingest, catalog, edition, organizer, decisions, decision, saveOrganizer, sponsorships, sponsorshipInterest] = await Promise.all([
     import('../../app/api/evaluations/route.ts'),
     import('../../app/api/evaluations/[id]/route.ts'),
     import('../../app/api/events/ingest/route.ts'),
@@ -22,6 +22,8 @@ const handlers = (async () => {
     import('../../app/api/decisions/route.ts'),
     import('../../app/api/decisions/[id]/route.ts'),
     import('../../app/api/evaluations/[id]/organizers/[organizerId]/route.ts'),
+    import('../../app/api/sponsorships/route.ts'),
+    import('../../app/api/sponsorships/[id]/interest/route.ts'),
   ]);
   const id = '00000000-0000-4000-8000-000000000001';
   const params = { params: Promise.resolve({ id, organizerId: 'organizer-test' }) };
@@ -38,6 +40,9 @@ const handlers = (async () => {
     { label: 'GET decisión', method: 'GET', call: (request: Request) => decision.GET(request, params) },
     { label: 'PATCH decisión', method: 'PATCH', call: (request: Request) => decision.PATCH(request, params) },
     { label: 'POST guardar organizador', method: 'POST', call: (request: Request) => saveOrganizer.POST(request, params) },
+    { label: 'GET oportunidades de sponsorship', method: 'GET', call: (request: Request) => sponsorships.GET(request) },
+    { label: 'POST oportunidad de sponsorship', method: 'POST', call: (request: Request) => sponsorships.POST(request) },
+    { label: 'POST solicitud de introducción', method: 'POST', call: (request: Request) => sponsorshipInterest.POST(request, params) },
   ];
 })();
 
