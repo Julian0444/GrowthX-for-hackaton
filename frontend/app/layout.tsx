@@ -3,10 +3,11 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import './globals.css'
 import '../components/research-dashboard/sf-event-map.css'
 import '../components/research-dashboard/research-experience.css'
+import '../components/research-dashboard/clean-ui.css'
 
 export const metadata: Metadata = {
-  title: 'GrowXth — Developer Growth Intelligence',
-  description: 'We map where your next developers are emerging.',
+  title: 'GrowthX — Sponsorship intelligence',
+  description: 'Find the right communities, events, and sponsorship opportunities for developer growth.',
   icons: {
     icon: [
       {
