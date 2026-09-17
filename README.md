@@ -8,7 +8,9 @@ This repository contains the working **San Francisco research-to-decision protot
 
 **[Watch the quick demo on Loom](https://www.loom.com/share/c92423774f7847368838580346519133)**
 
-[Product and discovery](docs/product.md) · [Architecture](docs/architecture.md) · [Run locally](docs/local-development.md) · [Verification](docs/verification.md) · [Known limitations](docs/known-limitations.md)
+[Product and discovery](docs/product.md) · [System architecture](#system-architecture) · [Tools and their roles](#tools-and-their-roles) · [Run locally](docs/local-development.md) · [Verification](docs/verification.md) · [Known limitations](docs/known-limitations.md)
+
+For an engineering review, start with the demo, then follow the architecture below into the linked source files. The [verification report](docs/verification.md) shows which claims were tested and where the prototype still falls short.
 
 ![Growth Atlas showing researched events alongside a San Francisco street map](DemoPuentes/evidence/DP-12/screenshots/production-real-map.png)
 
@@ -54,29 +56,91 @@ The [case and sources](DemoPuentes/evidence/dp-01-caso-y-fuentes.md), [claim reg
 
 **Dates matter:** the recorded September 12 and 13, 2026 editions are past as of this documentation review on **September 14, 2026**. The September 26 Agent Arena edition was future at this review date, but this documentation does not confirm current availability or participation terms. Historical comparisons remain useful evidence of the workflow; they are not a promise of today's opportunities.
 
-## Engineering decisions worth reviewing
+## System architecture
 
-The application uses **Next.js 16, React 19 and TypeScript**, with **PostgreSQL 17**, **pg-boss** and a separate Node worker. MapLibre renders the SF street map. Exa supports source discovery; an optional Apify reader and optional Gemini narrative step have explicit boundaries.
+Growth Atlas is a **modular TypeScript application with two processes**: Next.js serves the interface and API, while a separate Node.js worker performs durable research and comparison jobs. Both use PostgreSQL, which stores the business records and the pg-boss queue in separate schemas. Keeping these responsibilities in one codebase makes the contracts easy to inspect while allowing research to continue after the browser closes.
 
 ```mermaid
-flowchart LR
-    Brief[Versioned brief] --> Research[Durable research]
-    Research --> Evidence[Sources and claim revisions]
-    Evidence --> Comparison[Eligibility and comparison]
-    Brief --> Comparison
-    Comparison --> Snapshot[Immutable snapshot]
-    Snapshot --> Decision[Human decision and activity brief]
-    Decision --> Reopen[Copy and reopen exact revision]
+flowchart TB
+    UI["Browser · React 19 + MapLibre<br/>Brief, dossiers, map, comparison and decisions"]
+    API["Next.js 16 API<br/>Session, input validation and application services"]
+    subgraph PG["PostgreSQL 17 · separate database roles"]
+        DATA[("Business records<br/>Sources, revisions, snapshots and decisions")]
+        QUEUE["pg-boss queue<br/>Durable jobs"]
+    end
+    WORKER["Node.js worker<br/>Persisted steps, recovery and comparison"]
+    SOURCES["Source acquisition<br/>Exa discovery + public-page reading"]
+    APIFY["Apify · optional<br/>Explicit content-reading fallback"]
+    CENSUS["US Census · optional<br/>Address resolution"]
+    GEMINI["Gemini · optional<br/>Claim selection after the snapshot"]
+    TILES["OpenFreeMap<br/>Browser map assets"]
+
+    UI <-->|"HTTP requests and status polling"| API
+    UI -->|"Style and tiles"| TILES
+    API -->|"Read and write under tenant context"| DATA
+    API -->|"Enqueue in the run transaction"| QUEUE
+    QUEUE -->|"Claim job"| WORKER
+    WORKER -->|"Save progress and immutable results"| DATA
+    WORKER --> SOURCES
+    WORKER -.-> APIFY
+    WORKER -.-> CENSUS
+    WORKER -.-> GEMINI
 ```
 
-Four decisions carry much of the engineering work:
+*The diagram follows the durable research/comparison path. Source acquisition includes application code and external HTTP calls; the optional branches are configured or explicitly requested. Provider keys stay on the server. Public map assets are fetched by the browser.*
 
-- **Evidence has identity and history.** Sources, claims, editions and decisions are versioned. An old comparison keeps its pinned evidence when the catalog changes.
-- **Accepted work must survive the request.** Run creation and queue acceptance share a database transaction. The worker resumes persisted steps. An uncertain external request is not blindly retried as though it never happened.
-- **The model has limited authority.** The official comparison snapshot exists before optional model output. The model can select admitted claims; it cannot invent eligibility, change the decision or authorize spending. Without an approved commercial scoring policy, the application provides factual research priorities rather than a fabricated ROI ranking.
-- **Uncertainty remains visible.** Unknown costs stay unknown, previous editions stay historical, and withheld locations stay off the map. Tenant-scoped sessions, row-level security and revision conflicts protect saved work within the implemented model.
+### How one research run moves through the system
 
-Read [Architecture](docs/architecture.md) for tradeoffs and source links. Good starting points in the code are [run acceptance](frontend/lib/server/evaluations/service.ts), [comparison snapshots](frontend/lib/server/evaluations/snapshot-store.ts), [durable discovery](frontend/lib/server/discovery/durable.ts), and [decision persistence](frontend/lib/server/decisions/store.ts).
+1. **Accept:** the API resolves the session, validates the brief, and saves its version, run, steps and queued job in one transaction. Only then does it return `202` with a run ID. Repeating an idempotency key with the same input returns the existing run.
+2. **Investigate:** the worker claims the job and executes persisted steps. Discovery produces candidate pages; selected supported pages can then be read in a separate background-research run. Source text is parsed into evidence with provenance and coverage limits.
+3. **Compare:** after the user selects editions, a comparison run evaluates dates, constraints, costs and evidence against the brief. It saves an immutable snapshot before requesting any optional model output.
+4. **Decide and reopen:** a user decision references that snapshot. Saving the decision and applicable activity brief is transactional; later edits append revisions. The browser can reopen the exact earlier revision even when the catalog changes.
+
+These are connected user actions, not one hidden call that automatically discovers, endorses and commits to an event. The [architecture guide](docs/architecture.md) expands the contracts, roles, recovery behavior and provider budgets.
+
+## Tools and their roles
+
+### Application stack
+
+| Layer | Tools | Role in this project |
+| --- | --- | --- |
+| Interface | **Next.js 16, React 19, TypeScript** | The dashboard and API share explicit domain contracts for briefs, evidence, editions and decisions. |
+| Styling and components | **Tailwind CSS 4, Base UI / shadcn components, Lucide** | Layout, interface primitives and navigation icons. |
+| Persistence | **PostgreSQL 17, node-postgres (`pg`)** | SQL transactions, revisioned JSONB records, opaque sessions and tenant isolation through row-level security. |
+| Background execution | **Node.js, pg-boss 12** | A separate worker consumes a PostgreSQL-backed queue and resumes persisted steps. |
+| Discovery | **Exa Search** | Finds candidate public pages within explicit query, deadline and provider-budget limits. Search snippets alone are not claim evidence. |
+| Source reading | **Native HTTP reader, `parse5`** | Reads supported pages and extracts visible text and structured metadata without executing page JavaScript. |
+| Optional reading fallback | **Apify Website Content Crawler** | Handles an explicitly identified reading gap. Implemented and tested with controlled responses; no live Actor run is claimed for the reference demo. |
+| Optional model integration | **Gemini API** | Selects admissible claims for a narrative after the official comparison is saved. It cannot change eligibility or the human decision. The retained demo does not establish a live Gemini call. |
+| Geography | **MapLibre GL 6.9, OpenFreeMap, US Census Geocoder** | Street-map rendering, public map assets and optional approximate address resolution. Uncertain or withheld locations do not become invented venue pins. |
+
+Versions and resolved dependencies are recorded in [package.json](frontend/package.json) and [pnpm-lock.yaml](frontend/pnpm-lock.yaml). The source links below show how the tools are composed; installing a library is not itself evidence that every associated feature is complete.
+
+### Building and verification tools
+
+| Tool | How I used it |
+| --- | --- |
+| **Cursor and Codex** | AI-assisted implementation, code inspection, debugging, tests and documentation, guided by the product specification and ticket acceptance criteria. |
+| **Node.js test runner** | Contract, acceptance, connector and database integration tests, including failure and recovery cases. |
+| **Playwright + Google Chrome** | Browser checks against the production frontend: desktop/mobile behavior, native clipboard, reopening, revision conflicts and map failures. |
+| **TypeScript + ESLint + Next.js build** | Type checking, static checks and production compilation. |
+| **Docker + PostgreSQL** | Separate verification databases that preserve the user's local research data. |
+| **pnpm + Git/GitHub** | Locked dependencies, versioned implementation and a reviewable history of documentation and evidence. |
+| **Loom** | A short [product walkthrough](https://www.loom.com/share/c92423774f7847368838580346519133) alongside the repository. |
+
+The coding assistants are development tools; the application integrates Gemini separately for its optional model step. The [verification report](docs/verification.md) distinguishes controlled provider fixtures from real browser/database execution and earlier live-source research.
+
+## Engineering decisions worth reviewing
+
+| Decision | Why it matters | Tradeoff and code to inspect |
+| --- | --- | --- |
+| **One PostgreSQL database for records and queue** | Run acceptance and enqueueing can commit together, so a successful response corresponds to durable work. | The worker and database need operation and recovery handling. [Acceptance service](frontend/lib/server/evaluations/service.ts), [queue adapter](frontend/lib/server/evaluations/queue.ts). |
+| **Immutable comparison snapshots** | Reopening a decision should show the evidence used then, even after a new source or edition revision arrives. | More storage and explicit revision management. [Snapshot store](frontend/lib/server/evaluations/snapshot-store.ts), [decision store](frontend/lib/server/decisions/store.ts). |
+| **Deterministic eligibility before optional model output** | Past dates, confirmed exclusions and known costs must remain enforceable regardless of generated wording. | The system can return insufficient evidence. No approved commercial scoring policy currently exists. [Eligibility](frontend/lib/server/evaluations/eligibility.ts), [model adapter](frontend/lib/server/evaluations/model-adapter.ts). |
+| **Persist external-request uncertainty** | A crash after dispatch must not silently trigger another paid request as though nothing happened. | An uncertain operation can require review instead of automatic completion. [Durable discovery](frontend/lib/server/discovery/durable.ts). |
+| **Tenant context and revision conflicts** | One tenant should not read another's research, and an old browser tab should not silently overwrite a newer decision. | Every business operation must carry the server-resolved context; conflicting edits require an explicit reload. [Tenant transactions](frontend/lib/server/db/pool.ts), [decision revisions](frontend/lib/server/decisions/store.ts). |
+
+These choices make the prototype's behavior inspectable. They do not establish universal correctness: source coverage, edition identity and other concrete defects remain listed in [Known limitations](docs/known-limitations.md).
 
 ## Run it locally
 
